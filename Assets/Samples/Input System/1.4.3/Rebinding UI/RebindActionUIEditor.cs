@@ -24,6 +24,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             m_UpdateBindingUIEventProperty = serializedObject.FindProperty("m_UpdateBindingUIEvent");
             m_RebindStartEventProperty = serializedObject.FindProperty("m_RebindStartEvent");
             m_RebindStopEventProperty = serializedObject.FindProperty("m_RebindStopEvent");
+            m_RebindRequestedEventProperty = serializedObject.FindProperty("m_RebindRequestedEvent");
             m_DisplayStringOptionsProperty = serializedObject.FindProperty("m_DisplayStringOptions");
 
             RefreshBindingOptions();
@@ -70,6 +71,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             using (new EditorGUI.IndentLevelScope())
             {
                 EditorGUILayout.PropertyField(m_RebindStartEventProperty);
+                EditorGUILayout.PropertyField(m_RebindRequestedEventProperty);
                 EditorGUILayout.PropertyField(m_RebindStopEventProperty);
                 EditorGUILayout.PropertyField(m_UpdateBindingUIEventProperty);
             }
@@ -156,6 +158,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         private SerializedProperty m_RebindOverlayProperty;
         private SerializedProperty m_RebindTextProperty;
         private SerializedProperty m_RebindStartEventProperty;
+        private SerializedProperty m_RebindRequestedEventProperty;
         private SerializedProperty m_RebindStopEventProperty;
         private SerializedProperty m_UpdateBindingUIEventProperty;
         private SerializedProperty m_DisplayStringOptionsProperty;

@@ -120,6 +120,15 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 return m_UpdateBindingUIEvent;
             }
         }
+        public UnityEvent rebindRequestedEvent
+        {
+            get
+            {
+                if (m_RebindRequestedEvent == null)
+                    m_RebindRequestedEvent = new UnityEvent();
+                return m_RebindRequestedEvent;
+            }
+        }
 
         /// <summary>
         /// Event that is triggered when an interactive rebind is started on the action.
@@ -262,6 +271,8 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 m_RebindOperation = null;
             }
 
+            m_RebindRequestedEvent?.Invoke();
+
             // Configure the rebind.
             m_RebindOperation = action.PerformInteractiveRebinding(bindingIndex)
                 .OnCancel(
@@ -396,6 +407,10 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             + "bindings in custom ways, e.g. using images instead of text.")]
         [SerializeField]
         private UpdateBindingUIEvent m_UpdateBindingUIEvent;
+
+        [Tooltip("Event that is triggered before an interactive rebind is initiated, after a request is made to start a rebind operation")]
+        [SerializeField]
+        private UnityEvent m_RebindRequestedEvent;
 
         [Tooltip("Event that is triggered when an interactive rebind is being initiated. This can be used, for example, "
             + "to implement custom UI behavior while a rebind is in progress. It can also be used to further "

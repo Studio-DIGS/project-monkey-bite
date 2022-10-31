@@ -6,46 +6,23 @@ using UnityEngine.InputSystem;
 [CreateAssetMenu(menuName = "Architecture/Input/InputProvider/PlayerGameplayProvider")]
 public class PlayerGameplayInputProvider : PlayerInputProvider
 {
-    public GameplayMapInputSource userInputSource;
+    public List<ActionMapInputSource<PlayerInputState>> userInputSources;
     public UIInputSource UIInputSource;
-
-    private DefaultControls controls;
 
     public override PlayerInputState GetInputState()
     {
         inputState = new PlayerInputState();
-        inputState = userInputSource.ProcessInputState(inputState);
+        foreach(ActionMapInputSource<PlayerInputState> source in userInputSources)
+        {
+            inputState = source.ProcessInputState(inputState);
+        }
         inputState = UIInputSource.ProcessInputState(inputState);
         return inputState;
     }
 
-    public override void Setup()
-    {
-        controls = new DefaultControls();
-        controls.Gameplay.Enable();
-        userInputSource.SetupCallbacks(controls);
-        SubscribeEvents();
-    }
-
-    public override void Cleanup()
-    {
-        controls.Dispose();
-        UnsubscribeEvents();
-    }
-
-    private void SubscribeEvents()
-    {
-        userInputSource.jumpEvent += HandleOnJump;
-    }
-
-    private void UnsubscribeEvents()
-    {
-        userInputSource.jumpEvent -= HandleOnJump;
-    }
-
     // Event handlers
 
-    private void HandleOnJump(InputAction.CallbackContext context)
+    public void HandleOnJump(InputAction.CallbackContext context)
     {
         if(inputState.canJump)
             HandleInputEvent(context, OnJumpPressed, null, OnJumpReleased);

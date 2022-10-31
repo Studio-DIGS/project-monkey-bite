@@ -11,6 +11,4 @@ public abstract class PlayerInputProvider : ScriptableObject
     public Action OnJumpReleased;
 
     public abstract PlayerInputState GetInputState();
-    public abstract void Setup();
-    public abstract void Cleanup();
 }

@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "Architecture/Input/InputSources/UserInput/GameplayMapInputSource")]
 public class GameplayMapInputSource : ActionMapInputSource<PlayerInputState>, DefaultControls.IGameplayActions
 {
-    public delegate void SimpleInputAction(InputAction.CallbackContext context);
-
     public override void SetupCallbacks(DefaultControls controlScheme)
     {
         controlScheme.Gameplay.SetCallbacks(this);
@@ -27,7 +26,7 @@ public class GameplayMapInputSource : ActionMapInputSource<PlayerInputState>, De
 
     // Event fields
 
-    public event SimpleInputAction jumpEvent;
+    public InputUnityEvent jumpEvent;
 
     // Frame based  callbacks
 
@@ -42,8 +41,12 @@ public class GameplayMapInputSource : ActionMapInputSource<PlayerInputState>, De
     }
 
     // Event based callbacks
+
     public void OnJump(InputAction.CallbackContext context)
     {
         jumpEvent?.Invoke(context);
     }
 }
+
+[System.Serializable]
+public class InputUnityEvent : UnityEvent<InputAction.CallbackContext> { }

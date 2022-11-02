@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Architecture/Input/InputProvider/TestAI")]
-public class TestAIInputProvider : PlayerInputProvider
+public class TestAIInputProvider : InputProvider<PlayerInputState>
 {
 
     public float angle = 0f;

@@ -7,7 +7,7 @@ public class InputAssetInitializer : MonoBehaviour
 {
     public DefaultControlsInstanceAsset asset;
 
-    private void Start()
+    private void Awake()
     {
         asset.CreateInstance();
         asset.InputActionsAsset.Gameplay.Enable();

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerInputState
 {
+    // Events (Yes I know this is cursed as fuck)
+    public Action OnJumpPressed;
+    public Action OnJumpReleased;
 
     // Values
     public float horizontalAxis;

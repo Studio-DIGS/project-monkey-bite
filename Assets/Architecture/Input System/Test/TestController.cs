@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class TestController : MonoBehaviour
 {
-    public PlayerInputProvider inputProvider;
+    public InputProvider<PlayerInputState> inputProvider;
     public Transform playerTransform;
 
     private Vector3 pos;
 
-    private void Awake()
+    private void Start()
     {
-        inputProvider.OnJumpReleased += () => print("AHHHH");
+        inputProvider.GetInputState().OnJumpPressed += () => print("AHHHH Jump :D");
     }
 
     private void Update()

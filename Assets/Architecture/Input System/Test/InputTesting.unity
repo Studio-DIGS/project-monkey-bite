@@ -993,13 +993,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6235ab0fba0e0bb4ebb087b797371a67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rebinders:
-  - {fileID: 1423008358}
-  - {fileID: 0}
-  assetInstance: {fileID: 11400000, guid: c7d8b75a73e01a94b8e4a49c1dc0afbe, type: 2}
-  source: {fileID: -944628639613478452, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
-  actionMapIndex: 0
-  test: 
+  defaultControlsInstanceAsset: {fileID: 11400000, guid: c7d8b75a73e01a94b8e4a49c1dc0afbe, type: 2}
+  targetAsset: {fileID: -944628639613478452, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
 --- !u!1 &1253251800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1343,17 +1338,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6680292650503350825, guid: f25dcd618d3acd64795bf8bb32edb6c9, type: 3}
   m_PrefabInstance: {fileID: 2069998910}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1423008358 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6680292650503350826, guid: f25dcd618d3acd64795bf8bb32edb6c9, type: 3}
-  m_PrefabInstance: {fileID: 2069998910}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc11d99b1a6682f4cbc4aba1fcd9ac5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1475736706
 GameObject:
   m_ObjectHideFlags: 0

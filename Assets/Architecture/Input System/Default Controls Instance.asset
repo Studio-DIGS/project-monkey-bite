@@ -17,7 +17,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: ff3f8f951e4195047af9652712feb4dd, type: 2}
         m_TargetAssemblyTypeName: GameplayMapInputSource, Assembly-CSharp
-        m_MethodName: SetupCallbacks
+        m_MethodName: SetCallbacks
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

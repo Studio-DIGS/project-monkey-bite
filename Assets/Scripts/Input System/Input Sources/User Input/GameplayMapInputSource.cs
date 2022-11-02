@@ -7,46 +7,41 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName = "Architecture/Input/InputSources/UserInput/GameplayMapInputSource")]
 public class GameplayMapInputSource : ActionMapInputSource<PlayerInputState>, DefaultControls.IGameplayActions
 {
-    public override void SetupCallbacks(DefaultControls controlScheme)
+    private DefaultControls.GameplayActions actionMap;
+
+    public override void SetCallbacks(IInputActionCollection2 controlScheme)
     {
-        controlScheme.Gameplay.SetCallbacks(this);
+        actionMap = ((DefaultControls)controlScheme).Gameplay;
+        actionMap.SetCallbacks(this);
     }
 
     public override PlayerInputState ProcessInputState(PlayerInputState data)
     {
-        data.horizontalAxis = horizontalMovementContext.ReadValue<float>();
-        data.mousePosition = mousePosition;
+        data.horizontalAxis = actionMap.HorizontalMovement.ReadValue<float>();
+        data.mousePosition = actionMap.MousePosition.ReadValue<Vector2>();
         return data;
     }
 
-    // Frame based state fields
-
-    private InputAction.CallbackContext horizontalMovementContext;
-    private Vector2 mousePosition;
-
     // Event fields
 
-    public InputUnityEvent jumpEvent;
+    public ActionMapSourceEvent jumpEvent;
+    public ActionMapSourceEvent horizontalMovementEvent;
+    public ActionMapSourceEvent mousePositionEvent;
 
-    // Frame based  callbacks
+    // Callbacks
 
     public void OnHorizontalMovement(InputAction.CallbackContext context)
     {
-        horizontalMovementContext = context;
+        horizontalMovementEvent?.Invoke(context);
     }
 
     public void OnMousePosition(InputAction.CallbackContext context)
     {
-        mousePosition = context.ReadValue<Vector2>();
+        mousePositionEvent?.Invoke(context);    
     }
-
-    // Event based callbacks
 
     public void OnJump(InputAction.CallbackContext context)
     {
         jumpEvent?.Invoke(context);
     }
 }
-
-[System.Serializable]
-public class InputUnityEvent : UnityEvent<InputAction.CallbackContext> { }

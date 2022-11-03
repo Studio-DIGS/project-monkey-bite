@@ -1008,6 +1008,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: fa4d8d92-33de-465f-8095-82242d8938e2
     m_ActionName: Gameplay/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d9e1c5a3-9055-42be-8e3d-7a09d3cbc531
+    m_ActionName: Gameplay/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 89731dda-bb64-43df-845b-bfb41e10bced
+    m_ActionName: Gameplay/Main Attack[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 174b489a-ab82-456c-b35f-9aae2ad0e75d
+    m_ActionName: Gameplay/Alt Attack[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -1027,7 +1039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInputComponent: {fileID: 1152976541}
   asset: {fileID: -944628639613478452, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
-  provider: {fileID: 11400000, guid: ad4b29790938e334bb5955a0333e3e50, type: 2}
+  stateProvider: {fileID: 11400000, guid: ad4b29790938e334bb5955a0333e3e50, type: 2}
 --- !u!1 &1184038354 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8384654220190448158, guid: f25dcd618d3acd64795bf8bb32edb6c9, type: 3}

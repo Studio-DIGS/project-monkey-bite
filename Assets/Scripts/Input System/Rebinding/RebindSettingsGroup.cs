@@ -26,7 +26,8 @@ public class RebindSettingsGroup : SettingsGroup
     }
 
     public override void CloseSession()
-    { bindingLoader.LoadBindingsFromCache();
+    { 
+        bindingLoader.LoadBindingsFromCache();
     }
 
     public override void SaveChanges()

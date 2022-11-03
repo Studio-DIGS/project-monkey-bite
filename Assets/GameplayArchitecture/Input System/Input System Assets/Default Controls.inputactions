@@ -15,27 +15,27 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "bbb73e17-f4bb-4010-809c-7b13062fe910",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Mouse Position",
                     "type": "PassThrough",
                     "id": "997ed31e-98e2-41ef-b059-30492689557e",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Pause",
                     "type": "Button",
                     "id": "7ee2b686-4fb5-47b6-8387-6d75ffc57484",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "fa4d8d92-33de-465f-8095-82242d8938e2",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -78,17 +78,6 @@
                 },
                 {
                     "name": "",
-                    "id": "6608590b-0129-4462-bc92-e14037547a48",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "50dfadf0-7bcd-460b-8f00-0b314514d1ac",
                     "path": "<Mouse>/position",
                     "interactions": "",
@@ -106,6 +95,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8784fefc-cb15-444a-9634-2e94e57180ff",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

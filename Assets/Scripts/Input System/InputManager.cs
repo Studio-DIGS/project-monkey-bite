@@ -14,6 +14,8 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private InputActionAsset asset;
 
+    [SerializeField] private GameplayMapInputProvider provider;
+    
     enum InputState
     {
         Gameplay,
@@ -26,6 +28,8 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
         SwitchToGameplay();
+        provider.SetupEvents();
+        provider.OnPausePressed += SwitchToUI;
     }
 
     public void SwitchToGameplay()

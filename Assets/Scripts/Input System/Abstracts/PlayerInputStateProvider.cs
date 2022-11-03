@@ -7,5 +7,8 @@ public abstract class PlayerInputStateProvider : ScriptableObject, InputProvider
     // Events
     public Action OnJumpPressed;
     public Action OnJumpReleased;
-    public abstract PlayerInputState GetInputState();
+    public Action OnPausePressed;
+    
+    public abstract PlayerInputState GetInputState(PlayerInputState source = null);
+    public abstract void SetupEvents();
 }

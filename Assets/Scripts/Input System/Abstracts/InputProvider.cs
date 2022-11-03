@@ -5,6 +5,6 @@ using System.Collections.Generic;
 
 public interface InputProvider<TInputState>
 {
-    public abstract TInputState GetInputState();
+    public abstract TInputState GetInputState(TInputState initial);
     
 }

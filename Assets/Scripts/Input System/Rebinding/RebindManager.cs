@@ -6,23 +6,14 @@ using UnityEngine.InputSystem.Samples.RebindUI;
 
 public class RebindManager : MonoBehaviour
 {
-    [Tooltip("Target asset")]
-    [SerializeField]
-    private DefaultControlsInstanceAsset defaultControlsInstanceAsset;
 
     [Tooltip("Target asset")]
     [SerializeField]
     private InputActionAsset targetAsset;
 
-    public void Awake()
-    {
-        defaultControlsInstanceAsset.OnInstanceCreated.AddListener((a) => SetSourceAsset(a.asset));
-    }
-
     private void SetSourceAsset(InputActionAsset asset)
     {
         targetAsset = asset;
-        // 
     }
 
     // Move Save/Load out later

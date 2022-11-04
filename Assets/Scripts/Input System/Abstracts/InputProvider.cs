@@ -3,8 +3,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
 
-public interface InputProvider<TInputState>
+namespace Floofy.Core.InputSystem
 {
-    public abstract TInputState GetInputState(TInputState initial);
-    
+    public interface InputProvider<TInputState>
+    {
+        public abstract TInputState GetInputState(TInputState initial);
+    }
 }

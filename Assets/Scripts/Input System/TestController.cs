@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Floofy.Core.InputSystem;
 public class TestController : MonoBehaviour
 {
     public PlayerInputStateProvider inputProvider;
@@ -12,14 +12,17 @@ public class TestController : MonoBehaviour
     private void Start()
     {
         inputProvider.OnJumpPressed += () => print("AHHHH Jump :D");
-        //inputProvider.Setup();
+        inputProvider.OnInteractPressed += () => print("OWO INTERACT");
+        inputProvider.OnMainAttackPressed += () => print("Whack go to horny jail");
+        inputProvider.OnAltAttackPressed += () => print("SHIN DESTROYER");
     }
-    
+
     private void Update()
     {
         PlayerInputState state = inputProvider.GetInputState();
         pos += Vector3.right * (state.horizontalAxis * Time.deltaTime * 5f);
-        playerTransform.position = pos + Camera.main.ScreenToWorldPoint(new Vector3(state.mousePosition.x, state.mousePosition.y, 5));
+        playerTransform.position =
+            pos + Camera.main.ScreenToWorldPoint(new Vector3(state.mousePosition.x, state.mousePosition.y, 5));
     }
 
     private IEnumerable<string> Test()

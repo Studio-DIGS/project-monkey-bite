@@ -4,35 +4,38 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Samples.RebindUI;
 
-public class RebindSettingsGroup : SettingsGroup
+namespace Floofy.Core.InputSystem
 {
-    [SerializeField] private BindingOverrideLoader bindingLoader;
-
-    [SerializeField] private List<UnityEngine.InputSystem.Samples.RebindUI.RebindActionUI> rebindComponents;
-    
-    private const string prefsKey = "rebinds";
-
-    public override void LoadSavedSettings()
+    public class RebindSettingsGroup : SettingsGroup
     {
-        bindingLoader.LoadRebindFromPrefs(prefsKey);
-        foreach(var rebind in rebindComponents)
-            rebind.UpdateBindingDisplay();
-    }
+        [SerializeField] private BindingOverrideLoader bindingLoader;
 
-    public override void BeginSession()
-    {
-        bindingLoader.CacheCurrentBindings();
-        OnGroupMarkedDirty?.Invoke();
-    }
+        [SerializeField] private List<RebindActionUI> rebindComponents;
 
-    public override void CloseSession()
-    { 
-        bindingLoader.LoadBindingsFromCache();
-    }
+        private const string prefsKey = "rebinds";
 
-    public override void SaveChanges()
-    {
-        bindingLoader.CacheCurrentBindings();
-        bindingLoader.SaveRebindToPrefs(prefsKey);
+        public override void LoadSavedSettings()
+        {
+            bindingLoader.LoadRebindFromPrefs(prefsKey);
+            foreach (var rebind in rebindComponents)
+                rebind.UpdateBindingDisplay();
+        }
+
+        public override void BeginSession()
+        {
+            bindingLoader.CacheCurrentBindings();
+            OnGroupMarkedDirty?.Invoke();
+        }
+
+        public override void CloseSession()
+        {
+            bindingLoader.LoadBindingsFromCache();
+        }
+
+        public override void SaveChanges()
+        {
+            bindingLoader.CacheCurrentBindings();
+            bindingLoader.SaveRebindToPrefs(prefsKey);
+        }
     }
 }

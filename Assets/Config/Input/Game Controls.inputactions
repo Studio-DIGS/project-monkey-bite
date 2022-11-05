@@ -1,5 +1,5 @@
 {
-    "name": "Default Controls",
+    "name": "Game Controls",
     "maps": [
         {
             "name": "Gameplay",
@@ -9,7 +9,7 @@
                     "name": "Horizontal Movement",
                     "type": "Value",
                     "id": "6d0f6baa-4518-4435-a71d-2d1c23d2e65f",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true

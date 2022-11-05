@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Floofy.Core.InputSystem;
 public class TestController : MonoBehaviour
 {
-    public PlayerInputStateProvider inputProvider;
+    public PInputStateProviderSO inputProvider;
     public Transform playerTransform;
 
     private Vector3 pos;

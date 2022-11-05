@@ -2,24 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Floofy.Core.InputSystem
+
+public class RebindUI : MonoBehaviour
 {
-    public class RebindUI : MonoBehaviour
+    public void Setup()
     {
-        public void Setup()
-        {
 
-        }
+    }
 
-        void Start()
-        {
+    void Start()
+    {
 
-        }
+    }
 
-        // Update is called once per frame
-        void Update()
-        {
+    // Update is called once per frame
+    void Update()
+    {
 
-        }
     }
 }
+

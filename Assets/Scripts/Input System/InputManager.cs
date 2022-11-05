@@ -5,49 +5,48 @@ using UnityEngine.InputSystem.Samples.RebindUI;
 using UnityEngine.InputSystem;
 
 // TODO When the game state manager gets added, move all of the input state change logic out - the game state manager should handle changing input states
-namespace Floofy.Core.InputSystem
+
+public class InputManager : MonoBehaviour
 {
-    public class InputManager : MonoBehaviour
+    [Tooltip("Reference to Play Input component.")] [SerializeField]
+    private PlayerInput playerInputComponent;
+
+    [Tooltip("Reference to Used Action Asset.")] [SerializeField]
+    private InputActionAsset asset;
+
+    [SerializeField] private UserPInputStateProviderSO stateProvider;
+
+    enum InputState
     {
-        [Tooltip("Reference to Play Input component.")] [SerializeField]
-        private PlayerInput playerInputComponent;
+        Gameplay,
+        UI
+    }
 
-        [Tooltip("Reference to Used Action Asset.")] [SerializeField]
-        private InputActionAsset asset;
+    private const string gameplayMap = "Gameplay";
+    private const string uiMap = "UI";
 
-        [SerializeField] private UserPlayerInputStateProvider stateProvider;
+    private void Start()
+    {
+        SwitchToGameplay();
+        stateProvider.OnPausePressed += SwitchToUI;
+    }
 
-        enum InputState
-        {
-            Gameplay,
-            UI
-        }
+    public void SwitchToGameplay()
+    {
+        SwitchActionMap(gameplayMap);
+    }
 
-        private const string gameplayMap = "Gameplay";
-        private const string uiMap = "UI";
+    public void SwitchToUI()
+    {
+        SwitchActionMap(uiMap);
+    }
 
-        private void Start()
-        {
-            SwitchToGameplay();
-            stateProvider.OnPausePressed += SwitchToUI;
-        }
-
-        public void SwitchToGameplay()
-        {
-            SwitchActionMap(gameplayMap);
-        }
-
-        public void SwitchToUI()
-        {
-            SwitchActionMap(uiMap);
-        }
-
-        private void SwitchActionMap(string name)
-        {
-            foreach (var map in asset.actionMaps)
-                map.Disable();
-            asset.FindActionMap(uiMap).Disable();
-            playerInputComponent.SwitchCurrentActionMap(name);
-        }
+    private void SwitchActionMap(string name)
+    {
+        foreach (var map in asset.actionMaps)
+            map.Disable();
+        asset.FindActionMap(uiMap).Disable();
+        playerInputComponent.SwitchCurrentActionMap(name);
     }
 }
+

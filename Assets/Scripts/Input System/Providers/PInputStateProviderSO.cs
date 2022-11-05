@@ -1,0 +1,16 @@
+using System;
+using UnityEngine.InputSystem;
+using UnityEngine;
+
+public abstract class PInputStateProviderSO : DescriptionBaseSO, InputProvider<PlayerInputState>
+{
+    // Events
+    public Action OnJumpPressed;
+    public Action OnJumpReleased;
+    public Action OnPausePressed;
+    public Action OnInteractPressed;
+    public Action OnMainAttackPressed;  
+    public Action OnAltAttackPressed;
+
+    public abstract PlayerInputState GetInputState(PlayerInputState source = null);
+}

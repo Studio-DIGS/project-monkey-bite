@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fccdfa69c805e1d4f8fb9a2cb45ec1c8, type: 3}
+  m_Name: UserInputProvider
+  m_EditorClassIdentifier: 
+  _guid: ad4b29790938e334bb5955a0333e3e50
+  description: Centralized SO for retrieving user input in the form of Player Input
+    State
+  horizontalMovement: {fileID: -2595237363424670529, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
+  mousePosition: {fileID: -4237075492081764388, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
+  jump: {fileID: -7969240967366536238, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
+  pause: {fileID: 8944112657952806061, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
+  interact: {fileID: -1796386707715491615, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
+  mainAttack: {fileID: 4420735157476141748, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
+  altAttack: {fileID: -4584744410390734154, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}

@@ -23,11 +23,4 @@ public class TestController : MonoBehaviour
         playerTransform.position =
             pos + Camera.main.ScreenToWorldPoint(new Vector3(state.mousePosition.x, state.mousePosition.y, 5));
     }
-
-    private IEnumerable<string> Test()
-    {
-        yield return "AHAHAA";
-        yield return "BEES";
-        yield return "KNEES";
-    }
 }

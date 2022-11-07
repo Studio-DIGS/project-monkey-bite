@@ -5,10 +5,10 @@ using UnityEngine.InputSystem.Samples.RebindUI;
 using UnityEngine.InputSystem;
 
 // TODO When the game state manager gets added, move all of the input state change logic out - the game state manager should handle changing input states
-
+[RequireComponent (typeof (PlayerInput))]
 public class InputManager : MonoBehaviour
 {
-    [Tooltip("Reference to Play Input component.")] [SerializeField]
+    [HideInInspector, SerializeField]
     private PlayerInput playerInputComponent;
 
     [Tooltip("Reference to Used Action Asset.")] [SerializeField]
@@ -24,6 +24,10 @@ public class InputManager : MonoBehaviour
 
     private const string gameplayMap = "Gameplay";
     private const string uiMap = "UI";
+
+    private void Awake() {
+        playerInputComponent = GetComponent<PlayerInput>();
+    }
 
     private void Start()
     {

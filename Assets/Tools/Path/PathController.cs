@@ -4,85 +4,127 @@ using UnityEngine;
 using PathCreation;
 
 [RequireComponent (typeof (BoxCollider))]
-public class PathController : MonoBehaviour
-{
-    private PathCreator pathCreator;
-    public bool onPath = true;
-    // public LayerMask layerMask;
-    // private Vector2 targetDir;
-    // private Vector3 pos3;
-    [HideInInspector] public float distance, height;
+public class PathController : MonoBehaviour {
 
+    // Member variables
+    // ----------------------------------------------------------------------------
+    // protected component references
+    PathCreator pathCreator;
+    BoxCollider col;
+
+    // public constants
+    const float SKIN_WIDTH = 0.015f;
+
+    // public inspector fields
+    public bool startOnPath = true;
     public LayerMask collisionMask;
-    const float skinWidth = 0.015f;
     public int horizontalRayCount = 4;
     public int verticalRayCount = 4;
 
-    float horizontalRaySpacing;
-    float verticalRaySpacing;
+    // private fields
+    private bool _onPath;
+    private float _distance, _height;
+    private float _horizontalRaySpacing;
+    private float _verticalRaySpacing;
+    private RaycastOrigins _raycastOrigins;
 
-    RaycastOrigins raycastOrigins;
-    BoxCollider col;
+    // Structs
+    // ----------------------------------------------------------------------------
+    public struct RaycastOrigins {
+        public Vector3 topLeft, topRight, bottomLeft, bottomRight;
+    }
 
-    void OnEnable()
-    {
+    // Callbacks
+    // ----------------------------------------------------------------------------
+    void OnEnable() {
         // Path stuff
         pathCreator = GameObject.FindWithTag("WorldPath").GetComponent<PathCreator>();
-        distance = pathCreator.path.GetClosestDistanceAlongPath(transform.position);
-        height = transform.position.y;        
+        this.PutOnPath();
 
         // Collision Stuff
         col = GetComponent<BoxCollider>();
         CalculateRaySpacing();
-        
     }
 
-    void Reset() // Give default values to box collider when added in the inspector
-    {
-        col = GetComponent<BoxCollider>();
-        col.size = new Vector3 (0f, col.size.y, col.size.z);
-    }
-
-    private void FixedUpdate() 
-    {
+    // Unity lifetime functions
+    // ----------------------------------------------------------------------------
+    void FixedUpdate() {
         // Handle collision code here
         return;
     }
 
-    public void Move(Vector2 movement)
-    {
+    void Reset() { 
+        // Give default values to box collider when added in the inspector
+        col = GetComponent<BoxCollider>();
+        col.size = new Vector3 (0f, col.size.y, col.size.z);
+    }
+
+    // Accessor functions
+    // ----------------------------------------------------------------------------
+    public RaycastOrigins getRaycastOrigins() {
+        return _raycastOrigins;
+    }
+
+    // Raycast interface
+    // ----------------------------------------------------------------------------
+    public void UpdateRaycastOrigins() {
+        Bounds bounds = col.bounds;
+        Vector3 boundingSize = (col.size - (new Vector3(0,1,1) * SKIN_WIDTH)) / 2;
+        
+        _raycastOrigins.bottomLeft = (transform.forward * -1 * boundingSize.z) + bounds.center - new Vector3(0f, boundingSize.y, 0f);
+        _raycastOrigins.bottomRight = (transform.forward * boundingSize.z) + bounds.center - new Vector3(0f, boundingSize.y, 0f);
+        _raycastOrigins.topLeft = (transform.forward * -1 * boundingSize.z) + bounds.center + new Vector3(0f, boundingSize.y, 0f);
+        _raycastOrigins.topRight = (transform.forward * boundingSize.z) + bounds.center + new Vector3(0f, boundingSize.y, 0f);
+    }
+
+    // Path interface
+    // ----------------------------------------------------------------------------
+    public void PutOnPath() { 
+        _onPath = true;
+        _distance = pathCreator.path.GetClosestDistanceAlongPath(transform.position);
+        _height = transform.position.y;
+        _onPath = startOnPath;
+    }
+
+    public void TakeOffPath() {
+        _onPath = false;
+    }
+
+    // Movement interface
+    // ----------------------------------------------------------------------------
+    public void Move(Vector2 movement) {
         UpdateRaycastOrigins();
-        if (movement.x != 0) {HorizontalCollision(ref movement);}
-        if (movement.y != 0) {VerticalCollision(ref movement);}
+        if (movement.x != 0) 
+            HorizontalCollision(ref movement);
+        if (movement.y != 0) 
+            VerticalCollision(ref movement);
 
 
         // Final movement along curve
-        if (pathCreator !=null && onPath)
-        {
-            distance += movement.x; // * Time.deltaTime;
-            height += movement.y; // * Time.deltaTime;
+        if (pathCreator != null && _onPath) {
+            _distance += movement.x;
+            _height += movement.y;
 
-            Vector3 pathPos = pathCreator.path.GetPointAtDistance(distance);
-            transform.position = new Vector3(pathPos.x, height, pathPos.z);
-            transform.forward = pathCreator.path.GetDirectionAtDistance(distance);
+            Vector3 pathPos = pathCreator.path.GetPointAtDistance(_distance);
+            transform.position = new Vector3(pathPos.x, _height, pathPos.z);
+            transform.forward = pathCreator.path.GetDirectionAtDistance(_distance);
         }
     }
 
-    void VerticalCollision(ref Vector2 movement)
-    {
+    // Movement helper functions
+    // ----------------------------------------------------------------------------
+    void VerticalCollision(ref Vector2 movement) {
         float directionY = Mathf.Sign(movement.y); // moving down = -1, moving up = +1
-        float rayLength = Mathf.Abs(movement.y) + skinWidth; 
+        float rayLength = Mathf.Abs(movement.y) + SKIN_WIDTH; 
         
-        for (int i = 0; i < verticalRayCount; i++)
-        {
+        for (int i = 0; i < verticalRayCount; i++) {
             // set origin of ray to either bottom or top of character depending on direction of movement
-            Vector3 rayOrigin = (directionY == -1)?raycastOrigins.bottomLeft:raycastOrigins.topLeft;
-            rayOrigin += transform.forward * (verticalRaySpacing * i + movement.x);
+            Vector3 rayOrigin = (directionY == -1)?_raycastOrigins.bottomLeft:_raycastOrigins.topLeft;
+            rayOrigin += transform.forward * (_verticalRaySpacing * i + movement.x);
             RaycastHit hit;
 
-            if (Physics.Raycast(rayOrigin, Vector3.up * directionY, out hit, rayLength, collisionMask))
-            {
-                movement.y = (hit.distance - skinWidth) * directionY;
+            if (Physics.Raycast(rayOrigin, Vector3.up * directionY, out hit, rayLength, collisionMask)) {
+                movement.y = (hit.distance - SKIN_WIDTH) * directionY;
                 rayLength = hit.distance; // important so that there aren't conflicting hits from the different raycasts
             }  
 
@@ -90,21 +132,18 @@ public class PathController : MonoBehaviour
         }
     }
 
-    void HorizontalCollision(ref Vector2 movement)
-    {
+    void HorizontalCollision(ref Vector2 movement) {
         float directionX = Mathf.Sign(movement.x); // moving left = -1, moving right = +1
-        float rayLength = Mathf.Abs(movement.x) + skinWidth; 
+        float rayLength = Mathf.Abs(movement.x) + SKIN_WIDTH; 
         
-        for (int i = 0; i < horizontalRayCount; i++)
-        {
+        for (int i = 0; i < horizontalRayCount; i++) {
             // set origin of ray to either left or right of character depending on direction of movement
-            Vector3 rayOrigin = (directionX == -1)?raycastOrigins.bottomLeft:raycastOrigins.bottomRight;
-            rayOrigin += Vector3.up * (horizontalRaySpacing * i);
+            Vector3 rayOrigin = (directionX == -1)?_raycastOrigins.bottomLeft:_raycastOrigins.bottomRight;
+            rayOrigin += Vector3.up * (_horizontalRaySpacing * i);
             RaycastHit hit;
 
-            if (Physics.Raycast(rayOrigin, transform.forward * directionX, out hit, rayLength, collisionMask))
-            {
-                movement.x = (hit.distance - skinWidth) * directionX;
+            if (Physics.Raycast(rayOrigin, transform.forward * directionX, out hit, rayLength, collisionMask)) {
+                movement.x = (hit.distance - SKIN_WIDTH) * directionX;
                 rayLength = hit.distance; // important so that there aren't conflicting hits from the different raycasts
             }  
 
@@ -112,32 +151,14 @@ public class PathController : MonoBehaviour
         }
     }
 
-    void UpdateRaycastOrigins()
-    {
-        Bounds bounds = col.bounds;
-        Vector3 boundingSize = (col.size - (new Vector3(0,1,1) * skinWidth)) / 2;
-        
-        raycastOrigins.bottomLeft = (transform.forward * -1 * boundingSize.z) + bounds.center - new Vector3(0f, boundingSize.y, 0f);
-        raycastOrigins.bottomRight = (transform.forward * boundingSize.z) + bounds.center - new Vector3(0f, boundingSize.y, 0f);
-        raycastOrigins.topLeft = (transform.forward * -1 * boundingSize.z) + bounds.center + new Vector3(0f, boundingSize.y, 0f);
-        raycastOrigins.topRight = (transform.forward * boundingSize.z) + bounds.center + new Vector3(0f, boundingSize.y, 0f);
-    }
-
-    void CalculateRaySpacing()
-    {
-        Vector3 boundingSize = col.size - (new Vector3(0,1,1) * skinWidth);
+    void CalculateRaySpacing() {
+        Vector3 boundingSize = col.size - (new Vector3(0,1,1) * SKIN_WIDTH);
 
         horizontalRayCount = Mathf.Clamp(horizontalRayCount, 2, int.MaxValue);
         verticalRayCount = Mathf.Clamp(verticalRayCount, 2, int.MaxValue);
 
-        horizontalRaySpacing = (boundingSize.y) / (horizontalRayCount - 1);
-        verticalRaySpacing = (boundingSize.z) / (verticalRayCount - 1);
-    }
-
-    struct RaycastOrigins
-    {
-        public Vector3 topLeft, topRight;
-        public Vector3 bottomLeft, bottomRight;
+        _horizontalRaySpacing = (boundingSize.y) / (horizontalRayCount - 1);
+        _verticalRaySpacing = (boundingSize.z) / (verticalRayCount - 1);
     }
 
     // ADD THE BELOW CODE LATER //

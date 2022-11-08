@@ -16,13 +16,17 @@ public class PathController : MonoBehaviour {
     const float SKIN_WIDTH = 0.015f;
 
     // public inspector fields
+    // [Header ("Movement Settings")]
+    [Header ("Path Settings")]
     public bool startOnPath = true;
+    [Header ("Collision Settings")]
     public LayerMask collisionMask;
     public int horizontalRayCount = 4;
     public int verticalRayCount = 4;
 
     // private fields
     private bool _onPath;
+    private bool _shouldJump;
     private float _distance, _height;
     private float _horizontalRaySpacing;
     private float _verticalRaySpacing;
@@ -92,14 +96,18 @@ public class PathController : MonoBehaviour {
 
     // Movement interface
     // ----------------------------------------------------------------------------
-    public void Move(Vector2 movement) {
+    public bool OnGround() {
+        Vector2 movement = new Vector2();
+        return VerticalCollision(ref movement, false);
+    }
+
+    public Vector2 Move(Vector2 movement) {
         UpdateRaycastOrigins();
-        if (movement.x != 0) 
-            HorizontalCollision(ref movement);
-        if (movement.y != 0) 
-            VerticalCollision(ref movement);
-
-
+        if (movement.x != 0)
+            HorizontalCollision(ref movement, movement.x > 0);
+         if (movement.y != 0)
+            VerticalCollision(ref movement, movement.y > 0);
+        
         // Final movement along curve
         if (pathCreator != null && _onPath) {
             _distance += movement.x;
@@ -109,14 +117,17 @@ public class PathController : MonoBehaviour {
             transform.position = new Vector3(pathPos.x, _height, pathPos.z);
             transform.forward = pathCreator.path.GetDirectionAtDistance(_distance);
         }
+
+        return movement;
     }
 
     // Movement helper functions
     // ----------------------------------------------------------------------------
-    void VerticalCollision(ref Vector2 movement) {
-        float directionY = Mathf.Sign(movement.y); // moving down = -1, moving up = +1
+    bool VerticalCollision(ref Vector2 movement, bool raycastUp) {
+        float directionY = raycastUp ? 1 : -1; // moving down = -1, moving up = +1
         float rayLength = Mathf.Abs(movement.y) + SKIN_WIDTH; 
         
+        bool foundCollision = false;
         for (int i = 0; i < verticalRayCount; i++) {
             // set origin of ray to either bottom or top of character depending on direction of movement
             Vector3 rayOrigin = (directionY == -1)?_raycastOrigins.bottomLeft:_raycastOrigins.topLeft;
@@ -126,16 +137,19 @@ public class PathController : MonoBehaviour {
             if (Physics.Raycast(rayOrigin, Vector3.up * directionY, out hit, rayLength, collisionMask)) {
                 movement.y = (hit.distance - SKIN_WIDTH) * directionY;
                 rayLength = hit.distance; // important so that there aren't conflicting hits from the different raycasts
-            }  
+                foundCollision = true;
+            }
 
             Debug.DrawRay(rayOrigin, Vector3.up * directionY * rayLength, Color.red);
         }
+        return foundCollision;
     }
 
-    void HorizontalCollision(ref Vector2 movement) {
-        float directionX = Mathf.Sign(movement.x); // moving left = -1, moving right = +1
+    bool HorizontalCollision(ref Vector2 movement, bool raycastRight) {
+        float directionX = raycastRight ? 1 : -1; // moving left = -1, moving right = +1
         float rayLength = Mathf.Abs(movement.x) + SKIN_WIDTH; 
         
+        bool foundCollision = false;
         for (int i = 0; i < horizontalRayCount; i++) {
             // set origin of ray to either left or right of character depending on direction of movement
             Vector3 rayOrigin = (directionX == -1)?_raycastOrigins.bottomLeft:_raycastOrigins.bottomRight;
@@ -145,10 +159,12 @@ public class PathController : MonoBehaviour {
             if (Physics.Raycast(rayOrigin, transform.forward * directionX, out hit, rayLength, collisionMask)) {
                 movement.x = (hit.distance - SKIN_WIDTH) * directionX;
                 rayLength = hit.distance; // important so that there aren't conflicting hits from the different raycasts
+                foundCollision = true;
             }  
 
             Debug.DrawRay(rayOrigin, transform.forward * directionX * rayLength, Color.blue);
         }
+        return foundCollision;
     }
 
     void CalculateRaySpacing() {

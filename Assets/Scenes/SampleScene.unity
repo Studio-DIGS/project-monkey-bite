@@ -686,6 +686,8 @@ MonoBehaviour:
   inputProvider: {fileID: 11400000, guid: ad4b29790938e334bb5955a0333e3e50, type: 2}
   moveSpeed: 10
   acceleration: 5
+  jumpStrength: 45
+  jumpTime: 0.2
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

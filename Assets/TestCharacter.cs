@@ -14,18 +14,38 @@ public class TestCharacter : BasicCharacter {
     // public inspector fields
     public float moveSpeed = 10f;
     public float acceleration = 5f;
+    public float jumpStrength = 20f;
+    public float jumpTime = 1f;
+
+    // private members
+    private bool _jumping;
+    private float _lastJumpTime;
 
     // Update is called once per frame
     void Update() {
         PlayerInputState state = inputProvider.GetInputState();
+        
         movement.x = state.horizontalAxis * moveSpeed;
-
-        //movement.x = input.x * moveSpeed;
-        //// if (Input.GetKeyDown("space"))
-        //// {
-        ////     movement.y += 
-        //// }
         movement.y += gravity * Time.deltaTime;
+
+        if (controller.OnGround()) {
+            movement.y = Mathf.Max(movement.y, -1f);
+            if (state.jumpDown) {
+                Debug.Log("JUMP");
+                _jumping = true;
+                _lastJumpTime = Time.time;
+                movement.y = 0;
+            }
+        }
+        if (_jumping) {
+            float t = Time.time - _lastJumpTime;
+            if (t < jumpTime) {
+                movement.y += jumpStrength * Time.deltaTime;// * Mathf.Lerp(jumpTime, 0, t);
+                Debug.Log("jumping");
+            }
+            else
+                _jumping = false;
+        }
         controller.Move(movement * Time.deltaTime);
     }
 }

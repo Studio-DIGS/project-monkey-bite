@@ -14,7 +14,7 @@ public class InputManager : MonoBehaviour
     [Tooltip("Reference to Used Action Asset.")] [SerializeField]
     private InputActionAsset asset;
 
-    [SerializeField] private UserPInputStateProviderSO stateProvider;
+    [SerializeField] private UserInputPlayerInputStateProviderSO playerInputStateProvider;
 
     enum InputState
     {
@@ -28,7 +28,7 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
         SwitchToGameplay();
-        stateProvider.OnPausePressed += SwitchToUI;
+        playerInputStateProvider.Events.OnPausePressed += SwitchToUI;
     }
 
     public void SwitchToGameplay()
@@ -45,7 +45,7 @@ public class InputManager : MonoBehaviour
     {
         foreach (var map in asset.actionMaps)
             map.Disable();
-        asset.FindActionMap(uiMap).Disable();
+        asset.FindActionMap(name).Enable();
         playerInputComponent.SwitchCurrentActionMap(name);
     }
 }

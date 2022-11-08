@@ -614,7 +614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8fe37eed492249499106dacb4ddcf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputProvider: {fileID: 11400000, guid: ad4b29790938e334bb5955a0333e3e50, type: 2}
+  inputPlayerInputProvider: {fileID: 11400000, guid: ad4b29790938e334bb5955a0333e3e50, type: 2}
   playerTransform: {fileID: 114574202}
 --- !u!4 &114574202
 Transform:
@@ -1224,7 +1224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInputComponent: {fileID: 1152976541}
   asset: {fileID: -944628639613478452, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
-  stateProvider: {fileID: 11400000, guid: ad4b29790938e334bb5955a0333e3e50, type: 2}
+  provider: {fileID: 11400000, guid: ad4b29790938e334bb5955a0333e3e50, type: 2}
 --- !u!1 &1184038354 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8384654220190448158, guid: f25dcd618d3acd64795bf8bb32edb6c9, type: 3}

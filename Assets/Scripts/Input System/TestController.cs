@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class TestController : MonoBehaviour
 {
-    public UserInputPlayerInputStateProviderSO inputPlayerInputProvider;
+    public PlayerUserInputProvider inputPlayerInputProvider;
     public Transform playerTransform;
 
     private Vector3 pos;

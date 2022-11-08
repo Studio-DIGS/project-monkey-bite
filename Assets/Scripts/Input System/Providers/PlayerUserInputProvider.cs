@@ -4,9 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[CreateAssetMenu(fileName = "UserInputProvider", menuName = "Architecture/Input/Providers/GameplayMapInputProvider")]
+[CreateAssetMenu(fileName = "PlayerUserInputProvider", menuName = "Architecture/Input/Providers/PlayerUserInputProvider")]
 
-public class UserInputPlayerInputStateProviderSO : ScriptableObject, InputProvider<PlayerInputState, PlayerInputEvents>
+public class PlayerUserInputProvider : ScriptableObject, InputProvider<PlayerInputState, PlayerInputEvents>
 {
     [Header("Gameplay Actions")]
     

@@ -4,22 +4,28 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[CreateAssetMenu(fileName = "UserInputProvider", menuName = "Architecture/Input/Providers/GameplayMapInputProvider")]
+[CreateAssetMenu(fileName = "PlayerUserInputProvider", menuName = "Architecture/Input/Providers/PlayerUserInputProvider")]
 
-public class UserPInputStateProviderSO : PInputStateProviderSO
+public class PlayerUserInputProvider : ScriptableObject, InputProvider<PlayerInputState, PlayerInputEvents>
 {
-    [Header("Gameplay Actions")] [SerializeField]
-    private InputActionReference horizontalMovement;
-
+    [Header("Gameplay Actions")]
+    
+    [SerializeField] private InputActionReference horizontalMovement;
     [SerializeField] private InputActionReference mousePosition;
     [SerializeField] private InputActionReference jump;
     [SerializeField] private InputActionReference pause;
     [SerializeField] private InputActionReference interact;
     [SerializeField] private InputActionReference mainAttack;
     [SerializeField] private InputActionReference altAttack;
+    
+    private PlayerInputEvents events;
+
+    public PlayerInputEvents Events => events;
 
     private void OnEnable()
     {
+        events = new PlayerInputEvents();
+        // Link up events with unity Input System
         horizontalMovement.action.SetActionCallbacks(OnHorizontalMovement);
         mousePosition.action.SetActionCallbacks(OnMousePosition);
         jump.action.SetActionCallbacks(OnJump);
@@ -29,12 +35,17 @@ public class UserPInputStateProviderSO : PInputStateProviderSO
         altAttack.action.SetActionCallbacks(OnAltAttack);
     }
 
-    public override PlayerInputState GetInputState(PlayerInputState state)
+    public PlayerInputState GetInputState(PlayerInputState state = null)
     {
         state ??= new PlayerInputState();
         state.horizontalAxis = horizontalMovement.action.ReadValue<float>();
         state.mousePosition = mousePosition.action.ReadValue<Vector2>();
         return state;
+    }
+
+    public PlayerInputEvents GetInputEvents()
+    {
+        throw new NotImplementedException();
     }
 
     // Callback Listeners
@@ -50,36 +61,36 @@ public class UserPInputStateProviderSO : PInputStateProviderSO
     private void OnJump(InputAction.CallbackContext context)
     {
         if (context.performed)
-            OnJumpPressed?.Invoke();
+            events.OnJumpPressed?.Invoke();
         if (context.canceled)
-            OnJumpReleased?.Invoke();
+            events.OnJumpReleased?.Invoke();
     }
 
     private void OnPause(InputAction.CallbackContext context)
     {
         if (context.started)
-            OnPausePressed?.Invoke();
+            events.OnPausePressed?.Invoke();
     }
 
 
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.started)
-            OnInteractPressed?.Invoke();
+            events.OnInteractPressed?.Invoke();
     }
 
 
     public void OnMainAttack(InputAction.CallbackContext context)
     {
         if (context.started)
-            OnMainAttackPressed?.Invoke();
+            events.OnMainAttackPressed?.Invoke();
     }
 
 
     public void OnAltAttack(InputAction.CallbackContext context)
     {
         if (context.started)
-            OnAltAttackPressed?.Invoke();
+            events.OnAltAttackPressed?.Invoke();
     }
 }
 

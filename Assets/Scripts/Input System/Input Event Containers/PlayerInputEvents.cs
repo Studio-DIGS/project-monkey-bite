@@ -1,8 +1,8 @@
 using System;
-using UnityEngine.InputSystem;
+using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PInputStateProviderSO : DescriptionBaseSO, InputProvider<PlayerInputState>
+public class PlayerInputEvents
 {
     // Events
     public Action OnJumpPressed;
@@ -11,6 +11,4 @@ public abstract class PInputStateProviderSO : DescriptionBaseSO, InputProvider<P
     public Action OnInteractPressed;
     public Action OnMainAttackPressed;  
     public Action OnAltAttackPressed;
-
-    public abstract PlayerInputState GetInputState(PlayerInputState source = null);
 }

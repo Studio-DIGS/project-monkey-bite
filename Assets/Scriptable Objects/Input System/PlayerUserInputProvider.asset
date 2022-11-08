@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fccdfa69c805e1d4f8fb9a2cb45ec1c8, type: 3}
-  m_Name: UserInputProvider
+  m_Name: PlayerUserInputProvider
   m_EditorClassIdentifier: 
   _guid: ad4b29790938e334bb5955a0333e3e50
   description: Centralized SO for retrieving user input in the form of Player Input

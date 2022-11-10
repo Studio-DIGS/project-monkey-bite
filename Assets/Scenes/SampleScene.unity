@@ -979,7 +979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInputComponent: {fileID: 0}
   asset: {fileID: -944628639613478452, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
-  stateProvider: {fileID: 11400000, guid: ad4b29790938e334bb5955a0333e3e50, type: 2}
+  provider: {fileID: 11400000, guid: ad4b29790938e334bb5955a0333e3e50, type: 2}
 --- !u!4 &1487989980
 Transform:
   m_ObjectHideFlags: 0

@@ -40,6 +40,7 @@ public class PlayerUserInputProvider : ScriptableObject, InputProvider<PlayerInp
         state ??= new PlayerInputState();
         state.horizontalAxis = horizontalMovement.action.ReadValue<float>();
         state.mousePosition = mousePosition.action.ReadValue<Vector2>();
+        state.jumpHeld = jump.action.ReadValue<float>() > 0;
         return state;
     }
 

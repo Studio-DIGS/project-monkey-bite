@@ -6,7 +6,7 @@ public class TestCharacter : BasicCharacter {
     // Member variables
     // ----------------------------------------------------------------------------
     // protected component references
-    public PInputStateProviderSO inputProvider;
+    public PlayerUserInputProvider inputProvider;
 
     // public constants
     public const float gravity = -10f;
@@ -29,9 +29,9 @@ public class TestCharacter : BasicCharacter {
         movement.y += gravity * Time.deltaTime;
 
         if (controller.OnGround()) {
+            Debug.Log("GROUND");
             movement.y = Mathf.Max(movement.y, -1f);
-            if (state.jumpDown) {
-                Debug.Log("JUMP");
+            if (state.jumpHeld) {
                 _jumping = true;
                 _lastJumpTime = Time.time;
                 movement.y = 0;

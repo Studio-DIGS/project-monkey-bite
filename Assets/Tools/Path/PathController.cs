@@ -97,7 +97,7 @@ public class PathController : MonoBehaviour {
     // Movement interface
     // ----------------------------------------------------------------------------
     public bool OnGround() {
-        Vector2 movement = new Vector2();
+        Vector2 movement = new Vector2(0,0.1f);
         return VerticalCollision(ref movement, false);
     }
 

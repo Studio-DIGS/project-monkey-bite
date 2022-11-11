@@ -19,8 +19,9 @@ public class PlayerUserInputProvider : ScriptableObject, InputProvider<PlayerInp
     [SerializeField] private InputActionReference altAttack;
     
     private PlayerInputEvents events;
-
     public PlayerInputEvents Events => events;
+
+    private PlayerInputState _state;
 
     private void OnEnable()
     {
@@ -35,12 +36,13 @@ public class PlayerUserInputProvider : ScriptableObject, InputProvider<PlayerInp
         altAttack.action.SetActionCallbacks(OnAltAttack);
     }
 
-    public PlayerInputState GetInputState(PlayerInputState state = null)
+    public void GetInputState(ref PlayerInputState state)
     {
-        state ??= new PlayerInputState();
+        //state ??= new PlayerInputState();
         state.horizontalAxis = horizontalMovement.action.ReadValue<float>();
         state.mousePosition = mousePosition.action.ReadValue<Vector2>();
-        return state;
+        state.jumpHeld = jump.action.ReadValue<float>() > 0;
+        //return state;
     }
 
     public PlayerInputEvents GetInputEvents()

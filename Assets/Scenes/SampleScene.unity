@@ -681,13 +681,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d18ea13dc84f68489ddddae03890ccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {x: 0, y: 0}
-  controller: {fileID: 841707235}
   inputProvider: {fileID: 11400000, guid: ad4b29790938e334bb5955a0333e3e50, type: 2}
   moveSpeed: 10
   acceleration: 5
-  jumpStrength: 45
-  jumpTime: 0.2
+  gravity: -30
+  jumpStrength: 10
+  minJumpTime: 0.2
+  maxJumpTime: 1
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

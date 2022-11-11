@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public interface InputProvider<TInputState, TInputEvents>
 {
-    public abstract TInputState GetInputState(TInputState initial);
+    public abstract void GetInputState(ref TInputState initial);
 
     public TInputEvents Events
     {

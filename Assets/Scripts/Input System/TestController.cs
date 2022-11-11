@@ -8,6 +8,8 @@ public class TestController : MonoBehaviour
 
     private Vector3 pos;
 
+    private PlayerInputState _state;
+
     private void Start()
     {
         inputPlayerInputProvider.Events.OnJumpPressed += () => print("AHHHH Jump :D");
@@ -18,9 +20,9 @@ public class TestController : MonoBehaviour
 
     private void Update()
     {
-        PlayerInputState state = inputPlayerInputProvider.GetInputState();
-        pos += Vector3.right * (state.horizontalAxis * Time.deltaTime * 5f);
+        inputPlayerInputProvider.GetInputState(ref _state);
+        pos += Vector3.right * (_state.horizontalAxis * Time.deltaTime * 5f);
         playerTransform.position =
-            pos + Camera.main.ScreenToWorldPoint(new Vector3(state.mousePosition.x, state.mousePosition.y, 5));
+            pos + Camera.main.ScreenToWorldPoint(new Vector3(_state.mousePosition.x, _state.mousePosition.y, 5));
     }
 }

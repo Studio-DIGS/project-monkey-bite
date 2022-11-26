@@ -17,8 +17,12 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: baece8a5030c2bc489dbda24daa8b203
   m_SerializeEntries:
-  - m_GUID: f25dcd618d3acd64795bf8bb32edb6c9
-    m_Address: Assets/Samples/Input System/1.4.3/Rebinding UI/RebindUIPrefab.prefab
+  - m_GUID: 129e1843c95516647bf3955490372e7d
+    m_Address: Assets/Prefabs/Player.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1de273a7a80ebb44baa67400f130919b
+    m_Address: Assets/Prefabs/Managers/EditorColdStartup.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

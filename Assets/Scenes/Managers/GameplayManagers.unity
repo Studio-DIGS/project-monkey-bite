@@ -167,9 +167,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bffa6971d59ce940a9b5c59f97148be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  contentSceneLoaded: {fileID: 11400000, guid: 132b5234393d88c4baf9821800afd314, type: 2}
+  gameplaySceneReady: {fileID: 11400000, guid: f5391684bf2a90c42b434d4076b08dee, type: 2}
+  requestGameStateChange: {fileID: 11400000, guid: f66c56ad4a5788d4c9c393abd557dbe2, type: 2}
+  requestInputStateChange: {fileID: 11400000, guid: bba4b75ec21129a4ba77566c17196aab, type: 2}
   loadLevelChannel: {fileID: 11400000, guid: 2a5db271625de4044b820919e3383499, type: 2}
   unloadGameplayScenesChannel: {fileID: 11400000, guid: 02f842b330748154bb559fbc04fe8151, type: 2}
   gameplayEntryScene: {fileID: 11400000, guid: 3791f523ac8ce91438fb330a5a17ec5a, type: 2}
-  requestGameStateChange: {fileID: 11400000, guid: f66c56ad4a5788d4c9c393abd557dbe2, type: 2}
-  requestInputStateChange: {fileID: 11400000, guid: bba4b75ec21129a4ba77566c17196aab, type: 2}
   currentSceneState: {fileID: 11400000, guid: 5efabfb536bcda444a9a167ae5468232, type: 2}

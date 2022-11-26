@@ -16,6 +16,9 @@ public class EditorColdStartup : MonoBehaviour
     [Header("Invoking - Cold Startup Channel")]
     [SerializeField] private ColdStartupEventChannelSO notifyColdStartupChannel;
     
+    [Header("Invoking - Gameplay Scene Ready Channel")]
+    [SerializeField] private VoidEventChannelSO gameplaySceneReadyChannel;
+    
     private bool isColdStart = false;
     private void Awake()
     {
@@ -42,7 +45,8 @@ public class EditorColdStartup : MonoBehaviour
         }
         else
         {
-            // Cold Startup without persistent context
+            // This is normally raised by the gameplay manager when it loads
+            gameplaySceneReadyChannel.RaiseEvent();
         }
     }
 

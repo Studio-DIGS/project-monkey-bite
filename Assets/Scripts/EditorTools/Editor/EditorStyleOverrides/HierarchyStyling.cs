@@ -26,7 +26,7 @@ public static class HierarchyStyling
         if (gameObject != null && gameObject.name.StartsWith("=", StringComparison.Ordinal))
         {
             Rect backgroundRect = selectionRect;
-            EditorGUI.DrawRect(backgroundRect, new Color(0.2f, 0.2f, 0.2f));
+            EditorGUI.DrawRect(backgroundRect, new Color(0.15f, 0.15f, 0.15f));
             EditorGUI.LabelField(selectionRect, $"<color=#97CFCE>{gameObject.name.Replace("=", "")}</color>", style);
         }
     }

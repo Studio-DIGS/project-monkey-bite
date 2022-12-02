@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Levels
+  m_Name: Materials
   m_EditorClassIdentifier: 
-  m_GroupName: Levels
+  m_GroupName: Materials
   m_Data:
     m_SerializedData: []
-  m_GUID: d26387988533bf84db9ac203096779c7
+  m_GUID: c64500c9865648746b3ea367f49e7b6d
   m_SerializeEntries:
-  - m_GUID: 09fce0c9c41e1fa4aa9b468a80b9cbd7
-    m_Address: Assets/Scenes/GameplayLevels/Test
+  - m_GUID: 67ad7c5a2bedc444d8caf46bab0b2b21
+    m_Address: Assets/Materials
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6aba7bafd48bbeb44aab8623d57168f2, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 66320123cc369c1439d12399f2a5189e, type: 2}
-    - {fileID: 11400000, guid: 76bea66e0dd99384181229423045b40a, type: 2}
+    - {fileID: 11400000, guid: 1b94b074e62d78f4384b81cb3e9adbf9, type: 2}
+    - {fileID: 11400000, guid: 2afa6689427475440aea6bdc75430013, type: 2}

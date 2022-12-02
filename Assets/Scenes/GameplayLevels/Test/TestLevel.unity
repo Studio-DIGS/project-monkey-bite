@@ -2172,7 +2172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f155cdc81b76d4f9b1a96b8616d1c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameplaySceneReady: {fileID: 11400000, guid: f5391684bf2a90c42b434d4076b08dee, type: 2}
+  gameplaySceneReady: {fileID: 11400000, guid: 132b5234393d88c4baf9821800afd314, type: 2}
   playerAsset: {fileID: 6838055151077394489, guid: 129e1843c95516647bf3955490372e7d, type: 3}
 --- !u!4 &2098949285
 Transform:
@@ -2490,5 +2490,13 @@ PrefabInstance:
       propertyPath: thisSceneData
       value: 
       objectReference: {fileID: 11400000, guid: 3791f523ac8ce91438fb330a5a17ec5a, type: 2}
+    - target: {fileID: 8894414222768794587, guid: 1de273a7a80ebb44baa67400f130919b, type: 3}
+      propertyPath: startupInputState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894414222768794587, guid: 1de273a7a80ebb44baa67400f130919b, type: 3}
+      propertyPath: setInputStateChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: bba4b75ec21129a4ba77566c17196aab, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1de273a7a80ebb44baa67400f130919b, type: 3}

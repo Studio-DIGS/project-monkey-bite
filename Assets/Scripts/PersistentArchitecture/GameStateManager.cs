@@ -20,15 +20,12 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private ColdStartupEventChannelSO coldStartupChannel;
 #endif
     
-    [Header("Invoking - Request Input State Change Channels")]
-    [SerializeField] private RequestInputStateChangeEventChannelSO requestInputStateChange;
-
-    [Header("Invoking - Scene Load Channels")] 
+    [Header("Invoking - Load Manager Scenes Channel")] 
     [SerializeField] private SceneLoadEventChannelSO loadManagerSceneChannel;
 
     [Header("State Entry Scenes")] 
     [SerializeField] private GameSceneSO mainMenuScene;
-    [SerializeField] private GameSceneSO gameplayManagersScene;
+    [SerializeField] private GameSceneSO gameplayScene;
 
     private GameState currentGameState = GameState.Initializing;
 
@@ -48,25 +45,11 @@ public class GameStateManager : MonoBehaviour
 #endif
     }
     
-#if UNITY_EDITOR
-    private void ColdStartup(GameSceneSO startupScene, bool isContentScene)
-    {
-        switch (startupScene.sceneType)
-        {
-            case GameSceneSO.GameSceneType.Menu:
-                TryChangeGameState(GameState.MainMenu);
-                break;
-            case GameSceneSO.GameSceneType.GameplayLevel:
-                TryChangeGameState(GameState.Gameplay);
-                break;
-        }
-    }
-#endif
     private void TryChangeGameState(GameState newState)
     {
         if (currentGameState == newState)
         {
-            Debug.LogWarning($"Tried to change to current game state {newState}");
+            Debug.LogWarning($"Tried to change to already active game state {newState}");
         }
 
         // Exit behavior for current state
@@ -96,8 +79,7 @@ public class GameStateManager : MonoBehaviour
 
     private void EnterGameplayState()
     {
-        requestInputStateChange.RaiseEvent(InputState.UI);
-        loadManagerSceneChannel.RaiseEvent(gameplayManagersScene, true, true);
+        loadManagerSceneChannel.RaiseEvent(gameplayScene, true, true);
     }
 
     private void ExitGameplayState()
@@ -107,7 +89,6 @@ public class GameStateManager : MonoBehaviour
 
     private void EnterMainMenuState()
     {
-        requestInputStateChange.RaiseEvent(InputState.UI);
         loadManagerSceneChannel.RaiseEvent(mainMenuScene, true, true);
     }
 
@@ -115,4 +96,35 @@ public class GameStateManager : MonoBehaviour
     {
         
     }
+    
+#if UNITY_EDITOR
+    /// <summary>
+    /// Enter the correct game state matching the cold startup scene
+    /// </summary>
+    /// <param name="startupScene"></param>
+    /// <param name="isContentScene"></param>
+    private void ColdStartup(GameSceneSO startupScene, bool isContentScene)
+    {
+        // If its a content scene, then enter the proper game state
+        if (isContentScene)
+        {
+            switch (startupScene.sceneType)
+            {
+                case GameSceneSO.GameSceneType.GameplayLevel:
+                    TryChangeGameState(GameState.Gameplay);
+                    break;
+            }
+        }
+        // If its a manager scene, then just set the game state
+        else
+        {
+            switch (startupScene.sceneType)
+            {
+                case GameSceneSO.GameSceneType.Menu:
+                    currentGameState = GameState.MainMenu;
+                    break;
+            }
+        }
+    }
+#endif
 }

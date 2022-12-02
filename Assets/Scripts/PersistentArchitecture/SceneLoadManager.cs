@@ -12,14 +12,12 @@ public class SceneLoadManager : MonoBehaviour
     [Header("Listening - Manager Scene Channels")] 
     [SerializeField] private SceneLoadEventChannelSO managerSceneLoadChannel;
     [SerializeField] private SceneUnloadAllEventChannelSO managerSceneUnloadChannel;
+    [SerializeField] private VoidEventChannelSO managerSceneFinishedLoading;
     
     [Header("Listening - Content Scene Channels")] 
     [SerializeField] private SceneLoadEventChannelSO contentSceneLoadChannel;
     [SerializeField] private SceneUnloadAllEventChannelSO contentSceneUnloadChannel;
-
-    [Header("Invoking - Scene Loaded Channels")]
-    [SerializeField] private VoidEventChannelSO managerSceneLoaded;
-    [SerializeField] private VoidEventChannelSO contentSceneLoaded;
+    [SerializeField] private VoidEventChannelSO contentSceneFinishedLoading;
 
 #if UNITY_EDITOR
     [Header("Listening - Cold Startup Channel")]
@@ -90,7 +88,7 @@ public class SceneLoadManager : MonoBehaviour
             SceneManager.SetActiveScene(handle.Result.Scene);
             currentlyLoadedManagerScene = scene;
             currentSceneState.currentlyLoadedManagerScene = scene;
-            managerSceneLoaded.RaiseEvent();
+            managerSceneFinishedLoading.RaiseEvent();
         };
     }
     
@@ -124,7 +122,7 @@ public class SceneLoadManager : MonoBehaviour
             SceneManager.SetActiveScene(handle.Result.Scene);
             currentlyLoadedContentScene = scene;
             currentSceneState.currentlyLoadedContentScene = scene;
-            contentSceneLoaded.RaiseEvent();
+            contentSceneFinishedLoading.RaiseEvent();
         };
     }
     

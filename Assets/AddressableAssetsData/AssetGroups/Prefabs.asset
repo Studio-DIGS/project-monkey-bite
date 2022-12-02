@@ -21,8 +21,12 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/Player.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 1de273a7a80ebb44baa67400f130919b
-    m_Address: Assets/Prefabs/Managers/EditorColdStartup.prefab
+  - m_GUID: 900a0a8d3dbbef548a69c5cdea16172d
+    m_Address: Assets/Prefabs/MainMenu
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: aeceef7763062b343889f08202e50be4
+    m_Address: Assets/Prefabs/Managers
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

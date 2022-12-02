@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameplayManager : MonoBehaviour
 {
     [Header("Listening")]
-    [SerializeField] private VoidEventChannelSO contentSceneLoaded;
+    [SerializeField] private VoidEventChannelSO gameplayManagerLoaded;
     
     [Header("Invoking")]
     [SerializeField] private VoidEventChannelSO gameplaySceneReady;
@@ -20,16 +20,20 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private CurrentSceneStateSO currentSceneState;
 
 
-    private void Start()
+    private void OnEnable()
     {
-        void GameplaySceneReady()
-        {
-            gameplaySceneReady.RaiseEvent();
-            contentSceneLoaded.OnEventRaised -= GameplaySceneReady;
-        }
+        gameplayManagerLoaded.OnEventRaised += SetupGameplayManager;
+    }
+
+    private void OnDisable()
+    {
+        gameplayManagerLoaded.OnEventRaised -= SetupGameplayManager;
+    }
+
+    private void SetupGameplayManager()
+    {
         if (currentSceneState.currentlyLoadedContentScene == null)
         {
-            contentSceneLoaded.OnEventRaised += GameplaySceneReady;
             loadLevelChannel.RaiseEvent(gameplayEntryScene);
         }
         else

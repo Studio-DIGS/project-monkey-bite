@@ -23,7 +23,7 @@ public struct SceneData
 public class SceneGrabber : EditorWindow
 {
     [SerializeField] private VisualTreeAsset visualTree;
-    [MenuItem("SafetyScissors/SceneGrabber")]
+    [MenuItem("MushiTools/SceneGrabber")]
     public static void ShowExample()
     {
         SceneGrabber wnd = GetWindow<SceneGrabber>("Scene Grabber");

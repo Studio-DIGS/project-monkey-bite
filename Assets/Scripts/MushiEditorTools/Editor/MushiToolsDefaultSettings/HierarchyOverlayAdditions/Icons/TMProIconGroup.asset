@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ff956d9d2892f4c8735986632f4301, type: 3}
   m_Name: TMProIconGroup
   m_EditorClassIdentifier: 
-  StringTargetIcons:
+  stringTargetIcons:
   - {fileID: 11400000, guid: 3ae1018099040d74ba23378d12c38298, type: 2}
-  MonoScriptTargetIcons: []
+  monoScriptTargetIcons: []

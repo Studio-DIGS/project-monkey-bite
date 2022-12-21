@@ -14,23 +14,23 @@ public class HierarchyOverlayConfigSO : SingleActiveConfigSO
     }
     
     [ColorHeader("Separator")] 
-    public bool DrawSeparators;
-    public Color SeparatorBackgroundColor;
-    public Color SeparatorTextColor;
-    public MultiSourceEditorIcon SeparatorIcon;
+    public bool drawSeparators;
+    public Color separatorBackgroundColor;
+    public Color separatorTextColor;
+    public MultiSourceEditorIcon separatorIcon;
 
     [ColorHeader("Alternating lines")] 
-    public bool DrawAlternatingLines;
-    public Color AlternatingLineOverlay;
+    public bool drawAlternatingLines;
+    public Color alternatingLineOverlay;
 
     [ColorHeader("Nesting Lines")] 
-    public bool DrawNestingLines;
-    public Color NestingLineColor;
+    public bool drawNestingLines;
+    public Color nestingLineColor;
 
     [ColorHeader("Icons")] 
-    public bool DrawIcons;
+    public bool drawIcons;
     public float iconShrinkAmount;
-    public List<IconOverlayGroup> IconOverlays;
+    public List<IconOverlayGroup> iconOverlays;
 }
 
 [CustomEditor(typeof(HierarchyOverlayConfigSO))]
@@ -39,7 +39,7 @@ public class HierarchyOverlayConfigDrawer : Editor
     public override void OnInspectorGUI()
     {
         var targetConfig = (HierarchyOverlayConfigSO)target;
-        SingleActiveConfigSO.DrawSingleActiveConfigSOField(targetConfig);
+        SingleActiveConfigSO.DrawIsActiveField(targetConfig);
         if (targetConfig.IsActiveConfig)
         {
             if (GUILayout.Button("Refresh Hierarchy Overlay"))

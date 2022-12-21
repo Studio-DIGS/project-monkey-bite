@@ -16,20 +16,20 @@ public class HierarchySeparatorOverlay : HierarchyItemOverlay
 
     public override void DrawHierarchyItem(GameObject gameObject, Rect selectionRect, HierarchyOverlayConfigSO config)
     {
-        if (!config.DrawSeparators) return;
+        if (!config.drawSeparators) return;
         
         selectionRect.x = 0; 
         selectionRect.width = EditorGUIUtility.currentViewWidth;
         
         // Background
-        EditorGUI.DrawRect(selectionRect, config.SeparatorBackgroundColor);
+        EditorGUI.DrawRect(selectionRect, config.separatorBackgroundColor);
                 
         // Icon
-        iconContent = config.SeparatorIcon;
+        iconContent = config.separatorIcon;
         
         // Text style
-        overlayStyle.normal.textColor = config.SeparatorTextColor;
-        overlayStyle.hover.textColor = config.SeparatorTextColor;
+        overlayStyle.normal.textColor = config.separatorTextColor;
+        overlayStyle.hover.textColor = config.separatorTextColor;
         
         // Setup text
         string displayName = gameObject.name.Trim('/');
@@ -42,15 +42,5 @@ public class HierarchySeparatorOverlay : HierarchyItemOverlay
     {
         string name = gameObject.name;
         return name[0] == '/';
-    }
-
-    [MenuItem("GameObject/SeparatorGameObject")]
-    private static void CreateSeparatorObject()
-    {
-        EditorSceneManager.MarkAllScenesDirty();
-        var created = new GameObject();
-        created.name = "/Separator";
-        created.isStatic = true;
-        created.SetActive(false);
     }
 }

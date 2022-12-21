@@ -41,7 +41,7 @@ public class SCHeaderConfigSOInspector : UnityEditor.Editor
         
         // Active config field
         EditorGUILayout.Space();
-        SingleActiveConfigSO.DrawSingleActiveConfigSOField(targetConfig);
+        SingleActiveConfigSO.DrawIsActiveField(targetConfig);
         EditorGUILayout.Space();
         
         // Draw color fields for each enum color field 

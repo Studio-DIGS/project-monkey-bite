@@ -22,13 +22,13 @@ public class HierarchyItemOverlayDrawer
     }
     
     // Cache for overlay data about each Hierarchy gameObject
-    private static Dictionary<GameObject, ItemOverlayData> itemDataCache = new Dictionary<GameObject, ItemOverlayData>();
+    private static Dictionary<GameObject, ItemOverlayData> ItemDataCache = new Dictionary<GameObject, ItemOverlayData>();
 
-    private static bool initialized;
+    private static bool Initialized;
 
-    private static HierarchyOverlayConfigSO config;
+    private static HierarchyOverlayConfigSO Config;
 
-    private static HierarchyItemOverlay separatorOverlay;
+    private static HierarchyItemOverlay SeparatorOverlay;
 
     static HierarchyItemOverlayDrawer()
     {
@@ -47,7 +47,7 @@ public class HierarchyItemOverlayDrawer
     /// </summary>
     private static void MarkCacheAsDirty()
     {
-        foreach (var pair in itemDataCache)
+        foreach (var pair in ItemDataCache)
         {
             pair.Value.isDirty = true;
         }
@@ -60,7 +60,7 @@ public class HierarchyItemOverlayDrawer
     /// <param name="mode"></param>
     private static void SceneOpened(Scene scene, OpenSceneMode mode)
     {
-        itemDataCache.Clear();
+        ItemDataCache.Clear();
     }
     
     /// <summary>
@@ -69,7 +69,7 @@ public class HierarchyItemOverlayDrawer
     /// </summary>
     private static void ActiveConfigChanged()
     {
-        config = SingleActiveConfigSO.GetActiveConfig<HierarchyOverlayConfigSO>();
+        Config = SingleActiveConfigSO.GetActiveConfig<HierarchyOverlayConfigSO>();
         MarkCacheAsDirty();
         EditorApplication.RepaintHierarchyWindow();
     }
@@ -79,9 +79,9 @@ public class HierarchyItemOverlayDrawer
     /// </summary>
     private static void Initialize()
     {
-        separatorOverlay = new HierarchySeparatorOverlay();
+        SeparatorOverlay = new HierarchySeparatorOverlay();
         ActiveConfigChanged();
-        initialized = true;
+        Initialized = true;
     }
 
     /// <summary>
@@ -92,23 +92,23 @@ public class HierarchyItemOverlayDrawer
     private static void HierarchyWindowItemOnGUI(int instanceID, Rect pos)
     {
         // Initialize during the first draw call, since individual overlays may need access to IMGUI methods
-        if (!initialized)
+        if (!Initialized)
         {
             Initialize();
         }
         
         var gameObject = (GameObject)EditorUtility.InstanceIDToObject(instanceID);
 
-        if (gameObject != null && config != null)
+        if (gameObject != null && Config != null)
         {
             // Create cache entry if non exists
-            if (!itemDataCache.ContainsKey(gameObject))
+            if (!ItemDataCache.ContainsKey(gameObject))
             {
-                itemDataCache.Add(gameObject, new ItemOverlayData());
+                ItemDataCache.Add(gameObject, new ItemOverlayData());
             }
             
             // Rebuild overlay cache for gameObject if dirty
-            if (itemDataCache[gameObject].isDirty)
+            if (ItemDataCache[gameObject].isDirty)
             {
                 BuildObjectOverlayCache(gameObject);
             }
@@ -124,20 +124,20 @@ public class HierarchyItemOverlayDrawer
     /// <param name="pos"></param>
     private static void DrawOverlays(GameObject gameObject, Rect pos)
     {
-        if(config.DrawAlternatingLines)
+        if(Config.drawAlternatingLines)
             DrawAlternatingLineOverlay(pos);
             
-        if(config.DrawNestingLines)
+        if(Config.drawNestingLines)
             DrawNestingLine(gameObject, pos);
 
         // Draw overlays present in object cache
-        foreach (var overlay in itemDataCache[gameObject].overlays)
+        foreach (var overlay in ItemDataCache[gameObject].overlays)
         {
-            overlay.DrawHierarchyItem(gameObject,pos, config);
+            overlay.DrawHierarchyItem(gameObject,pos, Config);
         }
             
-        if(config.DrawIcons)
-            DrawIconOverlays(itemDataCache[gameObject].iconOverlays, pos);
+        if(Config.drawIcons)
+            DrawIconOverlays(ItemDataCache[gameObject].iconOverlays, pos);
     }
 
     /// <summary>
@@ -147,16 +147,16 @@ public class HierarchyItemOverlayDrawer
     /// <param name="selectionRect"></param>
     private static void BuildObjectOverlayCache(GameObject gameObject)
     {
-        itemDataCache[gameObject].isDirty = false;
+        ItemDataCache[gameObject].isDirty = false;
 
         // Clear cached data
-        itemDataCache[gameObject].overlays.Clear();
-        itemDataCache[gameObject].iconOverlays.Clear();
+        ItemDataCache[gameObject].overlays.Clear();
+        ItemDataCache[gameObject].iconOverlays.Clear();
         
         // Add separator overlay if valid
-        if (separatorOverlay.ShouldDrawForItem(gameObject))
+        if (SeparatorOverlay.ShouldDrawForItem(gameObject))
         {
-            itemDataCache[gameObject].overlays.Add(separatorOverlay);
+            ItemDataCache[gameObject].overlays.Add(SeparatorOverlay);
         }
         
         // Icon overlays
@@ -174,7 +174,7 @@ public class HierarchyItemOverlayDrawer
             // Check if the component is a valid target of some icon overlay
             bool matchFound = false;
             
-            foreach (var iconOverlayGroupConfig in config.IconOverlays)
+            foreach (var iconOverlayGroupConfig in Config.iconOverlays)
             {
                 
                 if (!iconOverlayGroupConfig.isActive || iconOverlayGroupConfig.group == null) continue;
@@ -185,16 +185,16 @@ public class HierarchyItemOverlayDrawer
 
                 string className = componentType.Name.ToLower();
 
-                if (iconOverlayGroup.StringTargetDict.ContainsKey(className))
+                if (iconOverlayGroup.stringTargetDict.ContainsKey(className))
                 {
-                    itemDataCache[gameObject].iconOverlays.Add(iconOverlayGroup.StringTargetDict[className]);
+                    ItemDataCache[gameObject].iconOverlays.Add(iconOverlayGroup.stringTargetDict[className]);
                     matchFound = true;
                     break;
                 }
 
                 // Match the monoscript targets
 
-                foreach (var monoScriptIcon in iconOverlayGroup.MonoScriptTargetIcons)
+                foreach (var monoScriptIcon in iconOverlayGroup.monoScriptTargetIcons)
                 {
                     classReferenceType = monoScriptIcon.targetClass.GetClass();
 
@@ -203,7 +203,7 @@ public class HierarchyItemOverlayDrawer
                     // Check if the component is assignable to or a subclass of the icon target class
                     if (classReferenceType.IsAssignableFrom(componentType) || componentType.IsSubclassOf(classReferenceType))
                     {
-                        itemDataCache[gameObject].iconOverlays.Add(monoScriptIcon);
+                        ItemDataCache[gameObject].iconOverlays.Add(monoScriptIcon);
                         matchFound = true;
                         break;
                     }
@@ -225,7 +225,7 @@ public class HierarchyItemOverlayDrawer
         {
             pos.x = 0;
             pos.width = EditorGUIUtility.currentViewWidth;
-            EditorGUI.DrawRect(pos, config.AlternatingLineOverlay);
+            EditorGUI.DrawRect(pos, Config.alternatingLineOverlay);
         }
     }
     
@@ -252,7 +252,7 @@ public class HierarchyItemOverlayDrawer
             verticalLine.width = 1f;
             verticalLine.height = EditorGUIExtensions.HierarchySingleLineHeight / 2f;
 
-            EditorGUI.DrawRect(verticalLine, config.NestingLineColor);
+            EditorGUI.DrawRect(verticalLine, Config.nestingLineColor);
             
             // Horizontal line
             Rect horizontalLine = pos;
@@ -264,7 +264,7 @@ public class HierarchyItemOverlayDrawer
                 ? EditorGUIExtensions.IndentWidth / 2f
                 : EditorGUIExtensions.IndentWidth - 2f;
 
-            EditorGUI.DrawRect(horizontalLine, config.NestingLineColor);
+            EditorGUI.DrawRect(horizontalLine, Config.nestingLineColor);
         }
         else
         {
@@ -279,15 +279,15 @@ public class HierarchyItemOverlayDrawer
                 verticalLine.y += nestingLineTopPadding;
             }
 
-            EditorGUI.DrawRect(verticalLine, config.NestingLineColor);
+            EditorGUI.DrawRect(verticalLine, Config.nestingLineColor);
         }
     }
 
     private static void DrawIconOverlays(IList<HierarchyIconSO> iconOverlays, Rect pos)
     {
-        pos.width = EditorGUIExtensions.HierarchySingleLineHeight - config.iconShrinkAmount;
-        pos.height -= config.iconShrinkAmount;
-        pos.y += config.iconShrinkAmount / 2f;
+        pos.width = EditorGUIExtensions.HierarchySingleLineHeight - Config.iconShrinkAmount;
+        pos.height -= Config.iconShrinkAmount;
+        pos.y += Config.iconShrinkAmount / 2f;
         
         // Draw starting from right side of window
         pos.x = EditorGUIUtility.currentViewWidth - pos.width - EditorGUIExtensions.IndentWidth;
@@ -299,5 +299,15 @@ public class HierarchyItemOverlayDrawer
             GUI.DrawTexture(pos, iconOverlay.icon);
             pos.x -= pos.width;
         }
+    }
+
+    [MenuItem("GameObject/SeparatorGameObject")]
+    private static void CreateSeparatorObject()
+    {
+        EditorSceneManager.MarkAllScenesDirty();
+        var created = new GameObject();
+        created.name = "/Separator";
+        created.isStatic = true;
+        created.SetActive(false);
     }
 }

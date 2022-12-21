@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: DefaultHierarchyOverlayConfig
   m_EditorClassIdentifier: 
   isActiveConfig: 1
-  DrawSeparators: 1
-  SeparatorBackgroundColor: {r: 0.1764706, g: 0.1764706, b: 0.1764706, a: 1}
-  SeparatorTextColor: {r: 0.9811321, g: 0.50445, b: 0.50897783, a: 1}
-  SeparatorIcon:
+  drawSeparators: 1
+  separatorBackgroundColor: {r: 0.1764706, g: 0.1764706, b: 0.1764706, a: 1}
+  separatorTextColor: {r: 0.9811321, g: 0.50445, b: 0.50897783, a: 1}
+  separatorIcon:
     iconType: 0
     editorIconStringIdentifier: d_tab_next@2x
     textureAsset: {fileID: 0}
-  DrawAlternatingLines: 1
-  AlternatingLineOverlay: {r: 0.103773594, g: 0.06901923, b: 0.06901923, a: 0.09803922}
-  DrawNestingLines: 1
-  NestingLineColor: {r: 0.4716981, g: 0.46428147, b: 0.46057314, a: 1}
-  DrawIcons: 1
+  drawAlternatingLines: 1
+  alternatingLineOverlay: {r: 0.103773594, g: 0.06901923, b: 0.06901923, a: 0.09803922}
+  drawNestingLines: 1
+  nestingLineColor: {r: 0.4716981, g: 0.46428147, b: 0.46057314, a: 1}
+  drawIcons: 1
   iconShrinkAmount: 1
-  IconOverlays:
+  iconOverlays:
   - isActive: 1
     group: {fileID: 11400000, guid: 998e50ce5f25b7f41a87957700492556, type: 2}
   - isActive: 1

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ff956d9d2892f4c8735986632f4301, type: 3}
   m_Name: Physics2DIconGroup
   m_EditorClassIdentifier: 
-  StringTargetIcons:
+  stringTargetIcons:
   - {fileID: 11400000, guid: 58af76a1967f5a74a83c32bdfc39a22c, type: 2}
   - {fileID: 11400000, guid: d6a20d452711fbe4e9ec7230fd3ebf96, type: 2}
-  - {fileID: 11400000, guid: 95d058a4f9eb8604d806ef26b75155f1, type: 2}
   - {fileID: 11400000, guid: 840d55f4cbf396a47bf7732e9ea291ab, type: 2}
-  MonoScriptTargetIcons: []
+  - {fileID: 11400000, guid: 95d058a4f9eb8604d806ef26b75155f1, type: 2}
+  monoScriptTargetIcons: []

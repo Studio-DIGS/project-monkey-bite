@@ -22,12 +22,11 @@ public static class EditorGUIExtensions
 
     public const float HierarchySingleLineHeight = 16f;
     
-
-    private static Color normalWindowBackgroundColor;
+    
     /// <summary>
     /// Normal Editor window background color
     /// </summary>
-    public static Color NormalWindowBackgroundColor => normalWindowBackgroundColor;
+    public static Color NormalWindowBackgroundColor;
     
 
     static EditorGUIExtensions()
@@ -38,12 +37,12 @@ public static class EditorGUIExtensions
 
         if (method != null)
         {
-            normalWindowBackgroundColor = (Color)method.Invoke(null, null);
+            NormalWindowBackgroundColor = (Color)method.Invoke(null, null);
         }
         else
         {
             // Hard coded color
-            normalWindowBackgroundColor = EditorGUIUtility.isProSkin
+            NormalWindowBackgroundColor = EditorGUIUtility.isProSkin
                 ? new Color32(56, 56, 56, 255)
                 : new Color32(194, 194, 194, 255);
         }

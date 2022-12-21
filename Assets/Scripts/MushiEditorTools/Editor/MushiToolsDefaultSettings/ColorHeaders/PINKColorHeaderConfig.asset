@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62d22d12aff4ab439fe5de3248967ab, type: 3}
   m_Name: PINKColorHeaderConfig
   m_EditorClassIdentifier: 
-  isActiveConfig: 1
+  isActiveConfig: 0
   headerColors:
   - {r: 1, g: 0.6367924, b: 0.6897369, a: 1}
   - {r: 1, g: 0.63529414, b: 0.6901961, a: 1}

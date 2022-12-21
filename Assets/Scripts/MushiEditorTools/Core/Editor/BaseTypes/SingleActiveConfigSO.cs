@@ -18,7 +18,7 @@ public abstract class SingleActiveConfigSO : ScriptableObject
     public bool IsActiveConfig => isActiveConfig;
 
     // Event dictionary for updating tools when active config changes
-    private static Dictionary<Type, Action> activeConfigChangedEvents = new Dictionary<Type, Action>();
+    private static Dictionary<Type, Action> ActiveConfigChangedEvents = new Dictionary<Type, Action>();
 
     private void OnValidate()
     {
@@ -95,9 +95,9 @@ public abstract class SingleActiveConfigSO : ScriptableObject
             isActiveConfig = false;
         }
                                         
-        if (activeConfigChangedEvents.ContainsKey(type))
+        if (ActiveConfigChangedEvents.ContainsKey(type))
         {
-            activeConfigChangedEvents[type]?.Invoke();
+            ActiveConfigChangedEvents[type]?.Invoke();
         } 
     }
 
@@ -107,13 +107,13 @@ public abstract class SingleActiveConfigSO : ScriptableObject
     public static void AddConfigChangeListener<T>(Action listener) where T : SingleActiveConfigSO
     {
         var type = typeof(T);
-        if (!activeConfigChangedEvents.ContainsKey(type))
+        if (!ActiveConfigChangedEvents.ContainsKey(type))
         {
-            activeConfigChangedEvents.TryAdd(typeof(T), listener);
+            ActiveConfigChangedEvents.TryAdd(typeof(T), listener);
         }
         else
         {
-            activeConfigChangedEvents[type] += listener;
+            ActiveConfigChangedEvents[type] += listener;
         }
     }
     
@@ -123,9 +123,9 @@ public abstract class SingleActiveConfigSO : ScriptableObject
     public static void RemoveConfigChangeListener<T>(Action listener) where T : SingleActiveConfigSO
     {
         var type = typeof(T);
-        if (activeConfigChangedEvents.ContainsKey(type))
+        if (ActiveConfigChangedEvents.ContainsKey(type))
         {
-            activeConfigChangedEvents[type] -= listener;
+            ActiveConfigChangedEvents[type] -= listener;
         }
     }
     
@@ -136,17 +136,17 @@ public abstract class SingleActiveConfigSO : ScriptableObject
     public static void TriggerConfigChangeEvent<T>() where T : SingleActiveConfigSO
     {
         var type = typeof(T);
-        if (activeConfigChangedEvents.ContainsKey(type))
+        if (ActiveConfigChangedEvents.ContainsKey(type))
         {
-            activeConfigChangedEvents[type]?.Invoke();
+            ActiveConfigChangedEvents[type]?.Invoke();
         }
     }
 
     /// <summary>
-    /// Utility function for drawing isActive field, since requires special handling due to affecting other config objects
+    /// Utility function for drawing isActive field, special handling to make sure any changed configs are marked dirty
     /// </summary>
     /// <param name="targetConfig"></param>
-    public static void DrawSingleActiveConfigSOField(SingleActiveConfigSO targetConfig)
+    public static void DrawIsActiveField(SingleActiveConfigSO targetConfig)
     {
         bool prevValue = targetConfig.isActiveConfig;
         
@@ -155,6 +155,15 @@ public abstract class SingleActiveConfigSO : ScriptableObject
         if (prevValue != newVal)
         {
             EditorUtility.SetDirty(targetConfig);
+
+            // Mark previously active config as dirty, since it is force de-activated
+            var prevActiveConfig = GetActiveConfig(targetConfig.GetType().ToString());
+
+            if (prevActiveConfig != targetConfig)
+            {
+                EditorUtility.SetDirty(prevActiveConfig);
+            }
+
             targetConfig.SetActiveConfig(newVal);
         }
     }

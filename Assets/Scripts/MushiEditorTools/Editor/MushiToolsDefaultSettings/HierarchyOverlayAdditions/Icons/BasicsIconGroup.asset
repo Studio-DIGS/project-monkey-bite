@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ff956d9d2892f4c8735986632f4301, type: 3}
   m_Name: BasicsIconGroup
   m_EditorClassIdentifier: 
-  StringTargetIcons:
+  stringTargetIcons:
   - {fileID: 11400000, guid: 0ee168a138df78047845f219347dc880, type: 2}
   - {fileID: 11400000, guid: ed6b6d528edc22544947cd276d83dab9, type: 2}
-  MonoScriptTargetIcons: []
+  monoScriptTargetIcons: []

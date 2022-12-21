@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ff956d9d2892f4c8735986632f4301, type: 3}
   m_Name: UnityUIIconGroup
   m_EditorClassIdentifier: 
-  StringTargetIcons:
-  - {fileID: 11400000, guid: 88b483ce0d9765545927f7908180d884, type: 2}
-  - {fileID: 11400000, guid: 6636ea43bb3bbf140a5b04f71deaa38c, type: 2}
+  stringTargetIcons:
   - {fileID: 11400000, guid: bffa6b9d09b2a0b438cb63b6595c2112, type: 2}
+  - {fileID: 11400000, guid: 6636ea43bb3bbf140a5b04f71deaa38c, type: 2}
+  - {fileID: 11400000, guid: 88b483ce0d9765545927f7908180d884, type: 2}
   - {fileID: 11400000, guid: 066e8c97bb402d442b995c2739141fb0, type: 2}
   - {fileID: 11400000, guid: 6b0c5472a29257c4f9b1c7157a2fe206, type: 2}
-  MonoScriptTargetIcons: []
+  monoScriptTargetIcons: []

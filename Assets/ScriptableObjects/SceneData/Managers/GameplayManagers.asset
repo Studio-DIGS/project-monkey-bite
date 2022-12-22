@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee44631c4b3883488827da483886e00, type: 3}
   m_Name: GameplayManagers
   m_EditorClassIdentifier: 
-  _guid: ed10ed8c75d82c1478e8f4cb4ce3f57d
   description: 
-  sceneType: 4
+  sceneType: 3
   sceneReference:
     m_AssetGUID: 34b0b4630e610e94f95150f561a2ad9a
     m_SubObjectName: 

@@ -7,29 +7,41 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Entry point for the game
+/// Loads the persistent manager and requests to load the initial game state (Should be main menu)
+/// </summary>
 public class GameInitializer : MonoBehaviour
 {
-    [SerializeField] private PersistentManagerSceneSO persistentManagers;
-    [SerializeField] private GameState entryState;
+    [ColorHeader("Invoking - Ask Game State Change Channel", ColorHeaderColor.TriggeringEvents)]
+    [SerializeField] private AssetReference askGameStateChange;
+        
+    [ColorHeader("Initialization Config", ColorHeaderColor.Config)]
+    [SerializeField] private GameState entryGameState;
     
-    // Make sure this channel is loaded
-    [SerializeField] private AssetReference gameStateChangeChannel;
+    [ColorHeader("Dependencies", ColorHeaderColor.Dependencies)]
+    [SerializeField] private PersistentManagerSceneSO persistentManagerScene;
+
     private void Start()
     {
-        var loadHandle = Addressables.LoadSceneAsync(persistentManagers.sceneReference.RuntimeKey, LoadSceneMode.Additive, true);
-        loadHandle.Completed += LoadSceneLoadChannel;
+        // Load persistent managers scene
+        var loadHandle = Addressables.LoadSceneAsync(persistentManagerScene.sceneReference.RuntimeKey, LoadSceneMode.Additive, true);
+        loadHandle.Completed += OnPersistentManagersLoaded;
     }
     
-    private void LoadSceneLoadChannel(AsyncOperationHandle<SceneInstance> obj)
+    private void OnPersistentManagersLoaded(AsyncOperationHandle<SceneInstance> obj)
     {
-        var channelLoadHandle = gameStateChangeChannel.LoadAssetAsync<RequestGameStateChangeEventChannelSO>();
-        channelLoadHandle.Completed += LoadEntryScene;
+        // Manually load game state change channel
+        var channelLoadHandle = askGameStateChange.LoadAssetAsync<GameStateEventChannelSO>();
+        channelLoadHandle.Completed += OnGameStateChannelLoaded;
     }
 
-    private void LoadEntryScene(AsyncOperationHandle<RequestGameStateChangeEventChannelSO> obj)
+    private void OnGameStateChannelLoaded(AsyncOperationHandle<GameStateEventChannelSO> obj)
     {
+        // Request to change into the default game state (Main Manager)
         var stateChangeChannel = obj.Result;
-        stateChangeChannel.RaiseEvent(entryState);
+        stateChangeChannel.RaiseEvent(entryGameState);
+        // Unload initialization scene
         SceneManager.UnloadSceneAsync(0);
     }
     

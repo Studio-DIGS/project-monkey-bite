@@ -5,13 +5,13 @@ using System;
 [CreateAssetMenu(menuName = "Events/SceneManagement/Scene Load Event Channel")]
 public class SceneLoadEventChannelSO : DescriptionBaseSO
 {
-    public Action<GameSceneSO, bool, bool> OnLoadingRequested;
+    public Action<GameSceneSO, bool, bool> OnRaised;
 
     public void RaiseEvent(GameSceneSO locationToLoad, bool showLoadingScreen = false, bool fadeScreen = false)
     {
-        if (OnLoadingRequested != null)
+        if (OnRaised != null)
         {
-            OnLoadingRequested?.Invoke(locationToLoad, showLoadingScreen, fadeScreen);
+            OnRaised?.Invoke(locationToLoad, showLoadingScreen, fadeScreen);
         }
         else
         {

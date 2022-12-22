@@ -7,28 +7,50 @@ using UnityEngine.EventSystems;
 
 public class MainMenuManager : MonoBehaviour
 {
-    [Header("Listening")]
-    [SerializeField] private VoidEventChannelSO mainMenuSceneReady;
+    [ColorHeader("Listening - On Main Menu Scene Loaded Channel", ColorHeaderColor.ListeningEvents)]
+    [SerializeField] private VoidEventChannelSO onMainMenuSceneLoaded;
 
-    [Header("Invoking")]
-    [SerializeField] private RequestInputStateChangeEventChannelSO requestInputStateChange;
+    [ColorHeader("Invoking - Main Menu Setup Channels", ColorHeaderColor.TriggeringEvents)]
+    [SerializeField] private InputStateEventChannelSO askInputStateChange;
+    
+    [ColorHeader("Invoking - Ask Game State Change", ColorHeaderColor.TriggeringEvents)]
+    [SerializeField] private GameStateEventChannelSO askGameStateChange;
 
-    [Header("Dependencies")] 
+
+    [ColorHeader("Initial Selection", ColorHeaderColor.Config)] 
     [SerializeField] private GameObject initialSelectedGameObject;
+    
+#if UNITY_EDITOR
+    [ColorHeader("Reading - Cold Startup State", ColorHeaderColor.ReadingState)]
+    [SerializeField] private ColdStartupDataSO coldStartupState;
+#endif
     
     void OnEnable()
     {
-        mainMenuSceneReady.OnEventRaised += SetupMainMenu;
+        onMainMenuSceneLoaded.OnRaised += SetupMainMenu;
     }
 
     private void OnDisable()
     {
-        mainMenuSceneReady.OnEventRaised -= SetupMainMenu;
+        onMainMenuSceneLoaded.OnRaised -= SetupMainMenu;
     }
 
     private void SetupMainMenu()
     {
-        requestInputStateChange.RaiseEvent(InputState.UI);
+        
+#if UNITY_EDITOR
+        if (coldStartupState.isColdStartup)
+        {
+            coldStartupState.ConsumeColdStartup();
+        }
+#endif
+        
+        askInputStateChange.RaiseEvent(InputState.UI);
         EventSystem.current.SetSelectedGameObject(initialSelectedGameObject);
+    }
+
+    public void OnPlayButton()
+    {
+        askGameStateChange.RaiseEvent(GameState.Gameplay);
     }
 }

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ff956d9d2892f4c8735986632f4301, type: 3}
+  m_Name: MonkeyBiteIconGroup
+  m_EditorClassIdentifier: 
+  stringTargetIcons: []
+  monoScriptTargetIcons:
+  - {fileID: 11400000, guid: e900816e5f7f5424c8d0c3b2ad10bcfe, type: 2}
+  - {fileID: 11400000, guid: 2cfa317b118a8014aa036ba426c4be8a, type: 2}
+  - {fileID: 11400000, guid: 7c2ab4c27e5488a4a84f8a7c9b268da0, type: 2}

@@ -14,7 +14,8 @@ public class GameSceneSO : DescriptionBaseSO
         Initialization,
         PersistentManagers,
         GameplayLevel,
-        Menu,
-        GameplayManagers
+        GameplayManager,
+        MainMenuManager,
+        MainMenuContent
     }
 }

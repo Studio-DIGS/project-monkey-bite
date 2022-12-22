@@ -152,11 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13ba18f12424a0e48b9143626787dfe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requestGameStateChange: {fileID: 11400000, guid: f66c56ad4a5788d4c9c393abd557dbe2, type: 2}
-  coldStartupChannel: {fileID: 11400000, guid: 7042f4ee599d3714eae2ad5d218da88e, type: 2}
-  loadManagerSceneChannel: {fileID: 11400000, guid: 9c489bb772f866e43aae5e639c9a40d1, type: 2}
-  mainMenuScene: {fileID: 11400000, guid: 4f26a0974e4e8c947bd53bdd95f6d61f, type: 2}
-  gameplayScene: {fileID: 11400000, guid: ed10ed8c75d82c1478e8f4cb4ce3f57d, type: 2}
+  askGameStateChange: {fileID: 11400000, guid: f66c56ad4a5788d4c9c393abd557dbe2, type: 2}
+  askLoadManagerScene: {fileID: 11400000, guid: 9c489bb772f866e43aae5e639c9a40d1, type: 2}
+  mainMenuManagers: {fileID: 11400000, guid: 4f26a0974e4e8c947bd53bdd95f6d61f, type: 2}
+  gameplayManagers: {fileID: 11400000, guid: ed10ed8c75d82c1478e8f4cb4ce3f57d, type: 2}
+  coldStartupState: {fileID: 11400000, guid: 4c2202439c6571e41897b4e9a99d4ab0, type: 2}
 --- !u!4 &221734744
 Transform:
   m_ObjectHideFlags: 0
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 1384114224}
   - component: {fileID: 1384114225}
   m_Layer: 0
-  m_Name: SceneLoader
+  m_Name: SceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,13 +273,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1e939f5c3b2a344c8b5a4e29fd3c644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  managerSceneLoadChannel: {fileID: 11400000, guid: 9c489bb772f866e43aae5e639c9a40d1, type: 2}
-  managerSceneUnloadChannel: {fileID: 11400000, guid: 9d97420eb3937ba4091be628f2dee040, type: 2}
-  managerSceneFinishedLoading: {fileID: 11400000, guid: a9a1820e49e3d18449699a86ec3872d5, type: 2}
-  contentSceneLoadChannel: {fileID: 11400000, guid: 2a5db271625de4044b820919e3383499, type: 2}
-  contentSceneUnloadChannel: {fileID: 11400000, guid: 02f842b330748154bb559fbc04fe8151, type: 2}
-  contentSceneFinishedLoading: {fileID: 11400000, guid: 132b5234393d88c4baf9821800afd314, type: 2}
-  coldStartupChannelSo: {fileID: 11400000, guid: 7042f4ee599d3714eae2ad5d218da88e, type: 2}
+  askLoadManagerScene: {fileID: 11400000, guid: 9c489bb772f866e43aae5e639c9a40d1, type: 2}
+  askUnloadManagerScene: {fileID: 11400000, guid: 9d97420eb3937ba4091be628f2dee040, type: 2}
+  onManagerSceneLoaded: {fileID: 11400000, guid: a9a1820e49e3d18449699a86ec3872d5, type: 2}
+  askLoadContentScene: {fileID: 11400000, guid: 2a5db271625de4044b820919e3383499, type: 2}
+  askUnloadContentScene: {fileID: 11400000, guid: 02f842b330748154bb559fbc04fe8151, type: 2}
+  onContentSceneLoaded: {fileID: 11400000, guid: 132b5234393d88c4baf9821800afd314, type: 2}
   currentSceneState: {fileID: 11400000, guid: 5efabfb536bcda444a9a167ae5468232, type: 2}
 --- !u!1 &1730718924
 GameObject:
@@ -310,9 +309,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a747c3b4a824f054f8a06b7ef2c4fc15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputStateChange: {fileID: 11400000, guid: bba4b75ec21129a4ba77566c17196aab, type: 2}
-  asset: {fileID: -944628639613478452, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
-  provider: {fileID: 11400000, guid: ad4b29790938e334bb5955a0333e3e50, type: 2}
+  askInputStateChange: {fileID: 11400000, guid: bba4b75ec21129a4ba77566c17196aab, type: 2}
+  inputAsset: {fileID: -944628639613478452, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
+  inputProvider: {fileID: 11400000, guid: ad4b29790938e334bb5955a0333e3e50, type: 2}
 --- !u!4 &1730718927
 Transform:
   m_ObjectHideFlags: 0

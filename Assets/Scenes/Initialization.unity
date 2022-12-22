@@ -152,13 +152,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4deebbe032fbf9449a5a6636a3591223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  persistentManagers: {fileID: 11400000, guid: 4d052e6f4f812834fb510b0538218759, type: 2}
-  entryState: 1
-  gameStateChangeChannel:
+  askGameStateChange:
     m_AssetGUID: f66c56ad4a5788d4c9c393abd557dbe2
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  persistentManagerScene: {fileID: 11400000, guid: 4d052e6f4f812834fb510b0538218759, type: 2}
+  entryGameState: 1
 --- !u!4 &1767803474
 Transform:
   m_ObjectHideFlags: 0

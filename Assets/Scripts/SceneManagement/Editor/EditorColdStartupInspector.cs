@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,33 +7,31 @@ using UnityEditor;
 [CustomEditor(typeof(EditorColdStartup))]
 public class EditorColdStartupInspector : Editor
 {
-    public override void OnInspectorGUI()
+    private SerializedObject so;
+
+    private void OnEnable()
     {
         var component = (EditorColdStartup)target;
+        so = new SerializedObject(component);
+    }
+
+    public override void OnInspectorGUI()
+    {
         base.OnInspectorGUI();
 
-        var so = new SerializedObject(component);
-        var isIsolated = so.FindProperty("thisSceneData");
-        var isContent = so.FindProperty("isContentScene");
-        
+        bool isIsolated = ((EditorColdStartup)target).IsIsolated();
+
         void CreatePropField(string propName)
         {
             var prop = so.FindProperty(propName);
-            EditorGUILayout.PropertyField(prop);
+            EditorGUILayout.PropertyField(prop, true);
         }
         
-        if (!isContent.boolValue)
+        if (isIsolated)
         {
-            CreatePropField("managerSceneReadyChannel");
-        }
-        else
-        {
-            if (isIsolated.objectReferenceValue == null)
-            {
-                CreatePropField("contentSceneReadyChannel");
-                CreatePropField("setInputStateChannel");
-                CreatePropField("startupInputState");
-            }
+            CreatePropField("startupInputState");
+            CreatePropField("askInputStateChange");
+            CreatePropField("isolatedManualRaiseChannels");
         }
 
         so.ApplyModifiedProperties();

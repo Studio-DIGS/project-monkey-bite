@@ -51,6 +51,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnPlayButton()
     {
+        askInputStateChange.RaiseEvent(InputState.Disabled);
         askGameStateChange.RaiseEvent(GameState.Gameplay);
     }
 }

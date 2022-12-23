@@ -9,4 +9,11 @@ public static class UIExtensionMethods
         group.alpha = val ? 1 : 0;
         group.blocksRaycasts = val;
     }
+
+    public static void SetAlpha(this Image image, float alpha)
+    {
+        Color c = image.color;
+        c.a = alpha;
+        image.color = c;
+    }
 }

@@ -25,10 +25,6 @@ MonoBehaviour:
     m_Address: Assets/ScriptableObjects/SceneData
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 0e7c799473023ec4daa6ceab4fd8ebdd
-    m_Address: Assets/ScriptableObjects/SceneManagement
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 0466f6d1aff44034b89ad2cab34c0ecf
     m_Address: Assets/ScriptableObjects/LevelGroups
     m_ReadOnly: 0

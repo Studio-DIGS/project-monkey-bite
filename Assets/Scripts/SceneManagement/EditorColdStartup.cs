@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -14,20 +15,13 @@ public class EditorColdStartup : MonoBehaviour
 {
 #if UNITY_EDITOR
     [ColorHeader("Scene Dependencies", ColorHeaderColor.Dependencies)]
-    [SerializeField] private GameSceneSO thisSceneData;
     [SerializeField] private GameSceneSO persistentManagerSceneData;
     
     [ColorHeader("Writing - Cold Startup Data", ColorHeaderColor.WritingState)]
     [SerializeField] private ColdStartupDataSO coldStartupData;
     
-    [ColorHeader("Isolated Startup Config", ColorHeaderColor.Config)]
-    [HideInInspector, SerializeField] private InputState startupInputState;
-    
-    [ColorHeader("Invoking - Isolated Startup Setup Channels", ColorHeaderColor.TriggeringEvents)]
-    [HideInInspector, SerializeField] private InputStateEventChannelSO askInputStateChange;
-    [HideInInspector, SerializeField] private VoidEventChannelSO[] isolatedManualRaiseChannels;
-
     private bool isColdStart = false;
+    private GameSceneSO thisSceneData;
     
     private void Awake()
     {
@@ -42,9 +36,26 @@ public class EditorColdStartup : MonoBehaviour
     {
         if (isColdStart)
         {
+            FindThisSceneData();
             // First load Persistent Managers scene
             coldStartupData.isColdStartup = true;
             persistentManagerSceneData.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, false).Completed += OnPersistentManagersLoaded;
+        }
+    }
+
+    private void FindThisSceneData()
+    {
+        var guids = AssetDatabase.FindAssets("t:" + typeof(GameSceneSO).ToString());
+        var loadedScene = SceneManager.GetActiveScene();
+        foreach (var guid in guids)
+        {
+            var path = AssetDatabase.GUIDToAssetPath(guid);
+            var asset = AssetDatabase.LoadAssetAtPath<GameSceneSO>(path);
+            if (loadedScene.path == AssetDatabase.GUIDToAssetPath(asset.sceneReference.AssetGUID))
+            {
+                thisSceneData = asset;
+                break;
+            }
         }
     }
     
@@ -57,8 +68,7 @@ public class EditorColdStartup : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No Game Scene Specified, Isolated Cold Startup Initialized");
-            IsolatedColdStartup(persistentManagerScene);
+            Debug.LogError("No Game Scene Data found for cold startup");
         }
     }
 
@@ -75,31 +85,7 @@ public class EditorColdStartup : MonoBehaviour
             SceneManager.UnloadSceneAsync(currentScene);
         };
     }
-
-    /// <summary>
-    /// Isolated Cold Startup - No assigned "this" Game Scene.
-    /// No game state level managers in this scenario, so various event channels
-    /// need to be manually triggered
-    /// </summary>
-    /// <param name="scene"></param>
-    private void IsolatedColdStartup(AsyncOperationHandle<SceneInstance> scene)
-    {
-        scene.Result.ActivateAsync().completed += (a) =>
-        {
-            askInputStateChange.RaiseEvent(startupInputState);
-            
-            // Manually trigger necessary events
-            foreach (var manualTrigger in isolatedManualRaiseChannels)
-            {
-                manualTrigger.RaiseEvent();
-            }
-        };
-    }
-
-    public bool IsIsolated()
-    {
-        return thisSceneData == null;
-    }
+    
 
 #endif
 }

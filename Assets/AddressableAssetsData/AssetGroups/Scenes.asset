@@ -33,6 +33,10 @@ MonoBehaviour:
     m_Address: Assets/Scenes/Managers/GameplayManagers.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 520656d6932c2a849aeae370b6335e53
+    m_Address: Assets/Scenes/Menus/RunFinishMenu.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6aba7bafd48bbeb44aab8623d57168f2, type: 2}
   m_SchemaSet:

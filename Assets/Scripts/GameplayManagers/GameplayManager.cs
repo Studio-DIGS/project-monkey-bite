@@ -108,7 +108,7 @@ public class GameplayManager : MonoBehaviour
         {
             // Load the next level
             Debug.Log("Request level");
-            askLoadGameplayLevel.RaiseEvent(nextLevel, false, true);
+            askLoadGameplayLevel.RaiseEvent(nextLevel, true, true);
         }
     }
 

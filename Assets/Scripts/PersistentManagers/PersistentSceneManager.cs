@@ -79,34 +79,33 @@ public class PersistentSceneManager : MonoBehaviour
 
     private IEnumerator CoroutLoadManagerScene(GameSceneSO scene, bool transitionOut, bool transitionIn, Action loadScreenActions)
     {
+        // Start async load manager scene
+        var loadNewManagerSceneHandle = scene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, false, 0);
+
         // Transition out animation
         if (transitionOut)
         {
             yield return transitionEffectManager.TransitionOut();
         }
         
-        // Start async load manager scene
-        var loadNewManagerSceneHandle = scene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, false, 0);
-
         // Run any load screen actions
         loadScreenActions?.Invoke();
 
-        // Start async unload any existing manager scenes
-        var unloadRoutine = StartCoroutine(CoroutUnloadManagerScene(false, false, null));
-
-        // Wait for both scene operations to complete
-        yield return unloadRoutine;
         yield return loadNewManagerSceneHandle;
 
         // Done; New Manager scene has finished loading
         if (loadNewManagerSceneHandle.IsValid())
         {
             var newManagerScene = loadNewManagerSceneHandle.Result;
-
-            Debug.Log("Activating");
+            
+            // Start async unload any existing manager scenes
+            var unloadRoutine = StartCoroutine(CoroutUnloadManagerScene(false, false, null));
             var activateOperation = newManagerScene.ActivateAsync();
+            
+            // Wait for both scene operations to complete
+            yield return unloadRoutine;
             yield return activateOperation;
-            Debug.Log("Activated");
+            
             SceneManager.SetActiveScene(newManagerScene.Scene);
             
             // Update handles and states
@@ -174,6 +173,10 @@ public class PersistentSceneManager : MonoBehaviour
 
     private IEnumerator CoroutLoadContentScene(GameSceneSO scene, bool transitionOut, bool transitionIn, Action loadScreenActions)
     {
+        Debug.Log("Load Started");
+        // Start async load new content scene
+        var loadNewContentSceneHandle = scene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, false, 0);
+        
         // Transition out animation
         if (transitionOut)
         {
@@ -182,25 +185,25 @@ public class PersistentSceneManager : MonoBehaviour
 
         // Run any load screen actions
         loadScreenActions?.Invoke();
-        
-        Debug.Log("Load Started");
-        // Start async load new content scene
-        var loadNewContentSceneHandle = scene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, false, 0);
-
-        Debug.Log("Unload Started");
-        // Start async unload current content scene
-        var unloadOperation = StartCoroutine(CoroutUnloadContentScene(false, false, null));
 
         // Wait for both scene operations to complete
-        yield return unloadOperation;
-        Debug.Log("Unload Done");
         yield return loadNewContentSceneHandle;
         Debug.Log("Load Done");
 
         if (loadNewContentSceneHandle.IsValid())
         {
             var newContentScene = loadNewContentSceneHandle.Result;
-            yield return newContentScene.ActivateAsync();
+            Debug.Log("Activate started");
+            var activateHandle = newContentScene.ActivateAsync();
+            Debug.Log("Unload Started");
+            // Start async unload current content scene
+            var unloadOperation = StartCoroutine(CoroutUnloadContentScene(false, false, null));
+
+            yield return activateHandle;
+            Debug.Log("Activate done");
+            yield return unloadOperation;
+            Debug.Log("Unload done");
+            
             SceneManager.SetActiveScene(newContentScene.Scene);
             
             currentlyLoadedContentScene = scene;
@@ -219,7 +222,6 @@ public class PersistentSceneManager : MonoBehaviour
     private void UnloadContentScene(bool transitionOut, bool transitionIn, Action loadScreenActions)
     {
         SceneTransitionEntryCheck();
-        sceneOperationCount++;
         StartCoroutine(CoroutUnloadContentScene(transitionOut, transitionIn, loadScreenActions));
     }
 

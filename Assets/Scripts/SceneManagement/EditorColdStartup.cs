@@ -22,7 +22,7 @@ public class EditorColdStartup : MonoBehaviour
     
     private bool isColdStart = false;
     private GameSceneSO thisSceneData;
-    
+
     private void Awake()
     {
         // Cold start if persistent manager is not loaded

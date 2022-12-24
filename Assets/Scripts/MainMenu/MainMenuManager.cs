@@ -39,7 +39,7 @@ public class MainMenuManager : MonoBehaviour
     {
         
 #if UNITY_EDITOR
-        if (coldStartupState.isColdStartup)
+            if (coldStartupState.isColdStartup)
         {
             coldStartupState.ConsumeColdStartup();
         }

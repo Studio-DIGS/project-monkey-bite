@@ -24,4 +24,10 @@ public class LevelFinishLocation : MonoBehaviour
     {
         onLevelCompleted.RaiseEvent();
     }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Z))
+            FinishLevel();
+    }
 }

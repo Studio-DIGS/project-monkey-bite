@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class SimpleGenerationStrategy : WorldGenerationStrategy
 {
-    private GameplayLevelSceneSO entryLevel;
     private GameplayLevelSceneSO finalLevel;
     private List<GameplayLevelGroupSO> gameplayLevelGroups;
 
@@ -15,13 +14,11 @@ public class SimpleGenerationStrategy : WorldGenerationStrategy
     private IEnumerator levelEnumerator;
     
     public SimpleGenerationStrategy(
-        GameplayLevelSceneSO entryLevel, 
         GameplayLevelSceneSO finalLevel, 
         List<GameplayLevelGroupSO> gameplayLevelGroups,
         int levelsPerGroup,
         int groups)
     {
-        this.entryLevel = entryLevel;
         this.finalLevel = finalLevel;
         this.gameplayLevelGroups = new List<GameplayLevelGroupSO>(gameplayLevelGroups);
         this.levelsPerGroup = levelsPerGroup;
@@ -39,8 +36,6 @@ public class SimpleGenerationStrategy : WorldGenerationStrategy
 
     private IEnumerable LevelEnumerator()
     {
-        yield return entryLevel;
-
         for (int i = 0; i < groups; i++)
         {
             // Select a random level group

@@ -179,7 +179,7 @@ MonoBehaviour:
   askReturnToMainMenu: {fileID: 11400000, guid: 7033345c14986d347b5c6c5b7213dce0, type: 2}
   coldStartupState: {fileID: 11400000, guid: 4c2202439c6571e41897b4e9a99d4ab0, type: 2}
   worldGenerationProvider: {fileID: 11400000, guid: dd408d5b6b721e04f8682060c7cac629, type: 2}
-  runCompletedScene: {fileID: 11400000, guid: 4da0d6a3e371fab48abeb0e3d000169d, type: 2}
+  gameplayKeyScenes: {fileID: 11400000, guid: aabdefe13ca24ca41820167764aa4da0, type: 2}
 --- !u!1 &1940595717
 GameObject:
   m_ObjectHideFlags: 0

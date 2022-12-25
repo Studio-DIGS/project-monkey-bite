@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,10 +8,15 @@ public class TransitionEffectManager : MonoBehaviour
 {
     [SerializeField] private Image fadeImage;
     [SerializeField] private float duration;
+
+    private Coroutine currentTransitionCoroutine;
     
     public Coroutine TransitionIn()
     {
-        return StartCoroutine(CoroutTransitionIn());
+        fadeImage.SetAlpha(1f);
+        StopCurrentTransition();
+        currentTransitionCoroutine = StartCoroutine(CoroutTransitionIn());
+        return currentTransitionCoroutine;
     }
 
     private IEnumerator CoroutTransitionIn()
@@ -27,7 +33,10 @@ public class TransitionEffectManager : MonoBehaviour
     
     public Coroutine TransitionOut()
     {
-        return StartCoroutine(CoroutTransitionOut());
+        fadeImage.SetAlpha(0f);
+        StopCurrentTransition();
+        currentTransitionCoroutine = StartCoroutine(CoroutTransitionOut());
+        return currentTransitionCoroutine;
     }
 
     private IEnumerator CoroutTransitionOut()
@@ -40,5 +49,13 @@ public class TransitionEffectManager : MonoBehaviour
             timer += Time.deltaTime;
         }
         fadeImage.SetAlpha(1f);
+    }
+
+    private void StopCurrentTransition()
+    {
+        if (currentTransitionCoroutine != null)
+        {
+            StopCoroutine(currentTransitionCoroutine);
+        }
     }
 }

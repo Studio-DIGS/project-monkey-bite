@@ -39,7 +39,7 @@ public class GameplayManager : MonoBehaviour
 
     [ColorHeader("Dependencies", ColorHeaderColor.Dependencies)] 
     [SerializeField] private WorldGenerationProviderSO worldGenerationProvider;
-    [SerializeField] private GameSceneSO runCompletedScene;
+    [SerializeField] private GameplayKeyScenesSO gameplayKeyScenes;
 
     // Internal state
     private bool levelLoaded = false;
@@ -54,7 +54,7 @@ public class GameplayManager : MonoBehaviour
         onLevelSceneLoaded.OnRaised += OnLevelSceneLoaded;
         onLevelCompleted.OnRaised += LoadNextLevel;
         askReturnToMainMenu.OnRaised += ReturnToMainMenu;
-        askStartNewRun.OnRaised += StartNewRun;
+        askStartNewRun.OnRaised += EnterRunLobby;
     }
 
     private void OnDisable()
@@ -63,7 +63,7 @@ public class GameplayManager : MonoBehaviour
         onLevelSceneLoaded.OnRaised -= OnLevelSceneLoaded;
         onLevelCompleted.OnRaised -= LoadNextLevel;
         askReturnToMainMenu.OnRaised -= ReturnToMainMenu;
-        askStartNewRun.OnRaised -= StartNewRun;
+        askStartNewRun.OnRaised -= EnterRunLobby;
     }
     
     private void SetupGameplayManager()
@@ -77,7 +77,7 @@ public class GameplayManager : MonoBehaviour
             return;
         }
 #endif
-        StartNewRun();
+        EnterRunLobbyFromMenu();
     }
     
     
@@ -91,12 +91,13 @@ public class GameplayManager : MonoBehaviour
         onLevelSceneReady.RaiseEvent();
     }
 
+    private void LoadEntryLevel(bool transitionOut)
+    {
+        LoadLevel(gameplayKeyScenes.EntryScene, transitionOut, true);
+    }
 
     private void LoadNextLevel()
     {
-        // Disable input while loading
-        askInputStateChange.RaiseEvent(InputState.Disabled);
-        
         var nextLevel = worldGenerationStrategyInstance.GetNextLevel();
 
         // No more levels; Run has ended
@@ -106,22 +107,34 @@ public class GameplayManager : MonoBehaviour
         }
         else
         {
-            // Load the next level
-            Debug.Log("Request level");
-            askLoadGameplayLevel.RaiseEvent(nextLevel, true, true);
+            LoadLevel(nextLevel, true, true);
         }
+    }
+
+    private void LoadLevel(GameSceneSO level, bool transitionOut, bool transitionIn)
+    {
+        // Disable input while loading
+        askInputStateChange.RaiseEvent(InputState.Disabled);
+
+        askLoadGameplayLevel.RaiseEvent(level, transitionOut, transitionIn);
     }
 
     // Run ended, Load run finish scene
     private void EndRun()
     {
-        askLoadGameplayLevel.RaiseEvent(runCompletedScene, true, true);
+        askLoadGameplayLevel.RaiseEvent(gameplayKeyScenes.RunFinishMenuScene, true, true);
     }
     
-    private void StartNewRun()
+    private void EnterRunLobbyFromMenu()
     {
         SetupWorldGeneration();
-        LoadNextLevel();
+        LoadEntryLevel(false);
+    }
+
+    private void EnterRunLobby()
+    {
+        SetupWorldGeneration();
+        LoadEntryLevel(true);
     }
     
     private void SetupWorldGeneration()

@@ -5,13 +5,13 @@ using System;
 [CreateAssetMenu(menuName = "Events/SceneManagement/Scene Unload Event Channel")]
 public class SceneUnloadEventChannelSO : DescriptionBaseSO
 {
-    public Action<bool, bool, Action> OnRaised;
+    public Action<bool, bool> OnRaised;
 
-    public void RaiseEvent(bool transitionOut = false, bool transitionIn = false, Action loadScreenActions = null)
+    public void RaiseEvent(bool transitionOut = false, bool transitionIn = false)
     {
         if (OnRaised != null)
         {
-            OnRaised?.Invoke(transitionOut, transitionIn, loadScreenActions);
+            OnRaised?.Invoke(transitionOut, transitionIn);
         }
         else
         {

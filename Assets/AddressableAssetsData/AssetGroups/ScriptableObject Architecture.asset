@@ -41,6 +41,10 @@ MonoBehaviour:
     m_Address: Assets/ScriptableObjects/GameplayConfig
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: b5a4def2c3ca5b64cb90c89ee6b3ed72
+    m_Address: Assets/ScriptableObjects/SaveSystem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6aba7bafd48bbeb44aab8623d57168f2, type: 2}
   m_SchemaSet:

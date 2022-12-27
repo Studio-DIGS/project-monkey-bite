@@ -10,12 +10,14 @@ public class MainMenuManager : MonoBehaviour
     [ColorHeader("Listening - On Main Menu Scene Loaded Channel", ColorHeaderColor.ListeningEvents)]
     [SerializeField] private VoidEventChannelSO onMainMenuSceneLoaded;
 
-    [ColorHeader("Invoking - Main Menu Setup Channels", ColorHeaderColor.TriggeringEvents)]
+    [ColorHeader("Invoking - Main Menu Setup Channel", ColorHeaderColor.TriggeringEvents)]
     [SerializeField] private InputStateEventChannelSO askInputStateChange;
     
-    [ColorHeader("Invoking - Ask Game State Change", ColorHeaderColor.TriggeringEvents)]
+    [ColorHeader("Invoking - Ask Game State Change Channel", ColorHeaderColor.TriggeringEvents)]
     [SerializeField] private GameStateEventChannelSO askGameStateChange;
 
+    [ColorHeader("Invoking - Ask Load Saves Channels", ColorHeaderColor.TriggeringEvents)] 
+    [SerializeField] private IntEventChannelSO askLoadPermanentData;
 
     [ColorHeader("Initial Selection", ColorHeaderColor.Config)] 
     [SerializeField] private GameObject initialSelectedGameObject;
@@ -51,6 +53,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnPlayButton()
     {
+        askLoadPermanentData.RaiseEvent(0);
         askInputStateChange.RaiseEvent(InputState.Disabled);
         askGameStateChange.RaiseEvent(GameState.Gameplay);
     }

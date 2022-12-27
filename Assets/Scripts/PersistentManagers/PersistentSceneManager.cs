@@ -125,7 +125,6 @@ public class PersistentSceneManager : MonoBehaviour
         int layerIndex,
         VoidEventChannelSO onFinishedChannel)
     {
-        Debug.Log("Request");
         // Start async load manager scene
         var loadNewManagerSceneHandle = scene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, false, 0);
 
@@ -133,6 +132,9 @@ public class PersistentSceneManager : MonoBehaviour
         
         // Run any load screen actions
         loadScreenActions?.Invoke();
+        
+        // Async unload the previous scene
+        var unloadOperation = StartCoroutine(CoroutUnloadScene(false, false, layerIndex));
 
         // Wait for scene to load
         yield return loadNewManagerSceneHandle;
@@ -141,10 +143,7 @@ public class PersistentSceneManager : MonoBehaviour
         if (loadNewManagerSceneHandle.IsValid())
         {
             var newManagerScene = loadNewManagerSceneHandle.Result;
-            
-            // Async unload the previous scene
-            var unloadOperation = StartCoroutine(CoroutUnloadScene(false, false, layerIndex));
-            
+ 
             // Async activate the newly loaded scene
             var activateOperation = newManagerScene.ActivateAsync();
 

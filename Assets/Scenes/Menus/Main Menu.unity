@@ -721,6 +721,7 @@ MonoBehaviour:
   onMainMenuSceneLoaded: {fileID: 11400000, guid: a9a1820e49e3d18449699a86ec3872d5, type: 2}
   askInputStateChange: {fileID: 11400000, guid: bba4b75ec21129a4ba77566c17196aab, type: 2}
   askGameStateChange: {fileID: 11400000, guid: f66c56ad4a5788d4c9c393abd557dbe2, type: 2}
+  askLoadPermanentData: {fileID: 11400000, guid: 649f9bffc93a43b4ead5cc66cf78fb1a, type: 2}
   initialSelectedGameObject: {fileID: 1503532273}
   coldStartupState: {fileID: 11400000, guid: 4c2202439c6571e41897b4e9a99d4ab0, type: 2}
 --- !u!1 &1668247797

@@ -32,6 +32,9 @@ public class GameplayManager : MonoBehaviour
     [ColorHeader("Listening - Return To Main Menu Ask Channel", ColorHeaderColor.ListeningEvents)] 
     [SerializeField] private VoidEventChannelSO askReturnToMainMenu;
     
+    [ColorHeader("Invoking - Ask Save Data Channel", ColorHeaderColor.ListeningEvents)] 
+    [SerializeField] private IntEventChannelSO askSavePermanentDataFromSO;
+    
 #if UNITY_EDITOR
     [ColorHeader("Reading - Cold Startup State", ColorHeaderColor.ReadingState)]
     [SerializeField] private ColdStartupDataSO coldStartupState;
@@ -40,6 +43,7 @@ public class GameplayManager : MonoBehaviour
     [ColorHeader("Dependencies", ColorHeaderColor.Dependencies)] 
     [SerializeField] private WorldGenerationProviderSO worldGenerationProvider;
     [SerializeField] private GameplayKeyScenesSO gameplayKeyScenes;
+    [SerializeField] private ProfileSaveDataSO loadedPermanentSaveData;
 
     // Internal state
     private bool levelLoaded = false;
@@ -65,7 +69,7 @@ public class GameplayManager : MonoBehaviour
         askReturnToMainMenu.OnRaised -= ReturnToMainMenu;
         askStartNewRun.OnRaised -= EnterRunLobby;
     }
-    
+
     private void SetupGameplayManager()
     {
 
@@ -116,7 +120,10 @@ public class GameplayManager : MonoBehaviour
         // Disable input while loading
         askInputStateChange.RaiseEvent(InputState.Disabled);
 
-        askLoadGameplayLevel.RaiseEvent(level, transitionOut, transitionIn);
+        askLoadGameplayLevel.RaiseEvent(level, transitionOut, transitionIn, () =>
+        {
+            askSavePermanentDataFromSO.RaiseEvent(0);
+        });
     }
 
     // Run ended, Load run finish scene
@@ -153,6 +160,8 @@ public class GameplayManager : MonoBehaviour
             escaped = true;
             askReturnToMainMenu.RaiseEvent();
         }
+        
+        loadedPermanentSaveData.loadedData.statsData.playTime += TimeSpan.FromSeconds(Time.deltaTime);
     }
 
     private void ReturnToMainMenu()

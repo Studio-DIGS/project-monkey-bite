@@ -177,9 +177,11 @@ MonoBehaviour:
   onLevelCompleted: {fileID: 11400000, guid: d1d52473f1f46b1488084c86f1530718, type: 2}
   askStartNewRun: {fileID: 11400000, guid: 93f9e9d402e1509428a410d43e98fa85, type: 2}
   askReturnToMainMenu: {fileID: 11400000, guid: 7033345c14986d347b5c6c5b7213dce0, type: 2}
+  askSavePermanentDataFromSO: {fileID: 11400000, guid: cfc338406a5e87d4c997d2c714d83a4b, type: 2}
   coldStartupState: {fileID: 11400000, guid: 4c2202439c6571e41897b4e9a99d4ab0, type: 2}
   worldGenerationProvider: {fileID: 11400000, guid: dd408d5b6b721e04f8682060c7cac629, type: 2}
   gameplayKeyScenes: {fileID: 11400000, guid: aabdefe13ca24ca41820167764aa4da0, type: 2}
+  loadedPermanentSaveData: {fileID: 11400000, guid: 868d52d10eccf234cb67e1080405d20d, type: 2}
 --- !u!1 &1940595717
 GameObject:
   m_ObjectHideFlags: 0

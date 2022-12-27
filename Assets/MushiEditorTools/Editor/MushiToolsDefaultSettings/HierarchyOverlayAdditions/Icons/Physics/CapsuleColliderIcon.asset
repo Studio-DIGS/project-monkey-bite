@@ -16,4 +16,4 @@ MonoBehaviour:
     iconType: 0
     editorIconStringIdentifier: CapsuleCollider Icon
     textureAsset: {fileID: 0}
-  targetClassString: CapsuleCollider
+  targetClassString: 'CapsuleCollider '

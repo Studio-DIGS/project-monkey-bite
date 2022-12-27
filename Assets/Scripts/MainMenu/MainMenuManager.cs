@@ -10,31 +10,32 @@ public class MainMenuManager : MonoBehaviour
     [ColorHeader("Listening - On Main Menu Scene Loaded Channel", ColorHeaderColor.ListeningEvents)]
     [SerializeField] private VoidEventChannelSO onMainMenuSceneLoaded;
 
-    [ColorHeader("Invoking - Main Menu Setup Channel", ColorHeaderColor.TriggeringEvents)]
+    [ColorHeader("Invoking - Ask Change Input State Channel", ColorHeaderColor.TriggeringEvents)]
     [SerializeField] private InputStateEventChannelSO askInputStateChange;
-    
-    [ColorHeader("Invoking - Ask Game State Change Channel", ColorHeaderColor.TriggeringEvents)]
-    [SerializeField] private GameStateEventChannelSO askGameStateChange;
 
-    [ColorHeader("Invoking - Ask Load Saves Channels", ColorHeaderColor.TriggeringEvents)] 
-    [SerializeField] private IntEventChannelSO askLoadPermanentData;
+    [ColorHeader("Listening - Change Main Menu Page Ask Channel")] 
+    [SerializeField] private MenuPageEventChannelSO askChangeMenuPage;
 
     [ColorHeader("Initial Selection", ColorHeaderColor.Config)] 
-    [SerializeField] private GameObject initialSelectedGameObject;
+    [SerializeField] private MenuPage initialActiveMenuPage;
     
 #if UNITY_EDITOR
     [ColorHeader("Reading - Cold Startup State", ColorHeaderColor.ReadingState)]
     [SerializeField] private ColdStartupDataSO coldStartupState;
 #endif
+
+    private MenuPage currentShownMenuPage;
     
     void OnEnable()
     {
         onMainMenuSceneLoaded.OnRaised += SetupMainMenu;
+        askChangeMenuPage.OnRaised += ShowPage;
     }
 
     private void OnDisable()
     {
         onMainMenuSceneLoaded.OnRaised -= SetupMainMenu;
+        askChangeMenuPage.OnRaised -= ShowPage;
     }
 
     private void SetupMainMenu()
@@ -48,13 +49,16 @@ public class MainMenuManager : MonoBehaviour
 #endif
         
         askInputStateChange.RaiseEvent(InputState.UI);
-        EventSystem.current.SetSelectedGameObject(initialSelectedGameObject);
+        ShowPage(initialActiveMenuPage);
     }
 
-    public void OnPlayButton()
+    private void ShowPage(MenuPage menuPage)
     {
-        askLoadPermanentData.RaiseEvent(0);
-        askInputStateChange.RaiseEvent(InputState.Disabled);
-        askGameStateChange.RaiseEvent(GameState.Gameplay);
+        if (currentShownMenuPage)
+        {
+            currentShownMenuPage.HidePage();
+        }
+        menuPage.ShowPage();
+        currentShownMenuPage = menuPage;
     }
 }

@@ -216,8 +216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 233ae6eacf8cbd340843625717ca41fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  askSavePermanentDataFromSO: {fileID: 11400000, guid: cfc338406a5e87d4c997d2c714d83a4b, type: 2}
-  askLoadPermanentDataToSO: {fileID: 11400000, guid: 649f9bffc93a43b4ead5cc66cf78fb1a, type: 2}
+  askSaveProfile: {fileID: 11400000, guid: 05db3296782bf744786e68a1716acaf5, type: 2}
+  getProfileSave: {fileID: 11400000, guid: 679d066dd2453524ba1fb80c72b04f1a, type: 2}
+  getAllProfileSaves: {fileID: 11400000, guid: 49f525a1612d59947b756779de8f5048, type: 2}
   permanentSaveDataSO: {fileID: 11400000, guid: 868d52d10eccf234cb67e1080405d20d, type: 2}
   saveIO: {fileID: 11400000, guid: 1f0fb4ce6afb07b41bae41281369471b, type: 2}
   saveParser: {fileID: 11400000, guid: 02d464e6e87a2864cb759c3d10377fe9, type: 2}

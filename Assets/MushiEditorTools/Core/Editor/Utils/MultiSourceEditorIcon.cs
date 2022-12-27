@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,49 +12,41 @@ using UnityEngine;
 [System.Serializable]
 public class MultiSourceEditorIcon
 {
-    private enum IconType
+    public enum IconType
     {
         EditorGUIUtility,
         TextureAsset
     }
 
-    [SerializeField] private IconType iconType;
-    [SerializeField] private string editorIconStringIdentifier;
-    [SerializeField] private Texture2D textureAsset;
+    // Public fields
+    public IconType iconType;
+    public string editorIconStringIdentifier;
+    public Texture2D textureAsset;
+
+    public GUIContent Content => GetContent();
     
-    private GUIContent guiContent;
-
-    public GUIContent GUIContent
-    {
-        get
-        {
-            UpdateContent();
-            return guiContent;
-        }
-    }
-
-    private void UpdateContent()
+    private GUIContent GetContent()
     {
         if (iconType == IconType.EditorGUIUtility)
         {
-            guiContent = EditorGUIUtility.IconContent(editorIconStringIdentifier);
+            return EditorGUIUtility.IconContent(editorIconStringIdentifier);
         }
         else
         {
-            guiContent = new GUIContent(textureAsset);
+            return new GUIContent(textureAsset);
         }
     }
     
     public static implicit operator GUIContent(MultiSourceEditorIcon icon)
     {
-        return icon.GUIContent;
+        return icon.GetContent();
     }
     
     public static implicit operator Texture(MultiSourceEditorIcon icon)
     {
         if (icon.iconType == IconType.EditorGUIUtility)
         {
-            return icon.GUIContent.image;
+            return icon.Content.image;
         }
         else
         {
@@ -62,28 +55,37 @@ public class MultiSourceEditorIcon
     }
 }
 
-/*[CustomPropertyDrawer(typeof(MultiSourceEditorIcon))]
+[CustomPropertyDrawer(typeof(MultiSourceEditorIcon))]
 public class MultiSourceEditorIconDrawer : PropertyDrawer
 {
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        Undo.RecordObject(target, "MultiSourceEditorIcon change");
+        var target = (MultiSourceEditorIcon)property.boxedValue;
+        position.height = EditorGUIUtility.singleLineHeight;
+        // Icon Type dropdown
         target.iconType = (MultiSourceEditorIcon.IconType)EditorGUI.EnumPopup(position, label, target.iconType);
 
+        // Set up positions for icon data fields
         position.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+        position.x += EditorGUIUtility.labelWidth;
+        position.width -= EditorGUIUtility.labelWidth;
         
+        // Built in icon string field
         if (target.iconType == MultiSourceEditorIcon.IconType.EditorGUIUtility)
         {
             target.editorIconStringIdentifier = EditorGUI.TextField(position, target.editorIconStringIdentifier);
         }
+        // Custom texture asset field
         else if (target.iconType == MultiSourceEditorIcon.IconType.TextureAsset)
         {
-            target.textureAsset = (Texture2D)EditorGUI.ObjectField(position, target.textureAsset, typeof(Texture2D));
+            target.textureAsset = (Texture2D)EditorGUI.ObjectField(position, target.textureAsset, typeof(Texture), false);
         }
+
+        property.boxedValue = target;
     }
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
         return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing;
     }
-}*/
+}

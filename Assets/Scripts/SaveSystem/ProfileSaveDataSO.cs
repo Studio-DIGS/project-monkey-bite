@@ -11,7 +11,7 @@ public class ProfileSaveData
 {
     [ColorHeader("Save Profile Meta Data")] 
     public int profileIndex;
-    public string profileName;
+    public string profileID;
     
     [ColorHeader("Permanent Data")]
     public BasicStatsSaveData statsData;

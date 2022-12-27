@@ -1,15 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PersistentSaveManager : MonoBehaviour
 {
-    [ColorHeader("Listening - Save ask Channels", ColorHeaderColor.ListeningEvents)] 
-    [SerializeField] private IntEventChannelSO askSavePermanentDataFromSO;
+    [ColorHeader("Listening - Save Ask Channels", ColorHeaderColor.ListeningEvents)] 
+    [SerializeField] private ProfileSaveDataEventChannelSO askSaveProfile;
     
-    [ColorHeader("Listening - Load ask Channels", ColorHeaderColor.ListeningEvents)] 
-    [SerializeField] private IntEventChannelSO askLoadPermanentDataToSO;
+    [ColorHeader("Listening - Load Get Channels", ColorHeaderColor.ListeningEvents)] 
+    [SerializeField] private ProfileSaveDataFuncChannelSO getProfileSave;
+    [SerializeField] private ProfileSaveDataArrFuncChannelSO getAllProfileSaves;
     
     [ColorHeader("Save Data SO Containers", ColorHeaderColor.Dependencies)] 
     [SerializeField] private ProfileSaveDataSO permanentSaveDataSO;
@@ -20,26 +22,41 @@ public class PersistentSaveManager : MonoBehaviour
 
     private void OnEnable()
     {
-        askSavePermanentDataFromSO.OnRaised += SavePermanentDataFromSO;
-        askLoadPermanentDataToSO.OnRaised += LoadPermanentDataFromSO;
+        askSaveProfile.OnRaised += SaveProfileDataToFile;
+        getProfileSave.OnCalled += LoadProfileDataFromFile;
+        getAllProfileSaves.OnCalled += GetAllProfileSaves;
     }
 
     private void OnDisable()
     {
-        askSavePermanentDataFromSO.OnRaised -= SavePermanentDataFromSO;
-        askLoadPermanentDataToSO.OnRaised -= LoadPermanentDataFromSO;
+        askSaveProfile.OnRaised -= SaveProfileDataToFile;
+        getProfileSave.OnCalled -= LoadProfileDataFromFile;
+        getAllProfileSaves.OnCalled -= GetAllProfileSaves;
     }
 
-    private void SavePermanentDataFromSO(int profileIndex)
+    private void SaveProfileDataToFile(ProfileSaveData data)
     {
-        string json = saveParser.PermanentSaveDataToJSON(permanentSaveDataSO.loadedData);
-        saveIO.WritePermanentSaveData(profileIndex, json);
+        string json = saveParser.ProfileSaveDataToJSON(permanentSaveDataSO.loadedData);
+        saveIO.WriteProfileSaveData(data.profileID, json);
     }
 
-    private void LoadPermanentDataFromSO(int profileIndex)
+    private ProfileSaveData LoadProfileDataFromFile(string profileID)
     {
-        var readSaveData = saveIO.ReadPermanentSaveData(profileIndex);
-        ProfileSaveData data = saveParser.JSONToPermanentSaveData(readSaveData.saveData);
-        permanentSaveDataSO.loadedData = data ?? new ProfileSaveData();
+        var readSaveData = saveIO.ReadProfileSaveData(profileID);
+        ProfileSaveData data = saveParser.JSONToProfileSaveData(readSaveData.saveData);
+        return data;
+    }
+
+    private ProfileSaveData[] GetAllProfileSaves()
+    {
+        var jsonData = saveIO.ReadAllProfileSavesData();
+        var saveDataObjs = new ProfileSaveData[jsonData.Count];
+
+        for (int i = 0; i < jsonData.Count; i++)
+        {
+            saveDataObjs[i] = saveParser.JSONToProfileSaveData(jsonData[i].saveData);
+        }
+
+        return saveDataObjs;
     }
 }

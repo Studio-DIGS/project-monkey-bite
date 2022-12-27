@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: adec967b8b959bb4b829d29f00e0c6fd
   m_SerializeEntries:
   - m_GUID: 7b2f8da2fab92f2478222ebadd7e3277
-    m_Address: Assets/ScriptableObjects/EventChannels
+    m_Address: Assets/ScriptableObjects/Channels
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 8c781b0400e5afb40be4c06e584a0a2b

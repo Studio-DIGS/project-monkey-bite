@@ -8,7 +8,12 @@ public class RelativeSavePathConfigSO : ScriptableObject
 {
     [SerializeField] private string profileIdentifierSymbol;
     [SerializeField] private string relativeDirectory;
+
+    public string RelativeDirectory => relativeDirectory;
+    
     [SerializeField] private string fileTypePostfix;
+
+    public string FileTypePostfix => fileTypePostfix;
     
     [SerializeField] private string saveFilename;
 

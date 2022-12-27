@@ -5,12 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Architecture/SaveSystem/SaveParser")]
 public class SaveParserSO : ScriptableObject
 {
-    public string PermanentSaveDataToJSON(ProfileSaveData data)
+    public string ProfileSaveDataToJSON(ProfileSaveData data)
     {
         return JsonUtility.ToJson(data);
     }
 
-    public ProfileSaveData JSONToPermanentSaveData(string jsonData)
+    public ProfileSaveData JSONToProfileSaveData(string jsonData)
     {
         return JsonUtility.FromJson<ProfileSaveData>(jsonData);
     }

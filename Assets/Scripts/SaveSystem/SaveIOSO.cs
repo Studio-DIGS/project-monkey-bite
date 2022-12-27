@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Directory = UnityEngine.Windows.Directory;
@@ -15,23 +16,38 @@ public class SaveIOSO : ScriptableObject
     /// <summary>
     /// Retrives any permanent save data (unlocks, achievements, etc) on a profile
     /// </summary>
-    /// <param name="profileIndex"></param>
+    /// <param name="profileID"></param>
     /// <returns></returns>
-    public ReadSaveData ReadPermanentSaveData(int profileIndex)
+    public ReadSaveData ReadProfileSaveData(string profileID)
     {
-        var fullPath = GetFullPath(pathConfig.GetProfileSaveRelativePath("" + profileIndex));
+        var fullPath = GetFullPath(pathConfig.GetProfileSaveRelativePath(profileID));
         return ReadStringData(fullPath);
     }
 
-    public void WritePermanentSaveData(int profileIndex, string data)
+    public void WriteProfileSaveData(string profileID, string data)
     {
-        var fullPath = GetFullPath(pathConfig.GetProfileSaveRelativePath("" + profileIndex));
+        var fullPath = GetFullPath(pathConfig.GetProfileSaveRelativePath(profileID));
         WriteStringData(fullPath, data);
     }
 
     private string GetFullPath(string relativePath)
     {
         return Application.persistentDataPath + '/' + relativePath;
+    }
+
+    public List<ReadSaveData> ReadAllProfileSavesData()
+    {
+        string directoryPath = GetFullPath(pathConfig.RelativeDirectory);
+        string postFix = pathConfig.FileTypePostfix;
+        var filePaths = System.IO.Directory.GetFiles(directoryPath).Where(file => file.EndsWith(postFix)).ToList();
+        var results = new List<ReadSaveData>();
+
+        foreach (var path in filePaths)
+        {
+            results.Add(ReadStringData(path));
+        }
+
+        return results;
     }
 
     private ReadSaveData ReadStringData(string filePath)
@@ -41,7 +57,7 @@ public class SaveIOSO : ScriptableObject
             if (File.Exists(filePath))
             {
                 var result = File.ReadAllBytes(filePath);
-                string data = System.Text.Encoding.Default.GetString(result);
+                string data = BytesToString(result);
                 return new ReadSaveData(data, true);
             }
             else
@@ -62,7 +78,7 @@ public class SaveIOSO : ScriptableObject
         try
         {
             Directory.CreateDirectory(Path.GetDirectoryName(filePath));
-            var byteData = System.Text.Encoding.Default.GetBytes(stringData);
+            var byteData = StringToBytes(stringData);
             File.WriteAllBytes(filePath, byteData);
         }
         catch (Exception e)
@@ -70,6 +86,16 @@ public class SaveIOSO : ScriptableObject
             Debug.Log(e);
             throw;
         }
+    }
+    
+    private string BytesToString(byte[] data)
+    {
+        return System.Text.Encoding.Default.GetString(data);
+    }
+
+    private byte[] StringToBytes(string str)
+    {
+        return System.Text.Encoding.Default.GetBytes(str);
     }
 }
 

@@ -219,7 +219,8 @@ MonoBehaviour:
   askSaveProfile: {fileID: 11400000, guid: 05db3296782bf744786e68a1716acaf5, type: 2}
   getProfileSave: {fileID: 11400000, guid: 679d066dd2453524ba1fb80c72b04f1a, type: 2}
   getAllProfileSaves: {fileID: 11400000, guid: 49f525a1612d59947b756779de8f5048, type: 2}
-  permanentSaveDataSO: {fileID: 11400000, guid: 868d52d10eccf234cb67e1080405d20d, type: 2}
+  askSetActiveProfile: {fileID: 11400000, guid: e85b440bf1923a74694710aa4224f872, type: 2}
+  activeProfileContainer: {fileID: 11400000, guid: 868d52d10eccf234cb67e1080405d20d, type: 2}
   saveIO: {fileID: 11400000, guid: 1f0fb4ce6afb07b41bae41281369471b, type: 2}
   saveParser: {fileID: 11400000, guid: 02d464e6e87a2864cb759c3d10377fe9, type: 2}
 --- !u!1 &538742499
@@ -364,6 +365,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 583713237411225502, guid: 6f01aa754189207488859e4df5f324d9, type: 3}
@@ -415,6 +417,7 @@ PrefabInstance:
       value: EventSystem
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f01aa754189207488859e4df5f324d9, type: 3}
 --- !u!1 &1384114223
 GameObject:
@@ -638,6 +641,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 2
   m_TargetDisplay: 0

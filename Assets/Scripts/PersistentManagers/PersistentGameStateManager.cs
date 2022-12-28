@@ -132,6 +132,8 @@ public class PersistentGameStateManager : MonoBehaviour
             return;
         }
         
+        data.SetColdStartupSaveProfileActive();
+        
         // Translate scene type into appropriate game state
         switch (sceneAsset.sceneType)
         {

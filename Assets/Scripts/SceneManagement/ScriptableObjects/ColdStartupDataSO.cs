@@ -6,8 +6,34 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Architecture/SceneManagement/ColdStartupDataSO")]
 public class ColdStartupDataSO : DescriptionBaseSO
 {
-    [DoNotSerialize] public GameSceneSO startupScene;
-    [DoNotSerialize] public bool isColdStartup;
+    enum ColdStartupLoadType
+    {
+        CustomProfileDataInstance,
+        LoadFromProfileID
+    }
+
+    [ColorHeader("Cold Startup Configuration", ColorHeaderColor.Config)]
+    [SerializeField] private ColdStartupLoadType coldStartupLoadType;
+    [SerializeField] private ProfileSaveDataSO coldStartupSaveProfile;
+    [SerializeField] private string profileID;
+    [SerializeField] private ProfileSaveDataFuncChannelSO getProfileSaveData;
+    [SerializeField] private ProfileSaveDataEventChannelSO askSetActiveProfileSave;
+
+    [ColorHeader("Readonly - State filled in during play by EditorColdStartup Component")]
+    [ReadOnly, DoNotSerialize] public GameSceneSO startupScene;
+    [ReadOnly, DoNotSerialize] public bool isColdStartup;
+
+    public void SetColdStartupSaveProfileActive()
+    {
+        if (coldStartupLoadType == ColdStartupLoadType.CustomProfileDataInstance)
+        {
+            askSetActiveProfileSave.RaiseEvent(coldStartupSaveProfile.profileSaveData);
+        }
+        else
+        {
+            askSetActiveProfileSave.RaiseEvent(getProfileSaveData.CallFunc(profileID));
+        }
+    }
 
     /// <summary>
     /// Clears cold startup. Manager-level scripts should consume the cold startup once it is finished loading.

@@ -12,9 +12,12 @@ public class PersistentSaveManager : MonoBehaviour
     [ColorHeader("Listening - Load Get Channels", ColorHeaderColor.ListeningEvents)] 
     [SerializeField] private ProfileSaveDataFuncChannelSO getProfileSave;
     [SerializeField] private ProfileSaveDataArrFuncChannelSO getAllProfileSaves;
+
+    [ColorHeader("Listening - Set Active Profile Save Ask Channel", ColorHeaderColor.ListeningEvents)] 
+    [SerializeField] private ProfileSaveDataEventChannelSO askSetActiveProfile;
     
     [ColorHeader("Save Data SO Containers", ColorHeaderColor.Dependencies)] 
-    [SerializeField] private ProfileSaveDataSO permanentSaveDataSO;
+    [SerializeField] private ProfileSaveDataSO activeProfileContainer;
     
     [ColorHeader("Save System Dependencies", ColorHeaderColor.Dependencies)] 
     [SerializeField] private SaveIOSO saveIO;
@@ -25,6 +28,7 @@ public class PersistentSaveManager : MonoBehaviour
         askSaveProfile.OnRaised += SaveProfileDataToFile;
         getProfileSave.OnCalled += LoadProfileDataFromFile;
         getAllProfileSaves.OnCalled += GetAllProfileSaves;
+        askSetActiveProfile.OnRaised += SetActiveProfile;
     }
 
     private void OnDisable()
@@ -32,12 +36,18 @@ public class PersistentSaveManager : MonoBehaviour
         askSaveProfile.OnRaised -= SaveProfileDataToFile;
         getProfileSave.OnCalled -= LoadProfileDataFromFile;
         getAllProfileSaves.OnCalled -= GetAllProfileSaves;
+        askSetActiveProfile.OnRaised -= SetActiveProfile;
+    }
+
+    private void SetActiveProfile(ProfileSaveData data)
+    {
+        activeProfileContainer.profileSaveData = data;
     }
 
     private void SaveProfileDataToFile(ProfileSaveData data)
     {
         Debug.Log($"Saving to profile {data.profileID}");
-        string json = saveParser.ProfileSaveDataToJSON(permanentSaveDataSO.profileSaveData);
+        string json = saveParser.ProfileSaveDataToJSON(data);
         saveIO.WriteProfileSaveData(data.profileID, json);
     }
 

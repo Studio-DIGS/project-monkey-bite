@@ -36,7 +36,8 @@ public class PersistentSaveManager : MonoBehaviour
 
     private void SaveProfileDataToFile(ProfileSaveData data)
     {
-        string json = saveParser.ProfileSaveDataToJSON(permanentSaveDataSO.loadedData);
+        Debug.Log($"Saving to profile {data.profileID}");
+        string json = saveParser.ProfileSaveDataToJSON(permanentSaveDataSO.profileSaveData);
         saveIO.WriteProfileSaveData(data.profileID, json);
     }
 

@@ -1,9 +1,9 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Architecture/SaveSystem/ProfileSaveDataSO")]
-public class ProfileSaveDataSO : ScriptableObject
+public class ProfileSaveDataSO : DescriptionBaseSO
 {
-    public ProfileSaveData loadedData;
+    public ProfileSaveData profileSaveData;
 }
 
 [System.Serializable]

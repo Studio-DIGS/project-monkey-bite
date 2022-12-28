@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "PlayerUserInputProvider", menuName = "Architecture/Input/Providers/PlayerUserInputProvider")]
 
-public class PlayerUserInputProvider : ScriptableObject, InputProvider<PlayerInputState, PlayerInputEvents>
+public class PlayerUserInputProvider : DescriptionBaseSO, InputProvider<PlayerInputState, PlayerInputEvents>
 {
     [Header("Gameplay Actions")]
     

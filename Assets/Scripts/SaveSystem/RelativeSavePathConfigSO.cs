@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Architecture/SaveSystem/SavePathConfig")]
-public class RelativeSavePathConfigSO : ScriptableObject
+public class RelativeSavePathConfigSO : DescriptionBaseSO
 {
     [SerializeField] private string profileIdentifierSymbol;
     [SerializeField] private string relativeDirectory;

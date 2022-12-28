@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57521c6c997fed746b642f682190fab0, type: 3}
-  m_Name: BoxCollider2DIcon
+  m_Script: {fileID: 11500000, guid: c9de9d467f3ee0b4b8ac23d0b96208e7, type: 3}
+  m_Name: AskEnterSaveProfileEvent
   m_EditorClassIdentifier: 
-  icon:
-    iconType: 0
-    editorIconStringIdentifier: BoxCollider2D Icon
-    textureAsset: {fileID: 0}
-  targetClassString: BoxCollider2D
+  description: 

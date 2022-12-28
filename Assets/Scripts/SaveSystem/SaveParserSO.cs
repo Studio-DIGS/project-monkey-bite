@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Architecture/SaveSystem/SaveParser")]
-public class SaveParserSO : ScriptableObject
+public class SaveParserSO : DescriptionBaseSO
 {
     public string ProfileSaveDataToJSON(ProfileSaveData data)
     {

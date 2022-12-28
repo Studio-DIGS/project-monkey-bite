@@ -33,7 +33,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private VoidEventChannelSO askReturnToMainMenu;
     
     [ColorHeader("Invoking - Ask Save Data Channel", ColorHeaderColor.ListeningEvents)] 
-    [SerializeField] private IntEventChannelSO askSavePermanentDataFromSO;
+    [SerializeField] private ProfileSaveDataEventChannelSO askSaveProfile;
     
 #if UNITY_EDITOR
     [ColorHeader("Reading - Cold Startup State", ColorHeaderColor.ReadingState)]
@@ -43,7 +43,7 @@ public class GameplayManager : MonoBehaviour
     [ColorHeader("Dependencies", ColorHeaderColor.Dependencies)] 
     [SerializeField] private WorldGenerationProviderSO worldGenerationProvider;
     [SerializeField] private GameplayKeyScenesSO gameplayKeyScenes;
-    [SerializeField] private ProfileSaveDataSO loadedPermanentSaveData;
+    [SerializeField] private ProfileSaveDataSO activeSaveContainer;
 
     // Internal state
     private bool levelLoaded = false;
@@ -122,7 +122,7 @@ public class GameplayManager : MonoBehaviour
 
         askLoadGameplayLevel.RaiseEvent(level, transitionOut, transitionIn, () =>
         {
-            askSavePermanentDataFromSO.RaiseEvent(0);
+            askSaveProfile.RaiseEvent(activeSaveContainer.profileSaveData);
         });
     }
 
@@ -161,12 +161,12 @@ public class GameplayManager : MonoBehaviour
             askReturnToMainMenu.RaiseEvent();
         }
         
-        loadedPermanentSaveData.loadedData.statsData.playTime += TimeSpan.FromSeconds(Time.deltaTime);
+        activeSaveContainer.profileSaveData.statsData.playTime += TimeSpan.FromSeconds(Time.deltaTime);
     }
 
     private void ReturnToMainMenu()
     {
-        // Save any data before leaving
+        askSaveProfile.RaiseEvent(activeSaveContainer.profileSaveData);
         askInputStateChange.RaiseEvent(InputState.Disabled);
         askGameStateChange.RaiseEvent(GameState.MainMenu);
     }

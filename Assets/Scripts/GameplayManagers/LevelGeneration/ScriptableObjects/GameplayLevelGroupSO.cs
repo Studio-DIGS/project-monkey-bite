@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Architecture/Gameplay/Level Generation/LevelGroup")]
-public class GameplayLevelGroupSO : ScriptableObject
+public class GameplayLevelGroupSO : DescriptionBaseSO
 {
     [ColorHeader("List of normal level scenes in the group")]
     [SerializeField] private List<GameplayLevelSceneSO> levelSceneGroup;

@@ -9,7 +9,7 @@ using Directory = UnityEngine.Windows.Directory;
 using File = UnityEngine.Windows.File;
 
 [CreateAssetMenu(menuName = "Architecture/SaveSystem/SaveRetriever")]
-public class SaveIOSO : ScriptableObject
+public class SaveIOSO : DescriptionBaseSO
 {
     public RelativeSavePathConfigSO pathConfig;
     
@@ -39,6 +39,9 @@ public class SaveIOSO : ScriptableObject
     {
         string directoryPath = GetFullPath(pathConfig.RelativeDirectory);
         string postFix = pathConfig.FileTypePostfix;
+
+        Debug.Log($"Reading all save data from {directoryPath}");
+        
         var filePaths = System.IO.Directory.GetFiles(directoryPath).Where(file => file.EndsWith(postFix)).ToList();
         var results = new List<ReadSaveData>();
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 public class RandomStuffWindow : EditorWindow
@@ -11,6 +12,7 @@ public class RandomStuffWindow : EditorWindow
     public static void ShowWindow()
     {
         RandomStuffWindow wnd = GetWindow<RandomStuffWindow>("Random Stuff");
+        SceneView.duringSceneGui += wnd.OnSceneGUI;
     }
 
     public void OnGUI()
@@ -19,5 +21,14 @@ public class RandomStuffWindow : EditorWindow
         {
             EditorUtility.RevealInFinder(Application.persistentDataPath);
         }
+
+        // Show current selected UI object
+        if(EventSystem.current != null)
+            EditorGUILayout.ObjectField("Event System Selected GO", EventSystem.current.currentSelectedGameObject, typeof(GameObject), true);
+    }
+
+    public void OnSceneGUI(SceneView view)
+    {
+       
     }
 }

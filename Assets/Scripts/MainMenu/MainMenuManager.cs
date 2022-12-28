@@ -15,9 +15,17 @@ public class MainMenuManager : MonoBehaviour
 
     [ColorHeader("Listening - Change Main Menu Page Ask Channel")] 
     [SerializeField] private MenuPageEventChannelSO askChangeMenuPage;
+    
+    [ColorHeader("Invoking - Ask Change Game State Channel")] 
+    [SerializeField] private GameStateEventChannelSO askChangeGameState;
+    
+    [ColorHeader("Listening - Enter Save Profile Ask Event")] 
+    [SerializeField] private ProfileSaveDataEventChannelSO askEnterSaveProfile;
 
     [ColorHeader("Initial Selection", ColorHeaderColor.Config)] 
     [SerializeField] private MenuPage initialActiveMenuPage;
+
+    [SerializeField] private ProfileSaveDataSO activeSaveContainer;
     
 #if UNITY_EDITOR
     [ColorHeader("Reading - Cold Startup State", ColorHeaderColor.ReadingState)]
@@ -30,12 +38,14 @@ public class MainMenuManager : MonoBehaviour
     {
         onMainMenuSceneLoaded.OnRaised += SetupMainMenu;
         askChangeMenuPage.OnRaised += ShowPage;
+        askEnterSaveProfile.OnRaised += EnterSaveProfile;
     }
 
     private void OnDisable()
     {
         onMainMenuSceneLoaded.OnRaised -= SetupMainMenu;
         askChangeMenuPage.OnRaised -= ShowPage;
+        askEnterSaveProfile.OnRaised -= EnterSaveProfile;
     }
 
     private void SetupMainMenu()
@@ -60,5 +70,11 @@ public class MainMenuManager : MonoBehaviour
         }
         menuPage.ShowPage();
         currentShownMenuPage = menuPage;
+    }
+
+    private void EnterSaveProfile(ProfileSaveData data)
+    {
+        activeSaveContainer.profileSaveData = data;
+        askChangeGameState.RaiseEvent(GameState.Gameplay);
     }
 }

@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 920f5b6921227c3498e727ceb17b24e8, type: 3}
-  m_Name: LoadedProfileSaveData
+  m_Name: ActiveProfileSaveData
   m_EditorClassIdentifier: 
-  loadedData:
+  description: 
+  profileSaveData:
     profileIndex: 0
-    profileName: 
+    profileID: 2
     statsData:
-      deathCounter: 0
+      deathCounter: 2
     isRunInProgress: 0
     runData:
       levelsCleared: 0

@@ -16,8 +16,4 @@ MonoBehaviour:
     iconType: 0
     editorIconStringIdentifier: d_Light Icon
     textureAsset: {fileID: 0}
-    guiContent:
-      m_Text: 
-      m_Image: {fileID: 0}
-      m_Tooltip: 
   targetClassString: Light

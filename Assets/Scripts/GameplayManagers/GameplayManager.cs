@@ -76,6 +76,7 @@ public class GameplayManager : MonoBehaviour
 #if UNITY_EDITOR
         if (coldStartupState.isColdStartup)
         {
+            SetupWorldGeneration();
             askLoadGameplayLevel.RaiseEvent(coldStartupState.startupScene, false, true);
             coldStartupState.ConsumeColdStartup();
             return;

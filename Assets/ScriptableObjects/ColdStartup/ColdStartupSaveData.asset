@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920f5b6921227c3498e727ceb17b24e8, type: 3}
   m_Name: ColdStartupSaveData
   m_EditorClassIdentifier: 
-  description: 
+  description: Manually modified save data to be used during cold startups
   profileSaveData:
-    profileIndex: 0
-    profileID: ColdStartup
+    metaData:
+      doNotSave: 1
+      profileID: ColdStartup
     statsData:
       deathCounter: -100
-    isRunInProgress: 0
     runData:
+      isRunInProgress: 0
       levelsCleared: 0

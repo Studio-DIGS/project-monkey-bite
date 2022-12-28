@@ -19,7 +19,7 @@ public class ColdStartupDataSO : DescriptionBaseSO
     [SerializeField] private ProfileSaveDataFuncChannelSO getProfileSaveData;
     [SerializeField] private ProfileSaveDataEventChannelSO askSetActiveProfileSave;
 
-    [ColorHeader("Readonly - State filled in during play by EditorColdStartup Component")]
+    [ColorHeader("Readonly - State provided by EditorColdStartup")]
     [ReadOnly, DoNotSerialize] public GameSceneSO startupScene;
     [ReadOnly, DoNotSerialize] public bool isColdStartup;
 

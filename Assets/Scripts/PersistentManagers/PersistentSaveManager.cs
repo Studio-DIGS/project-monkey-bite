@@ -46,9 +46,14 @@ public class PersistentSaveManager : MonoBehaviour
 
     private void SaveProfileDataToFile(ProfileSaveData data)
     {
-        Debug.Log($"Saving to profile {data.profileID}");
+        if (data.metaData.doNotSave)
+        {
+            Debug.Log($"Profile Save Data marked cannot be saved, skipping save to file");
+            return;
+        }
+        Debug.Log($"Saving to profile {data.metaData.profileID}");
         string json = saveParser.ProfileSaveDataToJSON(data);
-        saveIO.WriteProfileSaveData(data.profileID, json);
+        saveIO.WriteProfileSaveData(data.metaData.profileID, json);
     }
 
     private ProfileSaveData LoadProfileDataFromFile(string profileID)

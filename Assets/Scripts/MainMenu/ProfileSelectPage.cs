@@ -71,7 +71,7 @@ public class ProfileSelectPage : MenuPage
         var profileUI = Instantiate(profileSaveUI, profileLayoutTransform);
         var component = profileUI.GetComponent<ProfileDisplayUI>();
         component.Setup(profileSave);
-        profileUI.GetComponentInChildren<TextMeshProUGUI>().text = $"Profile {profileSave.profileID} | Deaths: {profileSave.statsData.deathCounter}";
+        profileUI.GetComponentInChildren<TextMeshProUGUI>().text = $"Profile {profileSave.metaData.profileID} | Deaths: {profileSave.statsData.deathCounter}";
         var display = new ProfileDisplay { data = profileSave, ui =  component};
         profileDisplays.Add(display);
         return display;
@@ -80,7 +80,7 @@ public class ProfileSelectPage : MenuPage
     private void OnCreateNewProfile()
     {
         var newProfile = new ProfileSaveData();
-        newProfile.profileID = "" + (profileDisplays.Count + 1);
+        newProfile.metaData.profileID = "" + (profileDisplays.Count + 1);
         askSaveNewProfile.RaiseEvent(newProfile);
         
         CreateProfileUI(newProfile);

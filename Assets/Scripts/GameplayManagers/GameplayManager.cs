@@ -31,7 +31,7 @@ public class GameplayManager : DescriptionMonoBehavior
     [ColorHeader("Listening - Return To Main Menu Ask Channel", ColorHeaderColor.ListeningEvents)] 
     [SerializeField] private VoidEventChannelSO askReturnToMainMenu;
     
-    [ColorHeader("Invoking - Ask Save Data Channel", ColorHeaderColor.ListeningEvents)] 
+    [ColorHeader("Invoking - Ask Save Data Channel", ColorHeaderColor.TriggeringEvents)] 
     [SerializeField] private SaveProfileDataEventChannelSO askSaveProfile;
 
     [ColorHeader("Dependencies", ColorHeaderColor.Dependencies)] 

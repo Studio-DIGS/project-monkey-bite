@@ -16,12 +16,13 @@ MonoBehaviour:
     save data by reading/writing to here. Save data is loaded into here through persis.
     save manager, usually called by cold startup or main menu (when entering a save
     profile)
-  profileSaveData:
+  saveProfileData:
     metaData:
       doNotSave: 0
-      profileID: 
+      profileID: 2
     statsData:
       deathCounter: 2
+      playTime: 10.084793
     runData:
       isRunInProgress: 0
       levelsCleared: 0

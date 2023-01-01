@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Persistent manager acting as the interface for saving and loading save profiles
+/// </summary>
 public class PersistentProfileSaveManager : DescriptionMonoBehavior
 {
     [ColorHeader("Listening - Save Ask Channels", ColorHeaderColor.ListeningEvents)] 

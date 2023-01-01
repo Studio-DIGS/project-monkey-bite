@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13ba18f12424a0e48b9143626787dfe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
+  description: Handles overall game state and their corresponding manager scenes
   askGameStateChange: {fileID: 11400000, guid: f66c56ad4a5788d4c9c393abd557dbe2, type: 2}
   askLoadManagerScene: {fileID: 11400000, guid: 9c489bb772f866e43aae5e639c9a40d1, type: 2}
   mainMenuManagers: {fileID: 11400000, guid: 4f26a0974e4e8c947bd53bdd95f6d61f, type: 2}
@@ -217,8 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 233ae6eacf8cbd340843625717ca41fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Persistent interface for retrieving and saving data to and from files.
-    Should be interacted with through channels
+  description: Handles retrieving and saving data to and from files. Dependent on
+    external classes for IO and parsing, mainly acts as facade.
   askSaveProfile: {fileID: 11400000, guid: 05c981eab0ff1414c824528945023b3e, type: 2}
   getSaveProfile: {fileID: 11400000, guid: 679d066dd2453524ba1fb80c72b04f1a, type: 2}
   getAllSaveProfile: {fileID: 11400000, guid: 49f525a1612d59947b756779de8f5048, type: 2}
@@ -226,53 +226,6 @@ MonoBehaviour:
   activeProfileContainer: {fileID: 11400000, guid: 868d52d10eccf234cb67e1080405d20d, type: 2}
   saveProfileIO: {fileID: 11400000, guid: 1f0fb4ce6afb07b41bae41281369471b, type: 2}
   saveProfileParser: {fileID: 11400000, guid: 02d464e6e87a2864cb759c3d10377fe9, type: 2}
---- !u!1 &507147672
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 507147674}
-  - component: {fileID: 507147673}
-  m_Layer: 0
-  m_Name: TransitionEffectManager (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &507147673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 507147672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d33809dc76a8b54d94d1be958e6c13b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: 
-  fadeImage: {fileID: 2020708776}
-  duration: 0.75
---- !u!4 &507147674
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 507147672}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &538742499
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,7 +466,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1e939f5c3b2a344c8b5a4e29fd3c644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
+  description: Handles loading and unloading scenes through addressables. Integrated/Coupled
+    with TransitionEffectManager. Uses  GameSceneSOs, not scene assets directly
   askLoadManagerScene: {fileID: 11400000, guid: 9c489bb772f866e43aae5e639c9a40d1, type: 2}
   askUnloadManagerScene: {fileID: 11400000, guid: 9d97420eb3937ba4091be628f2dee040, type: 2}
   onManagerSceneLoaded: {fileID: 11400000, guid: a9a1820e49e3d18449699a86ec3872d5, type: 2}
@@ -566,7 +520,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d33809dc76a8b54d94d1be958e6c13b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
+  description: Handles transition effects. Should only interact with PersistentSceneManager
+    (For now)
   fadeImage: {fileID: 2020708776}
   duration: 0.75
 --- !u!1 &1730718924
@@ -598,7 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a747c3b4a824f054f8a06b7ef2c4fc15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
+  description: Handles changing input states and other input shit idk
   askInputStateChange: {fileID: 11400000, guid: bba4b75ec21129a4ba77566c17196aab, type: 2}
   inputAsset: {fileID: -944628639613478452, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
   inputProvider: {fileID: 11400000, guid: ad4b29790938e334bb5955a0333e3e50, type: 2}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 'Config object for key gameplay scenes
 
-    (Lobby scenes, run end
+    (Lobby scene, run end
     screen, etc)'
   entryScene: {fileID: 11400000, guid: e7daa50b90b835b45ae5342966565941, type: 2}
   runFinishMenuScene: {fileID: 11400000, guid: 4da0d6a3e371fab48abeb0e3d000169d, type: 2}

@@ -12,14 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7697d9088dff7c44793955826b68a433, type: 3}
   m_Name: ColdStartupState
   m_EditorClassIdentifier: 
-  description: 'Holds information about any cold startups that occur
-
-    Should
-    not be edited directly (Cold Startup component should handle that)'
+  description: "1. Configuration for cold startup behavior \n2. Cold startup state
+    container during runtime. "
   coldStartupSaveProfileType: 0
   customSaveProfile: {fileID: 11400000, guid: 3a5eee09c9085884783fbe95f036397e, type: 2}
   profileID: 
   getSaveProfileData: {fileID: 11400000, guid: 679d066dd2453524ba1fb80c72b04f1a, type: 2}
   askSetActiveSaveProfile: {fileID: 11400000, guid: e85b440bf1923a74694710aa4224f872, type: 2}
-  startupScene: {fileID: 11400000, guid: 4f26a0974e4e8c947bd53bdd95f6d61f, type: 2}
-  isColdStartup: 1
+  startupScene: {fileID: 0}
+  isColdStartup: 0

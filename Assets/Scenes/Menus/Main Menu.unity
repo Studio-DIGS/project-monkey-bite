@@ -660,14 +660,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32bc9802a5ab6cc459dedbaed6354cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
+  description: Handles the profile selection/creation page on the Main Menu
   pageCanvasGroup: {fileID: 970428230}
   askChangeMenuPage: {fileID: 11400000, guid: 6535b47df4f75134b851f9f8499a57a6, type: 2}
+  askSaveNewProfile: {fileID: 11400000, guid: 05c981eab0ff1414c824528945023b3e, type: 2}
+  getAllSaveProfile: {fileID: 11400000, guid: 49f525a1612d59947b756779de8f5048, type: 2}
+  profileSaveUI: {fileID: 437243741068390603, guid: 0a9618e358daa3b49bb9127a39752998, type: 3}
   onCancelPage: {fileID: 1781379282}
   createNewProfileButton: {fileID: 122891506138392436}
-  getAllSaveProfile: {fileID: 11400000, guid: 49f525a1612d59947b756779de8f5048, type: 2}
-  askSaveNewProfile: {fileID: 11400000, guid: 05c981eab0ff1414c824528945023b3e, type: 2}
-  profileSaveUI: {fileID: 437243741068390603, guid: 0a9618e358daa3b49bb9127a39752998, type: 3}
   profileLayoutTransform: {fileID: 838747304}
 --- !u!1 &1017073137
 GameObject:
@@ -997,7 +997,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1623b2cff7a792245a6c86c4b4724f8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
+  description: 'Handles displaying Main Menu pages
+
+    Handles entering a save profile'
   onMainMenuSceneLoaded: {fileID: 11400000, guid: a9a1820e49e3d18449699a86ec3872d5, type: 2}
   askInputStateChange: {fileID: 11400000, guid: bba4b75ec21129a4ba77566c17196aab, type: 2}
   askChangeMenuPage: {fileID: 11400000, guid: 6535b47df4f75134b851f9f8499a57a6, type: 2}
@@ -1101,7 +1103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcfb1efb1bbb154ab02fc241c96d287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
+  description: Handles UI events and behavior for the main page on the Main Menu.
   pageCanvasGroup: {fileID: 1781379281}
   askChangeMenuPage: {fileID: 11400000, guid: 6535b47df4f75134b851f9f8499a57a6, type: 2}
   initialSelected: {fileID: 1503532273}

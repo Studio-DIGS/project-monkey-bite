@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07cbef35cc0baad48bbb5038891c87fd, type: 3}
   m_Name: GetAllSaveProfilesFunc
   m_EditorClassIdentifier: 
-  description: 'Get all the valid save profiles from the persis. save manager
+  description: 'Get all the valid save profiles from the Persis. Save Manager
 
 '

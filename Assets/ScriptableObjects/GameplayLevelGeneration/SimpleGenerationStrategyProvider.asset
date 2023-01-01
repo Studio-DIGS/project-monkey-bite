@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e7e89a0149fefa42a8a6618d9307e96, type: 3}
   m_Name: SimpleGenerationStrategyProvider
   m_EditorClassIdentifier: 
-  description: 
-  entryLevel: {fileID: 11400000, guid: e7daa50b90b835b45ae5342966565941, type: 2}
+  description: '"Factory" SO for creating simple generation strategy instances'
   levelGroups:
   - {fileID: 11400000, guid: e83714ebf74a0694eb9f9c012afec14d, type: 2}
   - {fileID: 11400000, guid: e83714ebf74a0694eb9f9c012afec14d, type: 2}

@@ -26,7 +26,7 @@ public class RunProgressionDirector : DescriptionMonoBehavior
     private Queue<RunProgressionData> manualProgressionQueue = new();
     
     // Hard coded progression datas
-    private RunProgressionData RunFinishMenuceneProgressionData => new RunProgressionData()
+    private RunProgressionData RunFinishMenuSceneProgressionData => new RunProgressionData()
     {
         scene =  gameplayKeyScenes.RunFinishMenuScene,
         startNewRun = false,
@@ -114,7 +114,7 @@ public class RunProgressionDirector : DescriptionMonoBehavior
             if (nextLevel == null)
             {
                 manualProgressionQueue.Enqueue(StartNewRunProgressionData);
-                return RunFinishMenuceneProgressionData;
+                return RunFinishMenuSceneProgressionData;
             }
             else
             {

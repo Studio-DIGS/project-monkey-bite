@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbca4e6c3da121145a1e8a21480f90b3, type: 3}
   m_Name: AskManagerSceneUnloadEvent
   m_EditorClassIdentifier: 
-  _guid: 
-  description: 
+  description: Ask Persis. Scene Manager to unload a scene on the manager level

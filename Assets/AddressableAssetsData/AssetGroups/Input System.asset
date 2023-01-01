@@ -17,14 +17,11 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 6c4cd3043b1373f488e03573108d1779
   m_SerializeEntries:
-  - m_GUID: ad4b29790938e334bb5955a0333e3e50
-    m_Address: Assets/Scriptable Objects/Input System/PlayerUserInputProvider.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 98e10f5160596ca41bde4e204e2c51d6
     m_Address: Assets/Config/Input/Game Controls.inputactions
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6aba7bafd48bbeb44aab8623d57168f2, type: 2}
   m_SchemaSet:

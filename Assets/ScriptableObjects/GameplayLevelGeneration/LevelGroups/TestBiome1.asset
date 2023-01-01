@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59580fb835953c4cb2ecd371fc2af1e, type: 3}
   m_Name: TestBiome1
   m_EditorClassIdentifier: 
+  description: Test group of levels for simple generation strategy
   levelSceneGroup:
   - {fileID: 11400000, guid: 3791f523ac8ce91438fb330a5a17ec5a, type: 2}
   - {fileID: 11400000, guid: 85a9f1e03021a134aad93537155774d7, type: 2}

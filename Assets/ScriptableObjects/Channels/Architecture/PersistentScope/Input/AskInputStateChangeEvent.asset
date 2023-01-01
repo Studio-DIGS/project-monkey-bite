@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a00e0c446a6f14ca2f24bb137e52db, type: 3}
   m_Name: AskInputStateChangeEvent
   m_EditorClassIdentifier: 
-  _guid: 
-  description: 
+  description: Ask Persis. Input Manager to change input state

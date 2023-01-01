@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e73c32f2c67fe145b01b949e7e98ca9, type: 3}
   m_Name: OnContentSceneLoadedEvent
   m_EditorClassIdentifier: 
-  description: 
+  description: Raised when Persis. Scene Manager finishes loading a scene on the
+    content level

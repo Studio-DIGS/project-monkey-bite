@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edfb09cfbc47eb74bbaf80add85efcc0, type: 3}
   m_Name: AskGameStateChangeEvent
   m_EditorClassIdentifier: 
-  _guid: 
-  description: 
+  description: Ask Persis. Game State Manager to transition to specified game state

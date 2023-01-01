@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13ba18f12424a0e48b9143626787dfe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Handles overall game state and their corresponding manager scenes
+  description: Handles overarching game state and corresponding manager scenes
   askGameStateChange: {fileID: 11400000, guid: f66c56ad4a5788d4c9c393abd557dbe2, type: 2}
   askLoadManagerScene: {fileID: 11400000, guid: 9c489bb772f866e43aae5e639c9a40d1, type: 2}
   mainMenuManagers: {fileID: 11400000, guid: 4f26a0974e4e8c947bd53bdd95f6d61f, type: 2}
@@ -466,8 +466,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1e939f5c3b2a344c8b5a4e29fd3c644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Handles loading and unloading scenes through addressables. Integrated/Coupled
-    with TransitionEffectManager. Uses  GameSceneSOs, not scene assets directly
+  description: 'Handles loading and unloading scenes through addressables. Integrated/Coupled
+    with TransitionEffectManager. '
   askLoadManagerScene: {fileID: 11400000, guid: 9c489bb772f866e43aae5e639c9a40d1, type: 2}
   askUnloadManagerScene: {fileID: 11400000, guid: 9d97420eb3937ba4091be628f2dee040, type: 2}
   onManagerSceneLoaded: {fileID: 11400000, guid: a9a1820e49e3d18449699a86ec3872d5, type: 2}

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00f12c67d938de641b1f172ab1211535, type: 3}
   m_Name: AskDisplayMainMenuScreenEvent
   m_EditorClassIdentifier: 
-  description: 
+  description: Ask the Main Menu manager to display specified Menu Page

@@ -143,7 +143,7 @@ public class PersistentGameStateManager : DescriptionMonoBehavior
             case GameSceneSO.GameSceneType.PersistentManagers:
                 Debug.LogError("Attempted to Cold Load Persistent Managers (Invalid Cold Load)");
                 break;
-            case GameSceneSO.GameSceneType.GameplayLevel:
+            case GameSceneSO.GameSceneType.GameplayContent:
                 TryChangeGameState(GameState.Gameplay);
                 break;
             case GameSceneSO.GameSceneType.GameplayManager:

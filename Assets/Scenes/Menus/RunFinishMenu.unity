@@ -128,6 +128,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 1679940240}
     m_Modifications:
     - target: {fileID: 8862804475712716642, guid: d2d6f6ffe18012042bf3e6f8fdbf2f73, type: 3}
@@ -223,6 +224,7 @@ PrefabInstance:
       value: ContinueButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: d2d6f6ffe18012042bf3e6f8fdbf2f73, type: 3}
 --- !u!224 &1042245908 stripped
 RectTransform:
@@ -308,13 +310,16 @@ MonoBehaviour:
   onRunFinishSceneReady: {fileID: 11400000, guid: f551dc4defaf32b4993b73d0884afcd1, type: 2}
   askInputStateChange: {fileID: 11400000, guid: bba4b75ec21129a4ba77566c17196aab, type: 2}
   onContinueButtonPressed: {fileID: 11400000, guid: 93f9e9d402e1509428a410d43e98fa85, type: 2}
+  onMainMenuButtonPressed: {fileID: 11400000, guid: 7033345c14986d347b5c6c5b7213dce0, type: 2}
   continueButton: {fileID: 1519319004}
+  mainMenuButton: {fileID: 1834002164}
   successText: {fileID: 1469804953}
 --- !u!1001 &1378412847
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8894414222768794564, guid: 1de273a7a80ebb44baa67400f130919b, type: 3}
@@ -366,6 +371,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1de273a7a80ebb44baa67400f130919b, type: 3}
 --- !u!1 &1469804951
 GameObject:
@@ -590,6 +596,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -652,11 +659,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 1679940240}
     m_Modifications:
     - target: {fileID: 8862804475712716642, guid: d2d6f6ffe18012042bf3e6f8fdbf2f73, type: 3}
       propertyPath: m_text
-      value: This button does nothing
+      value: Return to Main Menu
       objectReference: {fileID: 0}
     - target: {fileID: 8862804475712716642, guid: d2d6f6ffe18012042bf3e6f8fdbf2f73, type: 3}
       propertyPath: m_fontSize
@@ -752,12 +760,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8862804476893977403, guid: d2d6f6ffe18012042bf3e6f8fdbf2f73, type: 3}
       propertyPath: m_Name
-      value: UselessButton
+      value: MainMenuButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: d2d6f6ffe18012042bf3e6f8fdbf2f73, type: 3}
 --- !u!224 &1834002163 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8862804476893977400, guid: d2d6f6ffe18012042bf3e6f8fdbf2f73, type: 3}
   m_PrefabInstance: {fileID: 1834002162}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1834002164 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8862804476893977401, guid: d2d6f6ffe18012042bf3e6f8fdbf2f73, type: 3}
+  m_PrefabInstance: {fileID: 1834002162}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

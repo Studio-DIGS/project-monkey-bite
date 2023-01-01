@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class MainPage : MenuPage
 {
+    [ColorHeader("Main Page UI Dependencies", ColorHeaderColor.Dependencies)]
     [SerializeField] private GameObject initialSelected;
     [SerializeField] private Button playButton;
     [SerializeField] private MenuPage onPlayButtonPage;

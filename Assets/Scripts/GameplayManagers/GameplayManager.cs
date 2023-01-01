@@ -22,8 +22,8 @@ public class GameplayManager : DescriptionMonoBehavior
     [ColorHeader("Invoking - Ask Scene Management Channels", ColorHeaderColor.TriggeringEvents)]
     [SerializeField] private SceneLoadEventChannelSO askLoadGameplayLevel;
 
-    [ColorHeader("Listening - On Level Completed Channel", ColorHeaderColor.ListeningEvents)] 
-    [SerializeField] private VoidEventChannelSO onLevelCompleted;
+    [ColorHeader("Listening - Ask Progress Level Channel", ColorHeaderColor.ListeningEvents)] 
+    [SerializeField] private VoidEventChannelSO askProgressLevel;
     
     [ColorHeader("Listening - Start new Run Ask Channel", ColorHeaderColor.ListeningEvents)] 
     [SerializeField] private VoidEventChannelSO askStartNewRun;
@@ -45,7 +45,7 @@ public class GameplayManager : DescriptionMonoBehavior
     {
         onGameplayManagerSceneLoaded.OnRaised += SetupGameplayManager;
         onLevelSceneLoaded.OnRaised += OnLevelSceneLoaded;
-        onLevelCompleted.OnRaised += LoadNextProgressionScene;
+        askProgressLevel.OnRaised += LoadNextProgressionScene;
         askReturnToMainMenu.OnRaised += ReturnToMainMenu;
         askStartNewRun.OnRaised += StartNewRun;
     }
@@ -54,7 +54,7 @@ public class GameplayManager : DescriptionMonoBehavior
     {
         onGameplayManagerSceneLoaded.OnRaised -= SetupGameplayManager;
         onLevelSceneLoaded.OnRaised -= OnLevelSceneLoaded;
-        onLevelCompleted.OnRaised -= LoadNextProgressionScene;
+        askProgressLevel.OnRaised -= LoadNextProgressionScene;
         askReturnToMainMenu.OnRaised -= ReturnToMainMenu;
         askStartNewRun.OnRaised -= StartNewRun;
     }

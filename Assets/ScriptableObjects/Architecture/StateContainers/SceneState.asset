@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c91cf8a112dbc409c0187ac8720483, type: 3}
   m_Name: SceneState
   m_EditorClassIdentifier: 
-  description: Holds information about the currently loaded scenes
+  description: (Unused) Holds information about the currently loaded scenes
   currentlyLoadedManagerScene: {fileID: 0}
   currentlyLoadedContentScene: {fileID: 0}

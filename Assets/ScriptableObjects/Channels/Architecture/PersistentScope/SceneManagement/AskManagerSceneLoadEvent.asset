@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 811127c93c848f84ebf9ec6a996b8a1d, type: 3}
   m_Name: AskManagerSceneLoadEvent
   m_EditorClassIdentifier: 
-  _guid: 
-  description: 
+  description: Ask Persis. Scene Manager to load specified scene on the manager level

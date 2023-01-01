@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba993c20a2a78a4fb9a3266375eb958, type: 3}
   m_Name: SettingsSavePathConfig
   m_EditorClassIdentifier: 
-  description: (Currently unused). This should be used to config the path for where
-    settings should be saved.
+  description: (Unused) This should be used to config the path for where settings
+    should be saved.
   profileIdentifierSymbol: 
   relativeDirectory: settings
   fileTypePostfix: .settings

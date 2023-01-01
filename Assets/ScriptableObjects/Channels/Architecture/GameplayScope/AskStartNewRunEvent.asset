@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e73c32f2c67fe145b01b949e7e98ca9, type: 3}
   m_Name: AskStartNewRunEvent
   m_EditorClassIdentifier: 
-  description: 
+  description: Ask Gameplay Manager to start a new run

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a88f16456176241a30bdcc8766c5f2, type: 3}
   m_Name: CurrentGameplayRunState
   m_EditorClassIdentifier: 
-  description: Holds information about the current gameplay run
+  description: '(Unused) Holds information about the current gameplay run '
   runCompletionState:
     runRequirementsMet: 1
     playerDied: 0

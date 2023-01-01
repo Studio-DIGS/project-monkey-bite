@@ -17,23 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: adec967b8b959bb4b829d29f00e0c6fd
   m_SerializeEntries:
-  - m_GUID: 7b2f8da2fab92f2478222ebadd7e3277
-    m_Address: Assets/ScriptableObjects/Channels
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8c781b0400e5afb40be4c06e584a0a2b
     m_Address: Assets/ScriptableObjects/SceneData
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0466f6d1aff44034b89ad2cab34c0ecf
-    m_Address: Assets/ScriptableObjects/LevelGroups
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ccbc11eecb049b344b5dae7a6e894417
-    m_Address: Assets/ScriptableObjects/StateContainers
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -42,13 +27,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e973b42ad43a3594093559d0d5e4c0c8
-    m_Address: Assets/ScriptableObjects/GameplayConfig
+  - m_GUID: ea96f5bf838eb634493c63798ec6dd76
+    m_Address: Assets/ScriptableObjects/ColdStartup
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b5a4def2c3ca5b64cb90c89ee6b3ed72
-    m_Address: Assets/ScriptableObjects/SaveSystem
+  - m_GUID: 7b2f8da2fab92f2478222ebadd7e3277
+    m_Address: Assets/ScriptableObjects/Channels
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 982adcd5575e9194caf5cf62364b107c
+    m_Address: Assets/ScriptableObjects/Architecture
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

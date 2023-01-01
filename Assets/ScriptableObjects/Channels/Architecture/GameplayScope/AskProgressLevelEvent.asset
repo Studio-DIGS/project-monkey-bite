@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e73c32f2c67fe145b01b949e7e98ca9, type: 3}
-  m_Name: OnLevelCompletedEvent
+  m_Name: AskProgressLevelEvent
   m_EditorClassIdentifier: 
-  description: 
+  description: Ask Gameplay Manager to move on to the next scene in the progression
+    (Doesn't necessarily have to be a level, e.g run end menu)

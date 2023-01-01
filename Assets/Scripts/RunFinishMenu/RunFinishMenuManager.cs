@@ -20,18 +20,28 @@ public class RunFinishMenuManager : MonoBehaviour
     [ColorHeader("Invoking - On Continue Button Pressed", ColorHeaderColor.ListeningEvents)] 
     [SerializeField] private VoidEventChannelSO onContinueButtonPressed;
     
+    [ColorHeader("Invoking - On Main Menu Button Pressed", ColorHeaderColor.ListeningEvents)] 
+    [SerializeField] private VoidEventChannelSO onMainMenuButtonPressed;
+    
     [ColorHeader("UI Components", ColorHeaderColor.Dependencies)] 
     [SerializeField] private Button continueButton;
+    [SerializeField] private Button mainMenuButton;
     [SerializeField] private TextMeshProUGUI successText;
     
     private void OnEnable()
     {
         onRunFinishSceneReady.OnRaised += FinishRun;
+        
+        continueButton.onClick.AddListener(Continue);
+        mainMenuButton.onClick.AddListener(MainMenu);
     }
 
     private void OnDisable()
     {
         onRunFinishSceneReady.OnRaised -= FinishRun;
+        
+        continueButton.onClick.RemoveListener(Continue);
+        mainMenuButton.onClick.RemoveListener(MainMenu);
     }
 
     private void FinishRun()
@@ -42,7 +52,6 @@ public class RunFinishMenuManager : MonoBehaviour
 
         askInputStateChange.RaiseEvent(InputState.UI);
         EventSystem.current.SetSelectedGameObject(continueButton.gameObject);
-        continueButton.onClick.AddListener(Continue);
     }
 
     private void DisplayRunFinishUI()
@@ -64,7 +73,11 @@ public class RunFinishMenuManager : MonoBehaviour
 
     private void Continue()
     {
-        continueButton.onClick.RemoveListener(Continue);
         onContinueButtonPressed.RaiseEvent();
+    }
+
+    private void MainMenu()
+    {
+        onMainMenuButtonPressed.RaiseEvent();
     }
 }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b094c69ea7ebfb94e95655addaeab3c3, type: 3}
   m_Name: GetSaveProfileFunc
   m_EditorClassIdentifier: 
-  description: Get a save profile instance from persis. save manager using a profileID
-    string
+  description: Get a save profile instance from Persis. Save Manager using specified
+    profileID string

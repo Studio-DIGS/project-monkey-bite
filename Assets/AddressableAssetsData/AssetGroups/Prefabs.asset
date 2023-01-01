@@ -17,18 +17,21 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: baece8a5030c2bc489dbda24daa8b203
   m_SerializeEntries:
-  - m_GUID: 129e1843c95516647bf3955490372e7d
-    m_Address: Assets/Prefabs/Player.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 900a0a8d3dbbef548a69c5cdea16172d
     m_Address: Assets/Prefabs/MainMenu
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: aeceef7763062b343889f08202e50be4
-    m_Address: Assets/Prefabs/Managers
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 86db4f981f61c404faee1503391136c9
+    m_Address: Assets/Prefabs/InLevelPrefabs
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aeceef7763062b343889f08202e50be4
+    m_Address: Assets/Prefabs/Architecture
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6aba7bafd48bbeb44aab8623d57168f2, type: 2}
   m_SchemaSet:

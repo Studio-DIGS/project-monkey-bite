@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TransitionEffectManager : MonoBehaviour
+public class TransitionEffectManager : DescriptionMonoBehavior
 {
     [SerializeField] private Image fadeImage;
     [SerializeField] private float duration;

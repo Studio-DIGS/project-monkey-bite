@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9de9d467f3ee0b4b8ac23d0b96208e7, type: 3}
-  m_Name: AskSaveProfileEvent
+  m_Name: AskSaveProfileToFile
   m_EditorClassIdentifier: 
-  description: 
+  description: Asks persistent save manager to write a save profile instance to file.

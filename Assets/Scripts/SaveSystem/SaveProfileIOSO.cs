@@ -9,7 +9,7 @@ using Directory = UnityEngine.Windows.Directory;
 using File = UnityEngine.Windows.File;
 
 [CreateAssetMenu(menuName = "Architecture/SaveSystem/SaveRetriever")]
-public class SaveIOSO : DescriptionBaseSO
+public class SaveProfileIOSO : DescriptionBaseSO
 {
     public RelativeSavePathConfigSO pathConfig;
     

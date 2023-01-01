@@ -3,11 +3,11 @@ using System;
 
 
 [CreateAssetMenu(menuName = "Channels/SaveSystem/Profile Save Data Event Channel")]
-public class ProfileSaveDataEventChannelSO : DescriptionBaseSO
+public class SaveProfileDataEventChannelSO : DescriptionBaseSO
 {
-    public Action<ProfileSaveData> OnRaised;
+    public Action<SaveProfileData> OnRaised;
 
-    public void RaiseEvent(ProfileSaveData data)
+    public void RaiseEvent(SaveProfileData data)
     {
         OnRaised?.Invoke(data);
     }

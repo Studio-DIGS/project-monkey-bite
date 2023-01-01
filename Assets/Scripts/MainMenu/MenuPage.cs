@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuPage : MonoBehaviour
+public class MenuPage : DescriptionMonoBehavior
 {
     [SerializeField] protected CanvasGroup pageCanvasGroup;
     [SerializeField] protected MenuPageEventChannelSO askChangeMenuPage;

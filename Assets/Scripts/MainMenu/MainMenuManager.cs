@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MainMenuManager : MonoBehaviour
+public class MainMenuManager : DescriptionMonoBehavior
 {
     [ColorHeader("Listening - On Main Menu Scene Loaded Channel", ColorHeaderColor.ListeningEvents)]
     [SerializeField] private VoidEventChannelSO onMainMenuSceneLoaded;
@@ -20,10 +20,10 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameStateEventChannelSO askChangeGameState;
     
     [ColorHeader("Invoking - Ask Set Active Profile Save Channel")] 
-    [SerializeField] private ProfileSaveDataEventChannelSO askSetActiveProfile;
+    [SerializeField] private SaveProfileDataEventChannelSO askSetActiveSaveProfile;
     
     [ColorHeader("Listening - Enter Save Profile Ask Event")] 
-    [SerializeField] private ProfileSaveDataEventChannelSO askEnterSaveProfile;
+    [SerializeField] private SaveProfileDataEventChannelSO askEnterSaveProfile;
 
     [ColorHeader("Initial Selection", ColorHeaderColor.Config)] 
     [SerializeField] private MenuPage initialActiveMenuPage;
@@ -73,9 +73,9 @@ public class MainMenuManager : MonoBehaviour
         currentShownMenuPage = menuPage;
     }
 
-    private void EnterSaveProfile(ProfileSaveData data)
+    private void EnterSaveProfile(SaveProfileData data)
     {
-        askSetActiveProfile.RaiseEvent(data);
+        askSetActiveSaveProfile.RaiseEvent(data);
         askChangeGameState.RaiseEvent(GameState.Gameplay);
     }
 }

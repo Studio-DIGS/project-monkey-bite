@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: ColdStartupSaveData
   m_EditorClassIdentifier: 
   description: Manually modified save data to be used during cold startups
-  profileSaveData:
+  saveProfileData:
     metaData:
       doNotSave: 1
       profileID: ColdStartup
     statsData:
       deathCounter: -100
+      playTime: 0
     runData:
       isRunInProgress: 0
       levelsCleared: 0

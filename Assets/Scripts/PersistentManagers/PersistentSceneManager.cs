@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 /// Does not handle any decision logic of loading scenes
 /// that should be handled on the individual game state manager level
 /// </summary>
-public class PersistentSceneManager : MonoBehaviour
+public class PersistentSceneManager : DescriptionMonoBehavior
 {
     [ColorHeader("Listening - Manager Scene Ask Channels", ColorHeaderColor.ListeningEvents)] 
     [SerializeField] private SceneLoadEventChannelSO askLoadManagerScene;

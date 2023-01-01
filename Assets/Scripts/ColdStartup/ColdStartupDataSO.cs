@@ -6,18 +6,20 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Architecture/SceneManagement/ColdStartupDataSO")]
 public class ColdStartupDataSO : DescriptionBaseSO
 {
-    enum ColdStartupLoadType
+    enum ColdStartupSaveProfileType
     {
-        CustomProfileDataInstance,
+        LoadCustomInstance,
         LoadFromProfileID
     }
 
-    [ColorHeader("Cold Startup Configuration", ColorHeaderColor.Config)]
-    [SerializeField] private ColdStartupLoadType coldStartupLoadType;
-    [SerializeField] private ProfileSaveDataSO coldStartupSaveProfile;
+    [ColorHeader("Cold Startup Save Profile Config", ColorHeaderColor.Config)]
+    [SerializeField] private ColdStartupSaveProfileType coldStartupSaveProfileType;
+    [SerializeField] private ProfileSaveDataSO customSaveProfile;
     [SerializeField] private string profileID;
-    [SerializeField] private ProfileSaveDataFuncChannelSO getProfileSaveData;
-    [SerializeField] private ProfileSaveDataEventChannelSO askSetActiveProfileSave;
+    
+    [ColorHeader("Cold Startup Save Profile Dependencies", ColorHeaderColor.Dependencies)]
+    [SerializeField] private SaveProfileDataFuncChannelSO getSaveProfileData;
+    [SerializeField] private SaveProfileDataEventChannelSO askSetActiveSaveProfile;
 
     [ColorHeader("Readonly - State provided by EditorColdStartup")]
     [ReadOnly, DoNotSerialize] public GameSceneSO startupScene;
@@ -25,13 +27,13 @@ public class ColdStartupDataSO : DescriptionBaseSO
 
     public void SetColdStartupSaveProfileActive()
     {
-        if (coldStartupLoadType == ColdStartupLoadType.CustomProfileDataInstance)
+        if (coldStartupSaveProfileType == ColdStartupSaveProfileType.LoadCustomInstance)
         {
-            askSetActiveProfileSave.RaiseEvent(coldStartupSaveProfile.profileSaveData);
+            askSetActiveSaveProfile.RaiseEvent(customSaveProfile.saveProfileData);
         }
         else
         {
-            askSetActiveProfileSave.RaiseEvent(getProfileSaveData.CallFunc(profileID));
+            askSetActiveSaveProfile.RaiseEvent(getSaveProfileData.CallFunc(profileID));
         }
     }
 

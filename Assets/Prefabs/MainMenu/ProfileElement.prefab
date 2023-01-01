@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee497caaf954b4d4d8bd10e60df7effe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  askEnterProfile: {fileID: 11400000, guid: 1f5535171e16d724585f37e6fc3b864a, type: 2}
+  askEnterSaveProfile: {fileID: 11400000, guid: 1f5535171e16d724585f37e6fc3b864a, type: 2}
   enterProfileButton: {fileID: 8232165673909231291}
 --- !u!1 &630933470874262673
 GameObject:

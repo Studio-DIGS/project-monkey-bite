@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07cbef35cc0baad48bbb5038891c87fd, type: 3}
-  m_Name: GetAllProfileSavesFunc
+  m_Script: {fileID: 11500000, guid: 006c4291ad815a84d95ec84ab65d917d, type: 3}
+  m_Name: SaveProfileRetriever
   m_EditorClassIdentifier: 
-  description: 
+  description: Handles file IO for profile saving. Requires a path config SO.
+  pathConfig: {fileID: 11400000, guid: 785e40cc2db01eb48b415aa8b05d257b, type: 2}

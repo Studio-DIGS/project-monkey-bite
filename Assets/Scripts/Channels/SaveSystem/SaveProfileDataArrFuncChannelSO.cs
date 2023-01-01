@@ -3,11 +3,11 @@ using System;
 
 
 [CreateAssetMenu(menuName = "Channels/SaveSystem/Profile Save Data Array Function Channel")]
-public class ProfileSaveDataArrFuncChannelSO : DescriptionBaseSO
+public class SaveProfileDataArrFuncChannelSO : DescriptionBaseSO
 {
-    public Func<ProfileSaveData[]> OnCalled;
+    public Func<SaveProfileData[]> OnCalled;
 
-    public ProfileSaveData[] CallFunc()
+    public SaveProfileData[] CallFunc()
     {
         return OnCalled?.Invoke();
     }

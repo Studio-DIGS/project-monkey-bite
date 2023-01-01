@@ -11,8 +11,8 @@ public class ProfileSelectPage : MenuPage
 {
     [SerializeField] private MenuPage onCancelPage;
     [SerializeField] private Button createNewProfileButton;
-    [SerializeField] private ProfileSaveDataArrFuncChannelSO getAllProfileSaves;
-    [SerializeField] private ProfileSaveDataEventChannelSO askSaveNewProfile;
+    [SerializeField] private SaveProfileDataArrFuncChannelSO getAllSaveProfile;
+    [SerializeField] private SaveProfileDataEventChannelSO askSaveNewProfile;
     [SerializeField] private GameObject profileSaveUI;
     [SerializeField] private Transform profileLayoutTransform;
 
@@ -20,7 +20,7 @@ public class ProfileSelectPage : MenuPage
 
     struct ProfileDisplay
     {
-        public ProfileSaveData data;
+        public SaveProfileData data;
         public ProfileDisplayUI ui;
     }
 
@@ -50,7 +50,7 @@ public class ProfileSelectPage : MenuPage
     private void SetupProfiles()
     {
         profilesSetup = true;
-        var profileSaveList = getAllProfileSaves.CallFunc().ToList();
+        var profileSaveList = getAllSaveProfile.CallFunc().ToList();
         foreach (var profileSave in profileSaveList)
         {
             var display = CreateProfileUI(profileSave);
@@ -66,20 +66,20 @@ public class ProfileSelectPage : MenuPage
         }
     }
 
-    private ProfileDisplay CreateProfileUI(ProfileSaveData profileSave)
+    private ProfileDisplay CreateProfileUI(SaveProfileData saveProfile)
     {
         var profileUI = Instantiate(profileSaveUI, profileLayoutTransform);
         var component = profileUI.GetComponent<ProfileDisplayUI>();
-        component.Setup(profileSave);
-        profileUI.GetComponentInChildren<TextMeshProUGUI>().text = $"Profile {profileSave.metaData.profileID} | Deaths: {profileSave.statsData.deathCounter}";
-        var display = new ProfileDisplay { data = profileSave, ui =  component};
+        component.Setup(saveProfile);
+        profileUI.GetComponentInChildren<TextMeshProUGUI>().text = $"Profile {saveProfile.metaData.profileID} | Deaths: {saveProfile.statsData.deathCounter}";
+        var display = new ProfileDisplay { data = saveProfile, ui =  component};
         profileDisplays.Add(display);
         return display;
     }
 
     private void OnCreateNewProfile()
     {
-        var newProfile = new ProfileSaveData();
+        var newProfile = new SaveProfileData();
         newProfile.metaData.profileID = "" + (profileDisplays.Count + 1);
         askSaveNewProfile.RaiseEvent(newProfile);
         

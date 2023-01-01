@@ -13,7 +13,7 @@ public enum GameState
 /// <summary>
 /// Simple state machine for managing the current game state
 /// </summary>
-public class PersistentGameStateManager : MonoBehaviour
+public class PersistentGameStateManager : DescriptionMonoBehavior
 {
     [ColorHeader("Listening - Game State Change Ask Channel", ColorHeaderColor.ListeningEvents)] 
     [SerializeField] private GameStateEventChannelSO askGameStateChange;
@@ -126,7 +126,7 @@ public class PersistentGameStateManager : MonoBehaviour
         // If its a content scene, then enter the proper game state
         var sceneAsset = data.startupScene;
 
-        // Isolated cold startup, do nothing
+        // Unable to find scene asset, do nothing
         if (sceneAsset == null)
         {
             return;

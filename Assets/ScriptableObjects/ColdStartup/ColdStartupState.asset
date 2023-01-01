@@ -16,10 +16,10 @@ MonoBehaviour:
 
     Should
     not be edited directly (Cold Startup component should handle that)'
-  coldStartupLoadType: 0
-  coldStartupSaveProfile: {fileID: 11400000, guid: 3a5eee09c9085884783fbe95f036397e, type: 2}
+  coldStartupSaveProfileType: 0
+  customSaveProfile: {fileID: 11400000, guid: 3a5eee09c9085884783fbe95f036397e, type: 2}
   profileID: 
-  getProfileSaveData: {fileID: 11400000, guid: 679d066dd2453524ba1fb80c72b04f1a, type: 2}
-  askSetActiveProfileSave: {fileID: 11400000, guid: e85b440bf1923a74694710aa4224f872, type: 2}
-  startupScene: {fileID: 0}
-  isColdStartup: 0
+  getSaveProfileData: {fileID: 11400000, guid: 679d066dd2453524ba1fb80c72b04f1a, type: 2}
+  askSetActiveSaveProfile: {fileID: 11400000, guid: e85b440bf1923a74694710aa4224f872, type: 2}
+  startupScene: {fileID: 11400000, guid: 4f26a0974e4e8c947bd53bdd95f6d61f, type: 2}
+  isColdStartup: 1

@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 public class ProfileDisplayUI : MonoBehaviour
 {
-    [SerializeField] private ProfileSaveDataEventChannelSO askEnterProfile;
+    [SerializeField] private SaveProfileDataEventChannelSO askEnterSaveProfile;
     [SerializeField] private Button enterProfileButton;
     
-    private ProfileSaveData profileData;
+    private SaveProfileData saveProfileData;
 
     private void OnEnable()
     {
@@ -22,14 +22,14 @@ public class ProfileDisplayUI : MonoBehaviour
         enterProfileButton.onClick.RemoveListener(EnterProfile);
     }
 
-    public void Setup(ProfileSaveData profileSaveData)
+    public void Setup(SaveProfileData saveProfileData)
     {
-        this.profileData = profileSaveData;
+        this.saveProfileData = saveProfileData;
     }
 
     public void EnterProfile()
     {
-        if(profileData != null)
-            askEnterProfile.RaiseEvent(profileData);
+        if(saveProfileData != null)
+            askEnterSaveProfile.RaiseEvent(saveProfileData);
     }
 }

@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 /// Entry point for the game
 /// Loads the persistent manager and requests to load the initial game state (Should be main menu)
 /// </summary>
-public class GameInitializer : MonoBehaviour
+public class GameInitializer : DescriptionMonoBehavior
 {
     [ColorHeader("Invoking - Ask Game State Change Channel", ColorHeaderColor.TriggeringEvents)]
     [SerializeField] private AssetReference askGameStateChange;

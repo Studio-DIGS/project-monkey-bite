@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class ProfileSaveData
+public class SaveProfileData
 {
     [ColorHeader("Save Profile Meta Data")]
     public SaveProfileMetaData metaData;
@@ -16,7 +16,7 @@ public class ProfileSaveData
     [ColorHeader("Run Data")]
     public RunSaveData runData;
 
-    public ProfileSaveData()
+    public SaveProfileData()
     {
         metaData = new SaveProfileMetaData();
         runData = new RunSaveData();
@@ -35,7 +35,7 @@ public class SaveProfileMetaData
 public class BasicStatsSaveData
 {
     public int deathCounter = 0;
-    public TimeSpan playTime;
+    public float playTime;
 }
 
 [System.Serializable]

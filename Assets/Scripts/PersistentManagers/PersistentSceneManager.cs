@@ -139,7 +139,7 @@ public class PersistentSceneManager : DescriptionMonoBehavior
         // Wait for scene to load
         yield return loadNewManagerSceneHandle;
 
-        // Done; New Manager scene has finished loading
+        // Done; New Scene has finished loading
         if (loadNewManagerSceneHandle.IsValid())
         {
             var newManagerScene = loadNewManagerSceneHandle.Result;

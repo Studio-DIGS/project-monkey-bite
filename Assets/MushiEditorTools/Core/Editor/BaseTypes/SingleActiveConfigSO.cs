@@ -159,7 +159,7 @@ public abstract class SingleActiveConfigSO : ScriptableObject
             // Mark previously active config as dirty, since it is force de-activated
             var prevActiveConfig = GetActiveConfig(targetConfig.GetType().ToString());
 
-            if (prevActiveConfig != targetConfig)
+            if (prevActiveConfig != null && prevActiveConfig != targetConfig)
             {
                 EditorUtility.SetDirty(prevActiveConfig);
             }

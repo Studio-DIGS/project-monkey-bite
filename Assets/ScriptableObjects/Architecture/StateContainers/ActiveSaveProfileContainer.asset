@@ -19,10 +19,10 @@ MonoBehaviour:
   saveProfileData:
     metaData:
       doNotSave: 0
-      profileID: 2
+      profileID: 1
     statsData:
-      deathCounter: 2
-      playTime: 10.084793
+      deathCounter: -100
+      playTime: 474.61105
     runData:
       isRunInProgress: 0
       levelsCleared: 0

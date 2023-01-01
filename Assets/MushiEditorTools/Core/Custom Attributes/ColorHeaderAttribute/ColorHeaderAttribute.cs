@@ -7,7 +7,7 @@ using UnityEngine;
 [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
 public class ColorHeaderAttribute : PropertyAttribute
 {
-    private const float defaultYOffset = 0.52f;
+    private const float defaultYOffset = 0.45f;
     private const float defaultPadding = 0.3f;
     
     public readonly string text;

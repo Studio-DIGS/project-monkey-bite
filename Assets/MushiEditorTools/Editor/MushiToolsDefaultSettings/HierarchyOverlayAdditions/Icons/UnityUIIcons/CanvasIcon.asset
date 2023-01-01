@@ -16,8 +16,4 @@ MonoBehaviour:
     iconType: 0
     editorIconStringIdentifier: Canvas Icon
     textureAsset: {fileID: 0}
-    guiContent:
-      m_Text: 
-      m_Image: {fileID: 6918890264710435130, guid: 0000000000000000d000000000000000, type: 0}
-      m_Tooltip: 
   targetClassString: Canvas

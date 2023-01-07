@@ -111,7 +111,7 @@ public class TestCharacter : MonoBehaviour {
             if (BasicStateTransitions())
                 return;
         }
-        Debug.Log("STATE = Idle");
+        //Debug.Log("STATE = Idle");
 
         // Effects
         _movement.x = 0;
@@ -123,7 +123,7 @@ public class TestCharacter : MonoBehaviour {
             if (BasicStateTransitions())
                 return;
         }
-        Debug.Log("STATE = Walking");
+        //Debug.Log("STATE = Walking");
 
         // Effects
         _movement.x = _inputData.horizontalAxis * moveSpeed;
@@ -145,7 +145,7 @@ public class TestCharacter : MonoBehaviour {
                 }
             }
         }
-        Debug.Log("STATE = Jumping");
+        //Debug.Log("STATE = Jumping");
 
         // Effects
         _movement.x = _inputData.horizontalAxis * moveSpeed;
@@ -157,7 +157,7 @@ public class TestCharacter : MonoBehaviour {
             if (BasicStateTransitions())
                 return;
         }
-        Debug.Log("STATE = Falling");
+        //Debug.Log("STATE = Falling");
 
         // Effects
         _movement.x = _inputData.horizontalAxis * moveSpeed;

@@ -7,23 +7,25 @@ using UnityEngine.EventSystems;
 
 public class MainMenuManager : DescriptionMonoBehavior
 {
-    [ColorHeader("Listening - On Main Menu Scene Loaded Channel", ColorHeaderColor.ListeningEvents)]
+    [ColorHeader("Listening", ColorHeaderColor.ListeningEvents)]
+    [ColorHeader("On Main Menu Scene Loaded")]
     [SerializeField] private VoidEventChannelSO onMainMenuSceneLoaded;
-
-    [ColorHeader("Invoking - Ask Change Input State Channel", ColorHeaderColor.TriggeringEvents)]
-    [SerializeField] private InputStateEventChannelSO askInputStateChange;
-
-    [ColorHeader("Listening - Change Main Menu Page Ask Channel")] 
+    
+    [ColorHeader("Change Main Menu Page Ask")] 
     [SerializeField] private MenuPageEventChannelSO askChangeMenuPage;
     
-    [ColorHeader("Invoking - Ask Change Game State Channel")] 
+    [ColorHeader("Enter Save Profile Ask")] 
+    [SerializeField] private SaveProfileDataEventChannelSO askEnterSaveProfile;
+
+    [ColorHeader("Invoking", ColorHeaderColor.TriggeringEvents)]
+    [ColorHeader("Ask Change Input State")]
+    [SerializeField] private InputStateEventChannelSO askInputStateChange;
+
+    [ColorHeader("Ask Change Game State")] 
     [SerializeField] private GameStateEventChannelSO askChangeGameState;
     
-    [ColorHeader("Invoking - Ask Set Active Profile Save Channel")] 
+    [ColorHeader("Ask Set Active Save Profile")] 
     [SerializeField] private SaveProfileDataEventChannelSO askSetActiveSaveProfile;
-    
-    [ColorHeader("Listening - Enter Save Profile Ask Event")] 
-    [SerializeField] private SaveProfileDataEventChannelSO askEnterSaveProfile;
 
     [ColorHeader("Initial Selection", ColorHeaderColor.Config)] 
     [SerializeField] private MenuPage initialActiveMenuPage;

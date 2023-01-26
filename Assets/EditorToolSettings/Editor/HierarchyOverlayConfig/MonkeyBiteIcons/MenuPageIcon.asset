@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10a88f16456176241a30bdcc8766c5f2, type: 3}
-  m_Name: CurrentGameplayRunState
+  m_Script: {fileID: 11500000, guid: 304900f5b8f80084eb80a8d81b037c40, type: 3}
+  m_Name: MenuPageIcon
   m_EditorClassIdentifier: 
-  description: '(Unused) Holds information about the current gameplay run '
-  runCompletionState:
-    runRequirementsMet: 1
-    playerDied: 0
+  icon:
+    iconType: 0
+    editorIconStringIdentifier: cs Script Icon
+    textureAsset: {fileID: 0}
+  targetClass: {fileID: 11500000, guid: 452a387c59fc1644d8418b08aa5ed8e2, type: 3}

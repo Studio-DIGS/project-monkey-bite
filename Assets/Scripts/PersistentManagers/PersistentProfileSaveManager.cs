@@ -5,22 +5,24 @@ using System.Linq;
 using UnityEngine;
 
 /// <summary>
-/// Persistent manager acting as the interface for saving and loading save profiles
+/// Persistent manager acting as the interface for saving and loading save profiles.
+/// Also handles loading profiles into activeSaveProfileBoard
 /// </summary>
 public class PersistentProfileSaveManager : DescriptionMonoBehavior
 {
-    [ColorHeader("Listening - Save Ask Channels", ColorHeaderColor.ListeningEvents)] 
+    [ColorHeader("Listening", ColorHeaderColor.ListeningEvents)]
+    [ColorHeader("Save Profile To File Ask")] 
     [SerializeField] private SaveProfileDataEventChannelSO askSaveProfile;
     
-    [ColorHeader("Listening - Load Get Channels", ColorHeaderColor.ListeningEvents)] 
+    [ColorHeader("Profile Get Channels")] 
     [SerializeField] private SaveProfileDataFuncChannelSO getSaveProfile;
-    [SerializeField] private SaveProfileDataArrFuncChannelSO getAllSaveProfile;
+    [SerializeField] private SaveProfileDataArrFuncChannelSO getAllSaveProfiles;
 
-    [ColorHeader("Listening - Set Active Profile Save Ask Channel", ColorHeaderColor.ListeningEvents)] 
+    [ColorHeader("Set Active Profile Save Ask")] 
     [SerializeField] private SaveProfileDataEventChannelSO askSetActiveSaveProfile;
     
     [ColorHeader("Save Data SO Containers", ColorHeaderColor.Dependencies)] 
-    [SerializeField] private ProfileSaveDataSO activeProfileContainer;
+    [SerializeField] private ProfileSaveDataSO activeSaveProfileBoard;
     
     [ColorHeader("Save System Dependencies", ColorHeaderColor.Dependencies)] 
     [SerializeField] private SaveProfileIOSO saveProfileIO;
@@ -30,7 +32,7 @@ public class PersistentProfileSaveManager : DescriptionMonoBehavior
     {
         askSaveProfile.OnRaised += SaveProfileDataToFile;
         getSaveProfile.OnCalled += LoadProfileDataFromFile;
-        getAllSaveProfile.OnCalled += GetAllProfileSaves;
+        getAllSaveProfiles.OnCalled += GetAllProfileSaves;
         askSetActiveSaveProfile.OnRaised += SetActiveProfile;
     }
 
@@ -38,13 +40,13 @@ public class PersistentProfileSaveManager : DescriptionMonoBehavior
     {
         askSaveProfile.OnRaised -= SaveProfileDataToFile;
         getSaveProfile.OnCalled -= LoadProfileDataFromFile;
-        getAllSaveProfile.OnCalled -= GetAllProfileSaves;
+        getAllSaveProfiles.OnCalled -= GetAllProfileSaves;
         askSetActiveSaveProfile.OnRaised -= SetActiveProfile;
     }
 
     private void SetActiveProfile(SaveProfileData data)
     {
-        activeProfileContainer.saveProfileData = data;
+        activeSaveProfileBoard.saveProfileData = data;
     }
 
     private void SaveProfileDataToFile(SaveProfileData data)

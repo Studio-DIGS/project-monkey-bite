@@ -14,27 +14,30 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class PersistentSceneManager : DescriptionMonoBehavior
 {
-    [ColorHeader("Listening - Manager Scene Ask Channels", ColorHeaderColor.ListeningEvents)] 
+    [ColorHeader("Listening", ColorHeaderColor.ListeningEvents)]
+    [ColorHeader("Manager Scene Ask Channels")] 
     [SerializeField] private SceneLoadEventChannelSO askLoadManagerScene;
     [SerializeField] private SceneUnloadEventChannelSO askUnloadManagerScene;
-
-    [ColorHeader("Invoking - On Manager Scene Ready Channels", ColorHeaderColor.TriggeringEvents)]
-    [SerializeField] private VoidEventChannelSO onManagerSceneLoaded;
-
-    [ColorHeader("Listening - Content Scene Ask Channels", ColorHeaderColor.ListeningEvents)] 
+    
+    [ColorHeader("Content Scene Ask Channels")] 
     [SerializeField] private SceneLoadEventChannelSO askLoadContentScene;
     [SerializeField] private SceneUnloadEventChannelSO askUnloadContentScene;
 
-    [ColorHeader("Invoking - On Content Scene Ready Channels", ColorHeaderColor.TriggeringEvents)]
+    [ColorHeader("Invoking", ColorHeaderColor.TriggeringEvents)]
+    [ColorHeader("On Manager Scene Ready")]
+    [SerializeField] private VoidEventChannelSO onManagerSceneLoaded;
+    
+    [ColorHeader("On Content Scene Ready")]
     [SerializeField] private VoidEventChannelSO onContentSceneLoaded;
     
     [ColorHeader("Writing - Scene State", ColorHeaderColor.WritingState)] 
-    [SerializeField] private CurrentSceneStateSO currentSceneState;
+    [SerializeField] private CurrentSceneStateSO sceneStateBoard;
 
     [ColorHeader("Dependencies", ColorHeaderColor.Dependencies)] 
     [SerializeField] private TransitionEffectManager transitionEffectManager;
 
-    struct LoadedSceneData
+    [Serializable]
+    public struct LoadedSceneData
     {
         public AsyncOperationHandle<SceneInstance> sceneInstanceHandle;
         public GameSceneSO sceneData;
@@ -44,11 +47,21 @@ public class PersistentSceneManager : DescriptionMonoBehavior
     private const int contentLayerIndex = 1;
     private const int layerCount = 2;
 
-    private LoadedSceneData[] loadedScenes = new LoadedSceneData[layerCount];
+    private LoadedSceneData[] LoadedScenes = new LoadedSceneData[layerCount];
     
     // State
     private int sceneOperationCount;
+
     private Coroutine currentOperation;
+    private Coroutine CurrentOperation
+    {
+        get => currentOperation;
+        set
+        {
+            currentOperation = value;
+            sceneStateBoard.canStartNewSceneOperation = (value == null);
+        }
+    }
 
     private void OnEnable()
     {
@@ -70,7 +83,7 @@ public class PersistentSceneManager : DescriptionMonoBehavior
 
     private bool SceneTransitionEntryCheck()
     {
-        if (currentOperation != null)
+        if (CurrentOperation != null)
         {
             Debug.LogError("Attempted to start a scene operation while one was currently in progress");
             return false;
@@ -81,8 +94,9 @@ public class PersistentSceneManager : DescriptionMonoBehavior
 
     private void LoadManagerScene(GameSceneSO scene, bool transitionOut, bool transitionIn, Action loadScreenActions)
     {
-        if (!SceneTransitionEntryCheck()) return;
-        currentOperation = StartCoroutine(CoroutLoadScene(
+        bool sceneAlreadyLoaded = LoadedScenes[managerLayerIndex].sceneData == scene;
+        if (!SceneTransitionEntryCheck() || sceneAlreadyLoaded) return;
+        CurrentOperation = StartCoroutine(CoroutLoadScene(
             scene, 
             transitionOut, 
             transitionIn, 
@@ -95,13 +109,14 @@ public class PersistentSceneManager : DescriptionMonoBehavior
     private void UnloadManagerScene(bool transitionOut, bool transitionIn)
     {
         if (!SceneTransitionEntryCheck()) return;
-        currentOperation = StartCoroutine(CoroutUnloadScene(transitionOut, transitionIn, managerLayerIndex));
+        CurrentOperation = StartCoroutine(CoroutUnloadScene(transitionOut, transitionIn, managerLayerIndex));
     }
     
     private void LoadContentScene(GameSceneSO scene, bool transitionOut, bool transitionIn, Action loadScreenActions)
     {
-        if (!SceneTransitionEntryCheck()) return;
-        currentOperation = StartCoroutine(CoroutLoadScene(
+        bool sceneAlreadyLoaded = LoadedScenes[contentLayerIndex].sceneData == scene;
+        if (!SceneTransitionEntryCheck() || sceneAlreadyLoaded) return;
+        CurrentOperation = StartCoroutine(CoroutLoadScene(
             scene, 
             transitionOut, 
             transitionIn, 
@@ -114,7 +129,7 @@ public class PersistentSceneManager : DescriptionMonoBehavior
     private void UnloadContentScene(bool transitionOut, bool transitionIn)
     {
         if (!SceneTransitionEntryCheck()) return;
-        currentOperation = StartCoroutine(CoroutUnloadScene(transitionOut, transitionIn, contentLayerIndex));
+        CurrentOperation = StartCoroutine(CoroutUnloadScene(transitionOut, transitionIn, contentLayerIndex));
     }
 
     private IEnumerator CoroutLoadScene(
@@ -155,12 +170,11 @@ public class PersistentSceneManager : DescriptionMonoBehavior
             SceneManager.SetActiveScene(newManagerScene.Scene);
             
             // Update state
-            loadedScenes[layerIndex].sceneData = scene;
-            currentSceneState.currentlyLoadedManagerScene = scene;
-            loadedScenes[layerIndex].sceneInstanceHandle = loadNewManagerSceneHandle;
+            LoadedScenes[layerIndex].sceneData = scene;
+            LoadedScenes[layerIndex].sceneInstanceHandle = loadNewManagerSceneHandle;
             
             // Raise events
-            currentOperation = null;
+            CurrentOperation = null;
             onFinishedChannel.RaiseEvent();
         }
 
@@ -180,16 +194,15 @@ public class PersistentSceneManager : DescriptionMonoBehavior
         }
 
         // Unload current manager scene
-        if (loadedScenes[layerIndex].sceneData != null)
+        if (LoadedScenes[layerIndex].sceneData != null)
         {
-            if (loadedScenes[layerIndex].sceneInstanceHandle.IsValid())
+            if (LoadedScenes[layerIndex].sceneInstanceHandle.IsValid())
             {
-                yield return Addressables.UnloadSceneAsync(loadedScenes[layerIndex].sceneInstanceHandle, true);
+                yield return Addressables.UnloadSceneAsync(LoadedScenes[layerIndex].sceneInstanceHandle, true);
             }
 
             yield return recursiveUnloadOperation;
-            currentSceneState.currentlyLoadedManagerScene = null;
-            loadedScenes[layerIndex].sceneData = null;
+            LoadedScenes[layerIndex].sceneData = null;
         }
         else
         {

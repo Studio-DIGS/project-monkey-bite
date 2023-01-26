@@ -13,7 +13,8 @@ public enum InputState
 
 public class PersistentInputManager : DescriptionMonoBehavior
 {
-    [ColorHeader("Listening - Input State Change Ask Channel", ColorHeaderColor.ListeningEvents)] 
+    [ColorHeader("Listening", ColorHeaderColor.ListeningEvents)]
+    [ColorHeader("Input State Change Ask")] 
     [SerializeField] private InputStateEventChannelSO askInputStateChange;
     
     [ColorHeader("Input Dependencies", ColorHeaderColor.Dependencies)]

@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class LevelFinishLocation : MonoBehaviour
 {
-    [ColorHeader("Invoking - On Level Completed", ColorHeaderColor.TriggeringEvents)]
+    [ColorHeader("Invoking", ColorHeaderColor.TriggeringEvents)]
+    [ColorHeader("On Level Completed")]
     [SerializeField] private VoidEventChannelSO onLevelCompleted;
 
     private bool finished = false;
@@ -27,7 +28,7 @@ public class LevelFinishLocation : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Z))
+        if(Input.GetKey(KeyCode.Z))
             FinishLevel();
     }
 }

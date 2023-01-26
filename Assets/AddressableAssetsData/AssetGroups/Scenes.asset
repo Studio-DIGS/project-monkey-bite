@@ -21,22 +21,32 @@ MonoBehaviour:
     m_Address: Assets/Scenes/Testing
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b4aab85609aee754f813512e87c57bc5
     m_Address: Assets/Scenes/Menus/Main Menu.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0630c7995e6b3db418ed0d3d8f20805a
     m_Address: Assets/Scenes/Managers/PersistentManagers.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 34b0b4630e610e94f95150f561a2ad9a
     m_Address: Assets/Scenes/Managers/GameplayManagers.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 520656d6932c2a849aeae370b6335e53
     m_Address: Assets/Scenes/Menus/RunFinishMenu.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3b31a064180f2b047a03766eecb39e1d
+    m_Address: Assets/Scenes/Templates
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6aba7bafd48bbeb44aab8623d57168f2, type: 2}
   m_SchemaSet:

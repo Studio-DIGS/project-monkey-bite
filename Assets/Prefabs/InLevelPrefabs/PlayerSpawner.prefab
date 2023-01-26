@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f155cdc81b76d4f9b1a96b8616d1c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  description: Spawns the player after loading a gameplay level and sets input state
+    to gameplay
   onLevelSceneReady: {fileID: 11400000, guid: f551dc4defaf32b4993b73d0884afcd1, type: 2}
   askInputStateChange: {fileID: 11400000, guid: bba4b75ec21129a4ba77566c17196aab, type: 2}
   playerAsset: {fileID: 6838055151077394489, guid: 129e1843c95516647bf3955490372e7d, type: 3}

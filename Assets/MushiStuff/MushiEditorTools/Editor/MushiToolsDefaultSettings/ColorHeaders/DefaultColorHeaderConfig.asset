@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62d22d12aff4ab439fe5de3248967ab, type: 3}
   m_Name: DefaultColorHeaderConfig
   m_EditorClassIdentifier: 
-  isActiveConfig: 1
+  isActiveConfig: 0
   headerColors:
   - {r: 0.5990566, g: 0.98413914, b: 1, a: 1}
   - {r: 1, g: 0.72098416, b: 0.5529412, a: 1}

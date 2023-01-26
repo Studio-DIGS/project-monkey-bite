@@ -179,7 +179,8 @@ MonoBehaviour:
   askReturnToMainMenu: {fileID: 11400000, guid: 7033345c14986d347b5c6c5b7213dce0, type: 2}
   askSaveProfile: {fileID: 11400000, guid: 05c981eab0ff1414c824528945023b3e, type: 2}
   runProgressionDirector: {fileID: 1940595720}
-  activeSaveContainer: {fileID: 11400000, guid: 868d52d10eccf234cb67e1080405d20d, type: 2}
+  activeSaveProfileBoard: {fileID: 11400000, guid: 868d52d10eccf234cb67e1080405d20d, type: 2}
+  sceneStateBoard: {fileID: 11400000, guid: 5efabfb536bcda444a9a167ae5468232, type: 2}
 --- !u!1 &1137664239
 GameObject:
   m_ObjectHideFlags: 0

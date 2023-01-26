@@ -7,12 +7,14 @@ using UnityEngine.AddressableAssets;
 /// <summary>
 /// Handles spawning the player into the game level, including any animations or cutscenes before the player can enter gameplay
 /// </summary>
-public class PlayerSpawner : MonoBehaviour
+public class PlayerSpawner : DescriptionMonoBehavior
 {
-    [ColorHeader("Listening - On Level Scene Ready Channel", ColorHeaderColor.ListeningEvents)]
+    [ColorHeader("Listening", ColorHeaderColor.ListeningEvents)]
+    [ColorHeader("On Level Scene Ready")]
     [SerializeField] private VoidEventChannelSO onLevelSceneReady;
 
-    [ColorHeader("Invoking - Player Gameplay Ready Channels", ColorHeaderColor.TriggeringEvents)] 
+    [ColorHeader("Invoking", ColorHeaderColor.TriggeringEvents)] 
+    [ColorHeader("Ask Change Input State")]
     [SerializeField] private InputStateEventChannelSO askInputStateChange;
 
     [ColorHeader("Dependencies", ColorHeaderColor.Dependencies)]

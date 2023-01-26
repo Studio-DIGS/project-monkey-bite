@@ -8,9 +8,5 @@ using UnityEngine.ResourceManagement.ResourceProviders;
 [CreateAssetMenu(menuName="Architecture/SceneManagement/SceneStateSO")]
 public class CurrentSceneStateSO : DescriptionBaseSO
 {
-    // Manager Scenes
-    public GameSceneSO currentlyLoadedManagerScene;
-    
-    // Content Scenes
-    public GameSceneSO currentlyLoadedContentScene;
+    [ReadOnly] public bool canStartNewSceneOperation;
 }

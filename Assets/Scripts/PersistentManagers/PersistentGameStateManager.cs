@@ -15,10 +15,12 @@ public enum GameState
 /// </summary>
 public class PersistentGameStateManager : DescriptionMonoBehavior
 {
-    [ColorHeader("Listening - Game State Change Ask Channel", ColorHeaderColor.ListeningEvents)] 
+    [ColorHeader("Listening", ColorHeaderColor.ListeningEvents)]
+    [ColorHeader("Game State Change Ask")] 
     [SerializeField] private GameStateEventChannelSO askGameStateChange;
 
-    [ColorHeader("Invoking - Ask Manager Scene Load Channel", ColorHeaderColor.TriggeringEvents)] 
+    [ColorHeader("Invoking", ColorHeaderColor.TriggeringEvents)]
+    [ColorHeader("Ask Manager Scene Load")] 
     [SerializeField] private SceneLoadEventChannelSO askLoadManagerScene;
 
     [ColorHeader("Game State Manager Scenes", ColorHeaderColor.Dependencies)] 

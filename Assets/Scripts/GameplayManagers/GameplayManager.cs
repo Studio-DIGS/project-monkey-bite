@@ -6,37 +6,40 @@ using UnityEngine;
 
 public class GameplayManager : DescriptionMonoBehavior
 {
-    [ColorHeader("Listening - On Scene Load Channels", ColorHeaderColor.ListeningEvents)]
+    [ColorHeader("Listening", ColorHeaderColor.ListeningEvents)]
+    [ColorHeader("On Scene Loaded Channels")]
     [SerializeField] private VoidEventChannelSO onGameplayManagerSceneLoaded;
     [SerializeField] private VoidEventChannelSO onLevelSceneLoaded;
-
-    [ColorHeader("Invoking - On Level Ready Channel", ColorHeaderColor.TriggeringEvents)]
-    [SerializeField] private VoidEventChannelSO onLevelSceneReady;
     
-    [ColorHeader("Invoking - Ask Input State Change Channel", ColorHeaderColor.TriggeringEvents)]
-    [SerializeField] private InputStateEventChannelSO askInputStateChange;
-
-    [ColorHeader("Invoking - Ask Game State Change Channel", ColorHeaderColor.TriggeringEvents)]
-    [SerializeField] private GameStateEventChannelSO askGameStateChange;
-    
-    [ColorHeader("Invoking - Ask Scene Management Channels", ColorHeaderColor.TriggeringEvents)]
-    [SerializeField] private SceneLoadEventChannelSO askLoadGameplayLevel;
-
-    [ColorHeader("Listening - Ask Progress Level Channel", ColorHeaderColor.ListeningEvents)] 
+    [ColorHeader("Ask Progress Level")] 
     [SerializeField] private VoidEventChannelSO askProgressLevel;
     
-    [ColorHeader("Listening - Start new Run Ask Channel", ColorHeaderColor.ListeningEvents)] 
+    [ColorHeader("Start New Run Ask")] 
     [SerializeField] private VoidEventChannelSO askStartNewRun;
     
-    [ColorHeader("Listening - Return To Main Menu Ask Channel", ColorHeaderColor.ListeningEvents)] 
+    [ColorHeader("Return To Main Menu Ask")] 
     [SerializeField] private VoidEventChannelSO askReturnToMainMenu;
+
+    [ColorHeader("Invoking", ColorHeaderColor.TriggeringEvents)]
+    [ColorHeader("On Level Ready")]
+    [SerializeField] private VoidEventChannelSO onLevelSceneReady;
     
-    [ColorHeader("Invoking - Ask Save Data Channel", ColorHeaderColor.TriggeringEvents)] 
+    [ColorHeader("Ask Input State Change")]
+    [SerializeField] private InputStateEventChannelSO askInputStateChange;
+
+    [ColorHeader("Ask Game State Change")]
+    [SerializeField] private GameStateEventChannelSO askGameStateChange;
+    
+    [ColorHeader("Ask Scene Management")]
+    [SerializeField] private SceneLoadEventChannelSO askLoadGameplayLevel;
+
+    [ColorHeader("Ask Save Profile To File")] 
     [SerializeField] private SaveProfileDataEventChannelSO askSaveProfile;
 
     [ColorHeader("Dependencies", ColorHeaderColor.Dependencies)] 
     [SerializeField] private RunProgressionDirector runProgressionDirector;
-    [SerializeField] private ProfileSaveDataSO activeSaveContainer;
+    [SerializeField] private ProfileSaveDataSO activeSaveProfileBoard;
+    [SerializeField] private CurrentSceneStateSO sceneStateBoard;
 
     // Debug exit
     private bool exitToMenu;
@@ -64,7 +67,7 @@ public class GameplayManager : DescriptionMonoBehavior
         // Input disabled by default
         askInputStateChange.RaiseEvent(InputState.Disabled);
         
-        runProgressionDirector.LoadstartRunProgressionDirector(activeSaveContainer.saveProfileData.runData);
+        runProgressionDirector.LoadstartRunProgressionDirector(activeSaveProfileBoard.saveProfileData.runData);
         LoadNextProgressionScene();
     }
 
@@ -78,6 +81,8 @@ public class GameplayManager : DescriptionMonoBehavior
 
     private void LoadNextProgressionScene()
     {
+        if (!sceneStateBoard.canStartNewSceneOperation) return;
+        
         RunProgressionDirector.RunProgressionData progressionData = runProgressionDirector.GetNextProgressionData();
         
         if (progressionData.startNewRun)
@@ -92,7 +97,7 @@ public class GameplayManager : DescriptionMonoBehavior
     
     private void StartNewRun()
     {
-        runProgressionDirector.RestartRunProgressionDirector(activeSaveContainer.saveProfileData.runData);
+        runProgressionDirector.RestartRunProgressionDirector(activeSaveProfileBoard.saveProfileData.runData);
         LoadNextProgressionScene();
     }
     
@@ -104,7 +109,7 @@ public class GameplayManager : DescriptionMonoBehavior
         // Save whenever loading a level
         askLoadGameplayLevel.RaiseEvent(level, transitionOut, transitionIn, () =>
         {
-            askSaveProfile.RaiseEvent(activeSaveContainer.saveProfileData);
+            askSaveProfile.RaiseEvent(activeSaveProfileBoard.saveProfileData);
         });
     }
 
@@ -112,7 +117,7 @@ public class GameplayManager : DescriptionMonoBehavior
     private void ReturnToMainMenu()
     {
         // Save first
-        askSaveProfile.RaiseEvent(activeSaveContainer.saveProfileData);
+        askSaveProfile.RaiseEvent(activeSaveProfileBoard.saveProfileData);
         
         // Disable input and ask to change to main menu
         askInputStateChange.RaiseEvent(InputState.Disabled);
@@ -128,6 +133,6 @@ public class GameplayManager : DescriptionMonoBehavior
             askReturnToMainMenu.RaiseEvent();
         }
 
-        activeSaveContainer.saveProfileData.statsData.playTime += Time.deltaTime;
+        activeSaveProfileBoard.saveProfileData.statsData.playTime += Time.deltaTime;
     }
 }

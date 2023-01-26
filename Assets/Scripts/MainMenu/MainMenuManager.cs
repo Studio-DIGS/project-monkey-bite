@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class MainMenuManager : DescriptionMonoBehavior
 {
-    [ColorHeader("Listening", ColorHeaderColor.ListeningEvents)]
+    [ColorHeader("Listening", ColorHeaderColor.ListeningChannels)]
     [ColorHeader("On Main Menu Scene Loaded")]
     [SerializeField] private VoidEventChannelSO onMainMenuSceneLoaded;
     
@@ -17,7 +17,7 @@ public class MainMenuManager : DescriptionMonoBehavior
     [ColorHeader("Enter Save Profile Ask")] 
     [SerializeField] private SaveProfileDataEventChannelSO askEnterSaveProfile;
 
-    [ColorHeader("Invoking", ColorHeaderColor.TriggeringEvents)]
+    [ColorHeader("Invoking", ColorHeaderColor.InvokingChannels)]
     [ColorHeader("Ask Change Input State")]
     [SerializeField] private InputStateEventChannelSO askInputStateChange;
 

@@ -8,7 +8,7 @@ public class MenuPage : DescriptionMonoBehavior
     [ColorHeader("MenuPage UI Dependencies", ColorHeaderColor.Dependencies)]
     [SerializeField] protected CanvasGroup pageCanvasGroup;
     
-    [ColorHeader("Invoking", ColorHeaderColor.TriggeringEvents)]
+    [ColorHeader("Invoking", ColorHeaderColor.InvokingChannels)]
     [ColorHeader("Ask Display Menu Page")]
     [SerializeField] protected MenuPageEventChannelSO askChangeMenuPage;
     

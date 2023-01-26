@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7697d9088dff7c44793955826b68a433, type: 3}
   m_Name: ColdStartupState
   m_EditorClassIdentifier: 
-  description: "1. Configuration for cold startup behavior \n2. Cold startup state
-    container during runtime. "
+  description: "-Configuration for cold startup behavior \n-Cold startup state container
+    during runtime. "
   coldStartupSaveProfileType: 0
   customSaveProfile: {fileID: 11400000, guid: 3a5eee09c9085884783fbe95f036397e, type: 2}
   profileID: 

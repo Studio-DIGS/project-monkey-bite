@@ -5,8 +5,8 @@
 public enum ColorHeaderColor
 {
     Normal,
-    ListeningEvents,
-    TriggeringEvents,
+    ListeningChannels,
+    InvokingChannels,
     Config,
     Dependencies,
     WritingState,

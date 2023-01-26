@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
+using Unity.Mathematics;
+using UnityEngine.Splines;
 
-[RequireComponent (typeof (BoxCollider))]
 public class PathController : MonoBehaviour {
 
     // Member variables
     // ----------------------------------------------------------------------------
     // protected component references
-    PathCreator pathCreator;
-    BoxCollider col;
+    [SerializeField] private BoxCollider col;
+    [SerializeField] private GameplayLevelStateSO gameplayLevelBlackboard;
+    [SerializeField] private Transform targetTransform;
 
     // public constants
     const float SKIN_WIDTH = 0.015f;
@@ -25,6 +27,8 @@ public class PathController : MonoBehaviour {
     public int verticalRayCount = 4;
 
     // private fields
+    private SplineContainer LevelPath => gameplayLevelBlackboard.levelCurve;
+    
     private bool _onPath;
     private bool _shouldJump;
     private float _distance, _height;
@@ -42,11 +46,9 @@ public class PathController : MonoBehaviour {
     // ----------------------------------------------------------------------------
     void OnEnable() {
         // Path stuff
-        pathCreator = GameObject.FindWithTag("WorldPath").GetComponent<PathCreator>();
         this.PutOnPath();
 
         // Collision Stuff
-        col = GetComponent<BoxCollider>();
         CalculateRaySpacing();
     }
 
@@ -75,18 +77,18 @@ public class PathController : MonoBehaviour {
         Bounds bounds = col.bounds;
         Vector3 boundingSize = (col.size - (new Vector3(0,1,1) * SKIN_WIDTH)) / 2;
         
-        _raycastOrigins.bottomLeft = (transform.forward * -1 * boundingSize.z) + bounds.center - new Vector3(0f, boundingSize.y, 0f);
-        _raycastOrigins.bottomRight = (transform.forward * boundingSize.z) + bounds.center - new Vector3(0f, boundingSize.y, 0f);
-        _raycastOrigins.topLeft = (transform.forward * -1 * boundingSize.z) + bounds.center + new Vector3(0f, boundingSize.y, 0f);
-        _raycastOrigins.topRight = (transform.forward * boundingSize.z) + bounds.center + new Vector3(0f, boundingSize.y, 0f);
+        _raycastOrigins.bottomLeft = (targetTransform.forward * -1 * boundingSize.z) + bounds.center - new Vector3(0f, boundingSize.y, 0f);
+        _raycastOrigins.bottomRight = (targetTransform.forward * boundingSize.z) + bounds.center - new Vector3(0f, boundingSize.y, 0f);
+        _raycastOrigins.topLeft = (targetTransform.forward * -1 * boundingSize.z) + bounds.center + new Vector3(0f, boundingSize.y, 0f);
+        _raycastOrigins.topRight = (targetTransform.forward * boundingSize.z) + bounds.center + new Vector3(0f, boundingSize.y, 0f);
     }
 
     // Path interface
     // ----------------------------------------------------------------------------
     public void PutOnPath() { 
         _onPath = true;
-        _distance = pathCreator.path.GetClosestDistanceAlongPath(transform.position);
-        _height = transform.position.y;
+        _distance = SplineUtility.GetNearestPoint(LevelPath.Spline,targetTransform.position, out float3 pos, out float t);
+        _height = targetTransform.position.y;
         _onPath = startOnPath;
     }
 
@@ -109,13 +111,13 @@ public class PathController : MonoBehaviour {
             VerticalCollision(ref movement, movement.y > 0);
         
         // Final movement along curve
-        if (pathCreator != null && _onPath) {
+        if (LevelPath != null && _onPath) {
             _distance += movement.x;
             _height += movement.y;
 
-            Vector3 pathPos = pathCreator.path.GetPointAtDistance(_distance);
-            transform.position = new Vector3(pathPos.x, _height, pathPos.z);
-            transform.forward = pathCreator.path.GetDirectionAtDistance(_distance);
+            Vector3 pathPos = LevelPath.Spline.GetPointAtLinearDistance(0f, _distance, out float t);
+            targetTransform.position = new Vector3(pathPos.x, _height, pathPos.z);
+            targetTransform.forward = LevelPath.EvaluateTangent(t);
         }
 
         return movement;
@@ -131,7 +133,7 @@ public class PathController : MonoBehaviour {
         for (int i = 0; i < verticalRayCount; i++) {
             // set origin of ray to either bottom or top of character depending on direction of movement
             Vector3 rayOrigin = (directionY == -1)?_raycastOrigins.bottomLeft:_raycastOrigins.topLeft;
-            rayOrigin += transform.forward * (_verticalRaySpacing * i + movement.x);
+            rayOrigin += targetTransform.forward * (_verticalRaySpacing * i + movement.x);
             RaycastHit hit;
 
             if (Physics.Raycast(rayOrigin, Vector3.up * directionY, out hit, rayLength, collisionMask)) {
@@ -156,13 +158,13 @@ public class PathController : MonoBehaviour {
             rayOrigin += Vector3.up * (_horizontalRaySpacing * i);
             RaycastHit hit;
 
-            if (Physics.Raycast(rayOrigin, transform.forward * directionX, out hit, rayLength, collisionMask)) {
+            if (Physics.Raycast(rayOrigin, targetTransform.forward * directionX, out hit, rayLength, collisionMask)) {
                 movement.x = (hit.distance - SKIN_WIDTH) * directionX;
                 rayLength = hit.distance; // important so that there aren't conflicting hits from the different raycasts
                 foundCollision = true;
             }  
 
-            Debug.DrawRay(rayOrigin, transform.forward * directionX * rayLength, Color.blue);
+            Debug.DrawRay(rayOrigin, targetTransform.forward * directionX * rayLength, Color.blue);
         }
         return foundCollision;
     }
@@ -187,7 +189,7 @@ public class PathController : MonoBehaviour {
     //     Vector3 virtualTangent = pathCreator.path.GetDirectionAtDistance(distance + offset);
     //     Vector3 delta = objectPos - virtualPos;
 
-    //     float angle = Vector3.Angle(transform.forward, delta);
+    //     float angle = Vector3.Angle(targetTransform.forward, delta);
     //     if (angle <= 90f)
     //     {
     //         targetVector.x = 1;

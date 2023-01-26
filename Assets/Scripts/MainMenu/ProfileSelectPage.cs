@@ -9,10 +9,10 @@ using UnityEngine.UI;
 
 public class ProfileSelectPage : MenuPage
 {
-    [ColorHeader("Invoking - Ask Save Profile To File Channel", ColorHeaderColor.TriggeringEvents)]
+    [ColorHeader("Invoking - Ask Save Profile To File Channel", ColorHeaderColor.InvokingChannels)]
     [SerializeField] private SaveProfileDataEventChannelSO askSaveNewProfile;
     
-    [ColorHeader("Invoking - Get All Save Profiles Channel", ColorHeaderColor.TriggeringEvents)]
+    [ColorHeader("Invoking - Get All Save Profiles Channel", ColorHeaderColor.InvokingChannels)]
     [SerializeField] private SaveProfileDataArrFuncChannelSO getAllSaveProfile;
     
     [ColorHeader("Profile Select Page UI Dependencies", ColorHeaderColor.Dependencies)]

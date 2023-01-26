@@ -1,0 +1,21 @@
+using System;
+using UnityEngine;
+
+[CreateAssetMenu(menuName = "Channels/Func/#RAWFILENAME#FuncChannel", fileName = "New#RAWFILENAME#FuncChannel")]
+public class #FILENAME# : DescriptionBaseSO
+{
+    public Func<#RAWFILENAME#> OnCalled;
+
+    public #RAWFILENAME# Call()
+    {
+        if (OnCalled != null)
+        {
+            return OnCalled.Invoke();
+        }
+        else
+        {
+            Debug.LogWarning($"Func Channel {name} was called but had no receivers");
+            return null;
+        }
+    }
+}

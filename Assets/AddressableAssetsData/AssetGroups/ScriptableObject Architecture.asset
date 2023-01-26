@@ -17,11 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: adec967b8b959bb4b829d29f00e0c6fd
   m_SerializeEntries:
-  - m_GUID: 8c781b0400e5afb40be4c06e584a0a2b
-    m_Address: Assets/ScriptableObjects/SceneData
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8cc5a316805c2634a8d87790db11c477
     m_Address: Assets/ScriptableObjects/GameplayLevelGeneration
     m_ReadOnly: 0

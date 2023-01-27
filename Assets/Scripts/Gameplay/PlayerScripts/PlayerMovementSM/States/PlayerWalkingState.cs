@@ -28,7 +28,7 @@ public class PlayerWalkingState : State<PlayerBlackboard>
     {
         blackboard.pathController.Move(
             blackboard.movementProfile.moveSpeed *
-            Time.fixedDeltaTime *
+            /*Time.fixedDeltaTime **/
             blackboard.inputState.horizontalAxis *
             Vector2.right);
     }

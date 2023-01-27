@@ -11,8 +11,8 @@ public class PathController : MonoBehaviour {
     // ----------------------------------------------------------------------------
     // protected component references
     [SerializeField] private BoxCollider col;
-    [SerializeField] private GameplayLevelStateSO gameplayLevelBlackboard;
     [SerializeField] private Transform targetTransform;
+    [SerializeField] private SplinePathPhysicsBody splineBody;
 
     // public constants
     const float SKIN_WIDTH = 0.015f;
@@ -25,9 +25,6 @@ public class PathController : MonoBehaviour {
     public LayerMask collisionMask;
     public int horizontalRayCount = 4;
     public int verticalRayCount = 4;
-
-    // private fields
-    private SplineContainer LevelPath => gameplayLevelBlackboard.levelCurve;
     
     private bool _onPath;
     private bool _shouldJump;
@@ -45,9 +42,6 @@ public class PathController : MonoBehaviour {
     // Callbacks
     // ----------------------------------------------------------------------------
     void OnEnable() {
-        // Path stuff
-        this.PutOnPath();
-
         // Collision Stuff
         CalculateRaySpacing();
     }
@@ -85,12 +79,6 @@ public class PathController : MonoBehaviour {
 
     // Path interface
     // ----------------------------------------------------------------------------
-    public void PutOnPath() { 
-        _onPath = true;
-        _distance = SplineUtility.GetNearestPoint(LevelPath.Spline,targetTransform.position, out float3 pos, out float t);
-        _height = targetTransform.position.y;
-        _onPath = startOnPath;
-    }
 
     public void TakeOffPath() {
         _onPath = false;
@@ -103,24 +91,16 @@ public class PathController : MonoBehaviour {
         return VerticalCollision(ref movement, false);
     }
 
-    public Vector2 Move(Vector2 movement) {
+    public Vector2 Move(Vector2 velocity) {
         UpdateRaycastOrigins();
-        if (movement.x != 0)
-            HorizontalCollision(ref movement, movement.x > 0);
-         if (movement.y != 0)
-            VerticalCollision(ref movement, movement.y > 0);
-        
-        // Final movement along curve
-        if (LevelPath != null && _onPath) {
-            _distance += movement.x;
-            _height += movement.y;
+        if (velocity.x != 0)
+            HorizontalCollision(ref velocity, velocity.x > 0);
+         if (velocity.y != 0)
+            VerticalCollision(ref velocity, velocity.y > 0);
 
-            Vector3 pathPos = LevelPath.Spline.GetPointAtLinearDistance(0f, _distance, out float t);
-            targetTransform.position = new Vector3(pathPos.x, _height, pathPos.z);
-            targetTransform.forward = LevelPath.EvaluateTangent(t);
-        }
+         splineBody.velocity.x = velocity.x;
 
-        return movement;
+         return velocity;
     }
 
     // Movement helper functions

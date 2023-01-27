@@ -9,6 +9,6 @@ public class LevelPathManager : MonoBehaviour
 
     private void OnEnable()
     {
-        currentGameplayLevelBlackboard.levelCurve = levelCurve;
+        currentGameplayLevelBlackboard.levelPath = levelCurve;
     }
 }

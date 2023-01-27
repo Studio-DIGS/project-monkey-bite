@@ -874,15 +874,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7214287001236250916, guid: 26c819984a5ed6a4b8e4e74d4f670450, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.315
+      value: -18.39
       objectReference: {fileID: 0}
     - target: {fileID: 7214287001236250916, guid: 26c819984a5ed6a4b8e4e74d4f670450, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.35
+      value: 1.478
       objectReference: {fileID: 0}
     - target: {fileID: 7214287001236250916, guid: 26c819984a5ed6a4b8e4e74d4f670450, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.28
+      value: 2.23
       objectReference: {fileID: 0}
     - target: {fileID: 7214287001236250916, guid: 26c819984a5ed6a4b8e4e74d4f670450, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2298,7 +2298,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5788172018729903103, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
       propertyPath: m_Name
-      value: WorldPath
+      value: LevelPath
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788172019393737796, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
+      propertyPath: m_Spline.m_Knots.Array.data[6].Position.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788172019393737796, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
+      propertyPath: m_Spline.m_Knots.Array.data[7].Position.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788172019393737796, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
+      propertyPath: m_Spline.m_Knots.Array.data[8].Position.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788172019393737796, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
+      propertyPath: m_Spline.m_Knots.Array.data[9].Position.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

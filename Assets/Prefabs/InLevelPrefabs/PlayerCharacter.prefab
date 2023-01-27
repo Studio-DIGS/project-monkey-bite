@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   col: {fileID: 7938998419550526842}
-  gameplayLevelBlackboard: {fileID: 11400000, guid: 29c4bb2701e48dd45b23be6289e0f3e1, type: 2}
   targetTransform: {fileID: 9131043314775071401}
+  splineBody: {fileID: 7739586611912997664}
   startOnPath: 1
   collisionMask:
     serializedVersion: 2
@@ -220,6 +220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9131043314775071401}
+  - component: {fileID: 7739586611912997664}
   m_Layer: 0
   m_Name: PlayerBody
   m_TagString: Untagged
@@ -245,6 +246,22 @@ Transform:
   m_Father: {fileID: 6838055151077394437}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7739586611912997664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6438378295790422640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bbc88bfec42ccb4dbcd5cf593bb9c50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLevelBlackboard: {fileID: 11400000, guid: 29c4bb2701e48dd45b23be6289e0f3e1, type: 2}
+  gravityAcceleration: 0
+  velocity: {x: 0, y: 0}
+  bodyPosition: {x: 0, y: 0}
 --- !u!1 &6838055150922091414
 GameObject:
   m_ObjectHideFlags: 0

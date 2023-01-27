@@ -7,6 +7,7 @@ public class PlayerFallingState : PlayerMovementState
 {
     public PlayerFallingState(StateMachine<PlayerBlackboard> stateMachine) : base(stateMachine)
     {
+        
     }
 
     public override State<PlayerBlackboard> GetSwitchState()
@@ -14,6 +15,11 @@ public class PlayerFallingState : PlayerMovementState
         if (movementContextController.IsGrounded)
         {
             return GetState<PlayerWalkingState>();
+        }
+
+        if (blackboard.coyoteTimer < movementProfile.coyoteTime && inputState.jumpPressed)
+        {
+            return GetState<PlayerJumpingState>();
         }
         
         return null;
@@ -31,7 +37,7 @@ public class PlayerFallingState : PlayerMovementState
 
     public override void UpdateState()
     {
-        
+        blackboard.coyoteTimer += Time.deltaTime;
     }
 
     public override void FixedUpdateState()

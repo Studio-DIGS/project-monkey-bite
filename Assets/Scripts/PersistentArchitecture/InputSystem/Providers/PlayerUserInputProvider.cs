@@ -42,6 +42,7 @@ public class PlayerUserInputProvider : DescriptionBaseSO, InputProvider<PlayerIn
         state.horizontalAxis = horizontalMovement.action.ReadValue<float>();
         state.mousePosition = mousePosition.action.ReadValue<Vector2>();
         state.jumpHeld = jump.action.ReadValue<float>() > 0;
+        state.jumpPressed = jump.action.WasPerformedThisFrame();
         //return state;
     }
 

@@ -15,7 +15,7 @@ public class PlayerBlackboard : DescriptionMonoBehavior
     [ReadOnly] public PlayerInputState inputState;
     
     // Player state
-    
+    [ReadOnly] public float coyoteTimer;
     
 
     public void UpdateInputState()

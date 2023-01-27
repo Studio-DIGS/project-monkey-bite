@@ -127,10 +127,10 @@ public class SplinePathPhysicsBody : MonoBehaviour
             pathPosition += snapVec;
             
             // Snapping is simulating velocity for this step, so reduce the step dist to match
-            stepDist -= Mathf.Max(0,hitDistance);
+            stepDist -= Mathf.Max(0,hitDistance + collisionResolutionOffset);
 
             // Offset from surface normal to prevent clipping in the next frame
-            pathPosition += ProjectVecOntoPath(collisionNormal, t) * collisionResolutionOffset;
+            pathPosition += ProjectVecOntoPath(collisionNormal, t).normalized * collisionResolutionOffset;
             
             // Resolved velocity "slides" up the colliding surface
             worldVel = Vector3.ProjectOnPlane(worldVel, collisionNormal);

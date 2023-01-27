@@ -8,4 +8,5 @@ public struct PlayerInputState
     public float horizontalAxis;
     public Vector2 mousePosition;
     public bool jumpHeld;
+    public bool jumpPressed;
 }

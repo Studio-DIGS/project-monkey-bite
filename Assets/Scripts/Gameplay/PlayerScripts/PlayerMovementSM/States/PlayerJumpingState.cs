@@ -31,6 +31,8 @@ public class PlayerJumpingState : PlayerMovementState
     {
         jumpTime = 0f;
         pathBody.pathVelocity.y = movementProfile.jumpStrength;
+        pathBody.SetGravityEnabled(false);
+        blackboard.coyoteTimer = float.MaxValue;
     }
 
     public override void ExitState()
@@ -39,6 +41,8 @@ public class PlayerJumpingState : PlayerMovementState
             pathBody.pathVelocity.y,
             0f,
             movementProfile.jumpEndVel);
+        
+        pathBody.SetGravityEnabled(true);
     }
 
     public override void UpdateState()

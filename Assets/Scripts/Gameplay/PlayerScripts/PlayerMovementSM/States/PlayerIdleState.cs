@@ -7,14 +7,12 @@ public class PlayerIdleState : PlayerMovementState
 {
     public PlayerIdleState(StateMachine<PlayerBlackboard> stateMachine) : base(stateMachine)
     {
-        blackboard.inputProvider.Events.OnJumpPressed += () => shouldJump = true;
+        
     }
-
-    private bool shouldJump;
 
     public override State<PlayerBlackboard> GetSwitchState()
     {
-        if (shouldJump)
+        if (inputState.jumpPressed)
         {
             return GetState<PlayerJumpingState>();
         }
@@ -32,7 +30,7 @@ public class PlayerIdleState : PlayerMovementState
     
     public override void EnterState()
     {
-        shouldJump = false;
+        blackboard.coyoteTimer = 0f;
     }
 
     public override void ExitState()

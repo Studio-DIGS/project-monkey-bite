@@ -325,13 +325,15 @@ MonoBehaviour:
   currentLevelBlackboard: {fileID: 11400000, guid: 29c4bb2701e48dd45b23be6289e0f3e1, type: 2}
   collider: {fileID: 6878882079763023217}
   gravityAcceleration: 15
-  collisionResolutionOffset: 0.003
+  collisionResolutionOffset: 0.002
+  sweepOffset: 0.25
   collisionMask:
     serializedVersion: 2
     m_Bits: 128
   lockToPathOnEnable: 1
   pathVelocity: {x: 0, y: 0}
   pathPosition: {x: 0, y: 0}
+  constrainVelocity: 0
 --- !u!1 &6838055150922091414
 GameObject:
   m_ObjectHideFlags: 0

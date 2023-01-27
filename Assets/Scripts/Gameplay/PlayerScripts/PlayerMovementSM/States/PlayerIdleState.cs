@@ -37,7 +37,7 @@ public class PlayerIdleState : PlayerMovementState
 
     public override void ExitState()
     {
-        
+        pathBody.constrainVelocity = false;
     }
 
     public override void UpdateState()
@@ -51,5 +51,8 @@ public class PlayerIdleState : PlayerMovementState
             movementProfile.groundedFriction,
             Time.fixedDeltaTime, 
             movementContextController.GroundedNormal);
+
+        if(pathBody.pathVelocity.magnitude < 0.5f)
+            pathBody.constrainVelocity = true;
     }
 }

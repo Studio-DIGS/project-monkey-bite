@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerMovementProfile
   m_EditorClassIdentifier: 
   description: 
-  groundedWalkVel: 5
+  groundedWalkVel: 6
   groundedWalkAccel: 60
   groundedFriction: 40
   airborneWalkVel: 6

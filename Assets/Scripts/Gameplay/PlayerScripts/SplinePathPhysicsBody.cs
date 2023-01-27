@@ -16,6 +16,7 @@ public class SplinePathPhysicsBody : MonoBehaviour
     [ColorHeader("Config", ColorHeaderColor.Config)]
     [SerializeField] private float gravityAcceleration;
     [SerializeField] private float collisionResolutionOffset;
+    [SerializeField] private float sweepOffset;
     [SerializeField] private LayerMask collisionMask;
     [SerializeField] private bool lockToPathOnEnable = true;
     
@@ -23,8 +24,10 @@ public class SplinePathPhysicsBody : MonoBehaviour
     [ColorHeader("Physics State")]
     public Vector2 pathVelocity;
     public Vector2 pathPosition;
+    public bool constrainVelocity;
 
     private float pathLength;
+    private bool gravityEnabled;
     
     // Properties
     private SplineContainer SplinePath => currentLevelBlackboard.levelPath;
@@ -40,6 +43,7 @@ public class SplinePathPhysicsBody : MonoBehaviour
         {
             LockToPath();
         }
+        gravityEnabled = true;
     }
 
 
@@ -62,17 +66,28 @@ public class SplinePathPhysicsBody : MonoBehaviour
     private void FixedUpdate()
     {
         ApplyForces();
-        ResolveCollisions();
-        ApplyVelocity();
+        if (constrainVelocity)
+        {
+            pathVelocity = Vector2.zero;
+        }
+        float stepDist = pathVelocity.magnitude * Time.fixedDeltaTime;
+        ResolveCollisions(ref stepDist);
+        ApplyVelocity(stepDist);
     }
 
     private void ApplyForces()
     {
-        pathVelocity.y -= Time.fixedDeltaTime * gravityAcceleration;
+        if(gravityEnabled)
+            pathVelocity.y -= Time.fixedDeltaTime * gravityAcceleration;
     }
 
-    private void ResolveCollisions()
+    public void SetGravityEnabled(bool val) => gravityEnabled = val;
+
+    private void ResolveCollisions(ref float stepDist, int depth = 0)
     {
+        if (depth > 10)
+            return;
+        
         // Update position so we get correct collider bounds when sweeping
         float t = pathPosition.x / pathLength;
         UpdatePositionOnPath(t);
@@ -80,11 +95,16 @@ public class SplinePathPhysicsBody : MonoBehaviour
         // Do some conversions to get velocity step for this fixedUpdate
         Vector3 worldVel = PathToWorldVec(pathVelocity, t);
         Vector3 sweepDir = worldVel.normalized;
-        float dist = worldVel.magnitude * Time.fixedDeltaTime;
-        
+
         // Get bounds of the collider
         Vector3 center = collider.bounds.center;
         Vector3 bounds = collider.transform.up * (collider.height/2f - collider.radius);
+
+        Vector3 sweepEnd = center + sweepDir * stepDist;
+        Debug.DrawLine(center + bounds, center - bounds, Color.magenta);
+        
+        // Offset the sweep backwards to avoid starting the cast inside any obstacles
+        center -= sweepDir * sweepOffset;
         
         // Perform sweep
         bool collisionSweep = Physics.CapsuleCast(
@@ -93,20 +113,25 @@ public class SplinePathPhysicsBody : MonoBehaviour
             collider.radius, 
             sweepDir,
             out RaycastHit hit,
-            dist, 
+            stepDist + sweepOffset, 
             collisionMask);
 
         if (collisionSweep)
         {
             Vector3 collisionNormal = hit.normal.normalized;
-            // "Snap" the body to the collision surface
-            float hitDistance = hit.distance;
-            pathPosition += pathVelocity.normalized * hitDistance;
             
+            // "Snap" the body to the collision surface
+            float hitDistance = hit.distance - sweepOffset;
+            Vector2 snapVec = pathVelocity.normalized * hitDistance;
+            pathPosition += snapVec;
+            
+            // Snapping is simulating velocity for this step, so reduce the step dist to match
+            stepDist -= Mathf.Max(0,hitDistance);
+
             // Offset from surface normal to prevent clipping in the next frame
             pathPosition += ProjectVecOntoPath(collisionNormal, t) * collisionResolutionOffset;
             
-            // Resolved velocity "slides" up the colliding surfaceh
+            // Resolved velocity "slides" up the colliding surface
             worldVel = Vector3.ProjectOnPlane(worldVel, collisionNormal);
             pathVelocity = ProjectVecOntoPath(worldVel, t);
             
@@ -114,13 +139,14 @@ public class SplinePathPhysicsBody : MonoBehaviour
             collisionResolutionVel = worldVel;
             
             // Recursively resolve any remaining collisions
-            ResolveCollisions();
+            ResolveCollisions(ref stepDist, depth + 1);
         }
     }
 
-    private void ApplyVelocity()
+    private void ApplyVelocity(float stepDist)
     {
-        pathPosition += pathVelocity * Time.fixedDeltaTime;
+        Vector2 velStep = pathVelocity.normalized * stepDist;
+        pathPosition += velStep;
         
         // Tangents are messed up at ends of a spline so clamp position to avoid that
         pathPosition.x = Mathf.Clamp(pathPosition.x, 0.01f, pathLength - 0.01f);

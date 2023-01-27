@@ -66,6 +66,7 @@ MonoBehaviour:
   movementContextController: {fileID: 415005736765802564}
   pathBody: {fileID: 7739586611912997664}
   movementProfile: {fileID: 11400000, guid: 9a0ddf34747b8594181c275bc3c6dafa, type: 2}
+  coyoteTimer: 0
 --- !u!1 &3603370869885075215
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +187,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 706909c612c012b4f9d8f3802d7527ad, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -260,7 +261,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0, y: 2, z: 1.0000002}
+  m_Size: {x: 1, y: 2, z: 1.0000002}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &6878882079763023217
 CapsuleCollider:
@@ -325,7 +326,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevelBlackboard: {fileID: 11400000, guid: 29c4bb2701e48dd45b23be6289e0f3e1, type: 2}
-  collider: {fileID: 6878882079763023217}
+  capsuleCollider: {fileID: 6878882079763023217}
+  boxCollider: {fileID: 7938998419550526842}
   gravityAcceleration: 15
   collisionResolutionOffset: 0.002
   sweepOffset: 0.25

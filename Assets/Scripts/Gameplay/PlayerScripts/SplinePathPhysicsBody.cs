@@ -21,6 +21,7 @@ public class SplinePathPhysicsBody : MonoBehaviour
     [SerializeField] private bool lockToPathOnEnable = true;
     
     // Fields
+    // TODO: Cache t instead of calculating all over the place
     [ColorHeader("Physics State")]
     public Vector2 pathVelocity;
     public Vector2 pathPosition;
@@ -170,7 +171,7 @@ public class SplinePathPhysicsBody : MonoBehaviour
     /// <param name="splineVec"></param>
     /// <param name="t"></param>
     /// <returns></returns>
-    private Vector3 PathToWorldVec(Vector2 splineVec, float t)
+    public Vector3 PathToWorldVec(Vector2 splineVec, float t)
     {
         Vector3 dir = SplinePath.EvaluateTangent(t);
         dir.y = 0;
@@ -179,13 +180,18 @@ public class SplinePathPhysicsBody : MonoBehaviour
         return dir + Vector3.up * splineVec.y;
     }
 
+    public Vector3 PathToWorldVec(Vector2 splineVec)
+    {
+        return PathToWorldVec(splineVec, pathPosition.x / pathLength);
+    }
+
     /// <summary>
     /// Project a direction vector onto the path
     /// </summary>
     /// <param name="worldVec"></param>
     /// <param name="t"></param>
     /// <returns></returns>
-    private Vector2 ProjectVecOntoPath(Vector3 worldVec, float t)
+    public Vector2 ProjectVecOntoPath(Vector3 worldVec, float t)
     {
         Vector3 horizontal = new Vector3(worldVec.x, 0, worldVec.z);
         Vector3 dir = SplinePath.EvaluateTangent(t);
@@ -193,6 +199,11 @@ public class SplinePathPhysicsBody : MonoBehaviour
         dir.Normalize();
         float x = Vector3.Dot(horizontal, dir);
         return new Vector2(x, worldVec.y);
+    }
+
+    public Vector2 ProjectVecOntoPath(Vector3 worldVec)
+    {
+        return ProjectVecOntoPath(worldVec, pathPosition.x / pathLength);
     }
 
     private void OnDrawGizmos()

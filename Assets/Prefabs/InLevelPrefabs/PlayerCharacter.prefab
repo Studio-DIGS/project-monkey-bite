@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Top level controller for player behavior
   blackboard: {fileID: 2565568054215846966}
+  currentStateName: 
 --- !u!114 &2565568054215846966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,13 +125,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: 
+  pathBody: {fileID: 7739586611912997664}
   raycastSource: {fileID: 4637538611561541445}
-  castRadius: 0.44
-  castDistance: 0.62
+  castRadius: 0.47
+  castDistance: 0.66
   groundedMask:
     serializedVersion: 2
     m_Bits: 128
-  groundedDotThreshhold: 0
+  groundedDotMin: 0.8
 --- !u!1 &4931211527954971011
 GameObject:
   m_ObjectHideFlags: 0

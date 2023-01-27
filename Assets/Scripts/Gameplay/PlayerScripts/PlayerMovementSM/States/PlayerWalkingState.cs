@@ -53,12 +53,14 @@ public class PlayerWalkingState : PlayerMovementState
 
     private void WalkMovement()
     {
-        playerSimplePathMovement.SimpleHorizontalMovement(
+        Vector2 groundNormal = movementContextController.SurfaceNormal;
+
+        playerSimplePathMovement.SimpleGroundedHorizontalMovement(
             inputState.horizontalAxis, 
             movementProfile.groundedWalkVel,
             movementProfile.groundedWalkAccel,
             movementProfile.groundedFriction,
             Time.fixedDeltaTime, 
-            Vector3.up);
+            groundNormal);
     }
 }

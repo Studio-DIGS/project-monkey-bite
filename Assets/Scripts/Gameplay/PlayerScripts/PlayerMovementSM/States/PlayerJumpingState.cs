@@ -13,12 +13,13 @@ public class PlayerJumpingState : PlayerMovementState
 
     public override State<PlayerBlackboard> GetSwitchState()
     {
-        if (movementContextController.IsGrounded && jumpTime > 0.15f)
+        bool minTimePassed = jumpTime > movementProfile.minJumpTime;
+        if (movementContextController.IsGrounded && minTimePassed)
         {
             return GetState<PlayerWalkingState>();
         }
 
-        if (jumpTime > movementProfile.maxJumpTime || !inputState.jumpHeld)
+        if (minTimePassed && (jumpTime > movementProfile.maxJumpTime || !inputState.jumpHeld))
         {
             return GetState<PlayerFallingState>();
         }
@@ -50,14 +51,16 @@ public class PlayerJumpingState : PlayerMovementState
         jumpTime += Time.fixedDeltaTime;
         
         pathBody.pathVelocity.y = movementProfile.jumpStrength;
-        
-        playerSimplePathMovement.SimpleHorizontalMovement(
-            inputState.horizontalAxis, 
-            movementProfile.airborneWalkVel,
-            movementProfile.airborneWalkAccel,
-            movementProfile.airborneFriction,
-            Time.fixedDeltaTime, 
-            Vector3.up);
+        if (!movementContextController.IsOnSurface)
+        {
+            playerSimplePathMovement.SimpleAirborneHorizontalMovement(
+                inputState.horizontalAxis, 
+                movementProfile.airborneWalkVel,
+                movementProfile.airborneWalkAccel,
+                movementProfile.airborneFriction,
+                Time.fixedDeltaTime, 
+                movementContextController.SurfaceNormal);
+        }
     }
 
  

@@ -10,34 +10,74 @@ public class SimplePathMovement : MonoBehaviour
     [SerializeField] private SplinePathPhysicsBody pathBody;
 
     
-    public void SimpleHorizontalMovement(
+    public void SimpleGroundedHorizontalMovement(
         float input, 
         float maxVel, 
         float moveAccel,
         float frictionAccel,
         float timeStep, 
-        Vector3 normal)
+        Vector2 normal)
     {
         if (input == 0)
         {
-            ApplyHorizontalFriction(frictionAccel, timeStep, normal);
+            var step = CalculateHorizontalFrictionStep(frictionAccel, timeStep, normal);
+            pathBody.pathVelocity += step;
         }
         else
         {
-            HorizontalMove(input, maxVel, moveAccel, timeStep, normal);
+            pathBody.pathVelocity += CalculateHorizontalStep(input, maxVel, moveAccel, timeStep, normal);
+        }
+        
+        // Clamp y vel to avoid bouncing down slopes or over ledges
+        float dot = Vector2.Dot(normal, pathBody.pathVelocity);
+        if (dot > 0f)
+        {
+            // Set velocity to the projection onto normal plane
+            Vector2 cVelNormalProject = Vector2.Dot(pathBody.pathVelocity, normal) * normal;
+            pathBody.pathVelocity -= cVelNormalProject;
         }
     }
-
-    public void HorizontalMove(float input, float maxVel, float accel, float timeStep, Vector3 normal)
+    
+    public void SimpleAirborneHorizontalMovement(
+        float input, 
+        float maxVel, 
+        float moveAccel,
+        float frictionAccel,
+        float timeStep, 
+        Vector2 normal)
     {
-        Vector2 cVel = pathBody.pathVelocity;
-        float targetVel = input * maxVel;
-        pathBody.pathVelocity.x = Mathf.MoveTowards(cVel.x, targetVel, accel * timeStep);
+        Vector2 step = Vector2.zero;
+        if (input == 0)
+        {
+            step = CalculateHorizontalFrictionStep(frictionAccel, timeStep, normal);
+        }
+        else
+        {
+            step = CalculateHorizontalStep(input, maxVel, moveAccel, timeStep, normal);
+        }
+        pathBody.pathVelocity += step;
     }
 
-    public void ApplyHorizontalFriction(float accel, float timeStep, Vector3 normal)
+    public Vector2 CalculateHorizontalStep(float input, float maxVel, float accel, float timeStep, Vector2 normal)
     {
+        // Current velocity projected onto normal plane
         Vector2 cVel = pathBody.pathVelocity;
-        pathBody.pathVelocity.x = Mathf.MoveTowards(cVel.x, 0f, accel * timeStep);
+        Vector2 cVelNormalProject = Vector2.Dot(cVel, normal) * normal;
+        Vector2 cHVel = cVel - cVelNormalProject;
+
+        // Target velocity on normal plane
+        Vector2 targetVel = Vector2.right * input;
+        Vector2 targetVelNormalProject = Vector2.Dot(targetVel, normal) * normal;
+        Vector2 targetHVel = (targetVel - targetVelNormalProject).normalized * maxVel;
+
+        // Step towards target velocity
+        Vector2 newVel = Vector2.MoveTowards(cHVel, targetHVel, accel * timeStep);
+        Vector2 step = newVel - cHVel;
+        return step;
+    }
+
+    public Vector2 CalculateHorizontalFrictionStep(float accel, float timeStep, Vector2 normal)
+    {
+        return CalculateHorizontalStep(0f, 1000f, accel, timeStep, normal);
     }
 }

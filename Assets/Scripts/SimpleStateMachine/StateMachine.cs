@@ -7,10 +7,13 @@ namespace SimpleStateMachine
 {
     public abstract class StateMachine<BlkBoard>
     {
+        // Fields
         protected State<BlkBoard> currentState;
         private Dictionary<System.Type, State<BlkBoard>> statePool = new();
-
         private BlkBoard blackboardInstance;
+
+        // Properties
+        public State<BlkBoard> CurrentState => currentState;
         public BlkBoard Blackboard => blackboardInstance;
 
         public StateMachine(BlkBoard blackboardInstance)

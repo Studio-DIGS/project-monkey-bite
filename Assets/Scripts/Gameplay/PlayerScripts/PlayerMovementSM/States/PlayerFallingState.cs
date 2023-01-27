@@ -36,13 +36,16 @@ public class PlayerFallingState : PlayerMovementState
 
     public override void FixedUpdateState()
     {
-        playerSimplePathMovement.SimpleHorizontalMovement(
-            inputState.horizontalAxis, 
-            movementProfile.airborneWalkVel,
-            movementProfile.airborneWalkAccel,
-            movementProfile.airborneFriction,
-            Time.fixedDeltaTime, 
-            Vector3.up);
+        if (!movementContextController.IsOnSurface)
+        {
+            playerSimplePathMovement.SimpleAirborneHorizontalMovement(
+                inputState.horizontalAxis,
+                movementProfile.airborneWalkVel,
+                movementProfile.airborneWalkAccel,
+                movementProfile.airborneFriction,
+                Time.fixedDeltaTime,
+                movementContextController.SurfaceNormal);
+        }
     }
 
     

@@ -19,6 +19,7 @@ MonoBehaviour:
   airborneWalkVel: 6
   airborneWalkAccel: 40
   airborneFriction: 15
-  jumpStrength: 5.5
-  jumpEndVel: 3
-  maxJumpTime: 0.3
+  jumpStrength: 6
+  jumpEndVel: 2.5
+  maxJumpTime: 0.25
+  minJumpTime: 0.05

@@ -47,10 +47,10 @@ public class PlayerIdleState : PlayerMovementState
 
     public override void FixedUpdateState()
     {
-        playerSimplePathMovement.ApplyHorizontalFriction(
+        pathBody.pathVelocity += playerSimplePathMovement.CalculateHorizontalFrictionStep(
             movementProfile.groundedFriction,
             Time.fixedDeltaTime, 
-            movementContextController.GroundedNormal);
+            movementContextController.SurfaceNormal);
 
         if(pathBody.pathVelocity.magnitude < 0.5f)
             pathBody.constrainVelocity = true;

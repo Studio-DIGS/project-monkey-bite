@@ -11,6 +11,9 @@ public class PlayerManager : DescriptionMonoBehavior
     // Fields
     private PlayerMovementStateMachine movementStateMachine;
 
+    [ColorHeader("Debug")]
+    [ReadOnly, SerializeField] private string currentStateName;
+
     void Start()
     {
         movementStateMachine = new PlayerMovementStateMachine(blackboard);
@@ -21,6 +24,7 @@ public class PlayerManager : DescriptionMonoBehavior
     {
         blackboard.UpdateInputState();
         movementStateMachine.Update();
+        currentStateName = movementStateMachine.CurrentState.GetType().ToString();
     }
 
     private void FixedUpdate()
@@ -28,27 +32,4 @@ public class PlayerManager : DescriptionMonoBehavior
         blackboard.movementContextController.UpdateContext();
         movementStateMachine.FixedUpdate();
     }
-
-    /*void StateJumping(bool checkTransitions = false) { 
-        // Transitions
-        float t = Time.time - _timeOfStateChange;
-        if (checkTransitions) {
-            if (t >= minJumpTime) {
-                if (controller.OnGround()) {
-                    ChangeState(STATE.Idle, true);
-                    return;
-                }
-                if ((!_inputData.jumpHeld || t >= maxJumpTime)) {
-                    ChangeState(STATE.Falling);
-                    StateFalling();
-                    return;
-                }
-            }
-        }
-        //Debug.Log("STATE = Jumping");
-
-        // Effects
-        _movement.x = _inputData.horizontalAxis * moveSpeed;
-        _movement.y = jumpStrength * (maxJumpTime - t);
-    }*/
 }

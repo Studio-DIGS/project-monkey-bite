@@ -19,4 +19,5 @@ public class MovementProfileSO : DescriptionBaseSO
     public float jumpStrength;
     public float jumpEndVel;
     public float maxJumpTime;
+    public float minJumpTime;
 }

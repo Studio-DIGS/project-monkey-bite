@@ -92,12 +92,14 @@ public class SplinePathPhysicsBody : MonoBehaviour
 
         if (collisionSweep)
         {
+            Vector3 collisionNormal = hit.normal.normalized;
             // "Snap" the body to the collision surface
             float hitDistance = hit.distance;
-            pathPosition = pathPosition + pathVelocity.normalized * (hitDistance - collisionResolutionOffset);
+            pathPosition += pathVelocity.normalized * hitDistance;
+            // Offset from surface normal to prevent clipping in the next frame
+            pathPosition += ProjectVecOntoPath(collisionNormal, t) * collisionResolutionOffset;
             
-            // Resolved velocity "slides" up the colliding surface
-            Vector3 collisionNormal = hit.normal;
+            // Resolved velocity "slides" up the colliding surfaceh
             worldVel = Vector3.ProjectOnPlane(worldVel, collisionNormal);
             pathVelocity = ProjectVecOntoPath(worldVel, t);
             

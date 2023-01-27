@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using SimpleStateMachine;
 using UnityEngine;
 
-public class PlayerFallingState : State<PlayerBlackboard>
+public class PlayerFallingState : PlayerMovementState
 {
     public PlayerFallingState(StateMachine<PlayerBlackboard> stateMachine) : base(stateMachine)
     {
@@ -11,26 +11,39 @@ public class PlayerFallingState : State<PlayerBlackboard>
 
     public override State<PlayerBlackboard> GetSwitchState()
     {
+        if (movementContextController.IsGrounded)
+        {
+            return GetState<PlayerWalkingState>();
+        }
+        
         return null;
     }
-
-    public override void UpdateState()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void FixedUpdateState()
-    {
-        throw new System.NotImplementedException();
-    }
-
+    
     public override void EnterState()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void ExitState()
     {
-        throw new System.NotImplementedException();
+        
     }
+
+    public override void UpdateState()
+    {
+        
+    }
+
+    public override void FixedUpdateState()
+    {
+        playerSimplePathMovement.SimpleHorizontalMovement(
+            inputState.horizontalAxis, 
+            movementProfile.airborneWalkVel,
+            movementProfile.airborneWalkAccel,
+            movementProfile.airborneFriction,
+            Time.fixedDeltaTime, 
+            Vector3.up);
+    }
+
+    
 }

@@ -5,9 +5,17 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "GameplayProfiles/Movement Profile", fileName = "MovementProfile")]
 public class MovementProfileSO : DescriptionBaseSO
 {
-    public float moveSpeed;
-    public float acceleration;
-    public float gravity;
+    [ColorHeader("Grounded Movement")]
+    public float groundedWalkVel;
+    public float groundedWalkAccel;
+    public float groundedFriction;
+
+    [ColorHeader("Airborne Movement")]
+    public float airborneWalkVel;
+    public float airborneWalkAccel;
+    public float airborneFriction;
+    
+    [ColorHeader("Jump")]
     public float jumpStrength;
     public float minJumpTime;
     public float maxJumpTime;

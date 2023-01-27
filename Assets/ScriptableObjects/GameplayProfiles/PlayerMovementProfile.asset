@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: PlayerMovementProfile
   m_EditorClassIdentifier: 
   description: 
-  moveSpeed: 10
-  acceleration: 5
-  gravity: -30
-  jumpStrength: 10
+  groundedWalkVel: 5
+  groundedWalkAccel: 60
+  groundedFriction: 40
+  airborneWalkVel: 6
+  airborneWalkAccel: 25
+  airborneFriction: 15
+  jumpStrength: 8
   minJumpTime: 0.2
   maxJumpTime: 1

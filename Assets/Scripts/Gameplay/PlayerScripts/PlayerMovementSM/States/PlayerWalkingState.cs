@@ -3,20 +3,42 @@ using System.Collections.Generic;
 using SimpleStateMachine;
 using UnityEngine;
 
-public class PlayerWalkingState : State<PlayerBlackboard>
+public class PlayerWalkingState : PlayerMovementState
 {
     public PlayerWalkingState(StateMachine<PlayerBlackboard> stateMachine) : base(stateMachine)
     {
+        blackboard.inputProvider.Events.OnJumpPressed += () => shouldJump = true;
     }
+    
+    private bool shouldJump;
 
     public override State<PlayerBlackboard> GetSwitchState()
     {
+        if (shouldJump)
+        {
+            return GetState<PlayerJumpingState>();
+        }
+        if (!movementContextController.IsGrounded)
+        {
+            return GetState<PlayerFallingState>();
+        }
         if (blackboard.inputState.horizontalAxis == 0)
         {
             return GetState<PlayerIdleState>();
         }
 
         return null;
+    }
+    
+    public override void EnterState()
+    {
+        shouldJump = false;
+        WalkMovement();
+    }
+
+    public override void ExitState()
+    {
+        
     }
 
     public override void UpdateState()
@@ -26,20 +48,17 @@ public class PlayerWalkingState : State<PlayerBlackboard>
 
     public override void FixedUpdateState()
     {
-        blackboard.pathController.Move(
-            blackboard.movementProfile.moveSpeed *
-            /*Time.fixedDeltaTime **/
-            blackboard.inputState.horizontalAxis *
-            Vector2.right);
+        WalkMovement();
     }
 
-    public override void EnterState()
+    private void WalkMovement()
     {
-        
-    }
-
-    public override void ExitState()
-    {
-        
+        playerSimplePathMovement.SimpleHorizontalMovement(
+            inputState.horizontalAxis, 
+            movementProfile.groundedWalkVel,
+            movementProfile.groundedWalkAccel,
+            movementProfile.groundedFriction,
+            Time.fixedDeltaTime, 
+            Vector3.up);
     }
 }

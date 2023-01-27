@@ -3,13 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBlackboard : MonoBehaviour
+public class PlayerBlackboard : DescriptionMonoBehavior
 {
-    [SerializeField] public MovementProfileSO movementProfile;
+    [ColorHeader("Dependencies")]
     [SerializeField] public PlayerUserInputProvider inputProvider;
-    [SerializeField] public PathController pathController;
-
+    [SerializeField] public SimplePathMovement playerSimplePathMovement;
+    [SerializeField] public MovementContextController movementContextController;
+    [SerializeField] public SplinePathPhysicsBody pathBody;
+    [SerializeField] public MovementProfileSO movementProfile;
+    
     [ReadOnly] public PlayerInputState inputState;
+    
+    // Player state
+    
+    
 
     public void UpdateInputState()
     {

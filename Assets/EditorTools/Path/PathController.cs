@@ -92,13 +92,13 @@ public class PathController : MonoBehaviour {
     }
 
     public Vector2 Move(Vector2 velocity) {
-        UpdateRaycastOrigins();
+        /*UpdateRaycastOrigins();
         if (velocity.x != 0)
             HorizontalCollision(ref velocity, velocity.x > 0);
          if (velocity.y != 0)
-            VerticalCollision(ref velocity, velocity.y > 0);
+            VerticalCollision(ref velocity, velocity.y > 0);*/
 
-         splineBody.velocity.x = velocity.x;
+         splineBody.pathVelocity.x = velocity.x;
 
          return velocity;
     }

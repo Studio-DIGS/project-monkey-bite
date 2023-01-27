@@ -3,34 +3,51 @@ using System.Collections.Generic;
 using SimpleStateMachine;
 using UnityEngine;
 
-public class PlayerJumpingState : State<PlayerBlackboard>
+public class PlayerJumpingState : PlayerMovementState
 {
     public PlayerJumpingState(StateMachine<PlayerBlackboard> stateMachine) : base(stateMachine)
     {
     }
 
+    private float jumpTime;
+
     public override State<PlayerBlackboard> GetSwitchState()
     {
-        throw new System.NotImplementedException();
-    }
+        if (movementContextController.IsGrounded)
+        {
+            return GetState<PlayerWalkingState>();
+        }
 
-    public override void UpdateState()
-    {
-        throw new System.NotImplementedException();
+        return GetState<PlayerFallingState>();
+        
+        return null;
     }
-
-    public override void FixedUpdateState()
-    {
-        throw new System.NotImplementedException();
-    }
-
+    
     public override void EnterState()
     {
-        throw new System.NotImplementedException();
+        pathBody.pathVelocity.y += movementProfile.jumpStrength;
     }
 
     public override void ExitState()
     {
-        throw new System.NotImplementedException();
+        
     }
+
+    public override void UpdateState()
+    {
+        
+    }
+
+    public override void FixedUpdateState()
+    {
+        playerSimplePathMovement.SimpleHorizontalMovement(
+            inputState.horizontalAxis, 
+            movementProfile.airborneWalkVel,
+            movementProfile.airborneWalkAccel,
+            movementProfile.airborneFriction,
+            Time.fixedDeltaTime, 
+            Vector3.up);
+    }
+
+ 
 }

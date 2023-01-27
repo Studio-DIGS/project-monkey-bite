@@ -17,8 +17,8 @@ MonoBehaviour:
   groundedWalkAccel: 60
   groundedFriction: 40
   airborneWalkVel: 6
-  airborneWalkAccel: 25
+  airborneWalkAccel: 40
   airborneFriction: 15
-  jumpStrength: 8
-  minJumpTime: 0.2
-  maxJumpTime: 1
+  jumpStrength: 5.5
+  jumpEndVel: 3
+  maxJumpTime: 0.3

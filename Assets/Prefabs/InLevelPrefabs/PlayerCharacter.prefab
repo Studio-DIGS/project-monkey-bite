@@ -329,6 +329,7 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 128
+  lockToPathOnEnable: 1
   pathVelocity: {x: 0, y: 0}
   pathPosition: {x: 0, y: 0}
 --- !u!1 &6838055150922091414

@@ -17,6 +17,6 @@ public class MovementProfileSO : DescriptionBaseSO
     
     [ColorHeader("Jump")]
     public float jumpStrength;
-    public float minJumpTime;
+    public float jumpEndVel;
     public float maxJumpTime;
 }

@@ -50,6 +50,10 @@ public class MovementContextController : DescriptionMonoBehavior
             isGrounded = true;
             groundedNormal = hitInfo.normal;
         }
+        else
+        {
+            isGrounded = false;
+        }
     }
 
     private void OnDrawGizmosSelected()

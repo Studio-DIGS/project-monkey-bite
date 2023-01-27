@@ -17,6 +17,7 @@ public class SplinePathPhysicsBody : MonoBehaviour
     [SerializeField] private float gravityAcceleration;
     [SerializeField] private float collisionResolutionOffset;
     [SerializeField] private LayerMask collisionMask;
+    [SerializeField] private bool lockToPathOnEnable = true;
     
     // Fields
     [ColorHeader("Physics State")]
@@ -34,23 +35,28 @@ public class SplinePathPhysicsBody : MonoBehaviour
 
     private void OnEnable()
     {
-        LockToPath();
-        pathPosition.y = transform.position.y;
         pathLength = SplinePath.CalculateLength();
+        if (lockToPathOnEnable)
+        {
+            LockToPath();
+        }
     }
-    
+
+
     /// <summary>
     /// Lock onto a path
     /// </summary>
     private void LockToPath()
     {
-        float dist = SplineUtility.GetNearestPoint(
+        var position = transform.position;
+        SplineUtility.GetNearestPoint(
             SplinePath.Spline,
-            transform.position, 
+            position, 
             out float3 nearestPos, 
             out float t);
 
-        pathPosition.x = dist;
+        pathPosition.x = t * pathLength;
+        pathPosition.y = position.y;
     }
 
     private void FixedUpdate()
@@ -96,6 +102,7 @@ public class SplinePathPhysicsBody : MonoBehaviour
             // "Snap" the body to the collision surface
             float hitDistance = hit.distance;
             pathPosition += pathVelocity.normalized * hitDistance;
+            
             // Offset from surface normal to prevent clipping in the next frame
             pathPosition += ProjectVecOntoPath(collisionNormal, t) * collisionResolutionOffset;
             

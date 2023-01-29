@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5788172019393737796
 MonoBehaviour:
@@ -125,13 +125,13 @@ MonoBehaviour:
         y: 0
         z: -16.522112
       TangentIn:
-        x: -0
-        y: -0
-        z: -3.2184
+        x: 0
+        y: 0
+        z: 0
       TangentOut:
         x: 0
         y: 0
-        z: 3.2184
+        z: 0
       Rotation:
         value:
           x: 0
@@ -143,13 +143,13 @@ MonoBehaviour:
         y: 0
         z: -16.522112
       TangentIn:
-        x: -0
-        y: -0
-        z: -2.812463
+        x: 0
+        y: 0
+        z: 0
       TangentOut:
         x: 0
         y: 0
-        z: 2.812463
+        z: 0
       Rotation:
         value:
           x: 0.00877357
@@ -158,7 +158,7 @@ MonoBehaviour:
           w: 0.72897834
     - Position:
         x: 29.208487
-        y: -0.37
+        y: 0
         z: -12.80938
       TangentIn:
         x: -0
@@ -176,7 +176,7 @@ MonoBehaviour:
           w: 0.99930215
     - Position:
         x: 29.208487
-        y: -0.37
+        y: 0
         z: -6.5735726
       TangentIn:
         x: -0
@@ -194,7 +194,7 @@ MonoBehaviour:
           w: 1
     - Position:
         x: 32.667564
-        y: -0.37
+        y: 0
         z: -2.8914502
       TangentIn:
         x: -0
@@ -212,7 +212,7 @@ MonoBehaviour:
           w: 0.6980175
     - Position:
         x: 45.237564
-        y: -0.37
+        y: 0
         z: -2.7514503
       TangentIn:
         x: -0

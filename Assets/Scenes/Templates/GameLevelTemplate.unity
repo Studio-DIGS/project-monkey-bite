@@ -2202,54 +2202,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelPath
       objectReference: {fileID: 0}
-    - target: {fileID: 5788172019393737796, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
-      propertyPath: m_Spline.m_Knots.Array.data[6].Position.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5788172019393737796, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
-      propertyPath: m_Spline.m_Knots.Array.data[7].Position.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5788172019393737796, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
-      propertyPath: m_Spline.m_Knots.Array.data[8].Position.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5788172019393737796, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
-      propertyPath: m_Spline.m_Knots.Array.data[9].Position.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5788172019393737796, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
-      propertyPath: m_Spline.m_Knots.Array.data[4].TangentIn.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5788172019393737796, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
-      propertyPath: m_Spline.m_Knots.Array.data[4].TangentIn.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5788172019393737796, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
-      propertyPath: m_Spline.m_Knots.Array.data[4].TangentIn.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5788172019393737796, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
-      propertyPath: m_Spline.m_Knots.Array.data[5].TangentIn.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5788172019393737796, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
-      propertyPath: m_Spline.m_Knots.Array.data[5].TangentIn.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5788172019393737796, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
-      propertyPath: m_Spline.m_Knots.Array.data[5].TangentIn.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5788172019393737796, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
-      propertyPath: m_Spline.m_Knots.Array.data[4].TangentOut.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5788172019393737796, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
-      propertyPath: m_Spline.m_Knots.Array.data[5].TangentOut.z
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}

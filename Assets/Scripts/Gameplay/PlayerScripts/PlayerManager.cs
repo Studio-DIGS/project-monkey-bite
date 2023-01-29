@@ -24,6 +24,9 @@ public class PlayerManager : DescriptionMonoBehavior
     {
         blackboard.UpdateInputState();
         movementStateMachine.Update();
+        blackboard.playerRotator.AlignDirection(blackboard.inputState.horizontalAxis);
+        
+        // Debug
         currentStateName = movementStateMachine.CurrentState.GetType().ToString();
     }
 

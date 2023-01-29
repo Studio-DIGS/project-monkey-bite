@@ -9,7 +9,7 @@ public class SimplePathMovement : MonoBehaviour
     [ColorHeader("Dependencies")]
     [SerializeField] private SplinePathPhysicsBody pathBody;
 
-    
+
     public void SimpleGroundedHorizontalMovement(
         float input, 
         float maxVel, 

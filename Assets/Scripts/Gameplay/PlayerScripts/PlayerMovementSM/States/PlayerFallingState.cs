@@ -10,21 +10,14 @@ public class PlayerFallingState : PlayerMovementState
         
     }
 
-    public override State<PlayerBlackboard> GetSwitchState()
-    {
-        if (movementContextController.IsGrounded)
-        {
-            return GetState<PlayerWalkingState>();
-        }
 
-        if (blackboard.coyoteTimer < movementProfile.coyoteTime && inputState.jumpPressed)
-        {
-            return GetState<PlayerJumpingState>();
-        }
-        
-        return null;
+    public override bool TryTransition(ref State<PlayerBlackboard> c)
+    {
+        var transitions = GetTransitionTable<PlayerMovementTransitions>();
+        return transitions.OnGroundedToWalk(ref c) || 
+               transitions.OnInputToCoyoteTimeJump(ref c);
     }
-    
+
     public override void EnterState()
     {
         

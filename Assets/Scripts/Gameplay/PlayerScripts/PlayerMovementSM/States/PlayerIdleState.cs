@@ -10,24 +10,11 @@ public class PlayerIdleState : PlayerMovementState
         
     }
 
-    public override State<PlayerBlackboard> GetSwitchState()
+    public override bool TryTransition(ref State<PlayerBlackboard> c)
     {
-        if (inputState.jumpPressed)
-        {
-            return GetState<PlayerJumpingState>();
-        }
-        if (!movementContextController.IsGrounded)
-        {
-            return GetState<PlayerFallingState>();
-        }
-        if (blackboard.inputState.horizontalAxis != 0)
-        {
-            return GetState<PlayerWalkingState>();
-        }
-
-        return null;
+        return GetTransitionTable<PlayerMovementTransitions>().DefaultGroundTransitions(ref c);
     }
-    
+
     public override void EnterState()
     {
         blackboard.coyoteTimer = 0f;

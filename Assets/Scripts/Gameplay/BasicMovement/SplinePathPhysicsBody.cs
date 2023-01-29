@@ -213,6 +213,7 @@ public class SplinePathPhysicsBody : MonoBehaviour
 
     public Vector3 PathToWorldVec(Vector2 splineVec)
     {
+        if (!SplinePath) return Vector3.zero;
         return PathToWorldVec(splineVec, pathPosition.x / pathLength);
     }
 
@@ -235,6 +236,18 @@ public class SplinePathPhysicsBody : MonoBehaviour
     public Vector2 ProjectVecOntoPath(Vector3 worldVec)
     {
         return ProjectVecOntoPath(worldVec, pathPosition.x / pathLength);
+    }
+
+    /// <summary>
+    /// Get the spline tangent at this body's current position
+    /// </summary>
+    /// <returns></returns>
+    public Vector3 GetCurrentTangent()
+    {
+        float t = pathPosition.x / pathLength;
+        Vector3 tangent = SplinePath.EvaluateTangent(t);
+        tangent.y = 0;
+        return tangent.normalized;
     }
 
     private void OnDrawGizmos()

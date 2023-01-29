@@ -11,6 +11,7 @@ public class PlayerBlackboard : DescriptionMonoBehavior
     [SerializeField] public MovementContextController movementContextController;
     [SerializeField] public SplinePathPhysicsBody pathBody;
     [SerializeField] public MovementProfileSO movementProfile;
+    [SerializeField] public CharacterRotator playerRotator;
     
     [ReadOnly] public PlayerInputState inputState;
     

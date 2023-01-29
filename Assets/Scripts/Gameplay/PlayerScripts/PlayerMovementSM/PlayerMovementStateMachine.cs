@@ -9,11 +9,16 @@ public class PlayerMovementStateMachine : StateMachine<PlayerBlackboard>
     {
     }
 
-    protected override void InitializePool()
+    protected override void InitializeStatePool()
     {
-        AddToPool(new PlayerWalkingState(this));
-        AddToPool(new PlayerIdleState(this));
-        AddToPool(new PlayerJumpingState(this));
-        AddToPool(new PlayerFallingState(this));
+        AddToStatePool(new PlayerWalkingState(this));
+        AddToStatePool(new PlayerIdleState(this));
+        AddToStatePool(new PlayerJumpingState(this));
+        AddToStatePool(new PlayerFallingState(this));
+    }
+
+    protected override void InitializeTransitionPool()
+    {
+        AddToTransitionPool(new PlayerMovementTransitions(this));
     }
 }

@@ -10,24 +10,12 @@ public class PlayerWalkingState : PlayerMovementState
         
     }
 
-    public override State<PlayerBlackboard> GetSwitchState()
-    {
-        if (inputState.jumpPressed)
-        {
-            return GetState<PlayerJumpingState>();
-        }
-        if (!movementContextController.IsGrounded)
-        {
-            return GetState<PlayerFallingState>();
-        }
-        if (blackboard.inputState.horizontalAxis == 0)
-        {
-            return GetState<PlayerIdleState>();
-        }
 
-        return null;
+    public override bool TryTransition(ref State<PlayerBlackboard> c)
+    {
+        return GetTransitionTable<PlayerMovementTransitions>().DefaultGroundTransitions(ref c);
     }
-    
+
     public override void EnterState()
     {
         WalkMovement();

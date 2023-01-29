@@ -23,4 +23,4 @@ MonoBehaviour:
   jumpEndVel: 3
   coyoteTime: 0.05
   maxJumpTime: 0.25
-  minJumpTime: 0.05
+  minJumpTime: 0.1

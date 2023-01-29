@@ -8,28 +8,30 @@ public class PlayerJumpingState : PlayerMovementState
     public PlayerJumpingState(StateMachine<PlayerBlackboard> stateMachine) : base(stateMachine)
     {
     }
-
-    private float jumpTime;
-
-    public override State<PlayerBlackboard> GetSwitchState()
-    {
-        bool minTimePassed = jumpTime > movementProfile.minJumpTime;
-        if (movementContextController.IsGrounded && minTimePassed)
-        {
-            return GetState<PlayerWalkingState>();
-        }
-
-        if (minTimePassed && (jumpTime > movementProfile.maxJumpTime || !inputState.jumpHeld))
-        {
-            return GetState<PlayerFallingState>();
-        }
-
-        return null;
-    }
     
+    public override bool TryTransition(ref State<PlayerBlackboard> c)
+    {
+        
+        float jumpTime = Time.time - stateEntryTime;
+        bool minTimePassed = jumpTime > movementProfile.minJumpTime;
+        bool maxTimePassed = jumpTime > movementProfile.maxJumpTime;
+        
+        var transitions = GetTransitionTable<PlayerMovementTransitions>();
+        if (minTimePassed && transitions.OnGroundedToWalk(ref c))
+        {
+            return true;
+        }
+        if (minTimePassed && (maxTimePassed || !inputState.jumpHeld))
+        {
+            c = GetState<PlayerFallingState>();
+            return true;
+        }
+    
+        return false;
+    }
+
     public override void EnterState()
     {
-        jumpTime = 0f;
         pathBody.pathVelocity.y = movementProfile.jumpStrength;
         pathBody.SetGravityEnabled(false);
         blackboard.coyoteTimer = float.MaxValue;
@@ -52,8 +54,6 @@ public class PlayerJumpingState : PlayerMovementState
 
     public override void FixedUpdateState()
     {
-        jumpTime += Time.fixedDeltaTime;
-        
         pathBody.pathVelocity.y = movementProfile.jumpStrength;
         if (!movementContextController.IsOnSurface)
         {

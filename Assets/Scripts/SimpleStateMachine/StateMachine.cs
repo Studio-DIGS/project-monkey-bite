@@ -9,8 +9,10 @@ namespace SimpleStateMachine
     {
         // Fields
         protected State<BlkBoard> currentState;
-        private Dictionary<System.Type, State<BlkBoard>> statePool = new();
         private BlkBoard blackboardInstance;
+        
+        private Dictionary<System.Type, State<BlkBoard>> statePool = new();
+        private Dictionary<System.Type, TransitionTable<BlkBoard>> transitionTablePool = new();
 
         // Properties
         public State<BlkBoard> CurrentState => currentState;
@@ -19,28 +21,42 @@ namespace SimpleStateMachine
         public StateMachine(BlkBoard blackboardInstance)
         {
             this.blackboardInstance = blackboardInstance;
-            InitializePool();
+            InitializeStatePool();
+            InitializeTransitionPool();
         }
 
-        protected abstract void InitializePool();
+        protected abstract void InitializeStatePool();
 
-        public void AddToPool<T>(T instance) where T : State<BlkBoard>
+        public void AddToStatePool<T>(T instance) where T : State<BlkBoard>
         {
             statePool.TryAdd(typeof(T), instance);
+        }
+        
+        protected abstract void InitializeTransitionPool();
+
+        /// <summary>
+        /// Add a new transition table to the pool
+        /// </summary>
+        /// <param name="instance"></param>
+        /// <typeparam name="T"></typeparam>
+        public void AddToTransitionPool<T>(T instance) where T : TransitionTable<BlkBoard>
+        {
+            transitionTablePool.TryAdd(typeof(T), instance);
         }
 
         public void InitializeEntryState<EntryState>() where EntryState : State<BlkBoard>
         {
-            currentState = GetPooledState<EntryState>();
+            currentState = GetState<EntryState>();
+            currentState.stateEntryTime = Time.time;
             currentState.EnterState();
         }
 
         public virtual void Update()
         {
-            var res = currentState.GetSwitchState();
-            if (res != null)
+            State<BlkBoard> currentTransition = null;
+            if (currentState.TryTransition(ref currentTransition))
             {
-                SwitchStates(res);
+                SwitchStates(currentTransition);
             }
             currentState.UpdateState();
         }
@@ -55,15 +71,39 @@ namespace SimpleStateMachine
             if (currentState == state || state == null) return;
             currentState.ExitState();
             currentState = state;
+            currentState.stateEntryTime = Time.time;
             currentState.EnterState();
         }
 
-        public State<BlkBoard> GetPooledState<T>() where T : State<BlkBoard>
+        /// <summary>
+        /// Get the state instance of some type from this state machine's table pool
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public T GetState<T>() where T : State<BlkBoard>
         {
             var type = typeof(T);
             if (statePool.TryGetValue(type, out State<BlkBoard> state))
             {
-                return state;
+                return (T)state;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+        /// <summary>
+        /// Get the transition table of some type from this state machine's table pool
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public T GetTransitionTable<T>() where T : TransitionTable<BlkBoard>
+        {
+            var type = typeof(T);
+            if (transitionTablePool.TryGetValue(type, out TransitionTable<BlkBoard> transitionTable))
+            {
+                return (T)transitionTable;
             }
             else
             {

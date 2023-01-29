@@ -7,6 +7,8 @@ namespace SimpleStateMachine
     public abstract class State<BlkBoard>
     {
         protected StateMachine<BlkBoard> context;
+        public float stateEntryTime;
+        
         protected BlkBoard blackboard => context.Blackboard;
         
         public State(StateMachine<BlkBoard> stateMachine)
@@ -14,7 +16,7 @@ namespace SimpleStateMachine
             context = stateMachine;
         }
         
-        public abstract State<BlkBoard> GetSwitchState();
+        public abstract bool TryTransition(ref State<BlkBoard> c);
                 
         public abstract void EnterState();
         
@@ -24,9 +26,14 @@ namespace SimpleStateMachine
         
         public abstract void FixedUpdateState();
 
-        protected State<BlkBoard> GetState<T>() where T : State<BlkBoard>
+        protected T GetState<T>() where T : State<BlkBoard>
         {
-            return context.GetPooledState<T>();
+            return context.GetState<T>();
+        }
+
+        protected T GetTransitionTable<T>() where T : TransitionTable<BlkBoard>
+        {
+            return context.GetTransitionTable<T>();
         }
     }
 }

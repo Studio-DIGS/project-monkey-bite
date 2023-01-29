@@ -66,6 +66,15 @@ namespace SimpleStateMachine
             currentState.FixedUpdateState();
         }
 
+        /// <summary>
+        /// Force a transition outside of the standard frame-based transition checks
+        /// </summary>
+        /// <param name="state"></param>
+        public void ForceTransition(State<BlkBoard> state)
+        {
+            SwitchStates(state);
+        }
+
         private void SwitchStates(State<BlkBoard> state)
         {
             if (currentState == state || state == null) return;

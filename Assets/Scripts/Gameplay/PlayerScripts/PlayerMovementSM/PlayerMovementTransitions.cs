@@ -8,22 +8,47 @@ public class PlayerMovementTransitions : TransitionTable<PlayerBlackboard>
     }
 
     #region GroundedTransitions
+    
+    /// <summary>
+    /// Default transitions for grounded states
+    /// </summary>
+    /// <param name="c"></param>
+    /// <returns></returns>
     public bool DefaultGroundTransitions(ref State<PlayerBlackboard> c)
     {
-        return OnInputToJump(ref c) || OnAirborneToFalling(ref c);
-    }
-    
-    private bool OnInputToJump(ref State<PlayerBlackboard> c)
-    {
-        if (blackboard.inputState.jumpPressed)
-        {
-            c = GetState<PlayerJumpingState>();
-            return true;
-        }
-        return false;
+        return WhenAirborneToFalling(ref c);
     }
 
-    private bool OnAirborneToFalling(ref State<PlayerBlackboard> c)
+    /// <summary>
+    /// Add a force transition to Jump when jump input is pressed
+    /// </summary>
+    public void AddOnJumpPressedToJump()
+    {
+        blackboard.inputProvider.Events.OnJumpPressed += OnJumpPressedToJump;
+    }
+
+    /// <summary>
+    /// Remove a force transition to Jump when jump input is pressed
+    /// </summary>
+    public void RemoveOnJumpPressedToJump()
+    {
+        blackboard.inputProvider.Events.OnJumpPressed -= OnJumpPressedToJump;
+    }
+    
+    private void OnJumpPressedToJump()
+    {
+        bool grounded = blackboard.movementContextController.IsGrounded;
+        bool coyoteTime = blackboard.coyoteTimer < blackboard.movementProfile.coyoteTime;
+        if(grounded || coyoteTime)
+            context.ForceTransition(GetState<PlayerJumpingState>());
+    }
+
+    /// <summary>
+    /// Transition to Falling State if not grounded
+    /// </summary>
+    /// <param name="c"></param>
+    /// <returns></returns>
+    public bool WhenAirborneToFalling(ref State<PlayerBlackboard> c)
     {
         if (!blackboard.movementContextController.IsGrounded)
         {
@@ -36,7 +61,12 @@ public class PlayerMovementTransitions : TransitionTable<PlayerBlackboard>
     
     #region AirborneTransitions
     
-    public bool OnGroundedToWalk(ref State<PlayerBlackboard> c)
+    /// <summary>
+    /// Transition to Walk State if Grounded
+    /// </summary>
+    /// <param name="c"></param>
+    /// <returns></returns>
+    public bool WhenGroundedToWalk(ref State<PlayerBlackboard> c)
     {
         if (blackboard.movementContextController.IsGrounded)
         {
@@ -45,16 +75,6 @@ public class PlayerMovementTransitions : TransitionTable<PlayerBlackboard>
         }
         return false;
     }
-    
-    public bool OnInputToCoyoteTimeJump(ref State<PlayerBlackboard> c)
-    {
-        if (blackboard.coyoteTimer < blackboard.movementProfile.coyoteTime && blackboard.inputState.jumpPressed)
-        {
-            c = GetState<PlayerJumpingState>();
-            return true;
-        }
-        return false;
-    }
-    
+
     #endregion
 }

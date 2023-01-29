@@ -2,14 +2,18 @@ using UnityEngine;
 
 namespace SimpleStateMachine
 {
+    /// <summary>
+    /// Instanced transition table for reusable transition logic
+    /// </summary>
+    /// <typeparam name="BlkBoard"></typeparam>
     public class TransitionTable<BlkBoard>
     {
-        public delegate bool Transition(ref State<BlkBoard> current);
+        //public delegate bool Transition(ref State<BlkBoard> current);
         
         protected StateMachine<BlkBoard> context;
         protected BlkBoard blackboard => context.Blackboard;
 
-        protected State<BlkBoard> GetState<T>() where T : State<BlkBoard>
+        protected T GetState<T>() where T : State<BlkBoard>
         {
             return context.GetState<T>();
         }

@@ -7,6 +7,7 @@ public class PlayerJumpingState : PlayerMovementState
 {
     public PlayerJumpingState(StateMachine<PlayerBlackboard> stateMachine) : base(stateMachine)
     {
+        
     }
     
     public override bool TryTransition(ref State<PlayerBlackboard> c)
@@ -16,8 +17,7 @@ public class PlayerJumpingState : PlayerMovementState
         bool minTimePassed = jumpTime > movementProfile.minJumpTime;
         bool maxTimePassed = jumpTime > movementProfile.maxJumpTime;
         
-        var transitions = GetTransitionTable<PlayerMovementTransitions>();
-        if (minTimePassed && transitions.OnGroundedToWalk(ref c))
+        if (minTimePassed && transitions.WhenGroundedToWalk(ref c))
         {
             return true;
         }

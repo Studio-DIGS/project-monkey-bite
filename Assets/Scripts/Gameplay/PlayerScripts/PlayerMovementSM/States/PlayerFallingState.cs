@@ -13,19 +13,17 @@ public class PlayerFallingState : PlayerMovementState
 
     public override bool TryTransition(ref State<PlayerBlackboard> c)
     {
-        var transitions = GetTransitionTable<PlayerMovementTransitions>();
-        return transitions.OnGroundedToWalk(ref c) || 
-               transitions.OnInputToCoyoteTimeJump(ref c);
+        return transitions.WhenGroundedToWalk(ref c);
     }
 
     public override void EnterState()
     {
-        
+        transitions.AddOnJumpPressedToJump();
     }
 
     public override void ExitState()
     {
-        
+        transitions.RemoveOnJumpPressedToJump();
     }
 
     public override void UpdateState()

@@ -12,17 +12,19 @@ public class PlayerIdleState : PlayerMovementState
 
     public override bool TryTransition(ref State<PlayerBlackboard> c)
     {
-        return GetTransitionTable<PlayerMovementTransitions>().DefaultGroundTransitions(ref c);
+        return transitions.WhenAirborneToFalling(ref c);
     }
 
     public override void EnterState()
     {
         blackboard.coyoteTimer = 0f;
+        transitions.AddOnJumpPressedToJump();
     }
 
     public override void ExitState()
     {
         pathBody.constrainVelocity = false;
+        transitions.RemoveOnJumpPressedToJump();
     }
 
     public override void UpdateState()

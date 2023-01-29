@@ -13,5 +13,6 @@ public abstract class PlayerMovementState : State<PlayerBlackboard>
     protected SplinePathPhysicsBody pathBody => blackboard.pathBody;
     protected MovementProfileSO movementProfile => blackboard.movementProfile;
     protected PlayerInputState inputState => blackboard.inputState;
-    
+    protected PlayerMovementTransitions transitions => GetTransitionTable<PlayerMovementTransitions>();
+
 }

@@ -13,18 +13,19 @@ public class PlayerWalkingState : PlayerMovementState
 
     public override bool TryTransition(ref State<PlayerBlackboard> c)
     {
-        return GetTransitionTable<PlayerMovementTransitions>().DefaultGroundTransitions(ref c);
+        return transitions.DefaultGroundTransitions(ref c);
     }
 
     public override void EnterState()
     {
         WalkMovement();
         blackboard.coyoteTimer = 0f;
+        transitions.AddOnJumpPressedToJump();
     }
 
     public override void ExitState()
     {
-        
+        transitions.RemoveOnJumpPressedToJump();
     }
 
     public override void UpdateState()

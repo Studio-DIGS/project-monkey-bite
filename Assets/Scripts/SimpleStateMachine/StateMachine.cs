@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
 
 namespace SimpleStateMachine
@@ -27,9 +29,51 @@ namespace SimpleStateMachine
 
         protected abstract void InitializeStatePool();
 
+        /// <summary>
+        /// Add to the state pool, using the parameter's explicit type as key
+        /// </summary>
+        /// <param name="instance"></param>
+        /// <typeparam name="T"></typeparam>
         public void AddToStatePool<T>(T instance) where T : State<BlkBoard>
         {
             statePool.TryAdd(typeof(T), instance);
+        }
+        
+        /// <summary>
+        ///  Add to the state pool, using the parameter's instance type as key
+        /// </summary>
+        /// <param name="instance"></param>
+        public void AddToStatePoolDynamic(State<BlkBoard> instance) 
+        {
+            statePool.TryAdd(instance.GetType(), instance);
+        }
+        
+        /// <summary>
+        /// Takes a parent state type and finds derived state types in the same assembly.
+        /// Intended to work with <see cref="AddTypesToStatePool"/>
+        /// </summary>
+        /// <param name="constructorArgs"></param>
+        /// <typeparam name="ParentType"></typeparam>
+        protected static Type[] FindDerivedStateTypes<ParentType>(params object[] constructorArgs) where ParentType : State<BlkBoard>
+        {
+            var parentType = typeof(ParentType);
+            return Assembly.GetAssembly(parentType).GetTypes()
+                .Where(type => type.IsClass && !type.IsAbstract && type.IsSubclassOf(parentType))
+                .ToArray();
+        }
+        
+        /// <summary>
+        /// Instantiates objects from a type array and adds to state pool. Must be matching State types.
+        /// Intended to be used with <see cref="FindDerivedStateTypes{ParentType}"/>
+        /// </summary>
+        /// <param name="types"></param>
+        /// <param name="constructorArgs"></param>
+        protected void AddTypesToStatePool(Type[] types, params object[] constructorArgs) 
+        {
+            foreach (Type type in types)
+            {
+                AddToStatePoolDynamic((State<BlkBoard>)Activator.CreateInstance(type, constructorArgs));
+            }
         }
         
         protected abstract void InitializeTransitionPool();

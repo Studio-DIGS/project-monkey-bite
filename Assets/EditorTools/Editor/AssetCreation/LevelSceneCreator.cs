@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using MushiEditorTools.AssetCreationUtils;
+using MushiCore.Editor;
 using UnityEditor;
 using UnityEditor.ProjectWindowCallback;
 using UnityEngine;
@@ -17,10 +17,11 @@ public static class LevelSceneCreator
     {
         // Create the template scene
         string templatePath = $"{resourcePath}/GameLevelTemplate.unity";
-        var onCreated = AssetTemplateUtility.CreateAssetFileFromTemplate(
+        AssetTemplateUtility.CreateNamedAssetFromTemplate(
             templatePath,
             "NewGameLevel.unity",
-                        OnCreateScene
+            onAssetCreated: OnCreateScene,
+            creationIcon:"d_SceneAsset Icon"
             );
 
         void OnCreateScene(string sceneFilePath)

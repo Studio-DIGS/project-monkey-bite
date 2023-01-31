@@ -18,7 +18,12 @@ MonoBehaviour:
   m_GUID: d26387988533bf84db9ac203096779c7
   m_SerializeEntries:
   - m_GUID: 09fce0c9c41e1fa4aa9b468a80b9cbd7
-    m_Address: Assets/Scenes/GameplayLevels/Test
+    m_Address: Assets/Scenes/GameplayLevels/Test/TestBiome1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8bce8f60aa96834791bddcb62f2b57e
+    m_Address: Assets/Scenes/GameplayLevels/Test/KeyLevels
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

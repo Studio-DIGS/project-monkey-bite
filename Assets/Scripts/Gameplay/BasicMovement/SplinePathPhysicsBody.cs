@@ -17,7 +17,6 @@ public class SplinePathPhysicsBody : MonoBehaviour
     [ColorHeader("Config", ColorHeaderColor.Config)]
     [SerializeField] private float gravityAcceleration;
     [SerializeField] private float collisionResolutionOffset;
-    [SerializeField] private float sweepOffset;
     [SerializeField] private LayerMask collisionMask;
     [SerializeField] private bool lockToPathOnEnable = true;
     
@@ -87,7 +86,7 @@ public class SplinePathPhysicsBody : MonoBehaviour
 
     private void ResolveCollisions(ref float stepDist, int depth = 0)
     {
-        if (depth > 10)
+        if (depth > 5)
             return;
         
         // Update position so we get correct collider bounds when sweeping
@@ -98,19 +97,19 @@ public class SplinePathPhysicsBody : MonoBehaviour
         Vector3 worldVel = PathToWorldVec(pathVelocity, t);
         Vector3 sweepDir = worldVel.normalized;
 
-        bool collisionSweep = CapsuleSweep(capsuleCollider, sweepDir, stepDist, out RaycastHit hit);
+        bool collisionSweep = PerformSweep(sweepDir, stepDist, out RaycastHit hit);
 
         if (collisionSweep)
         {
             Vector3 collisionNormal = hit.normal.normalized;
             
             // "Snap" the body to the collision surface
-            float hitDistance = hit.distance - sweepOffset;
+            float hitDistance = hit.distance;
             Vector2 snapVec = pathVelocity.normalized * hitDistance;
             pathPosition += snapVec;
             
             // Snapping is simulating velocity for this step, so reduce the step dist to match
-            stepDist -= Mathf.Max(0,hitDistance + collisionResolutionOffset);
+            stepDist -= hitDistance + collisionResolutionOffset;
 
             // Offset from surface normal to prevent clipping in the next frame
             pathPosition += ProjectVecOntoPath(collisionNormal, t).normalized * collisionResolutionOffset;
@@ -120,59 +119,46 @@ public class SplinePathPhysicsBody : MonoBehaviour
             pathVelocity = ProjectVecOntoPath(worldVel, t);
             
             // Gizmos debug
-            collisionResolutionVel = worldVel;
-            
+            collisionResolutionVel = ProjectVecOntoPath(collisionNormal, t).normalized;
+            Debug.Log(collisionResolutionVel);
             // Recursively resolve any remaining collisions
             ResolveCollisions(ref stepDist, depth + 1);
         }
     }
 
-    private bool CapsuleSweep(CapsuleCollider collider, Vector3 sweepDir, float stepDist, out RaycastHit info)
+    private bool PerformSweep(Vector3 sweepDir, float stepDist, out RaycastHit info)
+    {
+        var hits = CapsuleSweep(sweepDir, stepDist);
+
+        float minDist = float.MaxValue;
+        info = new RaycastHit();
+
+        foreach (var hit in hits)
+        {
+            if (hit.distance < minDist)
+            {
+                minDist = hit.distance;
+                info = hit;
+            }
+        }
+        return hits.Length > 0;
+    }
+
+    private RaycastHit[] CapsuleSweep(Vector3 sweepDir, float stepDist)
     {
         // Get bounds of the collider
-        Vector3 center = collider.bounds.center;
-        Vector3 bounds = collider.transform.up * (collider.height/2f - collider.radius);
+        Vector3 center = capsuleCollider.bounds.center;
+        float radius = capsuleCollider.radius;
+        Vector3 bounds = capsuleCollider.transform.up * (capsuleCollider.height/2f - radius);
 
-        Vector3 sweepEnd = center + sweepDir * stepDist;
-        Debug.DrawLine(center + bounds, center - bounds, Color.magenta);
-        
-        // Offset the sweep backwards to avoid starting the cast inside any obstacles
-        center -= sweepDir * sweepOffset;
-        
         // Perform sweep
-        bool collisionSweep = Physics.CapsuleCast(
+        return Physics.CapsuleCastAll(
             center + bounds, 
             center - bounds, 
-            collider.radius, 
+            radius, 
             sweepDir,
-            out info,
-            stepDist + sweepOffset, 
+            stepDist,
             collisionMask);
-
-        return collisionSweep;
-    }
-    
-    private bool BoxSweep(BoxCollider collider, Vector3 sweepDir, float stepDist, out RaycastHit info)
-    {
-        // Get bounds of the collider
-        Vector3 center = boxCollider.bounds.center;
-
-        Vector3 extents = boxCollider.bounds.extents;
-
-        // Offset the sweep backwards to avoid starting the cast inside any obstacles
-        center -= sweepDir * sweepOffset;
-        
-        // Perform sweep
-        bool collisionSweep = Physics.BoxCast(
-            center,
-            extents,
-            sweepDir,
-            out info,
-            boxCollider.transform.rotation, 
-            stepDist + sweepOffset,
-            collisionMask);
-
-        return collisionSweep;
     }
 
     private void ApplyVelocity(float stepDist)

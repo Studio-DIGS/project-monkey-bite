@@ -14,10 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Test group of levels for simple generation strategy
   levelSceneGroup:
-  - {fileID: 11400000, guid: 3791f523ac8ce91438fb330a5a17ec5a, type: 2}
-  - {fileID: 11400000, guid: 85a9f1e03021a134aad93537155774d7, type: 2}
-  - {fileID: 11400000, guid: 14f341d49cae9dd40981769a99fc5ef9, type: 2}
-  - {fileID: 11400000, guid: d32d3e747045d474784b7819d5e425e0, type: 2}
+  - {fileID: 11400000, guid: 0a801892cfddde6429a5ef53f5f30fde, type: 2}
+  - {fileID: 11400000, guid: 8847c3bdaa859874ba777c2b26b45cc2, type: 2}
   finalLevelSceneGroup:
-  - {fileID: 11400000, guid: b89e66bf1fd5bd34c89c2b644f8118af, type: 2}
-  - {fileID: 11400000, guid: 622dda1eb2dd2e14fad15f646e8f0c41, type: 2}
+  - {fileID: 11400000, guid: 9d26160284dabc540927cfcc315fc00e, type: 2}

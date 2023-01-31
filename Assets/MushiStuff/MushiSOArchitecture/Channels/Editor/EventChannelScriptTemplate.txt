@@ -1,20 +1,8 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Channels/Event/#RAWFILENAME#EventChannel", fileName = "New#RAWFILENAME#EventChannel")]
-public class #FILENAME# : DescriptionBaseSO
+[CreateAssetMenu(menuName = "Channels/Events/#RAWFILENAME#EventChannel", fileName = "New#RAWFILENAME#EventChannel")]
+public class #FILENAME# : GenericEventChannelSO<#RAWFILENAME#>
 {
-    public Action<#RAWFILENAME#> OnRaised;
 
-    public void Raise(#RAWFILENAME# val)
-    {
-        if (OnRaised != null)
-        {
-            OnRaised.Invoke(val);
-        }
-        else
-        {
-            Debug.LogWarning($"Event Channel {name} was raised but had no listeners.");
-        }
-    }
 }

@@ -16,15 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 73ffa95a3b2fcc44c913a652f5880158
-  m_SerializeEntries:
-  - m_GUID: 5fa12c316d7fda64884538b7660798aa
-    m_Address: Assets/Scenes/GameplayLevels/Test/TestEntryLevel.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: c62881374cb6a4d4fa31cb5c4ec654b7
-    m_Address: Assets/Scenes/GameplayLevels/Test/TestFinalLevel.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6aba7bafd48bbeb44aab8623d57168f2, type: 2}
   m_SchemaSet:

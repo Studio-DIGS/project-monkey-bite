@@ -431,8 +431,9 @@ MonoBehaviour:
   capsuleCollider: {fileID: 6878882079763023217}
   boxCollider: {fileID: 7938998419550526842}
   gravityAcceleration: 15
-  collisionResolutionOffset: 0.002
-  sweepOffset: 0.25
+  collisionResolutionOffset: 0.005
+  sweepOffset: 0.2
+  maxColliderResolves: 5
   collisionMask:
     serializedVersion: 2
     m_Bits: 128

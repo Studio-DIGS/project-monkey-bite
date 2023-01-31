@@ -2,13 +2,8 @@ using UnityEngine;
 using System;
 
 
-[CreateAssetMenu(menuName = "Channels/SaveSystem/Profile Save Data Array Function Channel")]
-public class SaveProfileDataArrFuncChannelSO : DescriptionBaseSO
+[CreateAssetMenu(menuName = "Channels/Funcs/SaveSystem/Profile Save Data Array Function Channel")]
+public class SaveProfileDataArrFuncChannelSO : GenericFuncChannelSO<SaveProfileData[]>
 {
-    public Func<SaveProfileData[]> OnCalled;
 
-    public SaveProfileData[] CallFunc()
-    {
-        return OnCalled?.Invoke();
-    }
 }

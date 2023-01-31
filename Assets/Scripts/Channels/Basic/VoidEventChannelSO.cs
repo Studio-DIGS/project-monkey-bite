@@ -1,14 +1,8 @@
+﻿using System;
 using UnityEngine;
-using System;
 
-
-[CreateAssetMenu(menuName = "Channels/Basic/Void Event Channel")]
-public class VoidEventChannelSO : DescriptionBaseSO
+[CreateAssetMenu(menuName = "Channels/Events/Basic/VoidEventChannel", fileName = "NewVoidEventChannel")]
+public class VoidEventChannelSO : GenericEventChannelSO
 {
-    public Action OnRaised;
 
-    public void RaiseEvent()
-    {
-        OnRaised?.Invoke();
-    }
 }

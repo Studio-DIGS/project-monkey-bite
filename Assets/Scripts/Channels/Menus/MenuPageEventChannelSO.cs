@@ -1,14 +1,8 @@
+﻿using System;
 using UnityEngine;
-using System;
 
-
-[CreateAssetMenu(menuName = "Channels/Menus/Menu Page Event Channel")]
-public class MenuPageEventChannelSO : DescriptionBaseSO
+[CreateAssetMenu(menuName = "Channels/Events/MenuPageEventChannel", fileName = "NewMenuPageEventChannel")]
+public class MenuPageEventChannelSO : GenericEventChannelSO<MenuPage>
 {
-    public Action<MenuPage> OnRaised;
 
-    public void RaiseEvent(MenuPage page)
-    {
-        OnRaised?.Invoke(page);
-    }
 }

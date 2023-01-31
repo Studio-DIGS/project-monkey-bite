@@ -1,21 +1,8 @@
+﻿using System;
 using UnityEngine;
-using System;
 
-
-[CreateAssetMenu(menuName = "Channels/Input State Channel")]
-public class InputStateEventChannelSO : DescriptionBaseSO
+[CreateAssetMenu(menuName = "Channels/Events/InputStateEventChannel", fileName = "NewInputStateEventChannel")]
+public class InputStateEventChannelSO : GenericEventChannelSO<InputState>
 {
-    public Action<InputState> OnRaised;
 
-    public void RaiseEvent(InputState state)
-    {
-        if (OnRaised != null)
-        {
-            OnRaised?.Invoke(state);
-        }
-        else
-        {
-            Debug.LogWarning("An InputState Event Channel was raised but had no listeners");
-        }
-    }
 }

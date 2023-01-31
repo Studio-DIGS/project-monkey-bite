@@ -3,7 +3,7 @@
 public abstract class GenericEventChannelSO#PARAMS# : DescriptionBaseSO
 {
     public Action#PARAMS# OnRaised;
-    public void Raise(#RAISE_PARAMS#)
+    public virtual void RaiseEvent(#RAISE_PARAMS#)
     {
         if (OnRaised != null)
         {
@@ -27,7 +27,7 @@ public abstract class GenericEventChannelSO#PARAMS# : DescriptionBaseSO
 public abstract class GenericFuncChannelSO<#PARAMS#TResult> : DescriptionBaseSO
 {
     public Func<#PARAMS#TResult> OnCalled;
-    public TResult Call(#RAISE_PARAMS#)
+    public virtual TResult CallFunc(#RAISE_PARAMS#)
     {
         if (OnCalled != null)
         {

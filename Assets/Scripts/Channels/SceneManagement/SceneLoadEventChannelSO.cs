@@ -1,23 +1,17 @@
 using UnityEngine;
 using System;
 
-
-[CreateAssetMenu(menuName = "Channels/SceneManagement/Scene Load Event Channel")]
-public class SceneLoadEventChannelSO : DescriptionBaseSO
+/// <summary>
+/// <param name="T1">Scene to load</param>
+/// <param name="T2">Should transition out?</param>
+/// <param name="T3">Should transition in?</param>
+/// <param name="T4">Load screen actions</param>
+/// </summary>
+[CreateAssetMenu(menuName = "Channels/Events/SceneManagement/Scene Load Event Channel")]
+public class SceneLoadEventChannelSO : GenericEventChannelSO<GameSceneSO, bool, bool, Action>
 {
-    public Action<GameSceneSO, bool, bool, Action> OnRaised;
-
-    public void RaiseEvent(GameSceneSO locationToLoad,  bool transitionOut = false, bool transitionIn = false, Action loadScreenActions = null)
+    public override void RaiseEvent(GameSceneSO arg1, bool arg2, bool arg3, Action arg4 = null)
     {
-        if (OnRaised != null)
-        {
-            OnRaised?.Invoke(locationToLoad, transitionOut, transitionIn, loadScreenActions);
-        }
-        else
-        {
-            Debug.LogWarning("A Scene loading was requested, but nobody picked it up. " +
-                             "Check why there is no SceneLoader already present, " +
-                             "and make sure it's listening on this Load Event channel.");
-        }
+        base.RaiseEvent(arg1, arg2, arg3, arg4);
     }
 }

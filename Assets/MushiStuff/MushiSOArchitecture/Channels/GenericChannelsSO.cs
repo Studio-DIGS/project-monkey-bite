@@ -4,7 +4,9 @@ using UnityEngine;
 // GENERATED
 public abstract class GenericEventChannelSO : DescriptionBaseSO
 {
-    public Action OnRaised;
+    public event Action OnRaised;
+    public bool HasListeners => OnRaised != null;
+    
     public virtual void RaiseEvent()
     {
         if (OnRaised != null)
@@ -27,7 +29,9 @@ public abstract class GenericEventChannelSO : DescriptionBaseSO
 // GENERATED
 public abstract class GenericEventChannelSO<T1> : DescriptionBaseSO
 {
-    public Action<T1> OnRaised;
+    public event Action<T1> OnRaised;
+    public bool HasListeners => OnRaised != null;
+    
     public virtual void RaiseEvent(T1 arg1)
     {
         if (OnRaised != null)
@@ -50,7 +54,9 @@ public abstract class GenericEventChannelSO<T1> : DescriptionBaseSO
 // GENERATED
 public abstract class GenericEventChannelSO<T1,T2> : DescriptionBaseSO
 {
-    public Action<T1,T2> OnRaised;
+    public event Action<T1,T2> OnRaised;
+    public bool HasListeners => OnRaised != null;
+    
     public virtual void RaiseEvent(T1 arg1,T2 arg2)
     {
         if (OnRaised != null)
@@ -73,7 +79,9 @@ public abstract class GenericEventChannelSO<T1,T2> : DescriptionBaseSO
 // GENERATED
 public abstract class GenericEventChannelSO<T1,T2,T3> : DescriptionBaseSO
 {
-    public Action<T1,T2,T3> OnRaised;
+    public event Action<T1,T2,T3> OnRaised;
+    public bool HasListeners => OnRaised != null;
+    
     public virtual void RaiseEvent(T1 arg1,T2 arg2,T3 arg3)
     {
         if (OnRaised != null)
@@ -96,7 +104,9 @@ public abstract class GenericEventChannelSO<T1,T2,T3> : DescriptionBaseSO
 // GENERATED
 public abstract class GenericEventChannelSO<T1,T2,T3,T4> : DescriptionBaseSO
 {
-    public Action<T1,T2,T3,T4> OnRaised;
+    public event Action<T1,T2,T3,T4> OnRaised;
+    public bool HasListeners => OnRaised != null;
+    
     public virtual void RaiseEvent(T1 arg1,T2 arg2,T3 arg3,T4 arg4)
     {
         if (OnRaised != null)
@@ -119,7 +129,9 @@ public abstract class GenericEventChannelSO<T1,T2,T3,T4> : DescriptionBaseSO
 // GENERATED
 public abstract class GenericEventChannelSO<T1,T2,T3,T4,T5> : DescriptionBaseSO
 {
-    public Action<T1,T2,T3,T4,T5> OnRaised;
+    public event Action<T1,T2,T3,T4,T5> OnRaised;
+    public bool HasListeners => OnRaised != null;
+    
     public virtual void RaiseEvent(T1 arg1,T2 arg2,T3 arg3,T4 arg4,T5 arg5)
     {
         if (OnRaised != null)
@@ -142,7 +154,9 @@ public abstract class GenericEventChannelSO<T1,T2,T3,T4,T5> : DescriptionBaseSO
 // GENERATED
 public abstract class GenericEventChannelSO<T1,T2,T3,T4,T5,T6> : DescriptionBaseSO
 {
-    public Action<T1,T2,T3,T4,T5,T6> OnRaised;
+    public event Action<T1,T2,T3,T4,T5,T6> OnRaised;
+    public bool HasListeners => OnRaised != null;
+    
     public virtual void RaiseEvent(T1 arg1,T2 arg2,T3 arg3,T4 arg4,T5 arg5,T6 arg6)
     {
         if (OnRaised != null)
@@ -165,7 +179,9 @@ public abstract class GenericEventChannelSO<T1,T2,T3,T4,T5,T6> : DescriptionBase
 // GENERATED
 public abstract class GenericEventChannelSO<T1,T2,T3,T4,T5,T6,T7> : DescriptionBaseSO
 {
-    public Action<T1,T2,T3,T4,T5,T6,T7> OnRaised;
+    public event Action<T1,T2,T3,T4,T5,T6,T7> OnRaised;
+    public bool HasListeners => OnRaised != null;
+    
     public virtual void RaiseEvent(T1 arg1,T2 arg2,T3 arg3,T4 arg4,T5 arg5,T6 arg6,T7 arg7)
     {
         if (OnRaised != null)
@@ -188,7 +204,9 @@ public abstract class GenericEventChannelSO<T1,T2,T3,T4,T5,T6,T7> : DescriptionB
 // GENERATED
 public abstract class GenericEventChannelSO<T1,T2,T3,T4,T5,T6,T7,T8> : DescriptionBaseSO
 {
-    public Action<T1,T2,T3,T4,T5,T6,T7,T8> OnRaised;
+    public event Action<T1,T2,T3,T4,T5,T6,T7,T8> OnRaised;
+    public bool HasListeners => OnRaised != null;
+    
     public virtual void RaiseEvent(T1 arg1,T2 arg2,T3 arg3,T4 arg4,T5 arg5,T6 arg6,T7 arg7,T8 arg8)
     {
         if (OnRaised != null)
@@ -211,7 +229,9 @@ public abstract class GenericEventChannelSO<T1,T2,T3,T4,T5,T6,T7,T8> : Descripti
 // GENERATED
 public abstract class GenericFuncChannelSO<TResult> : DescriptionBaseSO
 {
-    public Func<TResult> OnCalled;
+    public event Func<TResult> OnCalled;
+    public bool HasListeners => OnCalled != null;
+    
     public virtual TResult CallFunc()
     {
         if (OnCalled != null)
@@ -241,7 +261,9 @@ public abstract class GenericFuncChannelSO<TResult> : DescriptionBaseSO
 // GENERATED
 public abstract class GenericFuncChannelSO<T1,TResult> : DescriptionBaseSO
 {
-    public Func<T1,TResult> OnCalled;
+    public event Func<T1,TResult> OnCalled;
+    public bool HasListeners => OnCalled != null;
+    
     public virtual TResult CallFunc(T1 t1)
     {
         if (OnCalled != null)
@@ -271,7 +293,9 @@ public abstract class GenericFuncChannelSO<T1,TResult> : DescriptionBaseSO
 // GENERATED
 public abstract class GenericFuncChannelSO<T1,T2,TResult> : DescriptionBaseSO
 {
-    public Func<T1,T2,TResult> OnCalled;
+    public event Func<T1,T2,TResult> OnCalled;
+    public bool HasListeners => OnCalled != null;
+    
     public virtual TResult CallFunc(T1 t1,T2 t2)
     {
         if (OnCalled != null)
@@ -301,7 +325,9 @@ public abstract class GenericFuncChannelSO<T1,T2,TResult> : DescriptionBaseSO
 // GENERATED
 public abstract class GenericFuncChannelSO<T1,T2,T3,TResult> : DescriptionBaseSO
 {
-    public Func<T1,T2,T3,TResult> OnCalled;
+    public event Func<T1,T2,T3,TResult> OnCalled;
+    public bool HasListeners => OnCalled != null;
+    
     public virtual TResult CallFunc(T1 t1,T2 t2,T3 t3)
     {
         if (OnCalled != null)
@@ -331,7 +357,9 @@ public abstract class GenericFuncChannelSO<T1,T2,T3,TResult> : DescriptionBaseSO
 // GENERATED
 public abstract class GenericFuncChannelSO<T1,T2,T3,T4,TResult> : DescriptionBaseSO
 {
-    public Func<T1,T2,T3,T4,TResult> OnCalled;
+    public event Func<T1,T2,T3,T4,TResult> OnCalled;
+    public bool HasListeners => OnCalled != null;
+    
     public virtual TResult CallFunc(T1 t1,T2 t2,T3 t3,T4 t4)
     {
         if (OnCalled != null)
@@ -361,7 +389,9 @@ public abstract class GenericFuncChannelSO<T1,T2,T3,T4,TResult> : DescriptionBas
 // GENERATED
 public abstract class GenericFuncChannelSO<T1,T2,T3,T4,T5,TResult> : DescriptionBaseSO
 {
-    public Func<T1,T2,T3,T4,T5,TResult> OnCalled;
+    public event Func<T1,T2,T3,T4,T5,TResult> OnCalled;
+    public bool HasListeners => OnCalled != null;
+    
     public virtual TResult CallFunc(T1 t1,T2 t2,T3 t3,T4 t4,T5 t5)
     {
         if (OnCalled != null)
@@ -391,7 +421,9 @@ public abstract class GenericFuncChannelSO<T1,T2,T3,T4,T5,TResult> : Description
 // GENERATED
 public abstract class GenericFuncChannelSO<T1,T2,T3,T4,T5,T6,TResult> : DescriptionBaseSO
 {
-    public Func<T1,T2,T3,T4,T5,T6,TResult> OnCalled;
+    public event Func<T1,T2,T3,T4,T5,T6,TResult> OnCalled;
+    public bool HasListeners => OnCalled != null;
+    
     public virtual TResult CallFunc(T1 t1,T2 t2,T3 t3,T4 t4,T5 t5,T6 t6)
     {
         if (OnCalled != null)
@@ -421,7 +453,9 @@ public abstract class GenericFuncChannelSO<T1,T2,T3,T4,T5,T6,TResult> : Descript
 // GENERATED
 public abstract class GenericFuncChannelSO<T1,T2,T3,T4,T5,T6,T7,TResult> : DescriptionBaseSO
 {
-    public Func<T1,T2,T3,T4,T5,T6,T7,TResult> OnCalled;
+    public event Func<T1,T2,T3,T4,T5,T6,T7,TResult> OnCalled;
+    public bool HasListeners => OnCalled != null;
+    
     public virtual TResult CallFunc(T1 t1,T2 t2,T3 t3,T4 t4,T5 t5,T6 t6,T7 t7)
     {
         if (OnCalled != null)
@@ -451,7 +485,9 @@ public abstract class GenericFuncChannelSO<T1,T2,T3,T4,T5,T6,T7,TResult> : Descr
 // GENERATED
 public abstract class GenericFuncChannelSO<T1,T2,T3,T4,T5,T6,T7,T8,TResult> : DescriptionBaseSO
 {
-    public Func<T1,T2,T3,T4,T5,T6,T7,T8,TResult> OnCalled;
+    public event Func<T1,T2,T3,T4,T5,T6,T7,T8,TResult> OnCalled;
+    public bool HasListeners => OnCalled != null;
+    
     public virtual TResult CallFunc(T1 t1,T2 t2,T3 t3,T4 t4,T5 t5,T6 t6,T7 t7,T8 t8)
     {
         if (OnCalled != null)

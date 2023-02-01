@@ -2,7 +2,9 @@
 // GENERATED
 public abstract class GenericEventChannelSO#PARAMS# : DescriptionBaseSO
 {
-    public Action#PARAMS# OnRaised;
+    public event Action#PARAMS# OnRaised;
+    public bool HasListeners => OnRaised != null;
+    
     public virtual void RaiseEvent(#RAISE_PARAMS#)
     {
         if (OnRaised != null)
@@ -26,7 +28,9 @@ public abstract class GenericEventChannelSO#PARAMS# : DescriptionBaseSO
 // GENERATED
 public abstract class GenericFuncChannelSO<#PARAMS#TResult> : DescriptionBaseSO
 {
-    public Func<#PARAMS#TResult> OnCalled;
+    public event Func<#PARAMS#TResult> OnCalled;
+    public bool HasListeners => OnCalled != null;
+    
     public virtual TResult CallFunc(#RAISE_PARAMS#)
     {
         if (OnCalled != null)

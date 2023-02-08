@@ -184,9 +184,15 @@ public class SplinePathPhysicsBody : MonoBehaviour
     {
         Vector2 velStep = pathVelocity.normalized * stepDist;
         pathPosition += velStep;
-        
-        // Tangents are messed up at ends of a spline so clamp position to avoid that
-        pathPosition.x = Mathf.Clamp(pathPosition.x, 0.01f, pathLength - 0.01f);
+        if (SplinePath.Spline.Closed)
+        {
+            pathPosition.x = Mathf.Repeat(pathPosition.x, pathLength);
+        }
+        else
+        {
+            // Tangents are messed up at ends of a spline so clamp position to avoid that
+            pathPosition.x = Mathf.Clamp(pathPosition.x, 0.01f, pathLength - 0.01f);
+        }
         float t = pathPosition.x / pathLength;
         UpdatePositionOnPath(t);
     }

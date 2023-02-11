@@ -1,5 +1,4 @@
-#EVENT_BODY
-// GENERATED
+<#EVENTBODY>
 public abstract class GenericEventChannelSO#PARAMS# : DescriptionBaseSO
 {
     public event Action#PARAMS# OnRaised;
@@ -22,10 +21,9 @@ public abstract class GenericEventChannelSO#PARAMS# : DescriptionBaseSO
         Debug.LogWarning($"Event Channel {name} was raised but had no listeners.");
     }
 }
-#EVENT_BODY
+<#>
 
-#FUNC_BODY
-// GENERATED
+<#FUNCBODY>
 public abstract class GenericFuncChannelSO<#PARAMS#TResult> : DescriptionBaseSO
 {
     public event Func<#PARAMS#TResult> OnCalled;
@@ -54,5 +52,12 @@ public abstract class GenericFuncChannelSO<#PARAMS#TResult> : DescriptionBaseSO
         Debug.LogWarning($"Func Channel {name} was raised but had no listeners.");
     }
 }
+<#>
 
-#FUNC_BODY
+<=>
+using System;
+using UnityEngine;
+
+// This is generated from a template, so manual changes may be overriden
+
+<=>

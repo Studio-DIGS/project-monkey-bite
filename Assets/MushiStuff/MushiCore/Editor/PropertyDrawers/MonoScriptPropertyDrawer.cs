@@ -1,9 +1,5 @@
-#region
-
 using UnityEditor;
 using UnityEngine;
-
-#endregion
 
 namespace MushiCore.Editor
 {

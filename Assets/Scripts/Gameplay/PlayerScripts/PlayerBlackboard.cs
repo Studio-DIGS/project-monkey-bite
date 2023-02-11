@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MushiCore.EditorAttributes;
 using UnityEngine;
 
 public class PlayerBlackboard : DescriptionMonoBehavior
@@ -13,10 +14,10 @@ public class PlayerBlackboard : DescriptionMonoBehavior
     [SerializeField] public MovementProfileSO movementProfile;
     [SerializeField] public CharacterRotator playerRotator;
     
-    [ReadOnly] public PlayerInputState inputState;
+    [EditorReadOnly] public PlayerInputState inputState;
     
     // Player state
-    [ReadOnly] public float coyoteTimer;
+    [EditorReadOnly] public float coyoteTimer;
     
 
     public void UpdateInputState()

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MushiCore.EditorAttributes;
 using UnityEngine;
 using UnityEngine.InputSystem.Samples.RebindUI;
 using UnityEngine.InputSystem;

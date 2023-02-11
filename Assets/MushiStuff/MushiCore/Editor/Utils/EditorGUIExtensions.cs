@@ -1,10 +1,6 @@
-#region
-
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-
-#endregion
 
 namespace MushiCore.Editor
 {

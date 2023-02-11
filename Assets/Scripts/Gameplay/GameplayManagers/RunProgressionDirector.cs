@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MushiCore.EditorAttributes;
 using UnityEngine;
 
 public class RunProgressionDirector : DescriptionMonoBehavior

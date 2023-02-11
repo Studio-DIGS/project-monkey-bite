@@ -69,7 +69,7 @@ namespace MushiCore.EditorAttributes
             var targetConfig = this;
             Undo.RecordObject(targetConfig, "Change SCHeader Settings");
 
-            Color c = separatorColor = EditorGUILayout.ColorField("Divider Color", separatorColor);
+            Color c = EditorGUILayout.ColorField("Divider Color", separatorColor);
 
             if (c != separatorColor)
             {
@@ -77,7 +77,7 @@ namespace MushiCore.EditorAttributes
                 EditorUtility.SetDirty(targetConfig);
             }
 
-        var colorNames = Enum.GetNames(typeof(ColorHeaderColor));
+            var colorNames = Enum.GetNames(typeof(ColorHeaderColor));
             int newColorCount = colorNames.Length;
 
             // Draw color fields for each enum color field 

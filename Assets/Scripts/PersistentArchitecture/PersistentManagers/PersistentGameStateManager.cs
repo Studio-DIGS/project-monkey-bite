@@ -20,11 +20,11 @@ public class PersistentGameStateManager : DescriptionMonoBehavior
     [ColorHeader("Game State Change Ask")] 
     [SerializeField] private GameStateEventChannelSO askGameStateChange;
 
-    [ColorHeader("Invoking", ColorHeaderColor.InvokingChannels)]
+    [ColorHeader("Invoking", ColorHeaderColor.InvokingChannels, true)]
     [ColorHeader("Ask Manager Scene Load")] 
     [SerializeField] private SceneLoadEventChannelSO askLoadManagerScene;
 
-    [ColorHeader("Game State Manager Scenes", ColorHeaderColor.Dependencies)] 
+    [ColorHeader("Game State Manager Scenes", ColorHeaderColor.Dependencies ,true)] 
     [SerializeField] private GameSceneSO mainMenuManagers;
     [SerializeField] private GameSceneSO gameplayManagers;
     

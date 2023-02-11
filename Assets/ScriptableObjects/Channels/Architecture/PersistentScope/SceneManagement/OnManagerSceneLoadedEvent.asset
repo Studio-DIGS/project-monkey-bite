@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e73c32f2c67fe145b01b949e7e98ca9, type: 3}
+  m_Script: {fileID: 11500000, guid: 98e50cbc422f3334791e1f89359eab4b, type: 3}
   m_Name: OnManagerSceneLoadedEvent
   m_EditorClassIdentifier: 
-  description: Raised when Persis. Scene Manager finishes loading a scene on the
-    manager level
+  description: 

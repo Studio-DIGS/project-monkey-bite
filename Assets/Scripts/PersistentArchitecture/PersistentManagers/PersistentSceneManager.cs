@@ -24,14 +24,14 @@ public class PersistentSceneManager : DescriptionMonoBehavior
     [SerializeField] private SceneLoadEventChannelSO askLoadContentScene;
     [SerializeField] private SceneUnloadEventChannelSO askUnloadContentScene;
 
-    [ColorHeader("Invoking", ColorHeaderColor.InvokingChannels)]
+    [ColorHeader("Invoking", ColorHeaderColor.InvokingChannels, true)]
     [ColorHeader("On Manager Scene Ready")]
     [SerializeField] private VoidEventChannelSO onManagerSceneLoaded;
     
     [ColorHeader("On Content Scene Ready")]
     [SerializeField] private VoidEventChannelSO onContentSceneLoaded;
     
-    [ColorHeader("Writing - Scene State", ColorHeaderColor.WritingState)] 
+    [ColorHeader("Writing - Scene State", ColorHeaderColor.WritingState, true)] 
     [SerializeField] private CurrentSceneStateSO sceneStateBoard;
 
     [ColorHeader("Dependencies", ColorHeaderColor.Dependencies)] 

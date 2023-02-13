@@ -135,6 +135,9 @@ MonoBehaviour:
   groundedMask:
     serializedVersion: 2
     m_Bits: 128
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 256
   groundedDotMin: 0.8
 --- !u!114 &4827143860289516615
 MonoBehaviour:

@@ -44,6 +44,30 @@ public class PlayerMovementTransitions : TransitionTable<PlayerBlackboard>
     }
 
     /// <summary>
+    /// Add a force transition to Footstool Jump when jump input is pressed
+    /// </summary>
+    public void AddOnJumpPressedToFootstoolJump()
+    {
+        blackboard.inputProvider.Events.OnJumpPressed += OnJumpPressedToFootstoolJump;
+    }
+
+    /// <summary>
+    /// Remove a force transition to Footstool Jump when jump input is pressed
+    /// </summary>
+    public void RemoveOnJumpPressedToFootstoolJump()
+    {
+        blackboard.inputProvider.Events.OnJumpPressed -= OnJumpPressedToFootstoolJump;
+    }
+
+    private void OnJumpPressedToFootstoolJump()
+    {
+        bool grounded = blackboard.movementContextController.IsOnEnemy;
+        bool coyoteTime = blackboard.coyoteTimer < blackboard.movementProfile.ftstlCoyoteTime;
+        if(grounded || coyoteTime)
+            context.ForceTransition(GetState<PlayerFootstoolJumpingState>());
+    }
+
+    /// <summary>
     /// Transition to Falling State if not grounded
     /// </summary>
     /// <param name="c"></param>

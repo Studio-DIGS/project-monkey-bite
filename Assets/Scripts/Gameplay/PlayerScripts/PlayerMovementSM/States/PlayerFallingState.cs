@@ -19,11 +19,13 @@ public class PlayerFallingState : PlayerMovementState
     public override void EnterState()
     {
         transitions.AddOnJumpPressedToJump();
+        transitions.AddOnJumpPressedToFootstoolJump();
     }
 
     public override void ExitState()
     {
         transitions.RemoveOnJumpPressedToJump();
+        transitions.RemoveOnJumpPressedToFootstoolJump();
     }
 
     public override void UpdateState()

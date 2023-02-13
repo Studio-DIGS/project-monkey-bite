@@ -13,16 +13,19 @@ public class MovementContextController : DescriptionMonoBehavior
     [SerializeField] private float castRadius;
     [SerializeField] private float castDistance;
     [SerializeField] private LayerMask groundedMask;
+    [SerializeField] private LayerMask enemyMask;
     [SerializeField] private float groundedDotMin;
 
     // Fields
     private bool isGrounded;
     private bool isOnSurface;
+    private bool isOnEnemy;
     private Vector2 surfaceNormal;
     
     // Properties
     public bool IsGrounded => isGrounded;
     public bool IsOnSurface => isOnSurface;
+    public bool IsOnEnemy => isOnEnemy;
     public Vector2 SurfaceNormal => surfaceNormal;
     
     
@@ -32,6 +35,7 @@ public class MovementContextController : DescriptionMonoBehavior
     public void UpdateContext()
     {
         CheckGrounded();
+        CheckOnEnemy();
     }
 
     private void CheckGrounded()
@@ -65,6 +69,39 @@ public class MovementContextController : DescriptionMonoBehavior
             surfaceNormal = Vector2.up;
             isOnSurface = false;
             isGrounded = false;
+        }
+    }
+
+    private void CheckOnEnemy()
+    {
+        Vector3 pos = raycastSource.position;
+        bool didHit = Physics.SphereCast(
+            pos, 
+            castRadius, 
+            Vector3.down, 
+            out RaycastHit hitInfo, 
+            castDistance, 
+            enemyMask);
+
+        if (didHit)
+        {
+            isOnSurface = true;
+            surfaceNormal = pathBody.ProjectVecOntoPath(hitInfo.normal).normalized;
+            // Check the dot to make sure the slope isnt too steep
+            float dot = Vector2.Dot(Vector2.up, surfaceNormal);
+            if (dot > groundedDotMin)
+            {
+                isOnEnemy = true;
+            }
+            else
+            {
+                isOnEnemy = false;
+            }
+        }
+        else
+        {
+            surfaceNormal = Vector2.up;
+            isOnEnemy = false;
         }
     }
 

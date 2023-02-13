@@ -24,3 +24,8 @@ MonoBehaviour:
   coyoteTime: 0.05
   maxJumpTime: 0.25
   minJumpTime: 0.1
+  ftstlJumpStrength: 12
+  ftstlJumpEndVel: 3
+  ftstlCoyoteTime: 0.05
+  ftstlMaxJumpTime: 0.25
+  ftstlMinJumpTime: 0.1

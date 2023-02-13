@@ -21,4 +21,11 @@ public class MovementProfileSO : DescriptionBaseSO
     public float coyoteTime;
     public float maxJumpTime;
     public float minJumpTime;
+
+    [ColorHeader("Footstool Jump")]
+    public float ftstlJumpStrength;
+    public float ftstlJumpEndVel;
+    public float ftstlCoyoteTime;
+    public float ftstlMaxJumpTime;
+    public float ftstlMinJumpTime;
 }

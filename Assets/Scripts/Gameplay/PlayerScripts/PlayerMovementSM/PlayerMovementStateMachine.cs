@@ -34,6 +34,7 @@ public class PlayerMovementStateMachine : StateMachine<PlayerBlackboard>
         AddToStatePool(new PlayerWalkingState(this));
         AddToStatePool(new PlayerIdleState(this));
         AddToStatePool(new PlayerJumpingState(this));
+        AddToStatePool(new PlayerFootstoolJumpingState(this));
         AddToStatePool(new PlayerFallingState(this));
         */
         

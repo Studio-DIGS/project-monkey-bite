@@ -35,6 +35,8 @@ public class PlayerJumpingState : PlayerMovementState
         pathBody.pathVelocity.y = movementProfile.jumpStrength;
         pathBody.SetGravityEnabled(false);
         blackboard.coyoteTimer = float.MaxValue;
+        
+        transitions.AddOnJumpPressedToFootstoolJump();
     }
 
     public override void ExitState()

@@ -1,0 +1,16 @@
+{
+    "name": "MushiSOArchitecture",
+    "rootNamespace": "",
+    "references": [
+        "GUID:225ccec662a9d9d40a0afbfc38add158"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

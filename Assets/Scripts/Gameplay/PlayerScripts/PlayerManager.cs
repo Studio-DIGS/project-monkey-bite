@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MushiCore.EditorAttributes;
 using UnityEngine;
 
 public class PlayerManager : DescriptionMonoBehavior
@@ -12,7 +13,7 @@ public class PlayerManager : DescriptionMonoBehavior
     private PlayerMovementStateMachine movementStateMachine;
 
     [ColorHeader("Debug")]
-    [ReadOnly, SerializeField] private string currentStateName;
+    [EditorReadOnly, SerializeField] private string currentStateName;
 
     void Start()
     {

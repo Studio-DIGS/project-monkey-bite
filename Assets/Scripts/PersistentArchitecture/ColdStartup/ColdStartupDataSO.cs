@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MushiCore.EditorAttributes;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -22,8 +23,8 @@ public class ColdStartupDataSO : DescriptionBaseSO
     [SerializeField] private SaveProfileDataEventChannelSO askSetActiveSaveProfile;
 
     [ColorHeader("Readonly - State provided by EditorColdStartup")]
-    [ReadOnly, DoNotSerialize] public GameSceneSO startupScene;
-    [ReadOnly, DoNotSerialize] public bool isColdStartup;
+    [EditorReadOnly, DoNotSerialize] public GameSceneSO startupScene;
+    [EditorReadOnly, DoNotSerialize] public bool isColdStartup;
 
     public void SetColdStartupSaveProfileActive()
     {

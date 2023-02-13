@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using MushiCore.EditorAttributes;
 using UnityEngine;
 
 /// <summary>
@@ -21,7 +22,7 @@ public class PersistentProfileSaveManager : DescriptionMonoBehavior
     [ColorHeader("Set Active Profile Save Ask")] 
     [SerializeField] private SaveProfileDataEventChannelSO askSetActiveSaveProfile;
     
-    [ColorHeader("Save Data SO Containers", ColorHeaderColor.Dependencies)] 
+    [ColorHeader("Save Data SO Containers", ColorHeaderColor.Dependencies, true)] 
     [SerializeField] private ProfileSaveDataSO activeSaveProfileBoard;
     
     [ColorHeader("Save System Dependencies", ColorHeaderColor.Dependencies)] 

@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using MushiCore.EditorAttributes;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -17,7 +18,7 @@ public class RelativeSavePathConfigSO : DescriptionBaseSO
     
     [SerializeField] private string saveFilename;
 
-    [ReadOnly, SerializeField] private string finalPath;
+    [EditorReadOnly, SerializeField] private string finalPath;
 
     public string GetProfileSaveRelativePath(string profileIdentifier)
     {

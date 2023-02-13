@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 464349ca24083fd43bc479b0930adc2b, type: 3}
   m_Name: CurrentGameplayLevelBoard
   m_EditorClassIdentifier: 
-  description: 
-  levelCurve: {fileID: 0}
+  description: Holds information about the current gameplay level, such as the level
+    spline
+  levelPath: {fileID: 0}

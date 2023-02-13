@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MushiCore.EditorAttributes;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ public class GameplayManager : DescriptionMonoBehavior
     [ColorHeader("Return To Main Menu Ask")] 
     [SerializeField] private VoidEventChannelSO askReturnToMainMenu;
 
-    [ColorHeader("Invoking", ColorHeaderColor.InvokingChannels)]
+    [ColorHeader("Invoking", ColorHeaderColor.InvokingChannels, true)]
     [ColorHeader("On Level Ready")]
     [SerializeField] private VoidEventChannelSO onLevelSceneReady;
     
@@ -36,7 +37,7 @@ public class GameplayManager : DescriptionMonoBehavior
     [ColorHeader("Ask Save Profile To File")] 
     [SerializeField] private SaveProfileDataEventChannelSO askSaveProfile;
 
-    [ColorHeader("Dependencies", ColorHeaderColor.Dependencies)] 
+    [ColorHeader("Dependencies", ColorHeaderColor.Dependencies, true)] 
     [SerializeField] private RunProgressionDirector runProgressionDirector;
     [SerializeField] private ProfileSaveDataSO activeSaveProfileBoard;
     [SerializeField] private CurrentSceneStateSO sceneStateBoard;

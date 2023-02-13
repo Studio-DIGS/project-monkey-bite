@@ -1,126 +1,130 @@
 using System;
-using UnityEditor;
-using UnityEngine;
-using UnityEngine.UIElements;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
+using UnityEditor;
 using UnityEditor.SceneManagement;
-using UnityEngine.SceneManagement;
+using UnityEngine;
+using UnityEngine.UIElements;
 
-public struct SceneData
+namespace MushiEditorTools.SceneGrabber
 {
-    public SceneAsset asset;
-    public string projectPath;
-
-    public SceneData(SceneAsset asset, string projectPath)
+    public struct SceneData
     {
-        this.asset = asset;
-        this.projectPath = projectPath;
-    }
-}
+        public SceneAsset asset;
+        public string projectPath;
 
-public class SceneGrabber : EditorWindow
-{
-    [SerializeField] private VisualTreeAsset visualTree;
-    [MenuItem("MushiTools/SceneGrabber")]
-    public static void ShowExample()
-    {
-        SceneGrabber wnd = GetWindow<SceneGrabber>("Scene Grabber");
-    }
-
-    private VisualElement sceneList;
-    private VisualElement searchParameters;
-
-    private string folderPath = "Assets/Scenes";
-    
-    public void CreateGUI()
-    {
-        // Each editor window contains a root VisualElement object
-        VisualElement root = rootVisualElement;
-        
-        // Import UXML
-        VisualElement labelFromUXML = visualTree.Instantiate();
-        root.Add(labelFromUXML);
-
-        // Grab important visual elements
-        sceneList = root.Query<ScrollView>("SceneList");
-        searchParameters = root.Query<VisualElement>("SearchParameters");
-        
-        // Refresh Scene Button
-        Button refreshSceneButton = root.Query<VisualElement>("Header").First().Query<Button>("RefreshSceneButton");
-        refreshSceneButton.clicked += GenerateSceneListFromAssets;
-
-        TextField searchField = searchParameters.Query<TextField>("SearchPath");
-        searchField.SetValueWithoutNotify(folderPath);
-        searchField.RegisterValueChangedCallback((changeEvent) =>
+        public SceneData(SceneAsset asset, string projectPath)
         {
-            folderPath = changeEvent.newValue;
-            GenerateSceneListFromAssets();
-        });
-        
-        // Initial setup
-        GenerateSceneListFromAssets();
-    }
-
-    private void GenerateSceneListFromAssets()
-    {
-        var scenes = FindScenesData();
-        CreateSceneList(scenes);
-    }
-    
-    private void CreateSceneList(List<SceneData> scenes)
-    {
-        sceneList.Clear();
-        foreach(var sceneData in scenes)
-        {
-            Button sceneButton = new Button(() => LoadScene(sceneData.projectPath)) { name = $"{sceneData.asset.name}Button", text = sceneData.asset.name };
-            sceneList.Add(sceneButton);
+            this.asset = asset;
+            this.projectPath = projectPath;
         }
     }
-    
-    private void LoadScene(string scenePath)
+
+    public class SceneGrabber : EditorWindow
     {
-        try
+        [SerializeField] private VisualTreeAsset visualTree;
+
+        [MenuItem("MushiTools/SceneGrabber")]
+        public static void ShowWindow()
         {
-            EditorSceneManager.OpenScene(scenePath);
+            SceneGrabber wnd = GetWindow<SceneGrabber>("Scene Grabber");
         }
-        catch (Exception e)
+
+        private VisualElement sceneList;
+        private VisualElement searchParameters;
+
+        private string folderPath;
+        private const string searchFieldPrefsKey = "SceneGrabberSearchPath";
+
+        public void CreateGUI()
         {
-            if (e.GetType() == typeof(System.ArgumentException))
+            folderPath = EditorPrefs.GetString(searchFieldPrefsKey, "Assets/Scenes");
+            // Each editor window contains a root VisualElement object
+            VisualElement root = rootVisualElement;
+
+            // Import UXML
+            VisualElement labelFromUXML = visualTree.Instantiate();
+            root.Add(labelFromUXML);
+
+            // Grab important visual elements
+            sceneList = root.Query<ScrollView>("SceneList");
+            searchParameters = root.Query<VisualElement>("SearchParameters");
+
+            // Refresh Scene Button
+            Button refreshSceneButton = root.Query<VisualElement>("Header").First().Query<Button>("RefreshSceneButton");
+            refreshSceneButton.clicked += GenerateSceneListFromAssets;
+
+            TextField searchField = searchParameters.Query<TextField>("SearchPath");
+            searchField.SetValueWithoutNotify(folderPath);
+            searchField.RegisterValueChangedCallback((changeEvent) =>
             {
-                Debug.LogWarning("Scene path not found, refreshing list");
+                folderPath = changeEvent.newValue;
                 GenerateSceneListFromAssets();
-            }
-            else
+                EditorPrefs.SetString(searchFieldPrefsKey, changeEvent.newValue);
+            });
+
+            // Initial setup
+            GenerateSceneListFromAssets();
+        }
+        
+        private void GenerateSceneListFromAssets()
+        {
+            var scenes = FindScenesData();
+            CreateSceneList(scenes);
+        }
+
+        private void CreateSceneList(List<SceneData> scenes)
+        {
+            sceneList.Clear();
+            foreach (var sceneData in scenes)
             {
-                Debug.LogError(e);
+                Button sceneButton = new Button(() => LoadScene(sceneData.projectPath)) { name = $"{sceneData.asset.name}Button", text = sceneData.asset.name };
+                sceneList.Add(sceneButton);
             }
         }
-    }
 
-    private List<SceneData> FindScenesData()
-    {
-        var sceneGuids = FindScenesGuid();
-        var paths = sceneGuids.Select(AssetDatabase.GUIDToAssetPath);
-        List<SceneData> scenes = paths.Select(
-            path => new SceneData(AssetDatabase.LoadAssetAtPath<SceneAsset>(path), path))
-            .ToList();
-        return scenes;
-    }
-
-    private IEnumerable<string> FindScenesGuid()
-    {
-        if (folderPath == string.Empty)
+        private void LoadScene(string scenePath)
         {
-            return AssetDatabase.FindAssets("t:SceneAsset");
-        }
-        else if(AssetDatabase.IsValidFolder(folderPath))
-        {
-            return AssetDatabase.FindAssets("t:SceneAsset", new string[] { folderPath });
+            try
+            {
+                EditorSceneManager.OpenScene(scenePath);
+            }
+            catch (Exception e)
+            {
+                if (e.GetType() == typeof(ArgumentException))
+                {
+                    Debug.LogWarning("Scene path not found, refreshing list");
+                    GenerateSceneListFromAssets();
+                }
+                else
+                {
+                    Debug.LogError(e);
+                }
+            }
         }
 
-        return Enumerable.Empty<string>();
+        private List<SceneData> FindScenesData()
+        {
+            var sceneGuids = FindScenesGuid();
+            var paths = sceneGuids.Select(AssetDatabase.GUIDToAssetPath);
+            List<SceneData> scenes = paths.Select(
+                    path => new SceneData(AssetDatabase.LoadAssetAtPath<SceneAsset>(path), path))
+                .ToList();
+            return scenes;
+        }
+
+        private IEnumerable<string> FindScenesGuid()
+        {
+            if (folderPath == string.Empty)
+            {
+                return AssetDatabase.FindAssets("t:SceneAsset");
+            }
+            else if (AssetDatabase.IsValidFolder(folderPath))
+            {
+                return AssetDatabase.FindAssets("t:SceneAsset", new string[] { folderPath });
+            }
+
+            return Enumerable.Empty<string>();
+        }
     }
-    
 }

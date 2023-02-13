@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e73c32f2c67fe145b01b949e7e98ca9, type: 3}
+  m_Script: {fileID: 11500000, guid: 98e50cbc422f3334791e1f89359eab4b, type: 3}
   m_Name: OnLevelSceneReadyEvent
   m_EditorClassIdentifier: 
-  description: Raised when the level scene is ready to begin play
+  description: Raised when the gameplay managers have finished  loading a level,
+    indicating the level-scene managers can begin gameplay

@@ -35,6 +35,7 @@ public class PlayerFootstoolJumpingState : PlayerMovementState
         pathBody.pathVelocity.y = movementProfile.ftstlJumpStrength;
         pathBody.SetGravityEnabled(false);
         blackboard.coyoteTimer = float.MaxValue;
+        transitions.AddOnJumpPressedToFootstoolJump();
     }
 
     public override void ExitState()
@@ -45,6 +46,8 @@ public class PlayerFootstoolJumpingState : PlayerMovementState
             movementProfile.ftstlJumpEndVel);
         
         pathBody.SetGravityEnabled(true);
+
+        transitions.RemoveOnJumpPressedToFootstoolJump();
     }
 
     public override void UpdateState()

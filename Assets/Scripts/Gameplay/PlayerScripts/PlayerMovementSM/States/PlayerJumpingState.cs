@@ -47,6 +47,7 @@ public class PlayerJumpingState : PlayerMovementState
             movementProfile.jumpEndVel);
         
         pathBody.SetGravityEnabled(true);
+        transitions.RemoveOnJumpPressedToFootstoolJump();
     }
 
     public override void UpdateState()

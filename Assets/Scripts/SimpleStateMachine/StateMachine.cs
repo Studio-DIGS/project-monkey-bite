@@ -95,6 +95,12 @@ namespace SimpleStateMachine
             currentState.EnterState();
         }
 
+        public void ExitStateMachine()
+        {
+            currentState = null;
+            currentState.ExitState();
+        }
+
         public virtual void Update()
         {
             State<BlkBoard> currentTransition = null;

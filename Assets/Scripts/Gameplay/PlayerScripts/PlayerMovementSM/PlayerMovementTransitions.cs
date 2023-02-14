@@ -61,9 +61,9 @@ public class PlayerMovementTransitions : TransitionTable<PlayerBlackboard>
 
     private void OnJumpPressedToFootstoolJump()
     {
-        bool grounded = blackboard.movementContextController.IsOnEnemy;
-        bool coyoteTime = blackboard.coyoteTimer < blackboard.movementProfile.ftstlCoyoteTime;
-        if(grounded || coyoteTime)
+        var groundedInfo = blackboard.movementContextController.CheckGroundedOnLayer(blackboard.movementProfile.footstoolMask);
+        bool coyoteTime = blackboard.coyoteTimer < blackboard.movementProfile.coyoteTime;
+        if(groundedInfo.surfaceFound || coyoteTime)
             context.ForceTransition(GetState<PlayerFootstoolJumpingState>());
     }
 

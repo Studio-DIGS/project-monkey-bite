@@ -24,6 +24,7 @@ public class MovementProfileSO : DescriptionBaseSO
     public float minJumpTime;
 
     [ColorHeader("Footstool Jump")]
+    public LayerMask footstoolMask;
     public float ftstlJumpStrength;
     public float ftstlJumpEndVel;
     public float ftstlCoyoteTime;

@@ -15,10 +15,14 @@ public class PlayerManager : DescriptionMonoBehavior
     [ColorHeader("Debug")]
     [EditorReadOnly, SerializeField] private string currentStateName;
 
-    void Start()
+    void OnEnable()
     {
         movementStateMachine = new PlayerMovementStateMachine(blackboard);
         movementStateMachine.InitializeEntryState<PlayerIdleState>();
+    }
+
+    private void OnDisable() {
+        movementStateMachine.ExitStateMachine();
     }
     
     void Update() 

@@ -19,11 +19,14 @@ MonoBehaviour:
   airborneWalkVel: 6
   airborneWalkAccel: 40
   airborneFriction: 15
-  jumpStrength: 6
+  jumpStrength: 5.5
   jumpEndVel: 3
   coyoteTime: 0.05
   maxJumpTime: 0.25
   minJumpTime: 0.1
+  footstoolMask:
+    serializedVersion: 2
+    m_Bits: 256
   ftstlJumpStrength: 12
   ftstlJumpEndVel: 3
   ftstlCoyoteTime: 0.05

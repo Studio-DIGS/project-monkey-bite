@@ -29,7 +29,7 @@ public class PlayerMovementStateMachine : StateMachine<PlayerBlackboard>
     protected override void InitializeStatePool()
     {
 
-        var stopwatch = Stopwatch.StartNew();
+        //var stopwatch = Stopwatch.StartNew();
         /*
         AddToStatePool(new PlayerWalkingState(this));
         AddToStatePool(new PlayerIdleState(this));
@@ -40,7 +40,7 @@ public class PlayerMovementStateMachine : StateMachine<PlayerBlackboard>
         
         AddTypesToStatePool(StateTypes, this);
         
-        Debug.Log(stopwatch.ElapsedMilliseconds);
+        //Debug.Log(stopwatch.ElapsedMilliseconds);
     }
 
     protected override void InitializeTransitionPool()

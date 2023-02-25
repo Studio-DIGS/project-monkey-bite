@@ -21,10 +21,11 @@ public class PlayerManager : DescriptionMonoBehavior
         movementStateMachine.InitializeEntryState<PlayerIdleState>();
     }
 
-    private void OnDisable() {
+    private void OnDisable() 
+    {
         movementStateMachine.ExitStateMachine();
     }
-    
+
     void Update() 
     {
         blackboard.UpdateInputState();

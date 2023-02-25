@@ -135,9 +135,6 @@ MonoBehaviour:
   groundedMask:
     serializedVersion: 2
     m_Bits: 128
-  enemyMask:
-    serializedVersion: 2
-    m_Bits: 256
   groundedDotMin: 0.8
 --- !u!114 &4827143860289516615
 MonoBehaviour:
@@ -557,9 +554,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 9131043314775071401}
   - {fileID: 1528058970887407427}
   - {fileID: 2168525703250670687}
+  - {fileID: 9131043314775071401}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

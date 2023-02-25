@@ -97,8 +97,8 @@ namespace SimpleStateMachine
 
         public void ExitStateMachine()
         {
-            currentState = null;
             currentState.ExitState();
+            currentState = null;
         }
 
         public virtual void Update()

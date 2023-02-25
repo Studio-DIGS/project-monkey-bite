@@ -18,6 +18,7 @@ namespace MushiCore.Editor
         }
 
         // Public fields
+        // Icon fields
         public IconType iconType;
         public string editorIconStringIdentifier;
         public Texture2D textureAsset;
@@ -54,38 +55,36 @@ namespace MushiCore.Editor
         }
     }
 
-    [CustomPropertyDrawer(typeof(MultiSourceEditorIcon))]
+    [CustomPropertyDrawer(typeof(MultiSourceEditorIcon))] 
     public class MultiSourceEditorIconDrawer : PropertyDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            var target = (MultiSourceEditorIcon)property.boxedValue;
+            var iconTypeProp = property.FindPropertyRelative("iconType");
             position.height = EditorGUIUtility.singleLineHeight;
             // Icon Type dropdown
-            target.iconType = (MultiSourceEditorIcon.IconType)EditorGUI.EnumPopup(position, label, target.iconType);
+            EditorGUI.PropertyField(position, iconTypeProp);
 
             // Set up positions for icon data fields
             position.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
-            position.x += EditorGUIUtility.labelWidth;
-            position.width -= EditorGUIUtility.labelWidth;
 
             // Built in icon string field
-            if (target.iconType == MultiSourceEditorIcon.IconType.EditorGUIUtility)
+            if (iconTypeProp.enumValueIndex == (int)MultiSourceEditorIcon.IconType.EditorGUIUtility)
             {
-                target.editorIconStringIdentifier = EditorGUI.TextField(position, target.editorIconStringIdentifier);
+                var iconStringProp = property.FindPropertyRelative("editorIconStringIdentifier");
+                EditorGUI.PropertyField(position, iconStringProp);
             }
             // Custom texture asset field
-            else if (target.iconType == MultiSourceEditorIcon.IconType.TextureAsset)
+            else if (iconTypeProp.enumValueIndex == (int)MultiSourceEditorIcon.IconType.TextureAsset)
             {
-                target.textureAsset = (Texture2D)EditorGUI.ObjectField(position, target.textureAsset, typeof(Texture), false);
+                var iconTextureProp = property.FindPropertyRelative("textureAsset");
+                EditorGUI.PropertyField(position, iconTextureProp);
             }
-
-            property.boxedValue = target;
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing;
+            return EditorGUIUtility.singleLineHeight * 3 + EditorGUIUtility.standardVerticalSpacing;
         }
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace MushiEditorTools.HierarchyOverlay
@@ -6,21 +7,43 @@ namespace MushiEditorTools.HierarchyOverlay
     /// <summary>
     /// A group of HierarchyIconOverlays, used to organize configs
     /// </summary>
-    [CreateAssetMenu(menuName = "MushiStuff/MushiEditorTools/Hierarchy Overlays/Icons/Overlay Group")]
+    [CreateAssetMenu(menuName = "MushiStuff/MushiEditorTools/Hierarchy Overlays/Icon Group")]
     public class HierarchyIconOverlayGroupSO : ScriptableObject
     {
-        public List<HierarchyIconStringTargetSO> stringTargetIcons;
-        public List<HierarchyIconMonoScriptTargetSO> monoScriptTargetIcons;
+        public List<HierarchyIconSO> hierarchyIcons;
 
-        public Dictionary<string, HierarchyIconStringTargetSO> stringTargetDict;
+        public Dictionary<string, HierarchyIconSO> stringTargetDict;
+        public Dictionary<MonoScript, HierarchyIconSO> monoScriptTargetDict;
 
         private void OnValidate()
         {
-            stringTargetDict = new Dictionary<string, HierarchyIconStringTargetSO>();
-            foreach (var stringTarget in stringTargetIcons)
+            UpdateDict();
+        }
+
+        public void UpdateDict()
+        {
+            // Build up dictionary for targets for performance
+            stringTargetDict = new Dictionary<string, HierarchyIconSO>();
+            monoScriptTargetDict = new Dictionary<MonoScript, HierarchyIconSO>();
+            
+            foreach (var target in hierarchyIcons)
             {
-                if (!stringTarget) continue;
-                stringTargetDict.TryAdd(stringTarget.targetClassString.ToLower(), stringTarget);
+                if (!target) continue;
+                foreach (var stringTarget in target.targetClassStrings)
+                {
+                    if (!stringTargetDict.TryAdd(stringTarget.ToLower(), target))
+                    {
+                        Debug.Log($"Duplicate icon target {stringTarget}", target);
+                    }
+                }
+
+                foreach (var monoScriptTarget in target.targetClassMonoscripts)
+                {
+                    if (!monoScriptTargetDict.TryAdd(monoScriptTarget, target))
+                    {
+                        Debug.Log($"Duplicate icon target {monoScriptTarget.name}", target);
+                    }
+                }
             }
         }
     }

@@ -58,7 +58,7 @@ namespace MushiEditorTools.HierarchyOverlay
 
 
         [Serializable]
-        public struct IconOverlayGroup
+        public struct IconOverlayGroupContainer
         {
             public bool isActive;
             public HierarchyIconOverlayGroupSO group;
@@ -85,7 +85,7 @@ namespace MushiEditorTools.HierarchyOverlay
         public bool drawIcons;
 
         public float iconShrinkAmount;
-        public List<IconOverlayGroup> iconOverlays;
+        public List<IconOverlayGroupContainer> iconOverlays;
     }
 
     [CustomEditor(typeof(HierarchyOverlaySettingsSO))]

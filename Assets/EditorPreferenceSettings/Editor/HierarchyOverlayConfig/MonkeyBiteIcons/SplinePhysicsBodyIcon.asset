@@ -9,11 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 304900f5b8f80084eb80a8d81b037c40, type: 3}
+  m_Script: {fileID: 11500000, guid: 69b3dab874057554288b066092786e20, type: 3}
   m_Name: SplinePhysicsBodyIcon
   m_EditorClassIdentifier: 
+  description: 
   icon:
-    iconType: 0
+    iconType: 1
     editorIconStringIdentifier: d_AvatarSelector@2x
-    textureAsset: {fileID: 0}
-  targetClass: {fileID: 11500000, guid: 7bbc88bfec42ccb4dbcd5cf593bb9c50, type: 3}
+    textureAsset: {fileID: 2800000, guid: 9a1e76c9845005c41a09e1d83102744e, type: 3}
+  targetClassMonoscripts:
+  - {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
+  targetClassStrings: []

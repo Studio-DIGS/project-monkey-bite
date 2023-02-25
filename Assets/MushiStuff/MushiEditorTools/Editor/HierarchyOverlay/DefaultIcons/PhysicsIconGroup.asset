@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ff956d9d2892f4c8735986632f4301, type: 3}
   m_Name: PhysicsIconGroup
   m_EditorClassIdentifier: 
-  stringTargetIcons:
-  - {fileID: 11400000, guid: 8954212589246484e99259bff67d07e3, type: 2}
+  hierarchyIcons:
   - {fileID: 11400000, guid: 96bb498195436ac43889930b1927dcc1, type: 2}
-  - {fileID: 11400000, guid: eac76ce6b05878c4385e57491bd3b70a, type: 2}
   - {fileID: 11400000, guid: 324c6647af83fba4cad7a257b32d2bf6, type: 2}
-  monoScriptTargetIcons: []
+  - {fileID: 11400000, guid: 8954212589246484e99259bff67d07e3, type: 2}
+  - {fileID: 11400000, guid: eac76ce6b05878c4385e57491bd3b70a, type: 2}

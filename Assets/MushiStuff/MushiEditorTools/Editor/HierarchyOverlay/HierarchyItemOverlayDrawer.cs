@@ -72,10 +72,16 @@ namespace MushiEditorTools.HierarchyOverlay
         /// Updates reference to active config and marks cache as dirty. Should be called when changing configs or manual refresh.
         /// Repaints hierarchy for immediate feedback
         /// </summary>
+        [MenuItem("MushiTools/HierarchyOverlay/RefreshHierarchy %&r")]
         public static void RefreshHierarchy()
         {
+            Debug.Log("Refreshing Hierarchy Overlay");
             MarkCacheAsDirty();
             EditorApplication.RepaintHierarchyWindow();
+            foreach (var iconOverlayGroupContainer in Settings.iconOverlays)
+            {
+                iconOverlayGroupContainer.group.UpdateDict();
+            }
         }
 
         /// <summary>
@@ -194,7 +200,7 @@ namespace MushiEditorTools.HierarchyOverlay
                 {
                     if (!iconOverlayGroupConfig.isActive || iconOverlayGroupConfig.group == null) continue;
 
-                    var iconOverlayGroup = iconOverlayGroupConfig.group;
+                    HierarchyIconOverlayGroupSO iconOverlayGroup = iconOverlayGroupConfig.group;
 
                     // Match the string targets
 
@@ -209,18 +215,18 @@ namespace MushiEditorTools.HierarchyOverlay
 
                     // Match the monoscript targets
 
-                    foreach (var monoScriptIcon in iconOverlayGroup.monoScriptTargetIcons)
+                    foreach (var monoScriptIcon in iconOverlayGroup.monoScriptTargetDict)
                     {
-                        if (monoScriptIcon == null) continue;
+                        if (monoScriptIcon.Key == null) continue;
 
-                        classReferenceType = monoScriptIcon.targetClass.GetClass();
+                        classReferenceType = monoScriptIcon.Key.GetClass();
 
                         if (!classReferenceType.IsClass) continue;
 
                         // Check if the component is assignable to or a subclass of the icon target class
                         if (classReferenceType.IsAssignableFrom(componentType) || componentType.IsSubclassOf(classReferenceType))
                         {
-                            cacheData.iconOverlays.Add(monoScriptIcon);
+                            cacheData.iconOverlays.Add(monoScriptIcon.Value);
                             matchFound = true;
                             break;
                         }
@@ -333,8 +339,12 @@ namespace MushiEditorTools.HierarchyOverlay
             for (int i = iconOverlays.Count - 1; i >= 0; i--)
             {
                 var iconOverlay = iconOverlays[i];
-                GUI.DrawTexture(pos, iconOverlay.icon);
-                pos.x -= pos.width;
+                var content = iconOverlay.icon.Content;
+                if (content.image != null)
+                { 
+                    GUI.DrawTexture(pos, iconOverlay.icon);
+                    pos.x -= pos.width;
+                }
             }
         }
 

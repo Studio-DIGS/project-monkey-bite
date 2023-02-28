@@ -3,34 +3,33 @@ using System.Collections.Generic;
 using SimpleStateMachine;
 using UnityEngine;
 
-public class PlayerWalkingState : PlayerMovementState
+public class ProtagWalkingState : ProtagState
 {
-    public PlayerWalkingState(StateMachine<PlayerBlackboard> stateMachine) : base(stateMachine)
+    public ProtagWalkingState(StateMachine<ProtagBlackboard> stateMachine) : base(stateMachine)
     {
         
     }
 
 
-    public override bool TryTransition(ref State<PlayerBlackboard> c)
+    public override bool TryTransition(ref State<ProtagBlackboard> c)
     {
-        return transitions.DefaultGroundTransitions(ref c);
+        return transitions.DefaultGroundTransitions(ref c)
+            || transitions.OnJumpPressedToJump(ref c)
+            || transitions.WhenIdleToIdle(ref c);
     }
 
     public override void EnterState()
     {
         WalkMovement();
         blackboard.coyoteTimer = 0f;
-        transitions.AddOnJumpPressedToJump();
     }
 
     public override void ExitState()
     {
-        transitions.RemoveOnJumpPressedToJump();
     }
 
     public override void UpdateState()
     {
-        
     }
 
     public override void FixedUpdateState()
@@ -40,7 +39,7 @@ public class PlayerWalkingState : PlayerMovementState
 
     private void WalkMovement()
     {
-        Vector2 groundNormal = movementContextController.SurfaceNormal;
+        Vector2 groundNormal = movementContext.SurfaceNormal;
 
         playerSimplePathMovement.SimpleGroundedHorizontalMovement(
             inputState.horizontalAxis, 

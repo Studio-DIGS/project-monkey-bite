@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using SimpleStateMachine;
 using UnityEngine;
 
-public class PlayerIdleState : PlayerMovementState
+public class ProtagIdleState : ProtagState
 {
-    public PlayerIdleState(StateMachine<PlayerBlackboard> stateMachine) : base(stateMachine)
+    public ProtagIdleState(StateMachine<ProtagBlackboard> stateMachine) : base(stateMachine)
     {
         
     }
 
-    public override bool TryTransition(ref State<PlayerBlackboard> c)
+    public override bool TryTransition(ref State<ProtagBlackboard> c)
     {
-        return transitions.WhenAirborneToFalling(ref c);
+        return transitions.WhenAirborneToFalling(ref c)
+            || transitions.OnJumpPressedToJump(ref c)
+            || transitions.WhenWalkingToWalking(ref c);
     }
 
     public override void EnterState()
     {
         blackboard.coyoteTimer = 0f;
-        transitions.AddOnJumpPressedToJump();
     }
 
     public override void ExitState()
     {
         pathBody.constrainVelocity = false;
-        transitions.RemoveOnJumpPressedToJump();
     }
 
     public override void UpdateState()
@@ -37,7 +37,7 @@ public class PlayerIdleState : PlayerMovementState
         pathBody.pathVelocity += playerSimplePathMovement.CalculateHorizontalFrictionStep(
             movementProfile.groundedFriction,
             Time.fixedDeltaTime, 
-            movementContextController.SurfaceNormal);
+            movementContext.SurfaceNormal);
 
         if(pathBody.pathVelocity.magnitude < 0.5f)
             pathBody.constrainVelocity = true;

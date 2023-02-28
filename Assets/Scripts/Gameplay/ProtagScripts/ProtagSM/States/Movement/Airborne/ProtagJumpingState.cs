@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using SimpleStateMachine;
 using UnityEngine;
 
-public class PlayerFootstoolJumpingState : PlayerMovementState
+public class ProtagJumpingState : ProtagState
 {
-    public PlayerFootstoolJumpingState(StateMachine<PlayerBlackboard> stateMachine) : base(stateMachine)
+    public ProtagJumpingState(StateMachine<ProtagBlackboard> stateMachine) : base(stateMachine)
     {
         
     }
     
-    public override bool TryTransition(ref State<PlayerBlackboard> c)
+    public override bool TryTransition(ref State<ProtagBlackboard> c)
     {
         
         float jumpTime = Time.time - stateEntryTime;
-        bool minTimePassed = jumpTime > movementProfile.ftstlMinJumpTime;
-        bool maxTimePassed = jumpTime > movementProfile.ftstlMaxJumpTime;
+        bool minTimePassed = jumpTime > movementProfile.minJumpTime;
+        bool maxTimePassed = jumpTime > movementProfile.maxJumpTime;
         
         if (minTimePassed && transitions.WhenGroundedToWalk(ref c))
         {
@@ -23,7 +23,7 @@ public class PlayerFootstoolJumpingState : PlayerMovementState
         }
         if (minTimePassed && (maxTimePassed || !inputState.jumpHeld))
         {
-            c = GetState<PlayerFallingState>();
+            c = GetState<ProtagFallingState>();
             return true;
         }
     
@@ -32,10 +32,9 @@ public class PlayerFootstoolJumpingState : PlayerMovementState
 
     public override void EnterState()
     {
-        pathBody.pathVelocity.y = movementProfile.ftstlJumpStrength;
+        pathBody.pathVelocity.y = movementProfile.jumpStrength;
         pathBody.SetGravityEnabled(false);
         blackboard.coyoteTimer = float.MaxValue;
-        transitions.AddOnJumpPressedToFootstoolJump();
     }
 
     public override void ExitState()
@@ -43,11 +42,9 @@ public class PlayerFootstoolJumpingState : PlayerMovementState
         pathBody.pathVelocity.y = Mathf.MoveTowards(
             pathBody.pathVelocity.y,
             0f,
-            movementProfile.ftstlJumpEndVel);
+            movementProfile.jumpEndVel);
         
         pathBody.SetGravityEnabled(true);
-
-        transitions.RemoveOnJumpPressedToFootstoolJump();
     }
 
     public override void UpdateState()
@@ -57,8 +54,8 @@ public class PlayerFootstoolJumpingState : PlayerMovementState
 
     public override void FixedUpdateState()
     {
-        pathBody.pathVelocity.y = movementProfile.ftstlJumpStrength;
-        if (!movementContextController.IsOnSurface)
+        pathBody.pathVelocity.y = movementProfile.jumpStrength;
+        if (!movementContext.IsOnSurface)
         {
             playerSimplePathMovement.SimpleAirborneHorizontalMovement(
                 inputState.horizontalAxis, 
@@ -66,7 +63,7 @@ public class PlayerFootstoolJumpingState : PlayerMovementState
                 movementProfile.airborneWalkAccel,
                 movementProfile.airborneFriction,
                 Time.fixedDeltaTime, 
-                movementContextController.SurfaceNormal);
+                movementContext.SurfaceNormal);
         }
     }
 

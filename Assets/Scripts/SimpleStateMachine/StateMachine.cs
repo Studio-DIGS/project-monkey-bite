@@ -117,7 +117,7 @@ namespace SimpleStateMachine
         }
 
         /// <summary>
-        /// Force a transition outside of the standard frame-based transition checks
+        /// Force a transition outside of the standard frame-based transition checks.
         /// </summary>
         /// <param name="state"></param>
         public void ForceTransition(State<BlkBoard> state)

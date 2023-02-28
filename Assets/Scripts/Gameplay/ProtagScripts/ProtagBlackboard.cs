@@ -4,18 +4,18 @@ using System.Collections.Generic;
 using MushiCore.EditorAttributes;
 using UnityEngine;
 
-public class PlayerBlackboard : DescriptionMonoBehavior
+public class ProtagBlackboard : DescriptionMonoBehavior
 {
     [ColorHeader("Dependencies")]
     [SerializeField] public PlayerUserInputProvider inputProvider;
     [SerializeField] public SimplePathMovement playerSimplePathMovement;
-    [SerializeField] public MovementContextController movementContextController;
+    [SerializeField] public MovementContext movementContext;
     [SerializeField] public SplinePathPhysicsBody pathBody;
     [SerializeField] public MovementProfileSO movementProfile;
     [SerializeField] public CharacterRotator playerRotator;
     
     [EditorReadOnly] public PlayerInputState inputState;
-    
+
     // Player state
     [EditorReadOnly] public float coyoteTimer;
     
@@ -23,5 +23,6 @@ public class PlayerBlackboard : DescriptionMonoBehavior
     public void UpdateInputState()
     {
         inputProvider.GetInputState(ref inputState);
+        inputProvider.GameplayCommandBuffer.RemoveExpired();
     }
 }

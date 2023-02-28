@@ -13,23 +13,51 @@ public class PlayerUserInputProvider : DescriptionBaseSO, InputProvider<PlayerIn
     [SerializeField] private InputActionReference horizontalMovement;
     [SerializeField] private InputActionReference mousePosition;
     [SerializeField] private InputActionReference jump;
+    [SerializeField] private InputActionReference dodge;
     [SerializeField] private InputActionReference pause;
     [SerializeField] private InputActionReference interact;
     [SerializeField] private InputActionReference mainAttack;
     [SerializeField] private InputActionReference altAttack;
-    
+
+    private GameplayCommandBuffer commandBuffer;
+    public GameplayCommandBuffer GameplayCommandBuffer => commandBuffer;
+
     private PlayerInputEvents events;
     public PlayerInputEvents Events => events;
 
     private PlayerInputState _state;
 
+    private static float inputCommandDuration = 0.1f;
+
+    public enum PlayerCommandID
+    {
+        JumpCommandDown,
+        JumpCommandUp,
+        PrimaryAttackCommandDown,
+        PrimaryAttackCommandUp,
+        SecondaryAttackCommandDown,
+        SecondaryAttackCommandUp,
+        DodgeCommandDown,
+        DodgeCommandUp
+    }
+
+    [Flags]
+    public enum PlayerCommandFlag
+    {
+        CombatCommand = 0,
+        MovementCommand = 1,
+    }
+
     private void OnEnable()
     {
+        commandBuffer = new GameplayCommandBuffer();
         events = new PlayerInputEvents();
+        
         // Link up events with unity Input System
         horizontalMovement.action.SetActionCallbacks(OnHorizontalMovement);
         mousePosition.action.SetActionCallbacks(OnMousePosition);
         jump.action.SetActionCallbacks(OnJump);
+        dodge.action.SetActionCallbacks(OnDodge);
         pause.action.SetActionCallbacks(OnPause);
         interact.action.SetActionCallbacks(OnInteract);
         mainAttack.action.SetActionCallbacks(OnMainAttack);
@@ -38,12 +66,9 @@ public class PlayerUserInputProvider : DescriptionBaseSO, InputProvider<PlayerIn
 
     public void GetInputState(ref PlayerInputState state)
     {
-        //state ??= new PlayerInputState();
         state.horizontalAxis = horizontalMovement.action.ReadValue<float>();
         state.mousePosition = mousePosition.action.ReadValue<Vector2>();
         state.jumpHeld = jump.action.ReadValue<float>() > 0;
-        state.jumpPressed = jump.action.WasPerformedThisFrame();
-        //return state;
     }
 
     // Callback Listeners
@@ -59,9 +84,35 @@ public class PlayerUserInputProvider : DescriptionBaseSO, InputProvider<PlayerIn
     private void OnJump(InputAction.CallbackContext context)
     {
         if (context.performed)
-            events.OnJumpPressed?.Invoke();
+            commandBuffer.BufferGameplayCommand(
+                (int)PlayerCommandID.JumpCommandDown, 
+                true, 
+                inputCommandDuration,
+                (int)PlayerCommandFlag.MovementCommand);
+        
         if (context.canceled)
-            events.OnJumpReleased?.Invoke();
+            commandBuffer.BufferGameplayCommand(
+                (int)PlayerCommandID.JumpCommandUp, 
+                false, 
+                inputCommandDuration,
+                (int)PlayerCommandFlag.MovementCommand);
+    }
+    
+    private void OnDodge(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            commandBuffer.BufferGameplayCommand(
+                (int)PlayerCommandID.DodgeCommandDown, 
+                true, 
+                inputCommandDuration,
+                (int)PlayerCommandFlag.MovementCommand);
+        
+        if (context.canceled)
+            commandBuffer.BufferGameplayCommand(
+                (int)PlayerCommandID.DodgeCommandUp, 
+                false, 
+                inputCommandDuration,
+                (int)PlayerCommandFlag.MovementCommand);
     }
 
     private void OnPause(InputAction.CallbackContext context)
@@ -81,14 +132,36 @@ public class PlayerUserInputProvider : DescriptionBaseSO, InputProvider<PlayerIn
     public void OnMainAttack(InputAction.CallbackContext context)
     {
         if (context.started)
-            events.OnMainAttackPressed?.Invoke();
+            commandBuffer.BufferGameplayCommand(
+                (int)PlayerCommandID.PrimaryAttackCommandDown, 
+                false, 
+                inputCommandDuration,
+                (int)PlayerCommandFlag.CombatCommand);
+        
+        if (context.canceled)
+            commandBuffer.BufferGameplayCommand(
+                (int)PlayerCommandID.PrimaryAttackCommandUp, 
+                false, 
+                inputCommandDuration,
+                (int)PlayerCommandFlag.CombatCommand);
     }
 
 
     public void OnAltAttack(InputAction.CallbackContext context)
     {
         if (context.started)
-            events.OnAltAttackPressed?.Invoke();
+            commandBuffer.BufferGameplayCommand(
+                (int)PlayerCommandID.SecondaryAttackCommandDown, 
+                false, 
+                inputCommandDuration,
+                (int)PlayerCommandFlag.CombatCommand);
+        
+        if (context.canceled)
+            commandBuffer.BufferGameplayCommand(
+                (int)PlayerCommandID.SecondaryAttackCommandUp, 
+                false, 
+                inputCommandDuration,
+                (int)PlayerCommandFlag.CombatCommand);
     }
 }
 

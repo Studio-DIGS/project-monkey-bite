@@ -63,7 +63,7 @@ MonoBehaviour:
   description: Blackboard for easy access to any player state or common dependencies
   inputProvider: {fileID: 11400000, guid: ad4b29790938e334bb5955a0333e3e50, type: 2}
   playerSimplePathMovement: {fileID: 8942834160476072386}
-  movementContextController: {fileID: 415005736765802564}
+  movementContext: {fileID: 415005736765802564}
   pathBody: {fileID: 7739586611912997664}
   movementProfile: {fileID: 11400000, guid: 9a0ddf34747b8594181c275bc3c6dafa, type: 2}
   playerRotator: {fileID: 4827143860289516615}
@@ -130,8 +130,8 @@ MonoBehaviour:
   description: 
   pathBody: {fileID: 7739586611912997664}
   raycastSource: {fileID: 4637538611561541445}
-  castRadius: 0.47
-  castDistance: 0.66
+  castRadius: 0.08
+  castDistance: 1.1
   groundedMask:
     serializedVersion: 2
     m_Bits: 128
@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 9131043314775071401}
   - component: {fileID: 7739586611912997664}
   m_Layer: 0
-  m_Name: PlayerBody
+  m_Name: ProtagBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -536,7 +536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6838055151077394437}
   m_Layer: 6
-  m_Name: PlayerCharacter
+  m_Name: ProtagCharacter
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

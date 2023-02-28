@@ -27,7 +27,7 @@ MonoBehaviour:
   footstoolMask:
     serializedVersion: 2
     m_Bits: 256
-  ftstlJumpStrength: 12
+  ftstlJumpStrength: 5.5
   ftstlJumpEndVel: 3
   ftstlCoyoteTime: 0.05
   ftstlMaxJumpTime: 0.25

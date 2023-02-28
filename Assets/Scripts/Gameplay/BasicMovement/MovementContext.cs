@@ -6,7 +6,7 @@ using UnityEngine;
 /// Handles movement context things like grounded checks, grounded normals, slope detection, etc.
 /// Works in the context of spline space, yay
 /// </summary>
-public class MovementContextController : DescriptionMonoBehavior
+public class MovementContext : DescriptionMonoBehavior
 {
     [ColorHeader("Config", ColorHeaderColor.Config)]
     [SerializeField] private SplinePathPhysicsBody pathBody;
@@ -22,7 +22,13 @@ public class MovementContextController : DescriptionMonoBehavior
     private Vector2 surfaceNormal;
     
     // Properties
+    /// <summary>
+    /// Is standing on valid ground
+    /// </summary>
     public bool IsGrounded => isGrounded;
+    /// <summary>
+    /// Is standing on some surface (e.g too steep to be grounded)
+    /// </summary>
     public bool IsOnSurface => isOnSurface;
     public Vector2 SurfaceNormal => surfaceNormal;
 
@@ -53,6 +59,7 @@ public class MovementContextController : DescriptionMonoBehavior
             surfaceNormal = Vector2.up,
             groundedDot = 0f
         };
+        
         bool didHit = Physics.SphereCast(
             pos, 
             castRadius, 

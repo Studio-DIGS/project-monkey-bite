@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using SimpleStateMachine;
 using UnityEngine;
 
-public class PlayerFallingState : PlayerMovementState
+public class ProtagFallingState : ProtagState
 {
-    public PlayerFallingState(StateMachine<PlayerBlackboard> stateMachine) : base(stateMachine)
+    public ProtagFallingState(StateMachine<ProtagBlackboard> stateMachine) : base(stateMachine)
     {
         
     }
 
 
-    public override bool TryTransition(ref State<PlayerBlackboard> c)
+    public override bool TryTransition(ref State<ProtagBlackboard> c)
     {
-        return transitions.WhenGroundedToWalk(ref c);
+        return transitions.WhenGroundedToWalk(ref c)
+            || transitions.OnJumpPressedToFootstoolJump(ref c)
+            || transitions.OnJumpPressedToJump(ref c);
     }
 
     public override void EnterState()
     {
-        transitions.AddOnJumpPressedToJump();
-        transitions.AddOnJumpPressedToFootstoolJump();
+        
     }
 
     public override void ExitState()
     {
-        transitions.RemoveOnJumpPressedToJump();
-        transitions.RemoveOnJumpPressedToFootstoolJump();
+        
     }
 
     public override void UpdateState()
@@ -35,7 +35,7 @@ public class PlayerFallingState : PlayerMovementState
 
     public override void FixedUpdateState()
     {
-        if (!movementContextController.IsOnSurface)
+        if (!movementContext.IsOnSurface)
         {
             playerSimplePathMovement.SimpleAirborneHorizontalMovement(
                 inputState.horizontalAxis,
@@ -43,7 +43,7 @@ public class PlayerFallingState : PlayerMovementState
                 movementProfile.airborneWalkAccel,
                 movementProfile.airborneFriction,
                 Time.fixedDeltaTime,
-                movementContextController.SurfaceNormal);
+                movementContext.SurfaceNormal);
         }
     }
 

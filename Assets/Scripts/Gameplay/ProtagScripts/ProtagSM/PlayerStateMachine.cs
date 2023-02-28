@@ -6,7 +6,7 @@ using SimpleStateMachine;
 using Unity.VisualScripting;
 using Debug = UnityEngine.Debug;
 
-public class PlayerMovementStateMachine : StateMachine<PlayerBlackboard>
+public class PlayerStateMachine : StateMachine<ProtagBlackboard>
 {
     private static Type[] stateTypes;
 
@@ -16,31 +16,19 @@ public class PlayerMovementStateMachine : StateMachine<PlayerBlackboard>
         {
             if (stateTypes == null)
             {
-                stateTypes = FindDerivedStateTypes<PlayerMovementState>();
+                stateTypes = FindDerivedStateTypes<ProtagState>();
             }
             return stateTypes;
         }
     }
     
-    public PlayerMovementStateMachine(PlayerBlackboard blackboardInstance) : base(blackboardInstance)
+    public PlayerStateMachine(ProtagBlackboard blackboardInstance) : base(blackboardInstance)
     {
     }
 
     protected override void InitializeStatePool()
     {
-
-        //var stopwatch = Stopwatch.StartNew();
-        /*
-        AddToStatePool(new PlayerWalkingState(this));
-        AddToStatePool(new PlayerIdleState(this));
-        AddToStatePool(new PlayerJumpingState(this));
-        AddToStatePool(new PlayerFootstoolJumpingState(this));
-        AddToStatePool(new PlayerFallingState(this));
-        */
-        
         AddTypesToStatePool(StateTypes, this);
-        
-        //Debug.Log(stopwatch.ElapsedMilliseconds);
     }
 
     protected override void InitializeTransitionPool()

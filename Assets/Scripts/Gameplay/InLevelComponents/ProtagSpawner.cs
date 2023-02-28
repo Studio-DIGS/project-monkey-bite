@@ -8,7 +8,7 @@ using UnityEngine.AddressableAssets;
 /// <summary>
 /// Handles spawning the player into the game level, including any animations or cutscenes before the player can enter gameplay
 /// </summary>
-public class PlayerSpawner : DescriptionMonoBehavior
+public class ProtagSpawner : DescriptionMonoBehavior
 {
     [ColorHeader("Listening", ColorHeaderColor.ListeningChannels)]
     [ColorHeader("On Level Scene Ready")]

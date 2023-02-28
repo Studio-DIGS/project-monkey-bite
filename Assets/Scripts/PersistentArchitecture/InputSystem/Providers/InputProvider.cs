@@ -11,4 +11,9 @@ public interface InputProvider<TInputState, TInputEvents>
     {
         get;
     }
+    
+    public GameplayCommandBuffer GameplayCommandBuffer
+    {
+        get;
+    }
 }

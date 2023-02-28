@@ -16,6 +16,7 @@ MonoBehaviour:
   horizontalMovement: {fileID: -2595237363424670529, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
   mousePosition: {fileID: -4237075492081764388, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
   jump: {fileID: -7969240967366536238, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
+  dodge: {fileID: -6049077083956084330, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
   pause: {fileID: 8944112657952806061, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
   interact: {fileID: -1796386707715491615, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
   mainAttack: {fileID: 4420735157476141748, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}

@@ -44,8 +44,9 @@ public class PlayerUserInputProvider : DescriptionBaseSO, InputProvider<PlayerIn
     [Flags]
     public enum PlayerCommandFlag
     {
-        CombatCommand = 0,
-        MovementCommand = 1,
+        NoFlags = 0,
+        CombatCommand = 1,
+        MovementCommand = 2,
     }
 
     private void OnEnable()

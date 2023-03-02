@@ -5,23 +5,15 @@ using UnityEngine;
 
 public class ProtagWalkingState : ProtagState
 {
-    public ProtagWalkingState(StateMachine<ProtagBlackboard> stateMachine) : base(stateMachine)
-    {
-        
-    }
-
-
     public override bool TryTransition(ref State<ProtagBlackboard> c)
     {
-        return transitions.DefaultGroundTransitions(ref c)
-            || transitions.OnJumpPressedToJump(ref c)
-            || transitions.WhenIdleToIdle(ref c);
+        return moveTransitions.ToProtagStateSelector(ref c);
     }
 
     public override void EnterState()
     {
         WalkMovement();
-        blackboard.coyoteTimer = 0f;
+        context.coyoteTimer = 0f;
     }
 
     public override void ExitState()

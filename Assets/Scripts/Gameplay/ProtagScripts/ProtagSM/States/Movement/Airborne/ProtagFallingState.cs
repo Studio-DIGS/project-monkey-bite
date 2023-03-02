@@ -5,17 +5,9 @@ using UnityEngine;
 
 public class ProtagFallingState : ProtagState
 {
-    public ProtagFallingState(StateMachine<ProtagBlackboard> stateMachine) : base(stateMachine)
-    {
-        
-    }
-
-
     public override bool TryTransition(ref State<ProtagBlackboard> c)
     {
-        return transitions.WhenGroundedToWalk(ref c)
-            || transitions.OnJumpPressedToFootstoolJump(ref c)
-            || transitions.OnJumpPressedToJump(ref c);
+        return moveTransitions.ToProtagStateSelector(ref c);
     }
 
     public override void EnterState()
@@ -30,7 +22,7 @@ public class ProtagFallingState : ProtagState
 
     public override void UpdateState()
     {
-        blackboard.coyoteTimer += Time.deltaTime;
+        context.coyoteTimer += Time.deltaTime;
     }
 
     public override void FixedUpdateState()

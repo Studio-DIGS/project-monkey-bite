@@ -1,27 +1,25 @@
-using UnityEngine;
-
 namespace SimpleStateMachine
 {
     /// <summary>
     /// Instanced transition table for reusable transition logic
     /// </summary>
-    /// <typeparam name="BlkBoard"></typeparam>
-    public class TransitionTable<BlkBoard>
+    /// <typeparam name="ContextType"></typeparam>
+    public class TransitionTable<ContextType>
     {
-        //public delegate bool Transition(ref State<BlkBoard> current);
-        
-        protected StateMachine<BlkBoard> context;
-        protected BlkBoard blackboard => context.Blackboard;
+        protected StateMachine<ContextType> stateMachine;
+        protected ContextType context;
 
-        protected T GetState<T>() where T : State<BlkBoard>
+        protected TransitionTable()
         {
-            return context.GetState<T>();
         }
-        
-        public TransitionTable(StateMachine<BlkBoard> context)
+
+        public virtual void Initialize(StateMachine<ContextType> stateMachine, ContextType context)
         {
+            this.stateMachine = stateMachine;
             this.context = context;
         }
+
+        protected T GetState<T>() where T : State<ContextType>, new() => stateMachine.GetState<T>();
+        protected T GetTransitionTable<T>() where T : TransitionTable<ContextType>, new() => stateMachine.GetTransitionTable<T>();
     }
 }
-

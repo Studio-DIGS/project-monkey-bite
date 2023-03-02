@@ -3,38 +3,29 @@ using System.Collections.Generic;
 using SimpleStateMachine;
 using UnityEngine;
 
-public class ProtagFootstoolJumpingState : ProtagState
+public class ProtagJumpingState : ProtagState
 {
-    public ProtagFootstoolJumpingState(StateMachine<ProtagBlackboard> stateMachine) : base(stateMachine)
-    {
-        
-    }
-    
     public override bool TryTransition(ref State<ProtagBlackboard> c)
     {
+        float jumpTime = stateMachine.CurrentStateDuration;
         
-        float jumpTime = Time.time - stateEntryTime;
         bool minTimePassed = jumpTime > movementProfile.ftstlMinJumpTime;
         bool maxTimePassed = jumpTime > movementProfile.ftstlMaxJumpTime;
-        
-        if (minTimePassed && transitions.WhenGroundedToWalk(ref c))
-        {
-            return true;
-        }
-        if (minTimePassed && (maxTimePassed || !inputState.jumpHeld))
-        {
-            c = GetState<ProtagFallingState>();
-            return true;
-        }
-    
-        return false;
+
+        bool isGrounded = movementContext.IsGrounded;
+        bool tryManualCancel = (maxTimePassed || !inputState.jumpHeld);
+
+        bool endJump = minTimePassed && (isGrounded || tryManualCancel);
+
+        return (minTimePassed && combatTransitions.ToCombatSelector(ref c))
+               || (endJump && moveTransitions.ToProtagStateSelector(ref c));
     }
 
     public override void EnterState()
     {
-        pathBody.pathVelocity.y = movementProfile.ftstlJumpStrength;
+        pathBody.pathVelocity.y = movementProfile.jumpStrength;
         pathBody.SetGravityEnabled(false);
-        blackboard.coyoteTimer = float.MaxValue;
+        context.coyoteTimer = float.MaxValue;
     }
 
     public override void ExitState()
@@ -42,7 +33,7 @@ public class ProtagFootstoolJumpingState : ProtagState
         pathBody.pathVelocity.y = Mathf.MoveTowards(
             pathBody.pathVelocity.y,
             0f,
-            movementProfile.ftstlJumpEndVel);
+            movementProfile.jumpEndVel);
         
         pathBody.SetGravityEnabled(true);
     }
@@ -54,7 +45,7 @@ public class ProtagFootstoolJumpingState : ProtagState
 
     public override void FixedUpdateState()
     {
-        pathBody.pathVelocity.y = movementProfile.ftstlJumpStrength;
+        pathBody.pathVelocity.y = movementProfile.jumpStrength;
         if (!movementContext.IsOnSurface)
         {
             playerSimplePathMovement.SimpleAirborneHorizontalMovement(

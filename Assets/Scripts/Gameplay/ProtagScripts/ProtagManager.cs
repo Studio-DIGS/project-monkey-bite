@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using MushiCore.EditorAttributes;
+using UnityEditor;
 using UnityEngine;
 
 public class ProtagManager : DescriptionMonoBehavior
@@ -10,14 +11,14 @@ public class ProtagManager : DescriptionMonoBehavior
     [SerializeField] private ProtagBlackboard blackboard;
 
     // Fields
-    private PlayerStateMachine stateMachine;
+    private ProtagStateMachine stateMachine;
 
     [ColorHeader("Debug")]
     [EditorReadOnly, SerializeField] private string currentStateName;
 
     void Awake()
     {
-        stateMachine = new PlayerStateMachine(blackboard);
+        stateMachine = new ProtagStateMachine(blackboard);
     }
 
     private void OnEnable()
@@ -45,4 +46,11 @@ public class ProtagManager : DescriptionMonoBehavior
         blackboard.movementContext.UpdateContext();
         stateMachine.FixedUpdate();
     }
+    
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Handles.Label(blackboard.pathBody.transform.position + Vector3.up * 2f, currentStateName);
+    }
+#endif
 }

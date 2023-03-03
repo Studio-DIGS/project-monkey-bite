@@ -1,0 +1,16 @@
+using MushiCore.EditorAttributes;
+using UnityEngine;
+
+[CreateAssetMenu(menuName = "GameplayProfiles/Movement/Horizontal Movement Profile", fileName = "HorizontalMovementProfile")]
+public class HorizontalMovementProfile : DescriptionBaseSO
+{
+    [ColorHeader("Grounded Movement")]
+    public float groundedWalkVel;
+    public float groundedWalkAccel;
+    public float groundedFriction;
+
+    [ColorHeader("Airborne Movement")]
+    public float airborneWalkVel;
+    public float airborneWalkAccel;
+    public float airborneFriction;
+}

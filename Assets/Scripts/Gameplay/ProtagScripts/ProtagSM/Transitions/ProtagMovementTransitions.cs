@@ -5,7 +5,8 @@ using UnityEngine;
 public class ProtagMovementTransitions : TransitionTable<ProtagBlackboard>
 {
     private MovementContext movementContext => context.movementContext;
-    private MovementProfileSO movementProfile => context.movementProfile;
+    private FootstoolProfile footstoolProfile => context.footstoolProfile;
+    private GameplayInputBuffer buffer => context.inputProvider.gameplayInputBuffer;
 
     public bool ToProtagStateSelector(ref State<ProtagBlackboard> c)
     {
@@ -27,10 +28,9 @@ public class ProtagMovementTransitions : TransitionTable<ProtagBlackboard>
         
     private bool ToDodgeActionSelector(ref State<ProtagBlackboard> c)
     {
-        var buffer = context.inputProvider.GameplayCommandBuffer;
         bool commandFound = buffer.PeekFirstByID(
             (int)PlayerUserInputProvider.PlayerCommandID.DodgeCommandDown,
-            out LinkedListNode<GameplayCommandBuffer.GameplayCommand> command);
+            out LinkedListNode<GameplayInputBuffer.GameplayCommand> command);
 
         bool actionSelected = false;
             
@@ -76,10 +76,9 @@ public class ProtagMovementTransitions : TransitionTable<ProtagBlackboard>
 
     public bool ToVerticalActionSelector(ref State<ProtagBlackboard> c)
     {
-        var buffer = context.inputProvider.GameplayCommandBuffer;
         bool commandFound = buffer.PeekFirstByID(
             (int)PlayerUserInputProvider.PlayerCommandID.JumpCommandDown,
-            out LinkedListNode<GameplayCommandBuffer.GameplayCommand> command);
+            out LinkedListNode<GameplayInputBuffer.GameplayCommand> command);
 
         bool actionSelected = false;
             
@@ -98,7 +97,7 @@ public class ProtagMovementTransitions : TransitionTable<ProtagBlackboard>
     private bool TrySelectJump(ref State<ProtagBlackboard> c)
     {
         bool grounded = movementContext.IsGrounded;
-        bool coyoteTime = context.coyoteTimer < movementProfile.coyoteTime;
+        bool coyoteTime = context.coyoteTimer < context.jumpProfile.coyoteTime;
         if (grounded || coyoteTime)
         {
             c = GetState<ProtagJumpingState>();
@@ -110,7 +109,7 @@ public class ProtagMovementTransitions : TransitionTable<ProtagBlackboard>
         
     private bool TrySelectFootstool(ref State<ProtagBlackboard> c)
     {
-        var groundedInfo = movementContext.CheckGroundedOnLayer(movementProfile.footstoolMask);
+        var groundedInfo = movementContext.CheckGroundedOnLayer(footstoolProfile.footstoolMask);
         if (groundedInfo.surfaceFound)
         {
             c = GetState<ProtagFootstoolJumpingState>();

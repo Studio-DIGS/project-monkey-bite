@@ -19,8 +19,8 @@ public class PlayerUserInputProvider : DescriptionBaseSO, InputProvider<PlayerIn
     [SerializeField] private InputActionReference mainAttack;
     [SerializeField] private InputActionReference altAttack;
 
-    private GameplayCommandBuffer commandBuffer;
-    public GameplayCommandBuffer GameplayCommandBuffer => commandBuffer;
+    private GameplayInputBuffer inputBuffer;
+    public GameplayInputBuffer gameplayInputBuffer => inputBuffer;
 
     private PlayerInputEvents events;
     public PlayerInputEvents Events => events;
@@ -51,7 +51,7 @@ public class PlayerUserInputProvider : DescriptionBaseSO, InputProvider<PlayerIn
 
     private void OnEnable()
     {
-        commandBuffer = new GameplayCommandBuffer();
+        inputBuffer = new GameplayInputBuffer();
         events = new PlayerInputEvents();
         
         // Link up events with unity Input System
@@ -85,14 +85,14 @@ public class PlayerUserInputProvider : DescriptionBaseSO, InputProvider<PlayerIn
     private void OnJump(InputAction.CallbackContext context)
     {
         if (context.performed)
-            commandBuffer.BufferGameplayCommand(
+            inputBuffer.BufferGameplayCommand(
                 (int)PlayerCommandID.JumpCommandDown, 
                 true, 
                 inputCommandDuration,
                 (int)PlayerCommandFlag.MovementCommand);
         
         if (context.canceled)
-            commandBuffer.BufferGameplayCommand(
+            inputBuffer.BufferGameplayCommand(
                 (int)PlayerCommandID.JumpCommandUp, 
                 false, 
                 inputCommandDuration,
@@ -102,14 +102,14 @@ public class PlayerUserInputProvider : DescriptionBaseSO, InputProvider<PlayerIn
     private void OnDodge(InputAction.CallbackContext context)
     {
         if (context.performed)
-            commandBuffer.BufferGameplayCommand(
+            inputBuffer.BufferGameplayCommand(
                 (int)PlayerCommandID.DodgeCommandDown, 
                 true, 
                 inputCommandDuration,
                 (int)PlayerCommandFlag.MovementCommand);
         
         if (context.canceled)
-            commandBuffer.BufferGameplayCommand(
+            inputBuffer.BufferGameplayCommand(
                 (int)PlayerCommandID.DodgeCommandUp, 
                 false, 
                 inputCommandDuration,
@@ -133,14 +133,14 @@ public class PlayerUserInputProvider : DescriptionBaseSO, InputProvider<PlayerIn
     public void OnMainAttack(InputAction.CallbackContext context)
     {
         if (context.started)
-            commandBuffer.BufferGameplayCommand(
+            inputBuffer.BufferGameplayCommand(
                 (int)PlayerCommandID.PrimaryAttackCommandDown, 
                 false, 
                 inputCommandDuration,
                 (int)PlayerCommandFlag.CombatCommand);
         
         if (context.canceled)
-            commandBuffer.BufferGameplayCommand(
+            inputBuffer.BufferGameplayCommand(
                 (int)PlayerCommandID.PrimaryAttackCommandUp, 
                 false, 
                 inputCommandDuration,
@@ -151,14 +151,14 @@ public class PlayerUserInputProvider : DescriptionBaseSO, InputProvider<PlayerIn
     public void OnAltAttack(InputAction.CallbackContext context)
     {
         if (context.started)
-            commandBuffer.BufferGameplayCommand(
+            inputBuffer.BufferGameplayCommand(
                 (int)PlayerCommandID.SecondaryAttackCommandDown, 
                 false, 
                 inputCommandDuration,
                 (int)PlayerCommandFlag.CombatCommand);
         
         if (context.canceled)
-            commandBuffer.BufferGameplayCommand(
+            inputBuffer.BufferGameplayCommand(
                 (int)PlayerCommandID.SecondaryAttackCommandUp, 
                 false, 
                 inputCommandDuration,

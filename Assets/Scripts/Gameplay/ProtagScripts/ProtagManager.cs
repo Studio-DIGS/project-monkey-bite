@@ -24,6 +24,9 @@ public class ProtagManager : DescriptionMonoBehavior
     private void OnEnable()
     {
         stateMachine.InitializeEntryState<ProtagIdleState>();
+        #if UNITY_EDITOR
+        //stateMachine.AddPausePoint(typeof(ProtagJumpingState));
+        #endif
     }
 
     private void OnDisable() 

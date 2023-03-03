@@ -13,10 +13,12 @@ namespace SimpleStateMachine
         private readonly Dictionary<Type, State<ContextType>> statePool = new();
         private readonly Dictionary<Type, TransitionTable<ContextType>> transitionTablePool = new();
         private float stateEntryTime;
+        private float stateEntryFixedTime;
 
         // Properties
         public State<ContextType> CurrentState => currentState;
         public float CurrentStateDuration => Time.time - stateEntryTime;
+        public float CurrentStateFixedDuration => Time.time - stateEntryFixedTime;
 
         public StateMachine(ContextType contextInstance)
         {
@@ -27,6 +29,7 @@ namespace SimpleStateMachine
         {
             currentState = GetState<EntryState>();
             stateEntryTime = Time.time;
+            stateEntryFixedTime = Time.fixedTime;
             currentState.EnterState();
         }
 
@@ -67,6 +70,15 @@ namespace SimpleStateMachine
             currentState.ExitState();
             currentState = state;
             stateEntryTime = Time.time;
+            stateEntryFixedTime = Time.fixedTime;
+            
+            #if UNITY_EDITOR
+            
+            if(breakPoints.Contains(state.GetType()))
+                Debug.Break();
+            
+            #endif
+            
             currentState.EnterState();
         }
 
@@ -111,5 +123,23 @@ namespace SimpleStateMachine
                 return newTransitionTable;
             }
         }
+        
+#if UNITY_EDITOR
+// Debug Behavior
+        
+        private HashSet<Type> breakPoints = new();
+
+        public void AddPausePoint(Type type)
+        {
+            breakPoints.Add(type);
+        }
+
+        public void SetPausePoint(Type type)
+        {
+            breakPoints.Clear();
+            AddPausePoint(type);
+        }
+
+#endif
     }
 }

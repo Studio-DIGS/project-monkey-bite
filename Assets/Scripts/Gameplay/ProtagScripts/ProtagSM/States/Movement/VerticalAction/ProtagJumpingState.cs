@@ -8,9 +8,9 @@ public class ProtagJumpingState : ProtagState
     public override bool TryTransition(ref State<ProtagBlackboard> c)
     {
         float jumpTime = stateMachine.CurrentStateDuration;
-        
-        bool minTimePassed = jumpTime > movementProfile.ftstlMinJumpTime;
-        bool maxTimePassed = jumpTime > movementProfile.ftstlMaxJumpTime;
+
+        bool minTimePassed = jumpTime > jumpProfile.minJumpTime;
+        bool maxTimePassed = jumpTime > jumpProfile.maxJumpTime;
 
         bool isGrounded = movementContext.IsGrounded;
         bool tryManualCancel = (maxTimePassed || !inputState.jumpHeld);
@@ -23,17 +23,13 @@ public class ProtagJumpingState : ProtagState
 
     public override void EnterState()
     {
-        pathBody.pathVelocity.y = movementProfile.jumpStrength;
         pathBody.SetGravityEnabled(false);
         context.coyoteTimer = float.MaxValue;
     }
 
     public override void ExitState()
     {
-        pathBody.pathVelocity.y = Mathf.MoveTowards(
-            pathBody.pathVelocity.y,
-            0f,
-            movementProfile.jumpEndVel);
+        pathBody.pathVelocity.y = Mathf.Min(pathBody.pathVelocity.y, jumpProfile.jumpEndVel);
         
         pathBody.SetGravityEnabled(true);
     }
@@ -45,14 +41,21 @@ public class ProtagJumpingState : ProtagState
 
     public override void FixedUpdateState()
     {
-        pathBody.pathVelocity.y = movementProfile.jumpStrength;
+        float yVel = jumpProfile.jumpCurve.SampleSlopeTime(
+                         stateMachine.CurrentStateFixedDuration,
+                         Time.fixedDeltaTime,
+                         jumpProfile.maxJumpTime) 
+                     * jumpProfile.jumpHeight;
+
+        pathBody.pathVelocity.y = yVel;
+        
         if (!movementContext.IsOnSurface)
         {
             playerSimplePathMovement.SimpleAirborneHorizontalMovement(
                 inputState.horizontalAxis, 
-                movementProfile.airborneWalkVel,
-                movementProfile.airborneWalkAccel,
-                movementProfile.airborneFriction,
+                hMoveProfile.airborneWalkVel,
+                hMoveProfile.airborneWalkAccel,
+                hMoveProfile.airborneFriction,
                 Time.fixedDeltaTime, 
                 movementContext.SurfaceNormal);
         }

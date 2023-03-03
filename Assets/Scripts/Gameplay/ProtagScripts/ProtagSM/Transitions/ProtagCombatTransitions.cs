@@ -10,11 +10,11 @@ public class ProtagCombatTransitions : TransitionTable<ProtagBlackboard>
 
     public bool ToCombatSelector(ref State<ProtagBlackboard> c)
     {
-        var buffer = context.inputProvider.GameplayCommandBuffer;
+        var buffer = context.inputProvider.gameplayInputBuffer;
         bool validAction = false;
         while (!validAction && buffer.PeekFirstByFlags(
                    (int)PlayerUserInputProvider.PlayerCommandFlag.CombatCommand,
-                   out LinkedListNode<GameplayCommandBuffer.GameplayCommand> command))
+                   out LinkedListNode<GameplayInputBuffer.GameplayCommand> command))
         {
 
             var commandStruct = command.Value;

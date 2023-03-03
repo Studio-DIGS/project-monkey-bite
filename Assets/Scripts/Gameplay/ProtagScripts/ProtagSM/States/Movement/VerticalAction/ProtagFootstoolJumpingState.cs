@@ -8,9 +8,9 @@ public class ProtagFootstoolJumpingState : ProtagState
     public override bool TryTransition(ref State<ProtagBlackboard> c)
     {
         float jumpTime = stateMachine.CurrentStateDuration;
-            
-        bool minTimePassed = jumpTime > movementProfile.ftstlMinJumpTime;
-        bool maxTimePassed = jumpTime > movementProfile.ftstlMaxJumpTime;
+
+        bool minTimePassed = jumpTime > footstoolProfile.minJumpTime;
+        bool maxTimePassed = jumpTime > footstoolProfile.maxJumpTime;
 
         bool isGrounded = movementContext.IsGrounded;
         bool tryManualCancel = (maxTimePassed || !inputState.jumpHeld);
@@ -23,17 +23,13 @@ public class ProtagFootstoolJumpingState : ProtagState
 
     public override void EnterState()
     {
-        pathBody.pathVelocity.y = movementProfile.ftstlJumpStrength;
         pathBody.SetGravityEnabled(false);
         context.coyoteTimer = float.MaxValue;
     }
 
     public override void ExitState()
     {
-        pathBody.pathVelocity.y = Mathf.MoveTowards(
-            pathBody.pathVelocity.y,
-            0f,
-            movementProfile.ftstlJumpEndVel);
+        pathBody.pathVelocity.y = Mathf.Min(pathBody.pathVelocity.y, footstoolProfile.jumpEndVel);
         
         pathBody.SetGravityEnabled(true);
     }
@@ -45,14 +41,21 @@ public class ProtagFootstoolJumpingState : ProtagState
 
     public override void FixedUpdateState()
     {
-        pathBody.pathVelocity.y = movementProfile.ftstlJumpStrength;
+        float yVel = footstoolProfile.jumpCurve.SampleSlopeTime(
+                         stateMachine.CurrentStateFixedDuration,
+                         Time.fixedDeltaTime,
+                         footstoolProfile.maxJumpTime) 
+                     * footstoolProfile.jumpHeight;
+
+        pathBody.pathVelocity.y = yVel;
+
         if (!movementContext.IsOnSurface)
         {
             playerSimplePathMovement.SimpleAirborneHorizontalMovement(
                 inputState.horizontalAxis, 
-                movementProfile.airborneWalkVel,
-                movementProfile.airborneWalkAccel,
-                movementProfile.airborneFriction,
+                hMoveProfile.airborneWalkVel,
+                hMoveProfile.airborneWalkAccel,
+                hMoveProfile.airborneFriction,
                 Time.fixedDeltaTime, 
                 movementContext.SurfaceNormal);
         }

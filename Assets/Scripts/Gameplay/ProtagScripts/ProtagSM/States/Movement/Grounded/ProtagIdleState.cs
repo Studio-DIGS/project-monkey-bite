@@ -28,7 +28,7 @@ public class ProtagIdleState : ProtagState
     public override void FixedUpdateState()
     {
         pathBody.pathVelocity += playerSimplePathMovement.CalculateHorizontalFrictionStep(
-            movementProfile.groundedFriction,
+            hMoveProfile.groundedFriction,
             Time.fixedDeltaTime, 
             movementContext.SurfaceNormal);
 

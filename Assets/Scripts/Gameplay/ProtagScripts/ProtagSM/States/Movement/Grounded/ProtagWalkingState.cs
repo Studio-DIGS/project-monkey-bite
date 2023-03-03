@@ -35,9 +35,9 @@ public class ProtagWalkingState : ProtagState
 
         playerSimplePathMovement.SimpleGroundedHorizontalMovement(
             inputState.horizontalAxis, 
-            movementProfile.groundedWalkVel,
-            movementProfile.groundedWalkAccel,
-            movementProfile.groundedFriction,
+            hMoveProfile.groundedWalkVel,
+            hMoveProfile.groundedWalkAccel,
+            hMoveProfile.groundedFriction,
             Time.fixedDeltaTime, 
             groundNormal);
     }

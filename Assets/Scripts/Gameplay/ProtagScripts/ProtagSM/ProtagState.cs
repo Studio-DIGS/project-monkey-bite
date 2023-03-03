@@ -7,7 +7,9 @@ public abstract class ProtagState : State<ProtagBlackboard>
     protected SimplePathMovement playerSimplePathMovement => context.playerSimplePathMovement;
     protected MovementContext movementContext => context.movementContext;
     protected SplinePathPhysicsBody pathBody => context.pathBody;
-    protected MovementProfileSO movementProfile => context.movementProfile;
+    protected HorizontalMovementProfile hMoveProfile => context.horizontalMovementProfile;
+    protected FootstoolProfile footstoolProfile => context.footstoolProfile;
+    protected JumpProfile jumpProfile => context.jumpProfile;
     protected PlayerInputState inputState => context.inputState;
     protected ProtagMovementTransitions moveTransitions => GetTransitionTable<ProtagMovementTransitions>();
     protected ProtagCombatTransitions combatTransitions => GetTransitionTable<ProtagCombatTransitions>();

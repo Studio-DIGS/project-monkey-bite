@@ -11,18 +11,22 @@ public class ProtagBlackboard : DescriptionMonoBehavior
     [SerializeField] public SimplePathMovement playerSimplePathMovement;
     [SerializeField] public MovementContext movementContext;
     [SerializeField] public SplinePathPhysicsBody pathBody;
-    [SerializeField] public MovementProfileSO movementProfile;
     [SerializeField] public CharacterRotator playerRotator;
-    
-    [EditorReadOnly] public PlayerInputState inputState;
 
+    [ColorHeader("Profiles")]
+    [SerializeField] public HorizontalMovementProfile horizontalMovementProfile;
+    [SerializeField] public JumpProfile jumpProfile;
+    [SerializeField] public FootstoolProfile footstoolProfile;
+
+    [ColorHeader("Debug")]
     // Player state
     [EditorReadOnly] public float coyoteTimer;
     
+    public PlayerInputState inputState;
 
     public void UpdateInputState()
     {
         inputProvider.GetInputState(ref inputState);
-        inputProvider.GameplayCommandBuffer.RemoveExpired();
+        inputProvider.gameplayInputBuffer.RemoveExpired();
     }
 }

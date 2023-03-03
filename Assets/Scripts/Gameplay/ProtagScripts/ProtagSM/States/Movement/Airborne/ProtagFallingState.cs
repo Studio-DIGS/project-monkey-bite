@@ -31,9 +31,9 @@ public class ProtagFallingState : ProtagState
         {
             playerSimplePathMovement.SimpleAirborneHorizontalMovement(
                 inputState.horizontalAxis,
-                movementProfile.airborneWalkVel,
-                movementProfile.airborneWalkAccel,
-                movementProfile.airborneFriction,
+                hMoveProfile.airborneWalkVel,
+                hMoveProfile.airborneWalkAccel,
+                hMoveProfile.airborneFriction,
                 Time.fixedDeltaTime,
                 movementContext.SurfaceNormal);
         }

@@ -6,9 +6,8 @@ public class JumpProfile : DescriptionBaseSO
 {
     [ColorHeader("Jump Profile")]
     public float jumpHeight;
-    public AnimationCurve jumpCurve;
+    public MotionCurve jumpCurve;
     public float jumpEndVel;
     public float coyoteTime;
-    public float maxJumpTime;
     public float minJumpTime;
 }

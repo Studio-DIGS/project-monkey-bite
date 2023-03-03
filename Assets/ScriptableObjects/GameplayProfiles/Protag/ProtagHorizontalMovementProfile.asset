@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: ProtagHorizontalMovementProfile
   m_EditorClassIdentifier: 
   description: 
-  groundedWalkVel: 5.25
+  groundedWalkVel: 6
   groundedWalkAccel: 45
   groundedFriction: 35
   airborneWalkVel: 6
   airborneWalkAccel: 40
-  airborneFriction: 10
+  airborneFriction: 7

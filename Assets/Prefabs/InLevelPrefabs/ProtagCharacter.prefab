@@ -69,6 +69,7 @@ MonoBehaviour:
   horizontalMovementProfile: {fileID: 11400000, guid: 2f9146bbdae82d24e976284d28197f69, type: 2}
   jumpProfile: {fileID: 11400000, guid: 9b294cee1d16a4440be883f12d8417c8, type: 2}
   footstoolProfile: {fileID: 11400000, guid: f23807238ea51fc44a87e34f98e355fb, type: 2}
+  rollProfile: {fileID: 11400000, guid: b168a3846316a884ebe7ad637f0cc0c2, type: 2}
   coyoteTimer: 0
 --- !u!1 &3603370869885075215
 GameObject:
@@ -133,7 +134,7 @@ MonoBehaviour:
   pathBody: {fileID: 7739586611912997664}
   raycastSource: {fileID: 4637538611561541445}
   castRadius: 0.08
-  castDistance: 1.1
+  castDistance: 1.025
   groundedMask:
     serializedVersion: 2
     m_Bits: 128
@@ -365,7 +366,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
+  m_Size: {x: 1, y: 2, z: 0.65}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &6878882079763023217
 CapsuleCollider:

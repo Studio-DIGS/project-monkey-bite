@@ -7,10 +7,10 @@ public class ProtagJumpingState : ProtagState
 {
     public override bool TryTransition(ref State<ProtagBlackboard> c)
     {
-        float jumpTime = stateMachine.CurrentStateDuration;
+        float jumpTime = stateMachine.CurrentStateFixedDuration + 0.00001f;
 
         bool minTimePassed = jumpTime > jumpProfile.minJumpTime;
-        bool maxTimePassed = jumpTime > jumpProfile.maxJumpTime;
+        bool maxTimePassed = jumpTime > jumpProfile.jumpCurve.TimeDuration;
 
         bool isGrounded = movementContext.IsGrounded;
         bool tryManualCancel = (maxTimePassed || !inputState.jumpHeld);
@@ -41,11 +41,9 @@ public class ProtagJumpingState : ProtagState
 
     public override void FixedUpdateState()
     {
-        float yVel = jumpProfile.jumpCurve.SampleSlopeTime(
-                         stateMachine.CurrentStateFixedDuration,
-                         Time.fixedDeltaTime,
-                         jumpProfile.maxJumpTime) 
-                     * jumpProfile.jumpHeight;
+        float yVel = jumpProfile.jumpCurve.DifferentiateY(
+            stateMachine.CurrentStateFixedDuration, 
+            Time.fixedDeltaTime);
 
         pathBody.pathVelocity.y = yVel;
         

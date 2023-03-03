@@ -7,22 +7,22 @@ public static class GameplayExtensionMethods
     /// Calculate the slope using a sample time interval
     /// </summary>
     /// <param name="curve"></param>
-    /// <param name="leftTime">time point to sample from(left side of interval)</param>
+    /// <param name="time">time point to sample from(left side of interval)</param>
     /// <param name="timeInterval">width of interval</param>
-    /// <param name="scale">time scale</param>
+    /// <param name="timeScale">time scale</param>
     /// <returns></returns>
-    public static float SampleSlopeTime(
+    public static float Differentiate(
         this AnimationCurve curve,
-        float leftTime, 
+        float time, 
         float timeInterval,
-        float scale = 1)
+        float timeScale = 1)
     {
-        float normalizedTime = leftTime / scale;
-        float normalizedInterval = timeInterval / scale;
+        float normalizedTime = time / timeScale;
+        float normalizedInterval = timeInterval / timeScale;
         
-        float delta = curve.Evaluate(normalizedTime + normalizedInterval)
+        float diff = curve.Evaluate(normalizedTime + normalizedInterval)
                      - curve.Evaluate(normalizedTime);
         
-        return delta / timeInterval;
+        return diff / timeInterval;
     }
 }

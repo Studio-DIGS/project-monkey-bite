@@ -17,6 +17,7 @@ public class ProtagBlackboard : DescriptionMonoBehavior
     [SerializeField] public HorizontalMovementProfile horizontalMovementProfile;
     [SerializeField] public JumpProfile jumpProfile;
     [SerializeField] public FootstoolProfile footstoolProfile;
+    [SerializeField] public RollProfile rollProfile;
 
     [ColorHeader("Debug")]
     // Player state

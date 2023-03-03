@@ -10,6 +10,7 @@ public abstract class ProtagState : State<ProtagBlackboard>
     protected HorizontalMovementProfile hMoveProfile => context.horizontalMovementProfile;
     protected FootstoolProfile footstoolProfile => context.footstoolProfile;
     protected JumpProfile jumpProfile => context.jumpProfile;
+    protected RollProfile rollProfile => context.rollProfile;
     protected PlayerInputState inputState => context.inputState;
     protected ProtagMovementTransitions moveTransitions => GetTransitionTable<ProtagMovementTransitions>();
     protected ProtagCombatTransitions combatTransitions => GetTransitionTable<ProtagCombatTransitions>();

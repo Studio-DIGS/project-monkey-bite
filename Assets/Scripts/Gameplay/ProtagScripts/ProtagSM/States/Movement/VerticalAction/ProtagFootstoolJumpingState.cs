@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class ProtagFootstoolJumpingState : ProtagState
 {
+    private int entryDirection;
+    
     public override bool TryTransition(ref State<ProtagBlackboard> c)
     {
-        float jumpTime = stateMachine.CurrentStateDuration;
+        float jumpTime = stateMachine.CurrentStateFixedDuration + 0.00001f;
 
         bool minTimePassed = jumpTime > footstoolProfile.minJumpTime;
-        bool maxTimePassed = jumpTime > footstoolProfile.maxJumpTime;
+        bool maxTimePassed = jumpTime > footstoolProfile.jumpCurve.TimeDuration;
 
         bool isGrounded = movementContext.IsGrounded;
         bool tryManualCancel = (maxTimePassed || !inputState.jumpHeld);
@@ -25,11 +27,16 @@ public class ProtagFootstoolJumpingState : ProtagState
     {
         pathBody.SetGravityEnabled(false);
         context.coyoteTimer = float.MaxValue;
+        entryDirection = (int)Mathf.Sign(context.playerRotator.CurrentDir);
     }
 
     public override void ExitState()
     {
-        pathBody.pathVelocity.y = Mathf.Min(pathBody.pathVelocity.y, footstoolProfile.jumpEndVel);
+        pathBody.pathVelocity.y = 
+            Mathf.Min(pathBody.pathVelocity.y, footstoolProfile.jumpEndVerticalVel);
+        
+        pathBody.pathVelocity.x = 
+            entryDirection * Mathf.Min(entryDirection * pathBody.pathVelocity.x, footstoolProfile.jumpEndHorizontalVel);
         
         pathBody.SetGravityEnabled(true);
     }
@@ -41,23 +48,11 @@ public class ProtagFootstoolJumpingState : ProtagState
 
     public override void FixedUpdateState()
     {
-        float yVel = footstoolProfile.jumpCurve.SampleSlopeTime(
-                         stateMachine.CurrentStateFixedDuration,
-                         Time.fixedDeltaTime,
-                         footstoolProfile.maxJumpTime) 
-                     * footstoolProfile.jumpHeight;
+        Vector2 motionVel = footstoolProfile.jumpCurve.Differentiate(
+            stateMachine.CurrentStateFixedDuration, 
+            Time.fixedDeltaTime);
 
-        pathBody.pathVelocity.y = yVel;
-
-        if (!movementContext.IsOnSurface)
-        {
-            playerSimplePathMovement.SimpleAirborneHorizontalMovement(
-                inputState.horizontalAxis, 
-                hMoveProfile.airborneWalkVel,
-                hMoveProfile.airborneWalkAccel,
-                hMoveProfile.airborneFriction,
-                Time.fixedDeltaTime, 
-                movementContext.SurfaceNormal);
-        }
+        pathBody.pathVelocity.y = motionVel.y;
+        pathBody.pathVelocity.x = motionVel.x * entryDirection;
     }
 }

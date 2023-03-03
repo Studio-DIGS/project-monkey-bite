@@ -15,30 +15,48 @@ MonoBehaviour:
   description: 
   jumpHeight: 1.75
   jumpCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+    xCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    xMagnitude: 6
+    yCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2.409005
+        outSlope: 2.409005
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.025402201
+      - serializedVersion: 3
+        time: 0.03154719
+        value: 0.012409847
+        inSlope: 2.0064368
+        outSlope: 2.0064368
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.031250708
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    yMagnitude: 1.75
+    timeDuration: 0.4
   jumpEndVel: 2
   coyoteTime: 0.1
-  maxJumpTime: 0.4
   minJumpTime: 0.06

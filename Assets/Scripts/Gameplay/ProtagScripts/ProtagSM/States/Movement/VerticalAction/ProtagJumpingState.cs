@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class ProtagJumpingState : ProtagState
 {
+    /*
+     *In order to have consistent timing, having the jump time out should be checked in fixed update
+     */
     private bool TryFixedTransitionOut()
     {
         float jumpTime = stateMachine.CurrentStateFixedDuration + 0.00001f;
@@ -18,6 +21,9 @@ public class ProtagJumpingState : ProtagState
         return forceOut && transitions.ToMovementSelector();
     }
 
+    /*
+     * Input based exits should be checked in update in order to correctly get input on time
+     */
     private bool TryTransitionOut()
     {
         float jumpTime = stateMachine.CurrentStateFixedDuration + 0.00001f;
@@ -55,17 +61,14 @@ public class ProtagJumpingState : ProtagState
 
         pathBody.pathVelocity.y = yVel;
         
-        if (!movementContext.IsOnSurface)
-        {
-            playerSimplePathMovement.SimpleAirborneHorizontalMovement(
-                inputState.horizontalAxis, 
-                hMoveProfile.airborneWalkVel,
-                hMoveProfile.airborneWalkAccel,
-                hMoveProfile.airborneFriction,
-                Time.fixedDeltaTime, 
-                movementContext.IsOnSurface,
-                movementContext.SurfaceNormal);
-        }
+        playerSimplePathMovement.SimpleAirborneHorizontalMovement(
+            inputState.horizontalAxis, 
+            hMoveProfile.airborneWalkVel,
+            hMoveProfile.airborneWalkAccel,
+            hMoveProfile.airborneFriction,
+            Time.fixedDeltaTime, 
+            movementContext.IsOnSurface,
+            movementContext.SurfaceNormal);
 
         TryFixedTransitionOut();
     }

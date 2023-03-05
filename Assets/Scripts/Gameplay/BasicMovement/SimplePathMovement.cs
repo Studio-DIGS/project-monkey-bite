@@ -51,7 +51,7 @@ public class SimplePathMovement : MonoBehaviour
         Vector2 step = Vector2.zero;
 
         bool isTryingToClimbSurface = isTouchingSurface && (input * normal.x < 0);
-        
+
         if (input == 0 || isTryingToClimbSurface)
         {
             step = CalculateHorizontalFrictionStep(frictionAccel, timeStep, normal);

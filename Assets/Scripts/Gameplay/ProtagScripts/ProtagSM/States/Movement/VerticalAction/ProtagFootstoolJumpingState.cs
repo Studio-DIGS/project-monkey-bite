@@ -19,7 +19,7 @@ public class ProtagFootstoolJumpingState : ProtagState
 
         return forceOut && transitions.ToMovementSelector();
     }
-
+    
     private bool TryTransitionOut()
     {
         float jumpTime = stateMachine.CurrentStateFixedDuration + 0.00001f;

@@ -22,10 +22,15 @@ public class ProtagIdleState : ProtagState
 
     public override void FixedUpdateState()
     {
-        pathBody.pathVelocity += playerSimplePathMovement.CalculateHorizontalFrictionStep(
+        Vector2 groundNormal = movementContext.SurfaceNormal;
+
+        playerSimplePathMovement.SimpleGroundedHorizontalMovement(
+            0, 
+            hMoveProfile.groundedWalkVel,
+            hMoveProfile.groundedWalkAccel,
             hMoveProfile.groundedFriction,
             Time.fixedDeltaTime, 
-            movementContext.SurfaceNormal);
+            groundNormal);
 
         if(pathBody.pathVelocity.magnitude < 0.5f)
             pathBody.constrainVelocity = true;

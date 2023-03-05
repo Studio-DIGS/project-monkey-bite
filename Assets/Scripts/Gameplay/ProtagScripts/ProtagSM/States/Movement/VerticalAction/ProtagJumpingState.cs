@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ProtagJumpingState : ProtagState
 {
-    public override bool TryTransition(ref State<ProtagBlackboard> c)
+    private bool TryFixedTransitionOut()
     {
         float jumpTime = stateMachine.CurrentStateFixedDuration + 0.00001f;
 
@@ -13,12 +13,20 @@ public class ProtagJumpingState : ProtagState
         bool maxTimePassed = jumpTime > jumpProfile.jumpCurve.TimeDuration;
 
         bool isGrounded = movementContext.IsGrounded;
-        bool tryManualCancel = (maxTimePassed || !inputState.jumpHeld);
+        bool forceOut = maxTimePassed || (isGrounded && minTimePassed);
 
-        bool endJump = minTimePassed && (isGrounded || tryManualCancel);
+        return forceOut && transitions.ToMovementSelector();
+    }
 
-        return (minTimePassed && combatTransitions.ToCombatSelector(ref c))
-               || (endJump && moveTransitions.ToProtagStateSelector(ref c));
+    private bool TryTransitionOut()
+    {
+        float jumpTime = stateMachine.CurrentStateFixedDuration + 0.00001f;
+
+        bool minTimePassed = jumpTime > jumpProfile.minJumpTime;
+        bool manualCancel = minTimePassed && !inputState.jumpHeld;
+
+        return minTimePassed && transitions.ToCombatSelector()
+               || manualCancel && transitions.ToMovementSelector();
     }
 
     public override void EnterState()
@@ -36,7 +44,7 @@ public class ProtagJumpingState : ProtagState
 
     public override void UpdateState()
     {
-        
+        TryTransitionOut();
     }
 
     public override void FixedUpdateState()
@@ -55,9 +63,10 @@ public class ProtagJumpingState : ProtagState
                 hMoveProfile.airborneWalkAccel,
                 hMoveProfile.airborneFriction,
                 Time.fixedDeltaTime, 
+                movementContext.IsOnSurface,
                 movementContext.SurfaceNormal);
         }
-    }
 
- 
+        TryFixedTransitionOut();
+    }
 }

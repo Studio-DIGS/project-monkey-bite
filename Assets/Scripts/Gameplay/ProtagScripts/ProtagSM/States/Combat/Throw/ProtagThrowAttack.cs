@@ -3,14 +3,9 @@ using UnityEngine;
 
 public class ProtagThrowAttack : ProtagState
 {
-    public override bool TryTransition(ref State<ProtagBlackboard> c)
-    {
-        return moveTransitions.ToProtagStateSelector(ref c);
-    }
-
     public override void EnterState()
     {
-        Debug.Log("THROW ATTACK YEEEHAW");
+        Debug.Log("THROW ATTACK");
     }
 
     public override void ExitState()
@@ -20,7 +15,7 @@ public class ProtagThrowAttack : ProtagState
 
     public override void UpdateState()
     {
-       
+        transitions.ToProtagStateSelector();
     }
 
     public override void FixedUpdateState()

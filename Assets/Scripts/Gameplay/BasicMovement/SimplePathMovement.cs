@@ -44,11 +44,15 @@ public class SimplePathMovement : MonoBehaviour
         float maxVel, 
         float moveAccel,
         float frictionAccel,
-        float timeStep, 
+        float timeStep,
+        bool isTouchingSurface,
         Vector2 normal)
     {
         Vector2 step = Vector2.zero;
-        if (input == 0)
+
+        bool isTryingToClimbSurface = isTouchingSurface && (input * normal.x < 0);
+        
+        if (input == 0 || isTryingToClimbSurface)
         {
             step = CalculateHorizontalFrictionStep(frictionAccel, timeStep, normal);
         }

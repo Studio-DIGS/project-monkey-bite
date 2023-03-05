@@ -133,8 +133,8 @@ MonoBehaviour:
   description: 
   pathBody: {fileID: 7739586611912997664}
   raycastSource: {fileID: 4637538611561541445}
-  castRadius: 0.08
-  castDistance: 1.025
+  castRadius: 0.49
+  castDistance: 0.55
   groundedMask:
     serializedVersion: 2
     m_Bits: 128

@@ -3,10 +3,6 @@ using UnityEngine;
 
 public class ProtagDiveState : ProtagState
 {
-    public override bool TryTransition(ref State<ProtagBlackboard> c)
-    {
-        return moveTransitions.ToProtagStateSelector(ref c);
-    }
 
     public override void EnterState()
     {
@@ -20,7 +16,7 @@ public class ProtagDiveState : ProtagState
 
     public override void UpdateState()
     {
-        
+        transitions.ToProtagStateSelector();
     }
 
     public override void FixedUpdateState()

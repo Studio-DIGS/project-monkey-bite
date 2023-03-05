@@ -2,31 +2,22 @@ using System.Collections.Generic;
 using SimpleStateMachine;
 using UnityEngine;
 
-public class ProtagMovementTransitions : TransitionTable<ProtagBlackboard>
+public partial class ProtagTransitions : TransitionTable<ProtagBlackboard>
 {
-    private MovementContext movementContext => context.movementContext;
-    private FootstoolProfile footstoolProfile => context.footstoolProfile;
-    private GameplayInputBuffer buffer => context.inputProvider.gameplayInputBuffer;
 
-    public bool ToProtagStateSelector(ref State<ProtagBlackboard> c)
-    {
-        return GetTransitionTable<ProtagCombatTransitions>().ToCombatSelector(ref c)
-               || ToMovementSelector(ref c);
-    }
-    
     #region Movement Selector
-    public bool ToMovementSelector(ref State<ProtagBlackboard> c)
+    public bool ToMovementSelector()
     {
-        return ToVerticalActionSelector(ref c)
-               || ToDodgeActionSelector(ref c)
-               || ToGroundMovementSelector(ref c)
-               || ToAirMovementSelector(ref c);
+        return ToVerticalActionSelector()
+               || ToDodgeActionSelector()
+               || ToGroundMovementSelector()
+               || ToAirMovementSelector();
     }
     #endregion
 
     #region Dodge Action Selector
         
-    private bool ToDodgeActionSelector(ref State<ProtagBlackboard> c)
+    private bool ToDodgeActionSelector()
     {
         bool commandFound = buffer.PeekFirstByID(
             (int)PlayerUserInputProvider.PlayerCommandID.DodgeCommandDown,
@@ -36,8 +27,8 @@ public class ProtagMovementTransitions : TransitionTable<ProtagBlackboard>
             
         if (commandFound)
         {
-            actionSelected = TrySelectRoll(ref c)
-                             || TrySelectDive(ref c);
+            actionSelected = TrySelectRoll()
+                             || TrySelectDive();
                 
             if(actionSelected)
                 buffer.PopCommand(command);
@@ -46,24 +37,24 @@ public class ProtagMovementTransitions : TransitionTable<ProtagBlackboard>
         return actionSelected;
     }
     
-    private bool TrySelectRoll(ref State<ProtagBlackboard> c)
+    private bool TrySelectRoll()
     {
         bool grounded = movementContext.IsGrounded;
         if (grounded)
         {
-            c = GetState<ProtagRollState>();
+            TransitionTo<ProtagRollState>();
             return true;
         }
 
         return false;
     }
         
-    private bool TrySelectDive(ref State<ProtagBlackboard> c)
+    private bool TrySelectDive()
     {
         bool grounded = movementContext.IsGrounded;
         if (!grounded)
         {
-            c = GetState<ProtagDiveState>();
+            TransitionTo<ProtagDiveState>();
             return true;
         }
 
@@ -74,7 +65,7 @@ public class ProtagMovementTransitions : TransitionTable<ProtagBlackboard>
     
     #region Vertical Action Selector
 
-    public bool ToVerticalActionSelector(ref State<ProtagBlackboard> c)
+    public bool ToVerticalActionSelector()
     {
         bool commandFound = buffer.PeekFirstByID(
             (int)PlayerUserInputProvider.PlayerCommandID.JumpCommandDown,
@@ -84,8 +75,8 @@ public class ProtagMovementTransitions : TransitionTable<ProtagBlackboard>
             
         if (commandFound)
         {
-            actionSelected = TrySelectJump(ref c)
-                             || TrySelectFootstool(ref c);
+            actionSelected = TrySelectJump()
+                             || TrySelectFootstool();
                 
             if(actionSelected)
                 buffer.PopCommand(command);
@@ -94,25 +85,25 @@ public class ProtagMovementTransitions : TransitionTable<ProtagBlackboard>
         return actionSelected;
     }
 
-    private bool TrySelectJump(ref State<ProtagBlackboard> c)
+    private bool TrySelectJump()
     {
         bool grounded = movementContext.IsGrounded;
         bool coyoteTime = context.coyoteTimer < context.jumpProfile.coyoteTime;
         if (grounded || coyoteTime)
         {
-            c = GetState<ProtagJumpingState>();
+            TransitionTo<ProtagJumpingState>();
             return true;
         }
 
         return false;
     }
         
-    private bool TrySelectFootstool(ref State<ProtagBlackboard> c)
+    private bool TrySelectFootstool()
     {
         var groundedInfo = movementContext.CheckGroundedOnLayer(footstoolProfile.footstoolMask);
         if (groundedInfo.surfaceFound)
         {
-            c = GetState<ProtagFootstoolJumpingState>();
+            TransitionTo<ProtagFootstoolJumpingState>();
             return true;
         }
 
@@ -123,18 +114,18 @@ public class ProtagMovementTransitions : TransitionTable<ProtagBlackboard>
 
     #region Ground Movement Selector
 
-    public bool ToGroundMovementSelector(ref State<ProtagBlackboard> c)
+    public bool ToGroundMovementSelector()
     {
         if (!movementContext.IsGrounded) return false; 
         
         if (context.inputState.horizontalAxis == 0)
         {
-            c = GetState<ProtagIdleState>();
+            TransitionTo<ProtagIdleState>();
             return true;
         }
         else
         {
-            c = GetState<ProtagWalkingState>();
+            TransitionTo<ProtagWalkingState>();
             return true;
         }
     }
@@ -143,11 +134,11 @@ public class ProtagMovementTransitions : TransitionTable<ProtagBlackboard>
 
     #region Air Movement Selector
 
-    public bool ToAirMovementSelector(ref State<ProtagBlackboard> c)
+    public bool ToAirMovementSelector()
     {
         if (movementContext.IsGrounded) return false;
 
-        c = GetState<ProtagFallingState>();
+        TransitionTo<ProtagFallingState>();
         
         return true;
     }

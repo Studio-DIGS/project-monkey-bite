@@ -6,11 +6,10 @@ public class ProtagRollState : ProtagState
     private MotionCurve rollCurve;
     private float entryDirection;
     
-    public override bool TryTransition(ref State<ProtagBlackboard> c)
+    private bool TryTransitionOut()
     {
         bool durationFinished = stateMachine.CurrentStateDuration >= rollCurve.TimeDuration;
-        
-        return durationFinished && moveTransitions.ToProtagStateSelector(ref c);
+        return durationFinished && transitions.ToProtagStateSelector();
     }
 
     public override void EnterState()
@@ -43,5 +42,7 @@ public class ProtagRollState : ProtagState
         
         pathBody.pathVelocity.y = motionVel.y;
         pathBody.pathVelocity.x = motionVel.x * entryDirection;
+
+        TryTransitionOut();
     }
 }

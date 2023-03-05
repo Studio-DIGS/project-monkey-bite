@@ -4,30 +4,33 @@ using UnityEngine;
 
 namespace SimpleStateMachine
 {
-    public abstract class StateMachine<ContextType>
+    public abstract class StateMachine<TContext>
     {
         // Fields
-        protected State<ContextType> currentState;
-        private ContextType contextInstance;
+        protected State<TContext> currentState;
+        private TContext contextInstance;
+        private Type currentStateType;
 
-        private readonly Dictionary<Type, State<ContextType>> statePool = new();
-        private readonly Dictionary<Type, TransitionTable<ContextType>> transitionTablePool = new();
+        private readonly Dictionary<Type, State<TContext>> statePool = new();
+        private readonly Dictionary<Type, TransitionTable<TContext>> transitionTablePool = new();
         private float stateEntryTime;
         private float stateEntryFixedTime;
 
         // Properties
-        public State<ContextType> CurrentState => currentState;
+        public State<TContext> CurrentState => currentState;
         public float CurrentStateDuration => Time.time - stateEntryTime;
         public float CurrentStateFixedDuration => Time.time - stateEntryFixedTime;
 
-        public StateMachine(ContextType contextInstance)
+        public StateMachine(TContext contextInstance)
         {
             this.contextInstance = contextInstance;
         }
 
-        public void InitializeEntryState<EntryState>() where EntryState : State<ContextType>, new()
+        public void InitializeEntryState<TEntryState>() where TEntryState : State<TContext>, new()
         {
-            currentState = GetState<EntryState>();
+            var type = typeof(TEntryState);
+
+            currentState = GetState<TEntryState>(type);
             stateEntryTime = Time.time;
             stateEntryFixedTime = Time.fixedTime;
             currentState.EnterState();
@@ -41,12 +44,6 @@ namespace SimpleStateMachine
 
         public virtual void Update()
         {
-            State<ContextType> currentTransition = null;
-            if (currentState.TryTransition(ref currentTransition))
-            {
-                SwitchStates(currentTransition);
-            }
-
             currentState.UpdateState();
         }
 
@@ -55,26 +52,19 @@ namespace SimpleStateMachine
             currentState.FixedUpdateState();
         }
 
-        /// <summary>
-        /// Force a transition outside of the standard frame-based transition checks.
-        /// </summary>
-        /// <param name="state"></param>
-        public void ForceTransition(State<ContextType> state)
+        public void TransitionTo<TState>() where TState : State<TContext>, new()
         {
-            SwitchStates(state);
-        }
-
-        private void SwitchStates(State<ContextType> state)
-        {
-            if (currentState == state || state == null) return;
-            currentState.ExitState();
-            currentState = state;
+            var type = typeof(TState);
+            if (type == currentStateType) return;
+            
+            currentState?.ExitState();
+            currentState = GetState<TState>(type);
             stateEntryTime = Time.time;
             stateEntryFixedTime = Time.fixedTime;
             
             #if UNITY_EDITOR
             
-            if(breakPoints.Contains(state.GetType()))
+            if(breakPoints.Contains(type))
                 Debug.Break();
             
             #endif
@@ -87,10 +77,9 @@ namespace SimpleStateMachine
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T GetState<T>() where T : State<ContextType>, new()
+        private T GetState<T>(Type type) where T : State<TContext>, new()
         {
-            var type = typeof(T);
-            if (statePool.TryGetValue(type, out State<ContextType> state))
+            if (statePool.TryGetValue(type, out State<TContext> state))
             {
                 return (T)state;
             }
@@ -108,10 +97,10 @@ namespace SimpleStateMachine
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T GetTransitionTable<T>() where T : TransitionTable<ContextType>, new()
+        public T GetTransitionTable<T>() where T : TransitionTable<TContext>, new()
         {
             var type = typeof(T);
-            if (transitionTablePool.TryGetValue(type, out TransitionTable<ContextType> transitionTable))
+            if (transitionTablePool.TryGetValue(type, out TransitionTable<TContext> transitionTable))
             {
                 return (T)transitionTable;
             }

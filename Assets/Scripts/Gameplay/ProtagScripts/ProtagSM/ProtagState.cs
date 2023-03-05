@@ -3,6 +3,14 @@ using UnityEngine;
 
 public abstract class ProtagState : State<ProtagBlackboard>
 {
+    protected ProtagTransitions transitions;
+    
+    public override void Initialize(StateMachine<ProtagBlackboard> stateMachine, ProtagBlackboard context)
+    {
+        base.Initialize(stateMachine, context);
+        transitions = GetTransitionTable<ProtagTransitions>();
+    }
+
     protected PlayerUserInputProvider inputProvider => context.inputProvider;
     protected SimplePathMovement playerSimplePathMovement => context.playerSimplePathMovement;
     protected MovementContext movementContext => context.movementContext;
@@ -12,7 +20,4 @@ public abstract class ProtagState : State<ProtagBlackboard>
     protected JumpProfile jumpProfile => context.jumpProfile;
     protected RollProfile rollProfile => context.rollProfile;
     protected PlayerInputState inputState => context.inputState;
-    protected ProtagMovementTransitions moveTransitions => GetTransitionTable<ProtagMovementTransitions>();
-    protected ProtagCombatTransitions combatTransitions => GetTransitionTable<ProtagCombatTransitions>();
-
 }

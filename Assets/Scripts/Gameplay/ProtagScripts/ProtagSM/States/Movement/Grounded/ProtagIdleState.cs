@@ -5,11 +5,6 @@ using UnityEngine;
 
 public class ProtagIdleState : ProtagState
 {
-    public override bool TryTransition(ref State<ProtagBlackboard> c)
-    {
-        return moveTransitions.ToProtagStateSelector(ref c);
-    }
-
     public override void EnterState()
     {
         context.coyoteTimer = 0f;
@@ -22,7 +17,7 @@ public class ProtagIdleState : ProtagState
 
     public override void UpdateState()
     {
-        
+        transitions.ToProtagStateSelector();
     }
 
     public override void FixedUpdateState()

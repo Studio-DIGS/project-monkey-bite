@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using SimpleStateMachine;
 using UnityEngine;
 
-public class ProtagCombatTransitions : TransitionTable<ProtagBlackboard>
+public partial class ProtagTransitions : TransitionTable<ProtagBlackboard>
 {
-
     #region Combat Selector
 
-    public bool ToCombatSelector(ref State<ProtagBlackboard> c)
+    public bool ToCombatSelector()
     {
         var buffer = context.inputProvider.gameplayInputBuffer;
         bool validAction = false;
@@ -20,12 +19,12 @@ public class ProtagCombatTransitions : TransitionTable<ProtagBlackboard>
             var commandStruct = command.Value;
             if (commandStruct.commandID == (int)PlayerUserInputProvider.PlayerCommandID.PrimaryAttackCommandDown)
             {
-                c = GetState<ProtagArmedAttack>();
+                TransitionTo<ProtagArmedAttack>();
                 validAction = true;
             }
             else if (commandStruct.commandID == (int)PlayerUserInputProvider.PlayerCommandID.SecondaryAttackCommandDown)
             {
-                c = GetState<ProtagThrowAttack>();
+                TransitionTo<ProtagThrowAttack>();
                 validAction = true;
             }
             

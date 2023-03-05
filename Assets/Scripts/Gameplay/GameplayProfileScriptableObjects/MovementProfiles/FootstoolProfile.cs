@@ -7,8 +7,9 @@ public class FootstoolProfile : DescriptionBaseSO
     [ColorHeader("Footstool Profile")]
     public LayerMask footstoolMask;
     public float jumpHeight;
+
     public MotionCurve jumpCurve;
-    public float jumpEndVerticalVel;
-    public float jumpEndHorizontalVel;
+
+    public Vector2 exitVelocity;
     public float minJumpTime;
 }

@@ -21,7 +21,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    xMagnitude: 6
+    xMagnitude: 0
     yCurve:
       serializedVersion: 2
       m_Curve:

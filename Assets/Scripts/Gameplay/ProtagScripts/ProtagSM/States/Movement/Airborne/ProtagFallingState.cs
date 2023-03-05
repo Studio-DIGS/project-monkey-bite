@@ -5,11 +5,6 @@ using UnityEngine;
 
 public class ProtagFallingState : ProtagState
 {
-    public override bool TryTransition(ref State<ProtagBlackboard> c)
-    {
-        return moveTransitions.ToProtagStateSelector(ref c);
-    }
-
     public override void EnterState()
     {
         
@@ -23,6 +18,8 @@ public class ProtagFallingState : ProtagState
     public override void UpdateState()
     {
         context.coyoteTimer += Time.deltaTime;
+
+        transitions.ToProtagStateSelector();
     }
 
     public override void FixedUpdateState()
@@ -35,6 +32,7 @@ public class ProtagFallingState : ProtagState
                 hMoveProfile.airborneWalkAccel,
                 hMoveProfile.airborneFriction,
                 Time.fixedDeltaTime,
+                movementContext.IsOnSurface,
                 movementContext.SurfaceNormal);
         }
     }

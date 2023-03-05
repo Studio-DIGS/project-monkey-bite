@@ -7,7 +7,7 @@ public class ProtagFootstoolJumpingState : ProtagState
 {
     private int entryDirection;
     
-    public override bool TryTransition(ref State<ProtagBlackboard> c)
+    private bool TryFixedTransitionOut()
     {
         float jumpTime = stateMachine.CurrentStateFixedDuration + 0.00001f;
 
@@ -15,12 +15,20 @@ public class ProtagFootstoolJumpingState : ProtagState
         bool maxTimePassed = jumpTime > footstoolProfile.jumpCurve.TimeDuration;
 
         bool isGrounded = movementContext.IsGrounded;
-        bool tryManualCancel = (maxTimePassed || !inputState.jumpHeld);
+        bool forceOut = maxTimePassed || (isGrounded && minTimePassed);
 
-        bool endJump = minTimePassed && (isGrounded || tryManualCancel);
+        return forceOut && transitions.ToMovementSelector();
+    }
 
-        return minTimePassed && combatTransitions.ToCombatSelector(ref c)
-            || (endJump && moveTransitions.ToMovementSelector(ref c));
+    private bool TryTransitionOut()
+    {
+        float jumpTime = stateMachine.CurrentStateFixedDuration + 0.00001f;
+
+        bool minTimePassed = jumpTime > footstoolProfile.minJumpTime;
+        bool manualCancel = minTimePassed && !inputState.jumpHeld;
+
+        return minTimePassed && transitions.ToCombatSelector()
+               || manualCancel && transitions.ToMovementSelector();
     }
 
     public override void EnterState()
@@ -33,17 +41,17 @@ public class ProtagFootstoolJumpingState : ProtagState
     public override void ExitState()
     {
         pathBody.pathVelocity.y = 
-            Mathf.Min(pathBody.pathVelocity.y, footstoolProfile.jumpEndVerticalVel);
+            Mathf.Min(pathBody.pathVelocity.y, footstoolProfile.exitVelocity.y);
         
         pathBody.pathVelocity.x = 
-            entryDirection * Mathf.Min(entryDirection * pathBody.pathVelocity.x, footstoolProfile.jumpEndHorizontalVel);
-        
+            entryDirection * Mathf.Min(entryDirection * pathBody.pathVelocity.x, footstoolProfile.exitVelocity.x);
+
         pathBody.SetGravityEnabled(true);
     }
 
     public override void UpdateState()
     {
-        
+        TryTransitionOut();
     }
 
     public override void FixedUpdateState()
@@ -54,5 +62,7 @@ public class ProtagFootstoolJumpingState : ProtagState
 
         pathBody.pathVelocity.y = motionVel.y;
         pathBody.pathVelocity.x = motionVel.x * entryDirection;
+
+        TryFixedTransitionOut();
     }
 }

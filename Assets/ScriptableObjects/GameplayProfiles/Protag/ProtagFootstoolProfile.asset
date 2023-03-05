@@ -87,6 +87,5 @@ MonoBehaviour:
       m_RotationOrder: 4
     yMagnitude: 2.1
     timeDuration: 0.55
-  jumpEndVerticalVel: 2
-  jumpEndHorizontalVel: 6
+  exitVelocity: {x: 6, y: 2}
   minJumpTime: 0.3

@@ -12,6 +12,7 @@ public class ProtagBlackboard : DescriptionMonoBehavior
     [SerializeField] public MovementContext movementContext;
     [SerializeField] public SplinePathPhysicsBody pathBody;
     [SerializeField] public CharacterRotator playerRotator;
+    [SerializeField] public Animator animController;
 
     [ColorHeader("Profiles")]
     [SerializeField] public HorizontalMovementProfile horizontalMovementProfile;

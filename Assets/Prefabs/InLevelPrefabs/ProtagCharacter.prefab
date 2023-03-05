@@ -66,6 +66,7 @@ MonoBehaviour:
   movementContext: {fileID: 415005736765802564}
   pathBody: {fileID: 7739586611912997664}
   playerRotator: {fileID: 4827143860289516615}
+  animController: {fileID: 8644574315557002317}
   horizontalMovementProfile: {fileID: 11400000, guid: 2f9146bbdae82d24e976284d28197f69, type: 2}
   jumpProfile: {fileID: 11400000, guid: 9b294cee1d16a4440be883f12d8417c8, type: 2}
   footstoolProfile: {fileID: 11400000, guid: f23807238ea51fc44a87e34f98e355fb, type: 2}

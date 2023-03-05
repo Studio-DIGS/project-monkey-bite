@@ -6,7 +6,7 @@ public class ProtagRollState : ProtagState
     private MotionCurve rollCurve;
     private float entryDirection;
     
-    private bool TryTransitionOut()
+    private bool TryFixedTransitionOut()
     {
         bool durationFinished = stateMachine.CurrentStateDuration >= rollCurve.TimeDuration;
         return durationFinished && transitions.ToProtagStateSelector();
@@ -17,6 +17,7 @@ public class ProtagRollState : ProtagState
         Debug.Log("ROLL");
         rollCurve = rollProfile.rollMotionCurve;
         entryDirection = context.playerRotator.CurrentDir;
+        animationController.Play("rollAnim");
     }
 
     public override void ExitState()
@@ -43,6 +44,6 @@ public class ProtagRollState : ProtagState
         pathBody.pathVelocity.y = motionVel.y;
         pathBody.pathVelocity.x = motionVel.x * entryDirection;
 
-        TryTransitionOut();
+        TryFixedTransitionOut();
     }
 }

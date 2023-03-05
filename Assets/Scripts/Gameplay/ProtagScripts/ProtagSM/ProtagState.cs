@@ -20,4 +20,5 @@ public abstract class ProtagState : State<ProtagBlackboard>
     protected JumpProfile jumpProfile => context.jumpProfile;
     protected RollProfile rollProfile => context.rollProfile;
     protected PlayerInputState inputState => context.inputState;
+    protected Animator animationController => context.animController;
 }

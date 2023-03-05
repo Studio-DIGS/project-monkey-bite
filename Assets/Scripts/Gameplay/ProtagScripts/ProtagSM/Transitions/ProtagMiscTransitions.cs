@@ -1,7 +1,7 @@
 using SimpleStateMachine;
 using UnityEngine;
 
-public partial class ProtagTransitions 
+public partial class ProtagTransitions : TransitionTable<ProtagBlackboard>
 {
     private MovementContext movementContext => context.movementContext;
     private FootstoolProfile footstoolProfile => context.footstoolProfile;

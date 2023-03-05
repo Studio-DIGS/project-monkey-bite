@@ -10,6 +10,7 @@ public class ProtagWalkingState : ProtagState
     {
         WalkMovement();
         context.coyoteTimer = 0f;
+        animationController.Play("Run");
     }
 
     public override void ExitState()

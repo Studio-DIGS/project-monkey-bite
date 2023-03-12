@@ -1,18 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using KinematicCharacterController;
 using MushiCore.EditorAttributes;
 using UnityEngine;
 
-public class ProtagBlackboard : DescriptionMonoBehavior
+[System.Serializable]
+public class ProtagBlackboard
 {
     [ColorHeader("Dependencies")]
     [SerializeField] public PlayerUserInputProvider inputProvider;
     [SerializeField] public SimplePathMovement playerSimplePathMovement;
-    [SerializeField] public MovementContext movementContext;
-    [SerializeField] public SplinePathPhysicsBody pathBody;
+    [SerializeField] public KinematicCharacterMotor protagControllerMotor;
+    [SerializeField] public CharacterMotorPathAdapter protagControllerAdapter;
     [SerializeField] public CharacterRotator playerRotator;
     [SerializeField] public Animator animController;
+    [SerializeField] public PathTransform protagPathTransform;
+    [SerializeField] public SimplePathCamera followCamera;
+    [SerializeField] public Transform followCameraContainer;
+    [SerializeField] public GameplayLevelStateSO levelState;
 
     [ColorHeader("Profiles")]
     [SerializeField] public HorizontalMovementProfile horizontalMovementProfile;

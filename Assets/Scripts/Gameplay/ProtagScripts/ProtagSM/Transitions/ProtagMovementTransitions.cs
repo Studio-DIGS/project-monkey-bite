@@ -39,7 +39,7 @@ public partial class ProtagTransitions : TransitionTable<ProtagBlackboard>
     
     private bool TrySelectRoll()
     {
-        bool grounded = movementContext.IsGrounded;
+        bool grounded = controllerMotor.GroundingStatus.IsStableOnGround;
         if (grounded)
         {
             TransitionTo<ProtagRollState>();
@@ -51,7 +51,7 @@ public partial class ProtagTransitions : TransitionTable<ProtagBlackboard>
         
     private bool TrySelectDive()
     {
-        bool grounded = movementContext.IsGrounded;
+        bool grounded = controllerMotor.GroundingStatus.IsStableOnGround;
         if (!grounded)
         {
             TransitionTo<ProtagDiveState>();
@@ -87,7 +87,7 @@ public partial class ProtagTransitions : TransitionTable<ProtagBlackboard>
 
     private bool TrySelectJump()
     {
-        bool grounded = movementContext.IsGrounded;
+        bool grounded = controllerMotor.GroundingStatus.IsStableOnGround;
         bool coyoteTime = context.coyoteTimer < context.jumpProfile.coyoteTime;
         if (grounded || coyoteTime)
         {
@@ -100,8 +100,9 @@ public partial class ProtagTransitions : TransitionTable<ProtagBlackboard>
         
     private bool TrySelectFootstool()
     {
-        var groundedInfo = movementContext.CheckGroundedOnLayer(footstoolProfile.footstoolMask);
-        if (groundedInfo.surfaceFound)
+        var hits = new RaycastHit[16];
+        var groundedInfo = false;//controllerMotor.GroundSweep(pathTransform.WorldPos, 0.2f, footstoolProfile.footstoolMask, out RaycastHit hit, ref hits);
+        if (groundedInfo)
         {
             TransitionTo<ProtagFootstoolJumpingState>();
             return true;
@@ -116,7 +117,7 @@ public partial class ProtagTransitions : TransitionTable<ProtagBlackboard>
 
     public bool ToGroundMovementSelector()
     {
-        if (!movementContext.IsGrounded) return false; 
+        if (!controllerMotor.GroundingStatus.IsStableOnGround) return false; 
         
         if (context.inputState.horizontalAxis == 0)
         {
@@ -136,7 +137,7 @@ public partial class ProtagTransitions : TransitionTable<ProtagBlackboard>
 
     public bool ToAirMovementSelector()
     {
-        if (movementContext.IsGrounded) return false;
+        if (controllerMotor.GroundingStatus.IsStableOnGround) return false;
 
         TransitionTo<ProtagFallingState>();
         

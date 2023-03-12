@@ -26,6 +26,10 @@ public class ProtagSpawner : DescriptionMonoBehavior
     private void Awake()
     {
         location = FindObjectOfType<SpawnLocation>();
+        if (!location)
+        {
+            Debug.LogError("Missing Level Spawn Location, unable to spawn player");
+        }
     }
 
     private void OnEnable()
@@ -40,7 +44,8 @@ public class ProtagSpawner : DescriptionMonoBehavior
 
     private void SpawnPlayer()
     {
-        Instantiate(playerAsset, location.transform.position, Quaternion.identity);
+        var protag = Instantiate(playerAsset, Vector3.zero, Quaternion.identity);
+        protag.GetComponentInChildren<Protagonist>().Initialize(location.transform.position);
         askInputStateChange.RaiseEvent(InputState.Gameplay);
     }
 }

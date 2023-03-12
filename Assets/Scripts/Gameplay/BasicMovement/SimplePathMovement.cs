@@ -7,9 +7,12 @@ using UnityEngine;
 /// </summary>
 public class SimplePathMovement : MonoBehaviour
 {
-    [ColorHeader("Dependencies")]
-    [SerializeField] private SplinePathPhysicsBody pathBody;
+    private CharacterMotorPathAdapter adapter;
 
+    public void Initialize(CharacterMotorPathAdapter adapter)
+    {
+        this.adapter = adapter;
+    }
 
     public void SimpleGroundedHorizontalMovement(
         float input, 
@@ -22,20 +25,11 @@ public class SimplePathMovement : MonoBehaviour
         if (input == 0)
         {
             var step = CalculateHorizontalFrictionStep(frictionAccel, timeStep, normal);
-            pathBody.pathVelocity += step;
+            adapter.pathVelocity += step;
         }
         else
         {
-            pathBody.pathVelocity += CalculateHorizontalStep(input, maxVel, moveAccel, timeStep, normal);
-        }
-        
-        // Clamp y vel to avoid bouncing down slopes or over ledges
-        float dot = Vector2.Dot(normal, pathBody.pathVelocity);
-        if (dot > 0f)
-        {
-            // Set velocity to the projection onto normal plane
-            Vector2 cVelNormalProject = Vector2.Dot(pathBody.pathVelocity, normal) * normal;
-            pathBody.pathVelocity -= cVelNormalProject;
+            adapter.pathVelocity += CalculateHorizontalStep(input, maxVel, moveAccel, timeStep, normal);
         }
     }
     
@@ -45,14 +39,17 @@ public class SimplePathMovement : MonoBehaviour
         float moveAccel,
         float frictionAccel,
         float timeStep,
-        bool isTouchingSurface,
         Vector2 normal)
     {
         Vector2 step = Vector2.zero;
-
-        bool isTryingToClimbSurface = isTouchingSurface && (input * normal.x < 0);
-
-        if (input == 0 || isTryingToClimbSurface)
+        if (adapter.groundState.FoundAnyGround)
+        {
+            if (input * adapter.projectedNormal.x <= 0f)
+            {
+                input = 0;
+            }
+        }
+        if (input == 0)
         {
             step = CalculateHorizontalFrictionStep(frictionAccel, timeStep, normal);
         }
@@ -60,13 +57,13 @@ public class SimplePathMovement : MonoBehaviour
         {
             step = CalculateHorizontalStep(input, maxVel, moveAccel, timeStep, normal);
         }
-        pathBody.pathVelocity += step;
+        adapter.pathVelocity += step;
     }
 
     public Vector2 CalculateHorizontalStep(float input, float maxVel, float accel, float timeStep, Vector2 normal)
     {
         // Current velocity projected onto normal plane
-        Vector2 cVel = pathBody.pathVelocity;
+        Vector2 cVel = adapter.pathVelocity;
         Vector2 cVelNormalProject = Vector2.Dot(cVel, normal) * normal;
         Vector2 cHVel = cVel - cVelNormalProject;
 
@@ -74,7 +71,7 @@ public class SimplePathMovement : MonoBehaviour
         Vector2 targetVel = Vector2.right * input;
         Vector2 targetVelNormalProject = Vector2.Dot(targetVel, normal) * normal;
         Vector2 targetHVel = (targetVel - targetVelNormalProject).normalized * maxVel;
-
+        
         // Step towards target velocity
         Vector2 newVel = Vector2.MoveTowards(cHVel, targetHVel, accel * timeStep);
         Vector2 step = newVel - cHVel;

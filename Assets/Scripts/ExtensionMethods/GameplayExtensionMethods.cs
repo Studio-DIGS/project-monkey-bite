@@ -25,4 +25,10 @@ public static class GameplayExtensionMethods
         
         return diff / timeInterval;
     }
+
+    public static Vector2 ProjectOntoPlane(this Vector2 toProject, Vector2 normal)
+    {
+        Vector2 proj = Vector2.Dot(toProject, normal) * normal;
+        return toProject - proj;
+    }
 }

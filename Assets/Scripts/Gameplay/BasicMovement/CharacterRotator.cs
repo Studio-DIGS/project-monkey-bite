@@ -8,12 +8,17 @@ using UnityEngine;
 public class CharacterRotator : MonoBehaviour
 {
     [ColorHeader("Dependencies")]
-    [SerializeField] private SplinePathPhysicsBody splineBody;
     [SerializeField] private Transform[] targetTransforms;
 
-    private int currentDir;
+    private int currentDir = 1;
+    private PathTransform pathTransform;
 
     public int CurrentDir => currentDir;
+    
+    public void Initialize(PathTransform pathTransform)
+    {
+        this.pathTransform = pathTransform;
+    }
     
     /// <summary>
     /// Align the target transform to path
@@ -21,9 +26,10 @@ public class CharacterRotator : MonoBehaviour
     /// <param name="dir"></param>
     public void AlignDirection(float dir)
     {
-        if (dir == 0) return;
-        currentDir = (int)Mathf.Sign(dir);
+        if (dir != 0)
+            currentDir = (int)Mathf.Sign(dir);
+            
         foreach(var target in targetTransforms)
-            target.rotation = Quaternion.LookRotation(dir * splineBody.GetCurrentTangent(), Vector3.up);
+            target.rotation = Quaternion.LookRotation(currentDir * pathTransform.CNormal, pathTransform.CUp);
     }
 }

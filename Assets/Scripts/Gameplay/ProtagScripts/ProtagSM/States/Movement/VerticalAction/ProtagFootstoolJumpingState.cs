@@ -14,8 +14,8 @@ public class ProtagFootstoolJumpingState : ProtagState
         bool minTimePassed = jumpTime > footstoolProfile.minJumpTime;
         bool maxTimePassed = jumpTime > footstoolProfile.jumpCurve.TimeDuration;
 
-        bool isGrounded = movementContext.IsGrounded;
-        bool forceOut = maxTimePassed || (isGrounded && minTimePassed);
+        bool isStableOnGround = controllerMotor.GroundingStatus.IsStableOnGround;
+        bool forceOut = maxTimePassed || (isStableOnGround && minTimePassed);
 
         return forceOut && transitions.ToMovementSelector();
     }
@@ -33,20 +33,20 @@ public class ProtagFootstoolJumpingState : ProtagState
 
     public override void EnterState()
     {
-        pathBody.SetGravityEnabled(false);
+        controllerAdapter.SetGravityEnabled(false);
         context.coyoteTimer = float.MaxValue;
         entryDirection = (int)Mathf.Sign(context.playerRotator.CurrentDir);
     }
 
     public override void ExitState()
     {
-        pathBody.pathVelocity.y = 
-            Mathf.Min(pathBody.pathVelocity.y, footstoolProfile.exitVelocity.y);
+        controllerAdapter.pathVelocity.y = 
+            Mathf.Min(controllerAdapter.pathVelocity.y, footstoolProfile.exitVelocity.y);
         
-        pathBody.pathVelocity.x = 
-            entryDirection * Mathf.Min(entryDirection * pathBody.pathVelocity.x, footstoolProfile.exitVelocity.x);
+        controllerAdapter.pathVelocity.x = 
+            entryDirection * Mathf.Min(entryDirection * controllerAdapter.pathVelocity.x, footstoolProfile.exitVelocity.x);
 
-        pathBody.SetGravityEnabled(true);
+        controllerAdapter.SetGravityEnabled(true);
     }
 
     public override void UpdateState()
@@ -60,8 +60,8 @@ public class ProtagFootstoolJumpingState : ProtagState
             stateMachine.CurrentStateFixedDuration, 
             Time.fixedDeltaTime);
 
-        pathBody.pathVelocity.y = motionVel.y;
-        pathBody.pathVelocity.x = motionVel.x * entryDirection;
+        controllerAdapter.pathVelocity.y = motionVel.y;
+        controllerAdapter.pathVelocity.x = motionVel.x * entryDirection;
 
         TryFixedTransitionOut();
     }

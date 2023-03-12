@@ -14,7 +14,7 @@ public class LevelFinishLocation : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (!finished && other.GetComponentInChildren<ProtagManager>() != null)
+        if (!finished && other.GetComponentInChildren<Protagonist>() != null)
         {
             FinishLevel();
             finished = true;

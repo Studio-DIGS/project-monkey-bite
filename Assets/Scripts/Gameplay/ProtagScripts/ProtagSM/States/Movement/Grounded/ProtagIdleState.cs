@@ -13,7 +13,7 @@ public class ProtagIdleState : ProtagState
 
     public override void ExitState()
     {
-        pathBody.constrainVelocity = false;
+        
     }
 
     public override void UpdateState()
@@ -23,7 +23,7 @@ public class ProtagIdleState : ProtagState
 
     public override void FixedUpdateState()
     {
-        Vector2 groundNormal = movementContext.SurfaceNormal;
+        Vector2 groundNormal = controllerAdapter.projectedNormal;
 
         playerSimplePathMovement.SimpleGroundedHorizontalMovement(
             0, 
@@ -32,8 +32,5 @@ public class ProtagIdleState : ProtagState
             hMoveProfile.groundedFriction,
             Time.fixedDeltaTime, 
             groundNormal);
-
-        if(pathBody.pathVelocity.magnitude < 0.5f)
-            pathBody.constrainVelocity = true;
     }
 }

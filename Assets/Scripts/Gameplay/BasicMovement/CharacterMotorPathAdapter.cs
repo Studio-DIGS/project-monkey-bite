@@ -45,7 +45,7 @@ public class CharacterMotorPathAdapter : MonoBehaviour, ICharacterController
 
         if (gravityEnabled)
             pathVelocity.y -= deltaTime * gravityAccel;
-        
+
         Vector3 initialPos = transform.position;
         Vector2 targetPathPos = pathTransform.Position + pathVelocity * deltaTime;
 
@@ -71,10 +71,17 @@ public class CharacterMotorPathAdapter : MonoBehaviour, ICharacterController
         pathTransform.SnapToNearestPoint(motor.TransientPosition, false);
 
         Vector3 velocity = motor.Velocity;
-        Vector3 projectedVelocity = Vector3.Dot(stepDir, velocity) * stepDir;
+        float cachedY = velocity.y;
+        velocity.y = 0f;
+
+        Vector3 restrictPlaneTangent = stepDir;
+        restrictPlaneTangent.y = 0f;
+        restrictPlaneTangent.Normalize();
+
+        Vector3 projectedVelocity = Vector3.Dot(restrictPlaneTangent, velocity) * restrictPlaneTangent;
         projectedVelocity.y = 0f;
         pathVelocity.x = Mathf.Sign(pathVelocity.x) * projectedVelocity.magnitude;
-        pathVelocity.y = velocity.y;
+        pathVelocity.y = cachedY;
 
         var rawNormal = motor.GroundingStatus.GroundNormal;
         projectedNormal = pathTransform.ProjectVectorOntoPlane(rawNormal).normalized;

@@ -25,7 +25,14 @@ public class ProtagSpawner : DescriptionMonoBehavior
 
     private void Awake()
     {
-        location = FindObjectOfType<SpawnLocation>();
+        SpawnLocation location = null;
+        while (!location)
+        {
+            location = FindObjectOfType<SpawnLocation>();
+            if (!location.isActiveAndEnabled)
+                location = null;
+        }
+       
         if (!location)
         {
             Debug.LogError("Missing Level Spawn Location, unable to spawn player");

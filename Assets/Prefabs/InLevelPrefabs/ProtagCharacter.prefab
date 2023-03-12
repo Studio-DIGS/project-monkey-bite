@@ -481,15 +481,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capsuleCollider: {fileID: 3375812837718019177}
-  boxCollider: {fileID: 0}
   gravityAcceleration: 11
-  collisionResolutionOffset: 0.01
-  sweepOffset: 0.01
+  collisionResolutionOffset: 0.001
+  collisionSweepBackOffset: 0.001
   maxColliderResolves: 5
   collisionMask:
     serializedVersion: 2
     m_Bits: 128
-  lockToPathOnEnable: 1
+  groundProbeDistance: 0.01
+  groundSweepBackOffset: 0.01
+  maxGroundStableAngle: 35
   pathVelocity: {x: 0, y: 0}
   constrainVelocity: 0
   currentGroundState:
@@ -504,7 +505,7 @@ MonoBehaviour:
     groundNormalRaw: {x: 0, y: 0, z: 0}
 --- !u!136 &3375812837718019177
 CapsuleCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 8
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}

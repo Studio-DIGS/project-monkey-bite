@@ -20,27 +20,68 @@ public class PathControllerMotor : MonoBehaviour
 
     [ColorHeader("Config", ColorHeaderColor.Config)]
     [SerializeField] private float gravityAcceleration;
+    
+    [ColorHeader("Collision", ColorHeaderColor.Config)]
     [SerializeField] private float collisionResolutionOffset;
-    [SerializeField] private float sweepOffset;
+    [SerializeField] private float collisionSweepBackOffset;
     [SerializeField] private int maxColliderResolves;
     [SerializeField] private LayerMask collisionMask;
 
-    // Fields
-    // TODO: Cache t instead of calculating all over the place
+    [ColorHeader("Grounding")]
+    [SerializeField] private float groundProbeDistance;
+    [SerializeField] private float groundSweepBackOffset;
+    [SerializeField] private float maxGroundStableAngle;
+    
     [ColorHeader("Physics State")]
     public Vector2 pathVelocity;
     public bool constrainVelocity;
     public GroundInfo currentGroundState;
     public GroundInfo prevGroundState;
     
+    // Dependencies
+    private PathTransform pathTransform;
+    
+    // Internal state
     private bool gravityEnabled;
     
-    // Properties
-    private PathTransform pathTransform;
+    // Collider shape
+    private float capsuleRadius;
+    private Vector3 capsuleCenter;
+    private Vector3 capsuleUpperPoint;
+    private Vector3 capsuleLowerPoint;
 
     // Gizmo debugging fields
     private Vector3 collisionResolutionVel;
     private Vector3 splDir;
+
+    private void OnValidate()
+    {
+        Validate();
+    }
+
+    private void Awake()
+    {
+        Validate();
+    }
+    
+    private void Validate()
+    {
+        capsuleCollider.hideFlags = HideFlags.NotEditable;
+        SetColliderDimensions(capsuleCollider.center, capsuleCollider.height, capsuleCollider.radius);
+    }
+
+    private void SetColliderDimensions(Vector3 center, float height, float radius)
+    {
+        capsuleCollider.center = center;
+        capsuleCollider.height = height;
+        capsuleCollider.radius = radius;
+
+        capsuleRadius = radius;
+        capsuleCenter = center;
+        Vector3 hemisphereOffset = Vector3.up * (height / 2f - radius);
+        capsuleUpperPoint = center + hemisphereOffset;
+        capsuleLowerPoint = center - hemisphereOffset;
+    }
 
     public void Initialize(PathTransform pathTransform)
     {
@@ -69,7 +110,8 @@ public class PathControllerMotor : MonoBehaviour
     
     private void ApplyForces()
     {
-        if(gravityEnabled)
+        // Don't apply gravity if on stable ground
+        if(gravityEnabled && !currentGroundState.isStableOnGround)
             pathVelocity.y -= Time.fixedDeltaTime * gravityAcceleration;
     }
     
@@ -77,21 +119,65 @@ public class PathControllerMotor : MonoBehaviour
     private void ResolveCollisions(ref float stepDist)
     {
         int currentResolves = 0;
+
+        Vector3 currentMovePos = transform.position;
         
         while (currentResolves < maxColliderResolves)
         {
+            Debug.Log("E");
             // Do some conversions to get velocity step for this fixedUpdate
             Vector3 worldVel = pathTransform.ProjectVectorFromPlane(pathVelocity);
             Vector3 sweepDir = worldVel.normalized;
 
-            bool collisionSweep = CapsuleSweep(capsuleCollider, sweepDir, stepDist, out RaycastHit hit);
+            Vector3 closestHitNormal = default;
+            Vector3 closestHitPoint = default;
+            float closestHitDist = default;
 
-            if (collisionSweep)
+            bool sweepHitObstacle = false;
+
+            if (CapsuleOverlap(pathTransform.WorldPos, collisionMask, out Collider[] colliders) > 0)
             {
-                Vector3 collisionNormal = hit.normal.normalized;
+                float minDot = 0f;
+                foreach (var overlapCollider in colliders)
+                {
+                    if(Physics.ComputePenetration(
+                        capsuleCollider,
+                        pathTransform.WorldPos,
+                        Quaternion.identity,
+                        overlapCollider,
+                        overlapCollider.transform.position,
+                        Quaternion.identity,
+                        out Vector3 direction,
+                        out float distance
+                        ))
+                    {
+                        float dot = Vector3.Dot(direction, worldVel);
+                        if (dot < minDot)
+                        {
+                            minDot = dot;
+                            sweepHitObstacle = true;
+                            closestHitDist = distance;
+                            closestHitNormal = direction;
+                            closestHitPoint = pathTransform.WorldPos + capsuleCenter - direction * distance;
+                        }
+                    }
+                }
+            }
+
+            if (!sweepHitObstacle && CapsuleSweep(pathTransform.WorldPos, sweepDir, stepDist, collisionMask, out RaycastHit hit))
+            {
+                sweepHitObstacle = true;
+                closestHitDist = hit.distance;
+                closestHitNormal = hit.normal;
+                closestHitPoint = hit.point;
+            }
+
+            if (sweepHitObstacle)
+            {
+                Vector3 collisionNormal = closestHitNormal;
             
                 // Move the body to the collision surface
-                float hitDistance = hit.distance - sweepOffset;
+                float hitDistance = closestHitDist;
                 Vector2 snapVec = pathVelocity.normalized * hitDistance;
 
                 pathTransform.Position += snapVec;
@@ -145,32 +231,81 @@ public class PathControllerMotor : MonoBehaviour
             groundNormal = Vector2.up,
             groundNormalRaw = Vector3.up
         };
+
+        if (GroundSweep(
+                pathTransform.WorldPos,
+                Vector3.down,
+                groundProbeDistance,
+                collisionMask,
+                out RaycastHit groundHit))
+        {
+            if (IsHitStable(groundHit.normal))
+            {
+                currentGroundState.isStableOnGround = true;
+            }
+
+            currentGroundState.isTouchingGround = true;
+            currentGroundState.groundNormalRaw = groundHit.normal;
+            currentGroundState.groundNormal = pathTransform.ProjectVectorOntoPlane(groundHit.normal).normalized;
+        }
     }
 
-
-    private bool CapsuleSweep(CapsuleCollider collider, Vector3 sweepDir, float stepDist, out RaycastHit info)
+    private bool IsHitStable(Vector3 hitNormal)
     {
-        // Get bounds of the collider
-        Vector3 center = collider.bounds.center;
-        Vector3 bounds = collider.transform.up * (collider.height/2f - collider.radius);
+        float angle = Vector3.Angle(hitNormal, Vector3.up);
+        return angle < maxGroundStableAngle;
+    }
 
-        Vector3 sweepEnd = center + sweepDir * stepDist;
-        Debug.DrawLine(center + bounds, center - bounds, Color.magenta);
-        
-        // Offset the sweep backwards to avoid starting the cast inside any obstacles
-        center -= sweepDir * sweepOffset;
-        
-        // Perform sweep
-        bool collisionSweep = Physics.CapsuleCast(
-            center + bounds, 
-            center - bounds, 
-            collider.radius, 
-            sweepDir,
+    private int CapsuleOverlap(Vector3 position, LayerMask hitMask, out Collider[] colliders)
+    {
+        var lower = position + capsuleLowerPoint;
+        var upper = position + capsuleUpperPoint;
+
+        var hits = Physics.OverlapCapsule(
+            lower,
+            upper,
+            capsuleRadius,
+            hitMask
+        );
+
+        colliders = hits;
+        return hits.Length;
+    }
+
+    private bool CapsuleSweep(Vector3 position, Vector3 dir, float dist, LayerMask hitMask, out RaycastHit info)
+    {
+        var lower = position + capsuleLowerPoint - collisionSweepBackOffset * dir;
+        var upper = position + capsuleUpperPoint - collisionSweepBackOffset * dir;
+
+        bool hit = Physics.CapsuleCast(
+            lower,
+            upper,
+            capsuleRadius,
+            dir,
             out info,
-            stepDist + sweepOffset, 
-            collisionMask);
+            dist + collisionSweepBackOffset,
+            hitMask
+        );
 
-        return collisionSweep;
+        return hit;
+    }
+
+    private bool GroundSweep(Vector3 position, Vector3 dir, float dist, LayerMask hitMask, out RaycastHit info)
+    {
+        var lower = position + capsuleLowerPoint - groundSweepBackOffset * dir;
+        var upper = position + capsuleUpperPoint - groundSweepBackOffset * dir;
+
+        bool hit = Physics.CapsuleCast(
+            lower,
+            upper,
+            capsuleRadius,
+            dir,
+            out info,
+            dist + groundSweepBackOffset,
+            hitMask
+        );
+
+        return hit;
     }
 
     private void OnDrawGizmos()
@@ -178,5 +313,8 @@ public class PathControllerMotor : MonoBehaviour
         Gizmos.color = Color.green;
         Vector3 pos = transform.position;
         Gizmos.DrawLine(pos, pos + collisionResolutionVel);
+        
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawLine(pos, pos + currentGroundState.groundNormalRaw);
     }
 }

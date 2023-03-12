@@ -46,9 +46,15 @@ public class SimplePathMovement : MonoBehaviour
         {
             if (input * controllerMotor.currentGroundState.groundNormal.x <= 0f)
             {
-                input = 0;
+                return;
+            }
+
+            if (input == 0f)
+            {
+                return;
             }
         }
+        
         if (input == 0)
         {
             step = CalculateHorizontalFrictionStep(frictionAccel, timeStep, normal);

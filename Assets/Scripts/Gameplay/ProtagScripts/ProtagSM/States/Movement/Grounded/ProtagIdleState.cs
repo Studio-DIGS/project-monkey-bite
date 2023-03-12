@@ -23,7 +23,7 @@ public class ProtagIdleState : ProtagState
 
     public override void FixedUpdateState()
     {
-        Vector2 groundNormal = controllerAdapter.projectedNormal;
+        Vector2 groundNormal = controllerMotor.currentGroundState.groundNormal;
 
         playerSimplePathMovement.SimpleGroundedHorizontalMovement(
             0, 

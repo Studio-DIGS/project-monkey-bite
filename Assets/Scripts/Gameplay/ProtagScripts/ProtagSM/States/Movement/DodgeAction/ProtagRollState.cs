@@ -22,10 +22,10 @@ public class ProtagRollState : ProtagState
 
     public override void ExitState()
     {
-        controllerAdapter.pathVelocity.y = 
-            Mathf.Min(controllerAdapter.pathVelocity.y, rollProfile.exitVelocity.y);
+        controllerMotor.pathVelocity.y = 
+            Mathf.Min(controllerMotor.pathVelocity.y, rollProfile.exitVelocity.y);
 
-        controllerAdapter.pathVelocity.x =
+        controllerMotor.pathVelocity.x =
             entryDirection * rollProfile.exitVelocity.x;
 
     }
@@ -41,8 +41,8 @@ public class ProtagRollState : ProtagState
             stateMachine.CurrentStateFixedDuration,
             Time.fixedDeltaTime);
         
-        controllerAdapter.pathVelocity.y = motionVel.y;
-        controllerAdapter.pathVelocity.x = motionVel.x * entryDirection;
+        controllerMotor.pathVelocity.y = motionVel.y;
+        controllerMotor.pathVelocity.x = motionVel.x * entryDirection;
 
         TryFixedTransitionOut();
     }

@@ -30,9 +30,9 @@ public class Protagonist : DescriptionMonoBehavior
     {
         var pathTransform = blackboard.protagPathTransform;
         blackboard.playerRotator.Initialize(pathTransform);
-        blackboard.playerSimplePathMovement.Initialize(blackboard.protagControllerAdapter);
-        blackboard.protagControllerAdapter.Initialize(blackboard.protagControllerMotor, blackboard.protagPathTransform);
         blackboard.protagPathTransform.Initialize(blackboard.levelState.levelPath, pos);
+        blackboard.controllerMotor.Initialize(blackboard.protagPathTransform);
+        blackboard.playerSimplePathMovement.Initialize(blackboard.controllerMotor);
         blackboard.followCamera.Initialize(blackboard.followCameraContainer, pathTransform, pathTransform.transform);
     }
 
@@ -54,6 +54,7 @@ public class Protagonist : DescriptionMonoBehavior
     private void FixedUpdate()
     {
         stateMachine.FixedUpdate();
+        blackboard.controllerMotor.TickPhysicsBody();
     }
 
     private void LateUpdate()
@@ -64,7 +65,7 @@ public class Protagonist : DescriptionMonoBehavior
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        Handles.Label(blackboard.protagControllerMotor.transform.position + Vector3.up * 2f, currentStateName);
+        Handles.Label(blackboard.protagPathTransform.WorldPos + Vector3.up * 2f, currentStateName);
     }
 #endif
 }

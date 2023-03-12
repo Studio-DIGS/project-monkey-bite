@@ -24,13 +24,13 @@ public class ProtagFallingState : ProtagState
 
     public override void FixedUpdateState()
     {
-        /*playerSimplePathMovement.SimpleAirborneHorizontalMovement(
+        playerSimplePathMovement.SimpleAirborneHorizontalMovement(
             inputState.horizontalAxis,
             hMoveProfile.airborneWalkVel,
             hMoveProfile.airborneWalkAccel,
             hMoveProfile.airborneFriction,
             Time.fixedDeltaTime,
-            controllerAdapter.projectedNormal);*/
+            controllerMotor.currentGroundState.groundNormal);
     }
 
     

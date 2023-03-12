@@ -14,8 +14,7 @@ public abstract class ProtagState : State<ProtagBlackboard>
 
     protected PlayerUserInputProvider inputProvider => context.inputProvider;
     protected SimplePathMovement playerSimplePathMovement => context.playerSimplePathMovement;
-    protected KinematicCharacterMotor controllerMotor => context.protagControllerMotor;
-    protected CharacterMotorPathAdapter controllerAdapter => context.protagControllerAdapter;
+    protected PathControllerMotor controllerMotor => context.controllerMotor;
     protected HorizontalMovementProfile hMoveProfile => context.horizontalMovementProfile;
     protected FootstoolProfile footstoolProfile => context.footstoolProfile;
     protected JumpProfile jumpProfile => context.jumpProfile;

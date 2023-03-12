@@ -10,15 +10,18 @@ public class ProtagBlackboard
 {
     [ColorHeader("Dependencies")]
     [SerializeField] public PlayerUserInputProvider inputProvider;
-    [SerializeField] public SimplePathMovement playerSimplePathMovement;
-    [SerializeField] public KinematicCharacterMotor protagControllerMotor;
-    [SerializeField] public CharacterMotorPathAdapter protagControllerAdapter;
-    [SerializeField] public CharacterRotator playerRotator;
     [SerializeField] public Animator animController;
-    [SerializeField] public PathTransform protagPathTransform;
+    [SerializeField] public GameplayLevelStateSO levelState;
+        
+    [ColorHeader("Camera")]
     [SerializeField] public SimplePathCamera followCamera;
     [SerializeField] public Transform followCameraContainer;
-    [SerializeField] public GameplayLevelStateSO levelState;
+    
+    [ColorHeader("Movement")]
+    [SerializeField] public PathTransform protagPathTransform;
+    [SerializeField] public SimplePathMovement playerSimplePathMovement;
+    [SerializeField] public CharacterRotator playerRotator;
+    [SerializeField] public PathControllerMotor controllerMotor;
 
     [ColorHeader("Profiles")]
     [SerializeField] public HorizontalMovementProfile horizontalMovementProfile;

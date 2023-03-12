@@ -11,6 +11,7 @@ public class PathTransform : MonoBehaviour
     [SerializeField] private Vector2 position;
     [SerializeField] private SplineContainer currentPath;
     [SerializeField] private bool selfInitialize;
+    [SerializeField] public bool autoSyncTransform = false;
 
     public Vector2 Position
     {
@@ -52,7 +53,7 @@ public class PathTransform : MonoBehaviour
         loop = path.Spline.Closed;
     }
     
-    public void SetPosition(Vector2 value, bool updateTransform = true)
+    private void SetPosition(Vector2 value)
     {
         // Clamping
         if (loop)
@@ -77,15 +78,20 @@ public class PathTransform : MonoBehaviour
         
         worldPos = EvaluatePos(value);
         
-        if(updateTransform)
-            transform.position = worldPos;
+        if(autoSyncTransform)
+            SyncTransform();
     }
 
-    public void SnapToNearestPoint(Vector3 point, bool updateTransform = true)
+    public void SnapToNearestPoint(Vector3 point)
     {
         GetNearestPoint(point, out Vector3 nearestPos, out float t);
         var pathPos = new Vector2(t * currentPathLength, point.y);
-        SetPosition(pathPos, updateTransform);
+        SetPosition(pathPos);
+    }
+
+    public void SyncTransform()
+    {
+        transform.position = worldPos;
     }
 
     public void GetNearestPoint(Vector3 point, out Vector3 nearestPos, out float t)
@@ -116,6 +122,14 @@ public class PathTransform : MonoBehaviour
         Vector2 projectedHorizontal = Vector3.Dot(vector, cTangent) * Vector2.right;
         projectedHorizontal.y = cachedY;
         return projectedHorizontal;
+    }
+
+    public Vector3 ProjectVectorFromPlane(Vector2 planeVector)
+    {
+        float cachedY = planeVector.y;
+        Vector3 res = cTangent * planeVector.x;
+        res.y = cachedY;
+        return res;
     }
 
 #if UNITY_EDITOR

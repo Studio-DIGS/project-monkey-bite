@@ -7,11 +7,11 @@ using UnityEngine;
 /// </summary>
 public class SimplePathMovement : MonoBehaviour
 {
-    private CharacterMotorPathAdapter adapter;
+    private PathControllerMotor controllerMotor;
 
-    public void Initialize(CharacterMotorPathAdapter adapter)
+    public void Initialize(PathControllerMotor controllerMotor)
     {
-        this.adapter = adapter;
+        this.controllerMotor = controllerMotor;
     }
 
     public void SimpleGroundedHorizontalMovement(
@@ -25,11 +25,11 @@ public class SimplePathMovement : MonoBehaviour
         if (input == 0)
         {
             var step = CalculateHorizontalFrictionStep(frictionAccel, timeStep, normal);
-            adapter.pathVelocity += step;
+            controllerMotor.pathVelocity += step;
         }
         else
         {
-            adapter.pathVelocity += CalculateHorizontalStep(input, maxVel, moveAccel, timeStep, normal);
+            controllerMotor.pathVelocity += CalculateHorizontalStep(input, maxVel, moveAccel, timeStep, normal);
         }
     }
     
@@ -42,9 +42,9 @@ public class SimplePathMovement : MonoBehaviour
         Vector2 normal)
     {
         Vector2 step = Vector2.zero;
-        if (adapter.groundState.FoundAnyGround)
+        if (controllerMotor.currentGroundState.isTouchingGround)
         {
-            if (input * adapter.projectedNormal.x <= 0f)
+            if (input * controllerMotor.currentGroundState.groundNormal.x <= 0f)
             {
                 input = 0;
             }
@@ -57,13 +57,13 @@ public class SimplePathMovement : MonoBehaviour
         {
             step = CalculateHorizontalStep(input, maxVel, moveAccel, timeStep, normal);
         }
-        adapter.pathVelocity += step;
+        controllerMotor.pathVelocity += step;
     }
 
     public Vector2 CalculateHorizontalStep(float input, float maxVel, float accel, float timeStep, Vector2 normal)
     {
         // Current velocity projected onto normal plane
-        Vector2 cVel = adapter.pathVelocity;
+        Vector2 cVel = controllerMotor.pathVelocity;
         Vector2 cVelNormalProject = Vector2.Dot(cVel, normal) * normal;
         Vector2 cHVel = cVel - cVelNormalProject;
 

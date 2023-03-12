@@ -15,7 +15,7 @@ public class ProtagJumpingState : ProtagState
         bool minTimePassed = jumpTime > jumpProfile.minJumpTime;
         bool maxTimePassed = jumpTime > jumpProfile.jumpCurve.TimeDuration;
 
-        bool isStableOnGround = controllerMotor.GroundingStatus.IsStableOnGround;
+        bool isStableOnGround = controllerMotor.currentGroundState.isStableOnGround;
         bool forceOut = maxTimePassed || (isStableOnGround && minTimePassed);
 
         return forceOut && transitions.ToMovementSelector();
@@ -37,15 +37,15 @@ public class ProtagJumpingState : ProtagState
 
     public override void EnterState()
     {
-        controllerAdapter.SetGravityEnabled(false);
-        controllerMotor.ForceUnground(jumpProfile.minJumpTime);
+        controllerMotor.SetGravityEnabled(false);
+        //controllerMotor.ForceUnground(jumpProfile.minJumpTime);
         context.coyoteTimer = float.MaxValue;
     }
 
     public override void ExitState()
     {
-        controllerAdapter.pathVelocity.y = Mathf.Min(controllerAdapter.pathVelocity.y, jumpProfile.jumpEndVel);
-        controllerAdapter.SetGravityEnabled(true);
+        controllerMotor.pathVelocity.y = Mathf.Min(controllerMotor.pathVelocity.y, jumpProfile.jumpEndVel);
+        controllerMotor.SetGravityEnabled(true);
     }
 
     public override void UpdateState()
@@ -59,7 +59,7 @@ public class ProtagJumpingState : ProtagState
             stateMachine.CurrentStateFixedDuration, 
             Time.fixedDeltaTime);
 
-        controllerAdapter.pathVelocity.y = yVel;
+        controllerMotor.pathVelocity.y = yVel;
         
         playerSimplePathMovement.SimpleAirborneHorizontalMovement(
             inputState.horizontalAxis, 
@@ -67,7 +67,7 @@ public class ProtagJumpingState : ProtagState
             hMoveProfile.airborneWalkAccel,
             hMoveProfile.airborneFriction,
             Time.fixedDeltaTime,
-            controllerAdapter.projectedNormal);
+            controllerMotor.currentGroundState.groundNormal);
 
         TryFixedTransitionOut();
     }

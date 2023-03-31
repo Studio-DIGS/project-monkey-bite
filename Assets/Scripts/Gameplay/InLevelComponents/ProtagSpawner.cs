@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using MushiCore.EditorAttributes;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -25,13 +26,7 @@ public class ProtagSpawner : DescriptionMonoBehavior
 
     private void Awake()
     {
-        SpawnLocation location = null;
-        while (!location)
-        {
-            location = FindObjectOfType<SpawnLocation>();
-            if (!location.isActiveAndEnabled)
-                location = null;
-        }
+        location = FindObjectsOfType<SpawnLocation>().FirstOrDefault(a => a.gameObject.activeInHierarchy);
        
         if (!location)
         {

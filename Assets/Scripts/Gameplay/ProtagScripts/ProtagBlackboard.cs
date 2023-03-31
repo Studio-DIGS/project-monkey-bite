@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using KinematicCharacterController;
 using MushiCore.EditorAttributes;
 using UnityEngine;
 

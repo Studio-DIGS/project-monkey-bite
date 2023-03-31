@@ -50,6 +50,7 @@ public class PathTransform : MonoBehaviour
         currentPath = path;
         currentPathLength = currentPath.CalculateLength();
         SnapToNearestPoint(worldPosition);
+        SyncWorldPosition();
         loop = path.Spline.Closed;
     }
     
@@ -71,40 +72,41 @@ public class PathTransform : MonoBehaviour
         
         cTangent = currentPath.EvaluateTangent(normalizedX);
         cTangent.Normalize();
-        cUp = currentPath.EvaluateUpVector(normalizedX);
-        cUp.Normalize();
+        cUp = Vector3.up;
         cNormal = Vector3.Cross(cTangent, cUp);
         cNormal.Normalize();
         
         worldPos = EvaluatePos(value);
         
         if(autoSyncTransform)
-            SyncTransform();
+            SyncWorldPosition();
     }
 
     public void SnapToNearestPoint(Vector3 point)
     {
-        GetNearestPoint(point, out Vector3 nearestPos, out float t);
-        var pathPos = new Vector2(t * currentPathLength, point.y);
-        SetPosition(pathPos);
+        GetNearestPoint(point, out Vector3 wNearestPos, out Vector2 sNearestPos);
+        SetPosition(sNearestPos);
     }
 
-    public void SyncTransform()
+    public void SyncWorldPosition()
     {
         transform.position = worldPos;
     }
 
-    public void GetNearestPoint(Vector3 point, out Vector3 nearestPos, out float t)
+    public void GetNearestPoint(Vector3 point, out Vector3 wNearestPos, out Vector2 sNearestPos)
     {
+        Vector3 testPoint = point;
+        testPoint.y = 0;
         SplineUtility.GetNearestPoint(
             currentPath.Spline,
-            point, 
+            testPoint, 
             out float3 nearestPosFloat3, 
             out float outT,
             resolution: 8,
             iterations: 4);
-        nearestPos = (Vector3)nearestPosFloat3;
-        t = outT;
+        wNearestPos = (Vector3)nearestPosFloat3;
+        wNearestPos.y = point.y;
+        sNearestPos = new Vector2(outT * currentPathLength, point.y);
     }
 
     public Vector3 EvaluatePos(Vector2 evalPos)
@@ -135,7 +137,7 @@ public class PathTransform : MonoBehaviour
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
-        var pos = transform.position;
+        var pos = transform.position + Vector3.up * 0.1f;
         Gizmos.color = Color.red;
         Gizmos.DrawLine(pos, pos + cTangent);
         Gizmos.color = Color.green;

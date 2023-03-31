@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using KinematicCharacterController;
 using MushiCore.EditorAttributes;
+using MushiCore.GizmoDrawer;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
@@ -13,308 +16,171 @@ public struct GroundInfo
     public Vector3 groundNormalRaw;
 }
 
-public class PathControllerMotor : MonoBehaviour
+public class PathControllerMotor : MonoBehaviour, ICharacterController
 {
+    private const float epsilon = 0.0001f;
+
     [ColorHeader("Dependencies")]
-    [SerializeField] private CapsuleCollider capsuleCollider;
+    [SerializeField] private KinematicCharacterMotor motor;
 
     [ColorHeader("Config", ColorHeaderColor.Config)]
     [SerializeField] private float gravityAcceleration;
-    
-    [ColorHeader("Collision", ColorHeaderColor.Config)]
-    [SerializeField] private float collisionResolutionOffset;
-    [SerializeField] private float collisionSweepBackOffset;
-    [SerializeField] private int maxColliderResolves;
-    [SerializeField] private LayerMask collisionMask;
 
-    [ColorHeader("Grounding")]
-    [SerializeField] private float groundProbeDistance;
-    [SerializeField] private float groundSweepBackOffset;
-    [SerializeField] private float maxGroundStableAngle;
-    
     [ColorHeader("Physics State")]
     public Vector2 pathVelocity;
-    public bool constrainVelocity;
-    public GroundInfo currentGroundState;
-    public GroundInfo prevGroundState;
-    
+    public CharacterGroundingReport CurrentGroundState => motor.GroundingStatus;
+
     // Dependencies
     private PathTransform pathTransform;
     
     // Internal state
-    private bool gravityEnabled;
-    
-    // Collider shape
-    private float capsuleRadius;
-    private Vector3 capsuleCenter;
-    private Vector3 capsuleUpperPoint;
-    private Vector3 capsuleLowerPoint;
-
-    // Gizmo debugging fields
-    private Vector3 collisionResolutionVel;
-    private Vector3 splDir;
-
-    private void OnValidate()
-    {
-        Validate();
-    }
-
-    private void Awake()
-    {
-        Validate();
-    }
-    
-    private void Validate()
-    {
-        capsuleCollider.hideFlags = HideFlags.NotEditable;
-        SetColliderDimensions(capsuleCollider.center, capsuleCollider.height, capsuleCollider.radius);
-    }
-
-    private void SetColliderDimensions(Vector3 center, float height, float radius)
-    {
-        capsuleCollider.center = center;
-        capsuleCollider.height = height;
-        capsuleCollider.radius = radius;
-
-        capsuleRadius = radius;
-        capsuleCenter = center;
-        Vector3 hemisphereOffset = Vector3.up * (height / 2f - radius);
-        capsuleUpperPoint = center + hemisphereOffset;
-        capsuleLowerPoint = center - hemisphereOffset;
-    }
+    private bool gravityEnabled = true;
 
     public void Initialize(PathTransform pathTransform)
     {
         this.pathTransform = pathTransform;
+
+        motor.CharacterController = this;
+        
         // We don't want to auto sync the transform
         pathTransform.autoSyncTransform = false;
-        pathTransform.SnapToNearestPoint(transform.position);
-        pathTransform.SyncTransform();
         gravityEnabled = true;
     }
     
     public void SetGravityEnabled(bool val) => gravityEnabled = val;
+    public void SetForceUnground(bool forceUnground) => motor.SetForceUnground(forceUnground);
+
+    public Vector2 ProjectNormalOntoSpline(Vector3 wNormal)
+    {
+        return pathTransform.ProjectVectorOntoPlane(wNormal).normalized;
+    }
 
     public void TickPhysicsBody()
     {
+        gizmoDrawer.Clear();
         ApplyForces();
-        if (constrainVelocity)
-        {
-            pathVelocity = Vector2.zero;
-        }
-        float stepDist = pathVelocity.magnitude * Time.fixedDeltaTime;
-        ResolveCollisions(ref stepDist);
-        ApplyVelocity(stepDist);
-        UpdateGrounding();
+        motor.UpdatePhase1(Time.fixedDeltaTime);
+        motor.UpdatePhase2(Time.fixedDeltaTime);
+        motor.Transform.SetPositionAndRotation(motor.TransientPosition, motor.TransientRotation);
     }
     
     private void ApplyForces()
     {
-        // Don't apply gravity if on stable ground
-        if(gravityEnabled && !currentGroundState.isStableOnGround)
+        if(gravityEnabled && !motor.LastGroundingStatus.IsStableOnGround)
             pathVelocity.y -= Time.fixedDeltaTime * gravityAcceleration;
     }
     
-
-    private void ResolveCollisions(ref float stepDist)
+    public void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
     {
-        int currentResolves = 0;
+         
+    }
 
-        Vector3 currentMovePos = transform.position;
+    public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
+    {
+        Vector2 sTargetPos = pathTransform.Position + pathVelocity * deltaTime;
+
+        Vector3 wStartPos = pathTransform.WorldPos;
+        Vector3 wTargetPos = pathTransform.EvaluatePos(sTargetPos);
+
+        Vector3 wStep = wTargetPos - wStartPos;
+
+        motor.PlanarConstraintNormal = Vector3.Cross(Vector3.up, wStep).normalized;
+    
+        currentVelocity = (wStep) / deltaTime;
+    }
+
+    public void BeforeCharacterUpdate(float deltaTime)
+    {
+         motor.SetPosition(motor.transform.position);
+    }
+
+    public void PostGroundingUpdate(float deltaTime)
+    {
+         
+    }
+
+    public void AfterCharacterUpdate(float deltaTime)
+    {         
+        // Update spline position
+        pathTransform.GetNearestPoint(motor.transform.position, out Vector3 wNearestPos, out Vector2 sNearestPos);
+        pathTransform.Position = sNearestPos;
         
-        while (currentResolves < maxColliderResolves)
-        {
-            Debug.Log("E");
-            // Do some conversions to get velocity step for this fixedUpdate
-            Vector3 worldVel = pathTransform.ProjectVectorFromPlane(pathVelocity);
-            Vector3 sweepDir = worldVel.normalized;
+         // Update path velocity
+         var currentVelocity = motor.BaseVelocity;
 
-            Vector3 closestHitNormal = default;
-            Vector3 closestHitPoint = default;
-            float closestHitDist = default;
+         float horizontalMag = Mathf.Sign(Vector2.Dot(currentVelocity, pathTransform.CTangent)) * new Vector2(currentVelocity.x, currentVelocity.z).magnitude;
+         Vector2 sProjectedVel = new Vector2(horizontalMag, currentVelocity.y);
+         
+         pathVelocity = sProjectedVel;
 
-            bool sweepHitObstacle = false;
+         // Snap if too far
+         if (Vector3.Distance(pathTransform.transform.position, wNearestPos) > 0.001f)
+         {
+             motor.SetPosition(wNearestPos);
+         }
+         
+         gizmoDrawer.Add(new GizmoDrawerWireSphere(
+             Color.cyan,
+             pathTransform.WorldPos,
+             0.04f
+             ));
 
-            if (CapsuleOverlap(pathTransform.WorldPos, collisionMask, out Collider[] colliders) > 0)
-            {
-                float minDot = 0f;
-                foreach (var overlapCollider in colliders)
-                {
-                    if(Physics.ComputePenetration(
-                        capsuleCollider,
-                        pathTransform.WorldPos,
-                        Quaternion.identity,
-                        overlapCollider,
-                        overlapCollider.transform.position,
-                        Quaternion.identity,
-                        out Vector3 direction,
-                        out float distance
-                        ))
-                    {
-                        float dot = Vector3.Dot(direction, worldVel);
-                        if (dot < minDot)
-                        {
-                            minDot = dot;
-                            sweepHitObstacle = true;
-                            closestHitDist = distance;
-                            closestHitNormal = direction;
-                            closestHitPoint = pathTransform.WorldPos + capsuleCenter - direction * distance;
-                        }
-                    }
-                }
-            }
+         var position = motor.Transform.position;
+         
+         gizmoDrawer.Add(new GizmoDrawerWireSphere(
+             Color.green,
+             position,
+             0.06f
+             ));
+         
+         gizmoDrawer.Add(new GizmoDrawerLine(
+             Color.magenta,
+             position,
+             position + motor.GroundingStatus.GroundNormal
+             ));
+         gizmoDrawer.Add(new GizmoDrawerLine(
+             Color.yellow,
+             position,
+             position + motor.GroundingStatus.InnerGroundNormal
+         ));
+         gizmoDrawer.Add(new GizmoDrawerLine(
+             Color.red,
+             position,
+             position + motor.GroundingStatus.OuterGroundNormal
+         ));
+    }
 
-            if (!sweepHitObstacle && CapsuleSweep(pathTransform.WorldPos, sweepDir, stepDist, collisionMask, out RaycastHit hit))
-            {
-                sweepHitObstacle = true;
-                closestHitDist = hit.distance;
-                closestHitNormal = hit.normal;
-                closestHitPoint = hit.point;
-            }
+    public bool IsColliderValidForCollisions(Collider coll)
+    {
+        return true;
+    }
 
-            if (sweepHitObstacle)
-            {
-                Vector3 collisionNormal = closestHitNormal;
-            
-                // Move the body to the collision surface
-                float hitDistance = closestHitDist;
-                Vector2 snapVec = pathVelocity.normalized * hitDistance;
+    public void OnGroundHit(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, ref HitStabilityReport hitStabilityReport)
+    {
+        
+    }
 
-                pathTransform.Position += snapVec;
-            
-                // Snapping is simulating velocity for this step, so reduce the step dist to match
-                stepDist -= hitDistance;
+    public void OnMovementHit(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, ref HitStabilityReport hitStabilityReport)
+    {
+         
+    }
 
-                // Offset from surface normal to prevent clipping in the next frame
-                pathTransform.Position += pathTransform.ProjectVectorOntoPlane(collisionNormal).normalized * collisionResolutionOffset;
-            
-                // Resolved velocity "slides" up the colliding surface
-                worldVel = Vector3.ProjectOnPlane(worldVel, collisionNormal);
-                float pathVelMag = pathVelocity.magnitude;
-                pathVelocity = pathTransform.ProjectVectorOntoPlane(worldVel);
-            
-                // This hit and slide reduces velocity, so reduce step distance accordingly
-                stepDist *= pathVelocity.magnitude / pathVelMag;
-            
-                // Gizmos debug
-                collisionResolutionVel = worldVel;
-            }
-            else
-            {
-                break;
-            }
+    public void ProcessHitStabilityReport(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, Vector3 atCharacterPosition, Quaternion atCharacterRotation, ref HitStabilityReport hitStabilityReport)
+    {
+         
+    }
 
-            currentResolves++;
-        }
-
-        if (currentResolves >= maxColliderResolves)
-        {
-            Debug.Log("TOO MANY RESOLVES");
-            pathVelocity = Vector2.zero;
-        }
+    public void OnDiscreteCollisionDetected(Collider hitCollider)
+    {
+         
     }
     
-    private void ApplyVelocity(float stepDist)
+    private GizmoDrawer gizmoDrawer = new();
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
     {
-        Vector2 velStep = pathVelocity.normalized * stepDist;
-        pathTransform.Position += velStep;
-        pathTransform.SyncTransform();
+        gizmoDrawer.Draw();
     }
-    
-    private void UpdateGrounding()
-    {
-        prevGroundState = currentGroundState;
-        currentGroundState = new GroundInfo()
-        {
-            isTouchingGround = false,
-            isStableOnGround = false,
-            groundNormal = Vector2.up,
-            groundNormalRaw = Vector3.up
-        };
-
-        if (GroundSweep(
-                pathTransform.WorldPos,
-                Vector3.down,
-                groundProbeDistance,
-                collisionMask,
-                out RaycastHit groundHit))
-        {
-            if (IsHitStable(groundHit.normal))
-            {
-                currentGroundState.isStableOnGround = true;
-            }
-
-            currentGroundState.isTouchingGround = true;
-            currentGroundState.groundNormalRaw = groundHit.normal;
-            currentGroundState.groundNormal = pathTransform.ProjectVectorOntoPlane(groundHit.normal).normalized;
-        }
-    }
-
-    private bool IsHitStable(Vector3 hitNormal)
-    {
-        float angle = Vector3.Angle(hitNormal, Vector3.up);
-        return angle < maxGroundStableAngle;
-    }
-
-    private int CapsuleOverlap(Vector3 position, LayerMask hitMask, out Collider[] colliders)
-    {
-        var lower = position + capsuleLowerPoint;
-        var upper = position + capsuleUpperPoint;
-
-        var hits = Physics.OverlapCapsule(
-            lower,
-            upper,
-            capsuleRadius,
-            hitMask
-        );
-
-        colliders = hits;
-        return hits.Length;
-    }
-
-    private bool CapsuleSweep(Vector3 position, Vector3 dir, float dist, LayerMask hitMask, out RaycastHit info)
-    {
-        var lower = position + capsuleLowerPoint - collisionSweepBackOffset * dir;
-        var upper = position + capsuleUpperPoint - collisionSweepBackOffset * dir;
-
-        bool hit = Physics.CapsuleCast(
-            lower,
-            upper,
-            capsuleRadius,
-            dir,
-            out info,
-            dist + collisionSweepBackOffset,
-            hitMask
-        );
-
-        return hit;
-    }
-
-    private bool GroundSweep(Vector3 position, Vector3 dir, float dist, LayerMask hitMask, out RaycastHit info)
-    {
-        var lower = position + capsuleLowerPoint - groundSweepBackOffset * dir;
-        var upper = position + capsuleUpperPoint - groundSweepBackOffset * dir;
-
-        bool hit = Physics.CapsuleCast(
-            lower,
-            upper,
-            capsuleRadius,
-            dir,
-            out info,
-            dist + groundSweepBackOffset,
-            hitMask
-        );
-
-        return hit;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Vector3 pos = transform.position;
-        Gizmos.DrawLine(pos, pos + collisionResolutionVel);
-        
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawLine(pos, pos + currentGroundState.groundNormalRaw);
-    }
+#endif
 }

@@ -286,15 +286,10 @@ namespace KinematicCharacterController
 
         [Header("Constraints settings")]
         /// <summary>
-        /// Determines if the character's movement uses the planar constraint
-        /// </summary>
-        [Tooltip("Determines if the character's movement uses the planar constraint")]
-        public bool HasPlanarConstraint = false;
-        /// <summary>
         /// Defines the plane that the character's movement is constrained on, if HasMovementConstraintPlane is active
         /// </summary>
         [Tooltip("Defines the plane that the character's movement is constrained on, if HasMovementConstraintPlane is active")]
-        public Vector3 PlanarConstraintAxis = Vector3.forward;
+        public Vector3 PlanarConstraintNormal = Vector3.forward;
 
         [Header("Other settings")]
         /// <summary>
@@ -473,7 +468,6 @@ namespace KinematicCharacterController
         private int _rigidbodyProjectionHitCount = 0;
         private bool _isMovingFromAttachedRigidbody = false;
         private bool _mustUnground = false;
-        private float _mustUngroundTimeCounter = 0f;
         private Vector3 _cachedWorldUp = Vector3.up;
         private Vector3 _cachedWorldForward = Vector3.forward;
         private Vector3 _cachedWorldRight = Vector3.right;
@@ -532,13 +526,13 @@ namespace KinematicCharacterController
 
         private void OnEnable()
         {
-            KinematicCharacterSystem.EnsureCreation();
-            KinematicCharacterSystem.RegisterCharacterMotor(this);
+            //KinematicCharacterSystem.EnsureCreation();
+            //KinematicCharacterSystem.RegisterCharacterMotor(this);
         }
 
         private void OnDisable()
         {
-            KinematicCharacterSystem.UnregisterCharacterMotor(this);
+            //KinematicCharacterSystem.UnregisterCharacterMotor(this);
         }
 
         private void Reset()
@@ -689,7 +683,6 @@ namespace KinematicCharacterController
             state.AttachedRigidbodyVelocity = _attachedRigidbodyVelocity;
 
             state.MustUnground = _mustUnground;
-            state.MustUngroundTime = _mustUngroundTimeCounter;
             state.LastMovementIterationFoundAnyGround = LastMovementIterationFoundAnyGround;
             state.GroundingStatus.CopyFrom(GroundingStatus);
             state.AttachedRigidbody = _attachedRigidbody;
@@ -708,7 +701,6 @@ namespace KinematicCharacterController
             _attachedRigidbodyVelocity = state.AttachedRigidbodyVelocity;
 
             _mustUnground = state.MustUnground;
-            _mustUngroundTimeCounter = state.MustUngroundTime;
             LastMovementIterationFoundAnyGround = state.LastMovementIterationFoundAnyGround;
             GroundingStatus.CopyFrom(state.GroundingStatus);
             _attachedRigidbody = state.AttachedRigidbody;
@@ -927,11 +919,7 @@ namespace KinematicCharacterController
             }
 
             LastMovementIterationFoundAnyGround = false;
-
-            if (_mustUngroundTimeCounter > 0f)
-            {
-                _mustUngroundTimeCounter -= deltaTime;
-            }
+            
             _mustUnground = false;
             #endregion
 
@@ -1187,9 +1175,9 @@ namespace KinematicCharacterController
             #endregion
 
             // Handle planar constraint
-            if (HasPlanarConstraint)
+            //if (HasPlanarConstraint)
             {
-                _transientPosition = _initialSimulationPosition + Vector3.ProjectOnPlane(_transientPosition - _initialSimulationPosition, PlanarConstraintAxis.normalized);
+                _transientPosition = _initialSimulationPosition + Vector3.ProjectOnPlane(_transientPosition - _initialSimulationPosition, PlanarConstraintNormal);
             }
 
             // Discrete collision detection
@@ -1341,15 +1329,14 @@ namespace KinematicCharacterController
         /// <summary>
         /// Forces the character to unground itself on its next grounding update
         /// </summary>
-        public void ForceUnground(float time = 0.1f)
+        public void SetForceUnground(bool val)
         {
-            _mustUnground = true;
-            _mustUngroundTimeCounter = time;
+            _mustUnground = val;
         }
 
         public bool MustUnground()
         {
-            return _mustUnground || _mustUngroundTimeCounter > 0f;
+            return _mustUnground;
         }
 
         /// <summary>
@@ -1373,9 +1360,9 @@ namespace KinematicCharacterController
                 return false;
 
             // Planar constraint
-            if (HasPlanarConstraint)
+            //if (HasPlanarConstraint)
             {
-                transientVelocity = Vector3.ProjectOnPlane(transientVelocity, PlanarConstraintAxis.normalized);
+                transientVelocity = Vector3.ProjectOnPlane(transientVelocity, PlanarConstraintNormal);
             }
 
             Vector3 remainingMovementDirection = transientVelocity.normalized;
@@ -1745,9 +1732,9 @@ namespace KinematicCharacterController
                 }
             }
 
-            if (HasPlanarConstraint)
+            //if (HasPlanarConstraint)
             {
-                transientVelocity = Vector3.ProjectOnPlane(transientVelocity, PlanarConstraintAxis.normalized);
+                transientVelocity = Vector3.ProjectOnPlane(transientVelocity, PlanarConstraintNormal);
             }
 
             float newVelocityFactor = transientVelocity.magnitude / velocityBeforeProjection.magnitude;
@@ -2659,7 +2646,6 @@ namespace KinematicCharacterController
                     }
                 }
             }
-
             return foundValidHit;
         }
 

@@ -14,7 +14,7 @@ public class ProtagFootstoolJumpingState : ProtagState
         bool minTimePassed = jumpTime > footstoolProfile.minJumpTime;
         bool maxTimePassed = jumpTime > footstoolProfile.jumpCurve.TimeDuration;
 
-        bool isStableOnGround = controllerMotor.currentGroundState.isStableOnGround;
+        bool isStableOnGround = controllerMotor.CurrentGroundState.IsStableOnGround;
         bool forceOut = maxTimePassed || (isStableOnGround && minTimePassed);
 
         return forceOut && transitions.ToMovementSelector();

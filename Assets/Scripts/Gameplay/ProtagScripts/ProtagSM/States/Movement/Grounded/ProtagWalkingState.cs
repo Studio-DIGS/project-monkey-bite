@@ -29,7 +29,7 @@ public class ProtagWalkingState : ProtagState
 
     private void WalkMovement()
     {
-        Vector2 groundNormal = controllerMotor.currentGroundState.groundNormal;
+        Vector2 groundNormal = controllerMotor.CurrentGroundState.GroundNormal;
 
         playerSimplePathMovement.SimpleGroundedHorizontalMovement(
             inputState.horizontalAxis, 

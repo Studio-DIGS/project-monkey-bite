@@ -39,7 +39,7 @@ public partial class ProtagTransitions : TransitionTable<ProtagBlackboard>
     
     private bool TrySelectRoll()
     {
-        bool grounded = controllerMotor.currentGroundState.isStableOnGround;
+        bool grounded = controllerMotor.CurrentGroundState.IsStableOnGround;
         if (grounded)
         {
             TransitionTo<ProtagRollState>();
@@ -51,7 +51,7 @@ public partial class ProtagTransitions : TransitionTable<ProtagBlackboard>
         
     private bool TrySelectDive()
     {
-        bool grounded = controllerMotor.currentGroundState.isStableOnGround;
+        bool grounded = controllerMotor.CurrentGroundState.IsStableOnGround;
         if (!grounded)
         {
             TransitionTo<ProtagDiveState>();
@@ -87,7 +87,7 @@ public partial class ProtagTransitions : TransitionTable<ProtagBlackboard>
 
     private bool TrySelectJump()
     {
-        bool grounded = controllerMotor.currentGroundState.isStableOnGround;
+        bool grounded = controllerMotor.CurrentGroundState.IsStableOnGround;
         bool coyoteTime = context.coyoteTimer < context.jumpProfile.coyoteTime;
         if (grounded || coyoteTime)
         {
@@ -117,7 +117,7 @@ public partial class ProtagTransitions : TransitionTable<ProtagBlackboard>
 
     public bool ToGroundMovementSelector()
     {
-        if (!controllerMotor.currentGroundState.isStableOnGround) return false; 
+        if (!controllerMotor.CurrentGroundState.IsStableOnGround) return false; 
         
         if (context.inputState.horizontalAxis == 0)
         {
@@ -137,7 +137,7 @@ public partial class ProtagTransitions : TransitionTable<ProtagBlackboard>
 
     public bool ToAirMovementSelector()
     {
-        if (controllerMotor.currentGroundState.isStableOnGround) return false;
+        if (controllerMotor.CurrentGroundState.IsStableOnGround) return false;
 
         TransitionTo<ProtagFallingState>();
         

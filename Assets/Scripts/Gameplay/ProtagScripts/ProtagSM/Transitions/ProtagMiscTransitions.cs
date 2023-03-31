@@ -1,4 +1,3 @@
-using KinematicCharacterController;
 using SimpleStateMachine;
 using UnityEngine;
 

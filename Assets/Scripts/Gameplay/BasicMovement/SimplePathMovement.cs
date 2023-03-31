@@ -20,11 +20,13 @@ public class SimplePathMovement : MonoBehaviour
         float moveAccel,
         float frictionAccel,
         float timeStep, 
-        Vector2 normal)
+        Vector3 wNormal)
     {
+        Vector3 normal = controllerMotor.ProjectNormalOntoSpline(wNormal);
         if (input == 0)
         {
             var step = CalculateHorizontalFrictionStep(frictionAccel, timeStep, normal);
+            Debug.Log($"{step}");
             controllerMotor.pathVelocity += step;
         }
         else
@@ -39,22 +41,10 @@ public class SimplePathMovement : MonoBehaviour
         float moveAccel,
         float frictionAccel,
         float timeStep,
-        Vector2 normal)
+        Vector3 wNormal)
     {
         Vector2 step = Vector2.zero;
-        if (controllerMotor.currentGroundState.isTouchingGround)
-        {
-            if (input * controllerMotor.currentGroundState.groundNormal.x <= 0f)
-            {
-                return;
-            }
-
-            if (input == 0f)
-            {
-                return;
-            }
-        }
-        
+        Vector3 normal = controllerMotor.ProjectNormalOntoSpline(wNormal);
         if (input == 0)
         {
             step = CalculateHorizontalFrictionStep(frictionAccel, timeStep, normal);
@@ -66,7 +56,7 @@ public class SimplePathMovement : MonoBehaviour
         controllerMotor.pathVelocity += step;
     }
 
-    public Vector2 CalculateHorizontalStep(float input, float maxVel, float accel, float timeStep, Vector2 normal)
+    private Vector2 CalculateHorizontalStep(float input, float maxVel, float accel, float timeStep, Vector2 normal)
     {
         // Current velocity projected onto normal plane
         Vector2 cVel = controllerMotor.pathVelocity;
@@ -84,8 +74,9 @@ public class SimplePathMovement : MonoBehaviour
         return step;
     }
 
-    public Vector2 CalculateHorizontalFrictionStep(float accel, float timeStep, Vector2 normal)
+    private Vector2 CalculateHorizontalFrictionStep(float accel, float timeStep, Vector2 normal)
     {
+        normal = Vector3.up;
         return CalculateHorizontalStep(0f, 1000f, accel, timeStep, normal);
     }
 }

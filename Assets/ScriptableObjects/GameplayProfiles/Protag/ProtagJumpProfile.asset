@@ -44,18 +44,18 @@ MonoBehaviour:
         inWeight: 0.33333334
         outWeight: 0.031250708
       - serializedVersion: 3
-        time: 1
+        time: 1.0009766
         value: 1
-        inSlope: 0
-        outSlope: 0
+        inSlope: 0.11481316
+        outSlope: 0.11481316
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.03403203
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    yMagnitude: 1.75
+    yMagnitude: 2
     timeDuration: 0.4
   jumpEndVel: 2
   coyoteTime: 0.1

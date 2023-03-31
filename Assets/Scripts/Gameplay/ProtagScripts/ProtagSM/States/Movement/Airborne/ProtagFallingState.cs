@@ -30,7 +30,7 @@ public class ProtagFallingState : ProtagState
             hMoveProfile.airborneWalkAccel,
             hMoveProfile.airborneFriction,
             Time.fixedDeltaTime,
-            controllerMotor.currentGroundState.groundNormal);
+            controllerMotor.CurrentGroundState.GroundNormal);
     }
 
     

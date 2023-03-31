@@ -15,7 +15,7 @@ public class ProtagJumpingState : ProtagState
         bool minTimePassed = jumpTime > jumpProfile.minJumpTime;
         bool maxTimePassed = jumpTime > jumpProfile.jumpCurve.TimeDuration;
 
-        bool isStableOnGround = controllerMotor.currentGroundState.isStableOnGround;
+        bool isStableOnGround = controllerMotor.CurrentGroundState.IsStableOnGround;
         bool forceOut = maxTimePassed || (isStableOnGround && minTimePassed);
 
         return forceOut && transitions.ToMovementSelector();
@@ -38,14 +38,16 @@ public class ProtagJumpingState : ProtagState
     public override void EnterState()
     {
         controllerMotor.SetGravityEnabled(false);
-        //controllerMotor.ForceUnground(jumpProfile.minJumpTime);
+        controllerMotor.SetForceUnground(true);
         context.coyoteTimer = float.MaxValue;
+        prevYVel = 0f;
     }
 
     public override void ExitState()
     {
         controllerMotor.pathVelocity.y = Mathf.Min(controllerMotor.pathVelocity.y, jumpProfile.jumpEndVel);
         controllerMotor.SetGravityEnabled(true);
+        controllerMotor.SetForceUnground(false);
     }
 
     public override void UpdateState()
@@ -53,13 +55,17 @@ public class ProtagJumpingState : ProtagState
         TryTransitionOut();
     }
 
+    private float prevYVel;
+
     public override void FixedUpdateState()
     {
         float yVel = jumpProfile.jumpCurve.DifferentiateY(
             stateMachine.CurrentStateFixedDuration, 
             Time.fixedDeltaTime);
 
-        controllerMotor.pathVelocity.y = yVel;
+        controllerMotor.pathVelocity.y += yVel - prevYVel;
+
+        prevYVel = yVel;
         
         playerSimplePathMovement.SimpleAirborneHorizontalMovement(
             inputState.horizontalAxis, 
@@ -67,7 +73,7 @@ public class ProtagJumpingState : ProtagState
             hMoveProfile.airborneWalkAccel,
             hMoveProfile.airborneFriction,
             Time.fixedDeltaTime,
-            controllerMotor.currentGroundState.groundNormal);
+            controllerMotor.CurrentGroundState.GroundNormal);
 
         TryFixedTransitionOut();
     }

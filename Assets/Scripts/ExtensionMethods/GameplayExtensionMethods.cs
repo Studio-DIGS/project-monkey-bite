@@ -31,4 +31,10 @@ public static class GameplayExtensionMethods
         Vector2 proj = Vector2.Dot(toProject, normal) * normal;
         return toProject - proj;
     }
+    
+    public static Vector2 RedirectOntoPlane(this Vector2 toProject, Vector2 normal)
+    {
+        Vector2 proj = Vector2.Dot(toProject, normal) * normal;
+        return (toProject - proj).normalized;
+    }
 }

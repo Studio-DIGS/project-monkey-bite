@@ -20,13 +20,11 @@ public class SimplePathMovement : MonoBehaviour
         float moveAccel,
         float frictionAccel,
         float timeStep, 
-        Vector3 wNormal)
+        Vector2 normal)
     {
-        Vector3 normal = controllerMotor.ProjectNormalOntoSpline(wNormal);
         if (input == 0)
         {
             var step = CalculateHorizontalFrictionStep(frictionAccel, timeStep, normal);
-            Debug.Log($"{step}");
             controllerMotor.pathVelocity += step;
         }
         else
@@ -41,10 +39,14 @@ public class SimplePathMovement : MonoBehaviour
         float moveAccel,
         float frictionAccel,
         float timeStep,
-        Vector3 wNormal)
+        Vector2 normal)
     {
+        if (normal.x * input < 0)
+        {
+            input = 0;
+        }
+        
         Vector2 step = Vector2.zero;
-        Vector3 normal = controllerMotor.ProjectNormalOntoSpline(wNormal);
         if (input == 0)
         {
             step = CalculateHorizontalFrictionStep(frictionAccel, timeStep, normal);
@@ -67,7 +69,7 @@ public class SimplePathMovement : MonoBehaviour
         Vector2 targetVel = Vector2.right * input;
         Vector2 targetVelNormalProject = Vector2.Dot(targetVel, normal) * normal;
         Vector2 targetHVel = (targetVel - targetVelNormalProject).normalized * maxVel;
-        
+
         // Step towards target velocity
         Vector2 newVel = Vector2.MoveTowards(cHVel, targetHVel, accel * timeStep);
         Vector2 step = newVel - cHVel;

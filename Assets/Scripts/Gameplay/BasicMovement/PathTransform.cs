@@ -1,4 +1,5 @@
 using System;
+using MushiCore.GizmoDrawer;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.ProBuilder;
@@ -57,14 +58,7 @@ public class PathTransform : MonoBehaviour
     private void SetPosition(Vector2 value)
     {
         // Clamping
-        if (loop)
-        {
-            value.x = Mathf.Repeat(value.x, currentPathLength);
-        }
-        else
-        {
-            value.x = Mathf.Clamp(value.x, epsilon, currentPathLength - epsilon);
-        }
+        value.x = LoopX(value.x);
         
         position = value;
         
@@ -117,11 +111,28 @@ public class PathTransform : MonoBehaviour
         return result;
     }
 
-    public Vector2 ProjectVectorOntoPlane(Vector3 vector)
+    public Vector3 EvaluateTangent(Vector2 evalPos)
+    {
+        var tangent = currentPath.EvaluateTangent(evalPos.x / currentPathLength);
+        tangent.y = 0;
+        return tangent;
+    }
+
+    public Vector2 ProjectToPathSpace(Vector3 vector)
     {
         float cachedY = vector.y;
         vector.y = 0f;
         Vector2 projectedHorizontal = Vector3.Dot(vector, cTangent) * Vector2.right;
+        projectedHorizontal.y = cachedY;
+        return projectedHorizontal;
+    }
+    
+    public Vector2 ProjectToPathSpace(Vector3 vector, Vector2 sEvaluatePos)
+    {
+        float t = sEvaluatePos.x / currentPathLength;
+        float cachedY = vector.y;
+        vector.y = 0f;
+        Vector2 projectedHorizontal = Vector3.Dot(vector, currentPath.EvaluateTangent(t)) * Vector2.right;
         projectedHorizontal.y = cachedY;
         return projectedHorizontal;
     }
@@ -132,6 +143,23 @@ public class PathTransform : MonoBehaviour
         Vector3 res = cTangent * planeVector.x;
         res.y = cachedY;
         return res;
+    }
+
+    public GizmoDrawerLine GetGizmoLine(Color c,Vector2 sP1, Vector2 sP2)
+    {
+        return new GizmoDrawerLine(c, EvaluatePos(sP1), EvaluatePos(sP2));
+    }
+
+    public float LoopX(float sPosX)
+    {
+        if (loop)
+        {
+            return Mathf.Repeat(sPosX, currentPathLength);
+        }
+        else
+        {
+            return Mathf.Clamp(sPosX, epsilon, currentPathLength - epsilon);
+        }
     }
 
 #if UNITY_EDITOR

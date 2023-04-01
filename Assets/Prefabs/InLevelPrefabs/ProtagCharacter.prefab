@@ -428,7 +428,6 @@ GameObject:
   - component: {fileID: 9176939115689428721}
   - component: {fileID: 7654821052884055993}
   - component: {fileID: 3375812837718019177}
-  - component: {fileID: 8040511268025104719}
   m_Layer: 0
   m_Name: ProtagBody
   m_TagString: Untagged
@@ -481,12 +480,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03de0621a616d1949bfd39d4fcd38817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  motor: {fileID: 8040511268025104719}
-  gravityAcceleration: 13
+  capsuleCollider: {fileID: 3375812837718019177}
+  gravityAcceleration: 17
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 128
+  collisionResolutionOffset: 0.002
+  sweepOffset: 0
+  maxColliderResolves: 5
+  groundCheckDistance: 0.004
+  maxStableAngle: 40
   pathVelocity: {x: 0, y: 0}
+  CurrentGroundState:
+    FoundAnyGround: 0
+    IsStableOnGround: 0
+    GroundNormal: {x: 0, y: 0}
+    GroundPoint: {x: 0, y: 0}
+  PreviousGroundState:
+    FoundAnyGround: 0
+    IsStableOnGround: 0
+    GroundNormal: {x: 0, y: 0}
+    GroundPoint: {x: 0, y: 0}
 --- !u!136 &3375812837718019177
 CapsuleCollider:
-  m_ObjectHideFlags: 8
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -498,47 +515,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &8040511268025104719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6438378295790422640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d1bc5515e3ab954e80599c538834774, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Capsule: {fileID: 3375812837718019177}
-  CapsuleRadius: 0.4
-  CapsuleHeight: 2
-  CapsuleYOffset: 1
-  CapsulePhysicsMaterial: {fileID: 0}
-  GroundDetectionExtraDistance: 0
-  MaxStableSlopeAngle: 40
-  StableGroundLayers:
-    serializedVersion: 2
-    m_Bits: 128
-  DiscreteCollisionEvents: 0
-  StepHandling: 2
-  MaxStepHeight: 0.5
-  AllowSteppingWithoutStableGrounding: 1
-  MinRequiredStepDepth: 0.1
-  LedgeAndDenivelationHandling: 1
-  MaxStableDistanceFromLedge: 0.27
-  MaxVelocityForLedgeSnap: 0
-  MaxStableDenivelationAngle: 65
-  InteractiveRigidbodyHandling: 1
-  RigidbodyInteractionType: 1
-  SimulatedCharacterMass: 1
-  PreserveAttachedRigidbodyMomentum: 1
-  PlanarConstraintNormal: {x: 0, y: 0, z: 1}
-  MaxMovementIterations: 5
-  MaxDecollisionIterations: 1
-  CheckMovementInitialOverlaps: 1
-  KillVelocityWhenExceedMaxMovementIterations: 1
-  KillRemainingMovementWhenExceedMaxMovementIterations: 1
 --- !u!1 &6838055151077394489
 GameObject:
   m_ObjectHideFlags: 0

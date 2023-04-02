@@ -31,6 +31,8 @@ public class SimplePathMovement : MonoBehaviour
         {
             controllerMotor.pathVelocity += CalculateHorizontalStep(input, maxVel, moveAccel, timeStep, normal);
         }
+
+        controllerMotor.pathVelocity = controllerMotor.pathVelocity.ProjectOntoPlane(normal);
     }
     
     public void SimpleAirborneHorizontalMovement(

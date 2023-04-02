@@ -30,6 +30,11 @@ namespace MushiCore.GizmoDrawer
         {
             gizmoObjects.Add(gizmoObject);
         }
+        
+        public void Add(IEnumerable<GizmoDrawerObject> gizmoObject)
+        {
+            gizmoObjects.AddRange(gizmoObject);
+        }
 
         public void Draw()
         {

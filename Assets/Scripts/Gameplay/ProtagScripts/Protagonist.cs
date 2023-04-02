@@ -54,7 +54,7 @@ public class Protagonist : DescriptionMonoBehavior
     private void FixedUpdate()
     {
         stateMachine.FixedUpdate();
-        blackboard.controllerMotor.TickPhysicsBody();
+        blackboard.controllerMotor.TickPhysicsBody(Time.fixedDeltaTime);
     }
 
     private void LateUpdate()

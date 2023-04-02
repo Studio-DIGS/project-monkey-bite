@@ -485,11 +485,14 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 128
+  maxMoveIterationLength: 0.2
+  minMoveIterations: 2
   collisionResolutionOffset: 0.002
   sweepOffset: 0
   maxColliderResolves: 5
-  groundCheckDistance: 0.004
+  groundProbeDistance: 0.25
   maxStableAngle: 40
+  maxGroundProbeIterations: 5
   pathVelocity: {x: 0, y: 0}
   CurrentGroundState:
     FoundAnyGround: 0

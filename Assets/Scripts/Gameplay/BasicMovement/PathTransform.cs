@@ -145,9 +145,14 @@ public class PathTransform : MonoBehaviour
         return res;
     }
 
-    public GizmoDrawerLine GetGizmoLine(Color c,Vector2 sP1, Vector2 sP2)
+    public GizmoDrawerObject[] GetGizmoLine(Color c,Vector2 sP1, Vector2 sP2)
     {
-        return new GizmoDrawerLine(c, EvaluatePos(sP1), EvaluatePos(sP2));
+        var sp2 = EvaluatePos(sP2);
+        return new GizmoDrawerObject[]
+        {
+            new GizmoDrawerLine(c, EvaluatePos(sP1), sp2),
+            new GizmoDrawerWireSphere(c, sp2, 0.025f)
+        };
     }
 
     public float LoopX(float sPosX)

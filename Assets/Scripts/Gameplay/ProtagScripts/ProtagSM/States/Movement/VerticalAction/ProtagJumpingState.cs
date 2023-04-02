@@ -14,6 +14,8 @@ public class ProtagJumpingState : ProtagState
 
         bool minTimePassed = jumpTime > jumpProfile.minJumpTime;
         bool maxTimePassed = jumpTime > jumpProfile.jumpCurve.TimeDuration;
+        
+        controllerMotor.SetForceUnground(!minTimePassed);
 
         bool isStableOnGround = controllerMotor.CurrentGroundState.IsStableOnGround;
         bool forceOut = maxTimePassed || (isStableOnGround && minTimePassed);
@@ -39,6 +41,7 @@ public class ProtagJumpingState : ProtagState
     {
         controllerMotor.SetGravityEnabled(false);
         controllerMotor.SetForceUnground(true);
+        controllerMotor.pathVelocity.y = 0f;
         context.coyoteTimer = float.MaxValue;
         prevYVel = 0f;
     }

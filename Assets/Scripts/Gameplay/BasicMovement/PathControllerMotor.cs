@@ -26,7 +26,7 @@ public class PathControllerMotor : MonoBehaviour
     [SerializeField] private float gravityAcceleration;
     [SerializeField] private LayerMask collisionMask;
     [SerializeField] private float maxMoveIterationLength;
-    [SerializeField, Range(1, 4)] private int minMoveIterations;
+    [SerializeField, Range(1, 10)] private int minMoveIterations;
     
     [ColorHeader("Collision Resolution Config", ColorHeaderColor.Config)]
     [SerializeField] private float collisionResolutionOffset;
@@ -485,7 +485,9 @@ public class PathControllerMotor : MonoBehaviour
             // Landing onto stable ground, keep the pure horizontal and lossless redirect on surface
             if (isStableOnHit)
             {
-                projectedStepDir = projectedStepDir.ProjectOntoPlane(Vector3.up);
+                Debug.Log($"{projectedStepDir}");
+                projectedStepDir = projectedStepDir.ProjectOntoPlane(Vector2.up);
+                Debug.Log($"{projectedStepDir}");
                 projectedStepDir = projectedStepDir.RedirectOntoPlane(sObstacleNormal);
             }
             // Hitting an obstacle while unstable (simple projection)
@@ -497,7 +499,7 @@ public class PathControllerMotor : MonoBehaviour
 
         // Reassign values back to state
         float projectMagRatio = projectedStepDir.magnitude;
-        
+        Debug.Log($"{projectMagRatio}");
         sStepDist *= projectMagRatio;
         sStepDir = projectedStepDir.normalized;
         sTransientVel = sStepDir * (sTransientVel.magnitude * projectMagRatio);

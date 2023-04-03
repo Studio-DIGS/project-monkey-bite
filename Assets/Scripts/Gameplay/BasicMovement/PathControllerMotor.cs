@@ -174,7 +174,7 @@ public class PathControllerMotor : MonoBehaviour
                             obstacleFound = true;
                             wObstacleNormal = resolutionDirection;
                             sToObstacleSurfaceDir = ProjectVectorOntoPlaneSpace(wObstacleNormal, sTransientStepDir);
-                            sToObstacleSurfaceDir.x *= sTransientStepDir.x >= 0 ? 1 : -1;
+                            sToObstacleSurfaceDir.x *= Math.Sign(sTransientStepDir.x);
                             obstacleDist = resolutionDistance;
 
                             isEjection = true;
@@ -214,7 +214,7 @@ public class PathControllerMotor : MonoBehaviour
                     sTransientPos, 
                     wTempStepDir, 
                     wObstacleNormal, 
-                    sTransientStepDir.x >= 0 ? 1 : -1);
+                    Math.Sign(sTransientStepDir.x));
                 
                 bool isStableOnObstacle = IsStableOnObstacle(sObstacleNormal);
 
@@ -309,9 +309,7 @@ public class PathControllerMotor : MonoBehaviour
             Vector3 wTempStep = wStepTargetPos - wStepStartPos;
             Vector3 wTempStepDir = wTempStep.normalized;
             float wTempStepDist = wTempStep.magnitude;
-
-            // Is the step going in positive or negative x spline direction?
-
+            
             bool groundSweep = CapsuleSweep(
                 capsuleCollider,
                 pathTransform.WorldPos,
@@ -346,7 +344,7 @@ public class PathControllerMotor : MonoBehaviour
                     sTransientProbePos, 
                     wTempStepDir, 
                     groundProbeHit.normal, 
-                    sTransientProbeDir.x >= 0 ? 1 : -1);
+                    Math.Sign(sTransientProbeDir.x));
                 
                 // Evaluate the ground hit
                 EvaluateGroundProbeHit(wTempStepDir, groundProbeHit.point,
@@ -485,9 +483,7 @@ public class PathControllerMotor : MonoBehaviour
             // Landing onto stable ground, keep the pure horizontal and lossless redirect on surface
             if (isStableOnHit)
             {
-                Debug.Log($"{projectedStepDir}");
                 projectedStepDir = projectedStepDir.ProjectOntoPlane(Vector2.up);
-                Debug.Log($"{projectedStepDir}");
                 projectedStepDir = projectedStepDir.RedirectOntoPlane(sObstacleNormal);
             }
             // Hitting an obstacle while unstable (simple projection)
@@ -499,7 +495,6 @@ public class PathControllerMotor : MonoBehaviour
 
         // Reassign values back to state
         float projectMagRatio = projectedStepDir.magnitude;
-        Debug.Log($"{projectMagRatio}");
         sStepDist *= projectMagRatio;
         sStepDir = projectedStepDir.normalized;
         sTransientVel = sStepDir * (sTransientVel.magnitude * projectMagRatio);

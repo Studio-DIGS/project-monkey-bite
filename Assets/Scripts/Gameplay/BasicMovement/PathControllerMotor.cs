@@ -174,7 +174,7 @@ public class PathControllerMotor : MonoBehaviour
                             obstacleFound = true;
                             wObstacleNormal = resolutionDirection;
                             sToObstacleSurfaceDir = ProjectVectorOntoPlaneSpace(wObstacleNormal, sTransientStepDir);
-                            sToObstacleSurfaceDir.x *= Math.Sign(sTransientStepDir.x);
+                            sToObstacleSurfaceDir.x *= Mathf.Sign(sTransientStepDir.x);
                             obstacleDist = resolutionDistance;
 
                             isEjection = true;
@@ -214,7 +214,7 @@ public class PathControllerMotor : MonoBehaviour
                     sTransientPos, 
                     wTempStepDir, 
                     wObstacleNormal, 
-                    Math.Sign(sTransientStepDir.x));
+                    Mathf.Sign(sTransientStepDir.x));
                 
                 bool isStableOnObstacle = IsStableOnObstacle(sObstacleNormal);
 
@@ -344,7 +344,7 @@ public class PathControllerMotor : MonoBehaviour
                     sTransientProbePos, 
                     wTempStepDir, 
                     groundProbeHit.normal, 
-                    Math.Sign(sTransientProbeDir.x));
+                    Mathf.Sign(sTransientProbeDir.x));
                 
                 // Evaluate the ground hit
                 EvaluateGroundProbeHit(wTempStepDir, groundProbeHit.point,
@@ -394,7 +394,7 @@ public class PathControllerMotor : MonoBehaviour
         transientGroundState.IsStableOnGround = isStableOnGroundHit;
     }
 
-    private Vector2 ProjectNormalAgainstStepPlane(Vector3 sTransientProbePos, Vector3 wStepDir, Vector3 wNormal, int sXDir)
+    private Vector2 ProjectNormalAgainstStepPlane(Vector3 sTransientProbePos, Vector3 wStepDir, Vector3 wNormal, float sXDir)
     {
         Vector2 wPlaneTangentHorizontal = new Vector2(wStepDir.x, wStepDir.z);
         Vector3 wProjectPlaneTangent = wStepDir;

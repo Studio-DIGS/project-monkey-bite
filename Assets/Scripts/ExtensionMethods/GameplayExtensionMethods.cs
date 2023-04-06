@@ -35,6 +35,7 @@ public static class GameplayExtensionMethods
     public static Vector2 RedirectOntoPlane(this Vector2 toProject, Vector2 normal)
     {
         Vector2 projection = toProject - Vector2.Dot(toProject, normal) * normal;
-        return projection / Mathf.Sqrt(projection.sqrMagnitude / toProject.sqrMagnitude);
+        float sqrMag = toProject.sqrMagnitude;
+        return sqrMag > 0 ? projection * Mathf.Sqrt(sqrMag / projection.sqrMagnitude) : Vector2.zero;
     }
 }

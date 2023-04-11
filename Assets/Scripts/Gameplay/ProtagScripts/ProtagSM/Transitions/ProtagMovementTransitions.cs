@@ -98,6 +98,7 @@ public partial class ProtagTransitions : TransitionTable<ProtagBlackboard>
         return false;
     }
         
+    // @TODO: Re-implement footstooling
     private bool TrySelectFootstool()
     {
         var hits = new RaycastHit[16];

@@ -13,7 +13,6 @@ public struct GroundedState
     public bool IsStableOnGround;
     public Vector2 GroundNormal;
     public Vector2 GroundPoint;
-    public bool launchOffLedge;
 }
 
 public class PathControllerMotor : MonoBehaviour
@@ -23,23 +22,8 @@ public class PathControllerMotor : MonoBehaviour
     [ColorHeader("Dependencies")]
     [SerializeField] private CapsuleCollider capsuleCollider;
 
-    [ColorHeader("Config", ColorHeaderColor.Config)]
-    [SerializeField] private float gravityAcceleration;
-    [SerializeField] private LayerMask collisionMask;
-    [SerializeField] private float maxMoveIterationLength;
-    [SerializeField, Range(1, 10)] private int minMoveIterations;
-    
-    [ColorHeader("Collision Resolution Config", ColorHeaderColor.Config)]
-    [SerializeField] private float collisionResolutionOffset;
-    [SerializeField] private float sweepOffset;
-    [SerializeField] private int maxColliderResolves;
-
-    [ColorHeader("Grounding Config", ColorHeaderColor.Config)]
-    [SerializeField] private float groundProbeDistance;
-    [SerializeField] private float groundTouchDistance;
-    [SerializeField] private float maxStableAngle;
-    [SerializeField] private float launchOffLedgeVelocity;
-    [SerializeField] private int maxGroundProbeIterations;
+    [ColorHeader("Config")]
+    [SerializeField] private PathControllerMotorProfileSO PCCProfile;
 
     [ColorHeader("Physics State Debug")]
     public Vector2 pathVelocity;
@@ -88,7 +72,7 @@ public class PathControllerMotor : MonoBehaviour
         stepNumber = 0;
         ApplyForces();
         
-        int moveIterations = Mathf.Max(minMoveIterations, Mathf.CeilToInt(Mathf.Abs(pathVelocity.x) * deltaTime / maxMoveIterationLength));
+        int moveIterations = Mathf.Max(PCCProfile.MinMoveIterations, Mathf.CeilToInt(Mathf.Abs(pathVelocity.x) * deltaTime / PCCProfile.MaxMoveIterationLength));
         float moveIterationTimeStep = deltaTime / moveIterations;
 
         for (int i = 0; i < moveIterations; i++)
@@ -111,7 +95,7 @@ public class PathControllerMotor : MonoBehaviour
     private void ApplyForces()
     {
         if(gravityEnabled && !CurrentGroundState.IsStableOnGround)
-            pathVelocity.y -= Time.fixedDeltaTime * gravityAcceleration;
+            pathVelocity.y -= Time.fixedDeltaTime * PCCProfile.GravityAcceleration;
     }
 
     private void PerformMove(float timeStep)
@@ -133,7 +117,7 @@ public class PathControllerMotor : MonoBehaviour
 
         var colliderBuffer = new Collider[16];
 
-        while (stepCollisionResolveCount < maxColliderResolves && sTransientStepDist > epsilon)
+        while (stepCollisionResolveCount < PCCProfile.MaxColliderResolves && sTransientStepDist > epsilon)
         {
             stepNumber++;
             // Sweep obstacle data
@@ -249,7 +233,7 @@ public class PathControllerMotor : MonoBehaviour
                     );
                 
                 // Offset from projection surface
-                sTransientPos += projectionSurfaceNormal * collisionResolutionOffset;
+                sTransientPos += projectionSurfaceNormal * PCCProfile.CollisionResolutionOffset;
                 
                 // Save prev obstacle state
                 sPrevObstacleNormal = sObstacleNormal;
@@ -263,7 +247,7 @@ public class PathControllerMotor : MonoBehaviour
             stepCollisionResolveCount++;
         }
 
-        if (stepCollisionResolveCount >= maxColliderResolves)
+        if (stepCollisionResolveCount >= PCCProfile.MaxColliderResolves)
         {
             sTransientVel = Vector2.zero;
         }
@@ -299,15 +283,22 @@ public class PathControllerMotor : MonoBehaviour
         // Probe sweep state
         Vector2 sTransientProbePos = pathTransform.Position;
         Vector2 sTransientProbeDir = Vector2.down;
-        float sTransientProbeDist = groundProbeDistance;
+        float sTransientProbeDist = PCCProfile.GroundProbeDistance;
         int groundProbeIterations = 0;
+        
+        bool launchOffLedge = pathVelocity.magnitude > PCCProfile.LaunchOffLedgeVelocity;
 
         if (!CurrentGroundState.IsStableOnGround)
         {
-            sTransientProbeDist = epsilon + groundTouchDistance;
+            sTransientProbeDist = epsilon + PCCProfile.GroundTouchDistance;
         }
 
-        while (sTransientProbeDist > 0 && groundProbeIterations < maxGroundProbeIterations)
+        if (launchOffLedge)
+        {
+            sTransientProbeDist = epsilon;
+        }
+
+        while (sTransientProbeDist > 0 && groundProbeIterations < PCCProfile.MaxGroundProbeIterations)
         {
             // Calculate straight-line step 
             sTransientProbePos.x = pathTransform.LoopX(sTransientProbePos.x);
@@ -347,7 +338,7 @@ public class PathControllerMotor : MonoBehaviour
                     wTempStepDir,
                     out RaycastHit rawNormalHit,
                     sTransientProbeDist,
-                    collisionMask
+                    PCCProfile.CollisionMask
                 );
 
                 Vector2 sGroundProbeCapsuleNormal = ProjectNormalAgainstStepPlane(
@@ -371,13 +362,12 @@ public class PathControllerMotor : MonoBehaviour
                 
                 // Are we moving towards the normal? (ledge direction)
                 // Due to capsulesweep giving smooth normals this will be used to detect if walking off ledge or not
-                bool launchOffLedge = 
-                    CurrentGroundState.IsStableOnGround && 
-                    (sGroundProbeCapsuleNormal.x * pathVelocity.x > 0) &&
-                    pathVelocity.magnitude > launchOffLedgeVelocity;
-                
+                bool steppingOffLedge =
+                    CurrentGroundState.IsStableOnGround &&
+                    (sGroundProbeCapsuleNormal.x * pathVelocity.x > 0);
+
                 // Evaluate the ground hit
-                if (!launchOffLedge)
+                if (!steppingOffLedge)
                 {
                     EvaluateGroundProbeHit(wTempStepDir, groundProbeHit.point,
                         sTransientProbePos, sGroundProbeCapsuleNormal, ref transientGroundState);
@@ -388,13 +378,12 @@ public class PathControllerMotor : MonoBehaviour
                         sTransientProbePos, sGroundProbeRayNormal, ref transientGroundState);
                 }
 
-                transientGroundState.launchOffLedge = launchOffLedge;
-
-                if (transientGroundState.IsStableOnGround)
+                if (!launchOffLedge && transientGroundState.IsStableOnGround)
                 {
                     // Snap to ground
-                    if (CurrentGroundState.IsStableOnGround && groundProbeHit.distance > collisionResolutionOffset)
-                        pathTransform.Position = sTransientProbePos - sTransientProbeDir * collisionResolutionOffset;
+                    float offset = PCCProfile.CollisionResolutionOffset;
+                    if (CurrentGroundState.IsStableOnGround && groundProbeHit.distance > offset)
+                        pathTransform.Position = sTransientProbePos - sTransientProbeDir * offset;
                     break;
                 }
 
@@ -534,7 +523,7 @@ public class PathControllerMotor : MonoBehaviour
 
     private bool IsStableOnObstacle(Vector2 sObstacleNormal)
     {
-        if (sObstacleNormal != Vector2.zero && Vector2.Angle(sObstacleNormal, Vector2.up) < maxStableAngle)
+        if (sObstacleNormal != Vector2.zero && Vector2.Angle(sObstacleNormal, Vector2.up) < PCCProfile.MaxStableAngle)
         {
             return true;
         }
@@ -583,6 +572,7 @@ public class PathControllerMotor : MonoBehaviour
         Vector3 center = wPos + collider.center;
         Vector3 pointOffset = collider.transform.up * (collider.height/2f - radius);
 
+        float sweepOffset = PCCProfile.SweepOffset;
         // Offset the sweep backwards to avoid starting the cast inside any obstacles
         center -= sweepDir * sweepOffset;
         
@@ -594,7 +584,7 @@ public class PathControllerMotor : MonoBehaviour
             sweepDir,
             out info,
             stepDist + sweepOffset, 
-            collisionMask);
+            PCCProfile.CollisionMask);
 
         info.distance -= sweepOffset;
         return collisionSweep;
@@ -612,7 +602,7 @@ public class PathControllerMotor : MonoBehaviour
             center - pointOffset,
             radius,
             colliders,
-            collisionMask
+            PCCProfile.CollisionMask
         );
         hitCount = overlapCount;
         return overlapCount > 0;

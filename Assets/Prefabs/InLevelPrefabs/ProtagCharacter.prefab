@@ -481,20 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capsuleCollider: {fileID: 3375812837718019177}
-  gravityAcceleration: 17
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 128
-  maxMoveIterationLength: 0.2
-  minMoveIterations: 2
-  collisionResolutionOffset: 0.001
-  sweepOffset: 0
-  maxColliderResolves: 5
-  groundProbeDistance: 0.25
-  groundTouchDistance: 0.05
-  maxStableAngle: 45
-  launchOffLedgeVelocity: 0
-  maxGroundProbeIterations: 5
+  PCCProfile: {fileID: 11400000, guid: aceab5d1fb061c946bce867465cda552, type: 2}
   pathVelocity: {x: 0, y: 0}
   CurrentGroundState:
     FoundAnyGround: 0

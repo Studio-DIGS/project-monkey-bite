@@ -492,7 +492,8 @@ MonoBehaviour:
   maxColliderResolves: 5
   groundProbeDistance: 0.25
   groundTouchDistance: 0.05
-  maxStableAngle: 40
+  maxStableAngle: 45
+  launchOffLedgeVelocity: 0
   maxGroundProbeIterations: 5
   pathVelocity: {x: 0, y: 0}
   CurrentGroundState:
@@ -500,11 +501,13 @@ MonoBehaviour:
     IsStableOnGround: 0
     GroundNormal: {x: 0, y: 0}
     GroundPoint: {x: 0, y: 0}
+    launchOffLedge: 0
   PreviousGroundState:
     FoundAnyGround: 0
     IsStableOnGround: 0
     GroundNormal: {x: 0, y: 0}
     GroundPoint: {x: 0, y: 0}
+    launchOffLedge: 0
 --- !u!136 &3375812837718019177
 CapsuleCollider:
   m_ObjectHideFlags: 0

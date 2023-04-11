@@ -160,7 +160,7 @@ public class PathControllerMotor : MonoBehaviour
             if(CapsuleOverlap(capsuleCollider, wStepStartPos, ref colliderBuffer, out int hitCount))
             {
                 float mostObstructingDot = float.MaxValue;
-                Debug.Log($"{stepNumber}{"Overlap"}");
+
                 for (int i = 0;i < hitCount;i++)
                 {
                     var overlapCollider = colliderBuffer[i];
@@ -177,7 +177,6 @@ public class PathControllerMotor : MonoBehaviour
                     {
                         float dot = Vector3.Dot(resolutionDirection, wTempStep);
                         Vector2 sNorm = ProjectNormalAgainstStepPlane(sTransientPos, wTempStepDir, resolutionDirection, Mathf.Sign(sTransientStepDir.x));
-                        Debug.Log($"{resolutionDirection}{wTempStep}");
 
                         bool crease = transientSweepState == ObstacleSweepState.SuccessiveHit && EvaluateCrease(sTransientStepDir, sNorm, sPrevObstacleNormal);
                         
@@ -248,8 +247,6 @@ public class PathControllerMotor : MonoBehaviour
                     ref  sTransientVel,
                     out Vector2 projectionSurfaceNormal
                     );
-
-                Debug.Log($"{stepNumber}{projectionSurfaceNormal}");
                 
                 // Offset from projection surface
                 sTransientPos += projectionSurfaceNormal * collisionResolutionOffset;
@@ -477,13 +474,11 @@ public class PathControllerMotor : MonoBehaviour
                 // Also update the obstacle normal to be opposite to the movement step
                 sweepState = ObstacleSweepState.AfterCreaseHit;
                 sProjectionSurfaceNormal = (sPrevObstacleNormal + sObstacleNormal).normalized;
-                Debug.Log($"{stepNumber}Crease{sProjectionSurfaceNormal}");
                 sTransientStepDist = 0f;
                 sTransientVel = Vector2.zero;
             }
             else
             {
-                Debug.Log($"{stepNumber}CreaseFailed");
                 HandleMoveStepProjection(ref sTransientStepDir, ref sTransientStepDist, ref sTransientVel, sObstacleNormal, isStableOnHit);
                 sProjectionSurfaceNormal = sObstacleNormal;
             }
@@ -552,7 +547,6 @@ public class PathControllerMotor : MonoBehaviour
         Vector2 sPrevObstacleNormal
     )
     {
-        Debug.Log($"{stepNumber}{sObstacleNormal}{sPrevObstacleNormal}{sCurrentStepDir}");
         float surfacesDot = Vector2.Dot(sObstacleNormal, sPrevObstacleNormal);
         // Check if the surfaces form a crease
         if (surfacesDot <= 0)

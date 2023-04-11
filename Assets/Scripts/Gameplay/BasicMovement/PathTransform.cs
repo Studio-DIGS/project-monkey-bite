@@ -1,4 +1,5 @@
 using System;
+using MushiCore.EditorAttributes;
 using MushiCore.GizmoDrawer;
 using Unity.Mathematics;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class PathTransform : MonoBehaviour
 {
     private const float epsilon = 0.001f;
     
+    [ColorHeader("Debug")]
     [SerializeField] private Vector2 position;
     [SerializeField] private SplineContainer currentPath;
     [SerializeField] private bool selfInitialize;
@@ -42,8 +44,10 @@ public class PathTransform : MonoBehaviour
 
     private void OnValidate()
     {
+#if UNITY_EDITOR
         if(currentPath)
             Position = position;
+#endif
     }
 
     public void Initialize(SplineContainer path, Vector3 worldPosition)

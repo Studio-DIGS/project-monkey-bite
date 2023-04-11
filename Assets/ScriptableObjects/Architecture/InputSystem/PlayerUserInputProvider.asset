@@ -21,3 +21,4 @@ MonoBehaviour:
   interact: {fileID: -1796386707715491615, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
   mainAttack: {fileID: 4420735157476141748, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
   altAttack: {fileID: -4584744410390734154, guid: 98e10f5160596ca41bde4e204e2c51d6, type: 3}
+  ConstantHorizontalInput: 0

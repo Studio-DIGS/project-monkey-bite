@@ -5016,7 +5016,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5788172018729903103, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5788172019393737796, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
       propertyPath: m_Spline.m_Knots.Array.size
@@ -14898,7 +14898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5788172018729903103, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5788172019393737796, guid: f3c137d3b0d6c1f45a82f504178a8af9, type: 3}
       propertyPath: m_Spline.m_Closed

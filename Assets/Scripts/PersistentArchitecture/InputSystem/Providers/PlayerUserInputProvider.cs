@@ -1,5 +1,6 @@
 
 using System;
+using MushiCore.EditorAttributes;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,7 +9,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerUserInputProvider : DescriptionBaseSO, InputProvider<PlayerInputState, PlayerInputEvents>
 {
-    [Header("Gameplay Actions")]
+    [ColorHeader("Gameplay Actions")]
     
     [SerializeField] private InputActionReference horizontalMovement;
     [SerializeField] private InputActionReference mousePosition;
@@ -19,6 +20,9 @@ public class PlayerUserInputProvider : DescriptionBaseSO, InputProvider<PlayerIn
     [SerializeField] private InputActionReference mainAttack;
     [SerializeField] private InputActionReference altAttack;
 
+    [ColorHeader("Debug")]
+    [SerializeField] private float ConstantHorizontalInput;
+    
     private GameplayInputBuffer inputBuffer;
     public GameplayInputBuffer gameplayInputBuffer => inputBuffer;
 
@@ -70,6 +74,9 @@ public class PlayerUserInputProvider : DescriptionBaseSO, InputProvider<PlayerIn
         state.horizontalAxis = horizontalMovement.action.ReadValue<float>();
         state.mousePosition = mousePosition.action.ReadValue<Vector2>();
         state.jumpHeld = jump.action.ReadValue<float>() > 0;
+
+        if (ConstantHorizontalInput != 0)
+            state.horizontalAxis = ConstantHorizontalInput;
     }
 
     // Callback Listeners

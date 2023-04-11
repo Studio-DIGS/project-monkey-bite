@@ -13,6 +13,7 @@ public struct GroundedState
     public bool IsStableOnGround;
     public Vector2 GroundNormal;
     public Vector2 GroundPoint;
+    public bool launchOffLedge;
 }
 
 public class PathControllerMotor : MonoBehaviour
@@ -37,6 +38,7 @@ public class PathControllerMotor : MonoBehaviour
     [SerializeField] private float groundProbeDistance;
     [SerializeField] private float groundTouchDistance;
     [SerializeField] private float maxStableAngle;
+    [SerializeField] private float launchOffLedgeVelocity;
     [SerializeField] private int maxGroundProbeIterations;
 
     [ColorHeader("Physics State Debug")]
@@ -49,6 +51,9 @@ public class PathControllerMotor : MonoBehaviour
     private bool gravityEnabled;
     private bool forceUnground = false;
     private PathTransform pathTransform;
+    
+    // Debug
+    private int stepNumber;
 
     private enum ObstacleSweepState
     {
@@ -80,6 +85,7 @@ public class PathControllerMotor : MonoBehaviour
     public void TickPhysicsBody(float deltaTime)
     {
         gizmoDrawer.Clear();
+        stepNumber = 0;
         ApplyForces();
         
         int moveIterations = Mathf.Max(minMoveIterations, Mathf.CeilToInt(Mathf.Abs(pathVelocity.x) * deltaTime / maxMoveIterationLength));
@@ -88,7 +94,9 @@ public class PathControllerMotor : MonoBehaviour
         for (int i = 0; i < moveIterations; i++)
         {
             if (pathVelocity.sqrMagnitude == 0)
+            {
                 break;
+            }
             Vector2 p1 = pathTransform.Position;
             PerformMove(moveIterationTimeStep);
             gizmoDrawer.Add(pathTransform.GetGizmoLine(gizmoDrawer.GetCycledColor(), p1, pathTransform.Position));
@@ -127,6 +135,7 @@ public class PathControllerMotor : MonoBehaviour
 
         while (stepCollisionResolveCount < maxColliderResolves && sTransientStepDist > epsilon)
         {
+            stepNumber++;
             // Sweep obstacle data
             Vector3 wObstacleNormal = default;
             Vector2 sToObstacleSurfaceDir = default;
@@ -151,7 +160,7 @@ public class PathControllerMotor : MonoBehaviour
             if(CapsuleOverlap(capsuleCollider, wStepStartPos, ref colliderBuffer, out int hitCount))
             {
                 float mostObstructingDot = float.MaxValue;
-                
+                Debug.Log($"{stepNumber}{"Overlap"}");
                 for (int i = 0;i < hitCount;i++)
                 {
                     var overlapCollider = colliderBuffer[i];
@@ -167,14 +176,17 @@ public class PathControllerMotor : MonoBehaviour
                         ))
                     {
                         float dot = Vector3.Dot(resolutionDirection, wTempStep);
+                        Vector2 sNorm = ProjectNormalAgainstStepPlane(sTransientPos, wTempStepDir, resolutionDirection, Mathf.Sign(sTransientStepDir.x));
+                        Debug.Log($"{resolutionDirection}{wTempStep}");
 
-                        if (dot < 0f && dot < mostObstructingDot)
+                        bool crease = transientSweepState == ObstacleSweepState.SuccessiveHit && EvaluateCrease(sTransientStepDir, sNorm, sPrevObstacleNormal);
+                        
+                        if (crease || dot < 0 && dot < mostObstructingDot)
                         {
                             mostObstructingDot = dot;
                             obstacleFound = true;
                             wObstacleNormal = resolutionDirection;
-                            sToObstacleSurfaceDir = ProjectVectorOntoPlaneSpace(wObstacleNormal, sTransientStepDir);
-                            sToObstacleSurfaceDir.x *= Mathf.Sign(sTransientStepDir.x);
+                            sToObstacleSurfaceDir = sNorm;
                             obstacleDist = resolutionDistance;
 
                             isEjection = true;
@@ -236,6 +248,8 @@ public class PathControllerMotor : MonoBehaviour
                     ref  sTransientVel,
                     out Vector2 projectionSurfaceNormal
                     );
+
+                Debug.Log($"{stepNumber}{projectionSurfaceNormal}");
                 
                 // Offset from projection surface
                 sTransientPos += projectionSurfaceNormal * collisionResolutionOffset;
@@ -312,7 +326,7 @@ public class PathControllerMotor : MonoBehaviour
             
             bool groundSweep = CapsuleSweep(
                 capsuleCollider,
-                pathTransform.WorldPos,
+                wStepStartPos,
                 wTempStepDir,
                 sTransientProbeDist,
                 out RaycastHit groundProbeHit,
@@ -328,34 +342,57 @@ public class PathControllerMotor : MonoBehaviour
                 // Reduce distance accordingly
                 sTransientProbeDist -= groundProbeHit.distance;
 
-                // Use raycast to get correct normal
-                var check = Physics.Raycast(
-                    groundProbeHit.point - wTempStepDir * epsilon,
+                // Use raycast to get raw normal
+                // This is because capsulesweep results in a smooth normal on sharp edges, which causes issues
+                // When walking off ledges due to ground snapping
+                var rawNormalProbe = Physics.Raycast(
+                    wStepStartPos,
                     wTempStepDir,
                     out RaycastHit rawNormalHit,
-                    1f,
+                    sTransientProbeDist,
                     collisionMask
                 );
 
-                /*if (check)
-                    groundProbeHit.normal = rawNormalHit.normal;*/
-
-                var sGroundProbeHitNormal = ProjectNormalAgainstStepPlane(
+                Vector2 sGroundProbeCapsuleNormal = ProjectNormalAgainstStepPlane(
                     sTransientProbePos, 
                     wTempStepDir, 
                     groundProbeHit.normal, 
                     Mathf.Sign(sTransientProbeDir.x));
                 
-                // Evaluate the ground hit
-                EvaluateGroundProbeHit(wTempStepDir, groundProbeHit.point,
-                    sTransientProbePos, sGroundProbeHitNormal, ref transientGroundState);
+                Vector2 sGroundProbeRayNormal = ProjectNormalAgainstStepPlane(
+                    sTransientProbePos, 
+                    wTempStepDir, 
+                    rawNormalHit.normal, 
+                    Mathf.Sign(sTransientProbeDir.x));
                 
-                sGroundProbeHitNormal = transientGroundState.GroundNormal;
+                          
+                gizmoDrawer.Add(pathTransform.GetGizmoLine(
+                    Color.red, sTransientProbePos, sTransientProbePos + sGroundProbeCapsuleNormal));
                 
                 gizmoDrawer.Add(pathTransform.GetGizmoLine(
-                    Color.red, sTransientProbePos, sTransientProbePos + sGroundProbeHitNormal));
-
+                    Color.blue, sTransientProbePos, sTransientProbePos + sGroundProbeRayNormal));
                 
+                // Are we moving towards the normal? (ledge direction)
+                // Due to capsulesweep giving smooth normals this will be used to detect if walking off ledge or not
+                bool launchOffLedge = 
+                    CurrentGroundState.IsStableOnGround && 
+                    (sGroundProbeCapsuleNormal.x * pathVelocity.x > 0) &&
+                    pathVelocity.magnitude > launchOffLedgeVelocity;
+                
+                // Evaluate the ground hit
+                if (!launchOffLedge)
+                {
+                    EvaluateGroundProbeHit(wTempStepDir, groundProbeHit.point,
+                        sTransientProbePos, sGroundProbeCapsuleNormal, ref transientGroundState);
+                }
+                else
+                {
+                    EvaluateGroundProbeHit(wTempStepDir, groundProbeHit.point,
+                        sTransientProbePos, sGroundProbeRayNormal, ref transientGroundState);
+                }
+
+                transientGroundState.launchOffLedge = launchOffLedge;
+
                 if (transientGroundState.IsStableOnGround)
                 {
                     // Snap to ground
@@ -363,9 +400,9 @@ public class PathControllerMotor : MonoBehaviour
                         pathTransform.Position = sTransientProbePos - sTransientProbeDir * collisionResolutionOffset;
                     break;
                 }
-                
+
                 // Collide and slide the probe step
-                Vector2 projectedProbeDir = sTransientProbeDir.ProjectOntoPlane(sGroundProbeHitNormal);
+                Vector2 projectedProbeDir = sTransientProbeDir.ProjectOntoPlane(transientGroundState.GroundNormal);
                 sTransientProbeDist *= projectedProbeDir.magnitude;
                 sTransientProbeDir = projectedProbeDir.normalized;
             }
@@ -431,22 +468,22 @@ public class PathControllerMotor : MonoBehaviour
         else if (sweepState == ObstacleSweepState.SuccessiveHit)
         {
             if (EvaluateCrease(
-                sTransientStepDir,
-                sObstacleNormal,
-                sPrevObstacleNormal,
-                isStableOnHit,
-                wasPrevStableOnHit
+                    sTransientStepDir,
+                    sObstacleNormal,
+                    sPrevObstacleNormal
                 ))
             {
                 // A crease in 2D space means immediate stopping all movement
                 // Also update the obstacle normal to be opposite to the movement step
                 sweepState = ObstacleSweepState.AfterCreaseHit;
                 sProjectionSurfaceNormal = (sPrevObstacleNormal + sObstacleNormal).normalized;
+                Debug.Log($"{stepNumber}Crease{sProjectionSurfaceNormal}");
                 sTransientStepDist = 0f;
                 sTransientVel = Vector2.zero;
             }
             else
             {
+                Debug.Log($"{stepNumber}CreaseFailed");
                 HandleMoveStepProjection(ref sTransientStepDir, ref sTransientStepDist, ref sTransientVel, sObstacleNormal, isStableOnHit);
                 sProjectionSurfaceNormal = sObstacleNormal;
             }
@@ -502,7 +539,7 @@ public class PathControllerMotor : MonoBehaviour
 
     private bool IsStableOnObstacle(Vector2 sObstacleNormal)
     {
-        if (Vector2.Angle(sObstacleNormal, Vector2.up) < maxStableAngle)
+        if (sObstacleNormal != Vector2.zero && Vector2.Angle(sObstacleNormal, Vector2.up) < maxStableAngle)
         {
             return true;
         }
@@ -512,21 +549,17 @@ public class PathControllerMotor : MonoBehaviour
     private bool EvaluateCrease(
         Vector2 sCurrentStepDir,
         Vector2 sObstacleNormal,
-        Vector2 sPrevObstacleNormal,
-        bool isHitStable,
-        bool isPrevHitStable
+        Vector2 sPrevObstacleNormal
     )
     {
+        Debug.Log($"{stepNumber}{sObstacleNormal}{sPrevObstacleNormal}{sCurrentStepDir}");
         float surfacesDot = Vector2.Dot(sObstacleNormal, sPrevObstacleNormal);
         // Check if the surfaces form a crease
         if (surfacesDot <= 0)
         {
-            // Check if the current step is moving into the crease
-            float stepDot = Vector2.Dot(sObstacleNormal, sCurrentStepDir);
-            if (stepDot <= 0)
-            {
-                return true;
-            }
+            // If the last two obstacles form a crease, we can assume the player was moving into it 
+            // May need an extra check if creases are detected in wrong places
+            return true;
         }
 
         return false;

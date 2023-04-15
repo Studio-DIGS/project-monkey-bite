@@ -1,6 +1,9 @@
 using MushiCore.EditorAttributes;
 using UnityEngine;
 
+/// <summary>
+/// A motion curve represents position motion over time. Intended to be used with <see cref="MotionCurveEvaluator"/>
+/// </summary>
 [System.Serializable]
 public class MotionCurve
 {

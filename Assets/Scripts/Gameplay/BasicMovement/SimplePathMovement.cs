@@ -43,6 +43,7 @@ public class SimplePathMovement : MonoBehaviour
         float timeStep,
         Vector2 normal)
     {
+        // Prevent sliding up steep non-stable walls
         if (normal.x * input < 0)
         {
             input = 0;

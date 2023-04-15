@@ -70,7 +70,7 @@ public class Protagonist : DescriptionMonoBehavior
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        Handles.Label(blackboard.protagPathTransform.WorldPos + Vector3.up * 2f, currentStateName);
+        Handles.Label(blackboard.protagPathTransform.WPos + Vector3.up * 2f, currentStateName);
     }
 #endif
 }

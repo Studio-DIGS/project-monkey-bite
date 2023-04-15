@@ -102,7 +102,7 @@ public partial class ProtagTransitions : TransitionTable<ProtagBlackboard>
     private bool TrySelectFootstool()
     {
         var hits = new RaycastHit[16];
-        var groundedInfo = controllerMotor.CapsuleSweep(pathTransform.WorldPos, Vector3.down, 0.3f,  out RaycastHit hit, footstoolProfile.footstoolMask);
+        var groundedInfo = controllerMotor.CapsuleSweep(pathTransform.WPos, Vector3.down, 0.3f,  out RaycastHit hit, footstoolProfile.footstoolMask);
         if (groundedInfo)
         {
             TransitionTo<ProtagFootstoolJumpingState>();

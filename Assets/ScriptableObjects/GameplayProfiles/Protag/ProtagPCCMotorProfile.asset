@@ -25,5 +25,5 @@ MonoBehaviour:
   groundProbeDistance: 0.5
   groundTouchDistance: 0.07
   maxStableAngle: 46
-  launchOffLedgeVelocity: 15
+  launchOffLedgeVelocity: 10
   maxGroundProbeIterations: 5

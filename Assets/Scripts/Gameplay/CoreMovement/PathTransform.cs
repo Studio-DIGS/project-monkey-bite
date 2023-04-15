@@ -6,11 +6,14 @@ using UnityEngine;
 using UnityEngine.ProBuilder;
 using UnityEngine.Splines;
 
+/// <summary>
+/// A component representing an objects position along the path
+/// </summary>
 public class PathTransform : MonoBehaviour
 {
     private const float epsilon = 0.001f;
     
-    [ColorHeader("Debug")]
+    [ColorHeader("Config")]
     [SerializeField] private Vector2 position;
     [SerializeField] private SplineContainer currentPath;
     [SerializeField] private bool selfInitialize;
@@ -22,17 +25,17 @@ public class PathTransform : MonoBehaviour
         get => position;
     }
 
-    public Vector3 CTangent => cTangent;
-    public Vector3 CUp => cUp;
-    public Vector3 CNormal => cNormal;
-    public Vector3 WorldPos => worldPos;
+    public Vector3 WCurrentTangent => wCurrentTangent;
+    public Vector3 WCurrentUp => wCurrentUp;
+    public Vector3 WCurrentNormal => wCurrentNormal;
+    public Vector3 WPos => wPos;
     
     private float currentPathLength;
     private float normalizedX;
-    private Vector3 cTangent;
-    private Vector3 cUp;
-    private Vector3 cNormal;
-    private Vector3 worldPos;
+    private Vector3 wCurrentTangent;
+    private Vector3 wCurrentUp;
+    private Vector3 wCurrentNormal;
+    private Vector3 wPos;
 
     private bool loop;
 
@@ -68,18 +71,22 @@ public class PathTransform : MonoBehaviour
         
         normalizedX = value.x / currentPathLength;
         
-        cTangent = currentPath.EvaluateTangent(normalizedX);
-        cTangent.Normalize();
-        cUp = Vector3.up;
-        cNormal = Vector3.Cross(cTangent, cUp);
-        cNormal.Normalize();
+        wCurrentTangent = currentPath.EvaluateTangent(normalizedX);
+        wCurrentTangent.Normalize();
+        wCurrentUp = Vector3.up;
+        wCurrentNormal = Vector3.Cross(wCurrentTangent, wCurrentUp);
+        wCurrentNormal.Normalize();
         
-        worldPos = EvaluatePos(value);
+        wPos = EvaluatePos(value);
         
         if(autoSyncTransform)
             SyncWorldPosition();
     }
 
+    /// <summary>
+    /// Snap to nearest path position
+    /// </summary>
+    /// <param name="point"></param>
     public void SnapToNearestPoint(Vector3 point)
     {
         GetNearestPoint(point, out Vector3 wNearestPos, out Vector2 sNearestPos);
@@ -88,7 +95,7 @@ public class PathTransform : MonoBehaviour
 
     public void SyncWorldPosition()
     {
-        transform.position = worldPos;
+        transform.position = wPos;
     }
 
     public void GetNearestPoint(Vector3 point, out Vector3 wNearestPos, out Vector2 sNearestPos)
@@ -121,44 +128,7 @@ public class PathTransform : MonoBehaviour
         tangent.y = 0;
         return tangent;
     }
-
-    public Vector2 ProjectToPathSpace(Vector3 vector)
-    {
-        float cachedY = vector.y;
-        vector.y = 0f;
-        Vector2 projectedHorizontal = Vector3.Dot(vector, cTangent) * Vector2.right;
-        projectedHorizontal.y = cachedY;
-        return projectedHorizontal;
-    }
     
-    public Vector2 ProjectToPathSpace(Vector3 vector, Vector2 sEvaluatePos)
-    {
-        float t = sEvaluatePos.x / currentPathLength;
-        float cachedY = vector.y;
-        vector.y = 0f;
-        Vector2 projectedHorizontal = Vector3.Dot(vector, currentPath.EvaluateTangent(t)) * Vector2.right;
-        projectedHorizontal.y = cachedY;
-        return projectedHorizontal;
-    }
-
-    public Vector3 ProjectVectorFromPlane(Vector2 planeVector)
-    {
-        float cachedY = planeVector.y;
-        Vector3 res = cTangent * planeVector.x;
-        res.y = cachedY;
-        return res;
-    }
-
-    public GizmoDrawerObject[] GetGizmoLine(Color c,Vector2 sP1, Vector2 sP2)
-    {
-        var sp2 = EvaluatePos(sP2);
-        return new GizmoDrawerObject[]
-        {
-            new GizmoDrawerLine(c, EvaluatePos(sP1), sp2),
-            new GizmoDrawerWireSphere(c, sp2, 0.025f)
-        };
-    }
-
     public float LoopX(float sPosX)
     {
         if (loop)
@@ -170,17 +140,27 @@ public class PathTransform : MonoBehaviour
             return Mathf.Clamp(sPosX, epsilon, currentPathLength - epsilon);
         }
     }
+    
+    public GizmoDrawerObject[] GetGizmoLine(Color c,Vector2 sP1, Vector2 sP2)
+    {
+        var sp2 = EvaluatePos(sP2);
+        return new GizmoDrawerObject[]
+        {
+            new GizmoDrawerLine(c, EvaluatePos(sP1), sp2),
+            new GizmoDrawerWireSphere(c, sp2, 0.025f)
+        };
+    }
 
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         var pos = transform.position + Vector3.up * 0.1f;
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(pos, pos + cTangent);
+        Gizmos.DrawLine(pos, pos + wCurrentTangent);
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(pos, pos + cUp);
+        Gizmos.DrawLine(pos, pos + wCurrentUp);
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(pos, pos + cNormal);
+        Gizmos.DrawLine(pos, pos + wCurrentNormal);
     }
 #endif
     

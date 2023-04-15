@@ -16,6 +16,6 @@ public class SimplePathCamera : MonoBehaviour
     public void UpdateCamera()
     {
         cameraContainer.position = targetPosition.position;
-        cameraContainer.rotation = Quaternion.LookRotation(pathTransform.CNormal, pathTransform.CUp);
+        cameraContainer.rotation = Quaternion.LookRotation(pathTransform.WCurrentNormal, pathTransform.WCurrentUp);
     }
 }

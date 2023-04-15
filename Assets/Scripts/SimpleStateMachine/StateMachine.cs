@@ -42,14 +42,14 @@ namespace SimpleStateMachine
             currentState = null;
         }
 
-        public virtual void Update()
+        public virtual void Update(float deltaTime)
         {
-            currentState.UpdateState();
+            currentState.UpdateState(deltaTime);
         }
 
-        public virtual void FixedUpdate()
+        public virtual void FixedUpdate(float fixedDeltaTime)
         {
-            currentState.FixedUpdateState();
+            currentState.FixedUpdateState(fixedDeltaTime);
         }
 
         public void TransitionTo<TState>() where TState : State<TContext>, new()

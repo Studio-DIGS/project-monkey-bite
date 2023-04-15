@@ -56,4 +56,5 @@ public class MotionCurve
         
         return diff / timeDelta;
     }
+    
 }

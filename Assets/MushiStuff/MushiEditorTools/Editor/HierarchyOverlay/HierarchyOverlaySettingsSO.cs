@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using MushiCore.Editor;
-using MushiCore.EditorAttributes;
 using UnityEditor;
 using UnityEngine;
 
@@ -89,7 +88,7 @@ namespace MushiEditorTools.HierarchyOverlay
     }
 
     [CustomEditor(typeof(HierarchyOverlaySettingsSO))]
-    public class HierarchyOverlayConfigDrawer : UnityEditor.Editor
+    public class HierarchyOverlayConfigDrawer : Editor
     {
         public override void OnInspectorGUI()
         {
@@ -110,7 +109,7 @@ namespace MushiEditorTools.HierarchyOverlay
             var provider = new SettingsProvider("Preferences/MushiStuff/HierarchyOverlay", SettingsScope.User);
             provider.guiHandler = (searchContext) =>
             {
-                var editor = UnityEditor.Editor.CreateEditor(HierarchyOverlaySettingsSO.SettingsInstance);
+                var editor = Editor.CreateEditor(HierarchyOverlaySettingsSO.SettingsInstance);
                 editor.OnInspectorGUI();
             };
             return provider;

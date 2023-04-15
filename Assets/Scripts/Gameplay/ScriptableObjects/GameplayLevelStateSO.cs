@@ -1,3 +1,4 @@
+using MushiCore;
 using MushiCore.EditorAttributes;
 using UnityEngine;
 using UnityEngine.Splines;

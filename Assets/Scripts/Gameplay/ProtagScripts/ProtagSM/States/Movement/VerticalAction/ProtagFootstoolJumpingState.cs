@@ -49,16 +49,16 @@ public class ProtagFootstoolJumpingState : ProtagState
         controllerMotor.SetGravityEnabled(true);
     }
 
-    public override void UpdateState()
+    public override void UpdateState(float deltaTime)
     {
         TryTransitionOut();
     }
 
-    public override void FixedUpdateState()
+    public override void FixedUpdateState(float fixedDeltaTime)
     {
         Vector2 motionVel = footstoolProfile.jumpCurve.Differentiate(
             stateMachine.CurrentStateFixedDuration, 
-            Time.fixedDeltaTime);
+            fixedDeltaTime);
 
         controllerMotor.pathVelocity.y = motionVel.y;
         controllerMotor.pathVelocity.x = motionVel.x * entryDirection;

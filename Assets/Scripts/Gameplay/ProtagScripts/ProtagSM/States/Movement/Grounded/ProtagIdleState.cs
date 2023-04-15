@@ -16,12 +16,12 @@ public class ProtagIdleState : ProtagState
         
     }
 
-    public override void UpdateState()
+    public override void UpdateState(float deltaTime)
     {
         transitions.ToProtagStateSelector();
     }
 
-    public override void FixedUpdateState()
+    public override void FixedUpdateState(float fixedDeltaTime)
     {
         Vector2 groundNormal = controllerMotor.CurrentGroundState.GroundNormal;
 
@@ -30,7 +30,7 @@ public class ProtagIdleState : ProtagState
             hMoveProfile.groundedWalkVel,
             hMoveProfile.groundedWalkAccel,
             hMoveProfile.groundedFriction,
-            Time.fixedDeltaTime, 
+            fixedDeltaTime, 
             groundNormal);
     }
 }

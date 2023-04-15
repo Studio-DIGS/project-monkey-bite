@@ -53,18 +53,18 @@ public class ProtagJumpingState : ProtagState
         controllerMotor.SetForceUnground(false);
     }
 
-    public override void UpdateState()
+    public override void UpdateState(float deltaTime)
     {
         TryTransitionOut();
     }
 
     private float prevYVel;
 
-    public override void FixedUpdateState()
+    public override void FixedUpdateState(float fixedDeltaTime)
     {
         float yVel = jumpProfile.jumpCurve.DifferentiateY(
             stateMachine.CurrentStateFixedDuration, 
-            Time.fixedDeltaTime);
+            fixedDeltaTime);
 
         controllerMotor.pathVelocity.y += yVel - prevYVel;
 
@@ -75,7 +75,7 @@ public class ProtagJumpingState : ProtagState
             hMoveProfile.airborneWalkVel,
             hMoveProfile.airborneWalkAccel,
             hMoveProfile.airborneFriction,
-            Time.fixedDeltaTime,
+            fixedDeltaTime,
             controllerMotor.CurrentGroundState.GroundNormal);
 
         TryFixedTransitionOut();

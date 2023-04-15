@@ -66,7 +66,7 @@ namespace MushiEditorTools.SceneGrabber
             // Initial setup
             GenerateSceneListFromAssets();
         }
-        
+
         private void GenerateSceneListFromAssets()
         {
             var scenes = FindScenesData();

@@ -14,12 +14,12 @@ public class ProtagDiveState : ProtagState
         
     }
 
-    public override void UpdateState()
+    public override void UpdateState(float deltaTime)
     {
         transitions.ToProtagStateSelector();
     }
 
-    public override void FixedUpdateState()
+    public override void FixedUpdateState(float fixedDeltaTime)
     {
         
     }

@@ -141,7 +141,7 @@ public class PathControllerMotor : MonoBehaviour
 
             // Overlap Check
             
-            if(CapsuleOverlap(capsuleCollider, wStepStartPos, ref colliderBuffer, out int hitCount))
+            if(CapsuleOverlap(wStepStartPos,  PCCProfile.CollisionMask, ref colliderBuffer, out int hitCount))
             {
                 float mostObstructingDot = float.MaxValue;
 
@@ -181,11 +181,11 @@ public class PathControllerMotor : MonoBehaviour
             // Cast
 
             if (!obstacleFound && CapsuleSweep(
-                    capsuleCollider, 
                     wStepStartPos,
                     wTempStepDir, 
                     wTempStepDist, 
-                    out RaycastHit hit))
+                    out RaycastHit hit,
+                    PCCProfile.CollisionMask))
             {
                 obstacleFound = true;
                 wObstacleNormal = hit.normal;
@@ -313,11 +313,11 @@ public class PathControllerMotor : MonoBehaviour
             float wTempStepDist = wTempStep.magnitude;
             
             bool groundSweep = CapsuleSweep(
-                capsuleCollider,
                 wStepStartPos,
                 wTempStepDir,
                 sTransientProbeDist,
                 out RaycastHit groundProbeHit,
+                PCCProfile.CollisionMask,
                 -epsilon
             );
 
@@ -565,8 +565,9 @@ public class PathControllerMotor : MonoBehaviour
         return sProjectedHorizontal;
     }
 
-    private bool CapsuleSweep(CapsuleCollider collider, Vector3 wPos, Vector3 sweepDir, float stepDist, out RaycastHit info, float radiusAdjust = 0f)
+    public bool CapsuleSweep(Vector3 wPos, Vector3 sweepDir, float stepDist, out RaycastHit info, LayerMask layerMask, float radiusAdjust = 0f)
     {
+        var collider = capsuleCollider;
         // Get bounds of the collider
         float radius = collider.radius + radiusAdjust;
         Vector3 center = wPos + collider.center;
@@ -584,14 +585,15 @@ public class PathControllerMotor : MonoBehaviour
             sweepDir,
             out info,
             stepDist + sweepOffset, 
-            PCCProfile.CollisionMask);
+            layerMask);
 
         info.distance -= sweepOffset;
         return collisionSweep;
     }
 
-    private bool CapsuleOverlap(CapsuleCollider collider, Vector3 wPos, ref Collider[] colliders, out int hitCount, float radiusAdjust = 0)
+    public bool CapsuleOverlap(Vector3 wPos, LayerMask layerMask, ref Collider[] colliders, out int hitCount, float radiusAdjust = 0)
     {
+        var collider = capsuleCollider;
         // Get bounds of the collider
         float radius = collider.radius + radiusAdjust;
         Vector3 center = wPos + collider.center;
@@ -602,7 +604,7 @@ public class PathControllerMotor : MonoBehaviour
             center - pointOffset,
             radius,
             colliders,
-            PCCProfile.CollisionMask
+            layerMask
         );
         hitCount = overlapCount;
         return overlapCount > 0;

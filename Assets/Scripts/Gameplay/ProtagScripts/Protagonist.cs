@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MushiCore;
 using MushiCore.EditorAttributes;
 using UnityEditor;
 using UnityEngine;
@@ -29,10 +30,11 @@ public class Protagonist : DescriptionMonoBehavior
     public void Initialize(Vector3 pos)
     {
         var pathTransform = blackboard.protagPathTransform;
+        
         blackboard.playerRotator.Initialize(pathTransform);
         blackboard.protagPathTransform.Initialize(blackboard.levelState.levelPath, pos);
         blackboard.controllerMotor.Initialize(blackboard.protagPathTransform);
-        blackboard.playerSimplePathMovement.Initialize(blackboard.controllerMotor);
+        blackboard.playerSimplePathMovement.Initialize(blackboard.controllerMotor); 
         blackboard.followCamera.Initialize(blackboard.followCameraContainer, pathTransform, pathTransform.transform);
     }
 
@@ -41,10 +43,12 @@ public class Protagonist : DescriptionMonoBehavior
         stateMachine.ExitStateMachine();
     }
 
-    void Update() 
+    void Update()
     {
+        float deltaTime = Time.deltaTime;
+        
         blackboard.UpdateInputState();
-        stateMachine.Update();
+        stateMachine.Update(deltaTime);
         blackboard.playerRotator.AlignDirection(blackboard.inputState.horizontalAxis);
         
         // Debug
@@ -53,8 +57,9 @@ public class Protagonist : DescriptionMonoBehavior
 
     private void FixedUpdate()
     {
-        stateMachine.FixedUpdate();
-        blackboard.controllerMotor.TickPhysicsBody(Time.fixedDeltaTime);
+        float fixedDeltaTime = Time.fixedDeltaTime;
+        stateMachine.FixedUpdate(fixedDeltaTime);
+        blackboard.controllerMotor.TickPhysicsBody(fixedDeltaTime);
     }
 
     private void LateUpdate()

@@ -55,7 +55,7 @@ namespace MushiCore.Editor
         }
     }
 
-    [CustomPropertyDrawer(typeof(MultiSourceEditorIcon))] 
+    [CustomPropertyDrawer(typeof(MultiSourceEditorIcon))]
     public class MultiSourceEditorIconDrawer : PropertyDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)

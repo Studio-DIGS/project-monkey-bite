@@ -341,7 +341,7 @@ namespace MushiEditorTools.HierarchyOverlay
                 var iconOverlay = iconOverlays[i];
                 var content = iconOverlay.icon.Content;
                 if (content.image != null)
-                { 
+                {
                     GUI.DrawTexture(pos, iconOverlay.icon);
                     pos.x -= pos.width;
                 }

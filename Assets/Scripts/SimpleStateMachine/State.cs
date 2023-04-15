@@ -19,9 +19,9 @@ namespace SimpleStateMachine
 
         public abstract void ExitState();
 
-        public abstract void UpdateState();
+        public abstract void UpdateState(float deltaTime);
 
-        public abstract void FixedUpdateState();
+        public abstract void FixedUpdateState(float fixedDeltaTime);
 
         protected TTransitions GetTransitionTable<TTransitions>() where TTransitions : TransitionTable<TContext>, new()
             => stateMachine.GetTransitionTable<TTransitions>();

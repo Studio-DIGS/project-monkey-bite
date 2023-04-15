@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   groundedWalkVel: 6
-  groundedWalkAccel: 30
-  groundedFriction: 40
+  groundedWalkAccel: 40
+  groundedFriction: 35
   airborneWalkVel: 6
   airborneWalkAccel: 40
   airborneFriction: 6

@@ -15,21 +15,21 @@ public class ProtagFallingState : ProtagState
         
     }
 
-    public override void UpdateState()
+    public override void UpdateState(float deltaTime)
     {
-        context.coyoteTimer += Time.deltaTime;
+        context.coyoteTimer += deltaTime;
 
         transitions.ToProtagStateSelector();
     }
 
-    public override void FixedUpdateState()
+    public override void FixedUpdateState(float fixedDeltaTime)
     {
         playerSimplePathMovement.SimpleAirborneHorizontalMovement(
             inputState.horizontalAxis,
             hMoveProfile.airborneWalkVel,
             hMoveProfile.airborneWalkAccel,
             hMoveProfile.airborneFriction,
-            Time.fixedDeltaTime,
+            fixedDeltaTime,
             controllerMotor.CurrentGroundState.GroundNormal);
     }
 

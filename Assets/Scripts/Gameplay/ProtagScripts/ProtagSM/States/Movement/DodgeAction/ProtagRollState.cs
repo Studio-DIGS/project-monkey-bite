@@ -30,16 +30,16 @@ public class ProtagRollState : ProtagState
 
     }
 
-    public override void UpdateState()
+    public override void UpdateState(float deltaTime)
     {
         
     }
 
-    public override void FixedUpdateState()
+    public override void FixedUpdateState(float fixedDeltaTime)
     {
         var motionVel = rollCurve.Differentiate(
             stateMachine.CurrentStateFixedDuration,
-            Time.fixedDeltaTime);
+            fixedDeltaTime);
         
         controllerMotor.pathVelocity.y = motionVel.y;
         controllerMotor.pathVelocity.x = motionVel.x * entryDirection;

@@ -41,9 +41,10 @@ public class ProtagJumpingState : ProtagState
     {
         controllerMotor.SetGravityEnabled(false);
         controllerMotor.SetForceUnground(true);
-        controllerMotor.pathVelocity.y = 0f;
         context.coyoteTimer = float.MaxValue;
-        prevYVel = 0f;
+
+        controllerMotor.pathVelocity.y = 0f;
+        motionEvaluator = jumpProfile.jumpCurve.GetYEvaluator();
     }
 
     public override void ExitState()
@@ -58,18 +59,14 @@ public class ProtagJumpingState : ProtagState
         TryTransitionOut();
     }
 
-    private float prevYVel;
+    private MotionCurveEvaluator motionEvaluator;
 
     public override void FixedUpdateState(float fixedDeltaTime)
     {
-        float yVel = jumpProfile.jumpCurve.DifferentiateY(
-            stateMachine.CurrentStateFixedDuration, 
-            fixedDeltaTime);
-
-        controllerMotor.pathVelocity.y += yVel - prevYVel;
-
-        prevYVel = yVel;
+        motionEvaluator.StepForward(fixedDeltaTime);
         
+        controllerMotor.pathVelocity.y += motionEvaluator.CurrentVelStep;
+
         playerSimplePathMovement.SimpleAirborneHorizontalMovement(
             inputState.horizontalAxis, 
             hMoveProfile.airborneWalkVel,

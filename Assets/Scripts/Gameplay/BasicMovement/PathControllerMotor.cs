@@ -383,7 +383,9 @@ public class PathControllerMotor : MonoBehaviour
                     // Snap to ground
                     float offset = PCCProfile.CollisionResolutionOffset;
                     if (CurrentGroundState.IsStableOnGround && groundProbeHit.distance > offset)
+                    {
                         pathTransform.Position = sTransientProbePos - sTransientProbeDir * offset;
+                    }
                     break;
                 }
 
@@ -400,6 +402,13 @@ public class PathControllerMotor : MonoBehaviour
             groundProbeIterations++;
         }
 
+        if (!CurrentGroundState.IsStableOnGround && transientGroundState.IsStableOnGround)
+        {
+            // Landing
+            pathVelocity = pathVelocity.ProjectOntoPlane(Vector2.up);
+            pathVelocity = pathVelocity.RedirectOntoPlane(transientGroundState.GroundNormal);
+        }
+        
         CurrentGroundState = transientGroundState;
     }
 

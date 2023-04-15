@@ -22,8 +22,8 @@ MonoBehaviour:
   collisionResolutionOffset: 0.001
   sweepOffset: 0
   maxColliderResolves: 5
-  groundProbeDistance: 0.25
+  groundProbeDistance: 0.5
   groundTouchDistance: 0.07
   maxStableAngle: 46
-  launchOffLedgeVelocity: 8
+  launchOffLedgeVelocity: 15
   maxGroundProbeIterations: 5

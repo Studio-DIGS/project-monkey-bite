@@ -18,6 +18,11 @@ public class ProtagRollState : ProtagState
         rollCurve = rollProfile.rollMotionCurve;
         entryDirection = context.playerRotator.CurrentDir;
         animationController.Play("rollAnim");
+
+        controllerMotor.pathVelocity = Vector2.zero;
+        
+        xMotionEvaluator = rollCurve.GetXEvaluator();
+        yMotionEvaluator = rollCurve.GetYEvaluator();
     }
 
     public override void ExitState()
@@ -27,22 +32,23 @@ public class ProtagRollState : ProtagState
 
         controllerMotor.pathVelocity.x =
             entryDirection * rollProfile.exitVelocity.x;
-
     }
 
     public override void UpdateState(float deltaTime)
     {
         
     }
+    
+    private MotionCurveEvaluator xMotionEvaluator;
+    private MotionCurveEvaluator yMotionEvaluator;
 
     public override void FixedUpdateState(float fixedDeltaTime)
     {
-        var motionVel = rollCurve.Differentiate(
-            stateMachine.CurrentStateFixedDuration,
-            fixedDeltaTime);
-        
-        controllerMotor.pathVelocity.y = motionVel.y;
-        controllerMotor.pathVelocity.x = motionVel.x * entryDirection;
+        xMotionEvaluator.StepForward(fixedDeltaTime);
+        yMotionEvaluator.StepForward(fixedDeltaTime);
+
+        controllerMotor.pathVelocity.x = xMotionEvaluator.CurrentVel * entryDirection;
+        controllerMotor.pathVelocity.y += yMotionEvaluator.CurrentVelStep;
 
         TryFixedTransitionOut();
     }

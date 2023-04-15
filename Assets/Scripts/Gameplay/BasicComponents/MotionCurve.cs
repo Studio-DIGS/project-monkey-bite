@@ -19,42 +19,22 @@ public class MotionCurve
 
     public float TimeDuration => timeDuration;
 
-    public float EvaluateX(float tUNorm)
+    public Vector2 Evaluate(float tRaw)
     {
-        return xCurve.Evaluate(tUNorm / timeDuration) * xMagnitude;
+        float tNormalized = tRaw / timeDuration;
+
+        return new Vector2(
+            xCurve.Evaluate(tNormalized),
+            yCurve.Evaluate(tNormalized));
     }
 
-    public float EvaluateY(float tUNorm)
+    public MotionCurveEvaluator GetXEvaluator()
     {
-        return yCurve.Evaluate(tUNorm / timeDuration) * yMagnitude;
-    }
-
-    public Vector2 Differentiate(float tUNorm, float timeDelta = delta)
-    {
-        return new Vector2(DifferentiateX(tUNorm, timeDelta), DifferentiateY(tUNorm, timeDelta));
+        return new MotionCurveEvaluator(xCurve, xMagnitude, timeDuration);
     }
     
-    public float DifferentiateX(float tUNorm, float timeDelta = delta)
+    public MotionCurveEvaluator GetYEvaluator()
     {
-        return DifferentiateInternal(xCurve, tUNorm, timeDelta) * xMagnitude;
+        return new MotionCurveEvaluator(yCurve, yMagnitude, timeDuration);
     }
-
-    public float DifferentiateY(float tUNorm, float timeDelta = delta)
-    {
-        return DifferentiateInternal(yCurve, tUNorm, timeDelta) * yMagnitude;
-    }
-    
-    private float DifferentiateInternal(AnimationCurve curve, float tUNorm, float timeDelta)
-    {
-        float normalizedTime = tUNorm / timeDuration;
-        float normalizedInterval = timeDelta / timeDuration;
-
-        normalizedTime = Mathf.Clamp(normalizedTime, normalizedInterval, 1 - normalizedInterval);
-        
-        float diff = curve.Evaluate(normalizedTime + normalizedInterval)
-                     - curve.Evaluate(normalizedTime);
-        
-        return diff / timeDelta;
-    }
-    
 }

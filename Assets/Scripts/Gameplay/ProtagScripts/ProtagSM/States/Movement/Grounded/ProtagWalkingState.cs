@@ -8,7 +8,6 @@ public class ProtagWalkingState : ProtagState
 
     public override void EnterState()
     {
-        WalkMovement();
         context.coyoteTimer = 0f;
         animationController.Play("Run");
     }
@@ -17,17 +16,12 @@ public class ProtagWalkingState : ProtagState
     {
     }
 
-    public override void UpdateState()
+    public override void UpdateState(float deltaTime)
     {
         transitions.ToProtagStateSelector();
     }
 
-    public override void FixedUpdateState()
-    {
-        WalkMovement();
-    }
-
-    private void WalkMovement()
+    public override void FixedUpdateState(float fixedDeltaTime)
     {
         Vector2 groundNormal = controllerMotor.CurrentGroundState.GroundNormal;
 
@@ -36,7 +30,7 @@ public class ProtagWalkingState : ProtagState
             hMoveProfile.groundedWalkVel,
             hMoveProfile.groundedWalkAccel,
             hMoveProfile.groundedFriction,
-            Time.fixedDeltaTime, 
+            fixedDeltaTime, 
             groundNormal);
     }
 }

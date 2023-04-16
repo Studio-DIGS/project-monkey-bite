@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MushiCore;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Architecture/Gameplay/Gameplay Key Scenes ScriptableObject")]

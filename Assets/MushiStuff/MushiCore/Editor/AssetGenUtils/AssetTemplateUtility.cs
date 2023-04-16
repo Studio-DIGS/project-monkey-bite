@@ -71,7 +71,7 @@ namespace MushiCore.Editor
         {
             string fullTemplatePath = Path.GetFullPath(templatePath);
             var finalContent = new StringBuilder(File.ReadAllText(fullTemplatePath));
-            
+
             var name = new StringBuilder(Path.GetFileName(generatePath));
             var directory = Path.GetDirectoryName(generatePath);
 
@@ -86,7 +86,7 @@ namespace MushiCore.Editor
             }
 
             AssetCreateUtility.WriteTextAsset(
-                $"{directory}/{name}", 
+                $"{directory}/{name}",
                 finalContent.ToString());
         }
 

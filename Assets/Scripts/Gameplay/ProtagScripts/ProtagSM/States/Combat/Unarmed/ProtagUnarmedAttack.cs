@@ -14,12 +14,12 @@ public class ProtagUnarmedAttack : ProtagState
         throw new System.NotImplementedException();
     }
 
-    public override void UpdateState()
+    public override void UpdateState(float deltaTime)
     {
         transitions.ToProtagStateSelector();
     }
 
-    public override void FixedUpdateState()
+    public override void FixedUpdateState(float fixedDeltaTime)
     {
         throw new System.NotImplementedException();
     }

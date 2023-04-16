@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace MushiCore.GizmoDrawer
 {
     /// <summary>
@@ -18,7 +17,7 @@ namespace MushiCore.GizmoDrawer
         };
 
         private int colorCycleIndex = 0;
-        
+
         private List<GizmoDrawerObject> gizmoObjects = new();
 
         public void Clear()
@@ -30,7 +29,7 @@ namespace MushiCore.GizmoDrawer
         {
             gizmoObjects.Add(gizmoObject);
         }
-        
+
         public void Add(IEnumerable<GizmoDrawerObject> gizmoObject)
         {
             gizmoObjects.AddRange(gizmoObject);
@@ -61,7 +60,7 @@ namespace MushiCore.GizmoDrawer
         public Color c;
         public Vector3 p1;
         public Vector3 p2;
-        
+
         public GizmoDrawerLine(Color c, Vector3 p1, Vector3 p2)
         {
             this.c = c;
@@ -75,13 +74,13 @@ namespace MushiCore.GizmoDrawer
             Gizmos.DrawLine(p1, p2);
         }
     }
-    
+
     public class GizmoDrawerWireSphere : GizmoDrawerObject
     {
         public Color c;
         public Vector3 p;
         public float r;
-        
+
         public GizmoDrawerWireSphere(Color c, Vector3 p, float r)
         {
             this.c = c;

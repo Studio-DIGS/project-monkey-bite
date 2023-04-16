@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b3dab874057554288b066092786e20, type: 3}
+  m_Name: TransformIcon
+  m_EditorClassIdentifier: 
+  description: 
+  icon:
+    iconType: 0
+    editorIconStringIdentifier: Transform Icon
+    textureAsset: {fileID: 2800000, guid: 9a1e76c9845005c41a09e1d83102744e, type: 3}
+  targetClassMonoscripts:
+  - {fileID: 11500000, guid: 87214e33fdaf16c49ba844cb3e8ab5b9, type: 3}
+  targetClassStrings: []

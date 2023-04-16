@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c1541703eedcb9448f5f6bf340aeb84, type: 3}
+  m_Name: ProtagPCCMotorProfile
+  m_EditorClassIdentifier: 
+  description: 
+  gravityAcceleration: 17
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 128
+  maxMoveIterationLength: 0.2
+  minMoveIterations: 2
+  collisionResolutionOffset: 0.001
+  sweepOffset: 0
+  maxColliderResolves: 5
+  groundProbeDistance: 0.5
+  groundTouchDistance: 0.07
+  maxStableAngle: 46
+  launchOffLedgeVelocity: 10
+  maxGroundProbeIterations: 5

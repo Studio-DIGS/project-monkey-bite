@@ -36,6 +36,11 @@ public class ProtagFootstoolJumpingState : ProtagState
         controllerMotor.SetGravityEnabled(false);
         context.coyoteTimer = float.MaxValue;
         entryDirection = (int)Mathf.Sign(context.playerRotator.CurrentDir);
+
+        controllerMotor.pathVelocity = Vector2.zero;
+
+        xMotionEvaluator = footstoolProfile.jumpCurve.GetXEvaluator();
+        yMotionEvaluator = footstoolProfile.jumpCurve.GetYEvaluator();
     }
 
     public override void ExitState()
@@ -49,19 +54,21 @@ public class ProtagFootstoolJumpingState : ProtagState
         controllerMotor.SetGravityEnabled(true);
     }
 
-    public override void UpdateState()
+    public override void UpdateState(float deltaTime)
     {
         TryTransitionOut();
     }
+    
+    private MotionCurveEvaluator xMotionEvaluator;
+    private MotionCurveEvaluator yMotionEvaluator;
 
-    public override void FixedUpdateState()
+    public override void FixedUpdateState(float fixedDeltaTime)
     {
-        Vector2 motionVel = footstoolProfile.jumpCurve.Differentiate(
-            stateMachine.CurrentStateFixedDuration, 
-            Time.fixedDeltaTime);
+        xMotionEvaluator.StepForward(fixedDeltaTime);
+        yMotionEvaluator.StepForward(fixedDeltaTime);
 
-        controllerMotor.pathVelocity.y = motionVel.y;
-        controllerMotor.pathVelocity.x = motionVel.x * entryDirection;
+        controllerMotor.pathVelocity.x = xMotionEvaluator.CurrentVel * entryDirection;
+        controllerMotor.pathVelocity.y += yMotionEvaluator.CurrentVelStep;
 
         TryFixedTransitionOut();
     }

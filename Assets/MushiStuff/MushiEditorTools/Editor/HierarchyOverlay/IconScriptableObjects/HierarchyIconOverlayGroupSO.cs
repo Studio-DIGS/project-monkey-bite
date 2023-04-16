@@ -25,7 +25,7 @@ namespace MushiEditorTools.HierarchyOverlay
             // Build up dictionary for targets for performance
             stringTargetDict = new Dictionary<string, HierarchyIconSO>();
             monoScriptTargetDict = new Dictionary<MonoScript, HierarchyIconSO>();
-            
+
             foreach (var target in hierarchyIcons)
             {
                 if (!target) continue;

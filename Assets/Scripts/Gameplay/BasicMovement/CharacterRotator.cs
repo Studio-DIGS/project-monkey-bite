@@ -30,6 +30,6 @@ public class CharacterRotator : MonoBehaviour
             currentDir = (int)Mathf.Sign(dir);
             
         foreach(var target in targetTransforms)
-            target.rotation = Quaternion.LookRotation(currentDir * pathTransform.CNormal, pathTransform.CUp);
+            target.rotation = Quaternion.LookRotation(currentDir * pathTransform.WCurrentNormal, pathTransform.WCurrentUp);
     }
 }

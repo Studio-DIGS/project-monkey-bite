@@ -19,4 +19,5 @@ MonoBehaviour:
     textureAsset: {fileID: 2800000, guid: 9a1e76c9845005c41a09e1d83102744e, type: 3}
   targetClassMonoscripts:
   - {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
+  - {fileID: 11500000, guid: 03de0621a616d1949bfd39d4fcd38817, type: 3}
   targetClassStrings: []

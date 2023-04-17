@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace SimpleStateMachine
@@ -7,7 +8,8 @@ namespace SimpleStateMachine
     public abstract class StateMachine<TContext>
     {
         // Fields
-        protected State<TContext> currentState;
+        [CanBeNull] protected State<TContext> currentState;
+        [CanBeNull] private State<TContext> previousState = null;
         private TContext contextInstance;
         private Type currentStateType;
 
@@ -18,6 +20,7 @@ namespace SimpleStateMachine
 
         // Properties
         public State<TContext> CurrentState => currentState;
+        public State<TContext> PreviousState => previousState;
         public float CurrentStateDuration => Time.time - stateEntryTime;
         public float CurrentStateFixedDuration => Time.time - stateEntryFixedTime;
 
@@ -40,6 +43,7 @@ namespace SimpleStateMachine
         {
             currentState.ExitState();
             currentState = null;
+            previousState = null;
         }
 
         public virtual void Update(float deltaTime)
@@ -56,7 +60,8 @@ namespace SimpleStateMachine
         {
             var type = typeof(TState);
             if (type == currentStateType) return;
-            
+
+            previousState = currentState;
             currentState?.ExitState();
             currentState = GetState<TState>(type);
             stateEntryTime = Time.time;

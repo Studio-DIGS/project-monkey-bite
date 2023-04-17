@@ -18,6 +18,9 @@ public class ProtagWalkingState : ProtagState
 
     public override void UpdateState(float deltaTime)
     {
+        // Enable turning
+        AlignCharacter();
+        
         transitions.ToProtagStateSelector();
     }
 

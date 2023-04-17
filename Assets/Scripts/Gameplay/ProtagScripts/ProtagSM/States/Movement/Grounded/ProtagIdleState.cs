@@ -23,14 +23,6 @@ public class ProtagIdleState : ProtagState
 
     public override void FixedUpdateState(float fixedDeltaTime)
     {
-        Vector2 groundNormal = controllerMotor.CurrentGroundState.GroundNormal;
-
-        playerSimplePathMovement.SimpleGroundedHorizontalMovement(
-            0, 
-            hMoveProfile.groundedWalkVel,
-            hMoveProfile.groundedWalkAccel,
-            hMoveProfile.groundedFriction,
-            fixedDeltaTime, 
-            groundNormal);
+        GroundStop(fixedDeltaTime);
     }
 }

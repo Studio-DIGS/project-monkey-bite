@@ -24,16 +24,7 @@ public class ProtagArmedAttack : ProtagState
 
     public override void FixedUpdateState(float fixedDeltaTime)
     {
-        // Stop the player
-        // TODO: Make it so player can't turn around during attack
-        Vector2 groundNormal = controllerMotor.CurrentGroundState.GroundNormal;
-        playerSimplePathMovement.SimpleGroundedHorizontalMovement(
-            0, 
-            hMoveProfile.groundedWalkVel,
-            hMoveProfile.groundedWalkAccel,
-            hMoveProfile.groundedFriction,
-            fixedDeltaTime, 
-            groundNormal);
+        GroundStop(fixedDeltaTime);
     }
 
     private void Attack()

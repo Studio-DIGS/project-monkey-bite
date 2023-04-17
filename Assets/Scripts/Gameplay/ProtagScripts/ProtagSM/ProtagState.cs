@@ -22,4 +22,22 @@ public abstract class ProtagState : State<ProtagBlackboard>
     protected CombatProfile combatProfile => context.combatProfile;
     protected PlayerInputState inputState => context.inputState;
     protected Animator animationController => context.animController;
+    
+    // Utility functions
+    protected void GroundStop(float fixedDeltaTime)
+    {
+        Vector2 groundNormal = controllerMotor.CurrentGroundState.GroundNormal;
+        playerSimplePathMovement.SimpleGroundedHorizontalMovement(
+            0, 
+            hMoveProfile.groundedWalkVel,
+            hMoveProfile.groundedWalkAccel,
+            hMoveProfile.groundedFriction,
+            fixedDeltaTime, 
+            groundNormal);
+    }
+
+    protected void AlignCharacter()
+    {
+        context.playerRotator.AlignDirection(context.inputState.horizontalAxis);
+    }
 }

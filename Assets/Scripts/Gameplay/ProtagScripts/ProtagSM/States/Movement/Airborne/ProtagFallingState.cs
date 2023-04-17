@@ -17,6 +17,9 @@ public class ProtagFallingState : ProtagState
 
     public override void UpdateState(float deltaTime)
     {
+        // Enable turning
+        AlignCharacter();
+        
         context.coyoteTimer += deltaTime;
 
         transitions.ToProtagStateSelector();

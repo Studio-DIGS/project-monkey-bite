@@ -49,7 +49,6 @@ public class Protagonist : DescriptionMonoBehavior
         
         blackboard.UpdateInputState();
         stateMachine.Update(deltaTime);
-        blackboard.playerRotator.AlignDirection(blackboard.inputState.horizontalAxis);
         
         // Debug
         currentStateName = stateMachine.CurrentState.GetType().ToString();

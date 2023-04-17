@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90a064eacbb414eb7985eaa9e9367338, type: 3}
+  m_Name: ProtagCombatProfile
+  m_EditorClassIdentifier: 
+  description: 
+  combo:
+  - {fileID: 11400000, guid: 863557924649f45c49cbbc5b8ca7e2d3, type: 2}
+  - {fileID: 11400000, guid: 16576583e0d63407f8bcdffc1b47e260, type: 2}
+  - {fileID: 11400000, guid: 661979a31cd6347e1bec50065ed3c24e, type: 2}

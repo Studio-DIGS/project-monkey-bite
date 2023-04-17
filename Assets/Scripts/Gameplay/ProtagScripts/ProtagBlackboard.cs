@@ -26,6 +26,7 @@ public class ProtagBlackboard
     [SerializeField] public JumpProfile jumpProfile;
     [SerializeField] public FootstoolProfile footstoolProfile;
     [SerializeField] public RollProfile rollProfile;
+    [SerializeField] public CombatProfile combatProfile;
 
     [ColorHeader("Debug")]
     // Player state

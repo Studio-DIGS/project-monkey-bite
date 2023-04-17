@@ -45,6 +45,8 @@ public class ProtagJumpingState : ProtagState
 
         controllerMotor.pathVelocity.y = 0f;
         motionEvaluator = jumpProfile.jumpCurve.GetYEvaluator();
+        
+        animationController.Play("Fall");
     }
 
     public override void ExitState()

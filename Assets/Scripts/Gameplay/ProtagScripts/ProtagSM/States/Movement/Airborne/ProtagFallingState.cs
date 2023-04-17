@@ -7,7 +7,7 @@ public class ProtagFallingState : ProtagState
 {
     public override void EnterState()
     {
-        
+        animationController.Play("Fall");
     }
 
     public override void ExitState()

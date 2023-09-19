@@ -1,2 +1,6 @@
+Camera3D
+MeshInstance3D
+CollisionShape3D
+CharacterBody3D
 CSGBox3D
 WorldEnvironment

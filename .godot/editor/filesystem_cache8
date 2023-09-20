@@ -1,9 +1,9 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1695162701
+::res://::1695163870
 icon.svg::CompressedTexture2D::3183782981200282910::1695161382::1695161396::1::::<><>::
 ::res://assets/::1695162724
 ::res://assets/grids/::1681402529
-::res://assets/grids/Dark/::1681402529
+::res://assets/grids/Dark/::1695162727
 texture_01.png::CompressedTexture2D::2644060547488988334::1681402529::1695162727::1::::<><>::
 texture_02.png::CompressedTexture2D::6778456601065326600::1681402529::1695162727::1::::<><>::
 texture_03.png::CompressedTexture2D::8043489777905957010::1681402529::1695162727::1::::<><>::
@@ -17,7 +17,7 @@ texture_10.png::CompressedTexture2D::8744850813094027139::1681402529::1695162727
 texture_11.png::CompressedTexture2D::1651817429942640307::1681402529::1695162727::1::::<><>::
 texture_12.png::CompressedTexture2D::9194072139735174530::1681402529::1695162727::1::::<><>::
 texture_13.png::CompressedTexture2D::6080407641114857949::1681402529::1695162727::1::::<><>::
-::res://assets/grids/Green/::1681402529
+::res://assets/grids/Green/::1695162727
 texture_01.png::CompressedTexture2D::7891718066327868901::1681402529::1695162727::1::::<><>::
 texture_02.png::CompressedTexture2D::3717978849766583349::1681402529::1695162727::1::::<><>::
 texture_03.png::CompressedTexture2D::7870023918636348783::1681402529::1695162727::1::::<><>::
@@ -31,7 +31,7 @@ texture_10.png::CompressedTexture2D::8881419178832066668::1681402529::1695162727
 texture_11.png::CompressedTexture2D::7798967292135895137::1681402529::1695162727::1::::<><>::
 texture_12.png::CompressedTexture2D::7276303891102580489::1681402529::1695162727::1::::<><>::
 texture_13.png::CompressedTexture2D::6291531741535426502::1681402529::1695162727::1::::<><>::
-::res://assets/grids/Light/::1681402529
+::res://assets/grids/Light/::1695162727
 texture_01.png::CompressedTexture2D::9085329471854437314::1681402529::1695162727::1::::<><>::
 texture_02.png::CompressedTexture2D::603961757283946376::1681402529::1695162727::1::::<><>::
 texture_03.png::CompressedTexture2D::2686330038290371166::1681402529::1695162727::1::::<><>::
@@ -45,7 +45,7 @@ texture_10.png::CompressedTexture2D::2138928852351436551::1681402529::1695162727
 texture_11.png::CompressedTexture2D::7572915156309524054::1681402529::1695162727::1::::<><>::
 texture_12.png::CompressedTexture2D::5697352797318017892::1681402529::1695162727::1::::<><>::
 texture_13.png::CompressedTexture2D::7812365399952614674::1681402529::1695162727::1::::<><>::
-::res://assets/grids/Orange/::1681402529
+::res://assets/grids/Orange/::1695162727
 texture_01.png::CompressedTexture2D::6181154239980534230::1681402529::1695162727::1::::<><>::
 texture_02.png::CompressedTexture2D::6168565060526135784::1681402529::1695162727::1::::<><>::
 texture_03.png::CompressedTexture2D::9081165906118518433::1681402529::1695162727::1::::<><>::
@@ -59,7 +59,7 @@ texture_10.png::CompressedTexture2D::6448130866629816488::1681402529::1695162726
 texture_11.png::CompressedTexture2D::4785656574828562034::1681402529::1695162726::1::::<><>::
 texture_12.png::CompressedTexture2D::126372674906534618::1681402529::1695162726::1::::<><>::
 texture_13.png::CompressedTexture2D::8106865886545657639::1681402529::1695162726::1::::<><>::
-::res://assets/grids/Purple/::1681402529
+::res://assets/grids/Purple/::1695162727
 texture_01.png::CompressedTexture2D::8049749381306687723::1681402529::1695162726::1::::<><>::
 texture_02.png::CompressedTexture2D::3297010549751241281::1681402529::1695162727::1::::<><>::
 texture_03.png::CompressedTexture2D::7590899080288594633::1681402529::1695162726::1::::<><>::
@@ -73,7 +73,7 @@ texture_10.png::CompressedTexture2D::9097602081510953131::1681402529::1695162727
 texture_11.png::CompressedTexture2D::4312575430828054130::1681402529::1695162727::1::::<><>::
 texture_12.png::CompressedTexture2D::4958538137674604363::1681402529::1695162727::1::::<><>::
 texture_13.png::CompressedTexture2D::3487860646571873018::1681402529::1695162727::1::::<><>::
-::res://assets/grids/Red/::1681402529
+::res://assets/grids/Red/::1695162727
 texture_01.png::CompressedTexture2D::542694543857303072::1681402529::1695162727::1::::<><>::
 texture_02.png::CompressedTexture2D::5237030785403995185::1681402529::1695162727::1::::<><>::
 texture_03.png::CompressedTexture2D::1307713291140130662::1681402529::1695162727::1::::<><>::
@@ -87,3 +87,9 @@ texture_10.png::CompressedTexture2D::2678048462033916780::1681402529::1695162727
 texture_11.png::CompressedTexture2D::7347268326846751397::1681402529::1695162727::1::::<><>::
 texture_12.png::CompressedTexture2D::3318626513048328889::1681402529::1695162727::1::::<><>::
 texture_13.png::CompressedTexture2D::952935486174002101::1681402529::1695162727::1::::<><>::
+::res://scenes/::1695164046
+player.tscn::PackedScene::5067502681530577280::1695164008::0::1::::<><>::res://scripts/player.gd
+CameraFollow.gd::GDScript::-1::1695164106::0::1::::<>Camera3D<>::
+world.tscn::PackedScene::5468943880823873881::1695164046::0::1::::<><>::uid://c8arnlq67qi7::::res://assets/grids/Dark/texture_05.png<>uid://ceg0a8jxwnfae::::res://scenes/player.tscn
+::res://scripts/::1695164046
+player.gd::GDScript::-1::1695164046::0::1::::<>CharacterBody3D<>::

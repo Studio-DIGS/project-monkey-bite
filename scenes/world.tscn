@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cj6gya66i2u14"]
+[gd_scene load_steps=8 format=3 uid="uid://cj6gya66i2u14"]
 
 [ext_resource type="Texture2D" uid="uid://c8arnlq67qi7" path="res://assets/grids/Dark/texture_05.png" id="1_tv0vc"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://scenes/player.tscn" id="2_yuvdp"]
+[ext_resource type="PackedScene" uid="uid://e15v5oxp4iqq" path="res://scenes/camera_follow.tscn" id="3_nehu3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5en72"]
 sky_top_color = Color(0.211765, 0.443137, 0.780392, 1)
@@ -40,3 +41,10 @@ size = Vector3(500, 1, 6)
 
 [node name="player" parent="." instance=ExtResource("2_yuvdp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.78614, 1.41166, -0.0926752)
+
+[node name="CameraFollow" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_nehu3")]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
+projection = 1
+size = 11.0
+target = NodePath("../player")
+offset = Vector3(0, 4.17, 10)

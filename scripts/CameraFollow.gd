@@ -10,7 +10,7 @@ func _ready():
 	# Ensure the camera starts at a reasonable initial position
 	self.transform.origin = Vector3(0, 5, 5)  # Adjust the initial camera position
 
-func _process(delta):
+func _physics_process(delta):
 	if target != null:
 		# Get the target position (taking into account distance camera should be away in z)
 		var target_position = target.global_position + offset

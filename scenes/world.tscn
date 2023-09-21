@@ -68,6 +68,7 @@ vertical_offset = 3.0
 [node name="LookAheadCam" parent="FollowCam" index="0"]
 size = 10.757
 far = 500.0
+post_processing = false
 camera_speed = 1.5
 look_ahead_distance = 2.5
 

@@ -2,3 +2,5 @@ res://scenes/world.tscn
 res://pixelart_stylizer.gdshader
 res://assets/pixel-outline/cube.tres
 res://assets/pixel-outline/demo.tres
+res://scenes/player.tscn
+res://scripts/state.gd

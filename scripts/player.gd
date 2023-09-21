@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 
-@export var SPEED = 5
+@export var SPEED = 5.0
 @export var ACCEL = 15.0
 @export var JUMP_HEIGHT = 4.5
 

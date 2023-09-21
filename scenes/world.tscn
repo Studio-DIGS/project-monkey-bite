@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cj6gya66i2u14"]
+[gd_scene load_steps=9 format=3 uid="uid://cj6gya66i2u14"]
 
 [ext_resource type="Texture2D" uid="uid://c8arnlq67qi7" path="res://assets/grids/Dark/texture_05.png" id="1_tv0vc"]
+[ext_resource type="Material" uid="uid://b2ree8v6onvcb" path="res://assets/pixel-outline/cube.tres" id="2_c6w0a"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://scenes/player.tscn" id="2_yuvdp"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://scenes/follow_cam.tscn" id="3_h2r7l"]
 
@@ -15,6 +16,7 @@ sky_material = SubResource("ProceduralSkyMaterial_5en72")
 
 [sub_resource type="Environment" id="Environment_y8ynd"]
 background_mode = 2
+background_color = Color(0.4, 0.615686, 0.811765, 1)
 sky = SubResource("Sky_xpkr3")
 tonemap_mode = 2
 sdfgi_enabled = true
@@ -27,8 +29,11 @@ uv1_triplanar = true
 [node name="world" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(-0.422618, -0.800222, 0.425486, 0, 0.469472, 0.882947, -0.906307, 0.37315, -0.198407, 0, 0, 0)
 shadow_enabled = true
+shadow_blur = 0.065
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.015
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_y8ynd")
@@ -41,10 +46,12 @@ size = Vector3(500, 1, 6)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(-8.87803e-08, 0, -5.4322, 0, 0.55144, 0, 2.03106, 0, -2.37449e-07, 9.14371, 1.42254, 0.0168887)
+material_override = ExtResource("2_c6w0a")
 use_collision = true
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="."]
 transform = Transform3D(-8.87803e-08, 0, -5.4322, 0, 0.55144, 0, 2.03106, 0, -2.37449e-07, 17.2789, 3.33729, 0.0168887)
+material_override = ExtResource("2_c6w0a")
 use_collision = true
 
 [node name="Player" parent="." instance=ExtResource("2_yuvdp")]
@@ -61,6 +68,7 @@ vertical_offset = 3.0
 
 [node name="LookAheadCam" parent="FollowCam" index="0"]
 size = 10.757
+far = 500.0
 camera_speed = 1.5
 look_ahead_distance = 2.5
 

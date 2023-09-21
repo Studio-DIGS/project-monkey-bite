@@ -10,3 +10,7 @@ res://scenes/follow_cam.tscn
 res://scenes/follow_cam.gd
 res://scripts/look_ahead_cam.gd
 res://scripts/follow_cam.gd
+res://assets/pixel-outline/camera.tres
+res://assets/pixel-outline/demo.tres
+res://pixelart_stylizer.gdshader
+res://assets/pixel-outline/cube.tres

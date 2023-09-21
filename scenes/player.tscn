@@ -1,13 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://ceg0a8jxwnfae"]
+[gd_scene load_steps=8 format=3 uid="uid://ceg0a8jxwnfae"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7knqw"]
 [ext_resource type="Script" path="res://scripts/body.gd" id="2_ioxg0"]
+[ext_resource type="Material" uid="uid://rdwtjwkcnoaq" path="res://assets/pixel-outline/demo.tres" id="3_d4l1y"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_48kjw"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5owbq"]
+material = ExtResource("3_d4l1y")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_pliqs"]
+material = ExtResource("3_d4l1y")
 
 [sub_resource type="GDScript" id="GDScript_wt685"]
 script/source = "extends Node3D
@@ -40,7 +43,7 @@ mesh = SubResource("CapsuleMesh_5owbq")
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(0.464203, 0, 0, 0, -6.59784e-09, 0.464203, 0, -0.150941, -2.02909e-08, 0, 0.522088, -0.412022)
+transform = Transform3D(0.464203, 0, 0, 0, -1.20654e-08, 0.464203, 0, -0.276023, -2.02909e-08, 0, 0.522088, -0.533807)
 mesh = SubResource("CylinderMesh_pliqs")
 
 [node name="LookAhead" type="Node3D" parent="Body"]

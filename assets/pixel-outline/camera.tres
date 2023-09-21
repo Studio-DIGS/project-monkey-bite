@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ct3a0qqkp66di"]
+
+[ext_resource type="Shader" path="res://assets/pixel-outline/pixelart_stylizer.gdshader" id="1_seotr"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_seotr")
+shader_parameter/shadows_enabled = true
+shader_parameter/highlights_enabled = true
+shader_parameter/shadow_strength = 0.4
+shader_parameter/highlight_strength = 0.1
+shader_parameter/highlight_color = Color(1, 1, 1, 1)
+shader_parameter/shadow_color = Color(0, 0, 0, 1)

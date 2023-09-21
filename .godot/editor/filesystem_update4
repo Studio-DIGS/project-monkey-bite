@@ -1,5 +1,12 @@
-res://scenes/world.tscn
 res://scenes/player.tscn
-res://scripts/player.gd
-res://scenes/camera_follow.tscn
 res://scripts/CameraFollow.gd
+res://scenes/world.tscn
+res://scenes/camera_follow.tscn
+res://scripts/player.gd
+res://scenes/body.gd
+res://scenes/look_ahead.gd
+res://scripts/camera_follow.gd
+res://scenes/follow_cam.tscn
+res://scenes/follow_cam.gd
+res://scripts/look_ahead_cam.gd
+res://scripts/follow_cam.gd

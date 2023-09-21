@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c8arnlq67qi7" path="res://assets/grids/Dark/texture_05.png" id="1_tv0vc"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://scenes/player.tscn" id="2_yuvdp"]
-[ext_resource type="PackedScene" uid="uid://e15v5oxp4iqq" path="res://scenes/camera_follow.tscn" id="3_nehu3"]
+[ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://scenes/follow_cam.tscn" id="3_h2r7l"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5en72"]
 sky_top_color = Color(0.211765, 0.443137, 0.780392, 1)
@@ -39,12 +39,26 @@ material_override = SubResource("StandardMaterial3D_fsjmw")
 use_collision = true
 size = Vector3(500, 1, 6)
 
-[node name="player" parent="." instance=ExtResource("2_yuvdp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.78614, 1.41166, -0.0926752)
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.01343, 0.130621, -1.71747)
 
-[node name="CameraFollow" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_nehu3")]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
-projection = 1
-size = 11.0
-target = NodePath("../player")
-offset = Vector3(0, 4.17, 10)
+[node name="Player" parent="." instance=ExtResource("2_yuvdp")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.78614, 1.41166, -0.0926752)
+ACCEL = 6.565
+JUMP_HEIGHT = 8.895
+
+[node name="FollowCam" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_h2r7l")]
+target = NodePath("../Player")
+camera_speed = 6.0
+vertical_offset = 3.0
+
+[node name="LookAheadCam" parent="FollowCam" index="0"]
+size = 10.006
+near = 0.001
+camera_speed = 1.5
+look_ahead_distance = 2.5
+
+[connection signal="turn_around" from="Player" to="FollowCam/LookAheadCam" method="_on_player_turn_around"]
+
+[editable path="Player"]
+[editable path="FollowCam"]

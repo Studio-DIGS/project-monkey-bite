@@ -1,20 +1,50 @@
-[gd_scene load_steps=4 format=3 uid="uid://ceg0a8jxwnfae"]
+[gd_scene load_steps=7 format=3 uid="uid://ceg0a8jxwnfae"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7knqw"]
+[ext_resource type="Script" path="res://scripts/body.gd" id="2_ioxg0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_48kjw"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5owbq"]
 
-[node name="player" type="CharacterBody3D"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_pliqs"]
+
+[sub_resource type="GDScript" id="GDScript_wt685"]
+script/source = "extends Node3D
+
+@onready var target_position = position
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_7knqw")
+ACCEL = 45.0
+JUMP_HEIGHT = 6.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_48kjw")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_5owbq")
+[node name="Body" type="Node3D" parent="."]
+script = ExtResource("2_ioxg0")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.972166, 0.234294, 0, -0.234294, 0.972166, 0, 1.48157, 4.64588)
-visible = false
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+mesh = SubResource("CapsuleMesh_5owbq")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.464203, 0, 0, 0, -6.59784e-09, 0.464203, 0, -0.150941, -2.02909e-08, 0, 0.522088, -0.412022)
+mesh = SubResource("CylinderMesh_pliqs")
+
+[node name="LookAhead" type="Node3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.57666)
+script = SubResource("GDScript_wt685")
+
+[connection signal="turn_around" from="." to="Body" method="_on_player_turn_around"]

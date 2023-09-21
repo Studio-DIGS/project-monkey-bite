@@ -1,10 +1,10 @@
-extends Camera3D
+extends Node3D
 
 # Camera settings
 @export var target: Node3D
-@export var camera_speed = 5.0  # Adjust this value to control the camera's follow speed
-@export var offset: Vector3 = Vector3(0, 0, 10)
-@export var lerp_speed: float = 0.1
+@export var camera_speed = 5.0
+@export var vertical_offset = 4.0
+@export var camera_arm = 4.0
 
 func _ready():
 	# Ensure the camera starts at a reasonable initial position
@@ -12,13 +12,14 @@ func _ready():
 
 func _physics_process(delta):
 	if target != null:
-		# Get the target position (taking into account distance camera should be away in z)
-		var target_position = target.global_position + offset
+		# Get the target position (taking into account distance camera should be above the target)
+		var target_position = target.global_position + Vector3(0, vertical_offset, camera_arm)
 
 		# Calculate the camera's position using linear interpolation (lerp) for smooth movement
 		var new_position = self.global_position.lerp(target_position, camera_speed * delta)
 
 		# Set the camera's position to the new calculated position
-		self.position = new_position
+		self.global_position = new_position
+	
 	else:
 		print("Target reference not set. Set it in the inspector.")

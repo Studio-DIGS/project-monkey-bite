@@ -5,6 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://scenes/player.tscn" id="2_yuvdp"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://scenes/follow_cam.tscn" id="3_h2r7l"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fsjmw"]
+albedo_texture = ExtResource("1_tv0vc")
+uv1_triplanar = true
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5en72"]
 sky_top_color = Color(0.211765, 0.443137, 0.780392, 1)
 sky_horizon_color = Color(0.572549, 0.666667, 0.772549, 1)
@@ -22,11 +26,25 @@ tonemap_mode = 2
 sdfgi_enabled = true
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fsjmw"]
-albedo_texture = ExtResource("1_tv0vc")
-uv1_triplanar = true
+[node name="World" type="Node3D"]
 
-[node name="world" type="Node3D"]
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1.25725, 0, 0, 0, 1.25725, 0, 0, 0, 1.25725, 0, -0.669183, 0)
+material_override = SubResource("StandardMaterial3D_fsjmw")
+use_collision = true
+size = Vector3(500, 1, 6)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(-8.87803e-08, 0, -5.4322, 0, 0.55144, 0, 2.03106, 0, -2.37449e-07, 9.14371, 1.42254, 0.0168887)
+material_override = ExtResource("2_c6w0a")
+use_collision = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(-8.87803e-08, 0, -5.4322, 0, 0.55144, 0, 2.03106, 0, -2.37449e-07, 17.2789, 3.33729, 0.0168887)
+material_override = ExtResource("2_c6w0a")
+use_collision = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.422618, -0.800222, 0.425486, 0, 0.469472, 0.882947, -0.906307, 0.37315, -0.198407, 0, 0, 0)
@@ -37,22 +55,6 @@ directional_shadow_split_1 = 0.015
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_y8ynd")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1.25725, 0, 0, 0, 1.25725, 0, 0, 0, 1.25725, 0, -0.669183, 0)
-material_override = SubResource("StandardMaterial3D_fsjmw")
-use_collision = true
-size = Vector3(500, 1, 6)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(-8.87803e-08, 0, -5.4322, 0, 0.55144, 0, 2.03106, 0, -2.37449e-07, 9.14371, 1.42254, 0.0168887)
-material_override = ExtResource("2_c6w0a")
-use_collision = true
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(-8.87803e-08, 0, -5.4322, 0, 0.55144, 0, 2.03106, 0, -2.37449e-07, 17.2789, 3.33729, 0.0168887)
-material_override = ExtResource("2_c6w0a")
-use_collision = true
 
 [node name="Player" parent="." instance=ExtResource("2_yuvdp")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.78614, 1.41166, -0.0926752)
@@ -68,7 +70,6 @@ vertical_offset = 3.0
 [node name="LookAheadCam" parent="FollowCam" index="0"]
 size = 10.757
 far = 500.0
-post_processing = false
 camera_speed = 1.5
 look_ahead_distance = 2.5
 

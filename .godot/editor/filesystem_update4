@@ -4,3 +4,4 @@ res://assets/pixel-outline/cube.tres
 res://assets/pixel-outline/demo.tres
 res://scenes/player.tscn
 res://scripts/state.gd
+res://scripts/state_machine.gd

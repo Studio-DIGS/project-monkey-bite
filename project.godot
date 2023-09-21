@@ -14,6 +14,15 @@ config/name="project-monkey-bite"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=480
+window/size/viewport_height=270
+window/size/always_on_top=true
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="viewport"
+
 [input]
 
 right={

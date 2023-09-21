@@ -9,7 +9,7 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	# Get the target position (taking into account distance camera should be above the target)
+	# Slide camera along x axis to get ahead of player
 	var target_position = Vector3(look_ahead_distance, 0, 0) * orientation
 
 	# Calculate the camera's position using linear interpolation (lerp) for smooth movement

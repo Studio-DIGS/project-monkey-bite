@@ -61,7 +61,6 @@ ACCEL = 7.0
 JUMP_HEIGHT = 9.0
 
 [node name="FollowCam" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_h2r7l")]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
 target = NodePath("../Player")
 camera_speed = 8.0
 vertical_offset = 3.0

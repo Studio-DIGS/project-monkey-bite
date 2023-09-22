@@ -6,3 +6,10 @@ res://scenes/player.tscn
 res://scripts/state.gd
 res://scripts/state_machine.gd
 res://scenes/player_idle.gd
+res://scripts/player.gd
+res://scripts/player_idle.gd
+res://scripts/player_state.gd
+res://scenes/player_air.gd
+res://scenes/player_run.gd
+res://scenes/player_land.gd
+res://scripts/body.gd

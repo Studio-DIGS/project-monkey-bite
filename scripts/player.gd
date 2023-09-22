@@ -1,9 +1,10 @@
+class_name Player
 extends CharacterBody3D
 
 
-@export var SPEED = 5.0
-@export var ACCEL = 15.0
-@export var JUMP_HEIGHT = 4.5
+@export var speed = 5.0
+@export var accel = 15.0
+@export var jump_height = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -13,17 +14,19 @@ var gravity = 20
 var orientation = 1
 signal turn_around
 
-func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
+var hori_input = 0.0
 
-	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_HEIGHT
+func _physics_process(_delta):
+#	# Add the gravity.
+#	if not is_on_floor():
+#		velocity.y -= gravity * delta
+#
+#	# Handle Jump.
+#	if Input.is_action_just_pressed("jump") and is_on_floor():
+#		velocity.y = jump_height
 	
 	# Get the input direction and handle the movement/deceleration.
-	var hori_input = Input.get_axis("left", "right")
+	hori_input = Input.get_axis("left", "right")
 	
 	# stores current orientation
 	var new_orientation = orientation
@@ -37,5 +40,5 @@ func _physics_process(delta):
 		orientation = new_orientation
 		emit_signal("turn_around")
 
-	velocity.x = lerp(velocity.x, hori_input * SPEED, delta * ACCEL)
-	move_and_slide()
+#	velocity.x = lerp(velocity.x, hori_input * speed, delta * accel)
+#	move_and_slide()

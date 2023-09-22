@@ -58,9 +58,9 @@ environment = SubResource("Environment_y8ynd")
 
 [node name="Player" parent="." instance=ExtResource("2_yuvdp")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.78614, 1.41166, -0.0926752)
-SPEED = 7.0
-ACCEL = 7.0
-JUMP_HEIGHT = 9.0
+speed = 7.25
+accel = 6.505
+jump_height = 10.0
 
 [node name="FollowCam" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_h2r7l")]
 target = NodePath("../Player")

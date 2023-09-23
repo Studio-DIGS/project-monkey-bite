@@ -1,3 +1,8 @@
+ParallaxLayer
+ParallaxBackground
+Sprite2D
+CanvasLayer
+Sprite3D
 Node3D
 Node
 StateMachine

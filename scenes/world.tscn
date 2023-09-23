@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cj6gya66i2u14"]
+[gd_scene load_steps=19 format=3 uid="uid://cj6gya66i2u14"]
 
 [ext_resource type="Texture2D" uid="uid://dqgbgrchvfwve" path="res://assets/grids/Green/texture_05.png" id="1_wqphu"]
 [ext_resource type="Material" uid="uid://b2ree8v6onvcb" path="res://assets/pixel-outline/cube.tres" id="2_c6w0a"]
@@ -12,6 +12,8 @@
 [ext_resource type="ArrayMesh" uid="uid://clsnvfujirrx" path="res://assets/temple/Pillar_Large_Top.obj" id="8_innno"]
 [ext_resource type="PackedScene" uid="uid://brwbynmm26exm" path="res://assets/models/Tree.gltf" id="11_arguq"]
 [ext_resource type="PackedScene" uid="uid://dnxlvi0kucdpk" path="res://assets/models/Fruit.gltf" id="12_foolb"]
+[ext_resource type="ArrayMesh" uid="uid://dn3538nup1hmt" path="res://assets/temple/Wall_Ruined_Full_Cracked_1.obj" id="13_daoyd"]
+[ext_resource type="ArrayMesh" uid="uid://ie1glsealiff" path="res://assets/temple/Wall_Ruined_Half_1.obj" id="14_qjvny"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8li3"]
 albedo_texture = ExtResource("1_wqphu")
@@ -65,12 +67,12 @@ use_collision = true
 size = Vector3(500, 1, 6)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(-8.87803e-08, 0, -5.4322, 0, 0.55144, 0, 2.03106, 0, -2.37449e-07, 9.14371, 1.42254, 0.0168887)
+transform = Transform3D(-8.87803e-08, 0, -5.4322, 0, 0.55144, 0, 2.03106, 0, -2.37449e-07, 7.5663, 1.42254, 0.0168886)
 material_override = ExtResource("2_c6w0a")
 use_collision = true
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(-8.87803e-08, 0, -5.4322, 0, 0.55144, 0, 2.03106, 0, -2.37449e-07, 17.2789, 3.33729, 0.0168887)
+transform = Transform3D(-8.87803e-08, 0, -5.4322, 0, 0.55144, 0, 2.03106, 0, -2.37449e-07, 14.0665, 2.67899, 0.0168886)
 material_override = ExtResource("2_c6w0a")
 use_collision = true
 
@@ -161,6 +163,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 2, -1.30382)
 mesh = ExtResource("8_innno")
 skeleton = NodePath("../../..")
 
+[node name="Tree" parent="Environment" instance=ExtResource("11_arguq")]
+transform = Transform3D(0.660978, 0, 0, 0, 0.660978, 0, 0, 0, 0.660978, -0.798291, -0.353334, -10.9985)
+
+[node name="Tree2" parent="Environment" instance=ExtResource("11_arguq")]
+transform = Transform3D(0.632137, 0, 0.193119, 0, 0.660978, 0, -0.193119, 0, 0.632137, 4.21638, -0.353334, -7.41737)
+
+[node name="Fruit" parent="Environment" instance=ExtResource("12_foolb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.33644, 0.251553, 1.56773)
+
+[node name="WallRuinedFullCracked1" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 11.4502, -0.0405574, -4.88361)
+mesh = ExtResource("13_daoyd")
+skeleton = NodePath("../..")
+
+[node name="WallRuinedHalf1" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 15.9399, -0.040558, -5.49193)
+mesh = ExtResource("14_qjvny")
+skeleton = NodePath("../..")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.422618, -0.800222, 0.425486, 0, 0.469472, 0.882947, -0.906307, 0.37315, -0.198407, 0, 0, 0)
 shadow_enabled = true
@@ -184,19 +205,12 @@ vertical_offset = 11.67
 camera_arm = 37.165
 
 [node name="LookAheadCam" parent="FollowCam" index="0"]
-size = 10.757
+fov = 12.9
+size = 9.117
 far = 500.0
+post_processing = false
 camera_speed = 1.5
 look_ahead_distance = 2.5
-
-[node name="Tree" parent="." instance=ExtResource("11_arguq")]
-transform = Transform3D(0.660978, 0, 0, 0, 0.660978, 0, 0, 0, 0.660978, -0.798291, -0.353334, -10.9985)
-
-[node name="Tree2" parent="." instance=ExtResource("11_arguq")]
-transform = Transform3D(0.632137, 0, 0.193119, 0, 0.660978, 0, -0.193119, 0, 0.632137, 4.21638, -0.353334, -7.41737)
-
-[node name="Fruit" parent="." instance=ExtResource("12_foolb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.33644, 0.251553, 1.56773)
 
 [connection signal="turn_around" from="Player" to="FollowCam/LookAheadCam" method="_on_player_turn_around"]
 

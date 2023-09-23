@@ -75,5 +75,4 @@ look_ahead_distance = 2.5
 
 [connection signal="turn_around" from="Player" to="FollowCam/LookAheadCam" method="_on_player_turn_around"]
 
-[editable path="Player"]
 [editable path="FollowCam"]

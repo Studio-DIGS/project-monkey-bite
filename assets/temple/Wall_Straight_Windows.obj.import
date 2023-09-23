@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b41w6xgcuwrs4"
+path="res://.godot/imported/Wall_Straight_Windows.obj-9b241a3781baf4edc62f907c7ce8fada.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Wall_Straight_Windows.obj-9b241a3781baf4edc62f907c7ce8fada.mesh"]
+
+source_file="res://assets/temple/Wall_Straight_Windows.obj"
+dest_files=["res://.godot/imported/Wall_Straight_Windows.obj-9b241a3781baf4edc62f907c7ce8fada.mesh", "res://.godot/imported/Wall_Straight_Windows.obj-9b241a3781baf4edc62f907c7ce8fada.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bma1wepg8gv2u"
+path="res://.godot/imported/Puzzle_Control_Pressure_Plate.obj-5fc2229359fec4123dddeb3dec561e97.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Puzzle_Control_Pressure_Plate.obj-5fc2229359fec4123dddeb3dec561e97.mesh"]
+
+source_file="res://assets/temple/Puzzle_Control_Pressure_Plate.obj"
+dest_files=["res://.godot/imported/Puzzle_Control_Pressure_Plate.obj-5fc2229359fec4123dddeb3dec561e97.mesh", "res://.godot/imported/Puzzle_Control_Pressure_Plate.obj-5fc2229359fec4123dddeb3dec561e97.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

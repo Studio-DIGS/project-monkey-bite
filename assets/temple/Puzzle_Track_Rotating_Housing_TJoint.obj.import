@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://fw68k3jpmj5g"
+path="res://.godot/imported/Puzzle_Track_Rotating_Housing_TJoint.obj-76678ec6f12c8669337e28ac486a2db8.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Puzzle_Track_Rotating_Housing_TJoint.obj-76678ec6f12c8669337e28ac486a2db8.mesh"]
+
+source_file="res://assets/temple/Puzzle_Track_Rotating_Housing_TJoint.obj"
+dest_files=["res://.godot/imported/Puzzle_Track_Rotating_Housing_TJoint.obj-76678ec6f12c8669337e28ac486a2db8.mesh", "res://.godot/imported/Puzzle_Track_Rotating_Housing_TJoint.obj-76678ec6f12c8669337e28ac486a2db8.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

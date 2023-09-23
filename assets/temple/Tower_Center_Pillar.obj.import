@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c5k7hiir2lr3q"
+path="res://.godot/imported/Tower_Center_Pillar.obj-a78735e708e1e5172f1afa393cce3b0b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Tower_Center_Pillar.obj-a78735e708e1e5172f1afa393cce3b0b.mesh"]
+
+source_file="res://assets/temple/Tower_Center_Pillar.obj"
+dest_files=["res://.godot/imported/Tower_Center_Pillar.obj-a78735e708e1e5172f1afa393cce3b0b.mesh", "res://.godot/imported/Tower_Center_Pillar.obj-a78735e708e1e5172f1afa393cce3b0b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

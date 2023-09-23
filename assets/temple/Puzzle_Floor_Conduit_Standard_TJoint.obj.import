@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dio2khksrqpfd"
+path="res://.godot/imported/Puzzle_Floor_Conduit_Standard_TJoint.obj-dc2b4e9fd0099dfbe89bcd3fc8a39c13.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Puzzle_Floor_Conduit_Standard_TJoint.obj-dc2b4e9fd0099dfbe89bcd3fc8a39c13.mesh"]
+
+source_file="res://assets/temple/Puzzle_Floor_Conduit_Standard_TJoint.obj"
+dest_files=["res://.godot/imported/Puzzle_Floor_Conduit_Standard_TJoint.obj-dc2b4e9fd0099dfbe89bcd3fc8a39c13.mesh", "res://.godot/imported/Puzzle_Floor_Conduit_Standard_TJoint.obj-dc2b4e9fd0099dfbe89bcd3fc8a39c13.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

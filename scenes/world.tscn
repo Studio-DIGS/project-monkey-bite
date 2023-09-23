@@ -1,19 +1,29 @@
-[gd_scene load_steps=9 format=3 uid="uid://cj6gya66i2u14"]
+[gd_scene load_steps=17 format=3 uid="uid://cj6gya66i2u14"]
 
-[ext_resource type="Texture2D" uid="uid://c8arnlq67qi7" path="res://assets/grids/Dark/texture_05.png" id="1_tv0vc"]
+[ext_resource type="Texture2D" uid="uid://dqgbgrchvfwve" path="res://assets/grids/Green/texture_05.png" id="1_wqphu"]
 [ext_resource type="Material" uid="uid://b2ree8v6onvcb" path="res://assets/pixel-outline/cube.tres" id="2_c6w0a"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://scenes/player.tscn" id="2_yuvdp"]
+[ext_resource type="ArrayMesh" uid="uid://b72npoi5wprc5" path="res://assets/temple/Prop_Flag_1.obj" id="3_dt7p3"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://scenes/follow_cam.tscn" id="3_h2r7l"]
+[ext_resource type="ArrayMesh" uid="uid://dohx36c77lpjt" path="res://assets/temple/Prop_Flag_Stand_Top.obj" id="4_l3pci"]
+[ext_resource type="ArrayMesh" uid="uid://b364hfo331by8" path="res://assets/temple/Prop_Flag_Stand_Extension.obj" id="5_54wmw"]
+[ext_resource type="ArrayMesh" uid="uid://d0s8nxa6enrfi" path="res://assets/temple/Pillar_Large_Base.obj" id="6_r0xrl"]
+[ext_resource type="ArrayMesh" uid="uid://cyakhubgros11" path="res://assets/temple/Pillar_Large_Middle.obj" id="7_m2bvf"]
+[ext_resource type="ArrayMesh" uid="uid://clsnvfujirrx" path="res://assets/temple/Pillar_Large_Top.obj" id="8_innno"]
+[ext_resource type="PackedScene" uid="uid://brwbynmm26exm" path="res://assets/models/Tree.gltf" id="11_arguq"]
+[ext_resource type="PackedScene" uid="uid://dnxlvi0kucdpk" path="res://assets/models/Fruit.gltf" id="12_foolb"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fsjmw"]
-albedo_texture = ExtResource("1_tv0vc")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8li3"]
+albedo_texture = ExtResource("1_wqphu")
 uv1_triplanar = true
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5en72"]
-sky_top_color = Color(0.211765, 0.443137, 0.780392, 1)
-sky_horizon_color = Color(0.572549, 0.666667, 0.772549, 1)
-ground_bottom_color = Color(0.486275, 0.498039, 0.466667, 1)
-ground_horizon_color = Color(0.607843, 0.654902, 0.756863, 1)
+sky_top_color = Color(0.168627, 0.466667, 0.713726, 1)
+sky_horizon_color = Color(0.509804, 0.701961, 0.85098, 1)
+sky_curve = 0.0776449
+ground_bottom_color = Color(0.466667, 0.647059, 0.768627, 1)
+ground_horizon_color = Color(0.494118, 0.713726, 0.839216, 1)
+ground_curve = 0.0428708
 
 [sub_resource type="Sky" id="Sky_xpkr3"]
 sky_material = SubResource("ProceduralSkyMaterial_5en72")
@@ -31,8 +41,26 @@ glow_enabled = true
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(1.25725, 0, 0, 0, 1.25725, 0, 0, 0, 1.25725, 0, -0.669183, 0)
-material_override = SubResource("StandardMaterial3D_fsjmw")
+transform = Transform3D(0.138876, 0, 0, 0, 1.25725, 0, 0, 0, 2.09812, 0, -0.669183, -1.68972)
+material_override = SubResource("StandardMaterial3D_t8li3")
+use_collision = true
+size = Vector3(500, 1, 5.25189)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(0.0493672, 0, 0.583142, 0, 1.25725, 0, -0.0142836, 0, 2.01546, -8.84576, -1.21142, -5.72535)
+material_override = SubResource("StandardMaterial3D_t8li3")
+use_collision = true
+size = Vector3(500, 1, 6)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(0.0249856, 0, -1.11153, 0, 1.25725, 0, 0.0156067, 0, 1.7795, 3.50009, -0.98196, -8.38531)
+material_override = SubResource("StandardMaterial3D_t8li3")
+use_collision = true
+size = Vector3(500, 1, 6)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(0.024755, 0, 1.1374, 0, 1.25725, 0, -0.01597, 0, 1.76308, 8.64253, -1.41081, -6.85575)
+material_override = SubResource("StandardMaterial3D_t8li3")
 use_collision = true
 size = Vector3(500, 1, 6)
 
@@ -45,6 +73,93 @@ use_collision = true
 transform = Transform3D(-8.87803e-08, 0, -5.4322, 0, 0.55144, 0, 2.03106, 0, -2.37449e-07, 17.2789, 3.33729, 0.0168887)
 material_override = ExtResource("2_c6w0a")
 use_collision = true
+
+[node name="Flag" type="Node3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.92163, 0, -3.48804)
+
+[node name="PropFlag1" type="MeshInstance3D" parent="Environment/Flag"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.357712, 4.1727, 0.46092)
+mesh = ExtResource("3_dt7p3")
+skeleton = NodePath("../../..")
+
+[node name="PropFlag2" type="MeshInstance3D" parent="Environment/Flag"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.572382, 4.1727, 0.46092)
+mesh = ExtResource("3_dt7p3")
+skeleton = NodePath("../../..")
+
+[node name="PropFlagStandTop" type="MeshInstance3D" parent="Environment/Flag"]
+transform = Transform3D(3.2, 0, 0, 0, 3.2, 0, 0, 0, 3.2, 0.104765, 2.47563, -1.50048)
+mesh = ExtResource("4_l3pci")
+skeleton = NodePath("../../..")
+
+[node name="PropFlagStandExtension" type="MeshInstance3D" parent="Environment/Flag"]
+transform = Transform3D(3.267, 0, 0, 0, 2.6153, 0, 0, 0, 3.267, 0.10266, -0.0775777, -1.53124)
+mesh = ExtResource("5_54wmw")
+skeleton = NodePath("../../..")
+
+[node name="Pillar" type="Node3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2)
+
+[node name="PillarLargeBase" type="MeshInstance3D" parent="Environment/Pillar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 0, -1.30382)
+mesh = ExtResource("6_r0xrl")
+skeleton = NodePath("../../..")
+
+[node name="PillarLargeMiddle" type="MeshInstance3D" parent="Environment/Pillar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 2, -1.30382)
+mesh = ExtResource("7_m2bvf")
+skeleton = NodePath("../../..")
+
+[node name="PillarLargeMiddle2" type="MeshInstance3D" parent="Environment/Pillar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 1, -1.30382)
+mesh = ExtResource("7_m2bvf")
+skeleton = NodePath("../../..")
+
+[node name="PillarLargeTop" type="MeshInstance3D" parent="Environment/Pillar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 3, -1.30382)
+mesh = ExtResource("8_innno")
+skeleton = NodePath("../../..")
+
+[node name="Pillar2" type="Node3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3)
+
+[node name="PillarLargeBase" type="MeshInstance3D" parent="Environment/Pillar2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 0, -1.30382)
+mesh = ExtResource("6_r0xrl")
+skeleton = NodePath("../../..")
+
+[node name="PillarLargeMiddle" type="MeshInstance3D" parent="Environment/Pillar2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 2, -1.30382)
+mesh = ExtResource("7_m2bvf")
+skeleton = NodePath("../../..")
+
+[node name="PillarLargeMiddle2" type="MeshInstance3D" parent="Environment/Pillar2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 1, -1.30382)
+mesh = ExtResource("7_m2bvf")
+skeleton = NodePath("../../..")
+
+[node name="PillarLargeTop" type="MeshInstance3D" parent="Environment/Pillar2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 3, -1.30382)
+mesh = ExtResource("8_innno")
+skeleton = NodePath("../../..")
+
+[node name="Pillar3" type="Node3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -2)
+
+[node name="PillarLargeBase" type="MeshInstance3D" parent="Environment/Pillar3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 0, -1.30382)
+mesh = ExtResource("6_r0xrl")
+skeleton = NodePath("../../..")
+
+[node name="PillarLargeMiddle2" type="MeshInstance3D" parent="Environment/Pillar3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 1, -1.30382)
+mesh = ExtResource("7_m2bvf")
+skeleton = NodePath("../../..")
+
+[node name="PillarLargeTop" type="MeshInstance3D" parent="Environment/Pillar3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 2, -1.30382)
+mesh = ExtResource("8_innno")
+skeleton = NodePath("../../..")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.422618, -0.800222, 0.425486, 0, 0.469472, 0.882947, -0.906307, 0.37315, -0.198407, 0, 0, 0)
@@ -65,7 +180,8 @@ jump_height = 10.0
 [node name="FollowCam" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_h2r7l")]
 target = NodePath("../Player")
 camera_speed = 8.0
-vertical_offset = 3.0
+vertical_offset = 11.67
+camera_arm = 37.165
 
 [node name="LookAheadCam" parent="FollowCam" index="0"]
 size = 10.757
@@ -73,7 +189,15 @@ far = 500.0
 camera_speed = 1.5
 look_ahead_distance = 2.5
 
+[node name="Tree" parent="." instance=ExtResource("11_arguq")]
+transform = Transform3D(0.660978, 0, 0, 0, 0.660978, 0, 0, 0, 0.660978, -0.798291, -0.353334, -10.9985)
+
+[node name="Tree2" parent="." instance=ExtResource("11_arguq")]
+transform = Transform3D(0.632137, 0, 0.193119, 0, 0.660978, 0, -0.193119, 0, 0.632137, 4.21638, -0.353334, -7.41737)
+
+[node name="Fruit" parent="." instance=ExtResource("12_foolb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.33644, 0.251553, 1.56773)
+
 [connection signal="turn_around" from="Player" to="FollowCam/LookAheadCam" method="_on_player_turn_around"]
 
-[editable path="Player"]
 [editable path="FollowCam"]

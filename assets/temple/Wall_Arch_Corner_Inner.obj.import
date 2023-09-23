@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cd2wnbtxb6oxk"
+path="res://.godot/imported/Wall_Arch_Corner_Inner.obj-dc82e399108e4572f8fcd6d71056b4dc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Wall_Arch_Corner_Inner.obj-dc82e399108e4572f8fcd6d71056b4dc.mesh"]
+
+source_file="res://assets/temple/Wall_Arch_Corner_Inner.obj"
+dest_files=["res://.godot/imported/Wall_Arch_Corner_Inner.obj-dc82e399108e4572f8fcd6d71056b4dc.mesh", "res://.godot/imported/Wall_Arch_Corner_Inner.obj-dc82e399108e4572f8fcd6d71056b4dc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

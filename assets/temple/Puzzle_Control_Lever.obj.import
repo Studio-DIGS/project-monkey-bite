@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ddyk7dg7fdux3"
+path="res://.godot/imported/Puzzle_Control_Lever.obj-dd9845373f81c0a4c715bb5fe7e93dd9.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Puzzle_Control_Lever.obj-dd9845373f81c0a4c715bb5fe7e93dd9.mesh"]
+
+source_file="res://assets/temple/Puzzle_Control_Lever.obj"
+dest_files=["res://.godot/imported/Puzzle_Control_Lever.obj-dd9845373f81c0a4c715bb5fe7e93dd9.mesh", "res://.godot/imported/Puzzle_Control_Lever.obj-dd9845373f81c0a4c715bb5fe7e93dd9.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

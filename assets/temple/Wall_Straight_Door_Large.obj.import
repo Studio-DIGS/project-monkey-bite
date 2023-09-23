@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://3c7bje31m7gm"
+path="res://.godot/imported/Wall_Straight_Door_Large.obj-97520d2574c726dbd96cca471ce3fd31.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Wall_Straight_Door_Large.obj-97520d2574c726dbd96cca471ce3fd31.mesh"]
+
+source_file="res://assets/temple/Wall_Straight_Door_Large.obj"
+dest_files=["res://.godot/imported/Wall_Straight_Door_Large.obj-97520d2574c726dbd96cca471ce3fd31.mesh", "res://.godot/imported/Wall_Straight_Door_Large.obj-97520d2574c726dbd96cca471ce3fd31.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

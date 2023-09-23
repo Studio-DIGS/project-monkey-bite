@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dr3gym2gias15"
+path="res://.godot/imported/Puzzle_Floor_Conduit_Control_Housing_End.obj-f94fc7d81efdc006e0ece5627dca98cd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Puzzle_Floor_Conduit_Control_Housing_End.obj-f94fc7d81efdc006e0ece5627dca98cd.mesh"]
+
+source_file="res://assets/temple/Puzzle_Floor_Conduit_Control_Housing_End.obj"
+dest_files=["res://.godot/imported/Puzzle_Floor_Conduit_Control_Housing_End.obj-f94fc7d81efdc006e0ece5627dca98cd.mesh", "res://.godot/imported/Puzzle_Floor_Conduit_Control_Housing_End.obj-f94fc7d81efdc006e0ece5627dca98cd.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

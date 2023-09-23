@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dx55j7bjiy0sn"
+path="res://.godot/imported/Puzzle_Floor_Conduit_Control_Housing_Unconnected.obj-b235d6e4681f91123f2ea3a404c347a6.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Puzzle_Floor_Conduit_Control_Housing_Unconnected.obj-b235d6e4681f91123f2ea3a404c347a6.mesh"]
+
+source_file="res://assets/temple/Puzzle_Floor_Conduit_Control_Housing_Unconnected.obj"
+dest_files=["res://.godot/imported/Puzzle_Floor_Conduit_Control_Housing_Unconnected.obj-b235d6e4681f91123f2ea3a404c347a6.mesh", "res://.godot/imported/Puzzle_Floor_Conduit_Control_Housing_Unconnected.obj-b235d6e4681f91123f2ea3a404c347a6.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://snhh8yqmy5ue"
+path="res://.godot/imported/Puzzle_Floor_Wall_Conduit_Connector.obj-b876fb5ea51abfe753169c24980e6580.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Puzzle_Floor_Wall_Conduit_Connector.obj-b876fb5ea51abfe753169c24980e6580.mesh"]
+
+source_file="res://assets/temple/Puzzle_Floor_Wall_Conduit_Connector.obj"
+dest_files=["res://.godot/imported/Puzzle_Floor_Wall_Conduit_Connector.obj-b876fb5ea51abfe753169c24980e6580.mesh", "res://.godot/imported/Puzzle_Floor_Wall_Conduit_Connector.obj-b876fb5ea51abfe753169c24980e6580.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

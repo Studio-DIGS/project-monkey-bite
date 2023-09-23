@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dfm7307resn66"
+path="res://.godot/imported/Wall_Straight_Doorway.obj-a899d56e3b52467c7073042b2d3e5fd8.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Wall_Straight_Doorway.obj-a899d56e3b52467c7073042b2d3e5fd8.mesh"]
+
+source_file="res://assets/temple/Wall_Straight_Doorway.obj"
+dest_files=["res://.godot/imported/Wall_Straight_Doorway.obj-a899d56e3b52467c7073042b2d3e5fd8.mesh", "res://.godot/imported/Wall_Straight_Doorway.obj-a899d56e3b52467c7073042b2d3e5fd8.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

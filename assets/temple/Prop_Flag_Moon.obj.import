@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bocdmcupflipd"
+path="res://.godot/imported/Prop_Flag_Moon.obj-bf066a7b469997539fccec861ddf41ff.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Prop_Flag_Moon.obj-bf066a7b469997539fccec861ddf41ff.mesh"]
+
+source_file="res://assets/temple/Prop_Flag_Moon.obj"
+dest_files=["res://.godot/imported/Prop_Flag_Moon.obj-bf066a7b469997539fccec861ddf41ff.mesh", "res://.godot/imported/Prop_Flag_Moon.obj-bf066a7b469997539fccec861ddf41ff.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

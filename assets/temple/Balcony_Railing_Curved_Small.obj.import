@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dvfjtxndv4464"
+path="res://.godot/imported/Balcony_Railing_Curved_Small.obj-5de2f1ad579884f60863ae3601c5010b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Balcony_Railing_Curved_Small.obj-5de2f1ad579884f60863ae3601c5010b.mesh"]
+
+source_file="res://assets/temple/Balcony_Railing_Curved_Small.obj"
+dest_files=["res://.godot/imported/Balcony_Railing_Curved_Small.obj-5de2f1ad579884f60863ae3601c5010b.mesh", "res://.godot/imported/Balcony_Railing_Curved_Small.obj-5de2f1ad579884f60863ae3601c5010b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

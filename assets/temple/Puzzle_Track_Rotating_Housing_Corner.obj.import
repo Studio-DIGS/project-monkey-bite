@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bxceopbbhss8m"
+path="res://.godot/imported/Puzzle_Track_Rotating_Housing_Corner.obj-bfec47092b06275e2aa2e24db8349b96.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Puzzle_Track_Rotating_Housing_Corner.obj-bfec47092b06275e2aa2e24db8349b96.mesh"]
+
+source_file="res://assets/temple/Puzzle_Track_Rotating_Housing_Corner.obj"
+dest_files=["res://.godot/imported/Puzzle_Track_Rotating_Housing_Corner.obj-bfec47092b06275e2aa2e24db8349b96.mesh", "res://.godot/imported/Puzzle_Track_Rotating_Housing_Corner.obj-bfec47092b06275e2aa2e24db8349b96.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

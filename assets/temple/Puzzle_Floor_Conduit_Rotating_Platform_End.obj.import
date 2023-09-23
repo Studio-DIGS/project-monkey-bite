@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://caixam68bcmv4"
+path="res://.godot/imported/Puzzle_Floor_Conduit_Rotating_Platform_End.obj-971f8ce9e2f1c96c5c85588d9da17922.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Puzzle_Floor_Conduit_Rotating_Platform_End.obj-971f8ce9e2f1c96c5c85588d9da17922.mesh"]
+
+source_file="res://assets/temple/Puzzle_Floor_Conduit_Rotating_Platform_End.obj"
+dest_files=["res://.godot/imported/Puzzle_Floor_Conduit_Rotating_Platform_End.obj-971f8ce9e2f1c96c5c85588d9da17922.mesh", "res://.godot/imported/Puzzle_Floor_Conduit_Rotating_Platform_End.obj-971f8ce9e2f1c96c5c85588d9da17922.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bqk223kef66oq"
+path="res://.godot/imported/Stairs_Coping_Ramp_Straight.obj-3d0daf54d9f86b2721f13f7c1feb8007.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Stairs_Coping_Ramp_Straight.obj-3d0daf54d9f86b2721f13f7c1feb8007.mesh"]
+
+source_file="res://assets/temple/Stairs_Coping_Ramp_Straight.obj"
+dest_files=["res://.godot/imported/Stairs_Coping_Ramp_Straight.obj-3d0daf54d9f86b2721f13f7c1feb8007.mesh", "res://.godot/imported/Stairs_Coping_Ramp_Straight.obj-3d0daf54d9f86b2721f13f7c1feb8007.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

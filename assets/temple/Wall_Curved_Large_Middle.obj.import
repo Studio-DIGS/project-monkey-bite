@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dpksb8n5hdn2c"
+path="res://.godot/imported/Wall_Curved_Large_Middle.obj-33a09348294e35e6bb1dcf46f230f53f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Wall_Curved_Large_Middle.obj-33a09348294e35e6bb1dcf46f230f53f.mesh"]
+
+source_file="res://assets/temple/Wall_Curved_Large_Middle.obj"
+dest_files=["res://.godot/imported/Wall_Curved_Large_Middle.obj-33a09348294e35e6bb1dcf46f230f53f.mesh", "res://.godot/imported/Wall_Curved_Large_Middle.obj-33a09348294e35e6bb1dcf46f230f53f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

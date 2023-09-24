@@ -8,3 +8,5 @@ res://scenes/player_run.gd
 res://scenes/player_air.gd
 res://scripts/player.gd
 res://assets/pixel-outline/pixelart_stylizer.gdshader
+res://grass.tres
+res://scenes/grass.tscn

@@ -1,13 +1,14 @@
+MeshInstance3D
+MultiMeshInstance3D
+Node3D
 ParallaxLayer
 ParallaxBackground
 Sprite2D
 CanvasLayer
 Sprite3D
-Node3D
 Node
 StateMachine
 State
-MeshInstance3D
 Camera3D
 CSGBox3D
 CollisionShape3D

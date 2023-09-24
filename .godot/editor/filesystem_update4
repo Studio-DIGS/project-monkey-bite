@@ -3,3 +3,8 @@ res://pixelart_stylizer.gdshader
 res://assets/pixel-outline/cube.tres
 res://assets/pixel-outline/demo.tres
 res://scenes/player.tscn
+res://scripts/player_idle.gd
+res://scenes/player_run.gd
+res://scenes/player_air.gd
+res://scripts/player.gd
+res://assets/pixel-outline/pixelart_stylizer.gdshader

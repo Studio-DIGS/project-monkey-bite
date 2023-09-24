@@ -46,7 +46,13 @@ glow_enabled = true
 transform = Transform3D(0.138876, 0, 0, 0, 1.25725, 0, 0, 0, 2.09812, 0, -0.669183, -1.68972)
 material_override = SubResource("StandardMaterial3D_t8li3")
 use_collision = true
-size = Vector3(500, 1, 5.25189)
+size = Vector3(454.302, 1, 5.25189)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(-6.07046e-09, 0, -2.35167, 0, 1.25725, 0, 0.138876, 0, -1.02795e-07, 24.888, -0.669183, -28.4985)
+material_override = SubResource("StandardMaterial3D_t8li3")
+use_collision = true
+size = Vector3(454.302, 1, 5.25189)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Environment"]
 transform = Transform3D(0.0493672, 0, 0.583142, 0, 1.25725, 0, -0.0142836, 0, 2.01546, -8.84576, -1.21142, -5.72535)
@@ -145,6 +151,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 3, -1.30382)
 mesh = ExtResource("8_innno")
 skeleton = NodePath("../../..")
 
+[node name="Pillar4" type="Node3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.8273, 0, -19.2732)
+
+[node name="PillarLargeBase" type="MeshInstance3D" parent="Environment/Pillar4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 0, -1.30382)
+mesh = ExtResource("6_r0xrl")
+skeleton = NodePath("../../..")
+
+[node name="PillarLargeMiddle" type="MeshInstance3D" parent="Environment/Pillar4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 2, -1.30382)
+mesh = ExtResource("7_m2bvf")
+skeleton = NodePath("../../..")
+
+[node name="PillarLargeMiddle2" type="MeshInstance3D" parent="Environment/Pillar4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 1, -1.30382)
+mesh = ExtResource("7_m2bvf")
+skeleton = NodePath("../../..")
+
+[node name="PillarLargeTop" type="MeshInstance3D" parent="Environment/Pillar4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 3, -1.30382)
+mesh = ExtResource("8_innno")
+skeleton = NodePath("../../..")
+
 [node name="Pillar3" type="Node3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -2)
 
@@ -169,39 +198,42 @@ transform = Transform3D(0.660978, 0, 0, 0, 0.660978, 0, 0, 0, 0.660978, -0.79829
 [node name="Tree2" parent="Environment" instance=ExtResource("11_arguq")]
 transform = Transform3D(0.632137, 0, 0.193119, 0, 0.660978, 0, -0.193119, 0, 0.632137, 4.21638, -0.353334, -7.41737)
 
+[node name="Tree3" parent="Environment" instance=ExtResource("11_arguq")]
+transform = Transform3D(0.632137, 0, 0.193119, 0, 0.660978, 0, -0.193119, 0, 0.632137, 21.5217, -0.353333, -10.9252)
+
 [node name="Fruit" parent="Environment" instance=ExtResource("12_foolb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.33644, 0.251553, 1.56773)
 
 [node name="WallRuinedFullCracked1" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 11.4502, -0.0405574, -4.88361)
+transform = Transform3D(3.67315, 0, -1.58366, 0, 4, 0, 1.58366, 0, 3.67315, 12.7578, -0.0405574, -5.71669)
 mesh = ExtResource("13_daoyd")
 skeleton = NodePath("../..")
 
 [node name="WallRuinedHalf1" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 15.9399, -0.040558, -5.49193)
+transform = Transform3D(3.59294, 0, 3.47718, 0, 5, 0, -3.47718, 0, 3.59294, 15.1905, -0.040558, -6.26631)
 mesh = ExtResource("14_qjvny")
 skeleton = NodePath("../..")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.422618, -0.800222, 0.425486, 0, 0.469472, 0.882947, -0.906307, 0.37315, -0.198407, 0, 0, 0)
 shadow_enabled = true
-shadow_blur = 0.065
+shadow_blur = 1.745
 directional_shadow_mode = 1
-directional_shadow_split_1 = 0.015
+directional_shadow_split_1 = 0.09
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_y8ynd")
 
 [node name="Player" parent="." instance=ExtResource("2_yuvdp")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.78614, 1.41166, -0.0926752)
-speed = 7.25
 accel = 6.505
 jump_height = 10.0
 
 [node name="FollowCam" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_h2r7l")]
+transform = Transform3D(1, 0, 0, 0, 0.994522, 0.104528, 0, -0.104528, 0.994522, 0, 0, 0)
 target = NodePath("../Player")
 camera_speed = 8.0
-vertical_offset = 11.67
+vertical_offset = 5.86
 camera_arm = 37.165
 
 [node name="LookAheadCam" parent="FollowCam" index="0"]

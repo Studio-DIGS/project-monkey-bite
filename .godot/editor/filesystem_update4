@@ -10,3 +10,6 @@ res://scripts/player.gd
 res://assets/pixel-outline/pixelart_stylizer.gdshader
 res://grass.tres
 res://scenes/grass.tscn
+res://assets/pixel-outline/floor.tres
+res://grass2.tres
+res://assets/pixel-outline/camera.tres

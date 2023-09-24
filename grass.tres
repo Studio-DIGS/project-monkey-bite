@@ -50,11 +50,11 @@ default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
 op_type = 0
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_uwv65"]
-default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0.1, 0.1, 0.1)]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0.5, 0.1, 0.5)]
 operator = 2
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_2tlv7"]
-default_input_values = [0, 0.0, 1, 3.0]
+default_input_values = [0, 0.0, 1, 2.0]
 operator = 2
 
 [sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_ot4l6"]
@@ -118,7 +118,7 @@ void vertex() {
 
 
 // FloatOp:17
-	float n_in17p1 = 3.00000;
+	float n_in17p1 = 2.00000;
 	float n_out17p0 = n_out11p0 * n_in17p1;
 
 
@@ -158,7 +158,7 @@ void vertex() {
 
 
 // VectorOp:16
-	vec3 n_in16p1 = vec3(0.10000, 0.10000, 0.10000);
+	vec3 n_in16p1 = vec3(0.50000, 0.10000, 0.50000);
 	vec3 n_out16p0 = n_out9p0 * n_in16p1;
 
 
@@ -218,7 +218,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-543.89, 96.0788)
+graph_offset = Vector2(-869.051, 230.709)
 modes/cull = 2
 modes/diffuse = 3
 nodes/vertex/0/position = Vector2(1820, 280)
@@ -256,7 +256,7 @@ nodes/vertex/17/node = SubResource("VisualShaderNodeFloatOp_2tlv7")
 nodes/vertex/17/position = Vector2(-340, 440)
 nodes/vertex/18/node = SubResource("VisualShaderNodeFloatFunc_ot4l6")
 nodes/vertex/18/position = Vector2(-120, 460)
-nodes/vertex/connections = PackedInt32Array(2, 0, 3, 0, 3, 1, 4, 0, 5, 0, 6, 0, 6, 0, 0, 0, 7, 0, 8, 2, 8, 0, 9, 0, 4, 0, 9, 1, 10, 0, 8, 0, 12, 0, 13, 0, 13, 0, 14, 0, 13, 2, 14, 1, 14, 0, 15, 0, 9, 0, 16, 0, 16, 0, 6, 1, 15, 0, 10, 2, 18, 0, 15, 1, 11, 0, 17, 0, 17, 0, 18, 0)
+nodes/vertex/connections = PackedInt32Array(2, 0, 3, 0, 3, 1, 4, 0, 5, 0, 6, 0, 6, 0, 0, 0, 7, 0, 8, 2, 8, 0, 9, 0, 4, 0, 9, 1, 10, 0, 8, 0, 12, 0, 13, 0, 13, 0, 14, 0, 13, 2, 14, 1, 14, 0, 15, 0, 9, 0, 16, 0, 16, 0, 6, 1, 15, 0, 10, 2, 11, 0, 17, 0, 17, 0, 18, 0, 18, 0, 15, 1)
 nodes/fragment/2/node = SubResource("VisualShaderNodeVectorCompose_l2xy4")
 nodes/fragment/2/position = Vector2(-100, 420)
 nodes/fragment/3/node = SubResource("VisualShaderNodeFloatConstant_eupd5")
@@ -273,4 +273,4 @@ nodes/fragment/8/node = SubResource("VisualShaderNodeColorParameter_2jha0")
 nodes/fragment/8/position = Vector2(-500, -100)
 nodes/fragment/9/node = SubResource("VisualShaderNodeColorParameter_nbunr")
 nodes/fragment/9/position = Vector2(-780, 40)
-nodes/fragment/connections = PackedInt32Array(2, 0, 0, 8, 2, 0, 0, 9, 3, 0, 0, 3, 4, 0, 5, 0, 5, 1, 6, 0, 6, 0, 7, 2, 7, 0, 0, 0, 8, 0, 7, 0, 9, 0, 7, 1)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 8, 2, 0, 0, 9, 3, 0, 0, 3, 4, 0, 5, 0, 5, 1, 6, 0, 6, 0, 7, 2, 8, 0, 7, 0, 9, 0, 7, 1, 7, 0, 0, 0)

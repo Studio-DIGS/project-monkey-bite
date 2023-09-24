@@ -151,7 +151,7 @@ shader_parameter/cloud_direction2 = Vector2(1.585, 0.17)
 shader_parameter/cloud_scale = Vector2(0.04, 2.74)
 shader_parameter/cloud_distance = 0.0
 shader_parameter/cloud_speed = 0.05
-shader_parameter/cloud_speed2 = 0.125
+shader_parameter/cloud_speed2 = 0.015
 shader_parameter/cloud_texture = SubResource("NoiseTexture2D_qe2md")
 shader_parameter/cloud_texture2 = SubResource("NoiseTexture2D_mfdm4")
 

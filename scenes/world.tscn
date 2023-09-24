@@ -49,8 +49,8 @@ noise = SubResource("FastNoiseLite_p7c4r")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ujfex"]
 render_priority = 0
 shader = ExtResource("15_hlcfo")
-shader_parameter/BaseColor = Color(0.109804, 0.25098, 0.039216, 1)
-shader_parameter/GrassColor = Color(0.227451, 0.592157, 0.066667, 1)
+shader_parameter/BaseColor = Color(0.501961, 0.890196, 0.321569, 1)
+shader_parameter/GrassColor = Color(0.501961, 0.890196, 0.321569, 1)
 shader_parameter/WindNoise = SubResource("NoiseTexture2D_mmvwa")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y72y4"]
@@ -95,7 +95,6 @@ size = Vector2(40, 10)
 [node name="World" type="Node3D"]
 
 [node name="Environment" type="Node3D" parent="."]
-visible = false
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment"]
 transform = Transform3D(0.138876, 0, 0, 0, 1.25725, 0, 0, 0, 2.09812, 0, -0.669183, -1.68972)
@@ -111,18 +110,21 @@ size = Vector3(454.302, 1, 5.25189)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Environment"]
 transform = Transform3D(0.0493672, 0, 0.583142, 0, 1.25725, 0, -0.0142836, 0, 2.01546, -8.84576, -1.21142, -5.72535)
+visible = false
 material_override = SubResource("StandardMaterial3D_t8li3")
 use_collision = true
 size = Vector3(500, 1, 6)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Environment"]
 transform = Transform3D(0.0249856, 0, -1.11153, 0, 1.25725, 0, 0.0156067, 0, 1.7795, 3.50009, -0.98196, -8.38531)
+visible = false
 material_override = SubResource("StandardMaterial3D_t8li3")
 use_collision = true
 size = Vector3(500, 1, 6)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Environment"]
 transform = Transform3D(0.024755, 0, 1.1374, 0, 1.25725, 0, -0.01597, 0, 1.76308, 8.64253, -1.41081, -6.85575)
+visible = false
 material_override = SubResource("StandardMaterial3D_t8li3")
 use_collision = true
 size = Vector3(500, 1, 6)
@@ -134,6 +136,7 @@ use_collision = true
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Environment"]
 transform = Transform3D(-8.87803e-08, 0, -5.4322, 0, 0.55144, 0, 2.03106, 0, -2.37449e-07, 14.0665, 2.67899, 0.0168886)
+visible = false
 material_override = ExtResource("2_c6w0a")
 use_collision = true
 
@@ -249,15 +252,19 @@ skeleton = NodePath("../../..")
 
 [node name="Tree" parent="Environment" instance=ExtResource("11_arguq")]
 transform = Transform3D(0.660978, 0, 0, 0, 0.660978, 0, 0, 0, 0.660978, -0.798291, -0.353334, -10.9985)
+visible = false
 
 [node name="Tree2" parent="Environment" instance=ExtResource("11_arguq")]
 transform = Transform3D(0.632137, 0, 0.193119, 0, 0.660978, 0, -0.193119, 0, 0.632137, 4.21638, -0.353334, -7.41737)
+visible = false
 
 [node name="Tree3" parent="Environment" instance=ExtResource("11_arguq")]
 transform = Transform3D(0.632137, 0, 0.193119, 0, 0.660978, 0, -0.193119, 0, 0.632137, 21.5217, -0.353333, -10.9252)
+visible = false
 
 [node name="Fruit" parent="Environment" instance=ExtResource("12_foolb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.33644, 0.251553, 1.56773)
+visible = false
 
 [node name="WallRuinedFullCracked1" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(3.67315, 0, -1.58366, 0, 4, 0, 1.58366, 0, 3.67315, 12.7578, -0.0405574, -5.71669)
@@ -300,7 +307,7 @@ camera_speed = 1.5
 look_ahead_distance = 2.5
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.238286, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(2.33687, 0, 0, 0, 0.424119, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_ujfex")
 cast_shadow = 0
 multimesh = SubResource("MultiMesh_etsoq")

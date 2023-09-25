@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://4vymcd4lcm3x"]
+
+[ext_resource type="Script" path="res://player/follow_cam.gd" id="1_s8rui"]
+[ext_resource type="Script" path="res://player/look_ahead_cam.gd" id="2_ghoye"]
+[ext_resource type="Material" uid="uid://ct3a0qqkp66di" path="res://assets/pixel-outline/camera.tres" id="3_ihl7p"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rpb4e"]
+material = ExtResource("3_ihl7p")
+size = Vector2(20, 20)
+
+[node name="FollowCam" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
+script = ExtResource("1_s8rui")
+
+[node name="LookAheadCam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+projection = 1
+current = true
+size = 5.92179
+near = 0.001
+script = ExtResource("2_ghoye")
+
+[node name="Postprocess" type="MeshInstance3D" parent="LookAheadCam"]
+transform = Transform3D(1, 0, 0, 0, -2.98023e-08, -1, 0, 1, -2.98023e-08, 0, 1.49012e-08, -0.875)
+mesh = SubResource("PlaneMesh_rpb4e")

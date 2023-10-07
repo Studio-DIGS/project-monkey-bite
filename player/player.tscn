@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ceg0a8jxwnfae"]
+[gd_scene load_steps=15 format=3 uid="uid://ceg0a8jxwnfae"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_7knqw"]
 [ext_resource type="Script" path="res://player/body.gd" id="2_ioxg0"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://player/states/player_run.gd" id="6_yy7o3"]
 [ext_resource type="Script" path="res://player/states/player_air.gd" id="7_7qn2t"]
 [ext_resource type="Script" path="res://player/states/player_land.gd" id="8_m0mi4"]
+[ext_resource type="Script" path="res://common/hurtbox.gd" id="9_sbn7q"]
+[ext_resource type="Script" path="res://common/health.gd" id="9_sjui1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_48kjw"]
 
@@ -16,6 +18,8 @@ material = ExtResource("3_d4l1y")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_pliqs"]
 material = ExtResource("3_d4l1y")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q2byd"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_7knqw")
@@ -49,5 +53,15 @@ script = ExtResource("7_7qn2t")
 
 [node name="Land" type="Node" parent="StateMachine"]
 script = ExtResource("8_m0mi4")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("9_sjui1")
+
+[node name="Hurtbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("9_sbn7q")
+health = NodePath("../Health")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape3D_q2byd")
 
 [connection signal="turn_around" from="." to="Body" method="_on_player_turn_around"]

@@ -1,7 +1,10 @@
-res://levels/grass/grass.tscn
+res://player/player.tscn
 res://assets/pixel-outline/demo.tres
 res://assets/pixel-outline/pixelart_stylizer.gdshader
 res://assets/pixel-outline/camera.tres
 res://levels/grass/grass_floor.tres
 res://levels/grass/grass.tres
+res://common/hitbox.gd
+res://common/hurtbox.gd
+res://common/health.gd
 res://levels/world.tscn

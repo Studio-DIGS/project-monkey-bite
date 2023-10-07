@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cj6gya66i2u14"]
+[gd_scene load_steps=37 format=3 uid="uid://cj6gya66i2u14"]
 
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="2_yuvdp"]
 [ext_resource type="ArrayMesh" uid="uid://b72npoi5wprc5" path="res://assets/temple/Prop_Flag_1.obj" id="3_dt7p3"]
@@ -14,6 +14,7 @@
 [ext_resource type="Material" uid="uid://bdrk3hn2y0uie" path="res://levels/grass/grass_floor.tres" id="14_8g4lb"]
 [ext_resource type="ArrayMesh" uid="uid://ie1glsealiff" path="res://assets/temple/Wall_Ruined_Half_1.obj" id="14_qjvny"]
 [ext_resource type="Shader" uid="uid://cuvclsyoc2sse" path="res://levels/grass/grass.tres" id="15_hlcfo"]
+[ext_resource type="Script" path="res://common/hitbox.gd" id="16_glqto"]
 [ext_resource type="PackedScene" uid="uid://b1ob2xlr74xc2" path="res://levels/grass/grass.tscn" id="16_pu3ap"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8li3"]
@@ -217,6 +218,10 @@ buffer = PackedFloat32Array(0, 0, -1.001, -11.0869, 0, 1.001, 0, -0.117754, 1.00
 [sub_resource type="PlaneMesh" id="PlaneMesh_jl554"]
 material = ExtResource("14_8g4lb")
 size = Vector2(40, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yiepy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w6cxs"]
 
 [node name="World" type="Node3D"]
 
@@ -458,6 +463,17 @@ mesh = SubResource("PlaneMesh_jl554")
 
 [node name="grass" parent="." instance=ExtResource("16_pu3ap")]
 visible = false
+
+[node name="TestDamage" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.86651, 0.398346, 0)
+mesh = SubResource("BoxMesh_yiepy")
+
+[node name="Hitbox" type="Area3D" parent="TestDamage"]
+script = ExtResource("16_glqto")
+damage = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestDamage/Hitbox"]
+shape = SubResource("BoxShape3D_w6cxs")
 
 [connection signal="turn_around" from="Player" to="FollowCam/LookAheadCam" method="_on_player_turn_around"]
 

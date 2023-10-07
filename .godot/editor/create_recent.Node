@@ -1,3 +1,9 @@
+CollisionShape3D
+Hurtbox
+Hitbox
+CSGMesh3D
+Health
+Area3D
 MeshInstance3D
 MultiMeshInstance3D
 Node3D
@@ -11,6 +17,5 @@ StateMachine
 State
 Camera3D
 CSGBox3D
-CollisionShape3D
 CharacterBody3D
 WorldEnvironment

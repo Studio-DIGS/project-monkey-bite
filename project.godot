@@ -68,6 +68,16 @@ throw={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="environment"
+3d_physics/layer_2="player"
+3d_physics/layer_3="player_hitbox"
+3d_physics/layer_4="player_hurtbox"
+3d_physics/layer_5="enemy"
+3d_physics/layer_6="enemy_hitbox"
+3d_physics/layer_7="enemy_hurtbox"
+
 [rendering]
 
 lights_and_shadows/directional_shadow/size=16384

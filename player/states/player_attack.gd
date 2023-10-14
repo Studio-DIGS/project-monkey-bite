@@ -3,7 +3,6 @@ extends PlayerState
 var right_fist = true
 
 func enter(_msg := {}):
-	print(player.anim.assigned_animation)
 	player.anim.pause()
 	if right_fist:
 		player.anim.play("attack1")

@@ -10,3 +10,6 @@ res://player/states/player_idle.gd
 res://levels/world.tscn
 res://player/states/player_run.gd
 res://common/state_machine.gd
+res://common/hitbox.gd
+res://test_enemy.gd
+res://common/hurtbox.gd

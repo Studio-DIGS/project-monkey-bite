@@ -1,11 +1,12 @@
 MeshInstance3D
-AnimationPlayer
-State
 CollisionShape3D
+CharacterBody3D
+Health
 Hurtbox
 Hitbox
+AnimationPlayer
+State
 CSGMesh3D
-Health
 Area3D
 MultiMeshInstance3D
 Node3D
@@ -18,5 +19,4 @@ Node
 StateMachine
 Camera3D
 CSGBox3D
-CharacterBody3D
 WorldEnvironment

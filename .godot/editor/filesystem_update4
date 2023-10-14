@@ -4,7 +4,9 @@ res://assets/pixel-outline/pixelart_stylizer.gdshader
 res://assets/pixel-outline/camera.tres
 res://levels/grass/grass_floor.tres
 res://levels/grass/grass.tres
-res://common/hitbox.gd
-res://common/hurtbox.gd
-res://common/health.gd
+res://player/states/player_attack.gd
+res://player/player.gd
+res://player/states/player_idle.gd
 res://levels/world.tscn
+res://player/states/player_run.gd
+res://common/state_machine.gd

@@ -1,10 +1,12 @@
+MeshInstance3D
+AnimationPlayer
+State
 CollisionShape3D
 Hurtbox
 Hitbox
 CSGMesh3D
 Health
 Area3D
-MeshInstance3D
 MultiMeshInstance3D
 Node3D
 ParallaxLayer
@@ -14,7 +16,6 @@ CanvasLayer
 Sprite3D
 Node
 StateMachine
-State
 Camera3D
 CSGBox3D
 CharacterBody3D

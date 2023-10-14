@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ceg0a8jxwnfae"]
+[gd_scene load_steps=22 format=3 uid="uid://ceg0a8jxwnfae"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_7knqw"]
 [ext_resource type="Script" path="res://player/body.gd" id="2_ioxg0"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://player/states/player_run.gd" id="6_yy7o3"]
 [ext_resource type="Script" path="res://player/states/player_air.gd" id="7_7qn2t"]
 [ext_resource type="Script" path="res://player/states/player_land.gd" id="8_m0mi4"]
+[ext_resource type="Script" path="res://player/states/player_attack.gd" id="9_0f5gx"]
 [ext_resource type="Script" path="res://common/hurtbox.gd" id="9_sbn7q"]
 [ext_resource type="Script" path="res://common/health.gd" id="9_sjui1"]
 
@@ -19,25 +20,136 @@ material = ExtResource("3_d4l1y")
 [sub_resource type="CylinderMesh" id="CylinderMesh_pliqs"]
 material = ExtResource("3_d4l1y")
 
+[sub_resource type="SphereMesh" id="SphereMesh_hmupo"]
+material = ExtResource("3_d4l1y")
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q2byd"]
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="Animation" id="Animation_goqiy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/fistR:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.6, -0.2, -0.275)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh/body:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mesh/fistL:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.6, -0.2, -0.275)]
+}
+
+[sub_resource type="Animation" id="Animation_avbdr"]
+resource_name = "bob"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.08, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8jdxq"]
+resource_name = "attack1"
+length = 0.30001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/fistR:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 0.466517, 0.098073),
+"update": 0,
+"values": [Vector3(0.6, -0.2, -0.275), Vector3(0.6, -0.2, -1.5), Vector3(0.6, -0.2, -0.275)]
+}
+
+[sub_resource type="Animation" id="Animation_r2djm"]
+resource_name = "attack2"
+length = 0.30001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/fistL:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 0.466517, 0.0980731),
+"update": 0,
+"values": [Vector3(-0.6, -0.2, -0.275), Vector3(-0.6, -0.2, -1.5), Vector3(-0.6, -0.2, -0.275)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h1s3s"]
+_data = {
+"RESET": SubResource("Animation_goqiy"),
+"attack1": SubResource("Animation_8jdxq"),
+"attack2": SubResource("Animation_r2djm"),
+"bob": SubResource("Animation_avbdr")
+}
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim")]
 collision_layer = 2
 script = ExtResource("1_7knqw")
+anim = NodePath("AnimationPlayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_48kjw")
 
-[node name="Body" type="Node3D" parent="."]
+[node name="Mesh" type="Node3D" parent="."]
 script = ExtResource("2_ioxg0")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+[node name="body" type="MeshInstance3D" parent="Mesh"]
 mesh = SubResource("CapsuleMesh_5owbq")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(0.464203, 0, 0, 0, -1.20654e-08, 0.464203, 0, -0.276023, -2.02909e-08, 0, 0.522088, -0.533807)
+[node name="eye" type="MeshInstance3D" parent="Mesh/body"]
+transform = Transform3D(0.464203, 0, 0, 0, -3.80245e-09, 0.464203, 0, -0.0869894, -2.02909e-08, 0, 0.522088, -0.494278)
 mesh = SubResource("CylinderMesh_pliqs")
+skeleton = NodePath("../..")
+
+[node name="fistR" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(0.340109, 0, 0, 0, 0.340109, 0, 0, 0, 0.340109, 0.6, -0.2, -0.275)
+material_override = ExtResource("3_d4l1y")
+mesh = SubResource("SphereMesh_hmupo")
+
+[node name="fistL" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(0.340109, 0, 0, 0, 0.340109, 0, 0, 0, 0.340109, -0.6, -0.2, -0.275)
+material_override = ExtResource("3_d4l1y")
+mesh = SubResource("SphereMesh_hmupo")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("4_mjfp3")
@@ -55,6 +167,9 @@ script = ExtResource("7_7qn2t")
 [node name="Land" type="Node" parent="StateMachine"]
 script = ExtResource("8_m0mi4")
 
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("9_0f5gx")
+
 [node name="Health" type="Node" parent="."]
 script = ExtResource("9_sjui1")
 
@@ -67,4 +182,11 @@ health = NodePath("../Health")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
 shape = SubResource("CapsuleShape3D_q2byd")
 
-[connection signal="turn_around" from="." to="Body" method="_on_player_turn_around"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_process_mode = 0
+libraries = {
+"": SubResource("AnimationLibrary_h1s3s")
+}
+
+[connection signal="turn_around" from="." to="Mesh" method="_on_player_turn_around"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack" method="_on_animation_player_animation_finished"]

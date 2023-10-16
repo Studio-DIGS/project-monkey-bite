@@ -9,7 +9,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	velocity.y -= 20 * delta
-	velocity.x = lerp(velocity.x, 0.0, delta * 5)
+	
+	if is_on_floor():
+		velocity.x = lerp(velocity.x, 0.0, delta * 5)
+	
 	move_and_slide()
 
 

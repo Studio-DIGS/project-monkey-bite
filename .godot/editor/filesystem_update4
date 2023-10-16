@@ -13,3 +13,9 @@ res://common/state_machine.gd
 res://common/hitbox.gd
 res://test_enemy.gd
 res://common/hurtbox.gd
+res://player/attacks/attack_resource.gd
+res://player/attacks/jab_1.tres
+res://player/attacks/jab_1.res
+res://player/attacks/jab_2.res
+res://player/attacks/jab_2.tres
+res://player/attacks/jab_3.tres

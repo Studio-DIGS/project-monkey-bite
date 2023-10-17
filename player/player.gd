@@ -1,6 +1,10 @@
 class_name Player
 extends CharacterBody3D
 
+# @onready var anim = $AnimationPlayer doesn't work for some reason
+@export var anim: AnimationPlayer
+@export var hitbox: Hitbox
+@export var combo: Array[AttackResource] = []
 
 @export var speed = 5.0
 @export var accel = 15.0

@@ -19,7 +19,7 @@ func _ready():
 	# Ensure the camera starts at a reasonable initial position
 	currentPosition = Vector3(0, 5, 5)  # Adjust the initial camera position
 	
-func process_cam(dir : float, current_position : Vector3, delta : float):
+func process_cam(_dir : float, current_position : Vector3, delta : float):
 	if target != null:
 		# Get the target position (taking into account distance camera should be above the target)
 		var target_position = target.global_position + Vector3(0, vertical_offset, depth_offset)

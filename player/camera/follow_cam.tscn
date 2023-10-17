@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://4vymcd4lcm3x"]
+
+[ext_resource type="Script" path="res://player/camera/cam_control.gd" id="1_6ynvk"]
+[ext_resource type="Script" path="res://player/camera/camera_system.gd" id="1_atpw0"]
+[ext_resource type="Script" path="res://player/camera/main_cam.gd" id="1_s8rui"]
+[ext_resource type="Script" path="res://player/camera/look_ahead_cam.gd" id="2_ghoye"]
+[ext_resource type="Material" uid="uid://ct3a0qqkp66di" path="res://assets/pixel-outline/camera.tres" id="3_ihl7p"]
+[ext_resource type="Script" path="res://player/camera/follow_cam.gd" id="3_xr5e5"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rpb4e"]
+material = ExtResource("3_ihl7p")
+size = Vector2(20, 20)
+
+[node name="CameraSystem" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_atpw0")
+
+[node name="CameraContainer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="LookAheadCam" type="Camera3D" parent="CameraContainer"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 5)
+projection = 1
+current = true
+size = 6.5
+near = 0.001
+script = ExtResource("1_6ynvk")
+
+[node name="Postprocess" type="MeshInstance3D" parent="CameraContainer/LookAheadCam"]
+transform = Transform3D(1, 0, 0, 0, -2.98023e-08, -1, 0, 1, -2.98023e-08, 0, 1.49012e-08, -0.875)
+visible = false
+mesh = SubResource("PlaneMesh_rpb4e")
+
+[node name="Follow_Cam" type="Node" parent="."]
+script = ExtResource("3_xr5e5")
+vertical_offset = 2.5
+depth_offset = 0.0
+
+[node name="Main_Cam" type="Node" parent="." node_paths=PackedStringArray("camera_move_container", "camera", "camera_follow", "camera_lookahead")]
+script = ExtResource("1_s8rui")
+camera_move_container = NodePath("../CameraContainer")
+camera = NodePath("../CameraContainer/LookAheadCam")
+camera_follow = NodePath("../Follow_Cam")
+camera_lookahead = NodePath("../Lookahead_Cam")
+
+[node name="Lookahead_Cam" type="Node" parent="."]
+script = ExtResource("2_ghoye")
+camera_speed = 3.0
+look_ahead_distance = 2.0
+
+[connection signal="change_direction" from="." to="Main_Cam" method="_on_camera_system_change_direction"]

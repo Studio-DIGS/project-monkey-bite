@@ -1,8 +1,8 @@
-[gd_scene load_steps=34 format=3 uid="uid://cj6gya66i2u14"]
+[gd_scene load_steps=32 format=3 uid="uid://cj6gya66i2u14"]
 
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="2_yuvdp"]
 [ext_resource type="ArrayMesh" uid="uid://b72npoi5wprc5" path="res://assets/temple/Prop_Flag_1.obj" id="3_dt7p3"]
-[ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://player/follow_cam.tscn" id="3_h2r7l"]
+[ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://player/camera/follow_cam.tscn" id="3_h2r7l"]
 [ext_resource type="ArrayMesh" uid="uid://dohx36c77lpjt" path="res://assets/temple/Prop_Flag_Stand_Top.obj" id="4_l3pci"]
 [ext_resource type="ArrayMesh" uid="uid://b364hfo331by8" path="res://assets/temple/Prop_Flag_Stand_Extension.obj" id="5_54wmw"]
 [ext_resource type="ArrayMesh" uid="uid://d0s8nxa6enrfi" path="res://assets/temple/Pillar_Large_Base.obj" id="6_r0xrl"]
@@ -162,21 +162,13 @@ background_mode = 2
 background_color = Color(0.4, 0.615686, 0.811765, 1)
 sky = SubResource("Sky_xpkr3")
 tonemap_mode = 2
-sdfgi_enabled = true
 glow_enabled = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_p7c4r"]
-fractal_type = 0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mmvwa"]
-noise = SubResource("FastNoiseLite_p7c4r")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ujfex"]
 render_priority = 0
 shader = ExtResource("15_hlcfo")
 shader_parameter/BaseColor = Color(0.501961, 0.890196, 0.321569, 1)
 shader_parameter/GrassColor = Color(0.501961, 0.890196, 0.321569, 1)
-shader_parameter/WindNoise = SubResource("NoiseTexture2D_mmvwa")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y72y4"]
 
@@ -258,7 +250,7 @@ use_collision = true
 size = Vector3(500, 1, 6)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(-8.87803e-08, 0, -5.4322, 0, 0.55144, 0, 2.03106, 0, -2.37449e-07, -8.14235, 2.2121, 0.0168879)
+transform = Transform3D(-1.19209e-07, 0.315007, -4.45864, -0.694663, 0.425315, 2.91597, 1.90857, 0.154802, 1.06133, -8.14235, 2.2121, 0.0168879)
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
 
@@ -427,24 +419,11 @@ directional_shadow_split_1 = 0.09
 environment = SubResource("Environment_y8ynd")
 
 [node name="Player" parent="." instance=ExtResource("2_yuvdp")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.78614, 1.41166, -0.0926752)
-accel = 6.505
-jump_height = 10.0
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.15316, 1.54617, 0.0240963)
+jump_height = 7.0
 
-[node name="FollowCam" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_h2r7l")]
+[node name="CameraSystem" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_h2r7l")]
 target = NodePath("../Player")
-camera_speed = 8.0
-vertical_offset = 12.485
-camera_arm = 37.165
-
-[node name="LookAheadCam" parent="FollowCam" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 0, 0)
-fov = 12.9
-size = 9.117
-far = 500.0
-post_processing = false
-camera_speed = 1.5
-look_ahead_distance = 2.5
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
 transform = Transform3D(0.546197, 0, 0, 0, 0.179803, 0, 0, 0, 0.730208, 0, 0, 0)
@@ -459,7 +438,6 @@ mesh = SubResource("PlaneMesh_jl554")
 [node name="grass" parent="." instance=ExtResource("16_pu3ap")]
 visible = false
 
-[connection signal="turn_around" from="Player" to="FollowCam/LookAheadCam" method="_on_player_turn_around"]
+[connection signal="turn_around" from="Player" to="CameraSystem" method="_on_player_turn_around"]
 
-[editable path="FollowCam"]
 [editable path="grass"]

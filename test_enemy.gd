@@ -17,4 +17,5 @@ func _physics_process(delta):
 
 
 func _on_hurtbox_hit(vector: Vector2):
+	$AnimationPlayer.play("stagger")
 	velocity = Vector3(vector.x, vector.y, 0)

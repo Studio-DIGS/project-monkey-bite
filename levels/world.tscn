@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cj6gya66i2u14"]
+[gd_scene load_steps=44 format=3 uid="uid://cj6gya66i2u14"]
 
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="2_yuvdp"]
 [ext_resource type="ArrayMesh" uid="uid://b72npoi5wprc5" path="res://assets/temple/Prop_Flag_1.obj" id="3_dt7p3"]
@@ -229,6 +229,44 @@ material = SubResource("StandardMaterial3D_4538d")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w1cmq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g0es1"]
+
+[sub_resource type="Animation" id="Animation_4mvm1"]
+resource_name = "stagger"
+length = 0.300005
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.174254), Vector3(0, 0, -0.174533), Vector3(0, 0, 0.0840202), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_38soa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o72sg"]
+_data = {
+"RESET": SubResource("Animation_38soa"),
+"stagger": SubResource("Animation_4mvm1")
+}
 
 [node name="World" type="Node3D"]
 
@@ -482,6 +520,11 @@ shape = SubResource("CapsuleShape3D_g0es1")
 
 [node name="Health" type="Node" parent="TestEnemy"]
 script = ExtResource("17_e7kv5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TestEnemy"]
+libraries = {
+"": SubResource("AnimationLibrary_o72sg")
+}
 
 [connection signal="turn_around" from="Player" to="CameraSystem" method="_on_player_turn_around"]
 [connection signal="hit" from="TestEnemy/Hurtbox" to="TestEnemy" method="_on_hurtbox_hit"]

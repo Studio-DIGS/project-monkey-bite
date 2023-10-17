@@ -1,8 +1,7 @@
-[gd_scene load_steps=41 format=3 uid="uid://cj6gya66i2u14"]
+[gd_scene load_steps=39 format=3 uid="uid://cj6gya66i2u14"]
 
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="2_yuvdp"]
 [ext_resource type="ArrayMesh" uid="uid://b72npoi5wprc5" path="res://assets/temple/Prop_Flag_1.obj" id="3_dt7p3"]
-[ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://player/follow_cam.tscn" id="3_h2r7l"]
 [ext_resource type="ArrayMesh" uid="uid://dohx36c77lpjt" path="res://assets/temple/Prop_Flag_Stand_Top.obj" id="4_l3pci"]
 [ext_resource type="ArrayMesh" uid="uid://b364hfo331by8" path="res://assets/temple/Prop_Flag_Stand_Extension.obj" id="5_54wmw"]
 [ext_resource type="ArrayMesh" uid="uid://d0s8nxa6enrfi" path="res://assets/temple/Pillar_Large_Base.obj" id="6_r0xrl"]
@@ -13,6 +12,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dn3538nup1hmt" path="res://assets/temple/Wall_Ruined_Full_Cracked_1.obj" id="13_daoyd"]
 [ext_resource type="Material" uid="uid://bdrk3hn2y0uie" path="res://levels/grass/grass_floor.tres" id="14_8g4lb"]
 [ext_resource type="ArrayMesh" uid="uid://ie1glsealiff" path="res://assets/temple/Wall_Ruined_Half_1.obj" id="14_qjvny"]
+[ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://player/camera/camera_system.tscn" id="15_eg6d8"]
 [ext_resource type="Shader" uid="uid://cuvclsyoc2sse" path="res://levels/grass/grass.tres" id="15_hlcfo"]
 [ext_resource type="Script" path="res://common/hurtbox.gd" id="16_0ffjy"]
 [ext_resource type="Script" path="res://test_enemy.gd" id="16_d5k8w"]
@@ -24,18 +24,11 @@ uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1i5cd"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_p7c4r"]
-fractal_type = 0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mmvwa"]
-noise = SubResource("FastNoiseLite_p7c4r")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ujfex"]
 render_priority = 0
 shader = ExtResource("15_hlcfo")
 shader_parameter/BaseColor = Color(0.501961, 0.890196, 0.321569, 1)
 shader_parameter/GrassColor = Color(0.501961, 0.890196, 0.321569, 1)
-shader_parameter/WindNoise = SubResource("NoiseTexture2D_mmvwa")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y72y4"]
 
@@ -454,25 +447,13 @@ directional_shadow_split_1 = 0.09
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_y8ynd")
 
-[node name="FollowCam" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_h2r7l")]
-target = NodePath("../Player")
-camera_speed = 8.0
-vertical_offset = 12.485
-camera_arm = 37.165
-
-[node name="LookAheadCam" parent="FollowCam" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 0, 0)
-fov = 12.9
-size = 9.117
-far = 500.0
-post_processing = false
-camera_speed = 1.5
-look_ahead_distance = 2.5
-
 [node name="Player" parent="." instance=ExtResource("2_yuvdp")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.78614, 1.41166, -0.0926752)
 accel = 6.505
 jump_height = 10.0
+
+[node name="CameraSystem" parent="." node_paths=PackedStringArray("target") instance=ExtResource("15_eg6d8")]
+target = NodePath("../Player")
 
 [node name="TestEnemy" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.86651, 1.09482, 0)
@@ -497,8 +478,7 @@ shape = SubResource("CapsuleShape3D_g0es1")
 [node name="Health" type="Node" parent="TestEnemy"]
 script = ExtResource("17_e7kv5")
 
-[connection signal="turn_around" from="Player" to="FollowCam/LookAheadCam" method="_on_player_turn_around"]
+[connection signal="turn_around" from="Player" to="CameraSystem" method="_on_player_turn_around"]
 [connection signal="hit" from="TestEnemy/Hurtbox" to="TestEnemy" method="_on_hurtbox_hit"]
 
 [editable path="Environment/grass"]
-[editable path="FollowCam"]

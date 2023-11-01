@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cj6gya66i2u14"]
+[gd_scene load_steps=50 format=3 uid="uid://cj6gya66i2u14"]
 
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="2_yuvdp"]
 [ext_resource type="ArrayMesh" uid="uid://b72npoi5wprc5" path="res://assets/temple/Prop_Flag_1.obj" id="3_dt7p3"]
@@ -231,6 +231,32 @@ material = SubResource("StandardMaterial3D_4538d")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g0es1"]
 
+[sub_resource type="Curve" id="Curve_3vfod"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.988304, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_frevj"]
+curve = SubResource("Curve_3vfod")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lix43"]
+direction = Vector3(0, 1, 1)
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.15
+initial_velocity_max = 8.47
+scale_min = 0.6
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_frevj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ui4xr"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_b4qt8"]
+material = SubResource("StandardMaterial3D_ui4xr")
+size = Vector2(0.1, 0.1)
+
 [sub_resource type="Animation" id="Animation_38soa"]
 length = 0.001
 tracks/0/type = "value"
@@ -302,14 +328,7 @@ _data = {
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(0.138876, 0, 0, 0, 1.25725, 0, 0, 0, 2.09812, 0, -0.669183, -1.68972)
-visible = false
-material_override = SubResource("StandardMaterial3D_t8li3")
-use_collision = true
-size = Vector3(454.302, 1, 5.25189)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(-6.07046e-09, 0, -2.35167, 0, 1.25725, 0, 0.138876, 0, -1.02795e-07, 24.888, -0.669183, -28.4985)
+transform = Transform3D(0.0887723, 0, 0, 0, 1.25725, 0, 0, 0, 2.09812, 0, -0.669183, -1.68972)
 visible = false
 material_override = SubResource("StandardMaterial3D_t8li3")
 use_collision = true
@@ -412,6 +431,7 @@ skeleton = NodePath("../../..")
 
 [node name="Pillar4" type="Node3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.8273, 0, -19.2732)
+visible = false
 
 [node name="PillarLargeBase" type="MeshInstance3D" parent="Environment/Pillar4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 0, -1.30382)
@@ -546,6 +566,16 @@ health = NodePath("../Health")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TestEnemy/Hurtbox"]
 shape = SubResource("CapsuleShape3D_g0es1")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="TestEnemy/Hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.402851)
+emitting = false
+amount = 32
+lifetime = 0.29
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_lix43")
+draw_pass_1 = SubResource("QuadMesh_b4qt8")
 
 [node name="Health" type="Node" parent="TestEnemy"]
 script = ExtResource("17_e7kv5")

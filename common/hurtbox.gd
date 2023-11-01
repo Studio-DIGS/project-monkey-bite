@@ -16,7 +16,7 @@ func _on_area_entered(hitbox: Hitbox):
 	
 	if health:
 		health.take_damage(hitbox.damage)
-	
+	$GPUParticles3D.emitting = true
 	# Freeze frame
 	## should probably be moved somewhere else because I think this will get 
 	## called multiple times if multiple enemies get hit at the same time

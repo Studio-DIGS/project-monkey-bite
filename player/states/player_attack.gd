@@ -18,6 +18,8 @@ func enter(msg := {}):
 	var xknockback = combo[combo_counter].knockback.x * player.orientation
 	var yknockback = combo[combo_counter].knockback.y
 	player.hitbox.knockback = Vector2(xknockback, yknockback)
+	player.hitbox.freeze_slow = combo[combo_counter].freeze_slow
+	player.hitbox.freeze_time = combo[combo_counter].freeze_time
 	
 	if combo_counter == 0:
 		player.anim.play(combo[combo_counter].animation)

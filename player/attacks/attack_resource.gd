@@ -5,3 +5,5 @@ class_name AttackResource
 @export var knockback: Vector2
 @export var hitbox_size: Vector2
 @export var animation: StringName
+@export var freeze_slow = 0.07
+@export var freeze_time = 0.15

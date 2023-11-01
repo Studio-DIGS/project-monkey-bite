@@ -13,6 +13,9 @@ func physics_update(delta):
 	player.velocity.x = lerp(player.velocity.x, player.hori_input * player.speed, delta * player.accel)
 	player.move_and_slide()
 	
+	if Input.is_action_pressed("attack"):
+		state_machine.transition_to("Attack", {air = true})
+	
 	# Landing
-	if player.is_on_floor():
+	elif player.is_on_floor():
 		state_machine.transition_to("Land")

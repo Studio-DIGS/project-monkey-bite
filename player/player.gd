@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var anim: AnimationPlayer
 @export var hitbox: Hitbox
 @export var combo: Array[AttackResource] = []
+@export var air_combo: Array[AttackResource] = []
 
 @export var speed = 5.0
 @export var accel = 15.0
@@ -21,15 +22,7 @@ signal turn_around
 var hori_input = 0.0
 
 func _physics_process(_delta):
-#	# Add the gravity.
-#	if not is_on_floor():
-#		velocity.y -= gravity * delta
-#
-#	# Handle Jump.
-#	if Input.is_action_just_pressed("jump") and is_on_floor():
-#		velocity.y = jump_height
-	
-	# Get the input direction and handle the movement/deceleration.
+	# Get the input direction
 	hori_input = Input.get_axis("left", "right")
 	
 	# stores current orientation
@@ -43,6 +36,3 @@ func _physics_process(_delta):
 	if new_orientation != orientation:
 		orientation = new_orientation
 		emit_signal("turn_around")
-
-#	velocity.x = lerp(velocity.x, hori_input * speed, delta * accel)
-#	move_and_slide()

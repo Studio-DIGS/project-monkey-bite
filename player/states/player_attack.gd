@@ -2,22 +2,33 @@ extends PlayerState
 
 var combo_counter = 0
 var max_combo = 0
+var combo: Array[AttackResource]
+var apply_gravity = false
 
-func enter(_msg := {}):
+func enter(msg := {}):
+	if msg.has("air"):
+		combo = player.air_combo
+		apply_gravity = true
+	else:
+		combo = player.combo
+		
 	print(combo_counter)
 	max_combo = player.combo.size() - 1
 	
-	var xknockback = player.combo[combo_counter].knockback.x * player.orientation
-	var yknockback = player.combo[combo_counter].knockback.y
+	var xknockback = combo[combo_counter].knockback.x * player.orientation
+	var yknockback = combo[combo_counter].knockback.y
 	player.hitbox.knockback = Vector2(xknockback, yknockback)
 	
 	if combo_counter == 0:
-		player.anim.play(player.combo[combo_counter].animation)
+		player.anim.play(combo[combo_counter].animation)
 	else:
-		player.anim.queue(player.combo[combo_counter].animation)
+		player.anim.queue(combo[combo_counter].animation)
 	combo_counter += 1
 
 func physics_update(delta):
+	if apply_gravity:
+		player.velocity.y -= player.gravity * delta
+	
 	player.velocity.x = lerp(player.velocity.x, 0.0, delta * player.accel)
 	player.move_and_slide()
 	

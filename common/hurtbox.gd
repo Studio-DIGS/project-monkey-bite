@@ -14,5 +14,6 @@ func _on_area_entered(hitbox: Hitbox):
 	
 	hit.emit(hitbox.knockback)
 	
+	print("HIT")
 	if health:
 		health.take_damage(hitbox.damage)

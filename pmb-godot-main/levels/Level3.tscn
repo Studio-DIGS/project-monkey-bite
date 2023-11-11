@@ -1,0 +1,123 @@
+[gd_scene load_steps=2 format=3 uid="uid://duw8ah2cuicqp"]
+
+[ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="1_qt210"]
+
+[node name="Level3" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_qt210")]
+transform = Transform3D(-1.80132e-07, 0, -3.69201, 0, 3.04352, 0, 4.12093, 0, -1.61383e-07, -51.2251, 112.36, 0.513465)
+accel = 6.505
+jump_height = 10.0
+
+[node name="Bridge1" type="CSGBox3D" parent="Player"]
+transform = Transform3D(-5.1981e-08, 0, 1.18919, 0, 1.61016, 0, -1.32734, 0, -5.80199e-08, -0.119075, -1.61345, -5.30548)
+size = Vector3(12.23, 1, 5.45382)
+
+[node name="Platform2" type="CSGBox3D" parent="Player"]
+transform = Transform3D(-5.1981e-08, 0, 1.18919, 0, 1.61016, 0, -1.32734, 0, -5.80199e-08, -0.119075, -8.29116, -1.04092)
+size = Vector3(18.7415, 1, 5.45382)
+
+[node name="BridgePIllar1" type="CSGBox3D" parent="Player"]
+transform = Transform3D(-5.1981e-08, 0, 1.18919, 0, 1.61016, 0, -1.32734, 0, -5.80199e-08, -1.56504, -3.87279, -11.7469)
+size = Vector3(1.52416, 4.3611, 1.41824)
+
+[node name="BridgePIllar2" type="CSGBox3D" parent="Player"]
+transform = Transform3D(-5.1981e-08, 0, 1.18919, 0, 1.61016, 0, -1.32734, 0, -5.80199e-08, 2.68652, -3.87279, -11.7469)
+size = Vector3(1.52416, 4.3611, 1.41824)
+
+[node name="BridgePIllar3" type="CSGBox3D" parent="Player"]
+transform = Transform3D(-5.1981e-08, 0, 1.18919, 0, 1.61016, 0, -1.32734, 0, -5.80199e-08, 2.68652, -3.87279, -5.56162)
+size = Vector3(1.52416, 4.3611, 1.41824)
+
+[node name="BridgePIllar4" type="CSGBox3D" parent="Player"]
+transform = Transform3D(-5.1981e-08, 0, 1.18919, 0, 1.61016, 0, -1.32734, 0, -5.80199e-08, -1.09439, -3.87279, -5.56162)
+size = Vector3(1.52416, 4.3611, 1.41824)
+
+[node name="BridgePIllar5" type="CSGBox3D" parent="Player"]
+transform = Transform3D(-5.1981e-08, 0, 1.18919, 0, 1.61016, 0, -1.32734, 0, -5.80199e-08, 2.68652, -3.87279, 1.09741)
+size = Vector3(1.52416, 4.3611, 1.41824)
+
+[node name="BridgePIllar6" type="CSGBox3D" parent="Player"]
+transform = Transform3D(-5.1981e-08, 0, 1.18919, 0, 1.61016, 0, -1.32734, 0, -5.80199e-08, -1.09439, -3.87279, 1.09741)
+size = Vector3(1.52416, 4.3611, 1.41824)
+
+[node name="Platform3" type="CSGBox3D" parent="Player"]
+transform = Transform3D(-5.1981e-08, 0, 1.18919, 0, 1.61016, 0, -1.32734, 0, -5.80199e-08, -0.119074, 1.15917, 35.9067)
+size = Vector3(17.3709, 1, 5.45382)
+
+[node name="Platform4" type="CSGBox3D" parent="Player"]
+transform = Transform3D(-5.1981e-08, 0, 1.18919, 0, 1.61016, 0, -1.32734, 0, -5.80199e-08, -0.119073, -3.60328, 61.8812)
+size = Vector3(11.2577, 1, 5.45382)
+
+[node name="Dock" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190.347, 83.0373, 0)
+
+[node name="d1" type="CSGBox3D" parent="Dock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 215.053, 21.2586, 0)
+size = Vector3(54.5296, 2.68068, 27.628)
+
+[node name="Stairs" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190.347, 83.0373, 0)
+
+[node name="s1" type="CSGBox3D" parent="Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 123.352, 21.2586, 0)
+size = Vector3(7.31334, 2.68068, 27.628)
+
+[node name="s2" type="CSGBox3D" parent="Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110.442, 11.5315, 0)
+size = Vector3(7.31334, 2.68068, 27.628)
+
+[node name="s3" type="CSGBox3D" parent="Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.1673, 12.0551, 0)
+size = Vector3(7.31334, 2.68068, 27.628)
+
+[node name="s4" type="CSGBox3D" parent="Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.2719, 17.3196, 0)
+size = Vector3(7.31334, 2.68068, 27.628)
+
+[node name="s5" type="CSGBox3D" parent="Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.5132, 25.1863, 0)
+size = Vector3(7.31334, 2.68068, 27.628)
+
+[node name="s6" type="CSGBox3D" parent="Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.6108, 25.718, 0)
+size = Vector3(7.31334, 2.68068, 27.628)
+
+[node name="Tree" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190.347, 83.0373, 0)
+
+[node name="t2" type="CSGBox3D" parent="Tree"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.3993, 55.1401, -7.35156)
+size = Vector3(7.71258, 40.322, 5.65499)
+
+[node name="t1" type="CSGBox3D" parent="Tree"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -101.664, 40.1107, 2.66623)
+size = Vector3(11.7335, 40.322, 9.48551)
+
+[node name="t3" type="CSGBox3D" parent="Tree"]
+transform = Transform3D(-0.0803306, -0.905608, 0.41644, 0.996626, -0.0800462, 0.0181758, 0.0168743, 0.416494, 0.908982, 1.92328, 36.1006, -1.1676)
+size = Vector3(14.1731, 47.3466, 11.8838)
+
+[node name="poles" type="Node3D" parent="."]
+
+[node name="P1" type="CSGBox3D" parent="poles"]
+transform = Transform3D(2.51118, 0, 0, 0, 0.784492, 0, 0, 0, 2.51118, -220.877, 130.371, -9.19009)
+size = Vector3(0.374356, 35.6261, 0.291811)
+
+[node name="Rock" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -143.205, 34.9072, 11.2797)
+
+[node name="r1" type="CSGBox3D" parent="Rock"]
+transform = Transform3D(0.911274, 0, -0.411801, 0, 1, 0, 0.411801, 0, 0.911274, -13.3559, 87.7082, -3.94301)
+size = Vector3(12.5548, 6.87258, 13.5456)
+
+[node name="r2" type="CSGBox3D" parent="Rock"]
+transform = Transform3D(-0.139859, -0.450577, 0.881714, 0.860698, 0.384914, 0.333226, -0.489528, 0.805495, 0.333977, -7.22194, 85.9978, -1.60451)
+size = Vector3(12.5548, 10.0462, 12.0958)
+
+[node name="fence" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.2655, 61.6814, 0)
+
+[node name="f3" type="CSGBox3D" parent="fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -228.485, 48.252, -9.77237)
+size = Vector3(45.956, 15.278, 0.002)

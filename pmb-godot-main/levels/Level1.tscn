@@ -4,10 +4,8 @@
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Player" parent="." node_paths=PackedStringArray("anim", "hitbox") instance=ExtResource("1_21wy1")]
+[node name="Player" parent="." instance=ExtResource("1_21wy1")]
 transform = Transform3D(-1.80132e-07, 0, -3.69201, 0, 3.04352, 0, 4.12093, 0, -1.61383e-07, -52.6592, 5.24165, 0.490699)
-anim = NodePath("")
-hitbox = NodePath("")
 accel = 6.505
 jump_height = 10.0
 
@@ -100,7 +98,7 @@ transform = Transform3D(0.980774, 0.17209, -0.092023, -0.172823, 0.984953, 3.600
 size = Vector3(30.8008, 2.32656, 2.18586)
 
 [node name="Rock" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.6779, 3.78075, 6.71202)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.1284, -7.45631, 2.05873)
 
 [node name="R2" type="CSGBox3D" parent="Rock"]
 transform = Transform3D(0.659661, 0, 0.751564, 0, 1, 0, -0.751564, 0, 0.659661, 130.182, 26.5946, -1.46897)

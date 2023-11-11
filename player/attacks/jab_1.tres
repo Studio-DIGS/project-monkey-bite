@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AttackResource" load_steps=2 format=3 uid="uid://bbanx0gkgeef6"]
+
+[ext_resource type="Script" path="res://player/attacks/attack_resource.gd" id="1_dax2o"]
+
+[resource]
+script = ExtResource("1_dax2o")
+damage = 1
+knockback = Vector2(0.4, 3)
+hitbox_size = Vector2(0, 0)
+animation = &"attack1"

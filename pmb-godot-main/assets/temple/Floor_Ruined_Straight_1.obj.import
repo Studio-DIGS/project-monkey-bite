@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bjdxaw2wpsa4s"
+path="res://.godot/imported/Floor_Ruined_Straight_1.obj-cb3f6abf5a69ff8583b699ae8fba3e3c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Floor_Ruined_Straight_1.obj-cb3f6abf5a69ff8583b699ae8fba3e3c.mesh"]
+
+source_file="res://assets/temple/Floor_Ruined_Straight_1.obj"
+dest_files=["res://.godot/imported/Floor_Ruined_Straight_1.obj-cb3f6abf5a69ff8583b699ae8fba3e3c.mesh", "res://.godot/imported/Floor_Ruined_Straight_1.obj-cb3f6abf5a69ff8583b699ae8fba3e3c.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

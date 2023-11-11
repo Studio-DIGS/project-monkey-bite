@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dggmjb7tmsrie"
+path="res://.godot/imported/Puzzle_Floor_Conduit_Standard_Cross.obj-9c3a9b1b6c45d57e6c2b2e4a15012e1e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Puzzle_Floor_Conduit_Standard_Cross.obj-9c3a9b1b6c45d57e6c2b2e4a15012e1e.mesh"]
+
+source_file="res://assets/temple/Puzzle_Floor_Conduit_Standard_Cross.obj"
+dest_files=["res://.godot/imported/Puzzle_Floor_Conduit_Standard_Cross.obj-9c3a9b1b6c45d57e6c2b2e4a15012e1e.mesh", "res://.godot/imported/Puzzle_Floor_Conduit_Standard_Cross.obj-9c3a9b1b6c45d57e6c2b2e4a15012e1e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

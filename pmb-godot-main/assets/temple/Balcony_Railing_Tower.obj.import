@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bowe0o5imt0yo"
+path="res://.godot/imported/Balcony_Railing_Tower.obj-cc48836842893a5d5e331f5a9109fd16.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Balcony_Railing_Tower.obj-cc48836842893a5d5e331f5a9109fd16.mesh"]
+
+source_file="res://assets/temple/Balcony_Railing_Tower.obj"
+dest_files=["res://.godot/imported/Balcony_Railing_Tower.obj-cc48836842893a5d5e331f5a9109fd16.mesh", "res://.godot/imported/Balcony_Railing_Tower.obj-cc48836842893a5d5e331f5a9109fd16.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

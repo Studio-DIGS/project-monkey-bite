@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bsbv6equmbrqe"
+path="res://.godot/imported/Wall_Curved_Small_Window.obj-bb56781a8c14e4b3f46bf64ed2ebd024.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Wall_Curved_Small_Window.obj-bb56781a8c14e4b3f46bf64ed2ebd024.mesh"]
+
+source_file="res://assets/temple/Wall_Curved_Small_Window.obj"
+dest_files=["res://.godot/imported/Wall_Curved_Small_Window.obj-bb56781a8c14e4b3f46bf64ed2ebd024.mesh", "res://.godot/imported/Wall_Curved_Small_Window.obj-bb56781a8c14e4b3f46bf64ed2ebd024.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

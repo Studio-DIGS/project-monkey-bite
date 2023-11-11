@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://1w03d1d02yxe"
+path="res://.godot/imported/Wall_Straight_Cubby.obj-5637a752ebc4de35dca3cd5f8b8a1351.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Wall_Straight_Cubby.obj-5637a752ebc4de35dca3cd5f8b8a1351.mesh"]
+
+source_file="res://assets/temple/Wall_Straight_Cubby.obj"
+dest_files=["res://.godot/imported/Wall_Straight_Cubby.obj-5637a752ebc4de35dca3cd5f8b8a1351.mesh", "res://.godot/imported/Wall_Straight_Cubby.obj-5637a752ebc4de35dca3cd5f8b8a1351.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

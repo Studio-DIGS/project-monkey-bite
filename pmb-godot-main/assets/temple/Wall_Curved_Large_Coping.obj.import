@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d2wdaqe7a80nx"
+path="res://.godot/imported/Wall_Curved_Large_Coping.obj-15ea56fb9dc317b32ca8b6b9968b9abf.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Wall_Curved_Large_Coping.obj-15ea56fb9dc317b32ca8b6b9968b9abf.mesh"]
+
+source_file="res://assets/temple/Wall_Curved_Large_Coping.obj"
+dest_files=["res://.godot/imported/Wall_Curved_Large_Coping.obj-15ea56fb9dc317b32ca8b6b9968b9abf.mesh", "res://.godot/imported/Wall_Curved_Large_Coping.obj-15ea56fb9dc317b32ca8b6b9968b9abf.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

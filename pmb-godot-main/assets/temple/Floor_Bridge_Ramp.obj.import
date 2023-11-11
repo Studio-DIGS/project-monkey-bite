@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ygms1g3kcwq4"
+path="res://.godot/imported/Floor_Bridge_Ramp.obj-20a6ac22b78005a37da0112c6774be70.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Floor_Bridge_Ramp.obj-20a6ac22b78005a37da0112c6774be70.mesh"]
+
+source_file="res://assets/temple/Floor_Bridge_Ramp.obj"
+dest_files=["res://.godot/imported/Floor_Bridge_Ramp.obj-20a6ac22b78005a37da0112c6774be70.mesh", "res://.godot/imported/Floor_Bridge_Ramp.obj-20a6ac22b78005a37da0112c6774be70.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

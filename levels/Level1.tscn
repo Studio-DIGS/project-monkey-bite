@@ -1,0 +1,123 @@
+[gd_scene load_steps=2 format=3 uid="uid://od2hxfsyny7m"]
+
+[ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="1_21wy1"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Player" parent="." node_paths=PackedStringArray("anim", "hitbox") instance=ExtResource("1_21wy1")]
+transform = Transform3D(-1.80132e-07, 0, -3.69201, 0, 3.04352, 0, 4.12093, 0, -1.61383e-07, -52.6592, 5.24165, 0.490699)
+anim = NodePath("")
+hitbox = NodePath("")
+accel = 6.505
+jump_height = 10.0
+
+[node name="Platform" type="CSGBox3D" parent="."]
+transform = Transform3D(4.90055, 0, 0, 0, 4.90055, 0, 0, 0, 4.90055, -25.2145, 0, 0)
+size = Vector3(17.2568, 1, 5.45382)
+
+[node name="Stairs" type="CSGBox3D" parent="Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.7208, 4.49087, 0)
+size = Vector3(28.1473, 1, 5.45382)
+
+[node name="Platform top" type="CSGBox3D" parent="Platform"]
+transform = Transform3D(0.854023, -0.520235, 0, 0.520235, 0.854023, 0, 0, 0, 1, 12.0751, 2.2106, 0)
+size = Vector3(8.86588, 1, 5.45382)
+
+[node name="Pillars" type="Node3D" parent="."]
+
+[node name="P1" type="CSGBox3D" parent="Pillars"]
+transform = Transform3D(5.88679, 0, 0, 0, 30.8831, 0, 0, 0, 15.0615, -31.8194, 10.4374, -8.54982)
+size = Vector3(0.856267, 0.530731, 0.353816)
+
+[node name="P2" type="CSGBox3D" parent="Pillars"]
+transform = Transform3D(5.88679, 0, 0, 0, 30.8831, 0, 0, 0, 15.0615, -43.7766, 10.5482, 10.3182)
+size = Vector3(0.856267, 0.530731, 0.353816)
+
+[node name="P3" type="CSGBox3D" parent="Pillars"]
+transform = Transform3D(5.88679, 0, 0, 0, 30.8831, 0, 0, 0, 15.0615, -11.1005, 10.5482, 10.3182)
+size = Vector3(0.856267, 0.530731, 0.353816)
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="Wall1" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(12.3619, 0, 0, 0, 8.65351, 0, 0, 0, 2.11799, 6.98653, 9.48527, -9.47889)
+size = Vector3(1, 1.8245, 2.21183)
+
+[node name="Wall2" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(12.3619, 0, 0, 0, 8.65351, 0, 0, 0, 2.11799, -10.9759, 6.30476, -9.47557)
+size = Vector3(1.96924, 1.23821, 2.21183)
+
+[node name="Wall3" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(10.6543, -4.38848, 0, 6.26912, 7.45819, 0, 0, 0, 2.11799, 27.7903, 16.9334, -9.92222)
+size = Vector3(3.984, 1.98053, 2.21183)
+
+[node name="Wall4" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(12.3619, 0, 0, 0, 8.65351, 0, 0, 0, 2.11799, 61.6854, 30.0016, -9.47573)
+size = Vector3(2.51612, 1.68521, 2.21183)
+
+[node name="Wall5" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(11.4947, -3.18403, 0, 4.54851, 8.04645, 0, 0, 0, 2.11799, 40.0688, 23.0486, 10.4203)
+size = Vector3(1.05308, 1.43537, 2.21183)
+
+[node name="Wall6" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(12.3619, 0, 0, 0, 8.65351, 0, 0, 0, 2.11799, 65.2341, 28.7398, 9.97441)
+size = Vector3(0.802776, 1.64602, 2.21183)
+
+[node name="poles" type="Node3D" parent="."]
+
+[node name="P2" type="CSGBox3D" parent="poles"]
+transform = Transform3D(6.30602, 0, 0, 0, 0.615428, 0, 0, 0, 6.30602, 10.9357, 15.2403, -9.7205)
+size = Vector3(0.374356, 15.5649, 0.291811)
+
+[node name="P1" type="CSGBox3D" parent="poles"]
+transform = Transform3D(2.51118, 0, 0, 0, 0.784492, 0, 0, 0, 2.51118, 81.256, 39.8123, -8.10228)
+size = Vector3(0.374356, 35.6261, 0.291811)
+
+[node name="P3" type="CSGBox3D" parent="poles"]
+transform = Transform3D(6.30602, 0, 0, 0, 0.615428, 0, 0, 0, 6.30602, 11.4648, 13.2202, 8.85356)
+size = Vector3(0.374356, 52.3147, 0.291811)
+
+[node name="Tree" type="Node3D" parent="."]
+
+[node name="TreeStump3" type="CSGBox3D" parent="Tree"]
+transform = Transform3D(0.999889, 0.0149046, 0, -0.0149046, 0.999889, 0, 0, 0, 1, 164.403, 24.8575, -8.20481)
+size = Vector3(5.51938, 4.4554, 4.83854)
+
+[node name="T1" type="CSGBox3D" parent="Tree"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 178.345, 39.4959, -6.97737)
+size = Vector3(5.51938, 30.1774, 4.83854)
+
+[node name="T2" type="CSGBox3D" parent="Tree"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 121.154, 32.4092, 9.7399)
+size = Vector3(5.51938, 16.2978, 4.83854)
+
+[node name="Fallen Tree" type="Node3D" parent="."]
+transform = Transform3D(1.00067, 0, 0, 0, 1.00067, 0, 0, 0, 1.00067, 0, 0, 0)
+visible = false
+
+[node name="FT1" type="CSGBox3D" parent="Fallen Tree"]
+transform = Transform3D(0.980774, 0.17209, -0.092023, -0.172823, 0.984953, 3.60082e-09, 0.0906383, 0.0159037, 0.995757, 139.092, 27.5035, 0)
+size = Vector3(30.8008, 2.32656, 2.18586)
+
+[node name="Rock" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.6779, 3.78075, 6.71202)
+
+[node name="R2" type="CSGBox3D" parent="Rock"]
+transform = Transform3D(0.659661, 0, 0.751564, 0, 1, 0, -0.751564, 0, 0.659661, 130.182, 26.5946, -1.46897)
+size = Vector3(10.8463, 6.51808, 7.0171)
+
+[node name="R1" type="CSGBox3D" parent="Rock"]
+transform = Transform3D(0.91095, 0, 0.412516, 0, 1, 0, -0.412516, 0, 0.91095, 125.471, 25.8391, -2.42114)
+size = Vector3(6.73875, 3.62823, 4.88632)
+
+[node name="Benches" type="Node3D" parent="."]
+
+[node name="B1" type="CSGBox3D" parent="Benches"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.129, 27.9296, -6.82714)
+size = Vector3(16.049, 5.86252, 1.55279)
+
+[node name="Dock" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Dock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 215.053, 21.2586, 0)
+size = Vector3(54.5296, 2.68068, 27.628)

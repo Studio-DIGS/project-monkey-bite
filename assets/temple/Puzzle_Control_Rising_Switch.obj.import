@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c33m0x1dc8h4c"
+path="res://.godot/imported/Puzzle_Control_Rising_Switch.obj-a5159786f248969d869a3a13949d87e6.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Puzzle_Control_Rising_Switch.obj-a5159786f248969d869a3a13949d87e6.mesh"]
+
+source_file="res://assets/temple/Puzzle_Control_Rising_Switch.obj"
+dest_files=["res://.godot/imported/Puzzle_Control_Rising_Switch.obj-a5159786f248969d869a3a13949d87e6.mesh", "res://.godot/imported/Puzzle_Control_Rising_Switch.obj-a5159786f248969d869a3a13949d87e6.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

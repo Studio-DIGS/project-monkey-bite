@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bx3sru6hupwjy"
+path="res://.godot/imported/Wall_End_Middle.obj-f91e4e64547fc410dcaa99fe62986acb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Wall_End_Middle.obj-f91e4e64547fc410dcaa99fe62986acb.mesh"]
+
+source_file="res://assets/temple/Wall_End_Middle.obj"
+dest_files=["res://.godot/imported/Wall_End_Middle.obj-f91e4e64547fc410dcaa99fe62986acb.mesh", "res://.godot/imported/Wall_End_Middle.obj-f91e4e64547fc410dcaa99fe62986acb.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

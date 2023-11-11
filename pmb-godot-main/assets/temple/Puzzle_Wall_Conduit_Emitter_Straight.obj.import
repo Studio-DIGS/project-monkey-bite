@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://1jo4uy1pwpdu"
+path="res://.godot/imported/Puzzle_Wall_Conduit_Emitter_Straight.obj-91fa6bbc3d97ec1108873009311f558b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Puzzle_Wall_Conduit_Emitter_Straight.obj-91fa6bbc3d97ec1108873009311f558b.mesh"]
+
+source_file="res://assets/temple/Puzzle_Wall_Conduit_Emitter_Straight.obj"
+dest_files=["res://.godot/imported/Puzzle_Wall_Conduit_Emitter_Straight.obj-91fa6bbc3d97ec1108873009311f558b.mesh", "res://.godot/imported/Puzzle_Wall_Conduit_Emitter_Straight.obj-91fa6bbc3d97ec1108873009311f558b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

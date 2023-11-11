@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://qyiqv07qutda"
+path="res://.godot/imported/Wall_Arch_Straight.obj-28464fd08f224e63c93031b9a757b947.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Wall_Arch_Straight.obj-28464fd08f224e63c93031b9a757b947.mesh"]
+
+source_file="res://assets/temple/Wall_Arch_Straight.obj"
+dest_files=["res://.godot/imported/Wall_Arch_Straight.obj-28464fd08f224e63c93031b9a757b947.mesh", "res://.godot/imported/Wall_Arch_Straight.obj-28464fd08f224e63c93031b9a757b947.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

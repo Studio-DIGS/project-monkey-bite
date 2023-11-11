@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://gn7tacjy0pca"
+path="res://.godot/imported/Prop_Rubble_1.obj-4796df5885a21ed5204daa3180d8d3c2.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Prop_Rubble_1.obj-4796df5885a21ed5204daa3180d8d3c2.mesh"]
+
+source_file="res://assets/temple/Prop_Rubble_1.obj"
+dest_files=["res://.godot/imported/Prop_Rubble_1.obj-4796df5885a21ed5204daa3180d8d3c2.mesh", "res://.godot/imported/Prop_Rubble_1.obj-4796df5885a21ed5204daa3180d8d3c2.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

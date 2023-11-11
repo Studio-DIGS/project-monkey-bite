@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bvfpcdeqb7iji"
+path="res://.godot/imported/Puzzle_Track_Button_End.obj-07330758ebcaa6b9f2ed3f0d94887a34.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Puzzle_Track_Button_End.obj-07330758ebcaa6b9f2ed3f0d94887a34.mesh"]
+
+source_file="res://assets/temple/Puzzle_Track_Button_End.obj"
+dest_files=["res://.godot/imported/Puzzle_Track_Button_End.obj-07330758ebcaa6b9f2ed3f0d94887a34.mesh", "res://.godot/imported/Puzzle_Track_Button_End.obj-07330758ebcaa6b9f2ed3f0d94887a34.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

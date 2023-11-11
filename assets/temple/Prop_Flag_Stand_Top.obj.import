@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dohx36c77lpjt"
+path="res://.godot/imported/Prop_Flag_Stand_Top.obj-264f8dc1cc333c2024697e715f7e28ac.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Prop_Flag_Stand_Top.obj-264f8dc1cc333c2024697e715f7e28ac.mesh"]
+
+source_file="res://assets/temple/Prop_Flag_Stand_Top.obj"
+dest_files=["res://.godot/imported/Prop_Flag_Stand_Top.obj-264f8dc1cc333c2024697e715f7e28ac.mesh", "res://.godot/imported/Prop_Flag_Stand_Top.obj-264f8dc1cc333c2024697e715f7e28ac.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://th27y7u86ixl"
+path="res://.godot/imported/Puzzle_Track_Standard_Cross.obj-d82d2f3f42b99df56893d3cf338a30ca.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Puzzle_Track_Standard_Cross.obj-d82d2f3f42b99df56893d3cf338a30ca.mesh"]
+
+source_file="res://assets/temple/Puzzle_Track_Standard_Cross.obj"
+dest_files=["res://.godot/imported/Puzzle_Track_Standard_Cross.obj-d82d2f3f42b99df56893d3cf338a30ca.mesh", "res://.godot/imported/Puzzle_Track_Standard_Cross.obj-d82d2f3f42b99df56893d3cf338a30ca.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

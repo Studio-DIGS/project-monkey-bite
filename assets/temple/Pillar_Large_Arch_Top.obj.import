@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b8l5wlp6gw7hf"
+path="res://.godot/imported/Pillar_Large_Arch_Top.obj-35cb2acbc3cbf8a4537458bb2531d1dd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Pillar_Large_Arch_Top.obj-35cb2acbc3cbf8a4537458bb2531d1dd.mesh"]
+
+source_file="res://assets/temple/Pillar_Large_Arch_Top.obj"
+dest_files=["res://.godot/imported/Pillar_Large_Arch_Top.obj-35cb2acbc3cbf8a4537458bb2531d1dd.mesh", "res://.godot/imported/Pillar_Large_Arch_Top.obj-35cb2acbc3cbf8a4537458bb2531d1dd.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

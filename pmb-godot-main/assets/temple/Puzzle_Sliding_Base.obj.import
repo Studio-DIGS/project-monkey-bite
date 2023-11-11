@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b3mvwaa1v4c0b"
+path="res://.godot/imported/Puzzle_Sliding_Base.obj-d47f71be603404d5783ec3483c6debbc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Puzzle_Sliding_Base.obj-d47f71be603404d5783ec3483c6debbc.mesh"]
+
+source_file="res://assets/temple/Puzzle_Sliding_Base.obj"
+dest_files=["res://.godot/imported/Puzzle_Sliding_Base.obj-d47f71be603404d5783ec3483c6debbc.mesh", "res://.godot/imported/Puzzle_Sliding_Base.obj-d47f71be603404d5783ec3483c6debbc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

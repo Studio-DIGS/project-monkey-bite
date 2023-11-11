@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cayougvaqc3du"
+path="res://.godot/imported/Wall_Straight_Door_Sun.obj-c0b11a84fc38f07d44f69fb80d7e0a80.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Wall_Straight_Door_Sun.obj-c0b11a84fc38f07d44f69fb80d7e0a80.mesh"]
+
+source_file="res://assets/temple/Wall_Straight_Door_Sun.obj"
+dest_files=["res://.godot/imported/Wall_Straight_Door_Sun.obj-c0b11a84fc38f07d44f69fb80d7e0a80.mesh", "res://.godot/imported/Wall_Straight_Door_Sun.obj-c0b11a84fc38f07d44f69fb80d7e0a80.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

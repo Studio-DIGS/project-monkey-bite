@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://csi7qr50pt6s2"
+path="res://.godot/imported/Puzzle_Wall_Pillar_Conduit_Passthrough.obj-ac4a933fa7e6b2b9f81f32a58e4168d8.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Puzzle_Wall_Pillar_Conduit_Passthrough.obj-ac4a933fa7e6b2b9f81f32a58e4168d8.mesh"]
+
+source_file="res://assets/temple/Puzzle_Wall_Pillar_Conduit_Passthrough.obj"
+dest_files=["res://.godot/imported/Puzzle_Wall_Pillar_Conduit_Passthrough.obj-ac4a933fa7e6b2b9f81f32a58e4168d8.mesh", "res://.godot/imported/Puzzle_Wall_Pillar_Conduit_Passthrough.obj-ac4a933fa7e6b2b9f81f32a58e4168d8.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

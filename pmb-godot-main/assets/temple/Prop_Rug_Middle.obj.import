@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dgjxvxu4ppu6g"
+path="res://.godot/imported/Prop_Rug_Middle.obj-c45dcd3a7104045bd6f88c7422c354c7.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Prop_Rug_Middle.obj-c45dcd3a7104045bd6f88c7422c354c7.mesh"]
+
+source_file="res://assets/temple/Prop_Rug_Middle.obj"
+dest_files=["res://.godot/imported/Prop_Rug_Middle.obj-c45dcd3a7104045bd6f88c7422c354c7.mesh", "res://.godot/imported/Prop_Rug_Middle.obj-c45dcd3a7104045bd6f88c7422c354c7.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

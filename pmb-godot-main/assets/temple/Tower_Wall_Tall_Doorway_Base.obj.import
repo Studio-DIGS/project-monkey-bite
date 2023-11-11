@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bh1sd71p3q6sd"
+path="res://.godot/imported/Tower_Wall_Tall_Doorway_Base.obj-dbb1d62299b36bee19112d81cade627f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Tower_Wall_Tall_Doorway_Base.obj-dbb1d62299b36bee19112d81cade627f.mesh"]
+
+source_file="res://assets/temple/Tower_Wall_Tall_Doorway_Base.obj"
+dest_files=["res://.godot/imported/Tower_Wall_Tall_Doorway_Base.obj-dbb1d62299b36bee19112d81cade627f.mesh", "res://.godot/imported/Tower_Wall_Tall_Doorway_Base.obj-dbb1d62299b36bee19112d81cade627f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

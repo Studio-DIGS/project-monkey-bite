@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dikodd51k72y2"
+path="res://.godot/imported/Tower_Wall_Normal_Windows.obj-3767a98de6bf98348cd7052ce4aee9f2.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Tower_Wall_Normal_Windows.obj-3767a98de6bf98348cd7052ce4aee9f2.mesh"]
+
+source_file="res://assets/temple/Tower_Wall_Normal_Windows.obj"
+dest_files=["res://.godot/imported/Tower_Wall_Normal_Windows.obj-3767a98de6bf98348cd7052ce4aee9f2.mesh", "res://.godot/imported/Tower_Wall_Normal_Windows.obj-3767a98de6bf98348cd7052ce4aee9f2.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

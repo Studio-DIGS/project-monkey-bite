@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://m72u006246ah"
+path="res://.godot/imported/Prop_Rug_Stars.obj-de1c0d1dd670dfeac5ef472527f35d11.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Prop_Rug_Stars.obj-de1c0d1dd670dfeac5ef472527f35d11.mesh"]
+
+source_file="res://assets/temple/Prop_Rug_Stars.obj"
+dest_files=["res://.godot/imported/Prop_Rug_Stars.obj-de1c0d1dd670dfeac5ef472527f35d11.mesh", "res://.godot/imported/Prop_Rug_Stars.obj-de1c0d1dd670dfeac5ef472527f35d11.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

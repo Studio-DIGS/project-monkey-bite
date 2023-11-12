@@ -15,6 +15,7 @@ func enter(msg := {}):
 	var curr_attack = combo[combo_counter]
 	max_combo = player.combo.size() - 1
 	
+	curr_attack.knockback.x *= player.orientation
 	player.hitbox.configure_hitbox(curr_attack)
 	
 	if combo_counter == 0:

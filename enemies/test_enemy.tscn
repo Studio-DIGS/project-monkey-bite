@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfg1ub413xc20"]
+[gd_scene load_steps=16 format=3 uid="uid://bfg1ub413xc20"]
 
 [ext_resource type="Script" path="res://enemies/test_enemy.gd" id="1_oh0f7"]
 [ext_resource type="Script" path="res://common/hurtbox.gd" id="2_x0ut6"]
@@ -82,6 +82,18 @@ _data = {
 "stagger": SubResource("Animation_4mvm1")
 }
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_64m1x"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vuyvo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mvbw"]
+bg_color = Color(0.32549, 0.741176, 0.462745, 1)
+
+[sub_resource type="Theme" id="Theme_hxsbk"]
+ProgressBar/styles/background = SubResource("StyleBoxEmpty_vuyvo")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_8mvbw")
+
 [node name="TestEnemy" type="CharacterBody3D"]
 collision_layer = 16
 script = ExtResource("1_oh0f7")
@@ -101,12 +113,31 @@ health = NodePath("../Health")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
 shape = SubResource("CapsuleShape3D_g0es1")
 
-[node name="Health" type="Node" parent="."]
-script = ExtResource("3_6jb14")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_o72sg")
 }
 
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("display")]
+script = ExtResource("3_6jb14")
+display = NodePath("../SubViewport/ProgressBar")
+
+[node name="HealthDisplay" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23996, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_64m1x")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(100, 15)
+
+[node name="ProgressBar" type="ProgressBar" parent="SubViewport"]
+offset_right = 100.0
+offset_bottom = 15.0
+theme = SubResource("Theme_hxsbk")
+value = 100.0
+show_percentage = false
+
 [connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
+[connection signal="death" from="Health" to="." method="_on_health_death"]

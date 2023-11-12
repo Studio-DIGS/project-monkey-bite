@@ -1,5 +1,6 @@
-[gd_scene load_steps=35 format=3 uid="uid://cj6gya66i2u14"]
+[gd_scene load_steps=36 format=3 uid="uid://cj6gya66i2u14"]
 
+[ext_resource type="Script" path="res://common/game.gd" id="1_4nk2b"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="2_yuvdp"]
 [ext_resource type="ArrayMesh" uid="uid://b72npoi5wprc5" path="res://assets/temple/Prop_Flag_1.obj" id="3_dt7p3"]
 [ext_resource type="ArrayMesh" uid="uid://dohx36c77lpjt" path="res://assets/temple/Prop_Flag_Stand_Top.obj" id="4_l3pci"]
@@ -218,6 +219,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="World" type="Node3D"]
+script = ExtResource("1_4nk2b")
 
 [node name="Environment" type="Node3D" parent="."]
 

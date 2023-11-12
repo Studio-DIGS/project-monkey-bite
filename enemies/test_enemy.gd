@@ -19,3 +19,8 @@ func _physics_process(delta):
 func _on_hurtbox_hit(vector: Vector2):
 	$AnimationPlayer.play("stagger")
 	velocity = Vector3(vector.x, vector.y, 0)
+
+
+func _on_health_death():
+	await get_tree().create_timer(0.3).timeout
+	queue_free()

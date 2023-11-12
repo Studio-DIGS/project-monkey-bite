@@ -1,7 +1,6 @@
-[gd_resource type="Resource" script_class="AttackResource" load_steps=3 format=3 uid="uid://bbanx0gkgeef6"]
+[gd_resource type="Resource" script_class="AttackResource" load_steps=2 format=3 uid="uid://bbanx0gkgeef6"]
 
 [ext_resource type="Script" path="res://player/attacks/attack_resource.gd" id="1_dax2o"]
-[ext_resource type="AudioStream" uid="uid://dn5sauev88tqn" path="res://common/sfx/block1.mp3" id="1_wvwdj"]
 
 [resource]
 script = ExtResource("1_dax2o")
@@ -10,4 +9,3 @@ knockback = Vector2(0.4, 3)
 animation = &"jab_1"
 freeze_slow = 0.03
 freeze_time = 0.15
-impact_sfx = ExtResource("1_wvwdj")

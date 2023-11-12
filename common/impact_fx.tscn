@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://didtoj68pdch2"]
+[gd_scene load_steps=10 format=3 uid="uid://d2ltjwx8xv730"]
 
 [ext_resource type="Script" path="res://common/impact_fx.gd" id="1_j0mqk"]
 [ext_resource type="AudioStream" uid="uid://dn5sauev88tqn" path="res://common/sfx/block1.mp3" id="1_uuxeg"]

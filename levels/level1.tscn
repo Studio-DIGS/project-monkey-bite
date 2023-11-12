@@ -1,10 +1,11 @@
-[gd_scene load_steps=43 format=3 uid="uid://873p74312rfg"]
+[gd_scene load_steps=37 format=3 uid="uid://wqfmemqm6xmv"]
 
 [ext_resource type="ArrayMesh" uid="uid://b72npoi5wprc5" path="res://assets/temple/Prop_Flag_1.obj" id="1_ixxyw"]
 [ext_resource type="ArrayMesh" uid="uid://dohx36c77lpjt" path="res://assets/temple/Prop_Flag_Stand_Top.obj" id="2_n1d84"]
 [ext_resource type="ArrayMesh" uid="uid://b364hfo331by8" path="res://assets/temple/Prop_Flag_Stand_Extension.obj" id="3_fjyhb"]
 [ext_resource type="ArrayMesh" uid="uid://d0s8nxa6enrfi" path="res://assets/temple/Pillar_Large_Base.obj" id="4_dt485"]
 [ext_resource type="ArrayMesh" uid="uid://cyakhubgros11" path="res://assets/temple/Pillar_Large_Middle.obj" id="5_rwgaq"]
+[ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/test_enemy.tscn" id="6_1h86w"]
 [ext_resource type="ArrayMesh" uid="uid://clsnvfujirrx" path="res://assets/temple/Pillar_Large_Top.obj" id="6_iklpm"]
 [ext_resource type="PackedScene" uid="uid://brwbynmm26exm" path="res://assets/ultimate-platformer/Tree.gltf" id="7_2gy06"]
 [ext_resource type="PackedScene" uid="uid://dnxlvi0kucdpk" path="res://assets/ultimate-platformer/Fruit.gltf" id="8_gd7h3"]
@@ -15,11 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://b1ob2xlr74xc2" path="res://levels/grass/grass.tscn" id="13_82tkb"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="14_884je"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://player/camera/camera_system.tscn" id="15_kb6rw"]
-[ext_resource type="Script" path="res://test_enemy.gd" id="16_gv7sa"]
-[ext_resource type="Script" path="res://common/hurtbox.gd" id="17_ri2u8"]
 [ext_resource type="ArrayMesh" uid="uid://d3t6wj0ml65jy" path="res://assets/temple/Wall_Ruined_Corner_Outer_2.obj" id="17_ws2mn"]
 [ext_resource type="ArrayMesh" uid="uid://dkxtjc8226cpb" path="res://assets/temple/Wall_Curved_Small_Top.obj" id="18_0tj2k"]
-[ext_resource type="Script" path="res://common/health.gd" id="18_jlu15"]
 [ext_resource type="ArrayMesh" uid="uid://debs7t18w1ayv" path="res://assets/temple/Balcony_Base_Bridge_Ramp.obj" id="19_1abk2"]
 [ext_resource type="ArrayMesh" uid="uid://bsbv6equmbrqe" path="res://assets/temple/Wall_Curved_Small_Window.obj" id="21_sjpqc"]
 [ext_resource type="ArrayMesh" uid="uid://ygms1g3kcwq4" path="res://assets/temple/Floor_Bridge_Ramp.obj" id="22_un12l"]
@@ -213,19 +211,7 @@ background_mode = 2
 background_color = Color(0.4, 0.615686, 0.811765, 1)
 sky = SubResource("Sky_xpkr3")
 tonemap_mode = 2
-sdfgi_enabled = true
 glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4538d"]
-diffuse_mode = 3
-albedo_color = Color(0.921569, 0.341176, 0.341176, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_6xy7g"]
-material = SubResource("StandardMaterial3D_4538d")
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w1cmq"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g0es1"]
 
 [node name="World" type="Node3D"]
 
@@ -314,11 +300,11 @@ visible = false
 [node name="Characters Scripts and World Settings" type="Node" parent="Environment"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment/Characters Scripts and World Settings"]
-transform = Transform3D(-0.422618, -0.800222, 0.425486, 0, 0.469472, 0.882947, -0.906308, 0.37315, -0.198407, 0, 0, 0)
+transform = Transform3D(-0.422618, -0.800222, 0.425486, 0, 0.469472, 0.882947, -0.906308, 0.373149, -0.198407, 0, 0, 0)
 shadow_enabled = true
 shadow_blur = 1.745
 directional_shadow_mode = 1
-directional_shadow_split_1 = 0.09
+directional_shadow_split_1 = 0.003
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment/Characters Scripts and World Settings"]
 environment = SubResource("Environment_y8ynd")
@@ -331,51 +317,14 @@ jump_height = 10.0
 [node name="CameraSystem" parent="Environment/Characters Scripts and World Settings" node_paths=PackedStringArray("target") instance=ExtResource("15_kb6rw")]
 target = NodePath("../Player")
 
-[node name="TestEnemy" type="CharacterBody3D" parent="Environment/Characters Scripts and World Settings"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8693, 1.09482, 0)
-collision_layer = 16
-script = ExtResource("16_gv7sa")
+[node name="TestEnemy" parent="Environment/Characters Scripts and World Settings" instance=ExtResource("6_1h86w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.452, 1.06, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Characters Scripts and World Settings/TestEnemy"]
-mesh = SubResource("CapsuleMesh_6xy7g")
+[node name="TestEnemy2" parent="Environment/Characters Scripts and World Settings" instance=ExtResource("6_1h86w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.681, 5.625, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Characters Scripts and World Settings/TestEnemy"]
-shape = SubResource("CapsuleShape3D_w1cmq")
-
-[node name="Hurtbox" type="Area3D" parent="Environment/Characters Scripts and World Settings/TestEnemy" node_paths=PackedStringArray("health")]
-collision_layer = 64
-collision_mask = 4
-script = ExtResource("17_ri2u8")
-health = NodePath("../Health")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Characters Scripts and World Settings/TestEnemy/Hurtbox"]
-shape = SubResource("CapsuleShape3D_g0es1")
-
-[node name="Health" type="Node" parent="Environment/Characters Scripts and World Settings/TestEnemy"]
-script = ExtResource("18_jlu15")
-
-[node name="TestEnemy2" type="CharacterBody3D" parent="Environment/Characters Scripts and World Settings"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.9441, 5.87279, 0)
-collision_layer = 16
-script = ExtResource("16_gv7sa")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Characters Scripts and World Settings/TestEnemy2"]
-mesh = SubResource("CapsuleMesh_6xy7g")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Characters Scripts and World Settings/TestEnemy2"]
-shape = SubResource("CapsuleShape3D_w1cmq")
-
-[node name="Hurtbox" type="Area3D" parent="Environment/Characters Scripts and World Settings/TestEnemy2" node_paths=PackedStringArray("health")]
-collision_layer = 64
-collision_mask = 4
-script = ExtResource("17_ri2u8")
-health = NodePath("../../TestEnemy/Health")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Characters Scripts and World Settings/TestEnemy2/Hurtbox"]
-shape = SubResource("CapsuleShape3D_g0es1")
-
-[node name="Health" type="Node" parent="Environment/Characters Scripts and World Settings/TestEnemy2"]
-script = ExtResource("18_jlu15")
+[node name="TestEnemy3" parent="Environment/Characters Scripts and World Settings" instance=ExtResource("6_1h86w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.511, 5.625, 0)
 
 [node name="Pillars" type="Node" parent="Environment"]
 
@@ -608,8 +557,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.33644, 0.251553, 1.56773)
 visible = false
 
 [connection signal="turn_around" from="Environment/Characters Scripts and World Settings/Player" to="Environment/Characters Scripts and World Settings/CameraSystem" method="_on_player_turn_around"]
-[connection signal="hit" from="Environment/Characters Scripts and World Settings/TestEnemy/Hurtbox" to="Environment/Characters Scripts and World Settings/TestEnemy" method="_on_hurtbox_hit"]
-[connection signal="hit" from="Environment/Characters Scripts and World Settings/TestEnemy2/Hurtbox" to="Environment/Characters Scripts and World Settings/TestEnemy2" method="_on_hurtbox_hit"]
 
 [editable path="Environment/Platform ground/PG1/grass"]
 [editable path="Environment/Platform ground/PG2/grass"]

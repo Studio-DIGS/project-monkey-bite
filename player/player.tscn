@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://cr4sceoqgwhwp" path="res://player/attacks/jab_3.tres" id="4_jge1d"]
 [ext_resource type="Script" path="res://common/state_machine.gd" id="4_mjfp3"]
 [ext_resource type="Script" path="res://player/states/player_idle.gd" id="5_jgl0y"]
-[ext_resource type="Resource" uid="uid://1cvlje125a6o" path="res://player/attacks/air_kick.tres" id="5_mpl0g"]
+[ext_resource type="Resource" path="res://player/attacks/air_kick.tres" id="5_mpl0g"]
 [ext_resource type="Script" path="res://player/states/player_run.gd" id="6_yy7o3"]
 [ext_resource type="Script" path="res://player/states/player_air.gd" id="7_7qn2t"]
 [ext_resource type="Script" path="res://player/states/player_land.gd" id="8_m0mi4"]

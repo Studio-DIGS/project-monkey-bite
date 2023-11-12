@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://ceg0a8jxwnfae"]
+[gd_scene load_steps=30 format=3 uid="uid://ceg0a8jxwnfae"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_7knqw"]
 [ext_resource type="Resource" uid="uid://bbanx0gkgeef6" path="res://player/attacks/jab_1.tres" id="2_2gp80"]
@@ -16,8 +16,6 @@
 [ext_resource type="Script" path="res://common/hurtbox.gd" id="9_sbn7q"]
 [ext_resource type="Script" path="res://common/health.gd" id="9_sjui1"]
 [ext_resource type="Script" path="res://common/hitbox.gd" id="12_xrx4s"]
-[ext_resource type="AudioStream" uid="uid://b1u48as3am0ve" path="res://player/sfx/kick_impact.mp3" id="17_8j2mj"]
-[ext_resource type="AudioStream" uid="uid://dn5sauev88tqn" path="res://player/sfx/block1.mp3" id="18_whk38"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_48kjw"]
 
@@ -31,7 +29,7 @@ material = ExtResource("3_d4l1y")
 material = ExtResource("3_d4l1y")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xio6w"]
-size = Vector3(1.49409, 1.7093, 2.03238)
+size = Vector3(1.69711, 0.745705, 0.756048)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q2byd"]
 
@@ -100,178 +98,26 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Punch:playing")
+tracks/5/path = NodePath("Punch:pitch_scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [1.2]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Punch:pitch_scale")
+tracks/6/path = NodePath("Mesh/Hitbox/CollisionShape3D:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.2]
-}
-
-[sub_resource type="Animation" id="Animation_8jdxq"]
-resource_name = "attack1"
-length = 0.200003
-step = 0.0333333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh/fistR:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.2),
-"transitions": PackedFloat32Array(1, 0.466517, 0.098073),
-"update": 0,
-"values": [Vector3(0.6, -0.2, -0.275), Vector3(0.6, -0.2, -1.5), Vector3(0.6, -0.2, -0.275)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Mesh/Hitbox/CollisionShape3D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.0666667, 0.133333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Punch:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_r2djm"]
-resource_name = "attack2"
-length = 0.200003
-step = 0.0333333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh/fistL:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.2),
-"transitions": PackedFloat32Array(1, 0.466517, 0.0980731),
-"update": 0,
-"values": [Vector3(-0.6, -0.2, -0.275), Vector3(-0.6, -0.2, -1.5), Vector3(-0.6, -0.2, -0.275)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Mesh/Hitbox/CollisionShape3D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.0666667, 0.133333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Punch:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_qyqem"]
-resource_name = "attack3"
-length = 0.500003
-step = 0.0333333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh/fistR:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.2, 0.266667, 0.4, 0.466667, 0.5),
-"transitions": PackedFloat32Array(1, 2.2974, 0.466517, 0.307786, 1.68179, 2.37841, 0.098073),
-"update": 0,
-"values": [Vector3(0.6, -0.2, -0.275), Vector3(0.6, -0.142598, 0.346628), Vector3(0.6, -0.2, -1.5), Vector3(0.6, 0.345073, -1.4583), Vector3(0.6, 0.345, -1.458), Vector3(0.6, -0.0481042, -1.0377), Vector3(0.6, -0.2, -0.275)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Mesh/Hitbox/CollisionShape3D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Punch:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.166667),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Punch:pitch_scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.166667, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.0, 1.2]
-}
-
-[sub_resource type="Animation" id="Animation_avbdr"]
-resource_name = "bob"
-length = 0.80001
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh/body:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.08, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_t10sd"]
@@ -317,24 +163,212 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Kick:playing")
+tracks/3/path = NodePath("Mesh/Hitbox/CollisionShape3D:shape:size")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.166667),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.69711, 1.07142, 1.42906)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Mesh/Hitbox/CollisionShape3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.0538786, -2.04566)]
+}
+
+[sub_resource type="Animation" id="Animation_avbdr"]
+resource_name = "bob"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.08, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8jdxq"]
+resource_name = "attack1"
+length = 0.200003
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/fistR:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2),
+"transitions": PackedFloat32Array(1, 0.466517, 0.098073),
+"update": 0,
+"values": [Vector3(0.6, -0.2, -0.275), Vector3(0.6, -0.2, -1.5), Vector3(0.6, -0.2, -0.275)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh/Hitbox/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mesh/Hitbox/CollisionShape3D:shape:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.69711, 0.745705, 0.756048)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mesh/Hitbox/CollisionShape3D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.0791342, -1.32944)]
+}
+
+[sub_resource type="Animation" id="Animation_r2djm"]
+resource_name = "attack2"
+length = 0.200003
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/fistL:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2),
+"transitions": PackedFloat32Array(1, 0.466517, 0.0980731),
+"update": 0,
+"values": [Vector3(-0.6, -0.2, -0.275), Vector3(-0.6, -0.2, -1.5), Vector3(-0.6, -0.2, -0.275)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh/Hitbox/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mesh/Hitbox/CollisionShape3D:shape")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [SubResource("BoxShape3D_xio6w")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mesh/Hitbox/CollisionShape3D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.0791342, -1.32944)]
+}
+
+[sub_resource type="Animation" id="Animation_qyqem"]
+resource_name = "attack3"
+length = 0.500003
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/fistR:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2, 0.266667, 0.4, 0.466667, 0.5),
+"transitions": PackedFloat32Array(1, 2.2974, 0.466517, 0.307786, 1.68179, 2.37841, 0.098073),
+"update": 0,
+"values": [Vector3(0.6, -0.2, -0.275), Vector3(0.6, -0.142598, 0.346628), Vector3(0.6, -0.2, -1.5), Vector3(0.6, 0.345073, -1.4583), Vector3(0.6, 0.345, -1.458), Vector3(0.6, -0.0481042, -1.0377), Vector3(0.6, -0.2, -0.275)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh/Hitbox/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Punch:pitch_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.166667, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 1.2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mesh/Hitbox/CollisionShape3D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.196282, -1.42493)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h1s3s"]
 _data = {
 "RESET": SubResource("Animation_goqiy"),
 "air_kick": SubResource("Animation_t10sd"),
-"attack1": SubResource("Animation_8jdxq"),
-"attack2": SubResource("Animation_r2djm"),
-"attack3": SubResource("Animation_qyqem"),
-"bob": SubResource("Animation_avbdr")
+"bob": SubResource("Animation_avbdr"),
+"jab_1": SubResource("Animation_8jdxq"),
+"jab_2": SubResource("Animation_r2djm"),
+"jab_3": SubResource("Animation_qyqem")
 }
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim", "hitbox")]
@@ -352,7 +386,6 @@ shape = SubResource("CapsuleShape3D_48kjw")
 script = ExtResource("2_ioxg0")
 
 [node name="body" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_5owbq")
 skeleton = NodePath("../..")
 
@@ -375,10 +408,8 @@ mesh = SubResource("SphereMesh_hmupo")
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("12_xrx4s")
-knockback = Vector2(3, 4)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Hitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0791342, -1.03039)
 shape = SubResource("BoxShape3D_xio6w")
 disabled = true
 
@@ -420,12 +451,7 @@ libraries = {
 "": SubResource("AnimationLibrary_h1s3s")
 }
 
-[node name="Kick" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("17_8j2mj")
-
-[node name="Punch" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("18_whk38")
-pitch_scale = 1.2
+[node name="SFX" type="AudioStreamPlayer" parent="."]
 
 [connection signal="turn_around" from="." to="Mesh" method="_on_player_turn_around"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack" method="_on_animation_player_animation_finished"]

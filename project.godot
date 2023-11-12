@@ -29,6 +29,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="project-monkey-bite"
 
+[filesystem]
+
+import/fbx/enabled=false
+
 [input]
 
 right={

@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://didtoj68pdch2"]
+
+[ext_resource type="Script" path="res://common/impact_fx.gd" id="1_j0mqk"]
+[ext_resource type="AudioStream" uid="uid://dn5sauev88tqn" path="res://common/sfx/block1.mp3" id="1_uuxeg"]
+
+[sub_resource type="Curve" id="Curve_3vfod"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.988304, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_frevj"]
+curve = SubResource("Curve_3vfod")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lix43"]
+direction = Vector3(0, -2, 1)
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.15
+initial_velocity_max = 8.47
+scale_min = 0.6
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_frevj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ui4xr"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_b4qt8"]
+material = SubResource("StandardMaterial3D_ui4xr")
+size = Vector2(0.1, 0.085)
+
+[node name="ImpactFX" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.651418)
+script = ExtResource("1_j0mqk")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 32
+lifetime = 0.29
+one_shot = true
+explosiveness = 1.0
+trail_lifetime = 1.94
+process_material = SubResource("ParticleProcessMaterial_lix43")
+draw_pass_1 = SubResource("QuadMesh_b4qt8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_uuxeg")
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

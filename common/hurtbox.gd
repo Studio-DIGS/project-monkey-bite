@@ -2,6 +2,7 @@ class_name Hurtbox
 extends Area3D
 
 @export var health: Health = null
+@onready var impact_fx = preload("res://common/impact_fx.tscn")
 
 signal hit(vector: Vector2)
 
@@ -14,9 +15,11 @@ func _on_area_entered(hitbox: Hitbox):
 	
 	hit.emit(hitbox.knockback)
 	
+	var instance = impact_fx.instantiate()
+	add_child(instance)
+	
 	if health:
 		health.take_damage(hitbox.damage)
-	$GPUParticles3D.emitting = true
 	# Freeze frame
 	## should probably be moved somewhere else because I think this will get 
 	## called multiple times if multiple enemies get hit at the same time

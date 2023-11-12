@@ -12,11 +12,9 @@ material = ExtResource("3_xkprl")
 size = Vector2(20, 20)
 
 [node name="CameraSystem" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_am4p7")
 
 [node name="CameraContainer" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="LookAheadCam" type="Camera3D" parent="CameraContainer"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 5)

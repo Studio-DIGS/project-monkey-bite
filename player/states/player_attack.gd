@@ -11,20 +11,16 @@ func enter(msg := {}):
 		apply_gravity = true
 	else:
 		combo = player.combo
-		
-	print(combo_counter)
+	
+	var curr_attack = combo[combo_counter]
 	max_combo = player.combo.size() - 1
 	
-	var xknockback = combo[combo_counter].knockback.x * player.orientation
-	var yknockback = combo[combo_counter].knockback.y
-	player.hitbox.knockback = Vector2(xknockback, yknockback)
-	player.hitbox.freeze_slow = combo[combo_counter].freeze_slow
-	player.hitbox.freeze_time = combo[combo_counter].freeze_time
+	player.hitbox.configure_hitbox(curr_attack)
 	
 	if combo_counter == 0:
-		player.anim.play(combo[combo_counter].animation)
+		player.anim.play(curr_attack.animation)
 	else:
-		player.anim.queue(combo[combo_counter].animation)
+		player.anim.queue(curr_attack.animation)
 	combo_counter += 1
 
 func physics_update(delta):

@@ -1,19 +1,22 @@
 extends CameraProcesser
 
 # Camera settings
-@export var target: Node3D
+var target: Node3D
 
 @export var camera_speed : float = 5.0
 @export var catchup_speed : float = 2.5
 @export var catchup_sens : float = 5.0
-@export var vertical_offset : float = 4.0
-@export var depth_offset : float = 4.0
+@export var vertical_offset : float = 2.0
+@export var depth_offset : float = 0.0
 @export var lerp_speed : float = 0.1
 
 var speed = camera_speed
 
 var currentPosition : Vector3;
 	
+func set_target(target : Node3D):
+	self.target = target;
+	print(self.target)
 
 func _ready():
 	# Ensure the camera starts at a reasonable initial position

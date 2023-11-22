@@ -13,9 +13,10 @@
 [ext_resource type="ArrayMesh" uid="uid://dn3538nup1hmt" path="res://assets/temple/Wall_Ruined_Full_Cracked_1.obj" id="13_daoyd"]
 [ext_resource type="Material" uid="uid://bdrk3hn2y0uie" path="res://levels/grass/grass_floor.tres" id="14_8g4lb"]
 [ext_resource type="ArrayMesh" uid="uid://ie1glsealiff" path="res://assets/temple/Wall_Ruined_Half_1.obj" id="14_qjvny"]
-[ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://player/camera/camera_system.tscn" id="15_eg6d8"]
 [ext_resource type="Shader" uid="uid://cuvclsyoc2sse" path="res://levels/grass/grass.tres" id="15_hlcfo"]
-[ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/test_enemy.tscn" id="16_lv63p"]
+[ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://camera/camera_system.tscn" id="15_le3dk"]
+[ext_resource type="Script" path="res://common/hurtbox.gd" id="16_0ffjy"]
+[ext_resource type="Script" path="res://test_enemy.gd" id="16_d5k8w"]
 [ext_resource type="PackedScene" uid="uid://b1ob2xlr74xc2" path="res://levels/grass/grass.tscn" id="16_pu3ap"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8li3"]
@@ -440,7 +441,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.786
 accel = 6.505
 jump_height = 10.0
 
-[node name="CameraSystem" parent="." node_paths=PackedStringArray("target") instance=ExtResource("15_eg6d8")]
+[node name="CameraSystem" parent="." node_paths=PackedStringArray("target") instance=ExtResource("15_le3dk")]
 target = NodePath("../Player")
 
 [node name="TestEnemy" parent="." instance=ExtResource("16_lv63p")]

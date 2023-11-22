@@ -2,8 +2,7 @@ extends CameraProcesser
 
 # Camera settings
 @export var camera_speed : float = 2.5;
-@export var look_ahead_distance : float  = 4.0;
-@export var orientation : float  = 1;
+@export var look_ahead_distance : float  = 2.0;
 
 func process_cam(dir : float, current_position : Vector3, delta : float):
 	# Slide camera along x axis to get ahead of player

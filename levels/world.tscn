@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cj6gya66i2u14"]
+[gd_scene load_steps=30 format=3 uid="uid://cj6gya66i2u14"]
 
 [ext_resource type="Script" path="res://common/game.gd" id="1_4nk2b"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="2_yuvdp"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="15_le3dk"]
 [ext_resource type="Sky" uid="uid://bpa6skcj0hqyy" path="res://visual_pipeline/skybox.tres" id="16_762lu"]
 [ext_resource type="PackedScene" uid="uid://b1ob2xlr74xc2" path="res://levels/grass/grass.tscn" id="16_pu3ap"]
+[ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/test_enemy.tscn" id="18_03ibt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8li3"]
 uv1_triplanar = true
@@ -306,5 +307,10 @@ environment = SubResource("Environment_y8ynd")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.78614, 1.41166, -0.0926752)
 accel = 6.505
 jump_height = 10.0
+
+[node name="TestEnemy" parent="." instance=ExtResource("18_03ibt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55562, -0.0405577, -0.000691056)
+
+[connection signal="turn_around" from="Player" to="CameraSystem" method="_on_player_turn_around"]
 
 [editable path="Environment/grass"]

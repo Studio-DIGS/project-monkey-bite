@@ -1,7 +1,7 @@
-extends Node3D
+extends SubViewportContainer
 class_name CameraSystem; 
 
-
+@export_group("Dependencies")
 @export var target : Node3D;
 
 signal change_direction;

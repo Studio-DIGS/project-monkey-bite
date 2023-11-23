@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cj6gya66i2u14"]
+[gd_scene load_steps=35 format=3 uid="uid://cj6gya66i2u14"]
 
 [ext_resource type="Script" path="res://common/game.gd" id="1_4nk2b"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="2_yuvdp"]
@@ -15,8 +15,6 @@
 [ext_resource type="ArrayMesh" uid="uid://ie1glsealiff" path="res://assets/temple/Wall_Ruined_Half_1.obj" id="14_qjvny"]
 [ext_resource type="Shader" uid="uid://cuvclsyoc2sse" path="res://levels/grass/grass.tres" id="15_hlcfo"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://camera/camera_system.tscn" id="15_le3dk"]
-[ext_resource type="Script" path="res://common/hurtbox.gd" id="16_0ffjy"]
-[ext_resource type="Script" path="res://test_enemy.gd" id="16_d5k8w"]
 [ext_resource type="PackedScene" uid="uid://b1ob2xlr74xc2" path="res://levels/grass/grass.tscn" id="16_pu3ap"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8li3"]
@@ -221,6 +219,8 @@ glow_enabled = true
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_4nk2b")
+
+[node name="CameraSystem" parent="." instance=ExtResource("15_le3dk")]
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -440,12 +440,5 @@ environment = SubResource("Environment_y8ynd")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.78614, 1.41166, -0.0926752)
 accel = 6.505
 jump_height = 10.0
-
-[node name="CameraSystem" parent="." node_paths=PackedStringArray("target") instance=ExtResource("15_le3dk")]
-target = NodePath("../Player")
-
-[node name="TestEnemy" parent="." instance=ExtResource("16_lv63p")]
-
-[connection signal="turn_around" from="Player" to="CameraSystem" method="_on_player_turn_around"]
 
 [editable path="Environment/grass"]

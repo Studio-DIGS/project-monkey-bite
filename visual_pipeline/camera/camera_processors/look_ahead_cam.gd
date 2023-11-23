@@ -4,7 +4,7 @@ extends CameraProcesser
 @export var camera_speed : float = 2.5;
 @export var look_ahead_distance : float  = 2.0;
 
-func process_cam(dir : float, current_position : Vector3, delta : float):
+func process_cam(dir : float, current_position : Vector3, delta : float, _camera : Camera3D) -> Vector3:
 	# Slide camera along x axis to get ahead of player
 	var target_position = current_position + dir * Vector3(look_ahead_distance, 0, 0);
 

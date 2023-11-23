@@ -220,7 +220,8 @@ glow_enabled = true
 [node name="World" type="Node3D"]
 script = ExtResource("1_4nk2b")
 
-[node name="CameraSystem" parent="." instance=ExtResource("15_le3dk")]
+[node name="CameraSystem" parent="." node_paths=PackedStringArray("target") instance=ExtResource("15_le3dk")]
+target = NodePath("../Player")
 
 [node name="Environment" type="Node3D" parent="."]
 

@@ -1,19 +1,22 @@
-extends Node3D
+extends CameraProcesser
 class_name PixelCamBase
 
 @export_group("Dependencies")
 @export var viewport: SubViewport
 @export var display_rect : ColorRect
-@export var camera : Camera3D
 
 var pixel_size : float
-
-
-func setup():
-	# calculate pixel size, update the shader parameters to match viewport
+		
+func process_cam(_dir : float, current_position : Vector3, _delta : float, camera : Camera3D) -> Vector3:
+	# Update pixel size, if it's changed
 	pixel_size = calculate_pixel_size(camera, viewport)
 	if(display_rect != null):
 		display_rect.material.set_shader_parameter("game_resolution", viewport.size)
+		
+	# apply snap
+	var snap_result = get_pixel_snapped_pos(current_position, camera.basis)
+	update_display(snap_result)
+	return snap_result.snapped_world_pos
 	
 func calculate_pixel_size(camera : Camera3D, viewport : SubViewport) -> float:
 	return camera.size / viewport.size.y

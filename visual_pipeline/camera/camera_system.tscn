@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://4vymcd4lcm3x"]
+
+[ext_resource type="Script" path="res://visual_pipeline/camera/camera_system.gd" id="1_sm215"]
+[ext_resource type="Script" path="res://visual_pipeline/camera/postprocess_control.gd" id="2_hpfd2"]
+[ext_resource type="Material" uid="uid://bmj6ine1d47me" path="res://visual_pipeline/3d-pixel/pixel_style_mat.tres" id="3_n0b8t"]
+[ext_resource type="Script" path="res://visual_pipeline/camera/main_cam.gd" id="4_o4ip1"]
+[ext_resource type="Script" path="res://visual_pipeline/camera/camera_processors/follow_cam.gd" id="5_4ughu"]
+[ext_resource type="Script" path="res://visual_pipeline/camera/camera_processors/look_ahead_cam.gd" id="6_4ybsm"]
+[ext_resource type="Script" path="res://visual_pipeline/camera/camera_processors/pixel_cam.gd" id="7_iqsrg"]
+[ext_resource type="Shader" path="res://visual_pipeline/3d-pixel/pixel_display_shader.gdshader" id="8_s25ex"]
+[ext_resource type="Texture2D" uid="uid://bra0pnfu76sc4" path="res://visual_pipeline/3d-pixel/pixel_viewport_tex.tres" id="9_t53x4"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rpb4e"]
+material = ExtResource("3_n0b8t")
+size = Vector2(20, 20)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kgedk"]
+resource_local_to_scene = true
+shader = ExtResource("8_s25ex")
+shader_parameter/pixel_snap_uv_offset = null
+shader_parameter/game_resolution = null
+shader_parameter/viewport_tex = ExtResource("9_t53x4")
+
+[node name="CameraSystem" type="SubViewportContainer" node_paths=PackedStringArray("follow_cam")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sm215")
+follow_cam = NodePath("SubViewport/CameraContainer/MainCamControl/FollowCamProcess")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(320, 180)
+render_target_update_mode = 4
+
+[node name="CameraContainer" type="Node3D" parent="SubViewport"]
+
+[node name="MainCamera" type="Camera3D" parent="SubViewport/CameraContainer"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 5)
+projection = 1
+current = true
+size = 6.5
+near = 0.001
+script = ExtResource("2_hpfd2")
+
+[node name="Postprocess" type="MeshInstance3D" parent="SubViewport/CameraContainer/MainCamera"]
+transform = Transform3D(1, 0, 0, 0, -2.98023e-08, -1, 0, 1, -2.98023e-08, 0, 0, -0.1)
+mesh = SubResource("PlaneMesh_rpb4e")
+
+[node name="MainCamControl" type="Node" parent="SubViewport/CameraContainer" node_paths=PackedStringArray("camera", "camera_move_container", "camera_follow", "camera_lookahead", "camera_pixel_snap")]
+script = ExtResource("4_o4ip1")
+camera = NodePath("../MainCamera")
+camera_move_container = NodePath("..")
+camera_follow = NodePath("FollowCamProcess")
+camera_lookahead = NodePath("LookaheadCamProcess")
+camera_pixel_snap = NodePath("PixelCamProcess")
+
+[node name="FollowCamProcess" type="Node" parent="SubViewport/CameraContainer/MainCamControl"]
+script = ExtResource("5_4ughu")
+
+[node name="LookaheadCamProcess" type="Node" parent="SubViewport/CameraContainer/MainCamControl"]
+script = ExtResource("6_4ybsm")
+
+[node name="PixelCamProcess" type="Node" parent="SubViewport/CameraContainer/MainCamControl" node_paths=PackedStringArray("viewport", "display_rect")]
+script = ExtResource("7_iqsrg")
+viewport = NodePath("../../..")
+display_rect = NodePath("../../../../CanvasLayer/FullscreenDisplay")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="FullscreenDisplay" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_kgedk")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="change_direction" from="." to="SubViewport/CameraContainer/MainCamControl" method="_on_camera_system_change_direction"]

@@ -45,6 +45,11 @@ void vertex(){
     model_view_matrix = VIEW_MATRIX * mat4(INV_VIEW_MATRIX[0], INV_VIEW_MATRIX[1], INV_VIEW_MATRIX[2], MODEL_MATRIX[3]);
 }
 
+float remap(float val, float inLow, float inHigh, float outLow, float outHigh){
+	float t = clamp((val - inLow) / (inHigh - inLow), 0., 1.);
+	return mix(outLow, outHigh, t);
+}
+
 void fragment() {
 	vec2 e = vec2(1./VIEWPORT_SIZE.xy);
 	
@@ -88,7 +93,6 @@ void fragment() {
 		normal_diff = clamp(normal_diff-neg_depth_diff, 0., 1.);
 //		ALBEDO = vec3(normal_diff);
 	}
-	
 
 	vec3 original_color = texture(SCREEN_TEXTURE, SCREEN_UV).rgb;
 	vec3 final_highlight_color = mix(original_color, highlight_color, highlight_strength);
@@ -100,13 +104,19 @@ void fragment() {
 	if (shadows_enabled) {
 		final = mix(final, final_shadow_color, depth_diff);
 	}
-	ALBEDO = original_color;// final;
+	ALBEDO = final;
 
 	float alpha_mask = depth_diff * float(shadows_enabled) + normal_diff * float(highlights_enabled);
 	ALPHA = clamp((alpha_mask) * 5., 0., 1.);
 	
 	// Debug
-	ALPHA = 1.0;
-	vec3 normal = texture(NORMAL_TEXTURE, SCREEN_UV).rgb * 2.0 - 1.0;	
-	ALBEDO = vec3(normal);
+	if(false)
+	{
+		ALPHA = 1.0;
+		vec3 normal = texture(NORMAL_TEXTURE, SCREEN_UV).rgb;
+		normal.r = remap(normal.r, -2., 2., 0., 1.);
+		normal.g = remap(normal.g, -2., 2., 0., 1.);
+		normal.b = remap(normal.b, -2., 2., 0., 1.);
+		ALBEDO = vec3(normal_diff);
+	}
 }

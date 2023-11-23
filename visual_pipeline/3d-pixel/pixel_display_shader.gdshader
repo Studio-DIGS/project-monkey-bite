@@ -4,16 +4,13 @@ shader_type canvas_item;
 uniform sampler2D viewport_tex : filter_nearest;
 
 // 0 to 1, the offset needed to snap the camera to a pixel grid
-uniform vec2 pixel_snap_uv_offset;
-
-// The pixelated resolution
-uniform vec2 game_resolution;
+uniform vec2 texel_snap_uv_offset;
 
 void fragment() 
 {
 	// Pixel snap undo
 	vec2 uv = UV;
-	uv -= pixel_snap_uv_offset;
+	uv -= texel_snap_uv_offset;
 	
 	// Ramp texture
 	vec4 color = texture(viewport_tex, uv);

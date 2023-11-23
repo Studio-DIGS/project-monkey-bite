@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://visual_pipeline/camera/main_cam.gd" id="4_o4ip1"]
 [ext_resource type="Script" path="res://visual_pipeline/camera/camera_processors/follow_cam.gd" id="5_4ughu"]
 [ext_resource type="Script" path="res://visual_pipeline/camera/camera_processors/look_ahead_cam.gd" id="6_4ybsm"]
-[ext_resource type="Script" path="res://visual_pipeline/camera/camera_processors/pixel_cam.gd" id="7_iqsrg"]
+[ext_resource type="Script" path="res://visual_pipeline/camera/camera_processors/texel_cam.gd" id="7_ku77i"]
 [ext_resource type="Shader" path="res://visual_pipeline/3d-pixel/pixel_display_shader.gdshader" id="8_s25ex"]
 [ext_resource type="Texture2D" uid="uid://bra0pnfu76sc4" path="res://visual_pipeline/3d-pixel/pixel_viewport_tex.tres" id="9_t53x4"]
 
@@ -17,8 +17,7 @@ size = Vector2(20, 20)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kgedk"]
 resource_local_to_scene = true
 shader = ExtResource("8_s25ex")
-shader_parameter/pixel_snap_uv_offset = null
-shader_parameter/game_resolution = null
+shader_parameter/texel_snap_uv_offset = null
 shader_parameter/viewport_tex = ExtResource("9_t53x4")
 
 [node name="CameraSystem" type="SubViewportContainer" node_paths=PackedStringArray("follow_cam")]
@@ -55,7 +54,7 @@ camera = NodePath("../MainCamera")
 camera_move_container = NodePath("..")
 camera_follow = NodePath("FollowCamProcess")
 camera_lookahead = NodePath("LookaheadCamProcess")
-camera_pixel_snap = NodePath("PixelCamProcess")
+camera_pixel_snap = NodePath("TexelCamProcess")
 
 [node name="FollowCamProcess" type="Node" parent="SubViewport/CameraContainer/MainCamControl"]
 script = ExtResource("5_4ughu")
@@ -63,8 +62,8 @@ script = ExtResource("5_4ughu")
 [node name="LookaheadCamProcess" type="Node" parent="SubViewport/CameraContainer/MainCamControl"]
 script = ExtResource("6_4ybsm")
 
-[node name="PixelCamProcess" type="Node" parent="SubViewport/CameraContainer/MainCamControl" node_paths=PackedStringArray("viewport", "display_rect")]
-script = ExtResource("7_iqsrg")
+[node name="TexelCamProcess" type="Node" parent="SubViewport/CameraContainer/MainCamControl" node_paths=PackedStringArray("viewport", "display_rect")]
+script = ExtResource("7_ku77i")
 viewport = NodePath("../../..")
 display_rect = NodePath("../../../../CanvasLayer/FullscreenDisplay")
 

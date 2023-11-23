@@ -7,7 +7,7 @@ var target: Node3D
 @export var camera_speed : float = 5.0
 @export var catchup_speed : float = 2.5
 @export var catchup_sens : float = 5.0
-@export var vertical_offset : float = 2.0
+@export var vertical_offset : float = 2.5
 @export var depth_offset : float = 0.0
 @export var lerp_speed : float = 0.1
 

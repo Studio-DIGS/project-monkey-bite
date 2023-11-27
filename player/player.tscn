@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ceg0a8jxwnfae"]
+[gd_scene load_steps=31 format=3 uid="uid://ceg0a8jxwnfae"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_7knqw"]
 [ext_resource type="Resource" uid="uid://bbanx0gkgeef6" path="res://player/attacks/jab_1.tres" id="2_2gp80"]
@@ -8,9 +8,10 @@
 [ext_resource type="Resource" uid="uid://cr4sceoqgwhwp" path="res://player/attacks/jab_3.tres" id="4_jge1d"]
 [ext_resource type="Script" path="res://common/state_machine.gd" id="4_mjfp3"]
 [ext_resource type="Script" path="res://player/states/player_idle.gd" id="5_jgl0y"]
-[ext_resource type="Resource" path="res://player/attacks/air_kick.tres" id="5_mpl0g"]
+[ext_resource type="Resource" uid="uid://1cvlje125a6o" path="res://player/attacks/air_kick.tres" id="5_mpl0g"]
 [ext_resource type="Script" path="res://player/states/player_run.gd" id="6_yy7o3"]
 [ext_resource type="Script" path="res://player/states/player_air.gd" id="7_7qn2t"]
+[ext_resource type="PackedScene" uid="uid://byi0hl24hihyj" path="res://player/kite.tscn" id="7_u2uia"]
 [ext_resource type="Script" path="res://player/states/player_land.gd" id="8_m0mi4"]
 [ext_resource type="Script" path="res://player/states/player_attack.gd" id="9_0f5gx"]
 [ext_resource type="Script" path="res://common/hurtbox.gd" id="9_sbn7q"]
@@ -361,7 +362,11 @@ shape = SubResource("CapsuleShape3D_48kjw")
 [node name="Mesh" type="Node3D" parent="."]
 script = ExtResource("2_ioxg0")
 
+[node name="kite" parent="Mesh" instance=ExtResource("7_u2uia")]
+transform = Transform3D(0.196152, 0, -0.980574, 0, 1, 0, 0.980574, 0, 0.196152, -0.0105619, -1.01937, 0)
+
 [node name="body" type="MeshInstance3D" parent="Mesh"]
+visible = false
 mesh = SubResource("CapsuleMesh_5owbq")
 skeleton = NodePath("../..")
 
@@ -372,11 +377,13 @@ skeleton = NodePath("../..")
 
 [node name="fistR" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(0.340109, 0, 0, 0, 0.340109, 0, 0, 0, 0.340109, 0.6, -0.2, -0.275)
+visible = false
 material_override = ExtResource("3_d4l1y")
 mesh = SubResource("SphereMesh_hmupo")
 
 [node name="fistL" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(0.340109, 0, 0, 0, 0.340109, 0, 0, 0, 0.340109, -0.6, -0.2, -0.275)
+visible = false
 material_override = ExtResource("3_d4l1y")
 mesh = SubResource("SphereMesh_hmupo")
 

@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://byi0hl24hihyj"]
+
+[ext_resource type="PackedScene" uid="uid://cif32s5aqmn8l" path="res://kite.gltf" id="1_ca06n"]
+[ext_resource type="Material" uid="uid://kj1cdpjtp7ke" path="res://player/hair.tres" id="2_jgu5h"]
+[ext_resource type="Material" uid="uid://wjuxpd7heyfa" path="res://player/skin.tres" id="3_2dhhs"]
+
+[node name="kite" instance=ExtResource("1_ca06n")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/8/position = Vector3(-3.91892e-07, 30.1565, -5.23691e-05)
+bones/9/position = Vector3(1.91537e-06, 62.6002, 1.69427e-05)
+bones/10/position = Vector3(6.19277e-07, 50.7855, -3.00829e-05)
+bones/11/position = Vector3(-10.1559, 7.22946, -3.48985e-05)
+bones/12/position = Vector3(-2.96146, 9.52314, -6.12217e-05)
+bones/14/position = Vector3(2.50781, 8.75058, 1.51361e-05)
+bones/15/position = Vector3(1.80911e-06, 16.3714, -2.10254e-05)
+bones/16/position = Vector3(0.048708, 14.8724, 7.96167e-06)
+bones/17/position = Vector3(-0.064424, 13.0191, -2.04201e-05)
+bones/18/position = Vector3(0.0157161, 10.1186, 3.39855e-05)
+bones/20/position = Vector3(-6.95313e-07, 30.1565, -2.12085e-05)
+bones/21/position = Vector3(-2.39144e-06, 62.6062, 2.2075e-06)
+bones/22/position = Vector3(-1.82042e-07, 50.7874, -8.42403e-06)
+bones/23/position = Vector3(10.1837, 6.51583, 6.85459e-07)
+bones/25/position = Vector3(-0.257033, 11.1536, 1.29155e-06)
+bones/26/position = Vector3(-2.78075, 9.26766, 1.43058e-05)
+bones/27/position = Vector3(-1.38221e-06, 11.8764, -7.42292e-06)
+bones/28/position = Vector3(-0.0294838, 17.2451, 5.41084e-06)
+bones/30/position = Vector3(-0.0274191, 10.8564, -2.93259e-05)
+bones/36/rotation = Quaternion(-0.00185178, -0.0249156, 0.996935, -0.0741315)
+bones/38/rotation = Quaternion(-0.0726613, 0.901332, -0.393154, -0.166584)
+
+[node name="cuboid" parent="Armature/Skeleton3D" index="2"]
+surface_material_override/0 = ExtResource("2_jgu5h")
+
+[node name="face" parent="Armature/Skeleton3D" index="4"]
+surface_material_override/0 = ExtResource("3_2dhhs")
+
+[node name="foot_L" parent="Armature/Skeleton3D" index="5"]
+surface_material_override/0 = ExtResource("3_2dhhs")
+
+[node name="foot_R" parent="Armature/Skeleton3D" index="6"]
+surface_material_override/0 = ExtResource("3_2dhhs")
+
+[node name="hair" parent="Armature/Skeleton3D" index="7"]
+surface_material_override/0 = ExtResource("2_jgu5h")
+
+[node name="hairtie" parent="Armature/Skeleton3D" index="8"]
+surface_material_override/0 = ExtResource("2_jgu5h")
+
+[node name="hand_L" parent="Armature/Skeleton3D" index="9"]
+surface_material_override/0 = ExtResource("3_2dhhs")
+
+[node name="hand_R" parent="Armature/Skeleton3D" index="10"]
+surface_material_override/0 = ExtResource("3_2dhhs")
+
+[node name="neck" parent="Armature/Skeleton3D" index="13"]
+surface_material_override/0 = ExtResource("3_2dhhs")
+
+[node name="torso" parent="Armature/Skeleton3D" index="17"]
+surface_material_override/0 = ExtResource("3_2dhhs")

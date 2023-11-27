@@ -300,7 +300,7 @@ visible = false
 [node name="Characters Scripts and World Settings" type="Node" parent="Environment"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment/Characters Scripts and World Settings"]
-transform = Transform3D(-0.422618, -0.800222, 0.425486, 0, 0.469472, 0.882947, -0.906308, 0.373149, -0.198407, 0, 0, 0)
+transform = Transform3D(-0.81066, -0.41782, -0.410192, -0.0177291, -0.682726, 0.730459, -0.585249, 0.599426, 0.546051, 0, 0, 0)
 shadow_enabled = true
 shadow_blur = 1.745
 directional_shadow_mode = 1

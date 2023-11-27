@@ -131,7 +131,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_6xy7g")
 
 [node name="slimeball" parent="." instance=ExtResource("2_ibb15")]
-transform = Transform3D(-2.77714e-08, 0.110325, 0.625683, 0, 0.625683, -0.110325, -0.635335, -4.82245e-09, -2.73495e-08, 0, 0, 0)
+transform = Transform3D(-2.29991e-06, 0, 0.635335, 0, 0.635335, 0, -0.635335, 0, -2.29991e-06, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.505663, 0)

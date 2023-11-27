@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://bfg1ub413xc20"]
+[gd_scene load_steps=16 format=3 uid="uid://bfg1ub413xc20"]
 
 [ext_resource type="Script" path="res://enemies/test_enemy.gd" id="1_oh0f7"]
-[ext_resource type="PackedScene" uid="uid://bripsbxdb7ls3" path="res://enemies/slimeball.gltf" id="2_ibb15"]
 [ext_resource type="Script" path="res://common/hurtbox.gd" id="2_x0ut6"]
 [ext_resource type="Script" path="res://common/health.gd" id="3_6jb14"]
 
@@ -13,12 +12,11 @@ emission = Color(1, 1, 1, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6xy7g"]
 material = SubResource("StandardMaterial3D_4538d")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_f54qb"]
-size = Vector3(1.75813, 1, 1.83574)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q5uni"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g0es1"]
-radius = 1.1288
-height = 2.25761
+radius = 0.610806
+height = 2.10739
 
 [sub_resource type="Animation" id="Animation_38soa"]
 length = 0.001
@@ -45,18 +43,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [null]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("slimeball:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 1.5708, 0)]
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2rqt"]
@@ -91,18 +77,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [SubResource("StandardMaterial3D_c2rqt"), SubResource("StandardMaterial3D_c2rqt"), null]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("slimeball:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.174533, 1.5708, 0), Vector3(-0.174533, 1.5708, 0), Vector3(0.0837758, 1.5708, 0), Vector3(0, 1.5708, 0)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o72sg"]
 _data = {
@@ -127,15 +101,11 @@ collision_layer = 16
 script = ExtResource("1_oh0f7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("CapsuleMesh_6xy7g")
 
-[node name="slimeball" parent="." instance=ExtResource("2_ibb15")]
-transform = Transform3D(-2.29991e-06, 0, 0.635335, 0, 0.635335, 0, -0.635335, 0, -2.29991e-06, 0, 0, 0)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.505663, 0)
-shape = SubResource("BoxShape3D_f54qb")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00357932, 0)
+shape = SubResource("CapsuleShape3D_q5uni")
 
 [node name="Hurtbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 64
@@ -144,7 +114,7 @@ script = ExtResource("2_x0ut6")
 health = NodePath("../Health")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.146968, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00948918, 0)
 shape = SubResource("CapsuleShape3D_g0es1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -154,6 +124,7 @@ libraries = {
 
 [node name="Health" type="Node" parent="." node_paths=PackedStringArray("display")]
 script = ExtResource("3_6jb14")
+max_health = 100
 display = NodePath("../SubViewport/ProgressBar")
 
 [node name="HealthDisplay" type="Sprite3D" parent="."]
@@ -175,5 +146,3 @@ show_percentage = false
 
 [connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
 [connection signal="death" from="Health" to="." method="_on_health_death"]
-
-[editable path="slimeball"]

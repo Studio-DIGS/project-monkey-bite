@@ -7,7 +7,7 @@ noise = SubResource("FastNoiseLite_l1uxp")
 
 [resource]
 diffuse_mode = 3
-albedo_color = Color(0.980392, 0.513726, 0.223529, 1)
+albedo_color = Color(0.352941, 0.52549, 0.45098, 1)
 metallic_specular = 0.0
 roughness = 0.0
 emission = Color(0.831373, 0.156863, 0.270588, 1)

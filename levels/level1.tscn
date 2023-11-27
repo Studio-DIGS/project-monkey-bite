@@ -15,7 +15,7 @@
 [ext_resource type="Material" uid="uid://bdrk3hn2y0uie" path="res://levels/grass/grass_floor.tres" id="12_imocn"]
 [ext_resource type="PackedScene" uid="uid://b1ob2xlr74xc2" path="res://levels/grass/grass.tscn" id="13_82tkb"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="14_884je"]
-[ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://player/camera/camera_system.tscn" id="15_kb6rw"]
+[ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="15_kb6rw"]
 [ext_resource type="ArrayMesh" uid="uid://d3t6wj0ml65jy" path="res://assets/temple/Wall_Ruined_Corner_Outer_2.obj" id="17_ws2mn"]
 [ext_resource type="ArrayMesh" uid="uid://dkxtjc8226cpb" path="res://assets/temple/Wall_Curved_Small_Top.obj" id="18_0tj2k"]
 [ext_resource type="ArrayMesh" uid="uid://debs7t18w1ayv" path="res://assets/temple/Balcony_Base_Bridge_Ramp.obj" id="19_1abk2"]

@@ -13,6 +13,8 @@ func _on_area_entered(hitbox: Hitbox):
 	if hitbox == null:
 		return
 	
+	print("successful hit")
+	
 	hit.emit(hitbox.knockback)
 	
 	var instance = impact_fx.instantiate()

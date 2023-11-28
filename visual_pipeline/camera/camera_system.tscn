@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://visual_pipeline/camera/camera_processors/look_ahead_cam.gd" id="6_4ybsm"]
 [ext_resource type="Script" path="res://visual_pipeline/camera/camera_processors/texel_cam.gd" id="7_ku77i"]
 [ext_resource type="Shader" path="res://visual_pipeline/3d-pixel/pixel_display_shader.gdshader" id="8_s25ex"]
-[ext_resource type="Texture2D" uid="uid://bra0pnfu76sc4" path="res://visual_pipeline/3d-pixel/pixel_viewport_tex.tres" id="9_t53x4"]
+[ext_resource type="Texture2D" uid="uid://bra0pnfu76sc4" path="res://visual_pipeline/3d-pixel/pixel_viewport_tex.tres" id="9_eb1hg"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rpb4e"]
 material = ExtResource("3_n0b8t")
@@ -17,8 +17,7 @@ size = Vector2(20, 20)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kgedk"]
 resource_local_to_scene = true
 shader = ExtResource("8_s25ex")
-shader_parameter/texel_snap_uv_offset = null
-shader_parameter/viewport_tex = ExtResource("9_t53x4")
+shader_parameter/viewport_tex = ExtResource("9_eb1hg")
 
 [node name="CameraSystem" type="SubViewportContainer" node_paths=PackedStringArray("follow_cam")]
 anchors_preset = 15
@@ -46,6 +45,7 @@ script = ExtResource("2_hpfd2")
 
 [node name="Postprocess" type="MeshInstance3D" parent="SubViewport/CameraContainer/MainCamera"]
 transform = Transform3D(1, 0, 0, 0, -2.98023e-08, -1, 0, 1, -2.98023e-08, 0, 0, -0.1)
+visible = false
 mesh = SubResource("PlaneMesh_rpb4e")
 
 [node name="MainCamControl" type="Node" parent="SubViewport/CameraContainer" node_paths=PackedStringArray("camera", "camera_move_container", "camera_follow", "camera_lookahead", "camera_pixel_snap")]

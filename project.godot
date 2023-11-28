@@ -100,3 +100,26 @@ debug={
 
 lights_and_shadows/directional_shadow/size=16384
 textures/default_filters/anisotropic_filtering_level=0
+
+[shader_globals]
+
+texel_snap_uv_offset={
+"type": "vec2",
+"value": Vector2(0, 0)
+}
+view_basis_matrix={
+"type": "mat4",
+"value": Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+}
+camera_proj_matrix={
+"type": "mat4",
+"value": Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+}
+camera_inv_proj_matrix={
+"type": "mat4",
+"value": Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+}
+inv_view_basis_matrix={
+"type": "mat4",
+"value": Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+}

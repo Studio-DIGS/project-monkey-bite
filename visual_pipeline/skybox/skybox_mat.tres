@@ -1,0 +1,41 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://c6tyrkbrmfw38"]
+
+[ext_resource type="Shader" uid="uid://bgrxy3fkyjk4s" path="res://visual_pipeline/skybox/skybox_shader.tres" id="1_o58qw"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pndxn"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qe2md"]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource("FastNoiseLite_pndxn")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h8mcs"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mfdm4"]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource("FastNoiseLite_h8mcs")
+
+[resource]
+shader = ExtResource("1_o58qw")
+shader_parameter/sky_top_color = Color(0.168627, 0.466667, 0.713726, 1)
+shader_parameter/sky_horizon_color = Color(0.509804, 0.701961, 0.85098, 1)
+shader_parameter/sky_curve = 0.0776449
+shader_parameter/sky_energy = 1.0
+shader_parameter/sky_cover_modulate = Color(1, 1, 1, 1)
+shader_parameter/ground_bottom_color = Color(0.384314, 0.654902, 0.823529, 1)
+shader_parameter/ground_horizon_color = Color(0.494118, 0.713726, 0.839216, 1)
+shader_parameter/ground_curve = 0.0428708
+shader_parameter/ground_energy = 1.0
+shader_parameter/sun_angle_max = 0.523599
+shader_parameter/sun_curve = 0.375
+shader_parameter/cloud_direction = Vector2(0.47, 0.355)
+shader_parameter/cloud_direction2 = Vector2(1.585, 0.17)
+shader_parameter/cloud_scale = Vector2(0.04, 2.74)
+shader_parameter/cloud_distance = 0.0
+shader_parameter/cloud_speed = 0.05
+shader_parameter/cloud_speed2 = 0.015
+shader_parameter/cloud_texture = SubResource("NoiseTexture2D_qe2md")
+shader_parameter/cloud_texture2 = SubResource("NoiseTexture2D_mfdm4")

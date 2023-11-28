@@ -11,3 +11,9 @@ extends Camera3D
 		else:
 			$Postprocess.hide()
 			post_processing = p
+			
+func _process(_delta):
+	RenderingServer.global_shader_parameter_set("view_basis_matrix", Transform3D(basis).inverse())
+	RenderingServer.global_shader_parameter_set("inv_view_basis_matrix", Transform3D(basis))
+	RenderingServer.global_shader_parameter_set("camera_proj_matrix", get_camera_projection())
+	RenderingServer.global_shader_parameter_set("camera_inv_proj_matrix", get_camera_projection().inverse())

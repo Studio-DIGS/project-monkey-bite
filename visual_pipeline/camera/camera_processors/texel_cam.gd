@@ -13,7 +13,7 @@ func process_cam(_dir : float, current_position : Vector3, _delta : float, camer
 	
 	# apply snap
 	var snap_result = get_texel_snapped_pos(current_position, camera.basis)
-	update_display(snap_result)
+	update_display(snap_result, camera)
 	return snap_result.snapped_world_pos
 	
 func calculate_texel_size(camera : Camera3D, viewport : SubViewport) -> float:
@@ -61,6 +61,8 @@ func get_texel_snapped_pos(world_pos : Vector3, cam_basis : Basis) -> SnapResult
 	var result = SnapResult.new(final_pos, snap_texel_offset_uv)
 	return result
 	
-func update_display(snap_result : SnapResult):
+func update_display(snap_result : SnapResult, camera : Camera3D):
 	# update the display rect to match snap offset
-	display_rect.material.set_shader_parameter("texel_snap_uv_offset", snap_result.snap_texel_offset_uv)
+	RenderingServer.global_shader_parameter_set("texel_snap_uv_offset", snap_result.snap_texel_offset_uv)
+	
+	

@@ -4,7 +4,7 @@ shader_type canvas_item;
 uniform sampler2D viewport_tex : filter_nearest;
 
 // 0 to 1, the offset needed to snap the camera to a pixel grid
-uniform vec2 texel_snap_uv_offset;
+global uniform vec2 texel_snap_uv_offset;
 
 void fragment() 
 {

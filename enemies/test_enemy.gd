@@ -1,13 +1,17 @@
 extends CharacterBody3D
 
 @export var attack: AttackResource
+var start_pos
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	start_pos = position
 
 
 func _physics_process(delta):
+	if Input.is_action_just_pressed("reset"):
+		position = start_pos
+	
 	velocity.y -= 20 * delta
 	
 	if is_on_floor():

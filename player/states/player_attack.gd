@@ -12,6 +12,8 @@ func enter(msg := {}):
 	else:
 		combo = player.combo
 	
+	print(combo_counter)
+	
 	var curr_attack = combo[combo_counter]
 	max_combo = player.combo.size() - 1
 	

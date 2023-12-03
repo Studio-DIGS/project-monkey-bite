@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AttackResource" load_steps=2 format=3 uid="uid://dgjn3tlt2bmb7"]
+
+[ext_resource type="Script" path="res://player/attacks/attack_resource.gd" id="1_ax8x5"]
+
+[resource]
+script = ExtResource("1_ax8x5")
+damage = 0
+knockback = Vector2(0.4, 3)
+animation = &"slash_1"
+freeze_slow = 0.03
+freeze_time = 0.15

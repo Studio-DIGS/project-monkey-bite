@@ -252,7 +252,6 @@ disabled = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
-autostart = true
 
 [connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
 [connection signal="death" from="Health" to="." method="_on_health_death"]

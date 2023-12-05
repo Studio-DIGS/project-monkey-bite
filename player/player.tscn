@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://common/state_machine.gd" id="4_mjfp3"]
 [ext_resource type="Resource" uid="uid://cy52355i3cepj" path="res://player/attacks/slash_3.tres" id="4_slkb2"]
 [ext_resource type="Script" path="res://player/states/player_idle.gd" id="5_jgl0y"]
-[ext_resource type="Resource" uid="uid://1cvlje125a6o" path="res://player/attacks/air_kick.tres" id="5_mpl0g"]
+[ext_resource type="Resource" path="res://player/attacks/air_kick.tres" id="5_mpl0g"]
 [ext_resource type="Script" path="res://player/states/player_run.gd" id="6_yy7o3"]
 [ext_resource type="Script" path="res://player/states/player_air.gd" id="7_7qn2t"]
 [ext_resource type="Material" uid="uid://c1t7seoda7a40" path="res://player/player_test_mat.tres" id="7_rtao6"]
@@ -638,7 +638,6 @@ shape = SubResource("CapsuleShape3D_48kjw")
 script = ExtResource("2_ioxg0")
 
 [node name="body" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_5owbq")
 skeleton = NodePath("../..")
 
@@ -648,7 +647,7 @@ mesh = SubResource("CylinderMesh_pliqs")
 skeleton = NodePath("../..")
 
 [node name="fistR" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(0.321257, 0.107338, 0.0307664, 0.00540395, -0.108549, 0.322276, 0.111529, -0.303924, -0.104237, 0.6, -0.2, -0.275)
+transform = Transform3D(0.321256, 0.107339, 0.0307667, 0.00540391, -0.108548, 0.322276, 0.111531, -0.303924, -0.104236, 0.6, -0.2, -0.275)
 material_override = ExtResource("7_rtao6")
 mesh = SubResource("SphereMesh_hmupo")
 

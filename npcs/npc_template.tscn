@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://de3nwqodulfhf"]
+
+[ext_resource type="Script" path="res://npcs/Dialogue Manager.gd" id="1_ahmh4"]
+[ext_resource type="Script" path="res://npcs/NPC 1 Script Holder.gd" id="2_ocjla"]
+[ext_resource type="Texture2D" uid="uid://bx21e1atdqoi2" path="res://npcs/icon.svg" id="3_cyiel"]
+[ext_resource type="Texture2D" uid="uid://chidleaypam3r" path="res://npcs/Dino.jpg" id="4_p24af"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xg12u"]
+albedo_color = Color(0.627451, 0.443137, 0.968627, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6w5xl"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_whpdr"]
+
+[node name="NPC Template" type="Node3D"]
+
+[node name="PodBody" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_xg12u")
+mesh = SubResource("CapsuleMesh_6w5xl")
+
+[node name="PlayerDetectionBox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetectionBox"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+shape = SubResource("SphereShape3D_whpdr")
+
+[node name="Dialogue Manager" type="Node3D" parent="."]
+script = ExtResource("1_ahmh4")
+
+[node name="Script Holder" type="Node" parent="Dialogue Manager"]
+script = ExtResource("2_ocjla")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Dialogue Items" type="TextureRect" parent="CanvasLayer"]
+offset_right = 463.0
+offset_bottom = 128.0
+texture = ExtResource("3_cyiel")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Dialogue Items"]
+z_index = -1
+layout_mode = 0
+offset_left = 274.0
+offset_top = -137.0
+offset_right = 774.0
+offset_bottom = 363.0
+scale = Vector2(0.313822, 0.313822)
+texture = ExtResource("4_p24af")
+
+[node name="NPC Text" type="Label" parent="CanvasLayer/Dialogue Items"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 17.0
+offset_right = 433.0
+offset_bottom = 109.0
+text = "\"Place Holder Text\""
+autowrap_mode = 2
+
+[node name="NPC Name" type="Label" parent="CanvasLayer/Dialogue Items"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -27.0
+offset_right = 56.0
+offset_bottom = -1.0
+text = "Dino"
+autowrap_mode = 2
+
+[connection signal="area_entered" from="PlayerDetectionBox" to="Dialogue Manager" method="_on_player_detection_box_area_entered"]
+[connection signal="area_entered" from="PlayerDetectionBox" to="Dialogue Manager/Script Holder" method="_on_player_detection_box_area_entered"]
+[connection signal="area_exited" from="PlayerDetectionBox" to="Dialogue Manager" method="_on_player_detection_box_area_exited"]
+[connection signal="NPC_text" from="Dialogue Manager/Script Holder" to="Dialogue Manager" method="_on_script_holder_npc_text"]

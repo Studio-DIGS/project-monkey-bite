@@ -4,9 +4,9 @@ signal NPC_text
 
 var dialogue
 var dialogue2
-var regularLine1: String = "Regular: hi my name Anthony Nguyen"
-var regularLine2: String = "Regular: I love studio DIGS, I think it is incredible because of the type of members in it"
-var regularLine3: String = "Regular: Sometimes I wonder how far we are going to get into developing this game"
+var regularLine1: String = "Regular: Ya know, my brother can be really too social sometimes."
+var regularLine2: String = "Regular: We've been traveling together for years and he always manages to befriend the strangest people."
+var regularLine3: String = "Regular: Look after him will you?"
 var regularLine4: String = "Regular: I have faith in our team and believe we got a solid team that can implement it"
 var regularLine5: String = "Regular: We just gotta pull together and progress through this all"
 

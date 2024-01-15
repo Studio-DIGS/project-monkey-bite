@@ -1,6 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://cj6gya66i2u14"]
+[gd_scene load_steps=32 format=3 uid="uid://cj6gya66i2u14"]
 
 [ext_resource type="Script" path="res://common/game.gd" id="1_4nk2b"]
+[ext_resource type="PackedScene" uid="uid://b11c1td1admcy" path="res://levels/level2.tscn" id="2_jkqva"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="2_yuvdp"]
 [ext_resource type="ArrayMesh" uid="uid://b72npoi5wprc5" path="res://assets/temple/Prop_Flag_1.obj" id="3_dt7p3"]
 [ext_resource type="ArrayMesh" uid="uid://dohx36c77lpjt" path="res://assets/temple/Prop_Flag_Stand_Top.obj" id="4_l3pci"]
@@ -86,9 +87,12 @@ glow_enabled = true
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_4nk2b")
+test1 = ExtResource("2_jkqva")
 
 [node name="CameraSystem" parent="." node_paths=PackedStringArray("target") instance=ExtResource("15_le3dk")]
 z_index = -2
+offset_left = 2.0
+offset_right = 2.0
 target = NodePath("../Player")
 
 [node name="Environment" type="Node3D" parent="."]
@@ -314,23 +318,8 @@ jump_height = 10.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.15295, 1.3582, -0.000691056)
 
 [node name="NPC Template" parent="." instance=ExtResource("19_efxhq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.01078, 0.955252, -1.75607)
-
-[node name="Dialogue Items" parent="NPC Template/CanvasLayer" index="0"]
-offset_left = 42.0
-offset_top = 422.0
-offset_right = 505.0
-offset_bottom = 550.0
-scale = Vector2(2.58331, 2.17198)
-
-[node name="NPC Name" parent="NPC Template/CanvasLayer/Dialogue Items" index="2"]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 46.0
-offset_bottom = 26.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.950289, -2.94787)
 
 [connection signal="turn_around" from="Player" to="CameraSystem" method="_on_player_turn_around"]
 
 [editable path="Environment/grass"]
-[editable path="NPC Template"]

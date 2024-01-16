@@ -28,5 +28,4 @@ func physics_update(delta):
 			state_machine.transition_to("Attack")
 	
 	elif player.hori_input == 0.0:
-		print('this')
 		state_machine.transition_to("Idle")

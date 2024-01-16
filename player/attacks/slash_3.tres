@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_mqsju")
 damage = 0
-knockback = Vector2(5, 10)
+knockback = Vector2(4, 11)
 animation = &"slash_3"
 freeze_slow = 0.07
 freeze_time = 0.4

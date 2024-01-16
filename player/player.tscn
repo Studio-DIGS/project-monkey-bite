@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://ceg0a8jxwnfae"]
+[gd_scene load_steps=37 format=3 uid="uid://ceg0a8jxwnfae"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_7knqw"]
 [ext_resource type="Resource" uid="uid://dgjn3tlt2bmb7" path="res://player/attacks/slash_1.tres" id="2_06grq"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://cy52355i3cepj" path="res://player/attacks/slash_3.tres" id="4_slkb2"]
 [ext_resource type="Script" path="res://player/states/player_idle.gd" id="5_jgl0y"]
 [ext_resource type="Resource" uid="uid://1cvlje125a6o" path="res://player/attacks/air_kick.tres" id="5_mpl0g"]
+[ext_resource type="Resource" uid="uid://d20o3ci66troi" path="res://player/attacks/zone_in.tres" id="6_yg4su"]
 [ext_resource type="Script" path="res://player/states/player_run.gd" id="6_yy7o3"]
 [ext_resource type="Script" path="res://player/states/player_air.gd" id="7_7qn2t"]
 [ext_resource type="Material" uid="uid://c1t7seoda7a40" path="res://player/player_test_mat.tres" id="7_rtao6"]
@@ -16,6 +17,7 @@
 [ext_resource type="Script" path="res://common/hurtbox.gd" id="9_sbn7q"]
 [ext_resource type="Script" path="res://common/health.gd" id="9_sjui1"]
 [ext_resource type="Script" path="res://common/hitbox.gd" id="12_xrx4s"]
+[ext_resource type="Script" path="res://player/player_zonein.gd" id="16_f6eea"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_48kjw"]
 
@@ -34,7 +36,7 @@ bottom_radius = 0.05
 height = 1.45
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xio6w"]
-size = Vector3(1.697, 1.73, 1.83693)
+size = Vector3(1.697, 1.73, 1.936)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q2byd"]
 
@@ -610,6 +612,83 @@ tracks/7/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_7ej0a"]
+resource_name = "zone_in"
+length = 0.500003
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/fistR:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.433333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.6, -0.2, -0.275), Vector3(0.6, 0.358028, -1.41191), Vector3(0.6, 0.358028, -1.41191), Vector3(0.6, -0.2, -0.275)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh/fistR:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.433333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.18892, 0.245192, -0.550615), Vector3(-1.51835, 0.783142, -0.806067), Vector3(-1.51835, 0.783142, -0.806067), Vector3(-1.18892, 0.245192, -0.550615)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mesh/body:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.133333, 0.466667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.214798, -0.424708, 0), Vector3(-0.16352, 0.196716, 0), Vector3(-0.16352, 0.196716, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mesh/Hitbox/CollisionShape3D:shape:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.697, 1.73, 1.936)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Mesh/Hitbox/CollisionShape3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.474153, -2.08394)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Mesh/Hitbox/CollisionShape3D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1, 0.266667, 0.3, 0.433333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h1s3s"]
 _data = {
 "RESET": SubResource("Animation_goqiy"),
@@ -620,7 +699,8 @@ _data = {
 "jab_3": SubResource("Animation_qyqem"),
 "slash_1": SubResource("Animation_gc4xv"),
 "slash_2": SubResource("Animation_8tb1q"),
-"slash_3": SubResource("Animation_nuneo")
+"slash_3": SubResource("Animation_nuneo"),
+"zone_in": SubResource("Animation_7ej0a")
 }
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim", "hitbox")]
@@ -630,6 +710,7 @@ anim = NodePath("AnimationPlayer")
 hitbox = NodePath("Mesh/Hitbox")
 combo = Array[Resource("res://player/attacks/attack_resource.gd")]([ExtResource("2_06grq"), ExtResource("3_msbl5"), ExtResource("4_slkb2")])
 air_combo = Array[Resource("res://player/attacks/attack_resource.gd")]([ExtResource("5_mpl0g")])
+zone_in = ExtResource("6_yg4su")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_48kjw")
@@ -647,7 +728,7 @@ mesh = SubResource("CylinderMesh_pliqs")
 skeleton = NodePath("../..")
 
 [node name="fistR" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(0.321256, 0.107339, 0.0307667, 0.00540391, -0.108548, 0.322276, 0.11153, -0.303924, -0.104236, 0.6, -0.2, -0.275)
+transform = Transform3D(0.321256, 0.107339, 0.0307667, 0.0054039, -0.108548, 0.322276, 0.11153, -0.303924, -0.104236, 0.6, -0.2, -0.275)
 material_override = ExtResource("7_rtao6")
 mesh = SubResource("SphereMesh_hmupo")
 
@@ -670,6 +751,22 @@ script = ExtResource("12_xrx4s")
 shape = SubResource("BoxShape3D_xio6w")
 disabled = true
 
+[node name="ZoneInDist" type="RayCast3D" parent="Mesh"]
+enabled = false
+target_position = Vector3(0, 0, -7)
+collision_mask = 64
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_thickness = 5
+
+[node name="StayPutDist" type="RayCast3D" parent="Mesh"]
+enabled = false
+target_position = Vector3(0, 0, -2.39)
+collision_mask = 64
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_thickness = 5
+
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("4_mjfp3")
 initial_state = NodePath("Idle")
@@ -688,6 +785,9 @@ script = ExtResource("8_m0mi4")
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("9_0f5gx")
+
+[node name="ZoneIn" type="Node" parent="StateMachine"]
+script = ExtResource("16_f6eea")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("9_sjui1")

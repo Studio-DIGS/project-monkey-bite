@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AttackResource" load_steps=2 format=3 uid="uid://d20o3ci66troi"]
+
+[ext_resource type="Script" path="res://player/attacks/attack_resource.gd" id="1_utnyc"]
+
+[resource]
+script = ExtResource("1_utnyc")
+damage = 0
+knockback = Vector2(6, 3)
+animation = &"zone_in"
+freeze_slow = 0.03
+freeze_time = 0.25

@@ -6,6 +6,9 @@ extends CharacterBody3D
 @export var hitbox: Hitbox
 @export var combo: Array[AttackResource] = []
 @export var air_combo: Array[AttackResource] = []
+@export var zone_in: AttackResource
+@onready var zone_in_dist: RayCast3D = $Mesh/ZoneInDist
+@onready var stay_put_dist: RayCast3D = $Mesh/StayPutDist
 
 @export var speed = 5.0
 @export var accel = 15.0

@@ -4,7 +4,6 @@ var combo_counter = 0
 var max_combo = 0
 var combo: Array[AttackResource]
 var apply_gravity = false
-var orientation = 1
 var contact = false 
 
 func enter(msg := {}):
@@ -14,10 +13,11 @@ func enter(msg := {}):
 	# declare max combo index
 	var curr_attack = combo[combo_counter]
 	max_combo = combo.size() - 1
-	print(combo_counter)
+#	print(combo_counter)
 	
 	# configure hitbox to correct AttackResource
-	curr_attack.knockback.x *= orientation
+	curr_attack.knockback.x = abs(curr_attack.knockback.x) # this seems hacky but it works
+	curr_attack.knockback.x *= player.orientation
 	player.hitbox.configure_hitbox(curr_attack)
 	
 	# plays the initial animation
@@ -49,10 +49,6 @@ func _on_animation_player_animation_finished(_anim_name):
 
 func _on_animation_player_animation_changed(old_name, new_name):
 	state_machine.transition_to("Attack")
-
-
-func _on_player_turn_around():
-	orientation *= -1
 
 # check if made contact with enemy
 func _on_hitbox_area_entered(area):

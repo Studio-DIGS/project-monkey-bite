@@ -1,6 +1,6 @@
 extends PlayerState
 
-var attacks: int
+var attack_tries: int
 
 func enter(msg := {}):
 	if msg.has("do_jump"):
@@ -15,11 +15,11 @@ func physics_update(delta):
 	player.velocity.x = lerp(player.velocity.x, player.hori_input * player.speed, delta * player.accel)
 	player.move_and_slide()
 	
-	if attacks > 0 and Input.is_action_pressed("attack"):
-		attacks -= 1
+	if attack_tries > 0 and Input.is_action_pressed("attack"):
+		attack_tries -= 1
 		state_machine.transition_to("Attack", {air = true})
 	
 	# Landing
 	elif player.is_on_floor():
-		attacks = 1 # reset number of air attacks
+		attack_tries = 1 # reset number of attempts at an air attack
 		state_machine.transition_to("Land")

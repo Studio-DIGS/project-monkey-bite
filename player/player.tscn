@@ -710,7 +710,6 @@ libraries = {
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 
 [connection signal="turn_around" from="." to="Mesh" method="_on_player_turn_around"]
-[connection signal="turn_around" from="." to="StateMachine/Attack" method="_on_player_turn_around"]
 [connection signal="area_entered" from="Mesh/Hitbox" to="StateMachine/Attack" method="_on_hitbox_area_entered"]
 [connection signal="animation_changed" from="AnimationPlayer" to="StateMachine/Attack" method="_on_animation_player_animation_changed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack" method="_on_animation_player_animation_finished"]

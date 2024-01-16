@@ -1,10 +1,13 @@
 extends PlayerState
 
 func enter(_msg := {}):
-	player.velocity = Vector3.ZERO
 	player.anim.play("bob")
 
-func physics_update(_delta):
+func physics_update(delta):
+	player.velocity.x = lerp(player.velocity.x, 0.0, delta * player.accel)
+	player.velocity.y = lerp(player.velocity.y, 0.0, delta * player.accel)
+	player.move_and_slide()
+	
 	if not player.is_on_floor():
 		state_machine.transition_to("Air")
 		return

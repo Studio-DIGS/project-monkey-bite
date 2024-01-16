@@ -14,7 +14,7 @@ func enter(msg := {}):
 	var curr_attack = combo[combo_counter]
 	max_combo = combo.size() - 1
 #	print(combo_counter)
-	
+
 	# configure hitbox to correct AttackResource
 	curr_attack.knockback.x = abs(curr_attack.knockback.x) # this seems hacky but it works
 	curr_attack.knockback.x *= player.orientation

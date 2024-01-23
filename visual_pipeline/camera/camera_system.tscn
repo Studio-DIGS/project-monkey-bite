@@ -79,3 +79,4 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [connection signal="change_direction" from="." to="SubViewport/CameraContainer/MainCamControl" method="_on_camera_system_change_direction"]
+[connection signal="change_target" from="." to="." method="_on_change_target"]

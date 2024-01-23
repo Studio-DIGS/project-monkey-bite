@@ -7,7 +7,10 @@ var apply_gravity = false
 var contact = false 
 
 func enter(msg := {}):
-	combo = player.combo
+	if msg.has('air'):
+		combo = player.combo # replace with air combo later
+	else:
+		combo = player.combo
 	
 	# set the current attack to the index of the player's combo
 	# declare max combo index

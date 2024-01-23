@@ -80,7 +80,7 @@ throw={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(170, 9),"global_position":Vector2(174, 52),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
-debug={
+reset={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":82,"key_label":0,"unicode":114,"echo":false,"script":null)
 ]
@@ -91,10 +91,8 @@ debug={
 3d_physics/layer_1="environment"
 3d_physics/layer_2="player"
 3d_physics/layer_3="player_hitbox"
-3d_physics/layer_4="player_hurtbox"
 3d_physics/layer_5="enemy"
 3d_physics/layer_6="enemy_hitbox"
-3d_physics/layer_7="enemy_hurtbox"
 
 [rendering]
 

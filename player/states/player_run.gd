@@ -15,7 +15,17 @@ func physics_update(delta):
 		state_machine.transition_to("Air", {do_jump = true})
 	
 	elif Input.is_action_pressed("attack"):
-		state_machine.transition_to("Attack")
+		player.zone_in_dist.enabled = true
+		player.stay_put_dist.enabled = true
+		
+		if player.zone_in_dist.is_colliding() and not player.stay_put_dist.is_colliding():
+			player.zone_in_dist.enabled = false
+			player.stay_put_dist.enabled = false
+			state_machine.transition_to("ZoneIn")
+		else:
+			player.zone_in_dist.enabled = true
+			player.stay_put_dist.enabled = true
+			state_machine.transition_to("Attack")
 	
-	elif is_equal_approx(player.velocity.x, 0.0):
+	elif player.hori_input == 0.0:
 		state_machine.transition_to("Idle")

@@ -1,21 +1,23 @@
-[gd_scene load_steps=30 format=3 uid="uid://ceg0a8jxwnfae"]
+[gd_scene load_steps=37 format=3 uid="uid://ceg0a8jxwnfae"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_7knqw"]
-[ext_resource type="Resource" uid="uid://bbanx0gkgeef6" path="res://player/attacks/jab_1.tres" id="2_2gp80"]
+[ext_resource type="Resource" uid="uid://dgjn3tlt2bmb7" path="res://player/attacks/slash_1.tres" id="2_06grq"]
 [ext_resource type="Script" path="res://player/body.gd" id="2_ioxg0"]
-[ext_resource type="Resource" uid="uid://dhy816jlksvxg" path="res://player/attacks/jab_2.tres" id="3_4nouj"]
-[ext_resource type="Resource" uid="uid://cr4sceoqgwhwp" path="res://player/attacks/jab_3.tres" id="4_jge1d"]
+[ext_resource type="Resource" uid="uid://cfk8sk153rtad" path="res://player/attacks/slash_2.tres" id="3_msbl5"]
 [ext_resource type="Script" path="res://common/state_machine.gd" id="4_mjfp3"]
+[ext_resource type="Resource" uid="uid://cy52355i3cepj" path="res://player/attacks/slash_3.tres" id="4_slkb2"]
 [ext_resource type="Script" path="res://player/states/player_idle.gd" id="5_jgl0y"]
-[ext_resource type="Resource" path="res://player/attacks/air_kick.tres" id="5_mpl0g"]
+[ext_resource type="Resource" uid="uid://1cvlje125a6o" path="res://player/attacks/air_kick.tres" id="5_mpl0g"]
+[ext_resource type="Resource" uid="uid://d20o3ci66troi" path="res://player/attacks/zone_in.tres" id="6_yg4su"]
 [ext_resource type="Script" path="res://player/states/player_run.gd" id="6_yy7o3"]
 [ext_resource type="Script" path="res://player/states/player_air.gd" id="7_7qn2t"]
-[ext_resource type="Material" uid="uid://byqgp8qoywtba" path="res://player/player_test_mat.tres" id="7_rtao6"]
+[ext_resource type="Material" uid="uid://c1t7seoda7a40" path="res://player/player_test_mat.tres" id="7_rtao6"]
 [ext_resource type="Script" path="res://player/states/player_land.gd" id="8_m0mi4"]
 [ext_resource type="Script" path="res://player/states/player_attack.gd" id="9_0f5gx"]
 [ext_resource type="Script" path="res://common/hurtbox.gd" id="9_sbn7q"]
 [ext_resource type="Script" path="res://common/health.gd" id="9_sjui1"]
 [ext_resource type="Script" path="res://common/hitbox.gd" id="12_xrx4s"]
+[ext_resource type="Script" path="res://player/player_zonein.gd" id="16_f6eea"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_48kjw"]
 
@@ -28,13 +30,19 @@ material = ExtResource("7_rtao6")
 [sub_resource type="SphereMesh" id="SphereMesh_hmupo"]
 material = ExtResource("7_rtao6")
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_oslvh"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 1.45
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_xio6w"]
-size = Vector3(1.69711, 0.745705, 0.756048)
+size = Vector3(1.697, 1.73, 1.936)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q2byd"]
 
 [sub_resource type="Animation" id="Animation_goqiy"]
 length = 0.001
+step = 0.0333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -106,6 +114,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Mesh/fistR:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.24554, 2.85458, 3.09185)]
 }
 
 [sub_resource type="Animation" id="Animation_t10sd"]
@@ -337,6 +357,338 @@ tracks/2/keys = {
 "values": [Vector3(0, 0.196282, -1.42493)]
 }
 
+[sub_resource type="Animation" id="Animation_gc4xv"]
+resource_name = "slash_1"
+length = 0.300003
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/fistR:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.166667, 0.2, 0.233333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.6, -0.2, -0.275), Vector3(0.6, 0.775596, -0.275), Vector3(0.6, 1.00702, -1.00415), Vector3(0.6, 0.358028, -1.41191), Vector3(0.614534, -0.554443, -1.3083), Vector3(0.614534, -0.554443, -1.3083), Vector3(0.6, -0.2, -0.275)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh/fistR:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.166667, 0.2, 0.233333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.18892, 0.245192, -0.550615), Vector3(1.12112, -0.131289, -0.133132), Vector3(-0.535399, 0.0430162, -0.0455689), Vector3(-1.51835, 0.783142, -0.806067), Vector3(-1.25685, 3.02154, -3.05097), Vector3(-1.38952, 2.93499, -2.96189), Vector3(-1.18892, 0.245192, -0.550615)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mesh/body:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.166667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.214798, -0.424708, 0), Vector3(-0.16352, 0.196716, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mesh/Hitbox/CollisionShape3D:shape:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.697, 1.73, 1.936)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Mesh/Hitbox/CollisionShape3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.474153, -2.08394)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Mesh/Hitbox/CollisionShape3D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.133333, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_8tb1q"]
+resource_name = "slash_2"
+length = 0.36667
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/fistR:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.233333, 0.3, 0.366667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.6, -0.2, -0.275), Vector3(0.6, -0.2, 0.049426), Vector3(0.457855, -0.217657, -0.234748), Vector3(0.272276, -0.224063, -0.695167), Vector3(0.157375, -0.237183, -0.977648), Vector3(0.126182, -0.182029, -1.13581), Vector3(0.6, 0.768023, -1.13242), Vector3(0.6, 0.768023, -1.13242), Vector3(0.6, -0.2, -0.275)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh/fistR:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.233333, 0.3, 0.366667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.18892, 0.245192, -0.550615), Vector3(-0.980236, -0.603169, -2.19526), Vector3(-1.15061, -0.562684, -1.94814), Vector3(-0.866225, -0.0267694, -2.88126), Vector3(-0.00385498, 1.2416, -3.13894), Vector3(-1.49137, 1.15071, -1.4539), Vector3(0.00959387, -0.0389416, 0.0827419), Vector3(0.00959387, -0.0389416, 0.0827419), Vector3(-1.18892, 0.245192, -0.550615)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mesh/body:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.133333, 0.366667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.198067, -0.394882, -0.0818275), Vector3(0.347605, 0.233847, -0.0404614), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mesh/Hitbox/CollisionShape3D:shape")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("BoxShape3D_xio6w")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Mesh/Hitbox/CollisionShape3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.474153, -1.90298)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Mesh/Hitbox/CollisionShape3D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.166667, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_nuneo"]
+resource_name = "slash_3"
+length = 0.533337
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/fistR:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.233333, 0.266667, 0.4, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.6, -0.2, -0.275), Vector3(0.6, 1.34098, 1.07495), Vector3(0.6, 1.34098, 1.07495), Vector3(0.591533, 1.38213, -0.768302), Vector3(0.164052, -0.734531, -2.06983), Vector3(0.164052, -0.734531, -2.06983), Vector3(0.6, -0.2, -0.275)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh/fistR:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.233333, 0.266667, 0.4, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.18892, 0.245192, -0.550615), Vector3(1.41429, -0.373721, -0.384327), Vector3(1.41429, -0.373721, -0.384327), Vector3(0.561552, 0.102735, 0.0952685), Vector3(-1.53878, -0.370484, 0.366372), Vector3(-1.53878, -0.370484, 0.366372), Vector3(-1.18892, 0.245192, -0.550615)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mesh/body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0236111, 0.233197, 0.422584), Vector3(-0.0236111, -0.0821393, -0.962658), Vector3(-0.0236111, -0.0821393, -0.962658), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mesh/body:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.261921, 0, 0), Vector3(-0.561979, 0, 0), Vector3(-0.561979, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Mesh/fistL:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.266667, 0.4, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.6, 0.580198, 0.818498), Vector3(-0.6, -0.176609, -1.26878), Vector3(-0.6, -0.176609, -1.26878), Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Mesh/Hitbox/CollisionShape3D:shape")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("BoxShape3D_xio6w")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Mesh/Hitbox/CollisionShape3D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.474153, -2.4561)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Mesh/Hitbox/CollisionShape3D:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.233333, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_7ej0a"]
+resource_name = "zone_in"
+length = 0.566669
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/fistR:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5, 0.566667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.6, -0.2, -0.275), Vector3(0.6, 0.358028, -1.41191), Vector3(0.6, 0.358028, -1.41191), Vector3(0.6, -0.2, -0.275)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh/fistR:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5, 0.566667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.18892, 0.245192, -0.550615), Vector3(-1.51835, 0.783142, -0.806067), Vector3(-1.51835, 0.783142, -0.806067), Vector3(-1.18892, 0.245192, -0.550615)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mesh/body:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.133333, 0.533333, 0.566667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.214798, -0.424708, 0), Vector3(-0.16352, 0.196716, 0), Vector3(-0.16352, 0.196716, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mesh/Hitbox/CollisionShape3D:shape:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.697, 1.73, 1.936)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Mesh/Hitbox/CollisionShape3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.474153, -2.08394)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Mesh/Hitbox/CollisionShape3D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.133333, 0.3, 0.333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h1s3s"]
 _data = {
 "RESET": SubResource("Animation_goqiy"),
@@ -344,7 +696,11 @@ _data = {
 "bob": SubResource("Animation_avbdr"),
 "jab_1": SubResource("Animation_8jdxq"),
 "jab_2": SubResource("Animation_r2djm"),
-"jab_3": SubResource("Animation_qyqem")
+"jab_3": SubResource("Animation_qyqem"),
+"slash_1": SubResource("Animation_gc4xv"),
+"slash_2": SubResource("Animation_8tb1q"),
+"slash_3": SubResource("Animation_nuneo"),
+"zone_in": SubResource("Animation_7ej0a")
 }
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim", "hitbox")]
@@ -352,8 +708,9 @@ collision_layer = 2
 script = ExtResource("1_7knqw")
 anim = NodePath("AnimationPlayer")
 hitbox = NodePath("Mesh/Hitbox")
-combo = Array[Resource("res://player/attacks/attack_resource.gd")]([ExtResource("2_2gp80"), ExtResource("3_4nouj"), ExtResource("4_jge1d")])
+combo = Array[Resource("res://player/attacks/attack_resource.gd")]([ExtResource("2_06grq"), ExtResource("3_msbl5"), ExtResource("4_slkb2")])
 air_combo = Array[Resource("res://player/attacks/attack_resource.gd")]([ExtResource("5_mpl0g")])
+zone_in = ExtResource("6_yg4su")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_48kjw")
@@ -371,9 +728,14 @@ mesh = SubResource("CylinderMesh_pliqs")
 skeleton = NodePath("../..")
 
 [node name="fistR" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(0.340109, 0, 0, 0, 0.340109, 0, 0, 0, 0.340109, 0.6, -0.2, -0.275)
+transform = Transform3D(0.321256, 0.107339, 0.0307667, 0.0054039, -0.108548, 0.322276, 0.11153, -0.303924, -0.104236, 0.6, -0.2, -0.275)
 material_override = ExtResource("7_rtao6")
 mesh = SubResource("SphereMesh_hmupo")
+
+[node name="sword" type="MeshInstance3D" parent="Mesh/fistR"]
+transform = Transform3D(2.94023, -3.57628e-07, -1.49012e-07, 0, 2.94023, -2.08616e-07, -8.9407e-08, -1.19209e-07, 2.94023, -4.17233e-07, 2.20473, 1.49012e-08)
+mesh = SubResource("CylinderMesh_oslvh")
+skeleton = NodePath("../..")
 
 [node name="fistL" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(0.340109, 0, 0, 0, 0.340109, 0, 0, 0, 0.340109, -0.6, -0.2, -0.275)
@@ -382,12 +744,28 @@ mesh = SubResource("SphereMesh_hmupo")
 
 [node name="Hitbox" type="Area3D" parent="Mesh"]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 64
 script = ExtResource("12_xrx4s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Hitbox"]
 shape = SubResource("BoxShape3D_xio6w")
 disabled = true
+
+[node name="ZoneInDist" type="RayCast3D" parent="Mesh"]
+enabled = false
+target_position = Vector3(0, 0, -8)
+collision_mask = 64
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_thickness = 5
+
+[node name="StayPutDist" type="RayCast3D" parent="Mesh"]
+enabled = false
+target_position = Vector3(0, 0, -2.39)
+collision_mask = 64
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_thickness = 5
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("4_mjfp3")
@@ -408,6 +786,9 @@ script = ExtResource("8_m0mi4")
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("9_0f5gx")
 
+[node name="ZoneIn" type="Node" parent="StateMachine"]
+script = ExtResource("16_f6eea")
+
 [node name="Health" type="Node" parent="."]
 script = ExtResource("9_sjui1")
 
@@ -419,7 +800,6 @@ health = NodePath("../Health")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
 shape = SubResource("CapsuleShape3D_q2byd")
-disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 0
@@ -430,4 +810,6 @@ libraries = {
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 
 [connection signal="turn_around" from="." to="Mesh" method="_on_player_turn_around"]
+[connection signal="area_entered" from="Mesh/Hitbox" to="StateMachine/Attack" method="_on_hitbox_area_entered"]
+[connection signal="animation_changed" from="AnimationPlayer" to="StateMachine/Attack" method="_on_animation_player_animation_changed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack" method="_on_animation_player_animation_finished"]

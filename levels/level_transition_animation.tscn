@@ -20,7 +20,7 @@ script = ExtResource("1_vlijn")
 curve = SubResource("Curve3D_dmhy2")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Cube Type 2/Path3D"]
-transform = Transform3D(-0.316217, -0.507077, -0.801753, -2.98013e-08, 0.845128, -0.534502, 0.948652, -0.169026, -0.267251, 0, 0, 0)
+transform = Transform3D(-0.316217, -0.507076, -0.801752, -2.98013e-08, 0.845126, -0.534501, 0.948651, -0.169025, -0.267251, 0, 0, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Cube Type 2/Path3D/PathFollow3D"]
 

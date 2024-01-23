@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_pl61b")
-sequence = [null]
+track = &"scene1_1"

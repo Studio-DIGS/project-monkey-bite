@@ -13,7 +13,7 @@ func _ready():
 func _start_cutscene(cutscene):
 	print("start cutscene")
 	camera.emit_signal("change_target", cam_target)
-	anim.play("scene1_1")
+	anim.play(cutscene.track)
 	
 func _end_cutscene():
 	camera.emit_signal("change_target")

@@ -27,8 +27,6 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ujfex"]
 render_priority = 0
 shader = ExtResource("11_y7ypm")
-shader_parameter/BaseColor = Color(0.501961, 0.890196, 0.321569, 1)
-shader_parameter/GrassColor = Color(0.501961, 0.890196, 0.321569, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65v63"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cj6gya66i2u14"]
+[gd_scene load_steps=28 format=3 uid="uid://cj6gya66i2u14"]
 
 [ext_resource type="Script" path="res://common/game.gd" id="1_4nk2b"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="2_yuvdp"]
@@ -24,17 +24,9 @@ uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1i5cd"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_bgem2"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_26kq7"]
-noise = SubResource("FastNoiseLite_bgem2")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ujfex"]
 render_priority = 0
 shader = ExtResource("15_hlcfo")
-shader_parameter/BaseColor = Color(0.501961, 0.890196, 0.321569, 1)
-shader_parameter/GrassColor = Color(0.501961, 0.890196, 0.321569, 1)
-shader_parameter/WindNoise = SubResource("NoiseTexture2D_26kq7")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y72y4"]
 

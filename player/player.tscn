@@ -11,7 +11,7 @@
 [ext_resource type="Resource" uid="uid://d20o3ci66troi" path="res://player/attacks/zone_in.tres" id="6_yg4su"]
 [ext_resource type="Script" path="res://player/states/player_run.gd" id="6_yy7o3"]
 [ext_resource type="Script" path="res://player/states/player_air.gd" id="7_7qn2t"]
-[ext_resource type="Material" uid="uid://c1t7seoda7a40" path="res://player/player_test_mat.tres" id="7_rtao6"]
+[ext_resource type="Material" uid="uid://byqgp8qoywtba" path="res://player/player_test_mat.tres" id="7_rtao6"]
 [ext_resource type="Script" path="res://player/states/player_land.gd" id="8_m0mi4"]
 [ext_resource type="Script" path="res://player/states/player_attack.gd" id="9_0f5gx"]
 [ext_resource type="Script" path="res://common/hurtbox.gd" id="9_sbn7q"]

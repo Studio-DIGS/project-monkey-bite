@@ -1,0 +1,115 @@
+[gd_resource type="VisualShader" load_steps=11 format=3 uid="uid://br0hg50dclmc1"]
+
+[ext_resource type="Texture2D" uid="uid://d0vmlcx0fw2ms" path="res://levels/grass/textures/Perlin 9 - 256x256.png" id="1_fk230"]
+[ext_resource type="Texture2D" uid="uid://cmkg6j5acnh6s" path="res://levels/grass/textures/grass_color_ramp.png" id="2_skymw"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_tmm4t"]
+texture = ExtResource("1_fk230")
+
+[sub_resource type="VisualShaderNodeVaryingGetter" id="VisualShaderNodeVaryingGetter_6yycx"]
+varying_name = "color_uv"
+varying_type = 3
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_thv61"]
+constant = Color(0.987836, 0.539806, 0.669675, 1)
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_6pqos"]
+texture = ExtResource("2_skymw")
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_uk8cv"]
+constant = 0.03
+
+[sub_resource type="VisualShaderNodeVaryingSetter" id="VisualShaderNodeVaryingSetter_43k30"]
+varying_name = "color_uv"
+varying_type = 3
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_nfdhe"]
+size = Vector2(316.564, 195.254)
+expression = "vertex = (MODEL_MATRIX * vec4(VERTEX, 1)).xz;"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_bq6ql"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(1, 1)]
+op_type = 0
+operator = 2
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx;
+
+
+// Varyings
+varying vec2 color_uv;
+
+uniform sampler2D tex_frg_2;
+uniform sampler2D tex_frg_5 : source_color;
+
+
+
+void vertex() {
+	vec2 n_out8p0;
+// Expression:8
+	n_out8p0 = vec2(0.0, 0.0);
+	{
+		n_out8p0 = (MODEL_MATRIX * vec4(VERTEX, 1)).xz;
+	}
+
+
+// FloatConstant:10
+	float n_out10p0 = 0.030000;
+
+
+// VectorOp:9
+	vec2 n_out9p0 = n_out8p0 * vec2(n_out10p0);
+
+
+// VaryingSetter:3
+	color_uv = n_out9p0;
+
+
+}
+
+void fragment() {
+// VaryingGetter:3
+	vec2 n_out3p0 = color_uv;
+
+
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, n_out3p0);
+
+
+// Texture2D:5
+	vec4 n_out5p0 = texture(tex_frg_5, vec2(n_out2p0.xy));
+
+
+// Output:0
+	ALBEDO = vec3(n_out5p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-215.633, 118.597)
+modes/cull = 2
+varyings/color_uv = "0,3"
+nodes/vertex/3/node = SubResource("VisualShaderNodeVaryingSetter_43k30")
+nodes/vertex/3/position = Vector2(400, 620)
+nodes/vertex/8/node = SubResource("VisualShaderNodeExpression_nfdhe")
+nodes/vertex/8/position = Vector2(-380, 560)
+nodes/vertex/8/size = Vector2(316.564, 195.254)
+nodes/vertex/8/input_ports = ""
+nodes/vertex/8/output_ports = "0,3,vertex;"
+nodes/vertex/8/expression = "vertex = (MODEL_MATRIX * vec4(VERTEX, 1)).xz;"
+nodes/vertex/9/node = SubResource("VisualShaderNodeVectorOp_bq6ql")
+nodes/vertex/9/position = Vector2(120, 600)
+nodes/vertex/10/node = SubResource("VisualShaderNodeFloatConstant_uk8cv")
+nodes/vertex/10/position = Vector2(-100, 760)
+nodes/vertex/connections = PackedInt32Array(8, 0, 9, 0, 9, 0, 3, 0, 10, 0, 9, 1)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_tmm4t")
+nodes/fragment/2/position = Vector2(-200, 520)
+nodes/fragment/3/node = SubResource("VisualShaderNodeVaryingGetter_6yycx")
+nodes/fragment/3/position = Vector2(-620, 600)
+nodes/fragment/4/node = SubResource("VisualShaderNodeColorConstant_thv61")
+nodes/fragment/4/position = Vector2(120, 200)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_6pqos")
+nodes/fragment/5/position = Vector2(50.2652, 526.802)
+nodes/fragment/connections = PackedInt32Array(3, 0, 2, 0, 2, 0, 5, 0, 5, 0, 0, 0)

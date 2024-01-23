@@ -52,15 +52,17 @@ texture = SubResource("GradientTexture2D_60qbp")
 
 [node name="Character Portrait" type="TextureRect" parent="CanvasLayer/Dialogue Items"]
 z_index = 1
-offset_left = -18.9587
-offset_top = -128.237
-offset_right = 2472.04
-offset_bottom = 2271.76
+layout_mode = 0
+offset_left = -14.1494
+offset_top = -157.505
+offset_right = 2314.85
+offset_bottom = 2571.5
 scale = Vector2(0.063, 0.09)
 texture = ExtResource("3_jpnib")
 
 [node name="NPC Name Decoration" type="TextureRect" parent="CanvasLayer/Dialogue Items"]
 self_modulate = Color(1, 1, 1, 0.780392)
+layout_mode = 0
 offset_top = -30.232
 offset_right = 190.0
 offset_bottom = 33.768
@@ -68,6 +70,7 @@ scale = Vector2(0.959168, 0.47624)
 texture = SubResource("GradientTexture2D_60qbp")
 
 [node name="NPC Name" type="Label" parent="CanvasLayer/Dialogue Items"]
+layout_mode = 0
 offset_left = 111.105
 offset_top = -30.2572
 offset_right = 181.105
@@ -78,6 +81,7 @@ text = "Peregrine"
 autowrap_mode = 2
 
 [node name="NPC Text" type="Label" parent="CanvasLayer/Dialogue Items"]
+layout_mode = 0
 offset_left = 130.0
 offset_top = 8.0
 offset_right = 568.0
@@ -85,7 +89,7 @@ offset_bottom = 87.0
 scale = Vector2(1.00914, 0.895473)
 theme_override_fonts/font = ExtResource("4_acfkd")
 theme_override_font_sizes/font_size = 29
-text = "\"Place Holder Text"
+text = "\"Place Holder Text\""
 autowrap_mode = 2
 
 [connection signal="area_entered" from="PlayerDetectionBox" to="Dialogue Manager" method="_on_player_detection_box_area_entered"]

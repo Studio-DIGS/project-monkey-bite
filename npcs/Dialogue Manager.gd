@@ -29,29 +29,34 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if (Input.is_action_just_pressed("interact") and dialogueIsOpen): #Press E, player is talking to NPC
+	if (Input.is_action_just_pressed("interact")): #Press E, player is talking to NPC
+		interactNPC()
+	if (Input.is_action_just_pressed("continue")): #Press enter to flip to the next text within the DialogueArray
+		continueDialogue()
+		
+func interactNPC(): #Function Logic for talking interacting with NPCs
+	if dialogueIsOpen:
 		print("Close Dialogue")
 		dialogueItemReference.visible = false
 		dialogueIsOpen = false
 		textIndex = 0 #Not necessary
-		
-	elif (Input.is_action_just_pressed("interact") and playerIsDialogueReady and !dialogueIsOpen): #Press E, player is within range, current not talking to NPC
+	elif playerIsDialogueReady and !dialogueIsOpen:
 		print("Open Dialogue")
 		dialogueItemReference.visible = true
 		dialogueIsOpen = true
-	if (Input.is_action_just_pressed("continue")): #Press enter to flip to the next text within the DialogueArray
-		if (textIndex < dialogueArray.size()):
-			dialogueTextReference.text = dialogueArray[textIndex]
-			textIndex += 1
-		elif (textIndex >= dialogueArray.size()): #Upon reaching the end of the dialogueArray, close the dialogue and reset index to 0
-			state = "endDialogue"
-			dialogueArray = endStored
-			dialogueItemReference.visible = false
-			dialogueIsOpen = false
-			textIndex = 0
-			dialogueTextReference.text = dialogueArray[textIndex]
-	
 
+func continueDialogue(): #Function Logic for continuing dialogue for NPCS
+	if (textIndex < dialogueArray.size()):
+		dialogueTextReference.text = dialogueArray[textIndex]
+		textIndex += 1
+	elif (textIndex >= dialogueArray.size()): #Upon reaching the end of the dialogueArray, close the dialogue and reset index to 0
+		state = "endDialogue"
+		dialogueArray = endStored
+		dialogueItemReference.visible = false
+		dialogueIsOpen = false
+		textIndex = 0
+		dialogueTextReference.text = dialogueArray[textIndex]
+	
 func _on_player_detection_box_area_entered(area): #Checks if player enters NPC conversation range, enabling player to press "e" to talk
 	if (area.name == "PlayerArea"):
 		playerIsDialogueReady = true

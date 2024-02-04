@@ -1,7 +1,6 @@
 extends Node3D
 
 @export var camera: CameraSystem
-@export var player: Player
 
 @onready var anim = $CutsceneAnimations
 @onready var cam_target = $CameraTarget
@@ -17,6 +16,7 @@ func _start_cutscene(cutscene):
 	
 func _end_cutscene():
 	camera.emit_signal("change_target")
+	GameManager.emit_signal("end_cutscene")
 
 func _on_cutscene_animations_animation_finished(anim_name):
 	_end_cutscene()
@@ -28,5 +28,6 @@ func wait_for_dialogue():
 	await $Timer.timeout
 	print("Thank you for listing")
 	anim.play()
+
 	
 	

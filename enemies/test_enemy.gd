@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends Actor
 
 @export var attack: AttackResource
 var start_pos

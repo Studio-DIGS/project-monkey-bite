@@ -197,7 +197,7 @@ tracks/0/path = NodePath("CameraTarget:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.366667, 1),
+"times": PackedFloat32Array(0, 0.2331, 0.4995, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(-5.74734, 1.62749, 0), Vector3(4.45679, 1.62749, 0), Vector3(4.45679, 1.62749, 0), Vector3(-5.74734, 1.62749, 0)]
@@ -209,12 +209,38 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2997),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [NodePath("../Player"), 1.0],
+"method": &"move_actor"
+}, {
 "args": [],
 "method": &"wait_for_dialogue"
 }]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Player:hori_input")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2997),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mqdsx"]
@@ -290,12 +316,14 @@ environment = SubResource("Environment_y8ynd")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11.7451, 1.41166, -0.0926752)
 accel = 6.505
 jump_height = 10.0
+hori_input = 1.0
 
 [node name="CameraSystem" parent="Characters Scripts and World Settings" node_paths=PackedStringArray("target") instance=ExtResource("15_kb6rw")]
 target = NodePath("../Player")
 
 [node name="TestEnemy" parent="Characters Scripts and World Settings" instance=ExtResource("6_1h86w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.452, 1.06, 0)
+hori_input = -1.0
 
 [node name="TestEnemy2" parent="Characters Scripts and World Settings" instance=ExtResource("6_1h86w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.681, 5.625, 0)
@@ -303,10 +331,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.681, 5.625, 0)
 [node name="TestEnemy3" parent="Characters Scripts and World Settings" instance=ExtResource("6_1h86w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.511, 5.625, 0)
 
-[node name="CutsceneManager" type="Node3D" parent="Characters Scripts and World Settings" node_paths=PackedStringArray("camera", "player")]
+[node name="CutsceneManager" type="Node3D" parent="Characters Scripts and World Settings" node_paths=PackedStringArray("camera")]
 script = ExtResource("5_jibl7")
 camera = NodePath("../CameraSystem")
-player = NodePath("../Player")
 
 [node name="CutsceneTrigger" type="Area3D" parent="Characters Scripts and World Settings/CutsceneManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.68879, 1.0431, 0)

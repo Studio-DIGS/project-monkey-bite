@@ -42,7 +42,6 @@ func set_controller(controller: PlayerController):
 	# turn off all other controllers
 	for child in controllers.get_children():
 		if child is PlayerController:
-			print("yes")
 			child.is_active = false
 	
 	controller.is_active = true

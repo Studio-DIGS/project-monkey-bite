@@ -2,7 +2,7 @@ class_name Hurtbox
 extends Area3D
 
 @export var health: Health = null
-@onready var impact_fx = preload("res://common/impact_fx.tscn")
+@onready var impact_fx = preload("res://common/vfx/impact_fx.tscn")
 
 signal hit(vector: Vector2)
 

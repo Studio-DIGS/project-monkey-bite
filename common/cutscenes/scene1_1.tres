@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CutsceneResource" load_steps=2 format=3 uid="uid://d4fby8w60x6bx"]
 
-[ext_resource type="Script" path="res://common/cutscene_resource.gd" id="1_pl61b"]
+[ext_resource type="Script" path="res://common/cutscenes/cutscene_resource.gd" id="1_pl61b"]
 
 [resource]
 script = ExtResource("1_pl61b")

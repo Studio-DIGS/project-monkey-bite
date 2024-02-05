@@ -1,6 +1,6 @@
 [gd_scene load_steps=45 format=3 uid="uid://wqfmemqm6xmv"]
 
-[ext_resource type="Script" path="res://game_manager.gd" id="1_1rs4o"]
+[ext_resource type="Script" path="res://common/game_manager.gd" id="1_gvlo6"]
 [ext_resource type="ArrayMesh" uid="uid://b72npoi5wprc5" path="res://assets/temple/Prop_Flag_1.obj" id="1_ixxyw"]
 [ext_resource type="ArrayMesh" uid="uid://dohx36c77lpjt" path="res://assets/temple/Prop_Flag_Stand_Top.obj" id="2_n1d84"]
 [ext_resource type="ArrayMesh" uid="uid://b364hfo331by8" path="res://assets/temple/Prop_Flag_Stand_Extension.obj" id="3_fjyhb"]
@@ -186,24 +186,10 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(-5.74734, 1.62749, 0)]
 }
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Player")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [2.08165e-12],
-"method": &"move"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_3n8tb"]
 resource_name = "scene1_1"
-length = 3.0
+length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -212,22 +198,28 @@ tracks/0/path = NodePath("CameraTarget:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.666, 1.4652, 1.93333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.999999, 2, 2.83333, 4.7952),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-5.74734, 1.62749, 0), Vector3(4.45679, 1.62749, 0), Vector3(4.45679, 1.62749, 0), Vector3(-5.74734, 1.62749, 0)]
+"values": [Vector3(-5.72098, 1.62749, 0), Vector3(5.25356, 1.62749, 0), Vector3(5.25356, 1.62749, 0), Vector3(-5.72098, 1.62749, 0), Vector3(4.14538, 1.62749, 0)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
-tracks/1/enabled = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("../Player")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.9314),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2.8305, 4.7952),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
+"args": [2.08165e-12],
+"method": &"move"
+}, {
 "args": [1.0],
+"method": &"move"
+}, {
+"args": [2.08165e-12],
 "method": &"move"
 }]
 }
@@ -287,7 +279,7 @@ material = ExtResource("12_imocn")
 size = Vector2(40, 10)
 
 [node name="World" type="Node3D"]
-script = ExtResource("1_1rs4o")
+script = ExtResource("1_gvlo6")
 
 [node name="Characters Scripts and World Settings" type="Node" parent="."]
 
@@ -301,21 +293,8 @@ directional_shadow_split_1 = 0.003
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Characters Scripts and World Settings"]
 environment = SubResource("Environment_y8ynd")
 
-[node name="Player" parent="Characters Scripts and World Settings" instance=ExtResource("14_884je")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11.7451, 1.41166, -0.0926752)
-accel = 6.505
-
 [node name="CameraSystem" parent="Characters Scripts and World Settings" node_paths=PackedStringArray("target") instance=ExtResource("15_kb6rw")]
 target = NodePath("../Player")
-
-[node name="TestEnemy" parent="Characters Scripts and World Settings" instance=ExtResource("6_1h86w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.452, 1.06, 0)
-
-[node name="TestEnemy2" parent="Characters Scripts and World Settings" instance=ExtResource("6_1h86w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.681, 5.625, 0)
-
-[node name="TestEnemy3" parent="Characters Scripts and World Settings" instance=ExtResource("6_1h86w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.511, 5.625, 0)
 
 [node name="CutsceneManager" type="Node3D" parent="Characters Scripts and World Settings" node_paths=PackedStringArray("camera")]
 script = ExtResource("5_fc7tc")
@@ -341,6 +320,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.74734, 1.62749, 0)
 
 [node name="Timer" type="Timer" parent="Characters Scripts and World Settings/CutsceneManager"]
 wait_time = 1.722
+
+[node name="Enemies" type="Node3D" parent="Characters Scripts and World Settings"]
+
+[node name="TestEnemy" parent="Characters Scripts and World Settings/Enemies" instance=ExtResource("6_1h86w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.452, 1.06, 0)
+
+[node name="TestEnemy2" parent="Characters Scripts and World Settings/Enemies" instance=ExtResource("6_1h86w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.681, 5.625, 0)
+
+[node name="TestEnemy3" parent="Characters Scripts and World Settings/Enemies" instance=ExtResource("6_1h86w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.511, 5.625, 0)
+
+[node name="Player" parent="Characters Scripts and World Settings" instance=ExtResource("14_884je")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11.7451, 1.41166, -0.0926752)
+accel = 6.505
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -654,10 +648,10 @@ skeleton = NodePath("../../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.33644, 0.251553, 1.56773)
 visible = false
 
-[connection signal="turn_around" from="Characters Scripts and World Settings/Player" to="Characters Scripts and World Settings/CameraSystem" method="_on_player_turn_around"]
 [connection signal="area_entered" from="Characters Scripts and World Settings/CutsceneManager/CutsceneTrigger" to="Characters Scripts and World Settings/CutsceneManager/CutsceneTrigger" method="_on_area_entered"]
 [connection signal="body_entered" from="Characters Scripts and World Settings/CutsceneManager/CutsceneTrigger" to="Characters Scripts and World Settings/CutsceneManager/CutsceneTrigger" method="_on_body_entered"]
 [connection signal="animation_finished" from="Characters Scripts and World Settings/CutsceneManager/CutsceneAnimations" to="Characters Scripts and World Settings/CutsceneManager" method="_on_cutscene_animations_animation_finished"]
+[connection signal="turn_around" from="Characters Scripts and World Settings/Player" to="Characters Scripts and World Settings/CameraSystem" method="_on_player_turn_around"]
 
 [editable path="Environment/Platform ground/PG1/grass"]
 [editable path="Environment/Platform ground/PG2/grass"]

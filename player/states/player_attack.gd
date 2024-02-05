@@ -54,5 +54,5 @@ func _on_animation_player_animation_changed(_old_name, _new_name):
 	state_machine.transition_to("Attack")
 
 # check if made contact with enemy
-func _on_hitbox_area_entered(area):
+func _on_hitbox_area_entered(_area):
 	contact = true

@@ -29,6 +29,7 @@ func transition_to(target_state_name: String, msg: Dictionary = {}):
 	state = get_node(target_state_name)
 	state.enter(msg)
 	emit_signal("transitioned", state.name)
+	print("transitioned to ", state.name)
 
 
 # wait for parent

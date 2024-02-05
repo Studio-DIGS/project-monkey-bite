@@ -5,7 +5,7 @@ var apply_gravity = false
 var contact = false 
 var zone_velocity = 10.0
 
-func enter(msg := {}):
+func enter(_msg := {}):
 	attack = player.zone_in
 
 	# configure hitbox to correct AttackResource
@@ -39,5 +39,5 @@ func _on_animation_player_animation_changed(_old_name, _new_name):
 	state_machine.transition_to("Attack")
 
 # check if made contact with enemy
-func _on_hitbox_area_entered(area):
+func _on_hitbox_area_entered(_area):
 	contact = true

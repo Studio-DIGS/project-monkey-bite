@@ -44,6 +44,8 @@ func set_controller(controller: PlayerController):
 		if child is PlayerController:
 			child.is_active = false
 	
+	hori_input = 0.0
+	stop_jump()
 	controller.is_active = true
 
 func _start_cutscene(_cutscene):

@@ -1,12 +1,12 @@
 extends Actor
 
-@export var attack: AttackResource
+@export var attack_resource: AttackResource
 var start_pos
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_pos = position
-
+	
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("reset"):
@@ -31,5 +31,5 @@ func _on_health_death():
 
 
 func _on_timer_timeout():
-	$AnimationPlayer.play(attack.animation)
-	$Hitbox.configure_hitbox(attack)
+	$AnimationPlayer.play(attack_resource.animation)
+	$Hitbox.configure_hitbox(attack_resource)

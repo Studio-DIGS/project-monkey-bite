@@ -26,7 +26,7 @@ func physics_update(delta):
 	
 	# queue the next attack
 	if contact and not player.anim.get_queue():
-		if Input.is_action_just_pressed("attack"):
+		if player.try_attack:
 			contact = false
 			player.anim.queue(player.combo[0].animation)
 

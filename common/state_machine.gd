@@ -31,8 +31,8 @@ func transition_to(target_state_name: String, msg: Dictionary = {}):
 	emit_signal("transitioned", state.name)
 
 
+# wait for parent
 func _on_player_ready():
-	# wait for parent
 	for child in get_children():
 		child.state_machine = self
 	state.enter()

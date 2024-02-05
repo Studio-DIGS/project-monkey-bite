@@ -11,10 +11,10 @@ func physics_update(delta):
 	player.velocity.x = lerp(player.velocity.x, player.hori_input * player.speed, delta * player.accel)
 	player.move_and_slide()
 	
-	if Input.is_action_just_pressed("jump"):
+	if player.try_jump:
 		state_machine.transition_to("Air", {do_jump = true})
 	
-	elif Input.is_action_pressed("attack"):
+	elif player.try_attack:
 		player.zone_in_dist.enabled = true
 		player.stay_put_dist.enabled = true
 		

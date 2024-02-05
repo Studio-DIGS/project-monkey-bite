@@ -1,17 +1,15 @@
 class_name HumanController
-extends Controller
+extends PlayerController
 
-var player: Player
-
-var move_command := MoveCommand.new()
-var attack_command := AttackCommand.new()
-var jump_command := JumpCommand.new()
-
-func _init(player: Player):
-	self.player = player
-
-func _physics_process(_delta):
-	if Input.is_action_just_pressed("attack"):
-		attack_command.execute(player)
-	var move_input = Input.get_axis("left", "right")
-	move_command.execute(player, MoveCommand.Params.new(move_input))
+func _physics_process(delta):
+	if is_active:
+		if Input.is_action_just_pressed("attack"):
+			player.attack()
+		
+		elif Input.is_action_pressed("jump"):
+			player.jump(delta)
+		elif Input.is_action_just_released("jump"):
+			player.stop_jump()
+		
+		var move_input = Input.get_axis("left", "right")
+		player.move(move_input)

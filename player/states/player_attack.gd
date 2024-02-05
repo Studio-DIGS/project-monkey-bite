@@ -39,7 +39,7 @@ func physics_update(delta):
 	
 	# queue the next attack
 	if combo_counter < max_combo and contact and not player.anim.get_queue():
-		if Input.is_action_just_pressed("attack"):
+		if player.try_attack:
 			combo_counter += 1
 			contact = false
 			player.anim.queue(player.combo[combo_counter].animation)

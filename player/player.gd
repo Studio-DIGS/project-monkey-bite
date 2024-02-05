@@ -4,7 +4,10 @@ extends Actor
 @onready var anim = $AnimationPlayer
 @export var speed = 5.0
 @export var accel = 15.0
-@export var jump_height = 4.5
+@export var min_jump_height = 2.0
+@export var max_jump_height = 4.5
+var jump_time = 0.0
+@export var jump_force_coefficient = 10.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity = 20
@@ -13,7 +16,9 @@ var gravity = 20
 var orientation = 1
 signal turn_around
 
-var is_attack = false
+# Commands for state machine
+var try_attack = false
+var try_jump = false
 @onready var controller_container = $ControllerContainer
 
 # Attack stuff
@@ -24,27 +29,46 @@ var is_attack = false
 @onready var zone_in_dist: RayCast3D = $Mesh/ZoneInDist
 @onready var stay_put_dist: RayCast3D = $Mesh/StayPutDist
 
+@onready var controllers = $ControllerContainer
+@onready var human_controller = $ControllerContainer/HumanController
+@onready var cutscene_controller = $ControllerContainer/CutsceneController
 
 func _ready():
-	set_controller()
-	GameManager.connect("end_cutscene", set_controller)
+	set_controller(human_controller)
+	GameManager.connect("start_cutscene", _start_cutscene)
+	GameManager.connect("end_cutscene", _end_cutscene)
 
-func set_controller(controller: Controller = null):
-	# delete all previous controllers
-	for child in controller_container.get_children():
-		child.queue_free()
+func set_controller(controller: PlayerController):
+	# turn off all other controllers
+	for child in controllers.get_children():
+		if child is PlayerController:
+			print("yes")
+			child.is_active = false
 	
-	if controller == null:
-		controller = HumanController.new(self)
-	controller_container.add_child(controller)
+	controller.is_active = true
+
+func _start_cutscene(_cutscene):
+	set_controller(cutscene_controller)
+
+func _end_cutscene():
+	set_controller(human_controller)
 
 func attack():
-	is_attack = true
+	try_attack = true
+
+func jump(delta):
+	try_jump = true
+	jump_time += delta
+
+func stop_jump():
+	try_jump = false
+	jump_time = 0.0
 
 func _physics_process(_delta):
-	orient()
+	try_attack = false
+	reorient()
 
-func orient():
+func reorient():
 	# stores current orientation
 	var new_orientation = orientation
 	if hori_input > 0:

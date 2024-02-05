@@ -5,10 +5,10 @@
 [ext_resource type="ArrayMesh" uid="uid://dohx36c77lpjt" path="res://assets/temple/Prop_Flag_Stand_Top.obj" id="2_n1d84"]
 [ext_resource type="ArrayMesh" uid="uid://b364hfo331by8" path="res://assets/temple/Prop_Flag_Stand_Extension.obj" id="3_fjyhb"]
 [ext_resource type="ArrayMesh" uid="uid://d0s8nxa6enrfi" path="res://assets/temple/Pillar_Large_Base.obj" id="4_dt485"]
-[ext_resource type="Script" path="res://levels/cutscene_manager.gd" id="5_jibl7"]
-[ext_resource type="Script" path="res://levels/cutscene_trigger.gd" id="5_mi5xw"]
+[ext_resource type="Script" path="res://common/cutscenes/cutscene_manager.gd" id="5_fc7tc"]
 [ext_resource type="ArrayMesh" uid="uid://cyakhubgros11" path="res://assets/temple/Pillar_Large_Middle.obj" id="5_rwgaq"]
 [ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/test_enemy.tscn" id="6_1h86w"]
+[ext_resource type="Script" path="res://common/cutscenes/cutscene_trigger.gd" id="6_36hmu"]
 [ext_resource type="ArrayMesh" uid="uid://clsnvfujirrx" path="res://assets/temple/Pillar_Large_Top.obj" id="6_iklpm"]
 [ext_resource type="PackedScene" uid="uid://brwbynmm26exm" path="res://assets/ultimate-platformer/Tree.gltf" id="7_2gy06"]
 [ext_resource type="Resource" uid="uid://d4fby8w60x6bx" path="res://common/cutscenes/scene1_1.tres" id="7_ku272"]
@@ -318,14 +318,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.681, 5.625, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.511, 5.625, 0)
 
 [node name="CutsceneManager" type="Node3D" parent="Characters Scripts and World Settings" node_paths=PackedStringArray("camera")]
-script = ExtResource("5_jibl7")
+script = ExtResource("5_fc7tc")
 camera = NodePath("../CameraSystem")
 
 [node name="CutsceneTrigger" type="Area3D" parent="Characters Scripts and World Settings/CutsceneManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.68879, 1.0431, 0)
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("5_mi5xw")
+script = ExtResource("6_36hmu")
 cutscene = ExtResource("7_ku272")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Characters Scripts and World Settings/CutsceneManager/CutsceneTrigger"]

@@ -319,14 +319,6 @@ script = ExtResource("19_figa7")
 [node name="UICanvasGroup" type="CanvasLayer" parent="Inventory"]
 layer = 4
 
-[node name="SwordText" type="RichTextLabel" parent="Inventory/UICanvasGroup"]
-offset_top = 633.0
-offset_right = 192.0
-offset_bottom = 717.0
-theme_override_colors/default_color = Color(1, 0.772549, 0.14902, 1)
-theme_override_font_sizes/normal_font_size = 30
-text = "uninitialized"
-
 [node name="BigPassiveText" type="RichTextLabel" parent="Inventory/UICanvasGroup"]
 offset_left = 896.0
 offset_top = 605.0

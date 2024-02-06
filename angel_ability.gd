@@ -1,4 +1,8 @@
+extends Resource
+
 class_name AngelAbility
 
-@export var speed = 10.0
-@export var resistance = 5.0
+@export var name : String
+
+func _init(setName: String = "ANGEL ABILITY"):
+	name = setName

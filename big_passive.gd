@@ -1,5 +1,8 @@
-class_name BigPassive
-extends Node
+extends Resource
 
-@export var damagePercent = 25.0
-@export var attackPercent = 30.0
+class_name BigPassive
+
+@export var name : String
+
+func _init(setName: String = "BIG PASSIVE"):
+	name = setName

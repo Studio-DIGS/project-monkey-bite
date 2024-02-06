@@ -11,6 +11,10 @@ extends CharacterBody3D
 @export var accel = 15.0
 @export var jump_height = 4.5
 
+@export var sword: Sword = Sword.new("AMAMZING SWORD")
+@export var bigPassives: Array[BigPassive] = [BigPassive.new("HUMONGOUS PASSIVE")]
+@export var angelAbility: AngelAbility = AngelAbility.new("GOD HACKS")
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity = 20

@@ -15,6 +15,8 @@ uniform float highlight_strength : hint_range(0.0, 1.0, 0.01) = 0.1;
 uniform vec3 highlight_color : source_color = vec3(1.);
 uniform vec3 shadow_color : source_color = vec3(0.0);
 
+uniform vec2 shadow_depth_range = vec2(0.3, 0.4);
+
 varying mat4 model_view_matrix;
 
 
@@ -72,7 +74,7 @@ void fragment() {
 		neg_depth_diff += depth - dl;
 		neg_depth_diff = clamp(neg_depth_diff, 0., 1.);
 		neg_depth_diff = clamp(smoothstep(0.5, 0.5, neg_depth_diff)*10., 0., 1.);
-		depth_diff = smoothstep(0.2, 0.3, depth_diff);
+		depth_diff = smoothstep(shadow_depth_range.x, shadow_depth_range.y, depth_diff);
 //		ALBEDO = vec3(neg_depth_diff);
 	}
 	

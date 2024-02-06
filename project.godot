@@ -33,6 +33,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="project-monkey-bite"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg")
+
 [filesystem]
 
 import/fbx/enabled=false

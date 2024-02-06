@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://u2p2vd130hqv"]
+[gd_scene load_steps=40 format=3 uid="uid://u2p2vd130hqv"]
 
 [ext_resource type="ArrayMesh" uid="uid://curk362wdvkch" path="res://levels/grass/meshes/grass2.res" id="2_wbj67"]
 [ext_resource type="Material" uid="uid://l1ck70xcm5q5" path="res://levels/grass/grass_floor_mat.tres" id="3_ya77v"]
@@ -7,8 +7,18 @@
 [ext_resource type="ArrayMesh" uid="uid://dcrs0yrv40fjr" path="res://levels/grass/meshes/testplane_mesh.res" id="4_octt6"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="5_1yqo3"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="6_65pp7"]
+[ext_resource type="ArrayMesh" uid="uid://dpwpvhqt02sel" path="res://levels/grass/meshes/grass_plane.res" id="6_pf4wq"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="6_y7yvu"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="7_0f7sh"]
 [ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/test_enemy.tscn" id="7_sut7j"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="8_bx78m"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="9_aejdt"]
 [ext_resource type="Material" uid="uid://dkhjfbh8i848j" path="res://player/testmat.tres" id="9_jl0r8"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="10_oy5km"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="11_wc33o"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="12_3xvp0"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="13_xucnp"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="14_to1qb"]
 
 [sub_resource type="MultiMesh" id="MultiMesh_ospsp"]
 transform_format = 1
@@ -18,6 +28,64 @@ buffer = PackedFloat32Array(-1.001, 0, 0, -25.5061, 0, -1.001, 0, 0, 0, 0, 1.001
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_484kk"]
 size = Vector3(100, 0.1, 15)
+
+[sub_resource type="Resource" id="Resource_i2hoi"]
+script = ExtResource("8_bx78m")
+amount = 15000
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_ofhsu"]
+script = ExtResource("9_aejdt")
+iterations = 3
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = true
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_sjsxq"]
+script = ExtResource("10_oy5km")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 5.0
+ray_offset = 1.0
+remove_points_on_miss = false
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_kdfyp"]
+script = ExtResource("7_0f7sh")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_i2hoi"), SubResource("Resource_ofhsu"), SubResource("Resource_sjsxq")])
+
+[sub_resource type="Resource" id="Resource_tgqj6"]
+script = ExtResource("13_xucnp")
+size = Vector3(91.516, 1, 50)
+
+[sub_resource type="Curve3D" id="Curve3D_1smh0"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 19.2084, 0, 0.857382, 0, 0, 0, 0, 0, 0, 5.2115, 9.53674e-07, -3.74665, 0, 0, 0, 0, 0, 0, -9.31088, 0, 1.52072, 0, 0, 0, 0, 0, 0, -17.6607, 0, -4.85219),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_72wen"]
+script = ExtResource("14_to1qb")
+closed = false
+thickness = 6.0
+curve = SubResource("Curve3D_1smh0")
 
 [sub_resource type="Shader" id="Shader_vd8ur"]
 code = "
@@ -164,6 +232,10 @@ glow_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_tho00"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_u8m17"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_me837"]
+
 [node name="World" type="Node3D"]
 
 [node name="Environment" type="Node3D" parent="."]
@@ -176,6 +248,7 @@ glow_enabled = true
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="Environment/Platform ground/Test"]
 transform = Transform3D(1, 0, 0, 0, 0.7, 0, 0, 0, 1, 0, 0, 0)
+visible = false
 material_override = ExtResource("4_bj8gv")
 cast_shadow = 0
 multimesh = SubResource("MultiMesh_ospsp")
@@ -189,6 +262,7 @@ skeleton = NodePath("../../../..")
 
 [node name="Floor2" type="MeshInstance3D" parent="Environment/Platform ground/Test"]
 transform = Transform3D(0.601, 0, 0, 0, 1, 0, 0, 0, 13.845, 17.3753, 0, -7.49854)
+visible = false
 material_override = ExtResource("3_ya77v")
 mesh = ExtResource("4_octt6")
 skeleton = NodePath("../../../..")
@@ -202,7 +276,31 @@ visible = false
 
 [node name="Grass" parent="Environment/Platform ground/Test/grass" index="0"]
 visible = false
-mesh = ExtResource("2_wbj67")
+mesh = ExtResource("6_pf4wq")
+
+[node name="ProtonScatter" type="Node3D" parent="Environment/Platform ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.198906, 0, 0.608515)
+script = ExtResource("6_y7yvu")
+modifier_stack = SubResource("Resource_kdfyp")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="Environment/Platform ground/ProtonScatter"]
+script = ExtResource("11_wc33o")
+source = 0
+override_material = ExtResource("4_bj8gv")
+override_cast_shadow = 0
+path = "../../Test/grass/Grass"
+
+[node name="ScatterShape" type="Node3D" parent="Environment/Platform ground/ProtonScatter"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 2.44871, 0, -11.2776)
+script = ExtResource("12_3xvp0")
+shape = SubResource("Resource_tgqj6")
+
+[node name="ScatterShape2" type="Node3D" parent="Environment/Platform ground/ProtonScatter"]
+script = ExtResource("12_3xvp0")
+negative = true
+shape = SubResource("Resource_72wen")
 
 [node name="Characters Scripts and World Settings" type="Node" parent="Environment"]
 
@@ -228,50 +326,69 @@ target = NodePath("../Player")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.452, 1.06, 0)
 
 [node name="TestEnemy2" parent="Environment/Characters Scripts and World Settings" instance=ExtResource("7_sut7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.681, 5.625, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.4704, 9.89285, 0)
 
 [node name="TestEnemy3" parent="Environment/Characters Scripts and World Settings" instance=ExtResource("7_sut7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.511, 5.625, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Pillars" type="Node3D" parent="Environment"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Pillars"]
 transform = Transform3D(-0.84241, -5.24265, 0.294768, -0.41884, 10.3711, 0.168438, -0.338998, 0.214245, -0.940606, -0.06392, 0.623015, -5.22488)
 mesh = SubResource("BoxMesh_tho00")
+skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("9_jl0r8")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Environment/Pillars"]
 transform = Transform3D(-0.84241, -5.24265, 0.294768, -0.41884, 10.3711, 0.168438, -0.338998, 0.214245, -0.940606, 12.2308, 0.623015, -12.8754)
 mesh = SubResource("BoxMesh_tho00")
+skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("9_jl0r8")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Environment/Pillars"]
 transform = Transform3D(-0.84241, -5.24265, 0.294768, -0.41884, 10.3711, 0.168438, -0.338998, 0.214245, -0.940606, -10.4905, 0.623016, -7.8747)
 mesh = SubResource("BoxMesh_tho00")
+skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("9_jl0r8")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Environment/Pillars"]
 transform = Transform3D(-0.84241, -5.24265, 0.294768, -0.41884, 10.3711, 0.168438, -0.338998, 0.214245, -0.940606, 24.0066, 0.623018, -16.361)
 mesh = SubResource("BoxMesh_tho00")
+skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("9_jl0r8")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Environment/Pillars"]
 transform = Transform3D(-0.84241, -5.24265, 0.294768, -0.41884, 10.3711, 0.168438, -0.338998, 0.214245, -0.940606, 29.6671, 0.623018, -10.7602)
 mesh = SubResource("BoxMesh_tho00")
+skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("9_jl0r8")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Environment/Pillars"]
 transform = Transform3D(-0.84241, -5.24265, 0.294768, -0.41884, 10.3711, 0.168438, -0.338998, 0.214245, -0.940606, 41.4808, 0.623017, -18.9782)
 mesh = SubResource("BoxMesh_tho00")
+skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("9_jl0r8")
 
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Environment/Pillars"]
 transform = Transform3D(-0.84241, -5.24265, 0.294768, -0.41884, 10.3711, 0.168438, -0.338998, 0.214245, -0.940606, -29.2586, 0.623018, -13.1874)
 mesh = SubResource("BoxMesh_tho00")
+skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("9_jl0r8")
 
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Environment/Pillars"]
 transform = Transform3D(-0.84241, -5.24265, 0.294768, -0.41884, 10.3711, 0.168438, -0.338998, 0.214245, -0.940606, 46.8904, 0.623017, -11.3985)
 mesh = SubResource("BoxMesh_tho00")
+skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("9_jl0r8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment"]
+transform = Transform3D(20.5822, -0.84735, 0, 9.59766, 1.81715, 0, 0, 0, 2.005, 26.4725, 3.07165, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/StaticBody3D"]
+mesh = SubResource("BoxMesh_u8m17")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/StaticBody3D"]
+shape = SubResource("BoxShape3D_me837")
 
 [connection signal="turn_around" from="Environment/Characters Scripts and World Settings/Player" to="Environment/Characters Scripts and World Settings/CameraSystem" method="_on_player_turn_around"]
 

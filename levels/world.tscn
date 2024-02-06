@@ -10,10 +10,10 @@
 [ext_resource type="ArrayMesh" uid="uid://clsnvfujirrx" path="res://assets/temple/Pillar_Large_Top.obj" id="8_innno"]
 [ext_resource type="PackedScene" uid="uid://brwbynmm26exm" path="res://assets/ultimate-platformer/Tree.gltf" id="11_arguq"]
 [ext_resource type="PackedScene" uid="uid://dnxlvi0kucdpk" path="res://assets/ultimate-platformer/Fruit.gltf" id="12_foolb"]
+[ext_resource type="Shader" uid="uid://cuvclsyoc2sse" path="res://levels/grass/planar_grass.tres" id="13_8bg8g"]
 [ext_resource type="ArrayMesh" uid="uid://dn3538nup1hmt" path="res://assets/temple/Wall_Ruined_Full_Cracked_1.obj" id="13_daoyd"]
 [ext_resource type="Material" uid="uid://bdrk3hn2y0uie" path="res://levels/grass/grass_floor.tres" id="14_8g4lb"]
 [ext_resource type="ArrayMesh" uid="uid://ie1glsealiff" path="res://assets/temple/Wall_Ruined_Half_1.obj" id="14_qjvny"]
-[ext_resource type="Shader" uid="uid://cuvclsyoc2sse" path="res://levels/grass/grass.tres" id="15_hlcfo"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="15_le3dk"]
 [ext_resource type="Sky" uid="uid://bpa6skcj0hqyy" path="res://visual_pipeline/skybox.tres" id="16_762lu"]
 [ext_resource type="PackedScene" uid="uid://b1ob2xlr74xc2" path="res://levels/grass/grass.tscn" id="16_pu3ap"]
@@ -26,7 +26,10 @@ uv1_triplanar = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ujfex"]
 render_priority = 0
-shader = ExtResource("15_hlcfo")
+shader = ExtResource("13_8bg8g")
+shader_parameter/triplanar_scale = Vector3(1, 1, 1)
+shader_parameter/triplanar_offset = null
+shader_parameter/triplanar_sharpness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y72y4"]
 

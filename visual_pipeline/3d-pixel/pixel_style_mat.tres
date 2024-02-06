@@ -11,3 +11,4 @@ shader_parameter/shadow_strength = 0.4
 shader_parameter/highlight_strength = 0.1
 shader_parameter/highlight_color = Color(1, 1, 1, 1)
 shader_parameter/shadow_color = Color(0, 0, 0, 1)
+shader_parameter/shadow_depth_range = Vector2(2.985, 3.99)

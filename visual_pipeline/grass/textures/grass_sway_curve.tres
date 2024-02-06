@@ -2,5 +2,5 @@
 
 [resource]
 min_value = -1.0
-_data = [Vector2(0, -0.368421), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.560748, -0.389474), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2

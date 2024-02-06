@@ -393,7 +393,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-973.541, 15.5862)
+graph_offset = Vector2(-337.421, -81.5144)
 varyings/grassnoise_uv = "0,3"
 nodes/vertex/0/position = Vector2(2540, 820)
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_uw77n")

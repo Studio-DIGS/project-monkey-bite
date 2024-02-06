@@ -16,6 +16,7 @@ uniform vec3 highlight_color : source_color = vec3(1.);
 uniform vec3 shadow_color : source_color = vec3(0.0);
 
 uniform vec2 shadow_depth_range = vec2(0.3, 0.4);
+uniform float shadow_normal_diff_thresh = 0.05;
 
 varying mat4 model_view_matrix;
 
@@ -58,6 +59,7 @@ void fragment() {
 //	Shadows
 	float depth_diff = 0.0;
 	float neg_depth_diff = .5;
+	float depth_diff_raw = 0.;
 	if (shadows_enabled) {
 		float depth = getDepth(SCREEN_UV, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
 		float du = getDepth(SCREEN_UV+vec2(0., -1.)*e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
@@ -68,6 +70,12 @@ void fragment() {
 		depth_diff += clamp(dd - depth, 0., 1.);
 		depth_diff += clamp(dr - depth, 0., 1.);
 		depth_diff += clamp(dl - depth, 0., 1.);
+		
+		depth_diff_raw += du - depth;
+		depth_diff_raw += dd - depth;
+		depth_diff_raw += dr - depth;
+		depth_diff_raw += dl - depth;
+		
 		neg_depth_diff += depth - du;
 		neg_depth_diff += depth - dd;
 		neg_depth_diff += depth - dr;
@@ -80,6 +88,7 @@ void fragment() {
 	
 //	Highlights
 	float normal_diff = 0.;
+	float normal_diff_raw = 0.;
 	if (highlights_enabled) {
 		vec3 normal = texture(NORMAL_TEXTURE, SCREEN_UV).rgb * 2.0 - 1.0;
 		vec3 nu = texture(NORMAL_TEXTURE, SCREEN_UV+vec2(0., -1.)*e).rgb * 2.0 - 1.0;
@@ -91,6 +100,7 @@ void fragment() {
 		normal_diff += normalIndicator(normal_edge_bias, normal, nr, depth_diff);
 		normal_diff += normalIndicator(normal_edge_bias, normal, nd, depth_diff);
 		normal_diff += normalIndicator(normal_edge_bias, normal, nl, depth_diff);
+		normal_diff_raw = normal_diff;
 		normal_diff = smoothstep(0.2, 0.8, normal_diff);
 		normal_diff = clamp(normal_diff-neg_depth_diff, 0., 1.);
 //		ALBEDO = vec3(normal_diff);
@@ -103,7 +113,7 @@ void fragment() {
 	if (highlights_enabled) {
 		final = mix(final, final_highlight_color, normal_diff);
 	}
-	if (shadows_enabled) {
+	if (shadows_enabled && abs(normal_diff_raw) > shadow_normal_diff_thresh && depth_diff_raw > 0.0) {
 		final = mix(final, final_shadow_color, depth_diff);
 	}
 	ALBEDO = final;

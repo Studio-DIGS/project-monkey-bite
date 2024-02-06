@@ -15,6 +15,7 @@ func physics_update(delta):
 		state_machine.transition_to("Air", {do_jump = true})
 	
 	elif player.try_attack:
+		print("test1")
 		player.zone_in_dist.enabled = true
 		player.stay_put_dist.enabled = true
 		
@@ -25,6 +26,7 @@ func physics_update(delta):
 		else:
 			player.zone_in_dist.enabled = true
 			player.stay_put_dist.enabled = true
+			print("test2")
 			state_machine.transition_to("Attack")
 	
 	elif player.hori_input == 0.0:

@@ -210,17 +210,28 @@ tracks/1/path = NodePath("../Player")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.8305, 4.7952),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(2.8305, 4.7619),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [2.08165e-12],
-"method": &"move"
-}, {
 "args": [1.0],
 "method": &"move"
 }, {
-"args": [2.08165e-12],
+"args": [0.0],
 "method": &"move"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Player")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4.7952),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack"
 }]
 }
 

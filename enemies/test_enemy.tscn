@@ -1,7 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://bfg1ub413xc20"]
+[gd_scene load_steps=19 format=3 uid="uid://bfg1ub413xc20"]
 
 [ext_resource type="Script" path="res://enemies/test_enemy.gd" id="1_oh0f7"]
-[ext_resource type="Resource" uid="uid://whxcfcfi4nsm" path="res://enemies/enemy_attack.tres" id="2_tj5r7"]
 [ext_resource type="Script" path="res://common/hurtbox.gd" id="2_x0ut6"]
 [ext_resource type="Script" path="res://common/health.gd" id="3_6jb14"]
 [ext_resource type="Script" path="res://common/hitbox.gd" id="4_622c0"]
@@ -194,7 +193,6 @@ size = Vector3(0.924626, 0.7153, 1)
 [node name="TestEnemy" type="CharacterBody3D"]
 collision_layer = 16
 script = ExtResource("1_oh0f7")
-attack = ExtResource("2_tj5r7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00357932, 0)

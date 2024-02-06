@@ -5,7 +5,7 @@ var apply_gravity = false
 var contact = false 
 var zone_velocity = 10.0
 
-func enter(msg := {}):
+func enter(_msg := {}):
 	attack = player.zone_in
 
 	# configure hitbox to correct AttackResource
@@ -26,7 +26,7 @@ func physics_update(delta):
 	
 	# queue the next attack
 	if contact and not player.anim.get_queue():
-		if Input.is_action_just_pressed("attack"):
+		if player.try_attack:
 			contact = false
 			player.anim.queue(player.combo[0].animation)
 
@@ -35,9 +35,9 @@ func physics_update(delta):
 func _on_animation_player_animation_finished(_anim_name):
 	state_machine.transition_to("Idle")
 
-func _on_animation_player_animation_changed(old_name, new_name):
+func _on_animation_player_animation_changed(_old_name, _new_name):
 	state_machine.transition_to("Attack")
 
 # check if made contact with enemy
-func _on_hitbox_area_entered(area):
+func _on_hitbox_area_entered(_area):
 	contact = true

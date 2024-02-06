@@ -39,7 +39,7 @@ func physics_update(delta):
 	
 	# queue the next attack
 	if combo_counter < max_combo and contact and not player.anim.get_queue():
-		if Input.is_action_just_pressed("attack"):
+		if player.try_attack:
 			combo_counter += 1
 			contact = false
 			player.anim.queue(player.combo[combo_counter].animation)
@@ -50,9 +50,9 @@ func _on_animation_player_animation_finished(_anim_name):
 	combo_counter = 0
 	state_machine.transition_to("Idle")
 
-func _on_animation_player_animation_changed(old_name, new_name):
+func _on_animation_player_animation_changed(_old_name, _new_name):
 	state_machine.transition_to("Attack")
 
 # check if made contact with enemy
-func _on_hitbox_area_entered(area):
+func _on_hitbox_area_entered(_area):
 	contact = true

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ckwp62wh0pyn6"
-path="res://.godot/imported/grass.glb-8c6f5cd3c2a1c22e48b6bb7069f8b7ad.scn"
+path="res://.godot/imported/grass2.glb-c99bc405e8c6f8295e9fd75f832bcdc7.scn"
 
 [deps]
 
-source_file="res://levels/grass/meshes/grass.glb"
-dest_files=["res://.godot/imported/grass.glb-8c6f5cd3c2a1c22e48b6bb7069f8b7ad.scn"]
+source_file="res://visual_pipeline/grass/meshes/grass2.glb"
+dest_files=["res://.godot/imported/grass2.glb-c99bc405e8c6f8295e9fd75f832bcdc7.scn"]
 
 [params]
 
@@ -30,7 +30,7 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "meshes": {
-"grass_Plane_009": {
+"grass2_Plane_009": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
@@ -38,7 +38,7 @@ _subresources={
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://levels/grass/meshes/grass_mesh.res"
+"save_to_file/path": "res://visual_pipeline/grass/meshes/grass2.res"
 }
 }
 }

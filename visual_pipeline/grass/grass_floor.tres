@@ -8,4 +8,4 @@ shader = ExtResource("1_ds28u")
 
 [resource]
 next_pass = SubResource("ShaderMaterial_trpqm")
-albedo_color = Color(0.501961, 0.890196, 0.321569, 1)
+albedo_color = Color(0.282353, 0.603922, 0.403922, 1)

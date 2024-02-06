@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b513byddr7d5h"
-path="res://.godot/imported/grass3.glb-7d38a87d1b6dd21e7f384faedee32937.scn"
+path="res://.godot/imported/grass3.glb-f2dabd8b1f23b31a9d64a7e0c851346f.scn"
 
 [deps]
 
-source_file="res://levels/grass/meshes/grass3.glb"
-dest_files=["res://.godot/imported/grass3.glb-7d38a87d1b6dd21e7f384faedee32937.scn"]
+source_file="res://visual_pipeline/grass/meshes/grass3.glb"
+dest_files=["res://.godot/imported/grass3.glb-f2dabd8b1f23b31a9d64a7e0c851346f.scn"]
 
 [params]
 
@@ -38,7 +38,7 @@ _subresources={
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://levels/grass/meshes/grass_plane.res"
+"save_to_file/path": "res://visual_pipeline/grass/meshes/grass_plane.res"
 }
 }
 }

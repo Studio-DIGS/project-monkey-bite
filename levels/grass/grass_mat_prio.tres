@@ -1,7 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://crajwis80wj7k"]
-
-[ext_resource type="Shader" uid="uid://cuvclsyoc2sse" path="res://levels/grass/planar_grass.tres" id="1_8yxrf"]
-
-[resource]
-render_priority = -118
-shader = ExtResource("1_8yxrf")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cj6gya66i2u14"]
+[gd_scene load_steps=66 format=3 uid="uid://cj6gya66i2u14"]
 
 [ext_resource type="Script" path="res://common/game.gd" id="1_4nk2b"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="2_yuvdp"]
@@ -10,13 +10,12 @@
 [ext_resource type="ArrayMesh" uid="uid://clsnvfujirrx" path="res://assets/temple/Pillar_Large_Top.obj" id="8_innno"]
 [ext_resource type="PackedScene" uid="uid://brwbynmm26exm" path="res://assets/ultimate-platformer/Tree.gltf" id="11_arguq"]
 [ext_resource type="PackedScene" uid="uid://dnxlvi0kucdpk" path="res://assets/ultimate-platformer/Fruit.gltf" id="12_foolb"]
-[ext_resource type="Shader" uid="uid://cuvclsyoc2sse" path="res://levels/grass/planar_grass.tres" id="13_8bg8g"]
+[ext_resource type="Shader" path="res://pixelart_stylizer.gdshader" id="13_2tsap"]
 [ext_resource type="ArrayMesh" uid="uid://dn3538nup1hmt" path="res://assets/temple/Wall_Ruined_Full_Cracked_1.obj" id="13_daoyd"]
-[ext_resource type="Material" uid="uid://bdrk3hn2y0uie" path="res://levels/grass/grass_floor.tres" id="14_8g4lb"]
 [ext_resource type="ArrayMesh" uid="uid://ie1glsealiff" path="res://assets/temple/Wall_Ruined_Half_1.obj" id="14_qjvny"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="15_le3dk"]
 [ext_resource type="Sky" uid="uid://bpa6skcj0hqyy" path="res://visual_pipeline/skybox.tres" id="16_762lu"]
-[ext_resource type="PackedScene" uid="uid://b1ob2xlr74xc2" path="res://levels/grass/grass.tscn" id="16_pu3ap"]
+[ext_resource type="PackedScene" uid="uid://b1ob2xlr74xc2" path="res://visual_pipeline/grass/grass.tscn" id="16_pu3ap"]
 [ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/test_enemy.tscn" id="18_03ibt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8li3"]
@@ -24,9 +23,440 @@ uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1i5cd"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rp8vd"]
+load_path = "res://.godot/imported/Perlin 9 - 256x256.png-de532978a9e9af8d25921c0d1c57ed57.s3tc.ctex"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_4x5xk"]
+texture = SubResource("CompressedTexture2D_rp8vd")
+
+[sub_resource type="VisualShaderNodeVaryingGetter" id="VisualShaderNodeVaryingGetter_77msd"]
+varying_name = "grassnoise_uv"
+varying_type = 3
+
+[sub_resource type="VisualShaderNodeComment" id="VisualShaderNodeComment_viduj"]
+size = Vector2(249, 140)
+description = "Fixed \"up\" normals for flat lighting"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kl8u7"]
+load_path = "res://.godot/imported/grass_color_ramp.png-ab4af8188d4ee7de48fa16eaacdb1d99.s3tc.ctex"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_dh0r3"]
+texture = SubResource("CompressedTexture2D_kl8u7")
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_l2xy4"]
+default_input_values = [0, 0.0, 1, 1.0, 2, 0.0]
+
+[sub_resource type="VisualShaderNodeTextureParameterTriplanar" id="VisualShaderNodeTextureParameterTriplanar_glkef"]
+parameter_name = "TextureParameterTriplanar"
+texture_filter = 1
+texture_repeat = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_eddm3"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_2tlv7"]
+default_input_values = [0, 0.0, 1, -0.2]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_ot4l6"]
+function = 14
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_uw77n"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_aa43k"]
+size = Vector2(250, 150)
+expression = "world_uv = MODEL_MATRIX[3].xz;"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_byt0s"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVaryingSetter" id="VisualShaderNodeVaryingSetter_up6kx"]
+varying_name = "grassnoise_uv"
+varying_type = 3
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_nkv4j"]
+constant = 0.02
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_uuyd5"]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_7t5v4"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0.5, -0.15, 0)]
+operator = 2
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_4d61j"]
+default_input_values = [1, -1.0, 2, 1.0, 3, -0.3, 4, 1.0]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_wouwb"]
+default_input_values = [0, 0.0, 1, 6.0]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_l78ba"]
+function = 0
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_bhrfj"]
+default_input_values = [0, Vector2(0, 0)]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_6psn3"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_3b1on"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_ojjpd"]
+default_input_values = [0, 0.0, 1, 1.3]
+operator = 5
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_qybkh"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0.1, 0)]
+op_type = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_321fv"]
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_0nyyx"]
+default_input_values = [1, 0.0, 2, 1.0, 3, 1.0, 4, 0.0]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ahk8t"]
+input_name = "model_matrix"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_26ioe"]
+input_name = "view_matrix"
+
+[sub_resource type="VisualShaderNodeTransformOp" id="VisualShaderNodeTransformOp_sucfa"]
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_jvt2l"]
+size = Vector2(475.042, 308.519)
+expression = "model = inv_view;
+model[3] = mod_in[3];"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_eow7t"]
+input_name = "inv_view_matrix"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_r65ro"]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_blea1"]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_pylbs"]
+operator = 2
+
+[sub_resource type="VisualShader" id="VisualShader_7tg6o"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx;
+
+
+// Varyings
+varying vec2 grassnoise_uv;
+
+uniform sampler2D tex_frg_12;
+uniform sampler2D TextureParameterTriplanar : filter_nearest, repeat_disable;
+uniform sampler2D tex_frg_18 : source_color;
+
+
+// TextureParameterTriplanar
+	vec4 triplanar_texture(sampler2D p_sampler, vec3 p_weights, vec3 p_triplanar_pos) {
+		vec4 samp = vec4(0.0);
+		samp += texture(p_sampler, p_triplanar_pos.xy) * p_weights.z;
+		samp += texture(p_sampler, p_triplanar_pos.xz) * p_weights.y;
+		samp += texture(p_sampler, p_triplanar_pos.zy * vec2(-1.0, 1.0)) * p_weights.x;
+		return samp;
+	}
+
+	uniform vec3 triplanar_scale = vec3(1.0, 1.0, 1.0);
+	uniform vec3 triplanar_offset;
+	uniform float triplanar_sharpness = 0.5;
+
+	varying vec3 triplanar_power_normal;
+	varying vec3 triplanar_pos;
+
+void vertex() {
+// TextureParameterTriplanar
+	{
+		triplanar_power_normal = pow(abs(NORMAL), vec3(triplanar_sharpness));
+		triplanar_power_normal /= dot(triplanar_power_normal, vec3(1.0));
+		triplanar_pos = VERTEX * triplanar_scale + triplanar_offset;
+		triplanar_pos *= vec3(1.0, -1.0, 1.0);
+	}
+// Input:5
+	vec3 n_out5p0 = VERTEX;
+
+
+// Input:11
+	float n_out11p0 = TIME;
+
+
+// FloatOp:28
+	float n_in28p1 = 6.00000;
+	float n_out28p0 = n_out11p0 * n_in28p1;
+
+
+// FloatFunc:18
+	float n_out18p0 = floor(n_out28p0);
+
+
+// FloatOp:17
+	float n_in17p1 = -0.20000;
+	float n_out17p0 = n_out18p0 * n_in17p1;
+
+
+// VectorCompose:25
+	float n_in25p1 = 0.00000;
+	vec2 n_out25p0 = vec2(n_out17p0, n_in25p1);
+
+
+	vec2 n_out20p0;
+// Expression:20
+	n_out20p0 = vec2(0.0, 0.0);
+	{
+		n_out20p0 = MODEL_MATRIX[3].xz;
+	}
+
+
+// VectorOp:33
+	vec2 n_in33p1 = vec2(0.10000, 0.00000);
+	vec2 n_out33p0 = n_out20p0 * n_in33p1;
+
+
+// VectorOp:30
+	vec2 n_out30p0 = n_out25p0 + n_out33p0;
+
+
+// VectorDecompose:31
+	float n_out31p0 = vec3(n_out30p0, 0.0).x;
+	float n_out31p1 = vec3(n_out30p0, 0.0).y;
+	float n_out31p2 = vec3(n_out30p0, 0.0).z;
+
+
+// FloatFunc:29
+	float n_out29p0 = sin(n_out31p0);
+
+
+	float n_out27p0;
+// Remap:27
+	float n_in27p1 = -1.00000;
+	float n_in27p2 = 1.00000;
+	float n_in27p3 = -0.30000;
+	float n_in27p4 = 1.00000;
+	{
+		float __input_range = n_in27p2 - n_in27p1;
+		float __output_range = n_in27p4 - n_in27p3;
+		n_out27p0 = n_in27p3 + __output_range * ((n_out29p0 - n_in27p1) / __input_range);
+	}
+
+
+// VectorOp:26
+	vec3 n_in26p1 = vec3(0.50000, -0.15000, 0.00000);
+	vec3 n_out26p0 = vec3(n_out27p0) * n_in26p1;
+
+
+// Input:2
+	vec2 n_out2p0 = UV;
+
+
+// VectorDecompose:3
+	float n_out3p0 = n_out2p0.x;
+	float n_out3p1 = n_out2p0.y;
+
+
+	float n_out36p0;
+// Remap:36
+	float n_in36p1 = 0.00000;
+	float n_in36p2 = 1.00000;
+	float n_in36p3 = 1.00000;
+	float n_in36p4 = 0.00000;
+	{
+		float __input_range = n_in36p2 - n_in36p1;
+		float __output_range = n_in36p4 - n_in36p3;
+		n_out36p0 = n_in36p3 + __output_range * ((n_out3p1 - n_in36p1) / __input_range);
+	}
+
+
+// Clamp:35
+	float n_in35p1 = 0.00000;
+	float n_in35p2 = 1.00000;
+	float n_out35p0 = clamp(n_out36p0, n_in35p1, n_in35p2);
+
+
+// FloatOp:32
+	float n_in32p1 = 1.30000;
+	float n_out32p0 = pow(n_out35p0, n_in32p1);
+
+
+// VectorOp:9
+	vec3 n_out9p0 = n_out26p0 * vec3(n_out32p0);
+
+
+// VectorOp:6
+	vec3 n_out6p0 = n_out5p0 + n_out9p0;
+
+
+// Input:38
+	mat4 n_out38p0 = VIEW_MATRIX;
+
+
+// Input:41
+	mat4 n_out41p0 = INV_VIEW_MATRIX;
+
+
+// Input:37
+	mat4 n_out37p0 = MODEL_MATRIX;
+
+
+	mat4 n_out40p0;
+// Expression:40
+	n_out40p0 = mat4(1.0);
+	{
+		n_out40p0 = n_out41p0;
+		n_out40p0[3] = n_out37p0[3];
+	}
+
+
+// TransformOp:39
+	mat4 n_out39p0 = n_out38p0 * n_out40p0;
+
+
+// Output:0
+	VERTEX = n_out6p0;
+	MODELVIEW_MATRIX = n_out39p0;
+
+
+// FloatConstant:24
+	float n_out24p0 = 0.020000;
+
+
+// VectorOp:21
+	vec3 n_out21p0 = vec3(n_out20p0, 0.0) * vec3(n_out24p0);
+
+
+// VaryingSetter:23
+	grassnoise_uv = vec2(n_out21p0.xy);
+
+
+}
+
+void fragment() {
+// VaryingGetter:14
+	vec2 n_out14p0 = grassnoise_uv;
+
+
+// Texture2D:12
+	vec4 n_out12p0 = texture(tex_frg_12, n_out14p0);
+
+
+// TextureParameterTriplanar:20
+	vec4 n_out20p0 = triplanar_texture(TextureParameterTriplanar, triplanar_power_normal, triplanar_pos);
+
+
+// Texture2D:18
+	vec4 n_out18p0 = texture(tex_frg_18, vec2(n_out12p0.xy));
+
+
+// VectorCompose:2
+	float n_in2p0 = 0.00000;
+	float n_in2p1 = 1.00000;
+	float n_in2p2 = 0.00000;
+	vec3 n_out2p0 = vec3(n_in2p0, n_in2p1, n_in2p2);
+
+
+// Output:0
+	ALBEDO = vec3(n_out18p0.xyz);
+	NORMAL = n_out2p0;
+
+
+}
+"
+graph_offset = Vector2(-1412.69, 68.6419)
+modes/cull = 2
+varyings/grassnoise_uv = "0,3"
+nodes/vertex/0/position = Vector2(2120, 300)
+nodes/vertex/2/node = SubResource("VisualShaderNodeInput_uw77n")
+nodes/vertex/2/position = Vector2(-160, 960)
+nodes/vertex/3/node = SubResource("VisualShaderNodeVectorDecompose_bhrfj")
+nodes/vertex/3/position = Vector2(180, 940)
+nodes/vertex/5/node = SubResource("VisualShaderNodeInput_r65ro")
+nodes/vertex/5/position = Vector2(780, 240)
+nodes/vertex/6/node = SubResource("VisualShaderNodeVectorOp_blea1")
+nodes/vertex/6/position = Vector2(1400, 220)
+nodes/vertex/9/node = SubResource("VisualShaderNodeVectorOp_pylbs")
+nodes/vertex/9/position = Vector2(1180, 660)
+nodes/vertex/11/node = SubResource("VisualShaderNodeInput_eddm3")
+nodes/vertex/11/position = Vector2(-1400, 240)
+nodes/vertex/17/node = SubResource("VisualShaderNodeFloatOp_2tlv7")
+nodes/vertex/17/position = Vector2(-620, 160)
+nodes/vertex/18/node = SubResource("VisualShaderNodeFloatFunc_ot4l6")
+nodes/vertex/18/position = Vector2(-900, 240)
+nodes/vertex/20/node = SubResource("VisualShaderNodeExpression_aa43k")
+nodes/vertex/20/position = Vector2(-1160, 700)
+nodes/vertex/20/size = Vector2(250, 150)
+nodes/vertex/20/input_ports = ""
+nodes/vertex/20/output_ports = "0,3,world_uv;"
+nodes/vertex/20/expression = "world_uv = MODEL_MATRIX[3].xz;"
+nodes/vertex/21/node = SubResource("VisualShaderNodeVectorOp_byt0s")
+nodes/vertex/21/position = Vector2(-480, 740)
+nodes/vertex/23/node = SubResource("VisualShaderNodeVaryingSetter_up6kx")
+nodes/vertex/23/position = Vector2(-240, 800)
+nodes/vertex/24/node = SubResource("VisualShaderNodeFloatConstant_nkv4j")
+nodes/vertex/24/position = Vector2(-840, 900)
+nodes/vertex/25/node = SubResource("VisualShaderNodeVectorCompose_uuyd5")
+nodes/vertex/25/position = Vector2(-360, 220)
+nodes/vertex/26/node = SubResource("VisualShaderNodeVectorOp_7t5v4")
+nodes/vertex/26/position = Vector2(800, 580)
+nodes/vertex/27/node = SubResource("VisualShaderNodeRemap_4d61j")
+nodes/vertex/27/position = Vector2(520, 560)
+nodes/vertex/28/node = SubResource("VisualShaderNodeFloatOp_wouwb")
+nodes/vertex/28/position = Vector2(-1120, 220)
+nodes/vertex/29/node = SubResource("VisualShaderNodeFloatFunc_l78ba")
+nodes/vertex/29/position = Vector2(300, 340)
+nodes/vertex/30/node = SubResource("VisualShaderNodeVectorOp_6psn3")
+nodes/vertex/30/position = Vector2(-100, 240)
+nodes/vertex/31/node = SubResource("VisualShaderNodeVectorDecompose_3b1on")
+nodes/vertex/31/position = Vector2(60, 280)
+nodes/vertex/32/node = SubResource("VisualShaderNodeFloatOp_ojjpd")
+nodes/vertex/32/position = Vector2(900, 900)
+nodes/vertex/33/node = SubResource("VisualShaderNodeVectorOp_qybkh")
+nodes/vertex/33/position = Vector2(-440, 400)
+nodes/vertex/35/node = SubResource("VisualShaderNodeClamp_321fv")
+nodes/vertex/35/position = Vector2(700, 960)
+nodes/vertex/36/node = SubResource("VisualShaderNodeRemap_0nyyx")
+nodes/vertex/36/position = Vector2(460, 1020)
+nodes/vertex/37/node = SubResource("VisualShaderNodeInput_ahk8t")
+nodes/vertex/37/position = Vector2(1040, 1280)
+nodes/vertex/38/node = SubResource("VisualShaderNodeInput_26ioe")
+nodes/vertex/38/position = Vector2(1020, 1060)
+nodes/vertex/39/node = SubResource("VisualShaderNodeTransformOp_sucfa")
+nodes/vertex/39/position = Vector2(2080, 1140)
+nodes/vertex/40/node = SubResource("VisualShaderNodeExpression_jvt2l")
+nodes/vertex/40/position = Vector2(1440, 1180)
+nodes/vertex/40/size = Vector2(475.042, 308.519)
+nodes/vertex/40/input_ports = "0,7,inv_view;1,7,mod_in;"
+nodes/vertex/40/output_ports = "0,7,model;"
+nodes/vertex/40/expression = "model = inv_view;
+model[3] = mod_in[3];"
+nodes/vertex/41/node = SubResource("VisualShaderNodeInput_eow7t")
+nodes/vertex/41/position = Vector2(1000, 1160)
+nodes/vertex/connections = PackedInt32Array(2, 0, 3, 0, 5, 0, 6, 0, 20, 0, 21, 0, 21, 0, 23, 0, 24, 0, 21, 1, 6, 0, 0, 0, 9, 0, 6, 1, 26, 0, 9, 0, 18, 0, 17, 0, 17, 0, 25, 0, 11, 0, 28, 0, 28, 0, 18, 0, 25, 0, 30, 0, 30, 0, 31, 0, 31, 0, 29, 0, 29, 0, 27, 0, 32, 0, 9, 1, 20, 0, 33, 0, 33, 0, 30, 1, 35, 0, 32, 0, 3, 1, 36, 0, 36, 0, 35, 0, 27, 0, 26, 0, 39, 0, 0, 10, 38, 0, 39, 0, 40, 0, 39, 1, 37, 0, 40, 1, 41, 0, 40, 0)
+nodes/fragment/0/position = Vector2(560, 120)
+nodes/fragment/2/node = SubResource("VisualShaderNodeVectorCompose_l2xy4")
+nodes/fragment/2/position = Vector2(-100, 420)
+nodes/fragment/12/node = SubResource("VisualShaderNodeTexture_4x5xk")
+nodes/fragment/12/position = Vector2(-940, 100)
+nodes/fragment/14/node = SubResource("VisualShaderNodeVaryingGetter_77msd")
+nodes/fragment/14/position = Vector2(-1240, 220)
+nodes/fragment/17/node = SubResource("VisualShaderNodeComment_viduj")
+nodes/fragment/17/position = Vector2(100, 540)
+nodes/fragment/18/node = SubResource("VisualShaderNodeTexture_dh0r3")
+nodes/fragment/18/position = Vector2(-120, 80)
+nodes/fragment/20/node = SubResource("VisualShaderNodeTextureParameterTriplanar_glkef")
+nodes/fragment/20/position = Vector2(-680, 260)
+nodes/fragment/connections = PackedInt32Array(14, 0, 12, 0, 2, 0, 0, 8, 18, 0, 0, 0, 12, 0, 18, 0, 20, 1, 18, 2)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ujfex"]
 render_priority = 0
-shader = ExtResource("13_8bg8g")
+shader = SubResource("VisualShader_7tg6o")
 shader_parameter/triplanar_scale = Vector3(1, 1, 1)
 shader_parameter/triplanar_offset = null
 shader_parameter/triplanar_sharpness = 0.5
@@ -67,8 +497,16 @@ instance_count = 500
 mesh = SubResource("ArrayMesh_abfb0")
 buffer = PackedFloat32Array(0, 0, -1.001, -11.0869, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.15155, 0, 0, -1.001, 19.9183, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.32797, -1.001, 0, 0, -13.0725, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 1.99262, -1.001, 0, 0, -35.3978, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.86892, 0, 0, -1.001, -12.2358, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.6061, -1.001, 0, 0, -23.7978, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.66983, -1.001, 0, 0, 16.6771, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.00027, 0, 0, -1.001, -3.787, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.2238, -1.001, 0, 0, -14.007, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 2.59842, 0, 0, -1.001, -4.03361, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.28244, 0, 0, -1.001, 9.17484, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.74617, 0, 0, -1.001, 31.0911, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -4.35528, -1.001, 0, 0, -9.09123, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.806081, 0, 0, -1.001, 27.0048, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.65928, -1.001, 0, 0, 16.6347, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.51763, -1.001, 0, 0, -15.0377, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.86251, 0, 0, -1.001, -7.70269, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.53609, -1.001, 0, 0, -1.45231, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.26101, -1.001, 0, 0, 22.5557, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.85581, 0, 0, -1.001, 26.9846, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.25294, -1.001, 0, 0, -34.0792, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.48246, -1.001, 0, 0, -9.57664, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.440317, -1.001, 0, 0, -25.9852, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.03705, -1.001, 0, 0, -33.169, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 3.35422, 0, 0, -1.001, -6.4951, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.2797, 0, 0, -1.001, 17.7569, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -0.318841, -1.001, 0, 0, 10.0321, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.61676, -1.001, 0, 0, -31.4579, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 1.55831, 0, 0, -1.001, -31.4252, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.28984, 0, 0, -1.001, 10.6535, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.46424, 0, 0, -1.001, 23.2115, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -3.01591, 0, 0, -1.001, 24.0107, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -0.909853, -1.001, 0, 0, -33.2941, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.73777, -1.001, 0, 0, 5.9155, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.68597, 0, 0, -1.001, 8.01789, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.60669, -1.001, 0, 0, -22.361, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.12062, 0, 0, -1.001, 31.2374, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.11921, -1.001, 0, 0, 8.07026, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.08477, -1.001, 0, 0, -15.2828, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.18103, 0, 0, -1.001, 24.6709, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.98761, -1.001, 0, 0, 12.2626, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.31777, 0, 0, -1.001, 13.3674, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.41286, -1.001, 0, 0, -24.4183, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.12602, -1.001, 0, 0, 15.5508, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.19932, -1.001, 0, 0, -30.0469, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.35285, 0, 0, -1.001, 12.34, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.31446, 0, 0, -1.001, -7.22542, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.03141, 0, 0, -1.001, 5.18197, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.68747, -1.001, 0, 0, -15.2939, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.733806, 0, 0, -1.001, -0.721703, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.90183, 0, 0, -1.001, -7.00994, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.4189, 0, 0, -1.001, 27.2153, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.46309, 0, 0, -1.001, 12.7828, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.204501, -1.001, 0, 0, -4.2696, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.67407, 0, 0, -1.001, 30.3783, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.63358, -1.001, 0, 0, -15.4936, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.60986, 0, 0, -1.001, 30.1681, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.56798, -1.001, 0, 0, -30.6631, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 3.7959, 0, 0, -1.001, 35.3943, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -5.52284, 0, 0, -1.001, 5.78145, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.91764, 0, 0, -1.001, 31.412, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.49311, 0, 0, -1.001, 3.88312, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.7528, 0, 0, -1.001, -13.1619, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.17888, -1.001, 0, 0, -25.2499, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.78394, 0, 0, -1.001, 36.3138, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -0.253412, -1.001, 0, 0, -8.46721, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.30829, 0, 0, -1.001, 16.5105, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.13929, -1.001, 0, 0, -22.295, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.24541, 0, 0, -1.001, 30.2087, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.13735, -1.001, 0, 0, -25.093, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.54724, -1.001, 0, 0, -34.956, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.00663, -1.001, 0, 0, -26.3276, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.668744, 0, 0, -1.001, 17.4492, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.82779, 0, 0, -1.001, 8.45685, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.91436, 0, 0, -1.001, -4.88454, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.58019, 0, 0, -1.001, -23.4351, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.63433, -1.001, 0, 0, 17.18, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.27184, 0, 0, -1.001, 30.8211, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.9398, 0, 0, -1.001, 24.5608, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -1.90314, -1.001, 0, 0, -29.0405, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.327, -1.001, 0, 0, 3.50306, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.5209, -1.001, 0, 0, -3.04881, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.5142, -1.001, 0, 0, -27.4986, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.52964, 0, 0, -1.001, 29.5752, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.1551, -1.001, 0, 0, -3.26961, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.50226, 0, 0, -1.001, 15.3903, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.57304, 0, 0, -1.001, 30.0148, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.31399, 0, 0, -1.001, 16.3865, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.88057, 0, 0, -1.001, 5.41365, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.602544, -1.001, 0, 0, -9.07688, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.19495, -1.001, 0, 0, -16.5925, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.91293, 0, 0, -1.001, -24.9149, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.5103, -1.001, 0, 0, -35.1935, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.90965, -1.001, 0, 0, 5.4819, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.83888, 0, 0, -1.001, 31.0758, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -3.5472, 0, 0, -1.001, 20.8584, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.1287, 0, 0, -1.001, 6.71795, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.42434, 0, 0, -1.001, 19.4604, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.07925, 0, 0, -1.001, 5.12121, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.92174, 0, 0, -1.001, -30.5406, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.23717, -1.001, 0, 0, -8.52772, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.65859, -1.001, 0, 0, -34.769, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.36947, 0, 0, -1.001, 12.3052, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.47773, -1.001, 0, 0, -10.6164, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.43236, 0, 0, -1.001, 8.40472, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.0966811, -1.001, 0, 0, 4.20469, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.04615, 0, 0, -1.001, 33.0401, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -5.16104, -1.001, 0, 0, -21.8612, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.34983, 0, 0, -1.001, 28.2531, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.04595, 0, 0, -1.001, 22.6854, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -3.45454, 0, 0, -1.001, 36.5975, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.8999, 0, 0, -1.001, 22.5007, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.43644, 0, 0, -1.001, 12.1522, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.185308, -1.001, 0, 0, -20.1925, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 1.20051, -1.001, 0, 0, -29.3999, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 1.89836, 0, 0, -1.001, 23.7284, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.99476, 0, 0, -1.001, 10.1208, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -0.908035, 0, 0, -1.001, 18.6595, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.64242, -1.001, 0, 0, -29.1734, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 4.4465, 0, 0, -1.001, 25.0947, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.367935, 0, 0, -1.001, 29.6504, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.0623271, 0, 0, -1.001, -10.8146, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.60988, -1.001, 0, 0, -21.1236, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 1.43833, 0, 0, -1.001, 20.359, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.22818, -1.001, 0, 0, -13.4438, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.38842, -1.001, 0, 0, 19.7857, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.27651, 0, 0, -1.001, -1.15908, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.07393, -1.001, 0, 0, -2.91146, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.98743, -1.001, 0, 0, -19.3225, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.24849, 0, 0, -1.001, -6.06674, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.78375, 0, 0, -1.001, 16.4727, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.00525, -1.001, 0, 0, -11.6689, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.05195, 0, 0, -1.001, 18.4614, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -3.23461, -1.001, 0, 0, -24.7929, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.29651, -1.001, 0, 0, -22.1673, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.994522, -1.001, 0, 0, -15.9141, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.14882, -1.001, 0, 0, -21.5486, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.293749, 0, 0, -1.001, 10.4738, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.46156, 0, 0, -1.001, -14.4743, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.88399, 0, 0, -1.001, 5.43653, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.442879, 0, 0, -1.001, 31.2396, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.237289, 0, 0, -1.001, -12.4124, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.15216, -1.001, 0, 0, -11.18, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.0271811, -1.001, 0, 0, 11.2401, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.12702, -1.001, 0, 0, -36.1763, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.64403, -1.001, 0, 0, -35.0407, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 5.91294, 0, 0, -1.001, -6.19713, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.79455, -1.001, 0, 0, -3.33798, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.59042, 0, 0, -1.001, -19.8221, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.90114, 0, 0, -1.001, 32.9695, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.39495, -1.001, 0, 0, -5.19646, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.39329, -1.001, 0, 0, 2.10047, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.7554, 0, 0, -1.001, 25.652, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -3.3535, -1.001, 0, 0, -34.9287, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.139856, -1.001, 0, 0, 19.0753, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.19508, -1.001, 0, 0, -11.8485, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 1.8441, -1.001, 0, 0, -2.53935, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.755412, 0, 0, -1.001, 30.3693, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -0.826381, 0, 0, -1.001, 33.5929, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.09471, 0, 0, -1.001, -5.37482, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.28281, 0, 0, -1.001, 0.504692, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.22039, 0, 0, -1.001, 35.4263, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -1.25663, 0, 0, -1.001, 20.6781, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -0.126308, 0, 0, -1.001, -28.643, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.4269, 0, 0, -1.001, 22.2124, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.71508, 0, 0, -1.001, 26.346, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.99546, -1.001, 0, 0, 9.55041, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.45391, -1.001, 0, 0, -17.7225, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.597532, -1.001, 0, 0, -15.6421, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 1.55284, 0, 0, -1.001, 14.5288, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.47576, -1.001, 0, 0, -11.5029, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.69709, -1.001, 0, 0, -19.4232, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 3.48103, -1.001, 0, 0, -19.1906, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.80185, 0, 0, -1.001, 16.8484, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.58637, -1.001, 0, 0, 10.431, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.75095, -1.001, 0, 0, -18.509, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.123683, -1.001, 0, 0, -2.48813, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.72819, -1.001, 0, 0, -25.1462, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.72457, -1.001, 0, 0, -30.9412, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.16808, 0, 0, -1.001, 1.95223, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.91185, -1.001, 0, 0, -15.7905, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.751, -1.001, 0, 0, 5.69235, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.55256, -1.001, 0, 0, -29.9549, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.69594, 0, 0, -1.001, 30.2663, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -2.62974, -1.001, 0, 0, -23.827, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.6473, 0, 0, -1.001, -1.13392, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.18226, -1.001, 0, 0, -5.02649, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.27567, -1.001, 0, 0, -30.8002, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.56152, -1.001, 0, 0, -10.8071, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.77508, 0, 0, -1.001, 3.62592, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.97475, -1.001, 0, 0, -35.2459, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.168882, -1.001, 0, 0, -22.6832, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.40499, 0, 0, -1.001, 11.3265, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.198243, 0, 0, -1.001, 17.3291, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.83197, -1.001, 0, 0, -14.2832, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.310554, 0, 0, -1.001, 27.0555, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -3.08363, -1.001, 0, 0, -26.3237, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 2.99623, 0, 0, -1.001, -4.76282, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.4014, -1.001, 0, 0, -29.7348, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.44349, 0, 0, -1.001, -12.0582, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.75523, -1.001, 0, 0, 20.4079, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.12916, 0, 0, -1.001, 13.3004, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.66162, -1.001, 0, 0, -27.2849, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 4.42537, -1.001, 0, 0, -25.5507, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.01085, 0, 0, -1.001, 19.1237, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.61907, -1.001, 0, 0, -18.6869, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.44214, 0, 0, -1.001, 22.2228, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.97476, -1.001, 0, 0, -4.88104, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.535252, -1.001, 0, 0, -16.2457, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 2.97677, -1.001, 0, 0, 22.8257, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.66561, -1.001, 0, 0, -18.2526, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.48106, -1.001, 0, 0, 17.3266, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.37761, 0, 0, -1.001, 22.325, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -2.18754, 0, 0, -1.001, 11.7126, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -0.829185, -1.001, 0, 0, 1.65291, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.4288, 0, 0, -1.001, 33.4388, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.38384, 0, 0, -1.001, 16.5739, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -1.91639, 0, 0, -1.001, 20.391, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -2.14348, 0, 0, -1.001, 13.0564, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.01054, 0, 0, -1.001, 9.13206, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.24986, -1.001, 0, 0, -26.2494, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.18239, 0, 0, -1.001, 23.3812, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.04105, 0, 0, -1.001, -2.58919, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.73647, 0, 0, -1.001, -8.94596, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.7494, -1.001, 0, 0, 19.0831, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.60095, 0, 0, -1.001, 9.02983, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -1.26423, 0, 0, -1.001, -18.2881, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.38764, 0, 0, -1.001, -3.39046, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.23365, 0, 0, -1.001, -14.1764, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.42997, -1.001, 0, 0, -16.9845, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.206891, 0, 0, -1.001, -10.8086, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.44331, 0, 0, -1.001, 33.0822, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.89903, -1.001, 0, 0, -21.726, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.21253, -1.001, 0, 0, -31.7384, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 3.8266, 0, 0, -1.001, 35.3943, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.77893, -1.001, 0, 0, 3.16223, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.40652, -1.001, 0, 0, 12.1644, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.56661, -1.001, 0, 0, -4.96262, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.0453193, -1.001, 0, 0, -18.6984, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.59715, -1.001, 0, 0, -9.83904, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.7561, 0, 0, -1.001, -20.1912, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.1383, 0, 0, -1.001, -13.8771, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.39444, -1.001, 0, 0, -22.678, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.29785, 0, 0, -1.001, 17.0121, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.69198, -1.001, 0, 0, 28.5271, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.6578, 0, 0, -1.001, 26.5896, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -4.81702, -1.001, 0, 0, -16.8123, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.69932, 0, 0, -1.001, 6.49365, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.9409, 0, 0, -1.001, 21.6318, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -1.62861, -1.001, 0, 0, -35.7484, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 1.70564, 0, 0, -1.001, 2.20365, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -0.0648437, 0, 0, -1.001, 20.0114, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -2.0273, -1.001, 0, 0, 26.3004, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.18884, 0, 0, -1.001, 27.0421, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -2.94405, 0, 0, -1.001, 32.5022, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.60931, -1.001, 0, 0, 25.1063, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.80418, -1.001, 0, 0, -23.4985, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 4.12566, -1.001, 0, 0, -12.6923, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.607254, -1.001, 0, 0, -0.194866, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.06873, -1.001, 0, 0, -1.30426, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.20332, -1.001, 0, 0, 27.3626, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.7791, 0, 0, -1.001, 8.6993, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.14276, -1.001, 0, 0, 24.6206, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.68007, 0, 0, -1.001, 5.86526, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -0.772871, 0, 0, -1.001, 10.7694, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.74069, -1.001, 0, 0, -8.07203, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.17259, -1.001, 0, 0, -15.6679, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.95072, 0, 0, -1.001, 27.26, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.578502, -1.001, 0, 0, -30.0917, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.30171, 0, 0, -1.001, 11.0904, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -0.833149, -1.001, 0, 0, 14.7688, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.91726, -1.001, 0, 0, 6.36498, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.48813, -1.001, 0, 0, -25.7244, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.68169, 0, 0, -1.001, 16.2444, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.64441, -1.001, 0, 0, 15.4857, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.79676, 0, 0, -1.001, 28.2834, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -1.7138, -1.001, 0, 0, -19.5407, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.736167, 0, 0, -1.001, 6.00619, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.57517, -1.001, 0, 0, -11.9934, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.66474, -1.001, 0, 0, 1.92214, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.87092, 0, 0, -1.001, -22.2729, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.32206, -1.001, 0, 0, -24.1238, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.13246, -1.001, 0, 0, -12.2391, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.761, -1.001, 0, 0, -35.9998, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 1.70675, -1.001, 0, 0, -28.137, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.949532, -1.001, 0, 0, 20.5902, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.49329, -1.001, 0, 0, -26.4809, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.843387, 0, 0, -1.001, 9.1693, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.45668, -1.001, 0, 0, -14.1695, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 1.13977, 0, 0, -1.001, 32.5574, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.793585, -1.001, 0, 0, -3.93451, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.237489, 0, 0, -1.001, 27.4048, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -0.126949, 0, 0, -1.001, 17.4293, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -1.03212, -1.001, 0, 0, -25.7485, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.301454, -1.001, 0, 0, -17.6228, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.778508, -1.001, 0, 0, -26.1208, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.54048, 0, 0, -1.001, 6.77989, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.97588, 0, 0, -1.001, 6.37693, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.33614, -1.001, 0, 0, 6.5844, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.36064, -1.001, 0, 0, -35.1078, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.60951, 0, 0, -1.001, 25.7346, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -4.112, -1.001, 0, 0, -19.7501, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.1454, 0, 0, -1.001, 29.3911, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.06068, -1.001, 0, 0, -27.7218, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.82738, 0, 0, -1.001, 19.2109, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.59346, 0, 0, -1.001, 8.9601, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.77751, 0, 0, -1.001, 1.87933, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.68242, 0, 0, -1.001, 30.0196, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -5.43775, -1.001, 0, 0, -4.76171, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.83382, 0, 0, -1.001, 16.6314, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.191713, -1.001, 0, 0, -32.6246, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 3.71286, 0, 0, -1.001, -14.6054, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.75019, -1.001, 0, 0, 6.87248, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.05545, 0, 0, -1.001, 30.771, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.49819, 0, 0, -1.001, -1.06856, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.43254, 0, 0, -1.001, 10.2337, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -1.47672, 0, 0, -1.001, 12.5105, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -0.578536, -1.001, 0, 0, -25.2489, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.65735, -1.001, 0, 0, -34.6011, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 4.7104, 0, 0, -1.001, 34.1275, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -5.34466, 0, 0, -1.001, 15.876, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -1.09463, -1.001, 0, 0, -32.2048, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 3.36416, -1.001, 0, 0, -25.1624, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.80072, 0, 0, -1.001, 8.30024, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.27813, 0, 0, -1.001, 4.67035, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.21343, -1.001, 0, 0, -34.8398, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.91059, -1.001, 0, 0, 12.4086, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.15597, 0, 0, -1.001, 5.12867, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.06077, 0, 0, -1.001, -3.53659, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.85919, -1.001, 0, 0, -32.6351, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.29666, 0, 0, -1.001, 34.9954, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -1.26564, -1.001, 0, 0, 8.51973, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.41056, 0, 0, -1.001, -12.6868, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.82124, -1.001, 0, 0, -32.0885, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.4635, -1.001, 0, 0, -26.9369, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.05859, -1.001, 0, 0, -16.3876, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.41199, -1.001, 0, 0, 15.4885, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.81504, 0, 0, -1.001, 32.4787, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -0.598537, 0, 0, -1.001, 19.5972, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.82363, 0, 0, -1.001, 7.47327, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.57998, -1.001, 0, 0, 10.5012, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.64996, 0, 0, -1.001, 13.1516, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.56751, -1.001, 0, 0, -21.4645, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.62308, -1.001, 0, 0, -2.97022, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.198894, -1.001, 0, 0, -35.1729, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 3.43556, 0, 0, -1.001, -6.30736, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.47768, -1.001, 0, 0, 21.4746, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.04653, 0, 0, -1.001, 2.94988, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.70849, 0, 0, -1.001, -17.7403, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.31193, -1.001, 0, 0, -33.7026, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 5.90415, 0, 0, -1.001, 32.6624, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.14567, -1.001, 0, 0, -31.4884, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.00496, -1.001, 0, 0, -29.0854, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 4.63175, -1.001, 0, 0, -32.7898, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.76278, 0, 0, -1.001, 30.4646, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.98782, -1.001, 0, 0, 10.349, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.27815, 0, 0, -1.001, 23.234, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.03865, 0, 0, -1.001, 16.11, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -1.96739, 0, 0, -1.001, 30.1365, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.55651, -1.001, 0, 0, 14.7996, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.20729, -1.001, 0, 0, 27.6003, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.16195, 0, 0, -1.001, 32.3756, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.789662, 0, 0, -1.001, -14.7941, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.20633, 0, 0, -1.001, 36.3791, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.37332, -1.001, 0, 0, -20.1168, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.73474, -1.001, 0, 0, -28.0815, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.35296, 0, 0, -1.001, 26.8959, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.912173, 0, 0, -1.001, 9.41411, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.57175, 0, 0, -1.001, 20.6487, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.05202, -1.001, 0, 0, -11.702, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.448438, 0, 0, -1.001, 20.2739, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.8216, 0, 0, -1.001, 25.2947, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -3.73992, -1.001, 0, 0, 2.7046, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.36214, 0, 0, -1.001, 23.396, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.70267, -1.001, 0, 0, -13.5366, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.52245, 0, 0, -1.001, 1.62596, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.97958, 0, 0, -1.001, 31.7688, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -0.130132, 0, 0, -1.001, 2.47861, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.09307, 0, 0, -1.001, -7.05312, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.04668, -1.001, 0, 0, -15.8951, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.0291295, 0, 0, -1.001, 10.4176, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.23196, -1.001, 0, 0, -33.4141, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.03376, 0, 0, -1.001, 5.54802, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.16277, -1.001, 0, 0, 27.5334, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.24708, 0, 0, -1.001, 3.88613, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.91014, 0, 0, -1.001, 20.2773, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.97343, 0, 0, -1.001, 34.6977, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.165168, 0, 0, -1.001, 34.3828, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.39605, -1.001, 0, 0, -19.3603, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.41527, 0, 0, -1.001, 13.2381, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.4222, -1.001, 0, 0, -32.9662, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 2.84967, -1.001, 0, 0, -17.9616, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.208523, 0, 0, -1.001, -16.2902, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.11355, 0, 0, -1.001, 36.4451, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -6.17042, 0, 0, -1.001, 2.23257, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.36322, 0, 0, -1.001, -5.46288, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.02938, 0, 0, -1.001, 16.5546, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.15679, -1.001, 0, 0, -10.2019, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.418583, 0, 0, -1.001, 19.5769, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -2.2136, 0, 0, -1.001, 35.5149, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -2.73755, -1.001, 0, 0, -4.08293, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.01246, -1.001, 0, 0, -4.61716, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.10521, -1.001, 0, 0, -13.3826, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 1.77838, 0, 0, -1.001, 22.1881, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.924212, -1.001, 0, 0, -25.743, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 2.48867, -1.001, 0, 0, 7.23937, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.03494, -1.001, 0, 0, -30.7014, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.469959, -1.001, 0, 0, -15.1164, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.96296, -1.001, 0, 0, -9.39928, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.77191, 0, 0, -1.001, 2.941, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.295317, -1.001, 0, 0, 9.35412, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.18712, 0, 0, -1.001, 8.64944, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.61554, 0, 0, -1.001, 1.27229, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.03801, -1.001, 0, 0, -20.0602, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 1.90936, 0, 0, -1.001, 21.7099, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.42383, -1.001, 0, 0, -36.1399, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.48321, 0, 0, -1.001, -25.9545, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.71197, 0, 0, -1.001, -17.5782, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.81735, 0, 0, -1.001, 30.1233, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -0.122976, -1.001, 0, 0, 18.4799, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.80141, 0, 0, -1.001, 29.0468, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.52497, 0, 0, -1.001, 22.2076, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.39696, -1.001, 0, 0, 23.4452, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.55338, -1.001, 0, 0, -15.3378, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.5125, 0, 0, -1.001, 31.7411, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.76885, 0, 0, -1.001, -3.10151, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.25284, 0, 0, -1.001, 32.5518, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -5.8012, 0, 0, -1.001, 8.88039, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.5863, -1.001, 0, 0, -35.4968, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.68347, 0, 0, -1.001, 34.6243, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -2.53949, -1.001, 0, 0, -17.3534, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.10813, 0, 0, -1.001, -8.19095, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.86277, -1.001, 0, 0, 8.45082, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.51539, -1.001, 0, 0, 10.2264, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.46339, -1.001, 0, 0, -14.4918, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -3.00256, 0, 0, -1.001, 28.0394, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.46775, -1.001, 0, 0, -16.6595, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.518754, 0, 0, -1.001, 11.0177, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.0422368, -1.001, 0, 0, -1.73751, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.70747, 0, 0, -1.001, 8.86829, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.9121, -1.001, 0, 0, 4.79757, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.52085, 0, 0, -1.001, 8.1831, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.21632, 0, 0, -1.001, 33.1612, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.481027, 0, 0, -1.001, -7.55688, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.9227, 0, 0, -1.001, 9.14932, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -0.236896, -1.001, 0, 0, -35.9562, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.22271, -1.001, 0, 0, -32.6474, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 4.10863, -1.001, 0, 0, -33.374, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 5.13934, 0, 0, -1.001, -7.02442, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.60766, 0, 0, -1.001, 7.52495, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.87913, -1.001, 0, 0, -17.367, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.10028, -1.001, 0, 0, -24.0192, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.05335, -1.001, 0, 0, -18.8373, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.528962, -1.001, 0, 0, 23.1953, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.52838, -1.001, 0, 0, -33.8891, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.149427, 0, 0, -1.001, 12.8496, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -1.15143, -1.001, 0, 0, -34.4962, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.599296, -1.001, 0, 0, -19.9309, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.890488, 0, 0, -1.001, 21.3447, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.39068, 0, 0, -1.001, -7.34748, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 3.45685, -1.001, 0, 0, -22.4839, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.23598, -1.001, 0, 0, 20.7988, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.36488, 0, 0, -1.001, -6.41684, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 1.52401, -1.001, 0, 0, -27.3491, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.31711, 0, 0, -1.001, 20.5338, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -0.322971, -1.001, 0, 0, -8.49229, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.86152, 0, 0, -1.001, 12.0101, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.47891, 0, 0, -1.001, 29.5353, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.687568, -1.001, 0, 0, -14.1475, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.240591, 0, 0, -1.001, 8.28564, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.80843, -1.001, 0, 0, -17.2714, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 1.69225, -1.001, 0, 0, 9.96074, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.58691, 0, 0, -1.001, 26.9286, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 0.651787, 0, 0, -1.001, 25.7712, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -0.504402, 0, 0, -1.001, 14.4485, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.69576, -1.001, 0, 0, -28.0328, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 2.16536, 0, 0, -1.001, -11.4753, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 4.66848, -1.001, 0, 0, 2.06343, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.30764, 0, 0, -1.001, 30.3617, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -2.47847, 0, 0, -1.001, 34.2515, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 5.40226, 0, 0, -1.001, 23.9897, 0, 1.001, 0, -0.117754, 1.001, 0, 0, -1.82125, -1.001, 0, 0, -8.50669, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.591439, 0, 0, -1.001, 8.33304, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.10618, -1.001, 0, 0, -33.1639, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.226175, 0, 0, -1.001, 23.6994, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.81081, -1.001, 0, 0, 3.85959, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -0.747442, -1.001, 0, 0, -18.1884, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -2.6659, 0, 0, -1.001, 36.0989, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.29894, -1.001, 0, 0, 0.311028, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -5.36946, -1.001, 0, 0, 35.6426, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -6.74539, -1.001, 0, 0, -25.1909, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.964987, -1.001, 0, 0, -11.6799, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.52254, -1.001, 0, 0, -4.76967, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 0.748039, 0, 0, -1.001, 8.79572, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.14293, 0, 0, -1.001, 22.4967, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 6.5723, -1.001, 0, 0, -22.0136, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 3.71137, 0, 0, -1.001, -7.00628, 0, 1.001, 0, -0.117754, 1.001, 0, 0, 2.81302, -1.001, 0, 0, -35.7961, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -1.37147, -1.001, 0, 0, -25.7, 0, 1.001, 0, -0.117754, 0, 0, -1.001, 1.19205, -1.001, 0, 0, 19.8779, 0, 1.001, 0, -0.117754, 0, 0, -1.001, -4.25669)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_trpqm"]
+render_priority = 0
+shader = ExtResource("13_2tsap")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65f3l"]
+next_pass = SubResource("ShaderMaterial_trpqm")
+albedo_color = Color(0.501961, 0.890196, 0.321569, 1)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_jl554"]
-material = ExtResource("14_8g4lb")
+material = SubResource("StandardMaterial3D_65f3l")
 size = Vector2(40, 10)
 
 [sub_resource type="Environment" id="Environment_y8ynd"]

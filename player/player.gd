@@ -55,7 +55,14 @@ func _end_cutscene():
 	set_controller(human_controller)
 
 func attack():
+	print("ATTACK!")
 	try_attack = true
+	await get_tree().process_frame
+	await get_tree().process_frame
+	try_attack = false
+
+#func stop_attack():
+#	try_attack = false
 
 func jump(delta):
 	try_jump = true
@@ -66,7 +73,6 @@ func stop_jump():
 	jump_time = 0.0
 
 func _physics_process(_delta):
-	try_attack = false
 	reorient()
 
 func reorient():

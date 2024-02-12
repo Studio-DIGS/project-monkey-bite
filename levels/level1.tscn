@@ -1,5 +1,6 @@
 [gd_scene load_steps=37 format=3 uid="uid://wqfmemqm6xmv"]
 
+[ext_resource type="Shader" uid="uid://cuvclsyoc2sse" path="res://visual_pipeline/grass/planar_grass.tres" id="1_0rove"]
 [ext_resource type="ArrayMesh" uid="uid://b72npoi5wprc5" path="res://assets/temple/Prop_Flag_1.obj" id="1_ixxyw"]
 [ext_resource type="ArrayMesh" uid="uid://dohx36c77lpjt" path="res://assets/temple/Prop_Flag_Stand_Top.obj" id="2_n1d84"]
 [ext_resource type="ArrayMesh" uid="uid://b364hfo331by8" path="res://assets/temple/Prop_Flag_Stand_Extension.obj" id="3_fjyhb"]
@@ -11,9 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://dnxlvi0kucdpk" path="res://assets/ultimate-platformer/Fruit.gltf" id="8_gd7h3"]
 [ext_resource type="ArrayMesh" uid="uid://dn3538nup1hmt" path="res://assets/temple/Wall_Ruined_Full_Cracked_1.obj" id="9_u8bbg"]
 [ext_resource type="ArrayMesh" uid="uid://ie1glsealiff" path="res://assets/temple/Wall_Ruined_Half_1.obj" id="10_631ad"]
-[ext_resource type="Shader" uid="uid://cuvclsyoc2sse" path="res://levels/grass/grass.tres" id="11_y7ypm"]
-[ext_resource type="Material" uid="uid://bdrk3hn2y0uie" path="res://levels/grass/grass_floor.tres" id="12_imocn"]
-[ext_resource type="PackedScene" uid="uid://b1ob2xlr74xc2" path="res://levels/grass/grass.tscn" id="13_82tkb"]
+[ext_resource type="Material" uid="uid://bdrk3hn2y0uie" path="res://visual_pipeline/grass/grass_floor.tres" id="12_imocn"]
+[ext_resource type="PackedScene" uid="uid://b1ob2xlr74xc2" path="res://visual_pipeline/grass/grass.tscn" id="13_82tkb"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="14_884je"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="15_kb6rw"]
 [ext_resource type="ArrayMesh" uid="uid://d3t6wj0ml65jy" path="res://assets/temple/Wall_Ruined_Corner_Outer_2.obj" id="17_ws2mn"]
@@ -26,9 +26,13 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ujfex"]
 render_priority = 0
-shader = ExtResource("11_y7ypm")
-shader_parameter/BaseColor = Color(0.501961, 0.890196, 0.321569, 1)
-shader_parameter/GrassColor = Color(0.501961, 0.890196, 0.321569, 1)
+shader = ExtResource("1_0rove")
+shader_parameter/WindScrollFramerate = 6.0
+shader_parameter/WindScrollFrequency = -1.0
+shader_parameter/WindSpacingFrequency = 0.1
+shader_parameter/SwayStrength = Vector3(0.35, -0.1, 0)
+shader_parameter/ColorNoiseFrequency = Vector2(0.03, 0.03)
+shader_parameter/Fixed_Normal = Vector3(0, 1, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65v63"]
 

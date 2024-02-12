@@ -37,15 +37,16 @@ render_target_update_mode = 4
 [node name="CameraContainer" type="Node3D" parent="SubViewport"]
 
 [node name="MainCamera" type="Camera3D" parent="SubViewport/CameraContainer"]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 5)
+transform = Transform3D(1, 0, 0, 0, 0.97437, 0.224951, 0, -0.224951, 0.97437, 0, 4, 25)
 projection = 1
 current = true
-size = 6.5
-near = 0.001
+size = 9.0
+near = 0.1
+far = 500.0
 script = ExtResource("2_hpfd2")
 
 [node name="Postprocess" type="MeshInstance3D" parent="SubViewport/CameraContainer/MainCamera"]
-transform = Transform3D(1, 0, 0, 0, -2.98023e-08, -1, 0, 1, -2.98023e-08, 0, 0, -0.1)
+transform = Transform3D(1, 0, 0, 0, -2.98023e-08, -1, 0, 1, -2.98023e-08, 0, 0.177397, -0.934591)
 mesh = SubResource("PlaneMesh_rpb4e")
 
 [node name="MainCamControl" type="Node" parent="SubViewport/CameraContainer" node_paths=PackedStringArray("camera", "camera_move_container", "camera_follow", "camera_lookahead", "camera_pixel_snap")]

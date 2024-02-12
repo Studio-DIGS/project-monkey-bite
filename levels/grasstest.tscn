@@ -1,0 +1,457 @@
+[gd_scene load_steps=46 format=3 uid="uid://u2p2vd130hqv"]
+
+[ext_resource type="Material" uid="uid://bdrk3hn2y0uie" path="res://visual_pipeline/grass/grass_floor.tres" id="1_wcc0j"]
+[ext_resource type="PackedScene" uid="uid://b1ob2xlr74xc2" path="res://visual_pipeline/grass/grass.tscn" id="3_yvqc4"]
+[ext_resource type="Material" uid="uid://17sg70sy4jem" path="res://visual_pipeline/grass/grass_mat.tres" id="4_bj8gv"]
+[ext_resource type="ArrayMesh" uid="uid://dcrs0yrv40fjr" path="res://visual_pipeline/grass/meshes/testplane_mesh.res" id="4_octt6"]
+[ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="5_1yqo3"]
+[ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="6_65pp7"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="6_y7yvu"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="7_0f7sh"]
+[ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/test_enemy.tscn" id="7_sut7j"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="8_bx78m"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="9_aejdt"]
+[ext_resource type="Material" uid="uid://dkhjfbh8i848j" path="res://player/testmat.tres" id="9_jl0r8"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="10_oy5km"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="11_wc33o"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="12_3xvp0"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="13_xucnp"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/offset_scale.gd" id="14_4nkqj"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="14_to1qb"]
+[ext_resource type="Material" uid="uid://dj8ik0qgh5rgl" path="res://visual_pipeline/grass/purple_grass.tres" id="15_lgtt7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_484kk"]
+size = Vector3(100, 0.1, 15)
+
+[sub_resource type="Resource" id="Resource_7jpu6"]
+script = ExtResource("8_bx78m")
+amount = 15000
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_sippn"]
+script = ExtResource("9_aejdt")
+iterations = 3
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = true
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_yjbd4"]
+script = ExtResource("10_oy5km")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 5.0
+ray_offset = 1.0
+remove_points_on_miss = false
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_u4nfl"]
+script = ExtResource("14_4nkqj")
+operation = 1
+scale = Vector3(1, 0.5, 1)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_dw2uh"]
+script = ExtResource("7_0f7sh")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_7jpu6"), SubResource("Resource_sippn"), SubResource("Resource_yjbd4"), SubResource("Resource_u4nfl")])
+
+[sub_resource type="Resource" id="Resource_tgqj6"]
+script = ExtResource("13_xucnp")
+size = Vector3(91.516, 1, 50)
+
+[sub_resource type="Curve3D" id="Curve3D_1smh0"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 19.2084, 0, 0.857382, 0, 0, 0, 0, 0, 0, 5.2115, 9.53674e-07, -3.74665, 0, 0, 0, 0, 0, 0, -9.31088, 0, 1.52072, 0, 0, 0, 0, 0, 0, -17.6607, 0, -4.85219),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_72wen"]
+script = ExtResource("14_to1qb")
+closed = false
+thickness = 6.0
+curve = SubResource("Curve3D_1smh0")
+
+[sub_resource type="Resource" id="Resource_8f0of"]
+script = ExtResource("8_bx78m")
+amount = 75
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_jw7kt"]
+script = ExtResource("14_4nkqj")
+operation = 1
+scale = Vector3(1, 0.5, 1)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_4np1u"]
+script = ExtResource("9_aejdt")
+iterations = 3
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = true
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_3flvj"]
+script = ExtResource("10_oy5km")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = true
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_54753"]
+script = ExtResource("7_0f7sh")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_8f0of"), SubResource("Resource_jw7kt"), SubResource("Resource_4np1u"), SubResource("Resource_3flvj")])
+
+[sub_resource type="Resource" id="Resource_v7l8c"]
+script = ExtResource("13_xucnp")
+size = Vector3(6.9486, 1, 1)
+
+[sub_resource type="Shader" id="Shader_vd8ur"]
+code = "
+// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable's ProceduralSkyMaterial.
+
+shader_type sky;
+render_mode use_debanding;
+
+uniform vec4 sky_top_color : source_color = vec4(0.385, 0.454, 0.55, 1.0);
+uniform vec4 sky_horizon_color : source_color = vec4(0.646, 0.656, 0.67, 1.0);
+uniform float sky_curve : hint_range(0, 1) = 0.15;
+uniform float sky_energy = 1.0; // In Lux.
+uniform sampler2D sky_cover : filter_linear, source_color, hint_default_black;
+uniform vec4 sky_cover_modulate : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 ground_bottom_color : source_color = vec4(0.2, 0.169, 0.133, 1.0);
+uniform vec4 ground_horizon_color : source_color = vec4(0.646, 0.656, 0.67, 1.0);
+uniform float ground_curve : hint_range(0, 1) = 0.02;
+uniform float ground_energy = 1.0;
+uniform float sun_angle_max = 30.0;
+uniform float sun_curve : hint_range(0, 1) = 0.15;
+
+uniform sampler2D cloud_texture;
+uniform sampler2D cloud_texture2;
+uniform vec2 cloud_direction;
+uniform vec2 cloud_direction2;
+uniform vec2 cloud_scale;
+uniform float cloud_distance;
+uniform float cloud_speed;
+uniform float cloud_speed2;
+
+void sky() {
+	float v_angle = acos(clamp(EYEDIR.y, -1.0, 1.0));
+	float c = (1.0 - v_angle / (PI * 0.5));
+	vec3 sky = mix(sky_horizon_color.rgb, sky_top_color.rgb, clamp(1.0 - pow(1.0 - c, 1.0 / sky_curve), 0.0, 1.0));
+	sky *= sky_energy;
+
+	if (LIGHT0_ENABLED) {
+		float sun_angle = acos(dot(LIGHT0_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT0_SIZE) {
+			sky = LIGHT0_COLOR * LIGHT0_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT0_SIZE) / (sun_angle_max - LIGHT0_SIZE);
+			sky = mix(LIGHT0_COLOR * LIGHT0_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	if (LIGHT1_ENABLED) {
+		float sun_angle = acos(dot(LIGHT1_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT1_SIZE) {
+			sky = LIGHT1_COLOR * LIGHT1_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT1_SIZE) / (sun_angle_max - LIGHT1_SIZE);
+			sky = mix(LIGHT1_COLOR * LIGHT1_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	if (LIGHT2_ENABLED) {
+		float sun_angle = acos(dot(LIGHT2_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT2_SIZE) {
+			sky = LIGHT2_COLOR * LIGHT2_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT2_SIZE) / (sun_angle_max - LIGHT2_SIZE);
+			sky = mix(LIGHT2_COLOR * LIGHT2_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	if (LIGHT3_ENABLED) {
+		float sun_angle = acos(dot(LIGHT3_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT3_SIZE) {
+			sky = LIGHT3_COLOR * LIGHT3_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT3_SIZE) / (sun_angle_max - LIGHT3_SIZE);
+			sky = mix(LIGHT3_COLOR * LIGHT3_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	vec4 sky_cover_texture = texture(sky_cover, SKY_COORDS);
+	sky += (sky_cover_texture.rgb * sky_cover_modulate.rgb) * sky_cover_texture.a * sky_cover_modulate.a * sky_energy;
+
+	c = (v_angle - (PI * 0.5)) / (PI * 0.5);
+	vec3 ground = mix(ground_horizon_color.rgb, ground_bottom_color.rgb, clamp(1.0 - pow(1.0 - c, 1.0 / ground_curve), 0.0, 1.0));
+	ground *= ground_energy;
+	
+	vec2 sky_uv = EYEDIR.xz / EYEDIR.y;
+	float fps = floor(TIME * 2.0) * 0.05;
+	vec3 clouds = texture(cloud_texture, sky_uv * cloud_scale * cloud_direction * cloud_speed * fps).rgb - texture(cloud_texture2, sky_uv * cloud_scale * cloud_direction2 * cloud_speed2 * fps).rgb;
+	clouds = clouds - smoothstep(0.0, EYEDIR.y, cloud_distance);
+	clouds = step(0.3, clouds); // Toon shade
+	clouds = clamp(clouds, 0.0, 1.0);
+	sky += clouds;
+	ground += clouds;
+
+	COLOR = mix(ground, sky, step(0.0, EYEDIR.y));
+}
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pndxn"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qe2md"]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource("FastNoiseLite_pndxn")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h8mcs"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mfdm4"]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource("FastNoiseLite_h8mcs")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v5xsb"]
+shader = SubResource("Shader_vd8ur")
+shader_parameter/sky_top_color = Color(0.168627, 0.466667, 0.713726, 1)
+shader_parameter/sky_horizon_color = Color(0.509804, 0.701961, 0.85098, 1)
+shader_parameter/sky_curve = 0.0776449
+shader_parameter/sky_energy = 1.0
+shader_parameter/sky_cover_modulate = Color(1, 1, 1, 1)
+shader_parameter/ground_bottom_color = Color(0.384314, 0.654902, 0.823529, 1)
+shader_parameter/ground_horizon_color = Color(0.494118, 0.713726, 0.839216, 1)
+shader_parameter/ground_curve = 0.0428708
+shader_parameter/ground_energy = 1.0
+shader_parameter/sun_angle_max = 0.523599
+shader_parameter/sun_curve = 0.375
+shader_parameter/cloud_direction = Vector2(0.47, 0.355)
+shader_parameter/cloud_direction2 = Vector2(1.585, 0.17)
+shader_parameter/cloud_scale = Vector2(0.04, 2.74)
+shader_parameter/cloud_distance = 0.0
+shader_parameter/cloud_speed = 0.05
+shader_parameter/cloud_speed2 = 0.015
+shader_parameter/cloud_texture = SubResource("NoiseTexture2D_qe2md")
+shader_parameter/cloud_texture2 = SubResource("NoiseTexture2D_mfdm4")
+
+[sub_resource type="Sky" id="Sky_xpkr3"]
+sky_material = SubResource("ShaderMaterial_v5xsb")
+
+[sub_resource type="Environment" id="Environment_y8ynd"]
+background_mode = 2
+background_color = Color(0.4, 0.615686, 0.811765, 1)
+sky = SubResource("Sky_xpkr3")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_tho00"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_u8m17"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_me837"]
+
+[node name="World" type="Node3D"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Hidden Collision Boxes" type="Node" parent="Environment"]
+
+[node name="Platform ground" type="Node" parent="Environment"]
+
+[node name="Test" type="StaticBody3D" parent="Environment/Platform ground"]
+
+[node name="Floor" type="MeshInstance3D" parent="Environment/Platform ground/Test"]
+transform = Transform3D(0.601, 0, 0, 0, 1, 0, 0, 0, 4.205, 17.3753, 0, -7.49854)
+material_override = ExtResource("1_wcc0j")
+extra_cull_margin = 5131.19
+mesh = ExtResource("4_octt6")
+skeleton = NodePath("../../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Platform ground/Test"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape3D_484kk")
+
+[node name="grass" parent="Environment/Platform ground/Test" instance=ExtResource("3_yvqc4")]
+visible = false
+
+[node name="Grass" parent="Environment/Platform ground/Test/grass" index="0"]
+visible = false
+
+[node name="ProtonScatter" type="Node3D" parent="Environment/Platform ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.198906, 0, 0.608515)
+script = ExtResource("6_y7yvu")
+modifier_stack = SubResource("Resource_dw2uh")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="Environment/Platform ground/ProtonScatter"]
+script = ExtResource("11_wc33o")
+source = 0
+override_material = ExtResource("4_bj8gv")
+override_cast_shadow = 0
+path = "../../Test/grass/Grass"
+
+[node name="ScatterShape" type="Node3D" parent="Environment/Platform ground/ProtonScatter"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 2.44871, 0, -11.2776)
+script = ExtResource("12_3xvp0")
+shape = SubResource("Resource_tgqj6")
+
+[node name="ScatterShape2" type="Node3D" parent="Environment/Platform ground/ProtonScatter"]
+script = ExtResource("12_3xvp0")
+negative = true
+shape = SubResource("Resource_72wen")
+
+[node name="ProtonScatter2" type="Node3D" parent="Environment/Platform ground"]
+script = ExtResource("6_y7yvu")
+modifier_stack = SubResource("Resource_54753")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="Environment/Platform ground/ProtonScatter2"]
+script = ExtResource("11_wc33o")
+source = 0
+source_ignore_scale = false
+override_material = ExtResource("15_lgtt7")
+override_cast_shadow = 0
+path = "../../Test/grass"
+
+[node name="ScatterShape" type="Node3D" parent="Environment/Platform ground/ProtonScatter2"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 29.0181, 4.99761, 0)
+script = ExtResource("12_3xvp0")
+shape = SubResource("Resource_v7l8c")
+
+[node name="Characters Scripts and World Settings" type="Node" parent="Environment"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment/Characters Scripts and World Settings"]
+transform = Transform3D(-0.422618, -0.800222, 0.425486, 0, 0.469472, 0.882947, -0.906308, 0.373149, -0.198407, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.003
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment/Characters Scripts and World Settings"]
+environment = SubResource("Environment_y8ynd")
+
+[node name="Player" parent="Environment/Characters Scripts and World Settings" instance=ExtResource("5_1yqo3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11.7451, 1.41166, -0.0926752)
+accel = 6.505
+jump_height = 10.0
+
+[node name="CameraSystem" parent="Environment/Characters Scripts and World Settings" node_paths=PackedStringArray("target") instance=ExtResource("6_65pp7")]
+target = NodePath("../Player")
+
+[node name="TestEnemy" parent="Environment/Characters Scripts and World Settings" instance=ExtResource("7_sut7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.452, 1.06, 0)
+
+[node name="TestEnemy2" parent="Environment/Characters Scripts and World Settings" instance=ExtResource("7_sut7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.4704, 9.89285, 0)
+
+[node name="TestEnemy3" parent="Environment/Characters Scripts and World Settings" instance=ExtResource("7_sut7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.511, 5.625, 0)
+
+[node name="Pillars" type="Node3D" parent="Environment"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Pillars"]
+transform = Transform3D(-0.84241, -5.24265, 0.294768, -0.41884, 10.3711, 0.168438, -0.338998, 0.214245, -0.940606, -0.06392, 0.623015, -5.22488)
+mesh = SubResource("BoxMesh_tho00")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("9_jl0r8")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Environment/Pillars"]
+transform = Transform3D(-0.84241, -5.24265, 0.294768, -0.41884, 10.3711, 0.168438, -0.338998, 0.214245, -0.940606, 12.2308, 0.623015, -12.8754)
+mesh = SubResource("BoxMesh_tho00")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("9_jl0r8")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Environment/Pillars"]
+transform = Transform3D(-0.84241, -5.24265, 0.294768, -0.41884, 10.3711, 0.168438, -0.338998, 0.214245, -0.940606, -10.4905, 0.623016, -7.8747)
+mesh = SubResource("BoxMesh_tho00")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("9_jl0r8")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Environment/Pillars"]
+transform = Transform3D(-0.84241, -5.24265, 0.294768, -0.41884, 10.3711, 0.168438, -0.338998, 0.214245, -0.940606, 24.0066, 0.623018, -16.361)
+mesh = SubResource("BoxMesh_tho00")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("9_jl0r8")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Environment/Pillars"]
+transform = Transform3D(-0.84241, -5.24265, 0.294768, -0.41884, 10.3711, 0.168438, -0.338998, 0.214245, -0.940606, 29.6671, 0.623018, -10.7602)
+mesh = SubResource("BoxMesh_tho00")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("9_jl0r8")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Environment/Pillars"]
+transform = Transform3D(-0.84241, -5.24265, 0.294768, -0.41884, 10.3711, 0.168438, -0.338998, 0.214245, -0.940606, 41.4808, 0.623017, -18.9782)
+mesh = SubResource("BoxMesh_tho00")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("9_jl0r8")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Environment/Pillars"]
+transform = Transform3D(-0.84241, -5.24265, 0.294768, -0.41884, 10.3711, 0.168438, -0.338998, 0.214245, -0.940606, -29.2586, 0.623018, -13.1874)
+mesh = SubResource("BoxMesh_tho00")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("9_jl0r8")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Environment/Pillars"]
+transform = Transform3D(-0.84241, -5.24265, 0.294768, -0.41884, 10.3711, 0.168438, -0.338998, 0.214245, -0.940606, 46.8904, 0.623017, -11.3985)
+mesh = SubResource("BoxMesh_tho00")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("9_jl0r8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment"]
+transform = Transform3D(20.5822, -0.84735, 0, 9.59766, 1.81715, 0, 0, 0, 2.005, 26.4725, 3.07165, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/StaticBody3D"]
+mesh = SubResource("BoxMesh_u8m17")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/StaticBody3D"]
+shape = SubResource("BoxShape3D_me837")
+
+[connection signal="turn_around" from="Environment/Characters Scripts and World Settings/Player" to="Environment/Characters Scripts and World Settings/CameraSystem" method="_on_player_turn_around"]
+
+[editable path="Environment/Platform ground/Test/grass"]

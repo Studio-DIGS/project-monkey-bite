@@ -1,7 +1,7 @@
 extends PlayerState
 
 func enter(_msg := {}):
-	player.anim.play("bob")
+	player.anim.play("Idle")
 
 func physics_update(delta):
 	player.velocity.x = lerp(player.velocity.x, 0.0, delta * player.accel)

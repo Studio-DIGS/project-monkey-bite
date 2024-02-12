@@ -1,7 +1,7 @@
 extends PlayerState
 
 func enter(_msg := {}):
-	player.anim.play("bob")
+	player.anim.play("Run")
 
 func physics_update(delta):
 	if not player.is_on_floor():

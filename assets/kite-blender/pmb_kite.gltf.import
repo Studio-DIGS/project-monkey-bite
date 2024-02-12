@@ -3628,6 +3628,29 @@ _subresources={
 "slice_99/start_frame": 0,
 "slices/amount": null
 }
+},
+"materials": {
+"Kite Base": {
+"use_external/enabled": true,
+"use_external/path": "res://player/materials/skin.tres"
+},
+"Kite Hair": {
+"use_external/enabled": true,
+"use_external/path": "res://player/materials/hair.tres"
+},
+"Pants": {
+"use_external/enabled": true,
+"use_external/path": "res://player/materials/pants.tres"
+},
+"Torso": {
+"use_external/enabled": true,
+"use_external/path": "res://player/materials/shirt.tres"
+}
+},
+"nodes": {
+"PATH:AnimationPlayer": {
+"optimizer/enabled": false
+}
 }
 }
 gltf/embedded_image_handling=1

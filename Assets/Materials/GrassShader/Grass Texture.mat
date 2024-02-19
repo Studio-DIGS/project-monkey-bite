@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4953884695085938056
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 6
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Grass Texture
+  m_Shader: {fileID: -6465566751694194690, guid: faf6fac0af77c0341adb571dfd634992, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_b5f3bf913a484b468c308a00739752dd:
+        m_Texture: {fileID: 2800000, guid: 6c0882aa2ed7d5b2fa66778c58afa158, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LeavesAlpha:
+        m_Texture: {fileID: 2800000, guid: d980b70ccc3be794d9203b8154651dea, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 781db1c3baa56a9458bd1728d805f014, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SmoothnessMap:
+        m_Texture: {fileID: 2800000, guid: 463593447a0a0bf26b9ac0a6f752cf2e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_05a1d3ab844a4d4fb50bf5200da7d4ea_Out_0:
+        m_Texture: {fileID: 2800000, guid: 463593447a0a0bf26b9ac0a6f752cf2e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_21ae215a38a9442fa7464bdf2967161d_Out_0:
+        m_Texture: {fileID: 2800000, guid: 6c0882aa2ed7d5b2fa66778c58afa158, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_e56b00ede77945ce81985158011022ad_Out_0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - Vector1_0d65c55493f8400987f05a652008025d: 0
+    - Vector1_7822dd6f30dd4f548d4220de7854de7e: 0.58
+    - Vector1_91bfdbc471264214bc0e8eff4e9796a6: 1
+    - Vector1_c757b884625e4ed788ab2dc9baeacd70: 0
+    - Vector1_db1d002c272f437585896ac0a44d7df4: 1
+    - Vector1_dcd6fb2993dc494b9898e8ff54ffee00: 0
+    - Vector1_f20a8422b91f4118b3a0871b5c71763d: 4.19
+    - Vector1_ff4512fc7937496e9b87a59c420ee391: 1
+    - _AlphaScale: 6.98
+    - _Inflate: -6.5
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Reflectivity: 0.44
+    - _Smoothness: 5.93
+    m_Colors:
+    - Color_7c8773ac703143ca996f120b117c8013: {r: 4, g: 4, b: 4, a: 0}
+    - Color_c8f27e1b70544bc99b4cd796a4f63591: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 0}
+    - _AmbientColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 0}
+    - _BaseColor: {r: 0.3650663, g: 0.4811321, b: 0.2662869, a: 0}
+    - _WorldSpaceLightPos0: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []

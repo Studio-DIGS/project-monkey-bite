@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0ih5qmnhn5aj"
-path.s3tc="res://.godot/imported/pillarcolor.png-48747e1d55caad86cb34f2afa63f06b0.s3tc.ctex"
+uid="uid://cyrb2t6jlt7ms"
+path.s3tc="res://.godot/imported/pole_texture.png-3e0f58cbe357e0d56fc05f34ad2b4240.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/lillian-assets/pillarcolor.png"
-dest_files=["res://.godot/imported/pillarcolor.png-48747e1d55caad86cb34f2afa63f06b0.s3tc.ctex"]
+source_file="res://assets/lillian-assets/Textures/pole_texture.png"
+dest_files=["res://.godot/imported/pole_texture.png-3e0f58cbe357e0d56fc05f34ad2b4240.s3tc.ctex"]
 
 [params]
 

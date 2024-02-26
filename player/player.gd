@@ -1,7 +1,7 @@
 class_name Player
 extends Actor
 
-@onready var anim = $AnimationPlayer
+@onready var anim = $pmb_kite/AnimationPlayer
 @export var speed = 5.0
 @export var accel = 15.0
 @export var min_jump_height = 2.0
@@ -55,10 +55,9 @@ func _end_cutscene():
 	set_controller(human_controller)
 
 func attack():
-	print("ATTACK!")
 	try_attack = true
 	await get_tree().process_frame
-	await get_tree().process_frame
+#	await get_tree().process_frame
 	try_attack = false
 
 #func stop_attack():

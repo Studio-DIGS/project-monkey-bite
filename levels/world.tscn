@@ -735,9 +735,10 @@ directional_shadow_split_1 = 0.005
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_y8ynd")
 
-[node name="Player" parent="." instance=ExtResource("2_yuvdp")]
+[node name="Player" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("2_yuvdp")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.78614, 1.41166, -0.0926752)
 accel = 6.505
+hitbox = NodePath("")
 
 [node name="TestEnemy" parent="." instance=ExtResource("18_03ibt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.15295, 1.3582, -0.000691056)

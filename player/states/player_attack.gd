@@ -38,7 +38,7 @@ func physics_update(delta):
 	player.move_and_slide()
 	
 	# queue the next attack
-	if combo_counter < max_combo and contact and not player.anim.get_queue():
+	if combo_counter < max_combo and not player.anim.get_queue():
 		if Input.is_action_just_pressed("attack"):
 			combo_counter += 1
 			contact = false
@@ -47,6 +47,10 @@ func physics_update(delta):
 
 
 func _on_animation_player_animation_finished(_anim_name):
+	player.anim.play("Idle")
+	# wait for animation to finish blending to idle before fully transitioning state
+	var blend_time = player.anim.playback_default_blend_time
+	await get_tree().create_timer(blend_time).timeout
 	combo_counter = 0
 	state_machine.transition_to("Idle")
 

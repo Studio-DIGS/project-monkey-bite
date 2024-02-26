@@ -1,6 +1,6 @@
 [gd_scene load_steps=66 format=3 uid="uid://cj6gya66i2u14"]
 
-[ext_resource type="Script" path="res://common/game.gd" id="1_4nk2b"]
+[ext_resource type="Script" path="res://common/game_manager.gd" id="1_gxjrb"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="2_yuvdp"]
 [ext_resource type="ArrayMesh" uid="uid://b72npoi5wprc5" path="res://assets/temple/Prop_Flag_1.obj" id="3_dt7p3"]
 [ext_resource type="ArrayMesh" uid="uid://dohx36c77lpjt" path="res://assets/temple/Prop_Flag_Stand_Top.obj" id="4_l3pci"]
@@ -516,7 +516,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="World" type="Node3D"]
-script = ExtResource("1_4nk2b")
+script = ExtResource("1_gxjrb")
 
 [node name="CameraSystem" parent="." node_paths=PackedStringArray("target") instance=ExtResource("15_le3dk")]
 target = NodePath("../Player")
@@ -738,7 +738,6 @@ environment = SubResource("Environment_y8ynd")
 [node name="Player" parent="." instance=ExtResource("2_yuvdp")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.78614, 1.41166, -0.0926752)
 accel = 6.505
-jump_height = 10.0
 
 [node name="TestEnemy" parent="." instance=ExtResource("18_03ibt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.15295, 1.3582, -0.000691056)

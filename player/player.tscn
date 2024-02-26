@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://ceg0a8jxwnfae"]
+[gd_scene load_steps=39 format=3 uid="uid://ceg0a8jxwnfae"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_7knqw"]
 [ext_resource type="Resource" uid="uid://dgjn3tlt2bmb7" path="res://player/attacks/slash_1.tres" id="2_06grq"]
@@ -17,8 +17,10 @@
 [ext_resource type="Script" path="res://player/states/player_attack.gd" id="9_0f5gx"]
 [ext_resource type="Script" path="res://common/hurtbox.gd" id="9_sbn7q"]
 [ext_resource type="Script" path="res://common/health.gd" id="9_sjui1"]
+[ext_resource type="Script" path="res://player/controllers/human_controller.gd" id="12_1q4mr"]
 [ext_resource type="Script" path="res://common/hitbox.gd" id="12_xrx4s"]
-[ext_resource type="Script" path="res://player/player_zonein.gd" id="16_f6eea"]
+[ext_resource type="Script" path="res://player/controllers/cutscene_controller.gd" id="13_rj60u"]
+[ext_resource type="Script" path="res://player/states/player_zonein.gd" id="18_0wu4t"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_48kjw"]
 radius = 0.284876
@@ -706,11 +708,14 @@ _data = {
 "zone_in": SubResource("Animation_7ej0a")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim", "hitbox")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("hitbox")]
 collision_layer = 2
 script = ExtResource("1_7knqw")
 anim = NodePath("pmb_kite/AnimationPlayer")
 hitbox = NodePath("pmb_kite/Hitbox")
+min_jump_height = 7.0
+max_jump_height = 8.5
+jump_force_coefficient = 90.0
 combo = Array[Resource("res://player/attacks/attack_resource.gd")]([ExtResource("2_06grq"), ExtResource("3_msbl5"), ExtResource("4_slkb2")])
 air_combo = Array[Resource("res://player/attacks/attack_resource.gd")]([ExtResource("5_mpl0g")])
 zone_in = ExtResource("6_yg4su")
@@ -997,27 +1002,30 @@ transform = Transform3D(0.340109, 0, 0, 0, 0.340109, 0, 0, 0, 0.340109, -0.6, -0
 material_override = ExtResource("7_rtao6")
 mesh = SubResource("SphereMesh_hmupo")
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("4_mjfp3")
-initial_state = NodePath("Idle")
+[node name="Hitbox" type="Area3D" parent="Mesh"]
+collision_layer = 4
+collision_mask = 64
+script = ExtResource("12_xrx4s")
 
-[node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("5_jgl0y")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Hitbox"]
+shape = SubResource("BoxShape3D_xio6w")
+disabled = true
 
-[node name="Run" type="Node" parent="StateMachine"]
-script = ExtResource("6_yy7o3")
+[node name="ZoneInDist" type="RayCast3D" parent="Mesh"]
+enabled = false
+target_position = Vector3(0, 0, -8)
+collision_mask = 64
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_thickness = 5
 
-[node name="Air" type="Node" parent="StateMachine"]
-script = ExtResource("7_7qn2t")
-
-[node name="Land" type="Node" parent="StateMachine"]
-script = ExtResource("8_m0mi4")
-
-[node name="Attack" type="Node" parent="StateMachine"]
-script = ExtResource("9_0f5gx")
-
-[node name="ZoneIn" type="Node" parent="StateMachine"]
-script = ExtResource("16_f6eea")
+[node name="StayPutDist" type="RayCast3D" parent="Mesh"]
+enabled = false
+target_position = Vector3(0, 0, -2.39)
+collision_mask = 64
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_thickness = 5
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("9_sjui1")
@@ -1040,7 +1048,37 @@ libraries = {
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 
-[connection signal="turn_around" from="." to="pmb_kite" method="_on_player_turn_around"]
+[node name="ControllerContainer" type="Node" parent="."]
+
+[node name="HumanController" type="Node" parent="ControllerContainer"]
+script = ExtResource("12_1q4mr")
+
+[node name="CutsceneController" type="Node" parent="ControllerContainer"]
+script = ExtResource("13_rj60u")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("4_mjfp3")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("5_jgl0y")
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("6_yy7o3")
+
+[node name="Air" type="Node" parent="StateMachine"]
+script = ExtResource("7_7qn2t")
+
+[node name="Land" type="Node" parent="StateMachine"]
+script = ExtResource("8_m0mi4")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("9_0f5gx")
+
+[node name="ZoneIn" type="Node" parent="StateMachine"]
+script = ExtResource("18_0wu4t")
+
+[connection signal="ready" from="." to="StateMachine" method="_on_player_ready"]
 [connection signal="turn_around" from="." to="Mesh" method="_on_player_turn_around"]
 [connection signal="animation_changed" from="pmb_kite/AnimationPlayer" to="StateMachine/Attack" method="_on_animation_player_animation_changed"]
 [connection signal="animation_finished" from="pmb_kite/AnimationPlayer" to="StateMachine/Attack" method="_on_animation_player_animation_finished"]

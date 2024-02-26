@@ -1,10 +1,14 @@
 extends PlayerState
 
-var attack_tries: int
+var attack_tries = 1
 
 func enter(msg := {}):
 	if msg.has("do_jump"):
+		player.anim.play("Jump")
+		player.anim.queue("Fall")
 		player.velocity.y = player.jump_height
+	else:
+		player.anim.play("Fall")
 
 
 func physics_update(delta):

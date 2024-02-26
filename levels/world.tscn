@@ -24,7 +24,6 @@ uv1_triplanar = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1i5cd"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rp8vd"]
-load_path = "res://.godot/imported/Perlin 9 - 256x256.png-de532978a9e9af8d25921c0d1c57ed57.s3tc.ctex"
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_4x5xk"]
 texture = SubResource("CompressedTexture2D_rp8vd")

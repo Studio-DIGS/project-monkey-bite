@@ -1,11 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://bfg1ub413xc20"]
+[gd_scene load_steps=27 format=3 uid="uid://inu73s3s06mb"]
 
-[ext_resource type="Script" path="res://enemies/test_enemy.gd" id="1_oh0f7"]
-[ext_resource type="Resource" uid="uid://whxcfcfi4nsm" path="res://enemies/enemy_attack.tres" id="2_tj5r7"]
-[ext_resource type="Script" path="res://common/hurtbox.gd" id="2_x0ut6"]
-[ext_resource type="Script" path="res://common/health.gd" id="3_6jb14"]
-[ext_resource type="Script" path="res://common/hitbox.gd" id="4_622c0"]
-[ext_resource type="PackedScene" uid="uid://dkwnbhlmom1ch" path="res://enemies/schmovosaur_ai_2.tscn" id="6_joblv"]
+[ext_resource type="Script" path="res://enemies/test_enemy.gd" id="1_r0tn7"]
+[ext_resource type="Resource" uid="uid://whxcfcfi4nsm" path="res://enemies/enemy_attack.tres" id="2_7m5pa"]
+[ext_resource type="Script" path="res://common/hurtbox.gd" id="3_bkg8i"]
+[ext_resource type="Script" path="res://common/health.gd" id="4_25mqy"]
+[ext_resource type="Script" path="res://common/hitbox.gd" id="5_l5uib"]
+[ext_resource type="Script" path="res://enemies/Schmovosaur Enemy AI Manager.gd" id="6_55f82"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q5uni"]
 
@@ -17,12 +17,44 @@ emission = Color(1, 1, 1, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6xy7g"]
 material = SubResource("StandardMaterial3D_4538d")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_rkgf4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_on81c"]
+transparency = 4
+blend_mode = 1
+albedo_color = Color(0.545098, 0.952941, 0.952941, 0.337255)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aous3"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(1, 1, 0)
+spread = 30.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 45.18
+angle_min = 379.3
+angle_max = 379.3
+color = Color(0.219608, 0.588235, 0.443137, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ikeic"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y0lqa"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(1, 1, 0)
+spread = 25.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_7sk44"]
+radius = 0.1
+height = 0.1
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g0es1"]
 radius = 0.610806
 height = 2.10739
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_bmele"]
-size = Vector3(0.924626, 0.7153, 1)
 
 [sub_resource type="Animation" id="Animation_38soa"]
 length = 0.001
@@ -192,17 +224,13 @@ bg_color = Color(0.32549, 0.741176, 0.462745, 1)
 ProgressBar/styles/background = SubResource("StyleBoxEmpty_vuyvo")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_8mvbw")
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_jfmux"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0lxu1"]
-transparency = 4
-blend_mode = 1
-albedo_color = Color(0.545098, 0.952941, 0.952941, 0.337255)
+[sub_resource type="BoxShape3D" id="BoxShape3D_bmele"]
+size = Vector3(0.924626, 0.7153, 1)
 
 [node name="TestEnemy" type="CharacterBody3D"]
 collision_layer = 16
-script = ExtResource("1_oh0f7")
-attack = ExtResource("2_tj5r7")
+script = ExtResource("1_r0tn7")
+attack = ExtResource("2_7m5pa")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00357932, 0)
@@ -211,40 +239,52 @@ shape = SubResource("CapsuleShape3D_q5uni")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_6xy7g")
 
+[node name="EnemyComponents" type="Node3D" parent="MeshInstance3D"]
+
+[node name="PlayerDetectionSphere" type="Area3D" parent="MeshInstance3D/EnemyComponents"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/EnemyComponents/PlayerDetectionSphere"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("SphereShape3D_rkgf4")
+
+[node name="Translucent Sphere" type="CSGSphere3D" parent="MeshInstance3D/EnemyComponents/PlayerDetectionSphere/CollisionShape3D"]
+material = SubResource("StandardMaterial3D_on81c")
+
+[node name="Charge Particles" type="GPUParticles3D" parent="MeshInstance3D/EnemyComponents"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.475144, 0)
+lifetime = 0.5
+speed_scale = 1.5
+process_material = SubResource("ParticleProcessMaterial_aous3")
+draw_pass_1 = SubResource("BoxMesh_ikeic")
+
+[node name="Charge Preparation Particles" type="GPUParticles3D" parent="MeshInstance3D/EnemyComponents"]
+process_material = SubResource("ParticleProcessMaterial_y0lqa")
+draw_pass_1 = SubResource("SphereMesh_7sk44")
+
 [node name="Hurtbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 64
 collision_mask = 4
-script = ExtResource("2_x0ut6")
+script = ExtResource("3_bkg8i")
 health = NodePath("../Health")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00948918, 0)
 shape = SubResource("CapsuleShape3D_g0es1")
 
-[node name="Hitbox" type="Area3D" parent="."]
-collision_layer = 32
-collision_mask = 0
-script = ExtResource("4_622c0")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.490013, 0, 0)
-shape = SubResource("BoxShape3D_bmele")
-disabled = true
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_o72sg")
 }
 
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("display")]
+script = ExtResource("4_25mqy")
+max_health = 100
+display = NodePath("../SubViewport/ProgressBar")
+
 [node name="HealthDisplay" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23996, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_64m1x")
-
-[node name="Health" type="Node" parent="." node_paths=PackedStringArray("display")]
-script = ExtResource("3_6jb14")
-max_health = 100
-display = NodePath("../SubViewport/ProgressBar")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 disable_3d = true
@@ -258,25 +298,43 @@ theme = SubResource("Theme_hxsbk")
 value = 100.0
 show_percentage = false
 
+[node name="Hitbox" type="Area3D" parent="."]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("5_l5uib")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.490013, 0, 0)
+shape = SubResource("BoxShape3D_bmele")
+disabled = true
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 
-[node name="Schmovosaur AI 2" parent="." instance=ExtResource("6_joblv")]
+[node name="Enemy AI Manager" type="Node" parent="."]
+script = ExtResource("6_55f82")
 
-[node name="PlayerDetectionSphere" type="Area3D" parent="."]
+[node name="Charge Cooldown" type="Timer" parent="Enemy AI Manager"]
+wait_time = 3.0
+one_shot = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetectionSphere"]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
-shape = SubResource("SphereShape3D_jfmux")
+[node name="Prepare Charge" type="Timer" parent="Enemy AI Manager"]
+one_shot = true
 
-[node name="Translucent Sphere" type="CSGSphere3D" parent="PlayerDetectionSphere/CollisionShape3D"]
-material = SubResource("StandardMaterial3D_0lxu1")
+[node name="Charge Duration" type="Timer" parent="Enemy AI Manager"]
+wait_time = 0.9
+one_shot = true
+
+[node name="SpawnPointMarker" type="Node3D" parent="."]
+visible = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SpawnPointMarker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.489979, 0)
 
 [connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
 [connection signal="death" from="Health" to="." method="_on_health_death"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="checkVelocity" from="Schmovosaur AI 2" to="." method="_on_schmovosaur_ai_2_check_velocity"]
-[connection signal="area_entered" from="PlayerDetectionSphere" to="Schmovosaur AI 2" method="_on_player_detection_sphere_area_entered"]
-[connection signal="area_exited" from="PlayerDetectionSphere" to="Schmovosaur AI 2" method="_on_player_detection_sphere_area_exited"]
-
-[editable path="Schmovosaur AI 2"]
+[connection signal="timeout" from="Enemy AI Manager/Charge Cooldown" to="Enemy AI Manager" method="_on_charge_duration_timeout"]
+[connection signal="timeout" from="Enemy AI Manager/Charge Cooldown" to="Enemy AI Manager" method="_on_charge_cooldown_timeout"]
+[connection signal="timeout" from="Enemy AI Manager/Prepare Charge" to="Enemy AI Manager" method="_on_prepare_charge_timeout"]
+[connection signal="timeout" from="Enemy AI Manager/Charge Duration" to="Enemy AI Manager" method="_on_charge_duration_timeout"]

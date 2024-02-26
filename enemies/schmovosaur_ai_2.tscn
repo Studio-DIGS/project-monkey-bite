@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkwnbhlmom1ch"]
+
+[ext_resource type="Script" path="res://enemies/Schmovosaur AI 2.gd" id="1_gy2t4"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u2t1r"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(1, 1, 0)
+spread = 30.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 45.18
+angle_min = 379.3
+angle_max = 379.3
+color = Color(0.219608, 0.588235, 0.443137, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_flx1r"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ord6w"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(1, 1, 0)
+spread = 25.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_g747p"]
+radius = 0.1
+height = 0.1
+
+[node name="Schmovosaur AI 2" type="Node"]
+script = ExtResource("1_gy2t4")
+
+[node name="Prepare Charge" type="Timer" parent="."]
+one_shot = true
+
+[node name="Charge Cooldown" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Charge Duration" type="Timer" parent="."]
+wait_time = 0.9
+one_shot = true
+
+[node name="Charge Particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.475144, 0)
+emitting = false
+lifetime = 0.9
+one_shot = true
+speed_scale = 1.5
+process_material = SubResource("ParticleProcessMaterial_u2t1r")
+draw_pass_1 = SubResource("BoxMesh_flx1r")
+
+[node name="Charge Preparation Particles" type="GPUParticles3D" parent="."]
+emitting = false
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_ord6w")
+draw_pass_1 = SubResource("SphereMesh_g747p")
+
+[connection signal="timeout" from="Prepare Charge" to="." method="_on_prepare_charge_timeout"]
+[connection signal="timeout" from="Charge Cooldown" to="." method="_on_charge_cooldown_timeout"]
+[connection signal="timeout" from="Charge Duration" to="." method="_on_charge_duration_timeout"]

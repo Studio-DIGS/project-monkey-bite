@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://ceg0a8jxwnfae"]
+[gd_scene load_steps=38 format=3 uid="uid://ceg0a8jxwnfae"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_7knqw"]
 [ext_resource type="Resource" uid="uid://dgjn3tlt2bmb7" path="res://player/attacks/slash_1.tres" id="2_06grq"]
@@ -11,7 +11,7 @@
 [ext_resource type="Resource" uid="uid://d20o3ci66troi" path="res://player/attacks/zone_in.tres" id="6_yg4su"]
 [ext_resource type="Script" path="res://player/states/player_run.gd" id="6_yy7o3"]
 [ext_resource type="Script" path="res://player/states/player_air.gd" id="7_7qn2t"]
-[ext_resource type="Material" uid="uid://c1t7seoda7a40" path="res://player/player_test_mat.tres" id="7_rtao6"]
+[ext_resource type="Material" uid="uid://byqgp8qoywtba" path="res://player/player_test_mat.tres" id="7_rtao6"]
 [ext_resource type="Script" path="res://player/states/player_land.gd" id="8_m0mi4"]
 [ext_resource type="Script" path="res://player/states/player_attack.gd" id="9_0f5gx"]
 [ext_resource type="Script" path="res://common/hurtbox.gd" id="9_sbn7q"]
@@ -703,6 +703,8 @@ _data = {
 "zone_in": SubResource("Animation_7ej0a")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqceb"]
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim", "hitbox")]
 collision_layer = 2
 script = ExtResource("1_7knqw")
@@ -808,6 +810,11 @@ libraries = {
 }
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
+
+[node name="PlayerArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerArea"]
+shape = SubResource("CapsuleShape3D_kqceb")
 
 [connection signal="turn_around" from="." to="Mesh" method="_on_player_turn_around"]
 [connection signal="area_entered" from="Mesh/Hitbox" to="StateMachine/Attack" method="_on_hitbox_area_entered"]

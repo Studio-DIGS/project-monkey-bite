@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dj8ik0qgh5rgl"]
+
+[ext_resource type="Shader" uid="uid://cuvclsyoc2sse" path="res://visual_pipeline/grass/planar_grass.tres" id="1_j4iat"]
+[ext_resource type="Texture2D" uid="uid://d0vmlcx0fw2ms" path="res://visual_pipeline/grass/textures/Perlin 9 - 256x256.png" id="2_y33nv"]
+[ext_resource type="Texture2D" uid="uid://bfdgc42s3utn8" path="res://visual_pipeline/grass/textures/purple_grass_ramp.png" id="3_tskoc"]
+
+[resource]
+render_priority = -120
+shader = ExtResource("1_j4iat")
+shader_parameter/WindScrollFramerate = 6.0
+shader_parameter/WindScrollFrequency = -1.0
+shader_parameter/WindSpacingFrequency = 0.1
+shader_parameter/SwayStrength = Vector3(0.35, -0.1, 0)
+shader_parameter/ColorNoiseFrequency = Vector2(0.025, 0.025)
+shader_parameter/Fixed_Normal = Vector3(0, 1, 0)
+shader_parameter/ColorNoiseTex = ExtResource("2_y33nv")
+shader_parameter/Color_Ramp = ExtResource("3_tskoc")

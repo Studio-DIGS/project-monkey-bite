@@ -10,9 +10,6 @@ extends Actor
 var jump_time = 0.0
 @export var jump_force_coefficient = 10.0
 
-@export var sword: Sword = Sword.new("AMAMZING SWORD")
-@export var bigPassives: Array[BigPassive] = [BigPassive.new("HUMONGOUS PASSIVE")]
-@export var angelAbility: AngelAbility = AngelAbility.new("GOD HACKS")
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity = 20
@@ -38,10 +35,22 @@ var try_jump = false
 @onready var human_controller = $ControllerContainer/HumanController
 @onready var cutscene_controller = $ControllerContainer/CutsceneController
 
+@onready var inventoryVis: InventoryVis = $"../InventoryVis"
+
 func _ready():
+	print(GameManager.current_scene.name)
+	if(Inventory.uninitialized == true):
+		Inventory.swapSword(Sword.new("Amazing Sword"))
+		Inventory.addBigPassive(BigPassive.new("Huge Passive"))
+		Inventory.setAngelAbility(AngelAbility.new("God Hacks"))
+		Inventory.uninitialized = false
 	set_controller(human_controller)
 	GameManager.connect("start_cutscene", _start_cutscene)
 	GameManager.connect("end_cutscene", _end_cutscene)
+	
+
+func updateInventory():
+	inventoryVis.updateAllText()
 
 func set_controller(controller: PlayerController):
 	# turn off all other controllers

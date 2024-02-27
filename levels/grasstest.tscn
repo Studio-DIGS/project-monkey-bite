@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://u2p2vd130hqv"]
+[gd_scene load_steps=51 format=3 uid="uid://dqdwyi3xm106g"]
 
 [ext_resource type="Material" uid="uid://l1ck70xcm5q5" path="res://visual_pipeline/grass/grass_floor_mat.tres" id="1_5upbt"]
 [ext_resource type="PackedScene" uid="uid://dudoc2lmusdkg" path="res://visual_pipeline/grass/meshes/flower.tscn" id="3_1iyua"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="13_xucnp"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/offset_scale.gd" id="14_4nkqj"]
 [ext_resource type="Material" uid="uid://dj8ik0qgh5rgl" path="res://visual_pipeline/grass/planar_flowers.tres" id="17_nw5bu"]
+[ext_resource type="PackedScene" uid="uid://pr3binha3dff" path="res://player/inventory_vis.tscn" id="18_i4n2i"]
 [ext_resource type="ArrayMesh" uid="uid://ctanf7f8ureko" path="res://assets/temple/Floor_Ruined_Corner_Inner_1.obj" id="22_bw6ie"]
 [ext_resource type="ArrayMesh" uid="uid://dpgylcp23ujo1" path="res://assets/temple/Floor_Ruined_Corner_Outer_1.obj" id="23_mxb1r"]
 [ext_resource type="ArrayMesh" uid="uid://cnw6gea4rvcb6" path="res://assets/temple/Pillar_Large_Beam.obj" id="24_af5uu"]
@@ -34,7 +35,7 @@ size = Vector2(200, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_484kk"]
 size = Vector3(100, 0.1, 15)
 
-[sub_resource type="Resource" id="Resource_264jh"]
+[sub_resource type="Resource" id="Resource_egpus"]
 script = ExtResource("8_bx78m")
 amount = 10000
 enabled = true
@@ -43,7 +44,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_wbfop"]
+[sub_resource type="Resource" id="Resource_xmwiu"]
 script = ExtResource("9_aejdt")
 iterations = 3
 offset_step = 0.2
@@ -55,7 +56,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_pxjpe"]
+[sub_resource type="Resource" id="Resource_is5iq"]
 script = ExtResource("10_oy5km")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -71,7 +72,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_kjndt"]
+[sub_resource type="Resource" id="Resource_xr27m"]
 script = ExtResource("14_4nkqj")
 operation = 1
 scale = Vector3(0.35, 0.35, 0.35)
@@ -81,15 +82,15 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_xdfxi"]
+[sub_resource type="Resource" id="Resource_5nyeo"]
 script = ExtResource("7_0f7sh")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_264jh"), SubResource("Resource_wbfop"), SubResource("Resource_pxjpe"), SubResource("Resource_kjndt")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_egpus"), SubResource("Resource_xmwiu"), SubResource("Resource_is5iq"), SubResource("Resource_xr27m")])
 
 [sub_resource type="Resource" id="Resource_tgqj6"]
 script = ExtResource("13_xucnp")
 size = Vector3(100, 1, 25)
 
-[sub_resource type="Resource" id="Resource_h8y5s"]
+[sub_resource type="Resource" id="Resource_o4egf"]
 script = ExtResource("8_bx78m")
 amount = 75
 enabled = true
@@ -98,7 +99,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_rogc8"]
+[sub_resource type="Resource" id="Resource_pypa0"]
 script = ExtResource("9_aejdt")
 iterations = 3
 offset_step = 0.2
@@ -110,7 +111,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_5tpl1"]
+[sub_resource type="Resource" id="Resource_mi48b"]
 script = ExtResource("10_oy5km")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -126,7 +127,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_u2pl3"]
+[sub_resource type="Resource" id="Resource_bgrhp"]
 script = ExtResource("14_4nkqj")
 operation = 1
 scale = Vector3(0.35, 0.45, 0.35)
@@ -136,9 +137,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_yu5lo"]
+[sub_resource type="Resource" id="Resource_j28u3"]
 script = ExtResource("7_0f7sh")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_h8y5s"), SubResource("Resource_rogc8"), SubResource("Resource_5tpl1"), SubResource("Resource_u2pl3")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_o4egf"), SubResource("Resource_pypa0"), SubResource("Resource_mi48b"), SubResource("Resource_bgrhp")])
 
 [sub_resource type="Resource" id="Resource_7gvbq"]
 script = ExtResource("13_xucnp")
@@ -287,7 +288,7 @@ sky = SubResource("Sky_xpkr3")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="World" type="Node3D"]
+[node name="GrassTest" type="Node3D"]
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -317,7 +318,7 @@ visible = false
 [node name="ProtonScatter" type="Node3D" parent="Environment/Platform ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.198906, 0, 0.608515)
 script = ExtResource("6_y7yvu")
-modifier_stack = SubResource("Resource_xdfxi")
+modifier_stack = SubResource("Resource_5nyeo")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -337,7 +338,7 @@ shape = SubResource("Resource_tgqj6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.614169, 0)
 visible = false
 script = ExtResource("6_y7yvu")
-modifier_stack = SubResource("Resource_yu5lo")
+modifier_stack = SubResource("Resource_j28u3")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -378,6 +379,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.9526, 4.45, -0.23683)
 
 [node name="TestEnemy3" parent="Environment/Characters Scripts and World Settings" instance=ExtResource("7_sut7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.511, 5.625, 0)
+
+[node name="InventoryVis" parent="Environment/Characters Scripts and World Settings" instance=ExtResource("18_i4n2i")]
 
 [node name="FloorRuinedCornerInner1" type="MeshInstance3D" parent="."]
 transform = Transform3D(-2.82798, 0, -0.782621, 0, 6.4854, 0, 0.782621, 0, -2.82798, -6.03299, 0.848454, -3.05315)

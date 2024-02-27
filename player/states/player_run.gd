@@ -2,6 +2,7 @@ extends PlayerState
 
 func enter(_msg := {}):
 	player.anim.queue("Run")
+	player.anim.speed_scale = 1.5
 
 func physics_update(delta):
 	if not player.is_on_floor():
@@ -30,4 +31,5 @@ func physics_update(delta):
 	
 	elif player.hori_input == 0.0:
 		player.anim.play("Idle")
+		player.anim.speed_scale = 1.0
 		state_machine.transition_to("Idle")

@@ -1,9 +1,9 @@
-[gd_scene load_steps=34 format=3 uid="uid://bhnqvqc7mw3c5"]
+[gd_scene load_steps=34 format=3 uid="uid://blv7pp2pq84m3"]
 
-[ext_resource type="Shader" uid="uid://cuvclsyoc2sse" path="res://levels/grass/grass.tres" id="1_accdg"]
+[ext_resource type="Shader" uid="uid://cuvclsyoc2sse" path="res://visual_pipeline/grass/planar_grass.tres" id="1_accdg"]
 [ext_resource type="Material" uid="uid://b56ee7cgb3tro" path="res://assets/lillian-assets/Textures/floor_material.tres" id="2_7bmqr"]
-[ext_resource type="Material" uid="uid://bdrk3hn2y0uie" path="res://levels/grass/grass_floor.tres" id="2_gkx40"]
-[ext_resource type="PackedScene" uid="uid://b1ob2xlr74xc2" path="res://levels/grass/grass.tscn" id="3_qt3ng"]
+[ext_resource type="Material" uid="uid://bdrk3hn2y0uie" path="res://visual_pipeline/grass/grass_floor.tres" id="2_gkx40"]
+[ext_resource type="PackedScene" uid="uid://b1ob2xlr74xc2" path="res://visual_pipeline/grass/grass.tscn" id="3_qt3ng"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="4_s5jpf"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="5_esovy"]
 [ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/test_enemy.tscn" id="6_ssjjr"]
@@ -24,8 +24,12 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ujfex"]
 render_priority = 0
 shader = ExtResource("1_accdg")
-shader_parameter/BaseColor = Color(0.501961, 0.890196, 0.321569, 1)
-shader_parameter/GrassColor = Color(0.501961, 0.890196, 0.321569, 1)
+shader_parameter/WindScrollFramerate = 6.0
+shader_parameter/WindScrollFrequency = -1.0
+shader_parameter/WindSpacingFrequency = 0.1
+shader_parameter/SwayStrength = Vector3(0.35, -0.1, 0)
+shader_parameter/ColorNoiseFrequency = Vector2(0.03, 0.03)
+shader_parameter/Fixed_Normal = Vector3(0, 1, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65v63"]
 
@@ -305,7 +309,6 @@ environment = SubResource("Environment_y8ynd")
 [node name="Player" parent="Environment/Characters Scripts and World Settings" instance=ExtResource("4_s5jpf")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.3982, 1.56325, -0.0926752)
 accel = 6.505
-jump_height = 10.0
 
 [node name="CameraSystem" parent="Environment/Characters Scripts and World Settings" node_paths=PackedStringArray("target") instance=ExtResource("5_esovy")]
 target = NodePath("../Player")

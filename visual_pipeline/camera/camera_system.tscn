@@ -37,10 +37,10 @@ render_target_update_mode = 4
 [node name="CameraContainer" type="Node3D" parent="SubViewport"]
 
 [node name="MainCamera" type="Camera3D" parent="SubViewport/CameraContainer"]
-transform = Transform3D(1, 0, 0, 0, 0.97437, 0.224951, 0, -0.224951, 0.97437, 2.08165e-12, 5, 25)
+transform = Transform3D(1, -4.36116e-16, 3.37677e-16, 3.37677e-16, 0.968148, 0.25038, -4.36116e-16, -0.25038, 0.968148, 2.08165e-12, 5.19, 25)
 projection = 1
 current = true
-size = 9.0
+size = 7.0
 near = 0.1
 far = 500.0
 script = ExtResource("2_hpfd2")

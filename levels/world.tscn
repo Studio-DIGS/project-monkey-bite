@@ -725,6 +725,9 @@ skeleton = NodePath("../..")
 [node name="grass" parent="Environment" instance=ExtResource("16_pu3ap")]
 visible = false
 
+[node name="Grass" parent="Environment/grass" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.452931, 0, 0, 0, 1, 0, 0, 0)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.735116, 0.598587, -0.318274, 2.76473e-08, 0.469472, 0.882948, 0.677942, -0.649069, 0.345116, 0, 0, 0)
 shadow_enabled = true

@@ -1,6 +1,6 @@
 extends Camera3D
 
-@export var post_processing := true:
+@export var post_processing = true:
 	set(p):
 		if p:
 			$Postprocess.show()

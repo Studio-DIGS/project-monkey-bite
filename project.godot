@@ -33,6 +33,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="project-monkey-bite"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg")
+
 [filesystem]
 
 import/fbx/enabled=false
@@ -97,4 +101,6 @@ reset={
 [rendering]
 
 lights_and_shadows/directional_shadow/size=16384
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
 textures/default_filters/anisotropic_filtering_level=0

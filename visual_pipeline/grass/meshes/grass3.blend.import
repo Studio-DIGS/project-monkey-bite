@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cele8abkbw8ux"
-path="res://.godot/imported/flowers.blend-4d060cb1716d4ffee783acca17a1a26b.scn"
+uid="uid://grqlfwk0sssq"
+path="res://.godot/imported/grass3.blend-96daba915f516aef3f08fbfa64a30843.scn"
 
 [deps]
 
-source_file="res://visual_pipeline/grass/meshes/flowers.blend"
-dest_files=["res://.godot/imported/flowers.blend-4d060cb1716d4ffee783acca17a1a26b.scn"]
+source_file="res://visual_pipeline/grass/meshes/grass3.blend"
+dest_files=["res://.godot/imported/grass3.blend-96daba915f516aef3f08fbfa64a30843.scn"]
 
 [params]
 

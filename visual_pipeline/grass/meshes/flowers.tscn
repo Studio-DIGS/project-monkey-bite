@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbcr0mad80ie"]
+
+[ext_resource type="PackedScene" uid="uid://rl4g22em3rn8" path="res://visual_pipeline/grass/meshes/test.glb" id="1_sxl0d"]
+
+[node name="test" instance=ExtResource("1_sxl0d")]

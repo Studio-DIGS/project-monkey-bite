@@ -72,6 +72,7 @@ func stop_jump():
 	jump_time = 0.0
 
 func _physics_process(_delta):
+	velocity.z = 0.0
 	reorient()
 
 func reorient():

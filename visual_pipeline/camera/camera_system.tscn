@@ -47,6 +47,7 @@ script = ExtResource("2_hpfd2")
 
 [node name="Postprocess" type="MeshInstance3D" parent="SubViewport/CameraContainer/MainCamera"]
 transform = Transform3D(1, 0, 0, 0, -2.98023e-08, -1, 0, 1, -2.98023e-08, 0, 0.177397, -0.934591)
+visible = false
 mesh = SubResource("PlaneMesh_rpb4e")
 
 [node name="MainCamControl" type="Node" parent="SubViewport/CameraContainer" node_paths=PackedStringArray("camera", "camera_move_container", "camera_follow", "camera_lookahead", "camera_pixel_snap")]

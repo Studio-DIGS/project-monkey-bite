@@ -53,6 +53,7 @@ operator = 2
 function = 14
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_uw77n"]
+output_port_for_preview = 0
 input_name = "uv"
 
 [sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_aa43k"]
@@ -78,6 +79,7 @@ operator = 2
 function = 0
 
 [sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_bhrfj"]
+output_port_for_preview = 1
 default_input_values = [0, Vector2(0, 0)]
 op_type = 0
 
@@ -88,6 +90,7 @@ op_type = 0
 [sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_3b1on"]
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_ojjpd"]
+output_port_for_preview = 0
 default_input_values = [0, 0.0, 1, 1.3]
 operator = 5
 
@@ -97,6 +100,7 @@ op_type = 0
 operator = 2
 
 [sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_321fv"]
+output_port_for_preview = 0
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_26ioe"]
 input_name = "inv_view_matrix"
@@ -112,6 +116,7 @@ description = "Billboard
 "
 
 [sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_2qda1"]
+output_port_for_preview = 0
 function = 31
 
 [sub_resource type="VisualShaderNodeComment" id="VisualShaderNodeComment_4056p"]
@@ -378,6 +383,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-660.576, 1062.29)
 varyings/grassnoise_uv = "0,3"
 nodes/vertex/0/position = Vector2(3040, 820)
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_uw77n")

@@ -37,7 +37,6 @@ size = Vector2(249, 140)
 description = "Fixed \"up\" normals for flat lighting"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kl8u7"]
-load_path = "res://.godot/imported/grass_color_ramp.png-ab4af8188d4ee7de48fa16eaacdb1d99.s3tc.ctex"
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_dh0r3"]
 texture = SubResource("CompressedTexture2D_kl8u7")

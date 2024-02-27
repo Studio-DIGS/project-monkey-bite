@@ -5,12 +5,15 @@ var max_combo = 0
 var combo: Array[AttackResource]
 var apply_gravity = false
 var contact = false 
+var air: bool
 
 func enter(msg := {}):
-	if msg.has('air'):
+	if msg.get('air', false) == true:
 		combo = player.combo # replace with air combo later
+		air = true
 	else:
 		combo = player.combo
+		air = false
 	
 	# set the current attack to the index of the player's combo
 	# declare max combo index
@@ -37,7 +40,8 @@ func physics_update(delta):
 	player.velocity.y = lerp(player.velocity.y, 0.0, delta * player.accel)
 	player.move_and_slide()
 	
-	# queue the next attack
+	# queue the next attack when the player presses the attack button
+	# if combo doesn't exceed the max and there's no attack animations in queue.
 	if combo_counter < max_combo and not player.anim.get_queue():
 		if player.try_attack:
 			combo_counter += 1
@@ -47,15 +51,21 @@ func physics_update(delta):
 
 
 func _on_animation_player_animation_finished(_anim_name):
-	player.anim.play("Idle")
-	# wait for animation to finish blending to idle before fully transitioning state
-	var blend_time = player.anim.playback_default_blend_time
-	await get_tree().create_timer(blend_time).timeout
-	combo_counter = 0
-	state_machine.transition_to("Idle")
+	if state_machine.state.name == "Attack":
+		if air: player.anim.play("Fall")
+		else: player.anim.play("Idle")
+		
+		# wait for animation to finish blending to idle before fully transitioning state
+		var blend_time = player.anim.playback_default_blend_time
+		await get_tree().create_timer(blend_time).timeout
+		
+		combo_counter = 0
+		if air: state_machine.transition_to("Air") 
+		else: state_machine.transition_to("Idle")
 
 func _on_animation_player_animation_changed(_old_name, _new_name):
-	state_machine.transition_to("Attack")
+	if state_machine.state.name == "Attack":
+		state_machine.transition_to("Attack", {air = air})
 
 # check if made contact with enemy
 func _on_hitbox_area_entered(_area):

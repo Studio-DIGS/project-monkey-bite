@@ -9,12 +9,6 @@ signal transitioned(state_name)
 # Current active state
 @onready var state: State = get_node(initial_state)
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	# wait for parent?
-	for child in get_children():
-		child.state_machine = self
-	state.enter()
 
 # Sends unhandled input events to the state
 # See `_unhandled_input()` in the docs for more info
@@ -35,3 +29,11 @@ func transition_to(target_state_name: String, msg: Dictionary = {}):
 	state = get_node(target_state_name)
 	state.enter(msg)
 	emit_signal("transitioned", state.name)
+	print("transitioned to ", state.name)
+
+
+# wait for parent
+func _on_player_ready():
+	for child in get_children():
+		child.state_machine = self
+	state.enter()

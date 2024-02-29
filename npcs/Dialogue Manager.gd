@@ -40,6 +40,8 @@ func interactNPC(): #Function Logic for talking interacting with NPCs
 		dialogueItemReference.visible = false
 		dialogueIsOpen = false
 		textIndex = 0 #Not necessary
+	
+	## @TODO: change condition; don't use 'true'
 	elif (playerIsDialogueReady or true) and !dialogueIsOpen:
 		print("Open Dialogue")
 		dialogueItemReference.visible = true

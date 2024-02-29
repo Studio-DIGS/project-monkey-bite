@@ -22,6 +22,7 @@ func _end_cutscene():
 func _on_cutscene_animations_animation_finished(_anim_name):
 	_end_cutscene()
 
+## TEMPORARY DON'T PAY ATTENTION TO
 func wait_for_dialogue():
 	anim.pause()
 	print("test dialogue")

@@ -37,5 +37,5 @@ func _on_player_detection_box_area_entered(area):
 	if (area.name == "PlayerArea"):
 		emit_signal("NPC_text", questDialogue, regularDialogue, endDialogue)
 
-func _on_cutscene_started():
+func _on_cutscene_started(_cutscene):
 	emit_signal("NPC_text", questDialogue, regularDialogue, endDialogue)

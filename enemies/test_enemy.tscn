@@ -265,6 +265,8 @@ wait_time = 3.0
 wait_time = 5.0
 
 [node name="PlayerDetectionSphere" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetectionSphere"]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)

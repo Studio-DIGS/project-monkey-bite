@@ -28,6 +28,8 @@ material_override = SubResource("StandardMaterial3D_xg12u")
 mesh = SubResource("CapsuleMesh_6w5xl")
 
 [node name="PlayerDetectionBox" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetectionBox"]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)

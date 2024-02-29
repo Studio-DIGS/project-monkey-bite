@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqko0kriwn40v"]
+
+[ext_resource type="Script" path="res://common/cutscenes/cutscene_manager.gd" id="1_jpu1l"]
+
+[node name="CutsceneManager" type="Node"]
+script = ExtResource("1_jpu1l")
+
+[node name="CutsceneAnimations" type="AnimationPlayer" parent="."]
+
+[node name="CameraTarget" type="Node3D" parent="."]

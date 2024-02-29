@@ -1,4 +1,4 @@
-extends Node3D
+extends Node
 
 @export var camera: CameraSystem
 
@@ -15,6 +15,7 @@ func _start_cutscene(cutscene):
 	anim.play(cutscene.track)
 	
 func _end_cutscene():
+	print("End cutscene")
 	camera.emit_signal("change_target")
 	GameManager.emit_signal("end_cutscene")
 

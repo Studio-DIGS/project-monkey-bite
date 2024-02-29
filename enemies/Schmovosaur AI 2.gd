@@ -78,17 +78,17 @@ func _process(delta):
 #emitvelocity
 
 func activeState(delta): #Tracks player moving towards their direction
-	print("activeState")
+#	print("activeState")
 	if player_body:
 		current_direction = (player_body.position - enemy_body.position).normalized()
 		current_velocity = current_direction * enemy_speed * delta
 		current_velocity = Vector3(current_velocity.x, 0 ,0)
 func passiveState(delta): #Stops all movement
-	print("passiveState")
+#	print("passiveState")
 	current_velocity = Vector3.ZERO
 
 func chargeState(delta): #Increase velocity
-	print("chargeState")
+#	print("chargeState")
 	particles_post.position = enemy_body.position
 	particles_preparation.position = enemy_body.position
 	
@@ -109,8 +109,8 @@ func rotateParticles(): #Compares position between player trail and enemy to rot
 		particles_post.rotate(Vector3(0,1,0), PI)
 		particles_preparation.rotate(Vector3(0,1,0), PI)
 		
-func _on_player_detection_sphere_area_entered(area): #Grabs player information for program
-	if area.name == "PlayerArea":
+func _on_player_detection_sphere_area_entered(area: Hurtbox): #Grabs player information for program
+	if area:
 		state_active = true
 		player_body = area.get_parent()
 		print("Got parent")

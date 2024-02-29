@@ -28,9 +28,14 @@ func _ready():
 	questDialogue  = [questLine1, questLine2, questLine3]
 	regularDialogue  = [regularLine1, regularLine2, regularLine3]
 	endDialogue  = [endLine1]
+	GameManager.connect("start_cutscene", _on_cutscene_started)
+	
 func _process(_delta):
 	pass
 
 func _on_player_detection_box_area_entered(area):
 	if (area.name == "PlayerArea"):
 		emit_signal("NPC_text", questDialogue, regularDialogue, endDialogue)
+
+func _on_cutscene_started():
+	emit_signal("NPC_text", questDialogue, regularDialogue, endDialogue)

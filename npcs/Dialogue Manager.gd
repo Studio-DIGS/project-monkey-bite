@@ -40,7 +40,7 @@ func interactNPC(): #Function Logic for talking interacting with NPCs
 		dialogueItemReference.visible = false
 		dialogueIsOpen = false
 		textIndex = 0 #Not necessary
-	elif playerIsDialogueReady and !dialogueIsOpen:
+	elif (playerIsDialogueReady or true) and !dialogueIsOpen:
 		print("Open Dialogue")
 		dialogueItemReference.visible = true
 		dialogueIsOpen = true
@@ -56,14 +56,17 @@ func continueDialogue(): #Function Logic for continuing dialogue for NPCS
 		dialogueIsOpen = false
 		textIndex = 0
 		dialogueTextReference.text = dialogueArray[textIndex]
-	
-func _on_player_detection_box_area_entered(area): #Checks if player enters NPC conversation range, enabling player to press "e" to talk
-	if (area.name == "PlayerArea"):
+
+
+# @TODO: Change signal to body instead of area
+## body: Player
+func _on_player_detection_box_area_entered(area: Hurtbox): #Checks if player enters NPC conversation range, enabling player to press "e" to talk
+	if area:
 		playerIsDialogueReady = true
 
 
-func _on_player_detection_box_area_exited(area):
-	if (area.name == "PlayerArea"):
+func _on_player_detection_box_area_exited(area: Hurtbox):
+	if area:
 		playerIsDialogueReady = false
 
 #Transfers data from NPC1 to DialogueManger

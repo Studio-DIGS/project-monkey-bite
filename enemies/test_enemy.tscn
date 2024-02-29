@@ -199,7 +199,7 @@ transparency = 4
 blend_mode = 1
 albedo_color = Color(0.545098, 0.952941, 0.952941, 0.337255)
 
-[node name="TestEnemy" type="CharacterBody3D"]
+[node name="Schmovosaur" type="CharacterBody3D"]
 collision_layer = 16
 script = ExtResource("1_oh0f7")
 attack = ExtResource("2_tj5r7")
@@ -262,6 +262,9 @@ show_percentage = false
 wait_time = 3.0
 
 [node name="Schmovosaur AI 2" parent="." instance=ExtResource("6_joblv")]
+
+[node name="Charge Cooldown" parent="Schmovosaur AI 2" index="1"]
+wait_time = 5.0
 
 [node name="PlayerDetectionSphere" type="Area3D" parent="."]
 

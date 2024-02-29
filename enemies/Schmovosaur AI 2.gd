@@ -11,6 +11,7 @@ var current_velocity
 var player_body
 var enemy_body
 var bread_crumb #Location of player at a certain time
+var bread_crumb_multiplier
 
 #var state_passive: bool
 var state_active: bool
@@ -32,6 +33,7 @@ signal checkVelocity
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	enemy_speed = 5
+	bread_crumb_multiplier = 1.3 #Changes offset for how much further enemy dashes past player
 	enemy_body = $".." #Make sure to check/update this when adding AI
 	current_velocity = Vector3(0,0,0)
 	
@@ -93,7 +95,8 @@ func chargeState(delta): #Increase velocity
 	if charge_freeze == true: #before charge
 		current_velocity = Vector3.ZERO
 	else: #during charge
-		current_direction = (bread_crumb - enemy_body.position).normalized()
+		current_direction = (bread_crumb * bread_crumb_multiplier - enemy_body.position).normalized()
+		
 		rotateParticles()
 		current_velocity = current_direction * enemy_speed * 15 * delta
 		current_velocity = Vector3(current_velocity.x, 0 ,0)

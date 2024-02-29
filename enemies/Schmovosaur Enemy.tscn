@@ -334,7 +334,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.489979, 0)
 [connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
 [connection signal="death" from="Health" to="." method="_on_health_death"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="Enemy AI Manager/Charge Cooldown" to="Enemy AI Manager" method="_on_charge_duration_timeout"]
 [connection signal="timeout" from="Enemy AI Manager/Charge Cooldown" to="Enemy AI Manager" method="_on_charge_cooldown_timeout"]
+[connection signal="timeout" from="Enemy AI Manager/Charge Cooldown" to="Enemy AI Manager" method="_on_charge_duration_timeout"]
 [connection signal="timeout" from="Enemy AI Manager/Prepare Charge" to="Enemy AI Manager" method="_on_prepare_charge_timeout"]
 [connection signal="timeout" from="Enemy AI Manager/Charge Duration" to="Enemy AI Manager" method="_on_charge_duration_timeout"]

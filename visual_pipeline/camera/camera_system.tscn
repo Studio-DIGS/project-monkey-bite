@@ -37,15 +37,16 @@ render_target_update_mode = 4
 [node name="CameraContainer" type="Node3D" parent="SubViewport"]
 
 [node name="MainCamera" type="Camera3D" parent="SubViewport/CameraContainer"]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 5)
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 5.455, 25)
 projection = 1
 current = true
-size = 6.5
-near = 0.001
+size = 7.0
+near = 0.1
+far = 500.0
 script = ExtResource("2_hpfd2")
 
 [node name="Postprocess" type="MeshInstance3D" parent="SubViewport/CameraContainer/MainCamera"]
-transform = Transform3D(1, 0, 0, 0, -2.98023e-08, -1, 0, 1, -2.98023e-08, 0, 0, -0.1)
+transform = Transform3D(1, 0, 0, 0, -2.98023e-08, -1, 0, 1, -2.98023e-08, 0, 0.177397, -0.934591)
 mesh = SubResource("PlaneMesh_rpb4e")
 
 [node name="MainCamControl" type="Node" parent="SubViewport/CameraContainer" node_paths=PackedStringArray("camera", "camera_move_container", "camera_follow", "camera_lookahead", "camera_pixel_snap")]
@@ -61,6 +62,7 @@ script = ExtResource("5_4ughu")
 
 [node name="LookaheadCamProcess" type="Node" parent="SubViewport/CameraContainer/MainCamControl"]
 script = ExtResource("6_4ybsm")
+look_ahead_distance = 3.0
 
 [node name="TexelCamProcess" type="Node" parent="SubViewport/CameraContainer/MainCamControl" node_paths=PackedStringArray("viewport", "display_rect")]
 script = ExtResource("7_ku77i")

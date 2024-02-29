@@ -7,8 +7,10 @@ var jumping = false
 func enter(msg := {}):
 	jump_force = 0
 	if msg.has("do_jump"):
+		player.anim.play("Jump")
 		player.velocity.y = player.min_jump_height
 		jumping = true
+		player.anim.queue("Fall")
 
 
 func physics_update(delta):

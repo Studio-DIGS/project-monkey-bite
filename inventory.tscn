@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://lyqvsqlknmmg"]
+
+[ext_resource type="Script" path="res://inventory.gd" id="1_460dc"]
+
+[node name="Inventory" type="Node"]
+script = ExtResource("1_460dc")
+
+[node name="SwordContainer" type="Node" parent="."]
+
+[node name="BigPassiveContainer" type="Node" parent="."]
+
+[node name="AngelAbilityContainer" type="Node" parent="."]

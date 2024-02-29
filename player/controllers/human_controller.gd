@@ -5,6 +5,8 @@ func _physics_process(delta):
 	if is_active:
 		if Input.is_action_just_pressed("attack"):
 			player.attack()
+#		elif Input.is_action_just_released("attack") or Input.is_action_pressed("attack"):
+#			player.stop_attack()
 		
 		elif Input.is_action_pressed("jump"):
 			player.jump(delta)

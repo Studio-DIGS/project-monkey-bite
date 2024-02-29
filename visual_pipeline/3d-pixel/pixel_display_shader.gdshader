@@ -3,7 +3,8 @@ shader_type canvas_item;
 // Viewport texture to render to screen
 uniform sampler2D viewport_tex : filter_nearest;
 
-// 0 to 1, the offset needed to snap the camera to a pixel grid
+// 0 to 1, the offset amount used to snap the camera to a pixel grid
+// We'll be "undoing" the pixel snap in post process to get a smooth camera
 uniform vec2 texel_snap_uv_offset;
 
 void fragment() 

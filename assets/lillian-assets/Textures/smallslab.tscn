@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx7jtshyb7epf"]
+
+[ext_resource type="PackedScene" uid="uid://b2ein5tuqtq76" path="res://assets/lillian-assets/smallslab.glb" id="1_lj1w5"]
+[ext_resource type="Texture2D" uid="uid://behpdibmrd1kn" path="res://assets/lillian-assets/Textures/stone_texture.png" id="2_svewc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_drgx2"]
+albedo_texture = ExtResource("2_svewc")
+
+[node name="smallslab" instance=ExtResource("1_lj1w5")]
+
+[node name="Stone Slab 1" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_drgx2")

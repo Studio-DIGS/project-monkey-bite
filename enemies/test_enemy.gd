@@ -1,17 +1,17 @@
-extends Actor
+extends CharacterBody3D
 
-@export var attack_resource: AttackResource
-var start_pos
+var start_position: Vector3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	start_pos = position
-	
+	start_position = position
+
+
+func _process(delta):
+	if Input.is_action_just_pressed("debug"):
+		position = start_position
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("reset"):
-		position = start_pos
-	
 	velocity.y -= 20 * delta
 	
 	if is_on_floor():
@@ -30,6 +30,5 @@ func _on_health_death():
 	queue_free()
 
 
-func _on_timer_timeout():
-	$AnimationPlayer.play(attack_resource.animation)
-	$Hitbox.configure_hitbox(attack_resource)
+func _on_schmovosaur_ai_2_check_velocity(vector: Vector3):
+	velocity = velocity + vector

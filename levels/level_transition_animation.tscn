@@ -26,6 +26,7 @@ transform = Transform3D(-0.316217, -0.507076, -0.801752, -2.98013e-08, 0.845126,
 
 [node name="Camera3D" type="Camera3D" parent="Cube Type 2/Path3D"]
 transform = Transform3D(1, 5.96047e-08, -1.49012e-08, -5.96047e-08, 1, -4.44089e-16, 1.49012e-08, 1.33227e-15, 1, 2.38419e-07, 7.89615, 23.8689)
+current = true
 
 [node name="PlayerDetectionPortal" type="Area3D" parent="."]
 

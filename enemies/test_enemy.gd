@@ -28,3 +28,7 @@ func _on_hurtbox_hit(vector: Vector2):
 func _on_health_death():
 	await get_tree().create_timer(0.3).timeout
 	queue_free()
+
+
+func _on_schmovosaur_ai_2_check_velocity(vector: Vector3):
+	velocity = velocity + vector

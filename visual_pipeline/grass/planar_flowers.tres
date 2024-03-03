@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://cuvclsyoc2sse" path="res://visual_pipeline/grass/planar_grass.tres" id="1_j4iat"]
 [ext_resource type="Texture2D" uid="uid://d0vmlcx0fw2ms" path="res://visual_pipeline/grass/textures/Perlin 9 - 256x256.png" id="2_y33nv"]
-[ext_resource type="Texture2D" uid="uid://bfdgc42s3utn8" path="res://visual_pipeline/grass/textures/purple_grass_ramp.png" id="3_tskoc"]
+[ext_resource type="Texture2D" uid="uid://bfdgc42s3utn8" path="res://visual_pipeline/grass/textures/flower_color_ramp.png" id="3_tskoc"]
 
 [resource]
 render_priority = -120

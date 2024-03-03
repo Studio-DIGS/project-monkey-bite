@@ -5,11 +5,17 @@
 [resource]
 cull_mode = 2
 diffuse_mode = 3
-albedo_color = Color(0.6, 0.439216, 0.321569, 1)
-metallic = 1.0
-metallic_specular = 0.67
+specular_mode = 1
+albedo_color = Color(0.560784, 0.431373, 0.380392, 1)
+metallic = 0.72
+metallic_specular = 0.74
 metallic_texture = ExtResource("1_8g1fp")
-uv1_scale = Vector3(0.19, 0.19, 0.19)
+rim = 0.52
+rim_tint = 1.0
+backlight = Color(0.235294, 0.235294, 0.235294, 1)
+uv1_scale = Vector3(0.2, 0.2, 0.2)
 uv1_triplanar = true
 uv1_world_triplanar = true
 texture_filter = 0
+disable_receive_shadows = true
+proximity_fade_distance = 0.0

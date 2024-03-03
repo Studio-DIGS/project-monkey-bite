@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://d0eaaxb0j4br2"
-path="res://.godot/imported/Islands 2 color.glb-3760cbda18e2bf568146512082a71539.scn"
+path="res://.godot/imported/island-2.glb-b8d8133499e7f438e43483f4a14e93a5.scn"
 
 [deps]
 
-source_file="res://assets/Islands 2 color.glb"
-dest_files=["res://.godot/imported/Islands 2 color.glb-3760cbda18e2bf568146512082a71539.scn"]
+source_file="res://assets/island-2.glb"
+dest_files=["res://.godot/imported/island-2.glb-b8d8133499e7f438e43483f4a14e93a5.scn"]
 
 [params]
 
@@ -32,11 +32,11 @@ _subresources={
 "materials": {
 "Material.001": {
 "use_external/enabled": true,
-"use_external/path": "res://visual_pipeline/grass/island_base.tres"
+"use_external/path": "res://visual_pipeline/grass/grass_floor_mat.tres"
 },
 "Material.002": {
 "use_external/enabled": true,
-"use_external/path": "res://visual_pipeline/grass/grass_floor_mat.tres"
+"use_external/path": "res://visual_pipeline/grass/island_base.tres"
 }
 }
 }

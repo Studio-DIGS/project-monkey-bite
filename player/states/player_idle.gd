@@ -1,7 +1,7 @@
 extends PlayerState
 
 func enter(_msg := {}):
-	player.anim.play("bob")
+	player.anim.queue("Idle")
 
 func physics_update(delta):
 	player.velocity.x = lerp(player.velocity.x, 0.0, delta * player.accel)
@@ -12,11 +12,12 @@ func physics_update(delta):
 		state_machine.transition_to("Air")
 		return
 	
-	if Input.is_action_just_pressed("jump"):
+	if player.try_jump:
 		state_machine.transition_to("Air", {do_jump = true})
 	
-	elif Input.is_action_pressed("left") or Input.is_action_pressed("right"):
+	elif player.hori_input != 0.0:
+		player.anim.play("Run")
 		state_machine.transition_to("Run")
 	
-	elif Input.is_action_pressed("attack"):
+	elif player.try_attack:
 		state_machine.transition_to("Attack")

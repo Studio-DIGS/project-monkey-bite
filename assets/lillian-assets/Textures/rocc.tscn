@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://2ukvx21naqis"]
+
+[ext_resource type="PackedScene" uid="uid://bm0oaxthlwt2i" path="res://assets/lillian-assets/rocc.glb" id="1_oh628"]
+[ext_resource type="Texture2D" uid="uid://behpdibmrd1kn" path="res://assets/lillian-assets/Textures/stone_texture.png" id="2_6nq3s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74lpe"]
+albedo_texture = ExtResource("2_6nq3s")
+
+[node name="rocc" instance=ExtResource("1_oh628")]
+
+[node name="Sphere_013" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.187378, 1, 0)
+material_override = SubResource("StandardMaterial3D_74lpe")

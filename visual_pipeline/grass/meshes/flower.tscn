@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dudoc2lmusdkg"]
+
+[ext_resource type="PackedScene" uid="uid://doq2qu2vlxrr6" path="res://visual_pipeline/grass/meshes/flower.glb" id="1_cutqd"]
+
+[node name="flower" instance=ExtResource("1_cutqd")]

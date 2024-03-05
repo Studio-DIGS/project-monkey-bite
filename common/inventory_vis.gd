@@ -21,19 +21,19 @@ func updateAllText():
 
 func updateSwordVis():
 	swordTextLabel.clear()
-	swordTextLabel.append_text(Inventory.getSword().name)
+	swordTextLabel.append_text(InventoryManager.getSword().name)
 
 # Big Passives
 	
 func updateBigPassiveVis():
-	if (Inventory.getBigPassives().size() <= 0):
+	if (InventoryManager.getBigPassives().size() <= 0):
 		return
 	bigPassiveTextLabel.clear()
-	for bigPassive in Inventory.getBigPassives():
+	for bigPassive in InventoryManager.getBigPassives():
 		bigPassiveTextLabel.append_text(bigPassive.name)
 
 # Angel Abilites
 	
 func updateAngelAbilityVis():
 	angelAbilityTextLabel.clear()
-	angelAbilityTextLabel.append_text(Inventory.getAngelAbility().name)
+	angelAbilityTextLabel.append_text(InventoryManager.getAngelAbility().name)

@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameManager="*res://common/game_manager.gd"
-Inventory="*res://common/inventory.gd"
+InventoryManager="*res://common/inventory_manager.gd"
 
 [display]
 

@@ -39,11 +39,11 @@ var try_jump = false
 
 func _ready():
 	print(GameManager.current_scene.name)
-	if(Inventory.uninitialized == true):
-		Inventory.swapSword(Sword.new("Amazing Sword"))
-		Inventory.addBigPassive(BigPassive.new("Huge Passive"))
-		Inventory.setAngelAbility(AngelAbility.new("God Hacks"))
-		Inventory.uninitialized = false
+	if(InventoryManager.uninitialized == true):
+		InventoryManager.swapSword(Sword.new("Amazing Sword"))
+		InventoryManager.addBigPassive(BigPassive.new("Huge Passive"))
+		InventoryManager.setAngelAbility(AngelAbility.new("God Hacks"))
+		InventoryManager.uninitialized = false
 	set_controller(human_controller)
 	GameManager.connect("start_cutscene", _start_cutscene)
 	GameManager.connect("end_cutscene", _end_cutscene)

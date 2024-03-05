@@ -10,9 +10,21 @@ func _physics_process(delta):
 			GameManager.goto_scene("res://levels/world.tscn")
 			return
 		if Input.is_action_just_pressed("RandomizeInventory-Debug"):
-			Inventory.randomInitAll()
+			InventoryManager.randomInitAll()
 			player.updateInventory()
 			return
+		if Input.is_action_just_pressed("SaveGame"):
+			print("saved game")
+			SaverLoader.save_game()
+			return
+		if Input.is_action_just_pressed("LoadGame"):
+			print("loaded game")
+			SaverLoader.load_savedgame()
+			# TODO, The below should be managed by the above funciton
+			player.updateInventory()
+			return
+			
+			
 		
 		if Input.is_action_just_pressed("attack"):
 			player.attack()

@@ -18,7 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameManager="*res://common/game_manager.gd"
-InventoryManager="*res://common/inventory_manager.gd"
+InventoryManager="*res://common/inventory/inventory_manager.gd"
+SaverLoader="*res://common/inventory/saver_loader.gd"
 
 [display]
 
@@ -103,6 +104,16 @@ SwitchSceneGrassTest-Debug={
 SwitchSceneWorld-Debug={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194332,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+SaveGame={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":true,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+LoadGame={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":true,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":76,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 

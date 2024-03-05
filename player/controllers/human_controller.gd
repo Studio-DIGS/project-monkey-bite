@@ -15,3 +15,7 @@ func _physics_process(delta):
 		
 		var move_input = Input.get_axis("left", "right")
 		player.move(move_input)
+		
+		var vertical_input = Input.get_axis("down", "up")
+		player.vert_move(vertical_input)
+		

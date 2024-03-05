@@ -11,6 +11,8 @@ func enter(msg := {}):
 		player.velocity.y = player.min_jump_height
 		jumping = true
 		player.anim.queue("Fall")
+	else:
+		player.anim.play("Fall")
 
 
 func physics_update(delta):

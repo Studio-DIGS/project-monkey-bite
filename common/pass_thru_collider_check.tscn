@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckgpg0ekvvmfi"]
+
+[ext_resource type="Script" path="res://common/passthru_collision.gd" id="1_6cenu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7jseo"]
+size = Vector3(0.477321, 0.333302, 0.546592)
+
+[node name="PassThruColliderCheck" type="Area3D" node_paths=PackedStringArray("character")]
+collision_layer = 512
+collision_mask = 256
+script = ExtResource("1_6cenu")
+character = NodePath("")
+
+[node name="FeetCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00320172, -1.34115, 0.00538671)
+shape = SubResource("BoxShape3D_7jseo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

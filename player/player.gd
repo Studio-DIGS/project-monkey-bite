@@ -71,7 +71,13 @@ func stop_jump():
 	try_jump = false
 	jump_time = 0.0
 
+func drop_platform():
+	set_collision_mask_value(9, false)
+
 func _physics_process(_delta):
+	if get_collision_mask_value(9) and vert_input < 0.0:
+		drop_platform()
+
 	velocity.z = 0.0
 	reorient()
 

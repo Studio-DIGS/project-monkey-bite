@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cj6gya66i2u14"]
+[gd_scene load_steps=26 format=3 uid="uid://cj6gya66i2u14"]
 
 [ext_resource type="Script" path="res://common/game_manager.gd" id="1_gxjrb"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="2_yuvdp"]
@@ -12,9 +12,12 @@
 [ext_resource type="PackedScene" uid="uid://dnxlvi0kucdpk" path="res://assets/ultimate-platformer/Fruit.gltf" id="12_foolb"]
 [ext_resource type="Shader" path="res://pixelart_stylizer.gdshader" id="13_2tsap"]
 [ext_resource type="ArrayMesh" uid="uid://dn3538nup1hmt" path="res://assets/temple/Wall_Ruined_Full_Cracked_1.obj" id="13_daoyd"]
+[ext_resource type="Script" path="res://day_night_cycle.gd" id="14_m2cbg"]
 [ext_resource type="ArrayMesh" uid="uid://ie1glsealiff" path="res://assets/temple/Wall_Ruined_Half_1.obj" id="14_qjvny"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="15_le3dk"]
+[ext_resource type="Texture2D" uid="uid://db5xqu2gbui40" path="res://assets/sky_gradient.tres" id="15_nl3r0"]
 [ext_resource type="Sky" uid="uid://bpa6skcj0hqyy" path="res://visual_pipeline/skybox.tres" id="16_762lu"]
+[ext_resource type="Texture2D" uid="uid://b82pknjegd7qq" path="res://assets/light_gradient.tres" id="16_haerr"]
 [ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/test_enemy.tscn" id="18_03ibt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8li3"]
@@ -242,15 +245,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0211725, 0)
 mesh = SubResource("PlaneMesh_jl554")
 skeleton = NodePath("../..")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.735116, 0.598587, -0.318274, 2.76473e-08, 0.469472, 0.882948, 0.677942, -0.649069, 0.345116, 0, 0, 0)
+[node name="Lighting" type="Node3D" parent="Environment"]
+transform = Transform3D(0.735116, 0.598587, -0.318274, 2.76473e-08, 0.469472, 0.882947, 0.677942, -0.649069, 0.345116, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment/Lighting"]
+environment = SubResource("Environment_y8ynd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment/Lighting" node_paths=PackedStringArray("world_env")]
+transform = Transform3D(1, -5.96046e-08, 1.49012e-08, 0, 1, 0, -1.49012e-08, 4.47035e-08, 1, 0, 0, 0)
 shadow_enabled = true
 shadow_blur = 10.0
 directional_shadow_mode = 1
 directional_shadow_split_1 = 0.005
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_y8ynd")
+script = ExtResource("14_m2cbg")
+light_gradient = ExtResource("16_haerr")
+sky_gradient = ExtResource("15_nl3r0")
+time_dilation = 1
+world_env = NodePath("../WorldEnvironment")
 
 [node name="Player" parent="." instance=ExtResource("2_yuvdp")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.78614, 1.41166, -0.0926752)

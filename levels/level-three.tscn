@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dpjnwrvsw3sl7"]
+[gd_scene load_steps=25 format=3 uid="uid://bbyoukoatqn7e"]
 
 [ext_resource type="Shader" uid="uid://cuvclsyoc2sse" path="res://levels/grass/grass.tres" id="1_lq355"]
 [ext_resource type="Material" uid="uid://b56ee7cgb3tro" path="res://assets/lillian-assets/Textures/floor_material.tres" id="2_lv1ti"]

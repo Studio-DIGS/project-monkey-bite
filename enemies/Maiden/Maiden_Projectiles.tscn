@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://k1eqsnrbdmxe"]
+
+[ext_resource type="Script" path="res://enemies/Maiden/MaidenProjectiles.gd" id="1_css03"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hyut7"]
+radius = 0.505946
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7pokm"]
+backlight_enabled = true
+backlight = Color(0.121569, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_u8bvt"]
+material = SubResource("StandardMaterial3D_7pokm")
+
+[node name="Projectiles" type="CharacterBody3D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_css03")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_hyut7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("SphereMesh_u8bvt")
+skeleton = NodePath("../..")
+
+[node name="Self-Destruct Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="Self-Destruct Timer" to="." method="_on_self_destruct_timer_timeout"]

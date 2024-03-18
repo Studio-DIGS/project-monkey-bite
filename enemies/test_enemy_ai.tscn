@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://ua52cbpaos8t"]
 
-[ext_resource type="Script" path="res://enemies/Schmovosaur Enemy AI Manager.gd" id="1_kia0e"]
+[ext_resource type="Script" path="res://enemies/Schmovosaur/Schmovosaur Enemy AI Manager.gd" id="1_kia0e"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oacgc"]
 
@@ -90,8 +90,8 @@ draw_pass_1 = SubResource("SphereMesh_d00x2")
 mesh = SubResource("CapsuleMesh_xarmf")
 material = SubResource("StandardMaterial3D_n81so")
 
-[connection signal="timeout" from="Enemy AI Manager/Charge Cooldown" to="Enemy AI Manager" method="_on_charge_duration_timeout"]
 [connection signal="timeout" from="Enemy AI Manager/Charge Cooldown" to="Enemy AI Manager" method="_on_charge_cooldown_timeout"]
+[connection signal="timeout" from="Enemy AI Manager/Charge Cooldown" to="Enemy AI Manager" method="_on_charge_duration_timeout"]
 [connection signal="timeout" from="Enemy AI Manager/Prepare Charge" to="Enemy AI Manager" method="_on_prepare_charge_timeout"]
 [connection signal="area_entered" from="EnemyComponents/PlayerDetectionSphere" to="Enemy AI Manager" method="_on_player_detection_sphere_area_entered"]
 [connection signal="area_exited" from="EnemyComponents/PlayerDetectionSphere" to="Enemy AI Manager" method="_on_player_detection_sphere_area_exited"]

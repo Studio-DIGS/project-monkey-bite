@@ -8,7 +8,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3akvr"]
 transparency = 4
 blend_mode = 1
-albedo_color = Color(0.988235, 0.831373, 0.8, 0.337255)
+albedo_color = Color(0.988235, 0.831373, 0.8, 0.290196)
 
 [node name="Maiden AI Manager" type="Node3D"]
 script = ExtResource("1_cdjtu")
@@ -43,8 +43,12 @@ script = ExtResource("2_wmgba")
 wait_time = 3.0
 one_shot = true
 
+[node name="Escape Timer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="projectile" from="." to="Projectile Script Manager" method="_on_maiden_ai_manager_projectile"]
 [connection signal="area_entered" from="PlayerDetectionSphere" to="." method="_on_player_detection_sphere_area_entered"]
 [connection signal="area_exited" from="PlayerDetectionSphere" to="." method="_on_player_detection_sphere_area_exited"]
 [connection signal="area_exited" from="PlayerDetectionSphere2" to="." method="_on_player_detection_sphere_2_area_exited"]
 [connection signal="timeout" from="Attack Cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="Escape Timer" to="." method="_on_escape_timer_timeout"]

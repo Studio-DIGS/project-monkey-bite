@@ -262,7 +262,7 @@ accel = 6.505
 [node name="Maiden Enemy" parent="." instance=ExtResource("16_r4x40")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.52958, 0.961084, 0)
 
-[node name="HealthDisplay" parent="Maiden Enemy" index="3"]
+[node name="HealthDisplay" parent="Maiden Enemy" index="2"]
 texture = SubResource("ViewportTexture_4oawm")
 
 [connection signal="turn_around" from="Player" to="CameraSystem" method="_on_player_turn_around"]

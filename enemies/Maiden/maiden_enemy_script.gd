@@ -9,8 +9,8 @@ var hitbox
 var animation
 
 func _ready():
-	gravity_speed = 20.0
-	animation = $AnimationPlayer
+	gravity_speed = 20
+	animation = $KnockbackPlayer
 	hitbox = $Hitbox
 
 func _physics_process(delta):

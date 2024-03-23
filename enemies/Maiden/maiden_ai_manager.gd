@@ -8,6 +8,7 @@ var projectile_direction: Vector3
 var projectile_interval_timer
 var attack_cooldown
 var attack_ready: bool
+var attack_inhibit: bool #Prevents shooting when invisible
 
 var evade_ready: bool
 var minimum_escape_value: float
@@ -29,23 +30,32 @@ var enemy_direction: Vector3
 var tether_range: float
 
 var enemy_velocity: Vector3
+var enemy_vertical_velocity: Vector3 #Given the maiden floaty effect
+
+#Floating Cube Initial Variables
+var cube_direction
+var cube_body
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	enemy_body = $".."
 	projectile_interval_timer = .2 #Seconds
 	attack_cooldown = $"Attack Cooldown"
 	attack_ready = true
+	attack_inhibit = false
+	
 	
 	state_passive = false #adjust this for testing purposes
 	
-	enemy_velocity = Vector3(1, 0, 0)
-	original_position = enemy_body.position
-	tether_range = 10
+	enemy_velocity = Vector3(0, 0, 0)
+	original_position = Vector3(enemy_body.position.x ,0 , 0) + Vector3(1, 0, 0) #Helps passive state have initial velocity
+	tether_range = 4
 	
 	occur_once_evade = true #Designed for evade()
 	occur_once_hit = true
 	escape_timer = $"Escape Timer"
 	
+	cube_body = $"../Floating Cube"
 #Physics Process Controls the state machine between evade/active/passive states	
 func _physics_process(delta):
 	if Input.is_action_just_pressed("interact") and player_body: #TEMP test for spawn_projectile
@@ -57,7 +67,6 @@ func _physics_process(delta):
 			emit_signal("turn_transparent")
 	
 #	passive_state()
-	#Test
 	if evade_ready:
 		evade()
 #		print("evade State")
@@ -80,9 +89,9 @@ func passive_state():
 		
 func active_state(delta):
 	enemy_velocity = Vector3.ZERO
-	if attack_ready:
+	if attack_ready and !attack_inhibit:
 		attack_cooldown.start() #attack ready = true after timer
-#		spawn_projectile(delta) #attack ready = false here
+		spawn_projectile(delta) #attack ready = false here
 		attack_ready = false
 		
 func evade():
@@ -100,7 +109,6 @@ func evade():
 		new_position = Vector3(enemy_body.position.x + offset_original_position, 0, 0)
 		enemy_direction = (new_position - enemy_body.position).normalized()
 		enemy_velocity = Vector3(enemy_direction.x, 0 ,0)
-		print(offset_original_position)
 	
 	#Enemy continues to move towards new position and stopped upon reaching destination	
 	if abs(new_position.x - enemy_body.position.x) < .2: 
@@ -131,6 +139,7 @@ func _on_player_detection_sphere_2_area_exited(area): #Enter passive state
 	if area:
 		state_passive = true
 		state_active = false
+		original_position = enemy_body.position
 		
 func _on_attack_cooldown_timeout():
 	attack_ready = true
@@ -143,17 +152,15 @@ func _on_maiden_enemy_enemy_hit_instance(): #Connect Signal from "Maiden Enemy"
 
 func _on_escape_timer_timeout():
 	emit_signal("turn_transparent")
+	attack_inhibit = true
 	await get_tree().create_timer(.8).timeout
 	evade_ready = true
 	occur_once_evade = true
 	occur_once_hit = true
-	await get_tree().create_timer(.8).timeout
+	await get_tree().create_timer(.4).timeout
 	emit_signal("turn_transparent")
-	print("evade active")
+	attack_inhibit = false
 	
 #Emits signal to Main Maiden Enemy Node
 func move():
 	emit_signal("check_velocity", enemy_velocity)
-
-
-

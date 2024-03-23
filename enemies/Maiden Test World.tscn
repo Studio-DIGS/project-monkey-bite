@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c34ama1d7n4iq"]
+[gd_scene load_steps=25 format=3 uid="uid://c34ama1d7n4iq"]
 
 [ext_resource type="Script" path="res://common/game_manager.gd" id="1_p7hkx"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="2_fxb53"]
@@ -16,6 +16,7 @@
 [ext_resource type="Sky" uid="uid://bpa6skcj0hqyy" path="res://visual_pipeline/skybox.tres" id="14_yy1jm"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="15_7xxdj"]
 [ext_resource type="PackedScene" uid="uid://dx1fk2xow6r2j" path="res://enemies/Maiden/maiden_enemy.tscn" id="16_r4x40"]
+[ext_resource type="PackedScene" uid="uid://ey8y0wa8f8pv" path="res://enemies/Maiden/floating_cube.tscn" id="17_al346"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8li3"]
 uv1_triplanar = true
@@ -264,6 +265,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.52958, 0.961084, 0)
 
 [node name="HealthDisplay" parent="Maiden Enemy" index="2"]
 texture = SubResource("ViewportTexture_4oawm")
+
+[node name="Floating Cube" parent="." instance=ExtResource("17_al346")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0)
 
 [connection signal="turn_around" from="Player" to="CameraSystem" method="_on_player_turn_around"]
 

@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/fullwall.tscn" id="10_w0c0m"]
 [ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/crackedwall.tscn" id="11_827o1"]
 [ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/tree.tscn" id="13_skkxf"]
-[ext_resource type="PackedScene" path="res://assets/lillian-assets/tree.glb" id="14_3c5vr"]
+[ext_resource type="PackedScene" uid="uid://bg7k2p78ua0ov" path="res://assets/lillian-assets/tree.glb" id="14_3c5vr"]
 [ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/treestump.tscn" id="14_3n4dh"]
 [ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/dock.tscn" id="16_npp2m"]
 [ext_resource type="PackedScene" uid="uid://dkjt28n36sw52" path="res://assets/lillian-assets/Islands/island 1.glb" id="19_m76ou"]
@@ -329,7 +329,7 @@ directional_shadow_split_1 = 0.003
 environment = SubResource("Environment_y8ynd")
 
 [node name="Player" parent="Environment/Characters Scripts and World Settings" instance=ExtResource("4_s5jpf")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 37.1541, 12.3797, 1.7672)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16.5479, 12.3797, 1.7672)
 accel = 6.505
 jump_height = 10.0
 

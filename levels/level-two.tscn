@@ -237,7 +237,7 @@ directional_shadow_split_1 = 0.003
 environment = SubResource("Environment_y8ynd")
 
 [node name="Player" parent="Environment/Characters Scripts and World Settings" instance=ExtResource("4_pxxjk")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.1895, 7.26621, 2.53605)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.6084, 7.26621, 2.53605)
 accel = 6.505
 jump_height = 10.0
 

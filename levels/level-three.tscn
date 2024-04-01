@@ -1,14 +1,14 @@
 [gd_scene load_steps=25 format=3 uid="uid://bbyoukoatqn7e"]
 
 [ext_resource type="Shader" uid="uid://cuvclsyoc2sse" path="res://levels/grass/grass.tres" id="1_lq355"]
-[ext_resource type="Material" uid="uid://b56ee7cgb3tro" path="res://assets/lillian-assets/Textures/floor_material.tres" id="2_lv1ti"]
+[ext_resource type="Material" uid="uid://fn0hadct6ay" path="res://assets/lillian-assets/Textures/floor_material.tres" id="2_lv1ti"]
 [ext_resource type="Material" uid="uid://bdrk3hn2y0uie" path="res://levels/grass/grass_floor.tres" id="3_nplr7"]
 [ext_resource type="PackedScene" uid="uid://b1ob2xlr74xc2" path="res://levels/grass/grass.tscn" id="4_wcoup"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="5_c8upy"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="6_bujsr"]
 [ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/test_enemy.tscn" id="7_itl1a"]
-[ext_resource type="PackedScene" uid="uid://2ukvx21naqis" path="res://assets/lillian-assets/Textures/rocc.tscn" id="17_kcpdg"]
-[ext_resource type="PackedScene" uid="uid://j5u21dt7qegf" path="res://assets/lillian-assets/Textures/dock.tscn" id="18_8hddh"]
+[ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/rocc.tscn" id="17_kcpdg"]
+[ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/dock.tscn" id="18_8hddh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ujfex"]
 render_priority = 0
@@ -287,9 +287,6 @@ visible = false
 
 [node name="rocc" parent="Environment/Platform ground/PG3" instance=ExtResource("17_kcpdg")]
 transform = Transform3D(6.06735, 0.132448, 0, -0.881346, 0.9118, 0, 0, 0, 9.13886, -7.76509, -19.6161, 0)
-
-[node name="rocc" parent="Environment/Platform ground" instance=ExtResource("17_kcpdg")]
-transform = Transform3D(16.4552, 0, 0, 0, -4.02743e-08, -23.3454, 0, 0.921369, -1.02046e-06, -7.76509, -7.08917, -11.8929)
 
 [node name="Characters Scripts and World Settings" type="Node" parent="Environment"]
 

@@ -1,6 +1,6 @@
 extends PlayerState
 
-var attack_tries: int
+var attack_tries = 1
 var jump_force: float
 var jumping = false
 

@@ -51,5 +51,3 @@ material_override = ExtResource("6_4xrlh")
 operation = 2
 use_collision = true
 size = Vector3(54, 8, 10)
-
-[connection signal="turn_around" from="Player" to="CameraSystem" method="_on_player_turn_around"]

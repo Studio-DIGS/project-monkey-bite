@@ -9,7 +9,8 @@ var air: bool
 
 func enter(msg := {}):
 	if msg.get('air', false) == true:
-		combo = player.combo # replace with air combo later
+		print("air combo")
+		combo = player.air_combo 
 		air = true
 	else:
 		combo = player.combo
@@ -46,7 +47,7 @@ func physics_update(delta):
 		if player.try_attack:
 			combo_counter += 1
 			contact = false
-			player.anim.queue(player.combo[combo_counter].animation)
+			player.anim.queue(combo[combo_counter].animation)
 
 
 

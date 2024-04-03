@@ -2,7 +2,6 @@ extends PlayerState
 
 func enter(_msg := {}):
 	player.anim.queue("Run")
-	player.anim.speed_scale = 1.5
 
 func physics_update(delta):
 	if not player.is_on_floor():

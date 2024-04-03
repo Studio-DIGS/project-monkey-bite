@@ -37,6 +37,7 @@ func _ready():
 	set_controller(human_controller)
 	GameManager.connect("start_cutscene", _start_cutscene)
 	GameManager.connect("end_cutscene", _end_cutscene)
+	
 
 func set_controller(controller: PlayerController):
 	# turn off all other controllers

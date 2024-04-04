@@ -207,6 +207,7 @@ mesh = SubResource("CapsuleMesh_iv2ui")
 skeleton = NodePath("")
 
 [connection signal="enemy_hit_instance" from="." to="Maiden AI Manager" method="_on_maiden_enemy_enemy_hit_instance"]
+[connection signal="send_player_information" from="." to="Maiden AI Manager" method="_on_maiden_enemy_send_player_information"]
 [connection signal="death" from="Health" to="." method="_on_health_death"]
 [connection signal="check_velocity" from="Maiden AI Manager" to="." method="_on_maiden_ai_manager_check_velocity"]
 [connection signal="turn_transparent" from="Maiden AI Manager" to="Maiden Body" method="_on_maiden_ai_manager_turn_transparent"]

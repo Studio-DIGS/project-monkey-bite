@@ -58,12 +58,12 @@ func continueDialogue(): #Function Logic for continuing dialogue for NPCS
 		dialogueTextReference.text = dialogueArray[textIndex]
 	
 func _on_player_detection_box_area_entered(area): #Checks if player enters NPC conversation range, enabling player to press "e" to talk
-	if (area.name == "PlayerArea"):
+	if (area):
 		playerIsDialogueReady = true
 
 
 func _on_player_detection_box_area_exited(area):
-	if (area.name == "PlayerArea"):
+	if (area):
 		playerIsDialogueReady = false
 
 #Transfers data from NPC1 to DialogueManger

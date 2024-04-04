@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 signal enemy_hit_instance
+signal send_player_information
 
 @export var attack_resource: AttackResource
 
@@ -14,6 +15,9 @@ var hover_start_height
 var cube_current_position
 var floating_timer
 
+#TEMP Test
+var player_information
+
 func _ready():
 	gravity_speed = 0
 	animation = $KnockbackPlayer
@@ -22,8 +26,12 @@ func _ready():
 	#TEMP
 	cube_current_position = 0
 	floating_timer = 0
-	hover_start_height = 2
+	hover_start_height = randf() + 1
 	hover_speed = 45
+	
+	player_information = $"../Player"
+	emit_signal("send_player_information", player_information)
+	
 func _physics_process(delta):
 	velocity.y -= gravity_speed * delta
 	
@@ -34,7 +42,7 @@ func _physics_process(delta):
 	
 	#TEMP
 	floating_timer += PI/180
-	cube_current_position = sin(floating_timer * delta * hover_speed)/2 + hover_start_height
+	cube_current_position = sin(floating_timer * delta * hover_speed)/(hover_start_height + 1.2) + hover_start_height
 	position.y = cube_current_position
 
 func _on_hurtbox_hit(vector):

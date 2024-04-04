@@ -22,6 +22,7 @@ transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 shape = SubResource("SphereShape3D_1g02j")
 
 [node name="Translucent Sphere" type="CSGSphere3D" parent="PlayerDetectionSphere/CollisionShape3D"]
+visible = false
 material = SubResource("StandardMaterial3D_3akvr")
 
 [node name="PlayerDetectionSphere2" type="Area3D" parent="."]
@@ -34,6 +35,7 @@ transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 shape = SubResource("SphereShape3D_1g02j")
 
 [node name="Translucent Sphere" type="CSGSphere3D" parent="PlayerDetectionSphere2/CollisionShape3D"]
+visible = false
 material = SubResource("StandardMaterial3D_3akvr")
 
 [node name="Projectile Script Manager" type="Node" parent="."]
@@ -41,6 +43,10 @@ script = ExtResource("2_wmgba")
 
 [node name="Attack Cooldown" type="Timer" parent="."]
 wait_time = 3.0
+one_shot = true
+
+[node name="Movement Inhibit Timer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 
 [node name="Escape Timer" type="Timer" parent="."]
@@ -51,4 +57,5 @@ one_shot = true
 [connection signal="area_exited" from="PlayerDetectionSphere" to="." method="_on_player_detection_sphere_area_exited"]
 [connection signal="area_exited" from="PlayerDetectionSphere2" to="." method="_on_player_detection_sphere_2_area_exited"]
 [connection signal="timeout" from="Attack Cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="Movement Inhibit Timer" to="." method="_on_movement_inhibit_timer_timeout"]
 [connection signal="timeout" from="Escape Timer" to="." method="_on_escape_timer_timeout"]

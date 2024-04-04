@@ -1,22 +1,22 @@
-[gd_scene load_steps=25 format=3 uid="uid://c34ama1d7n4iq"]
+[gd_scene load_steps=25 format=3 uid="uid://d3rhah5f5godx"]
 
-[ext_resource type="Script" path="res://common/game_manager.gd" id="1_p7hkx"]
-[ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="2_fxb53"]
-[ext_resource type="ArrayMesh" uid="uid://b72npoi5wprc5" path="res://assets/temple/Prop_Flag_1.obj" id="3_k7ody"]
-[ext_resource type="ArrayMesh" uid="uid://dohx36c77lpjt" path="res://assets/temple/Prop_Flag_Stand_Top.obj" id="4_vypbg"]
-[ext_resource type="ArrayMesh" uid="uid://b364hfo331by8" path="res://assets/temple/Prop_Flag_Stand_Extension.obj" id="5_padd8"]
-[ext_resource type="ArrayMesh" uid="uid://d0s8nxa6enrfi" path="res://assets/temple/Pillar_Large_Base.obj" id="6_vhks7"]
-[ext_resource type="ArrayMesh" uid="uid://cyakhubgros11" path="res://assets/temple/Pillar_Large_Middle.obj" id="7_8tghf"]
-[ext_resource type="ArrayMesh" uid="uid://clsnvfujirrx" path="res://assets/temple/Pillar_Large_Top.obj" id="8_f17s1"]
-[ext_resource type="PackedScene" uid="uid://brwbynmm26exm" path="res://assets/ultimate-platformer/Tree.gltf" id="9_n54id"]
-[ext_resource type="PackedScene" uid="uid://dnxlvi0kucdpk" path="res://assets/ultimate-platformer/Fruit.gltf" id="10_s1wgb"]
-[ext_resource type="ArrayMesh" uid="uid://dn3538nup1hmt" path="res://assets/temple/Wall_Ruined_Full_Cracked_1.obj" id="11_3yjlu"]
-[ext_resource type="ArrayMesh" uid="uid://ie1glsealiff" path="res://assets/temple/Wall_Ruined_Half_1.obj" id="12_m7pce"]
-[ext_resource type="Shader" path="res://pixelart_stylizer.gdshader" id="13_7achj"]
-[ext_resource type="Sky" uid="uid://bpa6skcj0hqyy" path="res://visual_pipeline/skybox.tres" id="14_yy1jm"]
-[ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="15_7xxdj"]
-[ext_resource type="PackedScene" uid="uid://dx1fk2xow6r2j" path="res://enemies/Maiden/maiden_enemy.tscn" id="16_r4x40"]
-[ext_resource type="PackedScene" uid="uid://ey8y0wa8f8pv" path="res://enemies/Maiden/floating_cube.tscn" id="17_al346"]
+[ext_resource type="Script" path="res://common/game_manager.gd" id="1_02cvj"]
+[ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="2_kmyha"]
+[ext_resource type="ArrayMesh" uid="uid://b72npoi5wprc5" path="res://assets/temple/Prop_Flag_1.obj" id="3_62lgi"]
+[ext_resource type="ArrayMesh" uid="uid://dohx36c77lpjt" path="res://assets/temple/Prop_Flag_Stand_Top.obj" id="4_mmvan"]
+[ext_resource type="ArrayMesh" uid="uid://b364hfo331by8" path="res://assets/temple/Prop_Flag_Stand_Extension.obj" id="5_5netb"]
+[ext_resource type="ArrayMesh" uid="uid://d0s8nxa6enrfi" path="res://assets/temple/Pillar_Large_Base.obj" id="6_ss16o"]
+[ext_resource type="ArrayMesh" uid="uid://cyakhubgros11" path="res://assets/temple/Pillar_Large_Middle.obj" id="7_7iqhi"]
+[ext_resource type="ArrayMesh" uid="uid://clsnvfujirrx" path="res://assets/temple/Pillar_Large_Top.obj" id="8_76yms"]
+[ext_resource type="PackedScene" uid="uid://brwbynmm26exm" path="res://assets/ultimate-platformer/Tree.gltf" id="9_ybyqb"]
+[ext_resource type="PackedScene" uid="uid://dnxlvi0kucdpk" path="res://assets/ultimate-platformer/Fruit.gltf" id="10_xwsq7"]
+[ext_resource type="ArrayMesh" uid="uid://dn3538nup1hmt" path="res://assets/temple/Wall_Ruined_Full_Cracked_1.obj" id="11_op0eb"]
+[ext_resource type="ArrayMesh" uid="uid://ie1glsealiff" path="res://assets/temple/Wall_Ruined_Half_1.obj" id="12_ga7bl"]
+[ext_resource type="Shader" path="res://pixelart_stylizer.gdshader" id="13_riptk"]
+[ext_resource type="Sky" uid="uid://bpa6skcj0hqyy" path="res://visual_pipeline/skybox.tres" id="14_w0mpq"]
+[ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="15_lqjcn"]
+[ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/Schmovosaur Enemy.tscn" id="16_8886b"]
+[ext_resource type="PackedScene" uid="uid://de3nwqodulfhf" path="res://npcs/npc_template.tscn" id="17_gbfre"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8li3"]
 uv1_triplanar = true
@@ -25,7 +25,7 @@ uv1_triplanar = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_trpqm"]
 render_priority = 0
-shader = ExtResource("13_7achj")
+shader = ExtResource("13_riptk")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65f3l"]
 next_pass = SubResource("ShaderMaterial_trpqm")
@@ -38,17 +38,17 @@ size = Vector2(40, 10)
 [sub_resource type="Environment" id="Environment_y8ynd"]
 background_mode = 2
 background_color = Color(0.4, 0.615686, 0.811765, 1)
-sky = ExtResource("14_yy1jm")
+sky = ExtResource("14_w0mpq")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_4oawm"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_p0kvw"]
 viewport_path = NodePath("SubViewport")
 
 [node name="World" type="Node3D"]
-script = ExtResource("1_p7hkx")
+script = ExtResource("1_02cvj")
 
-[node name="CameraSystem" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_fxb53")]
+[node name="CameraSystem" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_kmyha")]
 target = NodePath("../Player")
 
 [node name="Environment" type="Node3D" parent="."]
@@ -82,7 +82,7 @@ use_collision = true
 size = Vector3(500, 1, 6)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(-8.87803e-08, 0, -5.4322, 0, 0.55144, 0, 2.03106, 0, -2.37449e-07, -23.4359, 2.2121, 0.0168879)
+transform = Transform3D(-8.87803e-08, 0, -5.4322, 0, 0.55144, 0, 2.03106, 0, -2.37449e-07, -8.14235, 2.2121, 0.0168879)
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
 
@@ -91,22 +91,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.92163, 0, -3.48804)
 
 [node name="PropFlag1" type="MeshInstance3D" parent="Environment/Flag"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.357712, 4.1727, 0.46092)
-mesh = ExtResource("3_k7ody")
+mesh = ExtResource("3_62lgi")
 skeleton = NodePath("../../..")
 
 [node name="PropFlag2" type="MeshInstance3D" parent="Environment/Flag"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.572382, 4.1727, 0.46092)
-mesh = ExtResource("3_k7ody")
+mesh = ExtResource("3_62lgi")
 skeleton = NodePath("../../..")
 
 [node name="PropFlagStandTop" type="MeshInstance3D" parent="Environment/Flag"]
 transform = Transform3D(3.2, 0, 0, 0, 3.2, 0, 0, 0, 3.2, 0.104765, 2.47563, -1.50048)
-mesh = ExtResource("4_vypbg")
+mesh = ExtResource("4_mmvan")
 skeleton = NodePath("../../..")
 
 [node name="PropFlagStandExtension" type="MeshInstance3D" parent="Environment/Flag"]
 transform = Transform3D(3.267, 0, 0, 0, 2.6153, 0, 0, 0, 3.267, 0.10266, -0.0775777, -1.53124)
-mesh = ExtResource("5_padd8")
+mesh = ExtResource("5_5netb")
 skeleton = NodePath("../../..")
 
 [node name="Pillar" type="Node3D" parent="Environment"]
@@ -114,22 +114,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2)
 
 [node name="PillarLargeBase" type="MeshInstance3D" parent="Environment/Pillar"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 0, -1.30382)
-mesh = ExtResource("6_vhks7")
+mesh = ExtResource("6_ss16o")
 skeleton = NodePath("../../..")
 
 [node name="PillarLargeMiddle" type="MeshInstance3D" parent="Environment/Pillar"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 2, -1.30382)
-mesh = ExtResource("7_8tghf")
+mesh = ExtResource("7_7iqhi")
 skeleton = NodePath("../../..")
 
 [node name="PillarLargeMiddle2" type="MeshInstance3D" parent="Environment/Pillar"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 1, -1.30382)
-mesh = ExtResource("7_8tghf")
+mesh = ExtResource("7_7iqhi")
 skeleton = NodePath("../../..")
 
 [node name="PillarLargeTop" type="MeshInstance3D" parent="Environment/Pillar"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 3, -1.30382)
-mesh = ExtResource("8_f17s1")
+mesh = ExtResource("8_76yms")
 skeleton = NodePath("../../..")
 
 [node name="Pillar2" type="Node3D" parent="Environment"]
@@ -137,22 +137,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3)
 
 [node name="PillarLargeBase" type="MeshInstance3D" parent="Environment/Pillar2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 0, -1.30382)
-mesh = ExtResource("6_vhks7")
+mesh = ExtResource("6_ss16o")
 skeleton = NodePath("../../..")
 
 [node name="PillarLargeMiddle" type="MeshInstance3D" parent="Environment/Pillar2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 2, -1.30382)
-mesh = ExtResource("7_8tghf")
+mesh = ExtResource("7_7iqhi")
 skeleton = NodePath("../../..")
 
 [node name="PillarLargeMiddle2" type="MeshInstance3D" parent="Environment/Pillar2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 1, -1.30382)
-mesh = ExtResource("7_8tghf")
+mesh = ExtResource("7_7iqhi")
 skeleton = NodePath("../../..")
 
 [node name="PillarLargeTop" type="MeshInstance3D" parent="Environment/Pillar2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 3, -1.30382)
-mesh = ExtResource("8_f17s1")
+mesh = ExtResource("8_76yms")
 skeleton = NodePath("../../..")
 
 [node name="Pillar4" type="Node3D" parent="Environment"]
@@ -161,22 +161,22 @@ visible = false
 
 [node name="PillarLargeBase" type="MeshInstance3D" parent="Environment/Pillar4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 0, -1.30382)
-mesh = ExtResource("6_vhks7")
+mesh = ExtResource("6_ss16o")
 skeleton = NodePath("../../..")
 
 [node name="PillarLargeMiddle" type="MeshInstance3D" parent="Environment/Pillar4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 2, -1.30382)
-mesh = ExtResource("7_8tghf")
+mesh = ExtResource("7_7iqhi")
 skeleton = NodePath("../../..")
 
 [node name="PillarLargeMiddle2" type="MeshInstance3D" parent="Environment/Pillar4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 1, -1.30382)
-mesh = ExtResource("7_8tghf")
+mesh = ExtResource("7_7iqhi")
 skeleton = NodePath("../../..")
 
 [node name="PillarLargeTop" type="MeshInstance3D" parent="Environment/Pillar4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 3, -1.30382)
-mesh = ExtResource("8_f17s1")
+mesh = ExtResource("8_76yms")
 skeleton = NodePath("../../..")
 
 [node name="Pillar3" type="Node3D" parent="Environment"]
@@ -184,17 +184,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -2)
 
 [node name="PillarLargeBase" type="MeshInstance3D" parent="Environment/Pillar3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 0, -1.30382)
-mesh = ExtResource("6_vhks7")
+mesh = ExtResource("6_ss16o")
 skeleton = NodePath("../../..")
 
 [node name="PillarLargeMiddle2" type="MeshInstance3D" parent="Environment/Pillar3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 1, -1.30382)
-mesh = ExtResource("7_8tghf")
+mesh = ExtResource("7_7iqhi")
 skeleton = NodePath("../../..")
 
 [node name="PillarLargeTop" type="MeshInstance3D" parent="Environment/Pillar3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 2, -1.30382)
-mesh = ExtResource("8_f17s1")
+mesh = ExtResource("8_76yms")
 skeleton = NodePath("../../..")
 
 [node name="Pillar5" type="Node3D" parent="Environment"]
@@ -202,43 +202,43 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.69588, 0, 3.30553)
 
 [node name="PillarLargeBase" type="MeshInstance3D" parent="Environment/Pillar5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 0, -1.30382)
-mesh = ExtResource("6_vhks7")
+mesh = ExtResource("6_ss16o")
 skeleton = NodePath("../../..")
 
 [node name="PillarLargeMiddle2" type="MeshInstance3D" parent="Environment/Pillar5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 1, -1.30382)
-mesh = ExtResource("7_8tghf")
+mesh = ExtResource("7_7iqhi")
 skeleton = NodePath("../../..")
 
 [node name="PillarLargeTop" type="MeshInstance3D" parent="Environment/Pillar5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0900822, 2, -1.30382)
-mesh = ExtResource("8_f17s1")
+mesh = ExtResource("8_76yms")
 skeleton = NodePath("../../..")
 
-[node name="Tree" parent="Environment" instance=ExtResource("9_n54id")]
+[node name="Tree" parent="Environment" instance=ExtResource("9_ybyqb")]
 transform = Transform3D(0.660978, 0, 0, 0, 0.660978, 0, 0, 0, 0.660978, -0.798291, -0.353334, -10.9985)
 visible = false
 
-[node name="Tree2" parent="Environment" instance=ExtResource("9_n54id")]
+[node name="Tree2" parent="Environment" instance=ExtResource("9_ybyqb")]
 transform = Transform3D(0.632137, 0, 0.193119, 0, 0.660978, 0, -0.193119, 0, 0.632137, 4.21638, -0.353334, -7.41737)
 visible = false
 
-[node name="Tree3" parent="Environment" instance=ExtResource("9_n54id")]
+[node name="Tree3" parent="Environment" instance=ExtResource("9_ybyqb")]
 transform = Transform3D(0.632137, 0, 0.193119, 0, 0.660978, 0, -0.193119, 0, 0.632137, 21.5217, -0.353333, -10.9252)
 visible = false
 
-[node name="Fruit" parent="Environment" instance=ExtResource("10_s1wgb")]
+[node name="Fruit" parent="Environment" instance=ExtResource("10_xwsq7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.33644, 0.251553, 1.56773)
 visible = false
 
 [node name="WallRuinedFullCracked1" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(3.67315, 0, -1.58366, 0, 4, 0, 1.58366, 0, 3.67315, 12.7578, -0.0405574, -5.71669)
-mesh = ExtResource("11_3yjlu")
+mesh = ExtResource("11_op0eb")
 skeleton = NodePath("../..")
 
 [node name="WallRuinedHalf1" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(3.59294, 0, 3.47718, 0, 5, 0, -3.47718, 0, 3.59294, 15.1905, -0.040558, -6.26631)
-mesh = ExtResource("12_m7pce")
+mesh = ExtResource("12_ga7bl")
 skeleton = NodePath("../..")
 
 [node name="Floor" type="MeshInstance3D" parent="Environment"]
@@ -256,39 +256,20 @@ directional_shadow_split_1 = 0.005
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_y8ynd")
 
-[node name="Player" parent="." instance=ExtResource("15_7xxdj")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.583, 1.57307, -0.0921717)
+[node name="Player" parent="." instance=ExtResource("15_lqjcn")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.78614, 1.41166, -0.0926752)
 accel = 6.505
 
-[node name="Maiden Enemy2" parent="." instance=ExtResource("16_r4x40")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.96779, 1.92217, 0)
+[node name="TestEnemy" parent="." instance=ExtResource("16_8886b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.15295, 1.3582, -0.000691056)
 
-[node name="KnockbackPlayer" parent="Maiden Enemy2" index="1"]
-root_node = NodePath("../../Maiden Enemy2")
+[node name="HealthDisplay" parent="TestEnemy" index="5"]
+texture = SubResource("ViewportTexture_p0kvw")
 
-[node name="HealthDisplay" parent="Maiden Enemy2" index="2"]
-texture = SubResource("ViewportTexture_4oawm")
-
-[node name="Maiden Enemy" parent="." instance=ExtResource("16_r4x40")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1563, 0.961084, 0)
-
-[node name="HealthDisplay" parent="Maiden Enemy" index="2"]
-texture = SubResource("ViewportTexture_4oawm")
-
-[node name="Maiden Enemy3" parent="." instance=ExtResource("16_r4x40")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.55995, 1.92217, 0)
-
-[node name="KnockbackPlayer" parent="Maiden Enemy3" index="1"]
-root_node = NodePath("../../Maiden Enemy2")
-
-[node name="HealthDisplay" parent="Maiden Enemy3" index="2"]
-texture = SubResource("ViewportTexture_4oawm")
-
-[node name="Floating Cube" parent="." instance=ExtResource("17_al346")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0)
+[node name="NPC Template" parent="." instance=ExtResource("17_gbfre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.80191, 0.97002, -2.08279)
 
 [connection signal="turn_around" from="Player" to="CameraSystem" method="_on_player_turn_around"]
 
-[editable path="Maiden Enemy2"]
-[editable path="Maiden Enemy"]
-[editable path="Maiden Enemy3"]
+[editable path="TestEnemy"]
+[editable path="TestEnemy/Schmovosaur AI 2"]

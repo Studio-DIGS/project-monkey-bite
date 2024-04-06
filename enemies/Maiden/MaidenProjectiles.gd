@@ -1,5 +1,5 @@
 extends CharacterBody3D
-
+class_name Projectile
 var projectile_speed
 var destruct_timer
 
@@ -14,3 +14,6 @@ func _process(delta):
 
 func _on_self_destruct_timer_timeout(): #After timer ends instance deletes itself
 	queue_free()
+	
+func reverse_projectile():
+	pass

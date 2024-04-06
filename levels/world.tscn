@@ -15,7 +15,7 @@
 [ext_resource type="ArrayMesh" uid="uid://ie1glsealiff" path="res://assets/temple/Wall_Ruined_Half_1.obj" id="14_qjvny"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="15_le3dk"]
 [ext_resource type="Sky" uid="uid://bpa6skcj0hqyy" path="res://visual_pipeline/skybox.tres" id="16_762lu"]
-[ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/Schmovosaur Enemy.tscn" id="16_fig3g"]
+[ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/Schmovosaur/Schmovosaur Enemy.tscn" id="16_fig3g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8li3"]
 uv1_triplanar = true

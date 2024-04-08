@@ -21624,6 +21624,14 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "res://player/materials/skin.tres"
 },
+"Kite Hair": {
+"use_external/enabled": true,
+"use_external/path": "res://player/materials/hair.tres"
+},
+"Pants": {
+"use_external/enabled": true,
+"use_external/path": "res://player/materials/pants.tres"
+},
 "Torso": {
 "use_external/enabled": true,
 "use_external/path": "res://player/materials/shirt.tres"

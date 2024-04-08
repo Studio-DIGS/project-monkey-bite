@@ -35,7 +35,7 @@ var try_jump = false
 @onready var human_controller = $ControllerContainer/HumanController
 @onready var cutscene_controller = $ControllerContainer/CutsceneController
 
-@onready var inventoryVis: InventoryVis = $"../InventoryVis"
+@export var inventoryVis: InventoryVis
 
 func _ready():
 	print(GameManager.current_scene.name)
@@ -50,7 +50,8 @@ func _ready():
 	
 
 func updateInventory():
-	inventoryVis.updateAllText()
+	if inventoryVis:
+		inventoryVis.updateAllText()
 
 func set_controller(controller: PlayerController):
 	# turn off all other controllers

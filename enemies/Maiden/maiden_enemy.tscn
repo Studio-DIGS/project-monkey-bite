@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://enemies/Maiden/maiden_enemy_script.gd" id="1_67eai"]
 [ext_resource type="PackedScene" uid="uid://d1xj5a7t72vxp" path="res://enemies/Maiden/maiden_ai_manager.tscn" id="2_ug773"]
-[ext_resource type="Script" path="res://common/health.gd" id="2_xhh10"]
-[ext_resource type="Script" path="res://common/hitbox.gd" id="4_stpda"]
-[ext_resource type="Script" path="res://common/hurtbox.gd" id="5_e4ir2"]
+[ext_resource type="Script" path="res://common/actor-elements/health.gd" id="2_xhh10"]
+[ext_resource type="Script" path="res://common/actor-elements/hitbox.gd" id="4_stpda"]
+[ext_resource type="Script" path="res://common/actor-elements/hurtbox.gd" id="5_e4ir2"]
 [ext_resource type="Script" path="res://enemies/Maiden/Maiden Body.gd" id="6_s2xj5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_utb2a"]

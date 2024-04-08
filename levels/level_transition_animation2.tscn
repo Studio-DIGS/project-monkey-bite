@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccb47pw44hafr"]
+[gd_scene load_steps=4 format=3 uid="uid://bgeb3iltjw876"]
 
 [ext_resource type="Script" path="res://levels/level_transition_animation2.gd" id="1_r1aag"]
 
@@ -21,7 +21,7 @@ script = ExtResource("1_r1aag")
 curve = SubResource("Curve3D_dmhy2")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Cube Type 2/Path3D"]
-transform = Transform3D(-0.966229, 0.225727, -0.12403, 0.120778, -0.028216, -0.992239, -0.227484, -0.97375, 1.42433e-07, 18.7904, 46.323, 0)
+transform = Transform3D(-0.966229, 0.225727, -0.12403, 0.120778, -0.0282158, -0.992239, -0.227483, -0.97375, 9.36397e-09, 18.7904, 46.323, 0)
 progress = 69.6786
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Cube Type 2/Path3D/PathFollow3D"]

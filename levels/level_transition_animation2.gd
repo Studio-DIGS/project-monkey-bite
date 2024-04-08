@@ -9,8 +9,7 @@ var playerBody
 
 var displacement
 
-#Levels
-@export var Hub1: PackedScene = preload("res://levels/test_scene_3.tscn")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ckgpg0ekvvmfi"]
 
-[ext_resource type="Script" path="res://common/passthru_collision.gd" id="1_6cenu"]
+[ext_resource type="Script" path="res://common/passthru-platforms/passthru_collision.gd" id="1_6cenu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7jseo"]
 size = Vector3(0.477321, 0.333302, 0.546592)

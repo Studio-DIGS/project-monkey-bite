@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d3rhah5f5godx"]
+[gd_scene load_steps=25 format=3 uid="uid://crrx4bwi01hkv"]
 
 [ext_resource type="Script" path="res://common/game_manager.gd" id="1_02cvj"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="2_kmyha"]
@@ -263,7 +263,7 @@ accel = 6.505
 [node name="TestEnemy" parent="." instance=ExtResource("16_8886b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.15295, 1.3582, -0.000691056)
 
-[node name="HealthDisplay" parent="TestEnemy" index="5"]
+[node name="HealthDisplay" parent="TestEnemy" index="6"]
 texture = SubResource("ViewportTexture_p0kvw")
 
 [node name="NPC Template" parent="." instance=ExtResource("17_gbfre")]
@@ -272,4 +272,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.80191, 0.97002, -2.08279)
 [connection signal="turn_around" from="Player" to="CameraSystem" method="_on_player_turn_around"]
 
 [editable path="TestEnemy"]
+[editable path="TestEnemy/shmovosaur"]
 [editable path="TestEnemy/Schmovosaur AI 2"]

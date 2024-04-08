@@ -4,25 +4,25 @@
 [ext_resource type="Resource" uid="uid://jvuono3vj3hl" path="res://player/attacks/slash_1.tres" id="2_06grq"]
 [ext_resource type="Script" path="res://player/body.gd" id="2_ioxg0"]
 [ext_resource type="Resource" uid="uid://c55jq6o5wd3i" path="res://player/attacks/slash_2.tres" id="3_msbl5"]
-[ext_resource type="Script" path="res://common/state_machine.gd" id="4_mjfp3"]
-[ext_resource type="Resource" uid="uid://cy52355i3cepj" path="res://player/attacks/slash_3.tres" id="4_slkb2"]
+[ext_resource type="Script" path="res://common/actor-elements/state_machine.gd" id="4_mjfp3"]
+[ext_resource type="Resource" uid="uid://dd1g32ki7pkhj" path="res://player/attacks/slash_3.tres" id="4_slkb2"]
 [ext_resource type="Resource" uid="uid://cjkks7aky4txq" path="res://player/attacks/air_slash_1.tres" id="5_4ghsq"]
 [ext_resource type="Script" path="res://player/states/player_idle.gd" id="5_jgl0y"]
 [ext_resource type="Resource" uid="uid://bxgx105dqw7k7" path="res://player/attacks/air_slash_2.tres" id="6_56cec"]
-[ext_resource type="Resource" uid="uid://d20o3ci66troi" path="res://player/attacks/zone_in.tres" id="6_yg4su"]
+[ext_resource type="Resource" uid="uid://c0k2cobe5t5ie" path="res://player/attacks/zone_in.tres" id="6_yg4su"]
 [ext_resource type="Script" path="res://player/states/player_run.gd" id="6_yy7o3"]
 [ext_resource type="Script" path="res://player/states/player_air.gd" id="7_7qn2t"]
-[ext_resource type="PackedScene" uid="uid://ckgpg0ekvvmfi" path="res://common/pass_thru_collider_check.tscn" id="7_c8ppt"]
+[ext_resource type="PackedScene" uid="uid://ckgpg0ekvvmfi" path="res://common/passthru-platforms/pass_thru_collider_check.tscn" id="7_c8ppt"]
 [ext_resource type="PackedScene" uid="uid://clkdfqmmsmcbf" path="res://player/kite_model_test.tscn" id="7_mfta1"]
 [ext_resource type="Material" uid="uid://byqgp8qoywtba" path="res://player/player_test_mat.tres" id="7_rtao6"]
 [ext_resource type="Resource" uid="uid://dfo327j7kggfr" path="res://player/attacks/air_slash_3.tres" id="7_ujuw6"]
 [ext_resource type="Script" path="res://player/states/player_land.gd" id="8_m0mi4"]
 [ext_resource type="Script" path="res://player/states/player_attack.gd" id="9_0f5gx"]
-[ext_resource type="Script" path="res://common/hurtbox.gd" id="9_sbn7q"]
-[ext_resource type="Script" path="res://common/health.gd" id="9_sjui1"]
 [ext_resource type="Script" path="res://player/controllers/human_controller.gd" id="12_1q4mr"]
-[ext_resource type="Script" path="res://common/hitbox.gd" id="12_xrx4s"]
+[ext_resource type="Script" path="res://common/actor-elements/hitbox.gd" id="12_u1r6y"]
 [ext_resource type="Script" path="res://player/controllers/cutscene_controller.gd" id="13_rj60u"]
+[ext_resource type="Script" path="res://common/actor-elements/health.gd" id="14_hr7l7"]
+[ext_resource type="Script" path="res://common/actor-elements/hurtbox.gd" id="15_ggx7t"]
 [ext_resource type="Script" path="res://player/states/player_zonein.gd" id="18_0wu4t"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_48kjw"]
@@ -741,9 +741,7 @@ bones/1/rotation = Quaternion(0.7642, -0.050608, -0.0728971, 0.638845)
 bones/5/position = Vector3(0.00740918, -0.292966, 0.773647)
 bones/5/rotation = Quaternion(0.858544, -0.131667, -0.151388, 0.471856)
 bones/6/rotation = Quaternion(-0.0958821, 0.000854705, 0.0132282, 0.995304)
-bones/6/scale = Vector3(1, 1, 1)
 bones/7/rotation = Quaternion(0.155612, -0.152723, 0.151955, 0.964039)
-bones/7/scale = Vector3(1, 1, 1)
 bones/8/rotation = Quaternion(-0.148151, -0.322741, -0.0315562, 0.934288)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(0.208121, 0.245924, -0.0379631, 0.945921)
@@ -776,7 +774,6 @@ bones/31/scale = Vector3(0.996735, 0.996735, 0.996735)
 bones/32/rotation = Quaternion(-0.518466, -0.39781, 0.185541, 0.733836)
 bones/32/scale = Vector3(1.03714, 1.03714, 1.03714)
 bones/33/position = Vector3(-7.09996e-06, 0.129824, -8.56088e-06)
-bones/33/rotation = Quaternion(-0.0709311, 0.970229, -0.230953, -0.0168765)
 bones/37/scale = Vector3(1.03714, 1.03714, 1.03714)
 bones/39/rotation = Quaternion(2.70462e-08, -0.223628, -8.59879e-09, 0.974675)
 bones/39/scale = Vector3(1.03714, 1.03714, 1.03714)
@@ -805,7 +802,6 @@ bones/69/rotation = Quaternion(0.709107, 0.299797, -0.0980737, 0.630612)
 bones/71/rotation = Quaternion(0.709107, 0.299797, -0.0980736, 0.630612)
 bones/71/scale = Vector3(1.01674, 0.967347, 1.01674)
 bones/72/rotation = Quaternion(-1.04153e-07, 0.0620523, -1.35153e-07, 0.998073)
-bones/72/scale = Vector3(1, 1, 1)
 bones/73/rotation = Quaternion(0.597629, 0.061457, -0.0463485, 0.798069)
 bones/73/scale = Vector3(1.00164, 0.952231, 1.04883)
 bones/74/rotation = Quaternion(9.08525e-08, -0.156005, 5.23366e-08, 0.987756)
@@ -880,7 +876,6 @@ bones/385/scale = Vector3(0.999999, 1, 0.999999)
 bones/388/scale = Vector3(0.999998, 1, 1)
 bones/401/rotation = Quaternion(-0.66562, 0.169564, 0.18212, 0.703584)
 bones/403/rotation = Quaternion(-0.856141, 0.219024, 0.118102, 0.452882)
-bones/404/rotation = Quaternion(0.702653, 0.0792349, 0.0792349, 0.702653)
 bones/407/rotation = Quaternion(-4.99859e-07, 0.0561159, 5.80947e-09, 0.998424)
 bones/412/rotation = Quaternion(0.171829, -0.0414726, -0.983536, 0.0375703)
 bones/412/scale = Vector3(1.00284, 1.00284, 1.00284)
@@ -960,8 +955,8 @@ bones/544/rotation = Quaternion(0.442554, 0.167711, 1.26866e-08, 0.880919)
 bones/555/position = Vector3(-1.03755, 0.53953, 0.120258)
 bones/555/rotation = Quaternion(-0.463723, -0.414919, -0.380382, 0.684188)
 
-[node name="BoneAttachment3D" parent="pmb_kite/base_human_rig/Skeleton3D" index="2"]
-transform = Transform3D(0.13345, -0.612336, 0.779253, -0.828437, 0.362637, 0.426833, -0.543951, -0.702524, -0.458888, -0.400882, 1.75567, -0.179542)
+[node name="BoneAttachment3D" parent="pmb_kite/base_human_rig/Skeleton3D" index="5"]
+transform = Transform3D(0.13345, -0.612337, 0.779252, -0.828436, 0.362638, 0.426834, -0.543953, -0.702522, -0.458888, -0.400882, 1.75566, -0.179542)
 
 [node name="AnimationPlayer" parent="pmb_kite" index="1"]
 speed_scale = 1.5
@@ -969,7 +964,7 @@ speed_scale = 1.5
 [node name="Hitbox" type="Area3D" parent="pmb_kite"]
 collision_layer = 4
 collision_mask = 64
-script = ExtResource("12_xrx4s")
+script = ExtResource("12_u1r6y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="pmb_kite/Hitbox"]
 transform = Transform3D(1, 2.12129e-22, -1.42109e-14, -6.34334e-24, 1, 2.71315e-22, 1.11437e-13, 5.19733e-24, 1, 0, 0, 0)
@@ -1023,7 +1018,7 @@ mesh = SubResource("SphereMesh_hmupo")
 [node name="Hitbox" type="Area3D" parent="Mesh"]
 collision_layer = 4
 collision_mask = 64
-script = ExtResource("12_xrx4s")
+script = ExtResource("12_u1r6y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Hitbox"]
 shape = SubResource("BoxShape3D_xio6w")
@@ -1046,13 +1041,13 @@ collide_with_bodies = false
 debug_shape_thickness = 5
 
 [node name="Health" type="Node" parent="."]
-script = ExtResource("9_sjui1")
+script = ExtResource("14_hr7l7")
 
 [node name="Hurtbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
 visible = false
 collision_layer = 8
 collision_mask = 32
-script = ExtResource("9_sbn7q")
+script = ExtResource("15_ggx7t")
 health = NodePath("../Health")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]

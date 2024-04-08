@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://enemies/Schmovosaur/Schmovosaur Enemy.gd" id="1_rup4a"]
 [ext_resource type="PackedScene" uid="uid://g8bqjbm54pik" path="res://assets/Shmovosaur/shmovosaur_model.tscn" id="2_d6424"]
-[ext_resource type="Script" path="res://common/hurtbox.gd" id="2_qtaff"]
-[ext_resource type="Script" path="res://common/hitbox.gd" id="3_s8ajp"]
-[ext_resource type="Script" path="res://common/health.gd" id="4_pjjf5"]
+[ext_resource type="Script" path="res://common/actor-elements/hurtbox.gd" id="2_qtaff"]
+[ext_resource type="Script" path="res://common/actor-elements/hitbox.gd" id="3_s8ajp"]
+[ext_resource type="Script" path="res://common/actor-elements/health.gd" id="4_pjjf5"]
 [ext_resource type="PackedScene" uid="uid://dkwnbhlmom1ch" path="res://enemies/Schmovosaur/schmovosaur_ai_2.tscn" id="5_l6hc8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q5uni"]

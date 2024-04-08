@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ey8y0wa8f8pv"]
+
+[ext_resource type="Script" path="res://enemies/Maiden/floating_cube.gd" id="1_s4nmv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_c1o56"]
+
+[node name="Floating Cube" type="Node3D"]
+script = ExtResource("1_s4nmv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_c1o56")

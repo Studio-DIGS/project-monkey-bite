@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=3 uid="uid://ua52cbpaos8t"]
+
+[ext_resource type="Script" path="res://enemies/Schmovosaur/Schmovosaur Enemy AI Manager.gd" id="1_kia0e"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oacgc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r2ny8"]
+transparency = 4
+blend_mode = 1
+albedo_color = Color(0.545098, 0.952941, 0.952941, 0.337255)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bmhoy"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(1, 1, 0)
+spread = 30.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 45.18
+angle_min = 379.3
+angle_max = 379.3
+color = Color(0.219608, 0.588235, 0.443137, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xla4b"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7t7di"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(1, 1, 0)
+spread = 25.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_d00x2"]
+radius = 0.1
+height = 0.1
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xarmf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n81so"]
+albedo_color = Color(0.8, 0.027451, 0.329412, 1)
+
+[node name="Test Enemy AI Prototype" type="Node3D"]
+
+[node name="Enemy AI Manager" type="Node" parent="."]
+script = ExtResource("1_kia0e")
+
+[node name="Charge Cooldown" type="Timer" parent="Enemy AI Manager"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Prepare Charge" type="Timer" parent="Enemy AI Manager"]
+one_shot = true
+
+[node name="SpawnPointMarker" type="Node3D" parent="."]
+visible = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SpawnPointMarker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.489979, 0)
+
+[node name="EnemyComponents" type="Node3D" parent="."]
+
+[node name="PlayerDetectionSphere" type="Area3D" parent="EnemyComponents"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyComponents/PlayerDetectionSphere"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("SphereShape3D_oacgc")
+
+[node name="Translucent Sphere" type="CSGSphere3D" parent="EnemyComponents/PlayerDetectionSphere/CollisionShape3D"]
+material = SubResource("StandardMaterial3D_r2ny8")
+
+[node name="Charge Particles" type="GPUParticles3D" parent="EnemyComponents"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.475144, 0)
+emitting = false
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.5
+process_material = SubResource("ParticleProcessMaterial_bmhoy")
+draw_pass_1 = SubResource("BoxMesh_xla4b")
+
+[node name="Charge Preparation Particles" type="GPUParticles3D" parent="EnemyComponents"]
+emitting = false
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_7t7di")
+draw_pass_1 = SubResource("SphereMesh_d00x2")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="EnemyComponents"]
+mesh = SubResource("CapsuleMesh_xarmf")
+material = SubResource("StandardMaterial3D_n81so")
+
+[connection signal="timeout" from="Enemy AI Manager/Charge Cooldown" to="Enemy AI Manager" method="_on_charge_cooldown_timeout"]
+[connection signal="timeout" from="Enemy AI Manager/Charge Cooldown" to="Enemy AI Manager" method="_on_charge_duration_timeout"]
+[connection signal="timeout" from="Enemy AI Manager/Prepare Charge" to="Enemy AI Manager" method="_on_prepare_charge_timeout"]
+[connection signal="area_entered" from="EnemyComponents/PlayerDetectionSphere" to="Enemy AI Manager" method="_on_player_detection_sphere_area_entered"]
+[connection signal="area_exited" from="EnemyComponents/PlayerDetectionSphere" to="Enemy AI Manager" method="_on_player_detection_sphere_area_exited"]

@@ -24,3 +24,6 @@ func _on_area_entered(hitbox: Hitbox):
 	
 	if health:
 		health.take_damage(hitbox.damage)
+
+func something(object: Projectile):
+	object.reverse_projectile()

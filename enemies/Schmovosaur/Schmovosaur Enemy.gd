@@ -33,3 +33,6 @@ func _on_health_death():
 func _on_timer_timeout():
 	$AnimationPlayer.play(attack_resource.animation)
 	$Hitbox.configure_hitbox(attack_resource)
+	
+func _on_schmovosaur_ai_2_check_velocity(vector: Vector3):
+	velocity = velocity + vector

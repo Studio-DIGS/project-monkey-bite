@@ -1050,7 +1050,7 @@ script = ExtResource("9_sjui1")
 
 [node name="Hurtbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
 visible = false
-collision_layer = 0
+collision_layer = 8
 collision_mask = 32
 script = ExtResource("9_sbn7q")
 health = NodePath("../Health")

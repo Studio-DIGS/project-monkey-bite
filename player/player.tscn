@@ -1,9 +1,9 @@
 [gd_scene load_steps=43 format=3 uid="uid://ceg0a8jxwnfae"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_7knqw"]
-[ext_resource type="Resource" uid="uid://dgjn3tlt2bmb7" path="res://player/attacks/slash_1.tres" id="2_06grq"]
+[ext_resource type="Resource" uid="uid://jvuono3vj3hl" path="res://player/attacks/slash_1.tres" id="2_06grq"]
 [ext_resource type="Script" path="res://player/body.gd" id="2_ioxg0"]
-[ext_resource type="Resource" uid="uid://cfk8sk153rtad" path="res://player/attacks/slash_2.tres" id="3_msbl5"]
+[ext_resource type="Resource" uid="uid://c55jq6o5wd3i" path="res://player/attacks/slash_2.tres" id="3_msbl5"]
 [ext_resource type="Script" path="res://common/state_machine.gd" id="4_mjfp3"]
 [ext_resource type="Resource" uid="uid://cy52355i3cepj" path="res://player/attacks/slash_3.tres" id="4_slkb2"]
 [ext_resource type="Resource" uid="uid://cjkks7aky4txq" path="res://player/attacks/air_slash_1.tres" id="5_4ghsq"]

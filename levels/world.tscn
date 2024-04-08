@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cj6gya66i2u14"]
+[gd_scene load_steps=24 format=3 uid="uid://cj6gya66i2u14"]
 
 [ext_resource type="Script" path="res://common/game_manager.gd" id="1_gxjrb"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="2_yuvdp"]
@@ -15,6 +15,7 @@
 [ext_resource type="ArrayMesh" uid="uid://ie1glsealiff" path="res://assets/temple/Wall_Ruined_Half_1.obj" id="14_qjvny"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="15_le3dk"]
 [ext_resource type="Sky" uid="uid://bpa6skcj0hqyy" path="res://visual_pipeline/skybox.tres" id="16_762lu"]
+[ext_resource type="PackedScene" uid="uid://pr3binha3dff" path="res://player/inventory_vis.tscn" id="17_b14ma"]
 [ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/test_enemy.tscn" id="18_03ibt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8li3"]
@@ -45,6 +46,7 @@ glow_enabled = true
 script = ExtResource("1_gxjrb")
 
 [node name="CameraSystem" parent="." node_paths=PackedStringArray("target") instance=ExtResource("15_le3dk")]
+z_as_relative = false
 target = NodePath("../Player")
 
 [node name="Environment" type="Node3D" parent="."]
@@ -258,5 +260,7 @@ accel = 6.505
 
 [node name="TestEnemy" parent="." instance=ExtResource("18_03ibt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.15295, 1.3582, -0.000691056)
+
+[node name="InventoryVis" parent="." instance=ExtResource("17_b14ma")]
 
 [connection signal="turn_around" from="Player" to="CameraSystem" method="_on_player_turn_around"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://boh4ldgvjiu36"
+path="res://.godot/imported/Kick Impact.mp3-15177c464e8c2a0675a59abb0f55b699.mp3str"
+
+[deps]
+
+source_file="res://FMOD_Assets/AsperitasAudio/Assets/SFX/Kick Impact.mp3"
+dest_files=["res://.godot/imported/Kick Impact.mp3-15177c464e8c2a0675a59abb0f55b699.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

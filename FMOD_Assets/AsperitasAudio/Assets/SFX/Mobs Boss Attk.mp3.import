@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cubnewd8b3kof"
+path="res://.godot/imported/Mobs Boss Attk.mp3-9afc025812abb61d7336017afa90d6e3.mp3str"
+
+[deps]
+
+source_file="res://FMOD_Assets/AsperitasAudio/Assets/SFX/Mobs Boss Attk.mp3"
+dest_files=["res://.godot/imported/Mobs Boss Attk.mp3-9afc025812abb61d7336017afa90d6e3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

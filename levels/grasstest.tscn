@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://u2p2vd130hqv"]
+[gd_scene load_steps=54 format=3 uid="uid://u2p2vd130hqv"]
 
 [ext_resource type="Material" uid="uid://l1ck70xcm5q5" path="res://visual_pipeline/grass/grass_floor_mat.tres" id="1_5upbt"]
 [ext_resource type="PackedScene" uid="uid://d0eaaxb0j4br2" path="res://assets/island-2.glb" id="1_vbbpf"]
@@ -27,141 +27,8 @@
 [ext_resource type="ArrayMesh" uid="uid://bpgvqyxl0mdpv" path="res://assets/temple/Wall_Ruined_Half_2.obj" id="27_6l0ry"]
 [ext_resource type="ArrayMesh" uid="uid://cxqih6juk3odd" path="res://assets/temple/Floor_Ruined_Straight_2.obj" id="28_ol8xb"]
 [ext_resource type="ArrayMesh" uid="uid://ie1glsealiff" path="res://assets/temple/Wall_Ruined_Half_1.obj" id="29_632wc"]
+[ext_resource type="PackedScene" uid="uid://r2hi5m0cek01" path="res://common/level_switcher.tscn" id="29_o1vaw"]
 [ext_resource type="ArrayMesh" uid="uid://dn3538nup1hmt" path="res://assets/temple/Wall_Ruined_Full_Cracked_1.obj" id="30_1d8p3"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_hai2b"]
-size = Vector2(84.2, 2.69)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_484kk"]
-size = Vector3(89.3271, 0.1, 8.40243)
-
-[sub_resource type="Resource" id="Resource_oipxo"]
-script = ExtResource("8_bx78m")
-amount = 5000
-enabled = true
-override_global_seed = false
-custom_seed = 0
-restrict_height = true
-reference_frame = 1
-
-[sub_resource type="Resource" id="Resource_8a522"]
-script = ExtResource("9_aejdt")
-iterations = 3
-offset_step = 0.2
-consecutive_step_multiplier = 0.75
-use_computeshader = true
-enabled = true
-override_global_seed = false
-custom_seed = 0
-restrict_height = true
-reference_frame = 0
-
-[sub_resource type="Resource" id="Resource_5a2ja"]
-script = ExtResource("10_oy5km")
-ray_direction = Vector3(0, -1, 0)
-ray_length = 5.0
-ray_offset = 1.0
-remove_points_on_miss = false
-align_with_collision_normal = false
-max_slope = 90.0
-collision_mask = 1
-exclude_mask = 0
-enabled = true
-override_global_seed = false
-custom_seed = 0
-restrict_height = false
-reference_frame = 0
-
-[sub_resource type="Resource" id="Resource_huv3v"]
-script = ExtResource("14_4nkqj")
-operation = 1
-scale = Vector3(0.35, 0.35, 0.35)
-enabled = true
-override_global_seed = false
-custom_seed = 0
-restrict_height = false
-reference_frame = 2
-
-[sub_resource type="Resource" id="Resource_bjgvg"]
-script = ExtResource("7_0f7sh")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_oipxo"), SubResource("Resource_8a522"), SubResource("Resource_5a2ja"), SubResource("Resource_huv3v")])
-
-[sub_resource type="Curve3D" id="Curve3D_ic035"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -25.6257, 0, 3.44157, 0, 0, 0, 0, 0, 0, -20.02, 0, 1.66227, 0, 0, 0, 0, 0, 0, -16.4074, 0, -0.841735, 0, 0, 0, 0, 0, 0, -1.09398, 0, -3.27497, 0, 0, 0, 0, 0, 0, 8.49647, 0, -3.73792, 0, 0, 0, 0, 0, 0, 15.6126, 0, -1.99077, 0, 0, 0, 0, 0, 0, 19.8772, 0, 1.62177, 0, 0, 0, 0, 0, 0, 28.1944, 0, 4.23783, 0, 0, 0, 0, 0, 0, 24.9943, 0, 5.33136, 0, 0, 0, 0, 0, 0, 28.3392, 0, 7.49526, 0, 0, 0, 0, 0, 0, 13.1378, 0, 8.68966, 0, 0, 0, 0, 0, 0, 7.17348, 0, 7.02654, 0, 0, 0, 0, 0, 0, -3.76628, 0, 7.94637, 0, 0, 0, 0, 0, 0, -15.6363, 0, 6.75998),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-}
-point_count = 14
-
-[sub_resource type="Resource" id="Resource_q7ic8"]
-script = ExtResource("14_vilja")
-closed = true
-thickness = 0.0
-curve = SubResource("Curve3D_ic035")
-
-[sub_resource type="Resource" id="Resource_kmkw7"]
-script = ExtResource("8_bx78m")
-amount = 20
-enabled = true
-override_global_seed = false
-custom_seed = 0
-restrict_height = true
-reference_frame = 1
-
-[sub_resource type="Resource" id="Resource_x83rl"]
-script = ExtResource("9_aejdt")
-iterations = 3
-offset_step = 0.2
-consecutive_step_multiplier = 0.75
-use_computeshader = true
-enabled = true
-override_global_seed = false
-custom_seed = 0
-restrict_height = true
-reference_frame = 0
-
-[sub_resource type="Resource" id="Resource_opc2l"]
-script = ExtResource("10_oy5km")
-ray_direction = Vector3(0, -1, 0)
-ray_length = 5.0
-ray_offset = 5.0
-remove_points_on_miss = false
-align_with_collision_normal = false
-max_slope = 90.0
-collision_mask = 1
-exclude_mask = 0
-enabled = false
-override_global_seed = false
-custom_seed = 0
-restrict_height = false
-reference_frame = 0
-
-[sub_resource type="Resource" id="Resource_wo1kp"]
-script = ExtResource("14_4nkqj")
-operation = 1
-scale = Vector3(0.35, 0.45, 0.35)
-enabled = true
-override_global_seed = false
-custom_seed = 0
-restrict_height = false
-reference_frame = 2
-
-[sub_resource type="Resource" id="Resource_gn83c"]
-script = ExtResource("7_0f7sh")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_kmkw7"), SubResource("Resource_x83rl"), SubResource("Resource_opc2l"), SubResource("Resource_wo1kp")])
-
-[sub_resource type="Curve3D" id="Curve3D_70pl6"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -25.6257, 0, 3.44157, 0, 0, 0, 0, 0, 0, -20.02, 0, 1.66227, 0, 0, 0, 0, 0, 0, -16.4074, 0, -0.841735, 0, 0, 0, 0, 0, 0, -1.09398, 0, -3.27497, 0, 0, 0, 0, 0, 0, 8.49647, 0, -3.73792, 0, 0, 0, 0, 0, 0, 15.6126, 0, -1.99077, 0, 0, 0, 0, 0, 0, 19.8772, 0, 1.62177, 0, 0, 0, 0, 0, 0, 28.1944, 0, 4.23783, 0, 0, 0, 0, 0, 0, 24.9943, 0, 5.33136, 0, 0, 0, 0, 0, 0, 28.3392, 0, 7.49526, 0, 0, 0, 0, 0, 0, 13.1378, 0, 8.68966, 0, 0, 0, 0, 0, 0, 7.17348, 0, 7.02654, 0, 0, 0, 0, 0, 0, -3.76628, 0, 7.94637, 0, 0, 0, 0, 0, 0, -15.6363, 0, 6.75998),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-}
-point_count = 14
-
-[sub_resource type="Resource" id="Resource_y4ets"]
-script = ExtResource("14_vilja")
-closed = true
-thickness = 0.0
-curve = SubResource("Curve3D_70pl6")
 
 [sub_resource type="Shader" id="Shader_vd8ur"]
 code = "
@@ -306,78 +173,145 @@ sky = SubResource("Sky_xpkr3")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_hai2b"]
+size = Vector2(84.2, 2.69)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_484kk"]
+size = Vector3(89.3271, 0.1, 8.40243)
+
+[sub_resource type="Resource" id="Resource_v4644"]
+script = ExtResource("8_bx78m")
+amount = 5000
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_lfegb"]
+script = ExtResource("9_aejdt")
+iterations = 3
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = true
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_lcitd"]
+script = ExtResource("10_oy5km")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 5.0
+ray_offset = 1.0
+remove_points_on_miss = false
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_vll0d"]
+script = ExtResource("14_4nkqj")
+operation = 1
+scale = Vector3(0.35, 0.35, 0.35)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_q3fua"]
+script = ExtResource("7_0f7sh")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_v4644"), SubResource("Resource_lfegb"), SubResource("Resource_lcitd"), SubResource("Resource_vll0d")])
+
+[sub_resource type="Curve3D" id="Curve3D_ic035"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -25.6257, 0, 3.44157, 0, 0, 0, 0, 0, 0, -20.02, 0, 1.66227, 0, 0, 0, 0, 0, 0, -16.4074, 0, -0.841735, 0, 0, 0, 0, 0, 0, -1.09398, 0, -3.27497, 0, 0, 0, 0, 0, 0, 8.49647, 0, -3.73792, 0, 0, 0, 0, 0, 0, 15.6126, 0, -1.99077, 0, 0, 0, 0, 0, 0, 19.8772, 0, 1.62177, 0, 0, 0, 0, 0, 0, 28.1944, 0, 4.23783, 0, 0, 0, 0, 0, 0, 24.9943, 0, 5.33136, 0, 0, 0, 0, 0, 0, 28.3392, 0, 7.49526, 0, 0, 0, 0, 0, 0, 13.1378, 0, 8.68966, 0, 0, 0, 0, 0, 0, 7.17348, 0, 7.02654, 0, 0, 0, 0, 0, 0, -3.76628, 0, 7.94637, 0, 0, 0, 0, 0, 0, -15.6363, 0, 6.75998),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 14
+
+[sub_resource type="Resource" id="Resource_q7ic8"]
+script = ExtResource("14_vilja")
+closed = true
+thickness = 0.0
+curve = SubResource("Curve3D_ic035")
+
+[sub_resource type="Resource" id="Resource_yyt7e"]
+script = ExtResource("8_bx78m")
+amount = 20
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_eqg25"]
+script = ExtResource("9_aejdt")
+iterations = 3
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = true
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_hdi2o"]
+script = ExtResource("10_oy5km")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = false
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_ui3j4"]
+script = ExtResource("14_4nkqj")
+operation = 1
+scale = Vector3(0.35, 0.45, 0.35)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_ogje3"]
+script = ExtResource("7_0f7sh")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_yyt7e"), SubResource("Resource_eqg25"), SubResource("Resource_hdi2o"), SubResource("Resource_ui3j4")])
+
+[sub_resource type="Curve3D" id="Curve3D_70pl6"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -25.6257, 0, 3.44157, 0, 0, 0, 0, 0, 0, -20.02, 0, 1.66227, 0, 0, 0, 0, 0, 0, -16.4074, 0, -0.841735, 0, 0, 0, 0, 0, 0, -1.09398, 0, -3.27497, 0, 0, 0, 0, 0, 0, 8.49647, 0, -3.73792, 0, 0, 0, 0, 0, 0, 15.6126, 0, -1.99077, 0, 0, 0, 0, 0, 0, 19.8772, 0, 1.62177, 0, 0, 0, 0, 0, 0, 28.1944, 0, 4.23783, 0, 0, 0, 0, 0, 0, 24.9943, 0, 5.33136, 0, 0, 0, 0, 0, 0, 28.3392, 0, 7.49526, 0, 0, 0, 0, 0, 0, 13.1378, 0, 8.68966, 0, 0, 0, 0, 0, 0, 7.17348, 0, 7.02654, 0, 0, 0, 0, 0, 0, -3.76628, 0, 7.94637, 0, 0, 0, 0, 0, 0, -15.6363, 0, 6.75998),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 14
+
+[sub_resource type="Resource" id="Resource_y4ets"]
+script = ExtResource("14_vilja")
+closed = true
+thickness = 0.0
+curve = SubResource("Curve3D_70pl6")
+
 [node name="World" type="Node3D"]
 
-[node name="Environment" type="Node3D" parent="."]
+[node name="Characters Scripts and World Settings" type="Node" parent="."]
 
-[node name="Hidden Collision Boxes" type="Node" parent="Environment"]
-
-[node name="Platform ground" type="Node" parent="Environment"]
-
-[node name="Test" type="StaticBody3D" parent="Environment/Platform ground"]
-
-[node name="Islands 2 color" parent="Environment/Platform ground/Test" instance=ExtResource("1_vbbpf")]
-transform = Transform3D(4.43777, -0.000139006, -0.20084, 0.000132789, 4.6403, -7.90184e-06, 0.266452, 2.61574e-06, 3.34501, 5.7086, -0.0585171, -2.10298)
-
-[node name="Floor" type="MeshInstance3D" parent="Environment/Platform ground/Test"]
-transform = Transform3D(0.501877, 0, 0, 0, 1, 0, 0, 0, 2.50393, 4.69592, 0, -0.338267)
-visible = false
-material_override = ExtResource("1_5upbt")
-extra_cull_margin = 5131.19
-mesh = SubResource("PlaneMesh_hai2b")
-skeleton = NodePath("../../../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Platform ground/Test"]
-transform = Transform3D(0.550753, 0, 0, 0, 0.550753, 0, 0, 0, 0.550753, 3.60609, -0.05, 0)
-shape = SubResource("BoxShape3D_484kk")
-
-[node name="flower" parent="Environment/Platform ground/Test" instance=ExtResource("3_1iyua")]
-visible = false
-
-[node name="grass_plane" parent="Environment/Platform ground/Test" instance=ExtResource("3_cb677")]
-visible = false
-
-[node name="ProtonScatter" type="Node3D" parent="Environment/Platform ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.198906, 0, 0.608515)
-script = ExtResource("6_y7yvu")
-modifier_stack = SubResource("Resource_bjgvg")
-Performance/use_chunks = true
-Performance/chunk_dimensions = Vector3(15, 15, 15)
-
-[node name="ScatterItem" type="Node3D" parent="Environment/Platform ground/ProtonScatter"]
-script = ExtResource("11_wc33o")
-source = 0
-override_material = ExtResource("4_bj8gv")
-override_cast_shadow = 0
-path = "../../Test/grass_plane"
-
-[node name="ScatterShape" type="Node3D" parent="Environment/Platform ground/ProtonScatter"]
-transform = Transform3D(0.864968, 0, -2.57781e-08, 0, 0.864968, 0, 2.57781e-08, 0, 0.864968, 2.34965, -0.00012207, -3.91424)
-script = ExtResource("12_3xvp0")
-shape = SubResource("Resource_q7ic8")
-
-[node name="ProtonScatter2" type="Node3D" parent="Environment/Platform ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.289489, 0)
-script = ExtResource("6_y7yvu")
-modifier_stack = SubResource("Resource_gn83c")
-Performance/use_chunks = true
-Performance/chunk_dimensions = Vector3(15, 15, 15)
-
-[node name="ScatterItem" type="Node3D" parent="Environment/Platform ground/ProtonScatter2"]
-script = ExtResource("11_wc33o")
-source = 0
-override_material = ExtResource("17_nw5bu")
-override_cast_shadow = 0
-path = "../../Test/flower"
-
-[node name="ScatterShape3" type="Node3D" parent="Environment/Platform ground/ProtonScatter2"]
-transform = Transform3D(0.862277, 0, -2.56979e-08, 0, 0.862277, 0, 2.56979e-08, 0, 0.862277, 2.54856, 0.0437675, -3.10296)
-script = ExtResource("12_3xvp0")
-shape = SubResource("Resource_y4ets")
-
-[node name="Characters Scripts and World Settings" type="Node" parent="Environment"]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment/Characters Scripts and World Settings"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Characters Scripts and World Settings"]
 transform = Transform3D(0.52992, 0.772914, 0.348984, -6.21369e-08, -0.411514, 0.911403, 0.848048, -0.482971, -0.218069, 0, 0, 0)
 light_color = Color(1, 1, 0.941176, 1)
 light_energy = 1.5
@@ -387,90 +321,158 @@ directional_shadow_mode = 0
 directional_shadow_split_1 = 0.003
 directional_shadow_split_2 = 0.37
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment/Characters Scripts and World Settings"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Characters Scripts and World Settings"]
 environment = SubResource("Environment_y8ynd")
 
-[node name="Player" parent="Environment/Characters Scripts and World Settings" instance=ExtResource("5_1yqo3")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11.7451, 1.41166, -0.0926752)
+[node name="Player" parent="Characters Scripts and World Settings" instance=ExtResource("5_1yqo3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.6788, 1.41166, -0.0926753)
 accel = 6.505
 
-[node name="CameraSystem" parent="Environment/Characters Scripts and World Settings" node_paths=PackedStringArray("target") instance=ExtResource("6_65pp7")]
+[node name="CameraSystem" parent="Characters Scripts and World Settings" node_paths=PackedStringArray("target") instance=ExtResource("6_65pp7")]
 target = NodePath("../Player")
 
-[node name="TestEnemy" parent="Environment/Characters Scripts and World Settings" instance=ExtResource("7_sut7j")]
+[node name="TestEnemy" parent="Characters Scripts and World Settings" instance=ExtResource("7_sut7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.452, 1.06, 0)
 
-[node name="TestEnemy2" parent="Environment/Characters Scripts and World Settings" instance=ExtResource("7_sut7j")]
+[node name="TestEnemy2" parent="Characters Scripts and World Settings" instance=ExtResource("7_sut7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.9526, 4.45, -0.23683)
 
-[node name="TestEnemy3" parent="Environment/Characters Scripts and World Settings" instance=ExtResource("7_sut7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.511, 5.625, 0)
+[node name="Environment" type="Node3D" parent="."]
 
-[node name="FloorRuinedCornerInner1" type="MeshInstance3D" parent="."]
+[node name="Test" type="StaticBody3D" parent="Environment"]
+
+[node name="Islands 2 color" parent="Environment/Test" instance=ExtResource("1_vbbpf")]
+transform = Transform3D(4.43777, -0.000139006, -0.20084, 0.000132789, 4.6403, -7.90184e-06, 0.266452, 2.61574e-06, 3.34501, 5.7086, -0.0585171, -2.10298)
+
+[node name="Floor" type="MeshInstance3D" parent="Environment/Test"]
+transform = Transform3D(0.501877, 0, 0, 0, 1, 0, 0, 0, 2.50393, 4.69592, 0, -0.338267)
+visible = false
+material_override = ExtResource("1_5upbt")
+extra_cull_margin = 5131.19
+mesh = SubResource("PlaneMesh_hai2b")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Test"]
+transform = Transform3D(0.550753, 0, 0, 0, 0.550753, 0, 0, 0, 0.550753, 3.60609, -0.05, 0)
+shape = SubResource("BoxShape3D_484kk")
+
+[node name="flower" parent="Environment/Test" instance=ExtResource("3_1iyua")]
+visible = false
+
+[node name="grass_plane" parent="Environment/Test" instance=ExtResource("3_cb677")]
+visible = false
+
+[node name="ProtonScatter" type="Node3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.198906, 0, 0.608515)
+script = ExtResource("6_y7yvu")
+modifier_stack = SubResource("Resource_q3fua")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="Environment/ProtonScatter"]
+script = ExtResource("11_wc33o")
+source = 0
+override_material = ExtResource("4_bj8gv")
+override_cast_shadow = 0
+path = "../../Test/grass_plane"
+
+[node name="ScatterShape" type="Node3D" parent="Environment/ProtonScatter"]
+transform = Transform3D(0.864968, 0, -2.57781e-08, 0, 0.864968, 0, 2.57781e-08, 0, 0.864968, 2.34965, -0.00012207, -3.91424)
+script = ExtResource("12_3xvp0")
+shape = SubResource("Resource_q7ic8")
+
+[node name="ProtonScatter2" type="Node3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.289489, 0)
+script = ExtResource("6_y7yvu")
+modifier_stack = SubResource("Resource_ogje3")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="Environment/ProtonScatter2"]
+script = ExtResource("11_wc33o")
+source = 0
+override_material = ExtResource("17_nw5bu")
+override_cast_shadow = 0
+path = "../../Test/flower"
+
+[node name="ScatterShape3" type="Node3D" parent="Environment/ProtonScatter2"]
+transform = Transform3D(0.862277, 0, -2.56979e-08, 0, 0.862277, 0, 2.56979e-08, 0, 0.862277, 2.54856, 0.0437675, -3.10296)
+script = ExtResource("12_3xvp0")
+shape = SubResource("Resource_y4ets")
+
+[node name="FloorRuinedCornerInner1" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(-2.82798, 0, -0.782621, 0, 6.4854, 0, 0.782621, 0, -2.82798, -5.49461, 0.848454, -2.16365)
 mesh = ExtResource("22_bw6ie")
+skeleton = NodePath("../..")
 
-[node name="FloorRuinedCornerOuter1" type="MeshInstance3D" parent="."]
+[node name="FloorRuinedCornerOuter1" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(3.15248, 0, 1.46159, 0, 4.54688, 0, -1.46159, 0, 3.15248, -0.735281, 0.624943, 1.08475)
 mesh = ExtResource("23_mxb1r")
+skeleton = NodePath("../..")
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Node3D" type="Node3D" parent="Environment"]
 transform = Transform3D(-0.642212, -0.206069, -0.469527, -0.27058, 0.775407, 0.0297791, 0.435553, 0.177864, -0.673805, -10.5399, -0.270979, -1.87574)
 
-[node name="PillarLargeBeam" type="MeshInstance3D" parent="Node3D"]
+[node name="PillarLargeBeam" type="MeshInstance3D" parent="Environment/Node3D"]
 transform = Transform3D(-3.57628e-07, -2, -5.96046e-08, 8.75, -1.19209e-07, 0, -1.19209e-07, 0, 2, 0, 0, 0)
 mesh = ExtResource("24_af5uu")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="PillarLargeArchTop" type="MeshInstance3D" parent="Node3D"]
+[node name="PillarLargeArchTop" type="MeshInstance3D" parent="Environment/Node3D"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.999553, 4.37271, 0)
 mesh = ExtResource("25_gjc84")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="Node3D2" type="Node3D" parent="."]
+[node name="Node3D2" type="Node3D" parent="Environment"]
 transform = Transform3D(0.62025, 0.285995, 0.457003, -0.0988782, 0.745164, -0.332129, -0.52997, 0.195687, 0.59682, 8.10524, -1.50089, -6.92945)
 
-[node name="PillarLargeBeam" type="MeshInstance3D" parent="Node3D2"]
+[node name="PillarLargeBeam" type="MeshInstance3D" parent="Environment/Node3D2"]
 transform = Transform3D(-3.57628e-07, -2, -5.96046e-08, 8.75, -1.19209e-07, 0, -1.19209e-07, 0, 2, 0, 0, 0)
 mesh = ExtResource("24_af5uu")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="PillarLargeArchTop" type="MeshInstance3D" parent="Node3D2"]
+[node name="PillarLargeArchTop" type="MeshInstance3D" parent="Environment/Node3D2"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.999553, 4.37271, 0)
 mesh = ExtResource("25_gjc84")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="PillarLargeTop" type="MeshInstance3D" parent="."]
+[node name="PillarLargeTop" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(1.64087, 0.327163, 0, -0.327163, 1.64087, 0, 0, 0, 1.67317, 0.074618, -0.462983, -5.07567)
 mesh = ExtResource("25_dluoj")
+skeleton = NodePath("../..")
 
-[node name="WallRuinedCornerOuter2" type="MeshInstance3D" parent="."]
+[node name="WallRuinedCornerOuter2" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(-4.07925, 0, 1.26687, 0, 4.27145, 0, -1.26687, 0, -4.07925, 1.50596, 1.8999e-07, -0.727921)
 mesh = ExtResource("26_dsii4")
+skeleton = NodePath("../..")
 
-[node name="WallRuinedHalf2" type="MeshInstance3D" parent="."]
+[node name="WallRuinedHalf2" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(3.1, 0, 0.599267, 0, 3.15739, 0, -0.599267, 0, 3.1, 6.18739, -0.889725, 0.656438)
 mesh = ExtResource("27_6l0ry")
+skeleton = NodePath("../..")
 
-[node name="Node3D3" type="StaticBody3D" parent="."]
+[node name="Node3D3" type="StaticBody3D" parent="Environment"]
 transform = Transform3D(0.998516, 0, -0.0544622, 0, 1, 0, 0.0544622, 0, 0.998516, 16.8626, 9.53674e-07, -0.699571)
 
-[node name="FloorRuinedStraight2" type="MeshInstance3D" parent="Node3D3"]
+[node name="FloorRuinedStraight2" type="MeshInstance3D" parent="Environment/Node3D3"]
 transform = Transform3D(-7.98312, -1.75728, -0.0969781, -3.02815, 4.48806, -0.278573, 0.810159, -0.540774, -1.99683, -3.2267, 1.41949, 1.01155)
 mesh = ExtResource("28_ol8xb")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="WallRuinedHalf1" type="MeshInstance3D" parent="Node3D3"]
+[node name="WallRuinedHalf1" type="MeshInstance3D" parent="Environment/Node3D3"]
 transform = Transform3D(-5.47749, 0, -0.432383, 0, 3.38361, 0, 0.392344, 0, -6.03648, 3.66328, 1.07194, 3.01383)
 mesh = ExtResource("29_632wc")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="WallRuinedFullCracked1" type="MeshInstance3D" parent="Node3D3"]
+[node name="WallRuinedFullCracked1" type="MeshInstance3D" parent="Environment/Node3D3"]
 transform = Transform3D(5.92137, 0, 0.0854214, 0, 3.20357, 0, -0.0743105, 0, 6.80671, 3.358, -0.95739, -3.40767)
 mesh = ExtResource("30_1d8p3")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Node3D3"]
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Environment/Node3D3"]
 transform = Transform3D(0.996787, 0, 0.0800945, 0, 1, 0, -0.0800945, 0, 0.996787, -0.69908, 0.96597, 0.305486)
 depth = 2.0
 polygon = PackedVector2Array(1.39565, 1.88135, 2.75837, 1.80536, 4.07546, 2.50522, 5.23813, 2.63283, 5.67768, 2.3209, 6.61349, 2.27836, 7.05303, -1.89024, 1.14042, -1.90442, 1.14042, 0.761218, -6.14754, -2.03203, -6.51619, -1.08204)
+
+[node name="LevelSwitcher" parent="." instance=ExtResource("29_o1vaw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.3983, 0, 0)

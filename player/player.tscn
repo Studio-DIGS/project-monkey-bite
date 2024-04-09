@@ -713,6 +713,7 @@ _data = {
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("hitbox")]
 collision_layer = 2
+axis_lock_linear_z = true
 script = ExtResource("1_7knqw")
 speed = 6.0
 min_jump_height = 7.0

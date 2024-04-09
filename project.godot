@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="project-monkey-bite"
-run/main_scene="res://levels/world.tscn"
+run/main_scene="res://levels/grasstest.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 GameManager="*res://common/game_manager.gd"
 InventoryManager="*res://common/inventory/inventory_manager.gd"
 SaverLoader="*res://common/inventory/saver_loader.gd"
+
+[debug]
+
+shapes/collision/shape_color=Color(0.92549, 0.160784, 0.541176, 0.823529)
 
 [display]
 

@@ -16,3 +16,5 @@ mono_crash.*.json
 
 #ignore FMOD cache
 FMOD_Assets/AsperitasAudio/.cache
+#DO NOT IGNORE RESOURCE FILES IN ADDONS
+!addons/FMOD/editor/resources

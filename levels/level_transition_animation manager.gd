@@ -7,8 +7,7 @@ var enableInteract: bool
 var threshHold: bool = false
 var playerBody
 
-#Levels
-@export var Hub1: PackedScene = preload("res://levels/test_scene_4.tscn")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -54,7 +53,7 @@ func _on_player_detection_portal_area_exited(area): #Prevents you from interacti
 func _on_player_detection_portal_2_area_entered(area): #Transfer zones
 	if area.name == "PlayerArea":
 		print("Sending player to other world")
-		get_tree().change_scene_to_packed(Hub1)
+#		get_tree().change_scene_to_packed(Hub1)
 	
 
 func _on_player_detection_portal_3_area_entered(area): #Allows player to move again

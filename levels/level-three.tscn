@@ -4,8 +4,8 @@
 [ext_resource type="Material" uid="uid://bdrk3hn2y0uie" path="res://visual_pipeline/grass/grass_floor.tres" id="3_nplr7"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="5_c8upy"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="6_bujsr"]
-[ext_resource type="PackedScene" uid="uid://2ukvx21naqis" path="res://assets/lillian-assets/Textures/rocc.tscn" id="17_kcpdg"]
-[ext_resource type="PackedScene" uid="uid://j5u21dt7qegf" path="res://assets/lillian-assets/Textures/dock.tscn" id="18_8hddh"]
+[ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/rocc.tscn" id="17_kcpdg"]
+[ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/dock.tscn" id="18_8hddh"]
 
 [sub_resource type="Shader" id="Shader_vd8ur"]
 code = "

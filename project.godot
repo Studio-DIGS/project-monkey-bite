@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GameManager="*res://common/game_manager.gd"
 InventoryManager="*res://common/inventory/inventory_manager.gd"
 SaverLoader="*res://common/inventory/saver_loader.gd"
+FMODRuntime="*res://addons/FMOD/runtime/fmod_runtime_manager.gd"
 
 [debug]
 

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dss2eirx3xbrp"
+path="res://.godot/imported/Landing 3.mp3-eb4d0e3788cbc6d8dada0183928eaae9.mp3str"
+
+[deps]
+
+source_file="res://FMOD_Assets/AsperitasAudio/Assets/SFX/Landing 3.mp3"
+dest_files=["res://.godot/imported/Landing 3.mp3-eb4d0e3788cbc6d8dada0183928eaae9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

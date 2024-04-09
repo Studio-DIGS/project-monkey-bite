@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cswgk8vcysly7"
+path="res://.godot/imported/Mobs boss die.mp3-c1369d05f3563f830ded987d1430a994.mp3str"
+
+[deps]
+
+source_file="res://FMOD_Assets/AsperitasAudio/Assets/SFX/Mobs boss die.mp3"
+dest_files=["res://.godot/imported/Mobs boss die.mp3-c1369d05f3563f830ded987d1430a994.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://gnjl22iq4jbw"
+path="res://.godot/imported/Parry parry 2.mp3-898d58357ef42892654f4df001fe4d66.mp3str"
+
+[deps]
+
+source_file="res://FMOD_Assets/AsperitasAudio/Assets/SFX/Parry parry 2.mp3"
+dest_files=["res://.godot/imported/Parry parry 2.mp3-898d58357ef42892654f4df001fe4d66.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

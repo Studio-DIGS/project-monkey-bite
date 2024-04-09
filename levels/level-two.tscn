@@ -812,7 +812,7 @@ size = Vector3(16.1495, 15.1027, 11.4626)
 transform = Transform3D(3.40365, 0, 0, 0, 9.50834, 0, 0, 0, 3.58019, 57.1708, -7.06395, 1.94342)
 
 [node name="HCB1" type="CSGBox3D" parent="Environment/Parkour Stumps/treestump"]
-transform = Transform3D(0.0917486, 0, -0.00174858, 0, 0.00374623, 0, 0.00216057, 0, 0.0742532, 0.0120087, -0.0336147, 0.041453)
+transform = Transform3D(0.091774, 0, 0, 0, 0.00374623, 0, 0, 0, 0.0742738, 0.0120087, -0.0336147, 0.0414531)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
@@ -821,8 +821,8 @@ size = Vector3(3.54245, 42.3174, 23.7022)
 [node name="treestump2" parent="Environment/Parkour Stumps" instance=ExtResource("11_7qdg5")]
 transform = Transform3D(3.05898, 0, 1.5699, 0, 17.6123, 0, -1.49249, 0, 3.21763, 60.3139, -6.77134, 1.13653)
 
-[node name="HCB1" type="CSGBox3D" parent="Environment/Parkour Stumps/treestump2"]
-transform = Transform3D(0.0804399, 0, -0.0357555, 0, 0.00374623, 0, 0.0441802, 0, 0.0651009, 0.012002, -0.0336148, 0.0414534)
+[node name="HCB2" type="CSGBox3D" parent="Environment/Parkour Stumps/treestump2"]
+transform = Transform3D(0.0824803, 0, -0.0342579, 0, 0.00374623, 0, 0.0382583, 0, 0.0667523, 0.0120029, -0.0336148, 0.0414534)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
@@ -831,8 +831,8 @@ size = Vector3(3.54245, 42.3174, 23.7022)
 [node name="treestump3" parent="Environment/Parkour Stumps" instance=ExtResource("11_7qdg5")]
 transform = Transform3D(3.25991, 0, 1.02946, 0, 34.7327, 0, -0.978702, 0, 3.42899, 63.3573, -5.80674, 1.13653)
 
-[node name="HCB1" type="CSGBox3D" parent="Environment/Parkour Stumps/treestump3"]
-transform = Transform3D(0.0896915, 0, -0.0157326, 0, 0.00374623, 0, 0.0194395, 0, 0.0725884, 0.0120087, -0.0336147, 0.0414529)
+[node name="HCB2" type="CSGBox3D" parent="Environment/Parkour Stumps/treestump3"]
+transform = Transform3D(0.0878981, 0, -0.0224646, 0, 0.00374623, 0, 0.0250879, 0, 0.071137, 0.0120068, -0.0336147, 0.0414529)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
@@ -841,8 +841,8 @@ size = Vector3(3.54245, 42.3174, 23.7022)
 [node name="treestump4" parent="Environment/Parkour Stumps" instance=ExtResource("11_7qdg5")]
 transform = Transform3D(3.25991, 0, 1.02946, 0, 60.4274, 0, -0.978702, 0, 3.42899, 67.7162, -4.57347, 1.8432)
 
-[node name="HCB1" type="CSGBox3D" parent="Environment/Parkour Stumps/treestump4"]
-transform = Transform3D(0.100268, 0, -0.015081, 0, 0.00374623, 0, 0.0205966, 0, 0.0734168, -0.00771332, -0.0336147, 0.0358257)
+[node name="HCB2" type="CSGBox3D" parent="Environment/Parkour Stumps"]
+transform = Transform3D(0.348404, 0, 0, 0, 0.226375, 0, 0, 0, 0.268334, 67.7279, -6.60472, 1.9736)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
@@ -852,14 +852,14 @@ size = Vector3(3.54245, 42.3174, 23.7022)
 transform = Transform3D(1.00564, 7.27492, 0.264996, -0.859598, 8.51092, -0.226512, -0.397184, -1.5275e-07, 1.16117, 64.076, -5.72642, 1.25238)
 
 [node name="PassthruPlatform" parent="Environment/Parkour Stumps/treestump5" instance=ExtResource("13_ixcym")]
-transform = Transform3D(0.140296, -6.0409, -0.994478, 0.015447, 0.910327, 6.14729e-09, 0.0479887, -2.06632, 3.77398, -0.0538063, 0.00161743, -0.018117)
+transform = Transform3D(0.184466, -3.82339, -1.05631, 0.0203103, 0.576161, -1.29044e-07, 0.0630976, -1.30781, 4.00862, -0.0538063, 0.00161743, -0.0181141)
 visible = false
 
 [node name="treestump6" parent="Environment/Parkour Stumps" instance=ExtResource("11_7qdg5")]
 transform = Transform3D(0.627629, 26.448, 0.365196, -1.06389, 15.8162, -0.559849, -0.482714, -0.470531, 1.70872, 70.1566, -2.01271, 1.92059)
 
 [node name="tree" parent="Environment/Parkour Stumps/treestump6" instance=ExtResource("14_0c633")]
-transform = Transform3D(3.35237, 0.0252471, -1.40763, -0.00199182, 0.169121, -0.0025406, 0.946497, 0.0537034, 2.60315, -9.25864, 0.060299, -2.63441)
+transform = Transform3D(3.35237, -0.0123794, -0.77769, -0.00199182, 0.17325, -0.758065, 0.946497, 0.0442109, 2.75288, -9.25864, 0.060299, -2.63441)
 
 [node name="HCB1" type="CSGBox3D" parent="Environment/Parkour Stumps"]
 transform = Transform3D(0.0372599, -0.00424426, 0, 0.0242145, 0.00653084, 0, 0, 0, 0.0416442, 71.1273, -1.86375, 1.67047)

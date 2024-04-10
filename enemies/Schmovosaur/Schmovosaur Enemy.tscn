@@ -9,13 +9,13 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q5uni"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmqyo"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c1moo"]
 diffuse_mode = 3
 albedo_color = Color(0.921569, 0.341176, 0.341176, 1)
 emission = Color(1, 1, 1, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6xy7g"]
-material = SubResource("StandardMaterial3D_vmqyo")
+material = SubResource("StandardMaterial3D_c1moo")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g0es1"]
 radius = 0.610806
@@ -183,14 +183,14 @@ _data = {
 [sub_resource type="ViewportTexture" id="ViewportTexture_64m1x"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e5slg"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5prjw"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sm785"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdb47"]
 bg_color = Color(0.32549, 0.741176, 0.462745, 1)
 
 [sub_resource type="Theme" id="Theme_hxsbk"]
-ProgressBar/styles/background = SubResource("StyleBoxEmpty_e5slg")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_sm785")
+ProgressBar/styles/background = SubResource("StyleBoxEmpty_5prjw")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_cdb47")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jfmux"]
 

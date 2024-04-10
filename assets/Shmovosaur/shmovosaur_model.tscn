@@ -1,5 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://g8bqjbm54pik"]
+[gd_scene load_steps=3 format=3 uid="uid://g8bqjbm54pik"]
 
 [ext_resource type="PackedScene" uid="uid://cn21u0i6lh2uy" path="res://assets/Shmovosaur/shmovosaur.gltf" id="1_88b73"]
+[ext_resource type="Material" uid="uid://dy8a1rdmhvupp" path="res://assets/Shmovosaur/ShmovosaurMaterial.tres" id="2_uvjjc"]
 
 [node name="shmovosaur" instance=ExtResource("1_88b73")]
+
+[node name="New Model With Armature" parent="Schmovosaur Rig/Skeleton3D" index="0"]
+material_override = ExtResource("2_uvjjc")

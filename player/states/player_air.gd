@@ -5,7 +5,7 @@ var jump_force: float
 var jumping = false
 
 func enter(msg := {}):
-	jump_force = 0
+	jump_force = 0.0
 	if msg.has("do_jump"):
 		player.anim.play("Jump")
 		player.velocity.y = player.min_jump_height
@@ -17,8 +17,8 @@ func enter(msg := {}):
 
 func physics_update(delta):
 	if jumping:
-		if player.jump_time > 0.0 and jump_force <= player.max_jump_height:
-			jump_force = max(player.jump_time * player.jump_force_coefficient, player.min_jump_height)
+		if player.jump_time > 0.0 and jump_force < player.max_jump_height:
+			jump_force = min(player.jump_time * player.jump_force_coefficient, player.max_jump_height)
 			player.velocity.y = jump_force
 		else:
 			jumping = false

@@ -37,7 +37,8 @@ func physics_update(delta):
 		player.velocity.y -= player.gravity * delta
 	
 	# handle movement
-	player.velocity.x = lerp(player.velocity.x, 0.0, delta * player.accel)
+	var hori_velocity = combo[combo_counter].movement.x * player.orientation
+	player.velocity.x = lerp(player.velocity.x, hori_velocity, delta * player.accel)
 	player.velocity.y = lerp(player.velocity.y, 0.0, delta * player.accel)
 	player.move_and_slide()
 	

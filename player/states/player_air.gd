@@ -42,3 +42,5 @@ func physics_update(delta):
 		jumping = false
 		attack_tries = 1 # reset number of attempts at an air attack
 		state_machine.transition_to("Land")
+	
+	player.reorient()

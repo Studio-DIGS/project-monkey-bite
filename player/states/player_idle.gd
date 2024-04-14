@@ -21,3 +21,8 @@ func physics_update(delta):
 	
 	elif player.try_attack:
 		state_machine.transition_to("Attack")
+	
+	elif player.try_throw:
+		state_machine.transition_to("Throw")
+	
+	player.reorient()

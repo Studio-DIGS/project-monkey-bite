@@ -75,6 +75,8 @@ func attack():
 
 func throw():
 	try_throw = true
+	await get_tree().process_frame
+	try_throw = false;
 
 #func stop_attack():
 #	try_attack = false
@@ -95,7 +97,6 @@ func _physics_process(_delta):
 		drop_platform()
 
 	velocity.z = 0.0
-	reorient()
 
 func reorient():
 	# stores current orientation

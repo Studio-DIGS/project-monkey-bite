@@ -32,3 +32,5 @@ func physics_update(delta):
 		player.anim.play("Idle")
 		player.anim.speed_scale = 1.0
 		state_machine.transition_to("Idle")
+	
+	player.reorient()

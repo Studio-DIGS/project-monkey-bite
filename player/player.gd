@@ -9,9 +9,6 @@ extends Actor
 @export var max_jump_height = 4.5
 var jump_time = 0.0
 @export var jump_force_coefficient = 10.0
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-#var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity = 20
 
 # direction player is facing (1 is forward, -1 is backwards)
@@ -21,6 +18,7 @@ signal turn_around
 # Commands for state machine
 var try_attack = false
 var try_jump = false
+var try_throw = false
 @onready var controller_container = $ControllerContainer
 
 # Attack stuff
@@ -74,6 +72,9 @@ func attack():
 	await get_tree().process_frame
 #	await get_tree().process_frame
 	try_attack = false
+
+func throw():
+	try_throw = true
 
 #func stop_attack():
 #	try_attack = false

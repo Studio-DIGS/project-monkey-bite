@@ -9,12 +9,13 @@ var air: bool
 
 func enter(msg := {}):
 	if msg.get('air', false) == true:
-		print("air combo")
-		combo = player.air_combo 
 		air = true
+		if player.is_armed: combo = player.air_combo
+		else: combo = player.air_kick
 	else:
-		combo = player.combo
 		air = false
+		if player.is_armed: combo = player.combo
+		else: combo = player.punch
 	
 	# set the current attack to the index of the player's combo
 	# declare max combo index

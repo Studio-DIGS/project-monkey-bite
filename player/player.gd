@@ -28,6 +28,10 @@ var try_throw = false
 @export var zone_in: AttackResource
 @onready var zone_in_dist: RayCast3D = $Mesh/ZoneInDist
 @onready var stay_put_dist: RayCast3D = $Mesh/StayPutDist
+@export var punch: Array[AttackResource] = []
+@export var air_kick: Array[AttackResource] = []
+var is_armed = true
+
 
 @onready var controllers = $ControllerContainer
 @onready var human_controller = $ControllerContainer/HumanController

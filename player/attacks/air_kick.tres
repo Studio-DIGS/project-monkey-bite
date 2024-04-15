@@ -6,6 +6,7 @@
 script = ExtResource("1_fd73c")
 damage = 1
 knockback = Vector2(11, 7)
-animation = &"air_kick"
+animation = &"Air Kick"
+movement = Vector2(0, 0)
 freeze_slow = 0.1
 freeze_time = 0.4

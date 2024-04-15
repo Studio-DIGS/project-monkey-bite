@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ylifjen6q0qr"
+path="res://.godot/imported/Dodge Roll.mp3-00561ec864693728430969162d7bcfa0.mp3str"
+
+[deps]
+
+source_file="res://common/sfx/Dodge Roll.mp3"
+dest_files=["res://.godot/imported/Dodge Roll.mp3-00561ec864693728430969162d7bcfa0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

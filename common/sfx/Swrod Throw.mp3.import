@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bqurh5dncf2ci"
+path="res://.godot/imported/Swrod Throw.mp3-1971010f7ff8a2ac49fbe733f84173b0.mp3str"
+
+[deps]
+
+source_file="res://common/sfx/Swrod Throw.mp3"
+dest_files=["res://.godot/imported/Swrod Throw.mp3-1971010f7ff8a2ac49fbe733f84173b0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

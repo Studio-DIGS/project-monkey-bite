@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ciiua2d7c6c3i"
+path="res://.godot/imported/Swords whiff1.mp3-57e8c8ccd45d0056bf4cc2bf1ee21821.mp3str"
+
+[deps]
+
+source_file="res://common/sfx/Swords whiff1.mp3"
+dest_files=["res://.godot/imported/Swords whiff1.mp3-57e8c8ccd45d0056bf4cc2bf1ee21821.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

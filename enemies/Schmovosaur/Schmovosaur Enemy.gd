@@ -2,6 +2,8 @@ extends Actor
 
 @export var attack_resource: AttackResource
 var start_pos
+@onready var sword_sfx = $SFXContainer/SwordSlash
+@onready var monster_ouchie = $SFXContainer/MonsterOuchie
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,6 +24,8 @@ func _physics_process(delta):
 # @TEMP
 func _on_hurtbox_hit(vector: Vector2):
 	$AnimationPlayer.play("stagger")
+	#sword_sfx.play()
+	monster_ouchie.play()
 	velocity = Vector3(vector.x, vector.y, 0)
 
 

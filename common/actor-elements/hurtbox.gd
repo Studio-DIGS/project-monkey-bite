@@ -4,6 +4,8 @@ extends Area3D
 @export var health: Health = null
 @onready var impact_fx = preload("res://common/vfx/impact_fx.tscn")
 
+#@onready var sword_sfx = $"../SFXContainer/SwordSlash"
+
 signal hit(vector: Vector2)
 
 func _ready():
@@ -14,7 +16,7 @@ func _on_area_entered(hitbox: Hitbox):
 		return
 	
 	hit.emit(hitbox.knockback)
-	
+	#sword_sfx.play()
 	var instance = impact_fx.instantiate()
 	add_child(instance)
 	

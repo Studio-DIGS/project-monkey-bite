@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://hfhgrm1dg1lr"
+path="res://.godot/imported/Mobs monster attk.mp3-a4ca280cbc3f5f0fee8400fd46019ebc.mp3str"
+
+[deps]
+
+source_file="res://common/sfx/Mobs monster attk.mp3"
+dest_files=["res://.godot/imported/Mobs monster attk.mp3-a4ca280cbc3f5f0fee8400fd46019ebc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

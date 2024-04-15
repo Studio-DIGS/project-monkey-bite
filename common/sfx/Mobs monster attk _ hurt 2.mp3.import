@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cl4105ng65ke0"
+path="res://.godot/imported/Mobs monster attk _ hurt 2.mp3-50c4be9fb1ec101217b641d847048fa8.mp3str"
+
+[deps]
+
+source_file="res://common/sfx/Mobs monster attk _ hurt 2.mp3"
+dest_files=["res://.godot/imported/Mobs monster attk _ hurt 2.mp3-50c4be9fb1ec101217b641d847048fa8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

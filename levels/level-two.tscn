@@ -204,9 +204,6 @@ environment = SubResource("Environment_y8ynd")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.6084, 7.26621, 2.53605)
 accel = 6.505
 
-[node name="StudioListener3D" type="StudioListener3D" parent="Characters Scripts and World Settings/Player" node_paths=PackedStringArray("attenuation_object")]
-attenuation_object = NodePath(".")
-
 [node name="CameraSystem" parent="Characters Scripts and World Settings" node_paths=PackedStringArray("target") instance=ExtResource("5_65ukr")]
 target = NodePath("../Player")
 

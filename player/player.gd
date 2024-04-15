@@ -35,6 +35,9 @@ var try_jump = false
 @onready var human_controller = $ControllerContainer/HumanController
 @onready var cutscene_controller = $ControllerContainer/CutsceneController
 
+@onready var jump_SFX = $SFXContainer/JumpSFX
+@onready var Sword_Whiff_SFX = $SFXContainer/SwordWhiff
+
 @export var inventoryVis: InventoryVis
 
 func _ready():
@@ -74,12 +77,14 @@ func attack():
 	await get_tree().process_frame
 #	await get_tree().process_frame
 	try_attack = false
+	Sword_Whiff_SFX.play()
 
 #func stop_attack():
 #	try_attack = false
 
 func jump(delta):
 	try_jump = true
+	jump_SFX.play()
 	jump_time += delta
 
 func stop_jump():

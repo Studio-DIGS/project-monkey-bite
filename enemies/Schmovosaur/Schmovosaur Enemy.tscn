@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bfg1ub413xc20"]
+[gd_scene load_steps=25 format=3 uid="uid://bfg1ub413xc20"]
 
 [ext_resource type="Script" path="res://enemies/Schmovosaur/Schmovosaur Enemy.gd" id="1_rup4a"]
 [ext_resource type="PackedScene" uid="uid://g8bqjbm54pik" path="res://assets/Shmovosaur/shmovosaur_model.tscn" id="2_d6424"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://common/actor-elements/hitbox.gd" id="3_s8ajp"]
 [ext_resource type="Script" path="res://common/actor-elements/health.gd" id="4_pjjf5"]
 [ext_resource type="PackedScene" uid="uid://dkwnbhlmom1ch" path="res://enemies/Schmovosaur/schmovosaur_ai_2.tscn" id="5_l6hc8"]
+[ext_resource type="AudioStream" uid="uid://h5n6llbps7ce" path="res://common/sfx/Swords slash sfx 1.mp3" id="7_itl1i"]
+[ext_resource type="AudioStream" uid="uid://q2x32njpa1ie" path="res://common/sfx/Mobs monster hurt.mp3" id="8_kf62o"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q5uni"]
 
@@ -306,6 +308,17 @@ shape = SubResource("SphereShape3D_jfmux")
 
 [node name="Translucent Sphere" type="CSGSphere3D" parent="PlayerDetectionSphere/CollisionShape3D"]
 material = SubResource("StandardMaterial3D_0lxu1")
+
+[node name="SFXContainer" type="Node" parent="."]
+
+[node name="SwordSlash" type="AudioStreamPlayer" parent="SFXContainer"]
+stream = ExtResource("7_itl1i")
+bus = &"SFX"
+
+[node name="MonsterOuchie" type="AudioStreamPlayer" parent="SFXContainer"]
+stream = ExtResource("8_kf62o")
+volume_db = -9.399
+bus = &"SFX"
 
 [connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
 [connection signal="death" from="Health" to="." method="_on_health_death"]

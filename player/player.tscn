@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://ceg0a8jxwnfae"]
+[gd_scene load_steps=45 format=3 uid="uid://ceg0a8jxwnfae"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_7knqw"]
 [ext_resource type="Resource" uid="uid://jvuono3vj3hl" path="res://player/attacks/slash_1.tres" id="2_06grq"]
@@ -24,6 +24,8 @@
 [ext_resource type="Script" path="res://common/actor-elements/health.gd" id="14_hr7l7"]
 [ext_resource type="Script" path="res://common/actor-elements/hurtbox.gd" id="15_ggx7t"]
 [ext_resource type="Script" path="res://player/states/player_zonein.gd" id="18_0wu4t"]
+[ext_resource type="AudioStream" uid="uid://h5n6llbps7ce" path="res://common/sfx/Swords slash sfx 1.mp3" id="25_g4bfd"]
+[ext_resource type="AudioStream" uid="uid://cxtil1jaisco7" path="res://common/sfx/jump.mp3" id="26_2fhnc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_48kjw"]
 radius = 0.284876
@@ -1060,8 +1062,6 @@ libraries = {
 "": SubResource("AnimationLibrary_h1s3s")
 }
 
-[node name="SFX" type="AudioStreamPlayer" parent="."]
-
 [node name="ControllerContainer" type="Node" parent="."]
 
 [node name="HumanController" type="Node" parent="ControllerContainer"]
@@ -1095,6 +1095,28 @@ script = ExtResource("18_0wu4t")
 [node name="StudioListener3D" type="StudioListener3D" parent="." node_paths=PackedStringArray("attenuation_object", "rigidbody")]
 attenuation_object = NodePath("..")
 rigidbody = NodePath("..")
+
+[node name="StudioListener2D" type="StudioListener2D" parent="."]
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+current = true
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+
+[node name="SFXContainer" type="Node" parent="."]
+
+[node name="SwordSlash" type="AudioStreamPlayer" parent="SFXContainer"]
+stream = ExtResource("25_g4bfd")
+mix_target = 2
+bus = &"SFX"
+
+[node name="JumpSFX" type="AudioStreamPlayer" parent="SFXContainer"]
+stream = ExtResource("26_2fhnc")
+volume_db = -5.0
+mix_target = 2
+bus = &"SFX"
+
+[node name="SwordWhiff" type="AudioStreamPlayer" parent="SFXContainer"]
 
 [connection signal="ready" from="." to="StateMachine" method="_on_player_ready"]
 [connection signal="turn_around" from="." to="pmb_kite" method="_on_player_turn_around"]

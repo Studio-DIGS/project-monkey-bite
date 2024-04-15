@@ -2,7 +2,7 @@
 
 [resource]
 file_path = "res://FMOD_Assets/AsperitasAudio/Banks/Desktop/Master.strings.bank"
-modified_time = 1713084415
+modified_time = 1713149338
 path = "bank:/Master.strings"
 guid = "{e83d2db9-7d2a-03bf-3d64-c5262c304839}"
 name = "Master.strings"

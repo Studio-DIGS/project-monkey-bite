@@ -288,6 +288,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.15295, 1.3582, -0.000691056
 [node name="StudioGlobalParameterTrigger" type="StudioGlobalParameterTrigger" parent="."]
 trigger_on = 2
 parameter = SubResource("ParameterAsset_kmfwy")
-value = 2.0
+value = 0.0
 
 [connection signal="turn_around" from="Player" to="CameraSystem" method="_on_player_turn_around"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dsr7pryxg8q1u"
+path="res://.godot/imported/Mobs Boss Attk.mp3-645fc2e62f8efc1e520f30f9ac075e93.mp3str"
+
+[deps]
+
+source_file="res://common/sfx/Mobs Boss Attk.mp3"
+dest_files=["res://.godot/imported/Mobs Boss Attk.mp3-645fc2e62f8efc1e520f30f9ac075e93.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

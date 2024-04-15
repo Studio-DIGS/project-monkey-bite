@@ -21,3 +21,9 @@ func physics_update(delta):
 	
 	elif player.try_attack:
 		state_machine.transition_to("Attack")
+
+
+func _on_animation_player_animation_finished(anim_name):
+	#if attacked by enemy
+	#transition to attack
+	pass # Replace with function body.

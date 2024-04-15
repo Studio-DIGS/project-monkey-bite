@@ -16,4 +16,9 @@ func _on_self_destruct_timer_timeout(): #After timer ends instance deletes itsel
 	queue_free()
 	
 func reverse_projectile():
-	pass
+	velocity.x = -velocity.x
+	velocity.y = -velocity.y
+
+
+func _on_area_3d_area_entered(area):
+	reverse_projectile()

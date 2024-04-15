@@ -62,7 +62,7 @@ func _ready():
 	occur_once_hit = true
 	escape_timer = $"Escape Timer"
 	
-	cube_body = $"../Floating Cube"
+#	cube_body = $"../Floating Cube"
 	
 	player_detection_range = 10
 	random_variance = randf()

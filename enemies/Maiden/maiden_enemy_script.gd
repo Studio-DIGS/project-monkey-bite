@@ -16,7 +16,7 @@ var cube_current_position
 var floating_timer
 
 #TEMP Test
-var player_information
+var player_information: CharacterBody3D
 
 func _ready():
 	gravity_speed = 0
@@ -30,6 +30,7 @@ func _ready():
 	hover_speed = 45
 	
 	player_information = $"../Player"
+	
 	emit_signal("send_player_information", player_information)
 	
 func _physics_process(delta):

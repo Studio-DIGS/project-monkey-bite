@@ -48,6 +48,7 @@ func _ready():
 	GameManager.connect("start_cutscene", _start_cutscene)
 	GameManager.connect("end_cutscene", _end_cutscene)
 	
+	
 
 func updateInventory():
 	if inventoryVis:
@@ -70,6 +71,7 @@ func _end_cutscene():
 	set_controller(human_controller)
 
 func attack():
+	print("TEMO")
 	try_attack = true
 	await get_tree().process_frame
 #	await get_tree().process_frame
@@ -108,3 +110,8 @@ func reorient():
 	if new_orientation != orientation:
 		orientation = new_orientation
 		emit_signal("turn_around")
+
+
+func _on_parry_sword_force_player_attack():
+	attack()
+	print("Attacked")

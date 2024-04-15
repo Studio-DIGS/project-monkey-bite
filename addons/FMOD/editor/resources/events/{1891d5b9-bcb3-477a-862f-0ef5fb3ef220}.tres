@@ -1,0 +1,28 @@
+[gd_resource type="EventAsset" load_steps=4 format=3 uid="uid://rsuqnt3jnrq3"]
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_5pv2n"]
+data1 = 3595306309
+data2 = 3413109778
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_58yrp"]
+name = "Music Level"
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_5pv2n")
+maximum = 11.0
+flags = 8
+guid = "{44acff39-ff52-4ddb-9d57-d442e673f66a}"
+
+[sub_resource type="ParameterAsset" id="ParameterAsset_kmfwy"]
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_58yrp")
+path = "parameter:/Music Level"
+guid = "{44acff39-ff52-4ddb-9d57-d442e673f66a}"
+name = "Music Level"
+
+[resource]
+min_distance = 1.0
+max_distance = 20.0
+parameters = {
+"{44acff39-ff52-4ddb-9d57-d442e673f66a}": SubResource("ParameterAsset_kmfwy")
+}
+path = "event:/Music"
+guid = "{1891d5b9-bcb3-477a-862f-0ef5fb3ef220}"
+name = "Music"

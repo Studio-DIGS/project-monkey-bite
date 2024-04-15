@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d2h46x7dn6jvi"]
+[gd_scene load_steps=27 format=3 uid="uid://d2h46x7dn6jvi"]
 
 [ext_resource type="PackedScene" uid="uid://bpfy1g36mux2h" path="res://assets/lillian-assets/Islands/small island 3.glb" id="1_kbg3x"]
 [ext_resource type="PackedScene" uid="uid://cdlms1nqyimrp" path="res://assets/lillian-assets/Islands/small island 2.glb" id="2_8sghb"]
@@ -159,6 +159,33 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1i5cd"]
 
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_5pv2n"]
+data1 = 3595306309
+data2 = 3413109778
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_58yrp"]
+name = "Music Level"
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_5pv2n")
+maximum = 11.0
+flags = 8
+guid = "{44acff39-ff52-4ddb-9d57-d442e673f66a}"
+
+[sub_resource type="ParameterAsset" id="ParameterAsset_kmfwy"]
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_58yrp")
+path = "parameter:/Music Level"
+guid = "{44acff39-ff52-4ddb-9d57-d442e673f66a}"
+name = "Music Level"
+
+[sub_resource type="EventAsset" id="EventAsset_ukhoj"]
+min_distance = 1.0
+max_distance = 20.0
+parameters = {
+"{44acff39-ff52-4ddb-9d57-d442e673f66a}": SubResource("ParameterAsset_kmfwy")
+}
+path = "event:/Music"
+guid = "{1891d5b9-bcb3-477a-862f-0ef5fb3ef220}"
+name = "Music"
+
 [node name="World" type="Node3D"]
 
 [node name="Characters Scripts and World Settings" type="Node" parent="."]
@@ -176,6 +203,9 @@ environment = SubResource("Environment_y8ynd")
 [node name="Player" parent="Characters Scripts and World Settings" instance=ExtResource("4_pxxjk")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.6084, 7.26621, 2.53605)
 accel = 6.505
+
+[node name="StudioListener3D" type="StudioListener3D" parent="Characters Scripts and World Settings/Player" node_paths=PackedStringArray("attenuation_object")]
+attenuation_object = NodePath(".")
 
 [node name="CameraSystem" parent="Characters Scripts and World Settings" node_paths=PackedStringArray("target") instance=ExtResource("5_65ukr")]
 target = NodePath("../Player")
@@ -800,5 +830,19 @@ size = Vector3(16.1495, 15.1027, 11.4626)
 [node name="LevelSwitcher" parent="." instance=ExtResource("13_f2s5j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.637, -6.17489, 2.08165e-12)
 scene_name = "level-three"
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="StudioBankLoader" type="StudioBankLoader" parent="Audio"]
+load_on = 1
+preload_sample_data = true
+
+[node name="StudioEventEmitter2D" type="StudioEventEmitter2D" parent="Audio/StudioBankLoader"]
+play_event = 1
+event = SubResource("EventAsset_ukhoj")
+"parameter_Music Level" = 11.0
+
+[node name="StudioListener2D" type="StudioListener2D" parent="Audio" node_paths=PackedStringArray("attenuation_object")]
+attenuation_object = NodePath(".")
 
 [connection signal="turn_around" from="Characters Scripts and World Settings/Player" to="Characters Scripts and World Settings/CameraSystem" method="_on_player_turn_around"]

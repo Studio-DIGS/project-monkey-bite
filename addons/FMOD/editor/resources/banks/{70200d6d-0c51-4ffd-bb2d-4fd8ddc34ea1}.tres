@@ -1,0 +1,8 @@
+[gd_resource type="BankAsset" format=3 uid="uid://dljj6l2kgbpf1"]
+
+[resource]
+file_path = "res://FMOD_Assets/AsperitasAudio/Banks/Desktop/Master.bank"
+modified_time = 1713084415
+path = "bank:/Master"
+guid = "{70200d6d-0c51-4ffd-bb2d-4fd8ddc34ea1}"
+name = "Master"

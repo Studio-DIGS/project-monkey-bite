@@ -10,11 +10,20 @@ func physics_update(delta):
 	player.velocity.x = lerp(player.velocity.x, slide_velocity, delta * player.accel)
 	player.move_and_slide()
 
-
-
+func throw_sword():
+	var projectile_instance: RigidBody3D = player.sword_body.instantiate()
+	projectile_instance.position = player.sword_spawn.global_position
+	GameManager.current_scene.add_child(projectile_instance)
+	projectile_instance.throw(player.orientation)
+	
+	if player.sword_mesh != null:
+		player.sword_mesh.queue_free()
+	
 func _on_animation_player_animation_finished(_anim_name):
-	var run = false
 	if state_machine.state.name == "Throw":
+		throw_sword()
+		var run = false
+		
 		if player.hori_input != 0:
 			run = true
 			player.anim.play("Run")

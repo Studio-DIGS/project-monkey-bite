@@ -33,6 +33,10 @@ var try_throw = false
 @onready var human_controller = $ControllerContainer/HumanController
 @onready var cutscene_controller = $ControllerContainer/CutsceneController
 
+@onready var sword_body = preload("res://player/swords/sword_body.tscn")
+@onready var sword_spawn = $pmb_kite/base_human_rig/Skeleton3D/BoneAttachment3D
+@onready var sword_mesh = $pmb_kite/base_human_rig/Skeleton3D/BoneAttachment3D/Sword
+
 @export var inventoryVis: InventoryVis
 
 func _ready():

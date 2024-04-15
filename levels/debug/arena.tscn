@@ -51,3 +51,4 @@ size = Vector3(54, 8, 10)
 
 [node name="PunchingBag" parent="." instance=ExtResource("6_quru2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.984788, 0)
+axis_lock_linear_z = true

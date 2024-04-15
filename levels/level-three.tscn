@@ -1,12 +1,12 @@
 [gd_scene load_steps=28 format=3 uid="uid://bbyoukoatqn7e"]
 
 [ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/Schmovosaur/Schmovosaur Enemy.tscn" id="3_lu4sj"]
-[ext_resource type="PackedScene" uid="uid://bpfy1g36mux2h" path="res://assets/lillian-assets/Islands/small island 3.glb" id="4_ef5jv"]
-[ext_resource type="PackedScene" uid="uid://dkjt28n36sw52" path="res://assets/lillian-assets/Islands/island 1.glb" id="5_16r13"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="5_c8upy"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="6_bujsr"]
 [ext_resource type="PackedScene" uid="uid://dpqqdkigqcdws" path="res://assets/lillian-assets/Islands/floating rock 1.glb" id="6_sscng"]
+[ext_resource type="PackedScene" uid="uid://b872c7eus500g" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 3 bald.glb" id="7_a1rqp"]
 [ext_resource type="PackedScene" uid="uid://b02d1j5r3pg1x" path="res://common/passthru-platforms/passthru_platform.tscn" id="7_htjmw"]
+[ext_resource type="PackedScene" uid="uid://crv2dotc68bdp" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 2 bald.glb" id="8_0hu3s"]
 [ext_resource type="PackedScene" uid="uid://mbmikvo0bep" path="res://assets/lillian-assets/Islands/floating rock 2.glb" id="8_s8pab"]
 [ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/crackedwall.tscn" id="9_j70fq"]
 [ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/fullwall.tscn" id="10_rwx16"]
@@ -181,14 +181,14 @@ directional_shadow_split_1 = 0.003
 environment = SubResource("Environment_y8ynd")
 
 [node name="Player" parent="Characters Scripts and World Settings" instance=ExtResource("5_c8upy")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.10543, 18.1783, -0.0926752)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -83.9706, 2.05416, -0.0926752)
 accel = 6.505
 
 [node name="CameraSystem" parent="Characters Scripts and World Settings" node_paths=PackedStringArray("target") instance=ExtResource("6_bujsr")]
 target = NodePath("../Player")
 
 [node name="Schmovosaur" parent="Characters Scripts and World Settings" instance=ExtResource("3_lu4sj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.2213, 9.7524, -0.0615408)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.8061, 9.7524, -0.0615408)
 
 [node name="Schmovosaur2" parent="Characters Scripts and World Settings" instance=ExtResource("3_lu4sj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.989, 6.22803, -0.0615408)
@@ -218,7 +218,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.3033, 15.8316, -0.0615408)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.1559, 15.8316, -0.0615408)
 
 [node name="Schmovosaur11" parent="Characters Scripts and World Settings" instance=ExtResource("3_lu4sj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.9076, 9.7524, -0.0615408)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.4924, 9.7524, -0.0615408)
 
 [node name="dock" type="Node" parent="."]
 
@@ -258,65 +258,55 @@ size = Vector3(7.56142, 3.66245, 0.467606)
 
 [node name="islands" type="Node" parent="."]
 
-[node name="dead island" parent="islands" instance=ExtResource("4_ef5jv")]
-transform = Transform3D(-8.57952, -8.74228e-08, 0, 7.50045e-07, -1, 0, 0, 0, 5.25614, -9.76801, 0, 0)
+[node name="island 2 bald" parent="islands" instance=ExtResource("8_0hu3s")]
+transform = Transform3D(6.52535, 0, -1.91005, 0, 1, 0, 1.1506, 0, 10.8324, 1, 1, -3.86499)
 
-[node name="HCB1" type="CSGBox3D" parent="islands/dead island"]
-transform = Transform3D(0.15832, 2.77556e-17, 0, -9.23706e-14, 0.0267611, 0, 0, 0, 0.396608, -1.15337, 0.810062, 0.497681)
+[node name="HCB1" type="CSGBox3D" parent="islands/island 2 bald"]
+transform = Transform3D(-0.201882, -3.47719e-10, 0.0546319, 1.18747e-07, -0.0267611, 0, 0.0214434, 3.69338e-11, 0.18664, 0.0401449, -1.81006, 0.59402)
 visible = false
 material_override = SubResource("StandardMaterial3D_sd38b")
 use_collision = true
 size = Vector3(43.6373, 106.901, 44.2601)
 
-[node name="middle island" parent="islands" instance=ExtResource("5_16r13")]
-transform = Transform3D(3.84353, 0, 0, 0, 7.14084, 0, 0, 0, 2.23456, -11.9148, 13.1605, 0)
+[node name="island 3 bald2" parent="islands" instance=ExtResource("7_a1rqp")]
+transform = Transform3D(3.04723, 0, -0.274075, 0, 2.04872, 0, 0.157352, 0, 5.30764, -5.25018, 13.9393, -1.40198)
 
-[node name="HCB1" type="CSGBox3D" parent="islands/middle island"]
-transform = Transform3D(0.158319, 0, 0, -7.81597e-14, 0.0267611, 0, 0, 0, 0.396607, 0.780358, -0.121739, 0.497681)
+[node name="HCB1" type="CSGBox3D" parent="islands/island 3 bald2"]
+transform = Transform3D(0.19916, 0, 0.0149781, -5.58126e-13, 0.191097, 0, -0.00590435, 0, 0.166531, -1.26629, -1.59157, 0.511212)
 visible = false
 material_override = SubResource("StandardMaterial3D_sd38b")
 use_collision = true
-size = Vector3(62.9781, 10.0922, 44.2601)
+size = Vector3(59.422, 10.65, 28.785)
 
-[node name="middle island2" parent="islands" instance=ExtResource("5_16r13")]
-transform = Transform3D(4.83598, 0, 0, 0, 7.14084, 0, 0, 0, 2.23456, 36.6006, 13.1605, 0)
+[node name="island 3 bald3" parent="islands" instance=ExtResource("7_a1rqp")]
+transform = Transform3D(-3.86108, 0, -1.85064, 0, 3.39654, 0, -0.619401, 0, 7.35493, 36.207, 15.0911, -5.06463)
 
-[node name="HCB1" type="CSGBox3D" parent="islands/middle island2"]
-transform = Transform3D(0.158319, 0, 0, -7.81597e-14, 0.0267611, 0, 0, 0, 0.396607, 0.780358, -0.121739, 0.497681)
+[node name="HCB1" type="CSGBox3D" parent="islands/island 3 bald3"]
+transform = Transform3D(-0.1906, 0, -0.0555139, -1.64322e-13, 0.0562622, 0, -0.0160515, 0, 0.115821, -1.78364, -0.850711, 0.689596)
 visible = false
 material_override = SubResource("StandardMaterial3D_sd38b")
 use_collision = true
-size = Vector3(62.9781, 10.0922, 44.2601)
+size = Vector3(58.0484, 9.9, 44.26)
 
-[node name="floating rock 10" parent="islands" instance=ExtResource("6_sscng")]
-transform = Transform3D(1.64796, 0, 0, 0, 0.128314, 0, 0, 0, 1.59536, -67.3332, 2.99959, 0)
+[node name="island 3 bald" parent="islands" instance=ExtResource("7_a1rqp")]
+transform = Transform3D(1.50546, 0, 0, 0, 1, 0, 0, 0, 2.32528, -64.515, 4, 0)
 
-[node name="HCB1" type="CSGBox3D" parent="islands/floating rock 10"]
-transform = Transform3D(0.158319, 0, 0, -7.81597e-14, 0.0528392, 0, 0, 0, 0.396607, 0.780357, -1.80922, 0.497681)
+[node name="HCB1" type="CSGBox3D" parent="islands/island 3 bald"]
+transform = Transform3D(0.176976, 0, 0, -1.04358e-14, 0.00678001, 0, 0, 0, 0.272109, -0.99881, -1.23256, 0.341455)
 visible = false
 material_override = SubResource("StandardMaterial3D_sd38b")
 use_collision = true
 size = Vector3(69.727, 217.997, 44.2601)
 
-[node name="floating rock 11" parent="islands" instance=ExtResource("6_sscng")]
-transform = Transform3D(2.69613, 0, 0, 0, 0.170931, 0, 0, 0, 1.59536, -94.0278, 5.73412, 0)
+[node name="island 2 bald2" parent="islands" instance=ExtResource("8_0hu3s")]
+transform = Transform3D(-1.61473, 0, 2.67886e-07, 0, 0.0809496, 0, -1.70129e-07, 0, -3.69299, -81.743, 1.7, 3.46)
 
-[node name="HCB1" type="CSGBox3D" parent="islands/floating rock 11"]
-transform = Transform3D(0.152354, 0, 0, -7.52147e-14, 0.0267611, 0, 0, 0, 0.396607, 2.63219, 5.92969, 0.633267)
+[node name="HCB1" type="CSGBox3D" parent="islands/island 2 bald2"]
+transform = Transform3D(-0.129789, 0, -2.84243e-08, -1.06488e-13, 0.151366, 0, 5.97914e-09, 0, -0.171333, -0.362888, -0.0351315, 0.721914)
 visible = false
 material_override = SubResource("StandardMaterial3D_sd38b")
 use_collision = true
-size = Vector3(76.5104, 10.0922, 44.2601)
-
-[node name="floating rock 12" parent="islands" instance=ExtResource("6_sscng")]
-transform = Transform3D(1.32375, 0, 0, 0, 0.110289, 0, 0, 0, 1.59536, -81.6816, 1.3298, 0)
-
-[node name="HCB1" type="CSGBox3D" parent="islands/floating rock 12"]
-transform = Transform3D(0.158319, 0, 0, -7.81597e-14, 0.111099, 0, 0, 0, 0.396607, 0.780354, 3.33085, 0.497681)
-visible = false
-material_override = SubResource("StandardMaterial3D_sd38b")
-use_collision = true
-size = Vector3(69.5726, 10.0922, 44.2601)
+size = Vector3(71.8899, 10.0922, 44.2601)
 
 [node name="dead island" type="Node" parent="."]
 
@@ -330,16 +320,16 @@ transform = Transform3D(6.03443, 0, -0.799668, 0, 3.30297, 0, 1.14524, 0, 4.2135
 transform = Transform3D(6.61964, 0.138715, 0.354764, -0.266247, 3.38676, -0.0551637, -0.532745, 0.031024, 4.43574, -13.0566, 5.20118, -3.45206)
 
 [node name="fullwall8" parent="dead island" instance=ExtResource("10_rwx16")]
-transform = Transform3D(4.89488, -0.202295, -0.748669, 0.372602, 2.65756, -0.0569892, 0.883364, -5.40234e-09, 4.17255, 6.70007, 3.3816, -5.40952)
+transform = Transform3D(4.37294, -0.192144, -2.01627, 0.372602, 2.65756, -0.0569892, 2.37015, -0.0632777, 3.72899, 4.53749, 3.3816, -11.8414)
 
 [node name="fullwall7" parent="dead island" instance=ExtResource("10_rwx16")]
-transform = Transform3D(5.65501, 0.177007, -1.65803, -0.289633, 3.29817, 0.112013, 2.37967, -0.0192111, 3.95375, 13.0903, 4.26484, -4.35988)
+transform = Transform3D(4.62688, 0.174134, -2.81156, -0.289633, 3.29817, 0.112013, 4.02914, 0.0371206, 3.23672, 10.2787, 4.26484, -8.84559)
 
 [node name="crackedwall10" parent="dead island" instance=ExtResource("9_j70fq")]
-transform = Transform3D(5.39715, 0.0858442, -2.5947, -0.266247, 3.38676, -0.0551637, 3.86965, 0.113292, 3.61513, 12.7595, 4.36594, -6.61048)
+transform = Transform3D(3.91589, 0.0460988, -3.59531, -0.266247, 3.38676, -0.0551637, 5.36369, 0.134459, 2.6221, 10.6685, 4.36594, -11.0867)
 
 [node name="floating rock 9" parent="dead island" instance=ExtResource("8_s8pab")]
-transform = Transform3D(0.206841, 0, 0, 0, 0.0866666, 0, 0, 0, 0.35135, 4.76208, 0.429363, 1.67787)
+transform = Transform3D(0.196462, 0, -0.109902, 0, 0.0866666, 0, 0.0646997, 0, 0.333719, 9.62374, 0.429363, -0.215877)
 
 [node name="island 2" parent="dead island" instance=ExtResource("11_8isna")]
 transform = Transform3D(-1.82276, -4.40971e-08, 0, 1.59351e-07, -0.504412, 0, 0, 0, 1, 6.25523, 0.381622, 1.19873)
@@ -381,7 +371,7 @@ use_collision = true
 size = Vector3(184.552, 106.901, 168.912)
 
 [node name="pillar5" parent="dead island/pillars" instance=ExtResource("10_xkajo")]
-transform = Transform3D(-5.45271, 0, -4.60386, 0, 6.37335, 0, -2.80616, 0, 8.94585, -25.9628, -4.19297, -4.19952)
+transform = Transform3D(-5.45271, 0, -4.60386, 0, 6.37335, 0, -2.80616, 0, 8.94585, -22.3037, -4.19297, -6.19683)
 
 [node name="pillar6" parent="dead island/pillars" instance=ExtResource("10_xkajo")]
 transform = Transform3D(-5.19377, 0, -5.34938, 0, 6.37335, 0, -3.26057, 0, 8.52103, -19.7822, -4.19297, 6.1048)
@@ -418,10 +408,10 @@ use_collision = true
 size = Vector3(34.574, 41.5903, 246.116)
 
 [node name="pillar8" parent="dead island/pillars" instance=ExtResource("10_xkajo")]
-transform = Transform3D(-5.19377, 0, -5.34938, 0, 6.37335, 0, -3.26057, 0, 8.52103, 15.6084, -4.19297, 7.89386)
+transform = Transform3D(-5.19377, 0, -5.34938, 0, 6.37335, 0, -3.26057, 0, 8.52103, 22.0794, -4.19297, 11.4399)
 
 [node name="pillar9" parent="dead island/pillars" instance=ExtResource("10_xkajo")]
-transform = Transform3D(-3.83041, 0, -7.85696, 0, 6.37335, 0, -4.789, 0, 6.28426, -2.29326, -4.19297, -2.30462)
+transform = Transform3D(-3.83041, 0, -7.85696, 0, 6.37335, 0, -4.789, 0, 6.28426, 2.84913, -4.19297, -8.07708)
 
 [node name="living island" type="Node" parent="."]
 

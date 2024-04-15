@@ -28,12 +28,11 @@ func physics_update(delta):
 			player.stay_put_dist.enabled = true
 			state_machine.transition_to("Attack")
 	
-	elif player.try_throw:
+	elif player.try_throw and player.is_armed:
 		state_machine.transition_to("Throw")
 	
 	elif player.hori_input == 0.0:
 		player.anim.play("Idle")
-		player.anim.speed_scale = 1.0
 		state_machine.transition_to("Idle")
 	
 	player.reorient()

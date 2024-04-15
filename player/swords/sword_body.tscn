@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bphge5vitnjip"]
+[gd_scene load_steps=11 format=3 uid="uid://bphge5vitnjip"]
 
 [ext_resource type="Script" path="res://player/swords/sword_body.gd" id="1_xj5sh"]
 [ext_resource type="ArrayMesh" uid="uid://cwxjglc5p8fcj" path="res://assets/kite-blender/sword.obj" id="2_7s5qe"]
 [ext_resource type="Resource" uid="uid://w5asob1k6fwp" path="res://player/swords/example/example_sword.tres" id="2_hoyin"]
 [ext_resource type="Script" path="res://common/actor-elements/hitbox.gd" id="4_e5bgs"]
+[ext_resource type="Script" path="res://common/actor-elements/hurtbox.gd" id="5_mmjxl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_igcdk"]
 size = Vector3(0.175, 1, 0.145)
@@ -31,7 +32,6 @@ axis_lock_linear_y = true
 axis_lock_linear_z = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
-axis_lock_angular_z = true
 max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_xj5sh")
@@ -51,7 +51,7 @@ surface_material_override/1 = SubResource("StandardMaterial3D_ffepr")
 surface_material_override/2 = SubResource("StandardMaterial3D_4tpsx")
 
 [node name="Hitbox" type="Area3D" parent="."]
-collision_layer = 4
+collision_layer = 1024
 collision_mask = 64
 script = ExtResource("4_e5bgs")
 knockback = Vector2(1, 5)
@@ -60,4 +60,13 @@ freeze_time = 0.1
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 shape = SubResource("SphereShape3D_2c6qu")
 
+[node name="Hurtbox" type="Area3D" parent="."]
+collision_layer = 2048
+collision_mask = 4
+script = ExtResource("5_mmjxl")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hurtbox"]
+shape = SubResource("SphereShape3D_2c6qu")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]

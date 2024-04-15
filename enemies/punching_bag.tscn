@@ -111,7 +111,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_h0sxf")
 
 [node name="Hurtbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 64
-collision_mask = 4
+collision_mask = 1028
 script = ExtResource("1_slb67")
 health = NodePath("../Health")
 

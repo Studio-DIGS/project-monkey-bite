@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="project-monkey-bite"
-run/main_scene="res://levels/grasstest.tscn"
+run/main_scene="res://levels/debug/arena.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -152,6 +152,9 @@ LoadGame={
 3d_physics/layer_7="enemy_hurtbox"
 3d_physics/layer_9="oneway_platform"
 3d_physics/layer_10="feet"
+3d_physics/layer_11="sword_hitbox"
+3d_physics/layer_12="sword_hurtbox"
+3d_physics/layer_13="sword_physics"
 
 [rendering]
 

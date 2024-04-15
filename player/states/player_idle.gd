@@ -22,7 +22,10 @@ func physics_update(delta):
 	elif player.try_attack:
 		state_machine.transition_to("Attack")
 	
-	elif player.try_throw:
+	elif player.try_throw and player.is_armed:
 		state_machine.transition_to("Throw")
+	
+#	elif player.try_special and player.is_armed:
+#		state_machine.transition_to("Special")
 	
 	player.reorient()

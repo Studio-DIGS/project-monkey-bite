@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="1_cmfbv"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="2_u78r6"]
 [ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/Schmovosaur/Schmovosaur Enemy.tscn" id="3_77kka"]
-[ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/dock.tscn" id="4_smi2v"]
+[ext_resource type="PackedScene" uid="uid://j5u21dt7qegf" path="res://assets/lillian-assets/Textures/dock.tscn" id="4_smi2v"]
 [ext_resource type="PackedScene" uid="uid://crv2dotc68bdp" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 2 bald.glb" id="5_eu4xw"]
 [ext_resource type="PackedScene" uid="uid://c46tcjxr702fw" path="res://assets/lillian-assets/big_tree.glb" id="5_kusik"]
 [ext_resource type="PackedScene" uid="uid://b872c7eus500g" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 3 bald.glb" id="6_8iunp"]
@@ -477,7 +477,7 @@ transform = Transform3D(0.777431, 0, -0.628968, 0, 1.17584, 0, 0.628968, 0, 0.77
 [node name="islands" type="Node" parent="."]
 
 [node name="island 2 bald" parent="islands" instance=ExtResource("5_eu4xw")]
-transform = Transform3D(12.1346, 0, -5.36603, 0, 2.07564, 0, 4.07409, 0, 15.9826, 1, 1, -3.86499)
+transform = Transform3D(11.9628, 0, -5.29007, 0, 14.3498, 0, 4.01642, 0, 15.7564, 1, 1, -3.86499)
 
 [node name="HCB1" type="CSGBox3D" parent="islands/island 2 bald"]
 transform = Transform3D(-0.201882, -3.31698e-10, 0.0546319, 1.18747e-07, -0.0255281, 0, 0.0214434, 3.52321e-11, 0.18664, -0.398009, -0.982362, 0.64056)
@@ -487,7 +487,7 @@ use_collision = true
 size = Vector3(45.915, 50, 44.26)
 
 [node name="island 2 bald2" parent="islands" instance=ExtResource("5_eu4xw")]
-transform = Transform3D(-3.36981, 0.518348, 13.1802, 0.519375, 4.64301, -1.00696, -3.72173, 0.178608, -12.0744, -119.119, -13.3901, -4.60291)
+transform = Transform3D(-4.09062, 1.58843, 11.6392, 0.63047, 14.2281, -0.889227, -4.51781, 0.547329, -10.6627, -119.571, -10.3638, -5.09059)
 
 [node name="HCB2" type="CSGBox3D" parent="islands/island 2 bald2"]
 transform = Transform3D(0.191286, -4.66606e-06, -0.0409088, -0.00148506, -0.000145559, 0.00223886, -0.0704211, -7.98095e-07, -0.00883565, -1.43512, -0.305782, 0.0666914)
@@ -517,7 +517,7 @@ use_collision = true
 size = Vector3(67.2655, 50, 44.26)
 
 [node name="island 4 bald" parent="islands" instance=ExtResource("6_uthc8")]
-transform = Transform3D(20.3311, 0, 0, 0, 1, 0, 0, 0, 32.6755, -223.038, 0, -21.458)
+transform = Transform3D(21.7483, 0, 0, 0, 28.1107, 0, 0, 0, 34.9531, -222.38, 42.1449, -39.3691)
 
 [node name="HCB1" type="CSGBox3D" parent="islands/island 4 bald"]
 transform = Transform3D(0.193942, -5.68735e-11, -0.050276, 2.52306e-07, 0.0256516, -1.51249e-08, 0.0516147, -2.37785e-11, 0.188911, -0.591669, -1.82851, 0.6335)

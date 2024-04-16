@@ -3,6 +3,7 @@ extends RigidBody3D
 @export var stats: Sword
 @onready var hitbox: Hitbox = $Hitbox
 @onready var hurtbox: Hurtbox = $Hurtbox
+@onready var smear: Trail3D = $Pivot/Sword2/SwordSmear
 var direction = 1
 
 func throw(direction, speed = stats.throw_speed):
@@ -15,11 +16,13 @@ func throw(direction, speed = stats.throw_speed):
 	
 
 func bounce():
+	smear.emit = true
 	apply_torque_impulse(Vector3(0, 0, 5 * direction))
 	apply_impulse(Vector3(-4 * direction, 7, 0))
 
 
 func settle():
+	smear.emit = false
 	axis_lock_angular_x = false
 	axis_lock_angular_y = false
 	axis_lock_linear_y = false

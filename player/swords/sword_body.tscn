@@ -1,17 +1,21 @@
-[gd_scene load_steps=11 format=3 uid="uid://bphge5vitnjip"]
+[gd_scene load_steps=13 format=3 uid="uid://bphge5vitnjip"]
 
 [ext_resource type="Script" path="res://player/swords/sword_body.gd" id="1_xj5sh"]
 [ext_resource type="ArrayMesh" uid="uid://cwxjglc5p8fcj" path="res://assets/kite-blender/sword.obj" id="2_7s5qe"]
 [ext_resource type="Resource" uid="uid://w5asob1k6fwp" path="res://player/swords/example/example_sword.tres" id="2_hoyin"]
 [ext_resource type="Script" path="res://common/actor-elements/hitbox.gd" id="4_e5bgs"]
+[ext_resource type="PackedScene" uid="uid://1oagc64bdkrt" path="res://player/swords/sword_smear.tscn" id="4_mltjy"]
 [ext_resource type="Script" path="res://common/actor-elements/hurtbox.gd" id="5_mmjxl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_igcdk"]
 size = Vector3(0.175, 1, 0.145)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8woeu"]
+[sub_resource type="BoxMesh" id="BoxMesh_uftbh"]
+size = Vector3(0.28, 3.99, 0.38)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5xpt"]
 diffuse_mode = 3
-albedo_color = Color(0.647059, 0.647059, 0.647059, 1)
+albedo_color = Color(0.560784, 0.560784, 0.560784, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ffepr"]
 diffuse_mode = 3
@@ -41,14 +45,26 @@ stats = ExtResource("2_hoyin")
 shape = SubResource("BoxShape3D_igcdk")
 
 [node name="Pivot" type="Node3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+transform = Transform3D(0.386088, -4.87007e-17, 0, 0, 0.386088, 0, 0, 0, 0.386088, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(1, -2.69931e-15, 0, 2.58291e-15, 1, 0, 0, 0, 1, 4.2946e-15, -3.08762e-07, 0)
+visible = false
+mesh = SubResource("BoxMesh_uftbh")
 
 [node name="Sword2" type="MeshInstance3D" parent="Pivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.20037, 0)
 mesh = ExtResource("2_7s5qe")
-surface_material_override/0 = SubResource("StandardMaterial3D_8woeu")
+surface_material_override/0 = SubResource("StandardMaterial3D_i5xpt")
 surface_material_override/1 = SubResource("StandardMaterial3D_ffepr")
 surface_material_override/2 = SubResource("StandardMaterial3D_4tpsx")
+
+[node name="SwordSmear" parent="Pivot/Sword2" instance=ExtResource("4_mltjy")]
+transform = Transform3D(0.732928, -1.30758e-14, 0, 1.02291e-14, 0.732928, 0, 0, 0, 0.732928, 9.47513e-08, 1.03271, 0)
+skeleton = NodePath("")
+emit = false
+base_width = 4.94
+alignment = 1
 
 [node name="Hitbox" type="Area3D" parent="."]
 collision_layer = 1024

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://ceg0a8jxwnfae"]
+[gd_scene load_steps=48 format=3 uid="uid://ceg0a8jxwnfae"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_7knqw"]
 [ext_resource type="Resource" uid="uid://jvuono3vj3hl" path="res://player/attacks/slash_1.tres" id="2_06grq"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bcv8rw7q3owa" path="res://player/kite_model_test.tscn" id="12_lvsae"]
 [ext_resource type="Script" path="res://common/actor-elements/hitbox.gd" id="12_u1r6y"]
 [ext_resource type="Script" path="res://player/controllers/cutscene_controller.gd" id="13_rj60u"]
+[ext_resource type="PackedScene" uid="uid://1oagc64bdkrt" path="res://player/swords/sword_smear.tscn" id="14_bylxv"]
 [ext_resource type="Script" path="res://common/actor-elements/health.gd" id="14_hr7l7"]
 [ext_resource type="Script" path="res://common/actor-elements/hurtbox.gd" id="15_ggx7t"]
 [ext_resource type="Script" path="res://player/states/player_zonein.gd" id="18_0wu4t"]
@@ -742,15 +743,7 @@ script = ExtResource("2_ioxg0")
 
 [node name="Skeleton3D" parent="pmb_kite/base_human_rig" index="0"]
 bones/5/scale = Vector3(1, 1, 1)
-bones/20/scale = Vector3(1, 1, 1)
 bones/21/rotation = Quaternion(0.749318, 7.78178e-08, 9.01635e-08, 0.662211)
-bones/22/scale = Vector3(1, 1, 1)
-bones/58/scale = Vector3(1, 1, 1)
-bones/59/scale = Vector3(1, 1, 1)
-bones/69/scale = Vector3(1, 1, 1)
-bones/72/scale = Vector3(1, 1, 1)
-bones/77/scale = Vector3(1, 1, 1)
-bones/78/scale = Vector3(1, 1, 1)
 bones/88/scale = Vector3(1, 1, 0.999999)
 bones/135/scale = Vector3(1, 1, 1)
 bones/143/rotation = Quaternion(0.08292, 0.547346, 0.55123, 0.624245)
@@ -782,10 +775,11 @@ bones/486/position = Vector3(-4.79631e-08, -6.89179e-08, 2.98023e-08)
 bones/487/position = Vector3(-7.0741e-08, 0.141407, 4.61412e-08)
 bones/488/rotation = Quaternion(9.28724e-08, 0.00121278, 1.2619e-07, 0.999999)
 bones/490/position = Vector3(-3.02913e-07, 0.129855, -4.61004e-08)
-bones/541/scale = Vector3(1, 1, 1)
-bones/542/scale = Vector3(1, 1, 1)
-bones/555/scale = Vector3(1, 1, 1)
-bones/556/scale = Vector3(1, 1, 1)
+
+[node name="BoneAttachment3D" parent="pmb_kite/base_human_rig/Skeleton3D" index="5"]
+transform = Transform3D(-0.225568, -0.21881, -0.949337, -0.531808, -0.788804, 0.30817, -0.816272, 0.574378, 0.061564, -0.453742, 1.61729, 0.0091863)
+
+[node name="SwordSmear" parent="pmb_kite/base_human_rig/Skeleton3D/BoneAttachment3D/Sword" index="0" instance=ExtResource("14_bylxv")]
 
 [node name="Hitbox" type="Area3D" parent="pmb_kite"]
 transform = Transform3D(1, 2.74154e-25, 1.98952e-13, 2.74079e-25, 1, 0, -1.98952e-13, 0, 1, 0, 0, 0)

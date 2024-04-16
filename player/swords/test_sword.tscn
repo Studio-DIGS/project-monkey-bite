@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://qurrgt8b7bak"]
+
+[ext_resource type="ArrayMesh" uid="uid://cwxjglc5p8fcj" path="res://assets/kite-blender/sword.obj" id="1_f27lx"]
+[ext_resource type="PackedScene" uid="uid://1oagc64bdkrt" path="res://player/swords/sword_smear.tscn" id="2_u0em1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5xpt"]
+diffuse_mode = 3
+albedo_color = Color(0.560784, 0.560784, 0.560784, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ffepr"]
+diffuse_mode = 3
+albedo_color = Color(0.776471, 0.67451, 0.466667, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4tpsx"]
+diffuse_mode = 3
+albedo_color = Color(0.298039, 0.215686, 0.152941, 1)
+
+[node name="Sword2" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.20037, 0)
+mesh = ExtResource("1_f27lx")
+surface_material_override/0 = SubResource("StandardMaterial3D_i5xpt")
+surface_material_override/1 = SubResource("StandardMaterial3D_ffepr")
+surface_material_override/2 = SubResource("StandardMaterial3D_4tpsx")
+
+[node name="SwordSmear" parent="." instance=ExtResource("2_u0em1")]
+transform = Transform3D(0.732928, -2.4177e-15, 0, 3.32772e-15, 0.732928, 0, 0, 0, 0.732928, 5.43526e-15, 3.20037, 0)
+alignment = 1

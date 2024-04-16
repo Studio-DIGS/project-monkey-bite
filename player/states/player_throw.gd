@@ -9,7 +9,7 @@ func physics_update(delta):
 	player.move_and_slide()
 
 func throw_sword():
-	player.is_armed = false
+#	player.is_armed = false
 	var projectile_instance: RigidBody3D = player.sword_body.instantiate()
 	projectile_instance.position = player.sword_spawn.global_position
 	GameManager.current_scene.add_child(projectile_instance)

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://1oagc64bdkrt"]
+
+[ext_resource type="Script" path="res://player/swords/trail_3d.gd" id="1_57gwe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vf3ek"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Curve" id="Curve_j52hb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.76455, 0.540152), -2.2117, -2.2117, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="SwordSmear" type="MeshInstance3D"]
+transform = Transform3D(1, 1.03201e-15, 0, 1.53471e-15, 1, 0, 0, 0, 1, 1.14067e-15, 3.20037, 0)
+material_override = SubResource("StandardMaterial3D_vf3ek")
+script = ExtResource("1_57gwe")
+segments = 5
+lifetime = 0.2
+base_width = 1.5
+width_profile = SubResource("Curve_j52hb")
+alignment = 2

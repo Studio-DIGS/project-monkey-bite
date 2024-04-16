@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cj6gya66i2u14"]
+[gd_scene load_steps=25 format=3 uid="uid://cj6gya66i2u14"]
 
 [ext_resource type="Script" path="res://common/game_manager.gd" id="1_gxjrb"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="2_yuvdp"]
@@ -43,33 +43,12 @@ sky = ExtResource("16_762lu")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_5pv2n"]
-data1 = 3595306309
-data2 = 3413109778
-
-[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_58yrp"]
-name = "Music Level"
-id = SubResource("FMOD_STUDIO_PARAMETER_ID_5pv2n")
-maximum = 11.0
-flags = 8
-guid = "{44acff39-ff52-4ddb-9d57-d442e673f66a}"
-
-[sub_resource type="ParameterAsset" id="ParameterAsset_kmfwy"]
-parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_58yrp")
-path = "parameter:/Music Level"
-guid = "{44acff39-ff52-4ddb-9d57-d442e673f66a}"
-name = "Music Level"
-
 [node name="World" type="Node3D"]
 script = ExtResource("1_gxjrb")
 
 [node name="CameraSystem" parent="." node_paths=PackedStringArray("target") instance=ExtResource("15_le3dk")]
 z_as_relative = false
 target = NodePath("../Player")
-
-[node name="StudioEventEmitter3D" type="StudioEventEmitter3D" parent="CameraSystem"]
-play_event = 2
-event = ExtResource("14_xij4f")
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -285,9 +264,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.15295, 1.3582, -0.000691056
 
 [node name="InventoryVis" parent="." instance=ExtResource("17_b14ma")]
 
-[node name="StudioGlobalParameterTrigger" type="StudioGlobalParameterTrigger" parent="."]
-trigger_on = 2
-parameter = SubResource("ParameterAsset_kmfwy")
-value = 0.0
+[node name="StudioEventEmitter3D" type="StudioEventEmitter3D" parent="."]
+play_event = 2
+event = ExtResource("14_xij4f")
 
 [connection signal="turn_around" from="Player" to="CameraSystem" method="_on_player_turn_around"]

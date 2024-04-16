@@ -1101,8 +1101,6 @@ rigidbody = NodePath("..")
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 current = true
 
-[node name="AudioListener2D" type="AudioListener2D" parent="."]
-
 [node name="SFXContainer" type="Node" parent="."]
 
 [node name="SwordSlash" type="AudioStreamPlayer" parent="SFXContainer"]

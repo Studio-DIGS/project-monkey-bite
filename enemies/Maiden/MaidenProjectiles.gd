@@ -9,7 +9,6 @@ func _ready():
 	destruct_timer.start()
 	
 func _process(delta):
-#	translate(Vector3(velocity.x * projectile_speed *  delta, 0, 0))
 	translate(Vector3(velocity.x, velocity.y, 0) * projectile_speed * delta)
 
 func _on_self_destruct_timer_timeout(): #After timer ends instance deletes itself
@@ -18,7 +17,6 @@ func _on_self_destruct_timer_timeout(): #After timer ends instance deletes itsel
 func reverse_projectile():
 	velocity.x = -velocity.x
 	velocity.y = -velocity.y
-
 
 func _on_area_3d_area_entered(area):
 	reverse_projectile()

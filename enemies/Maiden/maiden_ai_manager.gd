@@ -77,7 +77,8 @@ func _physics_process(delta):
 			await get_tree().create_timer(.8).timeout
 			emit_signal("turn_transparent")
 	
-	player_detection_sphere()
+	if player_body:
+		player_detection_sphere()
 	
 #	passive_state()
 	if evade_ready:
@@ -143,7 +144,7 @@ func spawn_projectile(delta):
 	
 	#Shoots 3 balls
 	for i in range(3): 
-		emit_signal("projectile", projectile_direction, enemy_body.position)
+		emit_signal("projectile", projectile_direction, enemy_body.position) #Sends signal to spawn balls
 		await get_tree().create_timer(projectile_interval_timer).timeout
 
 	#Check for evade cooldown

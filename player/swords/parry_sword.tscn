@@ -4,12 +4,12 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_k5pgv"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iwwdc"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c5hd1"]
 transparency = 4
 albedo_color = Color(0.945098, 0.54902, 0.368627, 0.427451)
 
 [sub_resource type="SphereMesh" id="SphereMesh_ao7fp"]
-material = SubResource("StandardMaterial3D_iwwdc")
+material = SubResource("StandardMaterial3D_c5hd1")
 
 [node name="Parry Sword" type="Node3D"]
 script = ExtResource("1_aq4wr")

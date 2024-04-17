@@ -1,6 +1,61 @@
-[gd_scene load_steps=2 format=3 uid="uid://pr3binha3dff"]
+[gd_scene load_steps=14 format=3 uid="uid://pr3binha3dff"]
 
 [ext_resource type="Script" path="res://common/inventory/inventory_vis.gd" id="1_50co6"]
+[ext_resource type="Texture2D" uid="uid://cvlpy5dwxjvf5" path="res://assets/UI/healthframe.png" id="2_6itvb"]
+[ext_resource type="Texture2D" uid="uid://cydcmfyjlhqex" path="res://assets/UI/weaponhud.png" id="3_cmtxc"]
+[ext_resource type="Texture2D" uid="uid://byy8ksm0xm4ur" path="res://assets/UI/healthbackground.png" id="4_x5g7o"]
+[ext_resource type="Texture2D" uid="uid://g4awlhalkwsk" path="res://assets/UI/healthbar.png" id="5_18obw"]
+[ext_resource type="Texture2D" uid="uid://bakj16vsbfy4l" path="res://assets/UI/kite_spritesheet.png" id="6_hiniy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4ksl"]
+atlas = ExtResource("6_hiniy")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uttru"]
+atlas = ExtResource("6_hiniy")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jojg"]
+atlas = ExtResource("6_hiniy")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tc4jd"]
+atlas = ExtResource("6_hiniy")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8q7o3"]
+atlas = ExtResource("6_hiniy")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xiils"]
+atlas = ExtResource("6_hiniy")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o8cjr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4ksl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uttru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jojg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tc4jd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8q7o3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xiils")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="InventoryVis" type="Node"]
 script = ExtResource("1_50co6")
@@ -8,7 +63,14 @@ script = ExtResource("1_50co6")
 [node name="UICanvasGroup" type="CanvasLayer" parent="."]
 layer = 4
 
+[node name="Healthframe" type="Sprite2D" parent="UICanvasGroup"]
+texture_filter = 1
+position = Vector2(447, 350)
+scale = Vector2(4, 4)
+texture = ExtResource("2_6itvb")
+
 [node name="BigPassiveText" type="RichTextLabel" parent="UICanvasGroup"]
+visible = false
 offset_left = 896.0
 offset_top = 605.0
 offset_right = 1278.0
@@ -19,6 +81,7 @@ text = "uninitialized
 "
 
 [node name="AngelAbilityText" type="RichTextLabel" parent="UICanvasGroup"]
+visible = false
 offset_left = 460.0
 offset_top = 654.0
 offset_right = 680.0
@@ -36,3 +99,25 @@ theme_override_colors/default_color = Color(0.827451, 0.803922, 0, 1)
 theme_override_font_sizes/normal_font_size = 30
 text = "uninitialized
 "
+
+[node name="Weaponhud" type="Sprite2D" parent="UICanvasGroup"]
+texture_filter = 1
+position = Vector2(274.5, 595.5)
+scale = Vector2(5.175, 5.175)
+texture = ExtResource("3_cmtxc")
+
+[node name="Healthbackground" type="Sprite2D" parent="UICanvasGroup"]
+position = Vector2(519, 82)
+scale = Vector2(7.625, 7.625)
+texture = ExtResource("4_x5g7o")
+
+[node name="Healthbar" type="Sprite2D" parent="UICanvasGroup"]
+position = Vector2(1388, 705)
+scale = Vector2(9.625, 9.625)
+texture = ExtResource("5_18obw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UICanvasGroup"]
+texture_filter = 1
+position = Vector2(116, 106)
+scale = Vector2(2.90625, 2.90625)
+sprite_frames = SubResource("SpriteFrames_o8cjr")

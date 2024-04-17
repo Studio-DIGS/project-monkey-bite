@@ -6,16 +6,16 @@ extends Node
 @onready var angelAbilityTextLabel = $UICanvasGroup/AngelAbilityText
 
 func _ready():
-	swordTextLabel.clear()
-	bigPassiveTextLabel.clear()
-	angelAbilityTextLabel.clear()
-	updateAllText()
+#	swordTextLabel.clear()
+#	bigPassiveTextLabel.clear()
+#	angelAbilityTextLabel.clear()
+#	updateAllText()
+	pass
 	
 func updateAllText():
 	updateAngelAbilityVis()
 	updateBigPassiveVis()
 	updateSwordVis()
-	pass
 
 # Sword
 

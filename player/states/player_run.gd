@@ -28,7 +28,7 @@ func physics_update(delta):
 			player.stay_put_dist.enabled = true
 			state_machine.transition_to("Attack")
 	
-	elif player.try_throw and player.is_armed:
+	elif player.try_throw: # and player.is_armed:
 		state_machine.transition_to("Throw")
 	
 	elif player.hori_input == 0.0:

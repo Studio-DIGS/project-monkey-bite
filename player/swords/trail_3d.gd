@@ -23,7 +23,7 @@ enum {X, Y, Z}
 @export_range(0, 0.5) var smoothing_ratio: float = 0.25
 @export_enum("View", "Normal", "Object") var alignment: int = VIEW
 @export_enum("X", "Y", "Z") var axis: int = Y
-
+@onready var anim = $AnimationPlayer
 
 var points := []
 var color := Color(1, 1, 1, 1)
@@ -260,6 +260,7 @@ func _emit(delta) -> void:
 func _ready() -> void:
 	mesh = ImmediateMesh.new()
 	_target = get_parent()
+#	transform.origin = _target.global_transform.origin * -1
 	top_level = true
 
 

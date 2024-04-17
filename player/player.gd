@@ -133,9 +133,10 @@ func reorient():
 
 func _on_player_interaction_swap_swords(sword):
 	if not is_armed:
-		var new_sword = sword.mesh.instantiate()
+		var new_sword = sword.stats.mesh.instantiate()
 #		new_sword.transform = sword_holder.transform
 		sword_holder.add_child(new_sword)
 		
+		sword.queue_free() # delete the sword that was on the ground
 		is_armed = true
 	

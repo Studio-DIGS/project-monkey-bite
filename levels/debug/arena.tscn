@@ -55,7 +55,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.984788, 0)
 axis_lock_linear_z = true
 
 [node name="SwordBody" parent="." instance=ExtResource("7_h2geq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.59603, 2.37774, 0)
+transform = Transform3D(1, 0, 0, 0, 0.782304, 0.622897, 0, -0.622897, 0.782304, -8.0708, 4.00052, 0)
 axis_lock_linear_y = false
 axis_lock_linear_z = false
 axis_lock_angular_x = false

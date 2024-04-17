@@ -1,22 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcv8rw7q3owa"]
+[gd_scene load_steps=6 format=3 uid="uid://bcv8rw7q3owa"]
 
 [ext_resource type="PackedScene" uid="uid://3ouiy68pry5n" path="res://assets/kite-blender/pmb_kite.gltf" id="1_7rbey"]
 [ext_resource type="Script" path="res://player/body.gd" id="2_6bkb1"]
 [ext_resource type="ArrayMesh" uid="uid://cwxjglc5p8fcj" path="res://assets/kite-blender/sword.obj" id="2_lsamu"]
 [ext_resource type="Script" path="res://player/sword_pivot.gd" id="3_q4bd8"]
 [ext_resource type="PackedScene" uid="uid://bwj0n3jmsxunn" path="res://player/swords/example/example_sword.tscn" id="5_f34lk"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l3r1g"]
-diffuse_mode = 3
-albedo_color = Color(0.647059, 0.647059, 0.647059, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxejm"]
-diffuse_mode = 3
-albedo_color = Color(0.776471, 0.67451, 0.466667, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dhmr"]
-diffuse_mode = 3
-albedo_color = Color(0.298039, 0.215686, 0.152941, 1)
 
 [node name="pmb_kite" node_paths=PackedStringArray("smear_origin") instance=ExtResource("1_7rbey")]
 script = ExtResource("2_6bkb1")
@@ -225,9 +213,6 @@ transform = Transform3D(0.0429436, -0.251296, 0.0510506, 0.255135, 0.0470655, 0.
 visible = false
 mesh = ExtResource("2_lsamu")
 skeleton = NodePath("../../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_l3r1g")
-surface_material_override/1 = SubResource("StandardMaterial3D_wxejm")
-surface_material_override/2 = SubResource("StandardMaterial3D_3dhmr")
 
 [node name="SwordHolder" type="Node3D" parent="base_human_rig/Skeleton3D/BoneAttachment3D" index="2"]
 transform = Transform3D(0.204753, -0.963287, 0.173648, 0.978148, 0.207912, 3.49403e-08, -0.0361035, 0.169854, 0.984808, 0, 0.085, -5.96046e-08)

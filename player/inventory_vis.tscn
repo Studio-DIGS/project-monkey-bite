@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://pr3binha3dff"]
+[gd_scene load_steps=15 format=3 uid="uid://pr3binha3dff"]
 
 [ext_resource type="Script" path="res://common/inventory/inventory_vis.gd" id="1_50co6"]
 [ext_resource type="Texture2D" uid="uid://cvlpy5dwxjvf5" path="res://assets/UI/healthframe.png" id="2_6itvb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://byy8ksm0xm4ur" path="res://assets/UI/healthbackground.png" id="4_x5g7o"]
 [ext_resource type="Texture2D" uid="uid://g4awlhalkwsk" path="res://assets/UI/healthbar.png" id="5_18obw"]
 [ext_resource type="Texture2D" uid="uid://bakj16vsbfy4l" path="res://assets/UI/kite_spritesheet.png" id="6_hiniy"]
+[ext_resource type="Theme" uid="uid://dr3nkdfk1o7ux" path="res://Theme.tres" id="7_btlg0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e4ksl"]
 atlas = ExtResource("6_hiniy")
@@ -63,12 +64,6 @@ script = ExtResource("1_50co6")
 [node name="UICanvasGroup" type="CanvasLayer" parent="."]
 layer = 4
 
-[node name="Healthframe" type="Sprite2D" parent="UICanvasGroup"]
-texture_filter = 1
-position = Vector2(447, 350)
-scale = Vector2(4, 4)
-texture = ExtResource("2_6itvb")
-
 [node name="BigPassiveText" type="RichTextLabel" parent="UICanvasGroup"]
 visible = false
 offset_left = 896.0
@@ -91,33 +86,50 @@ theme_override_font_sizes/normal_font_size = 30
 text = "uninitialized"
 
 [node name="SwordText" type="RichTextLabel" parent="UICanvasGroup"]
-offset_left = 34.0
-offset_top = 608.0
-offset_right = 416.0
-offset_bottom = 723.0
+visible = false
+offset_left = 19.0
+offset_top = 590.0
+offset_right = 195.0
+offset_bottom = 643.0
 theme_override_colors/default_color = Color(0.827451, 0.803922, 0, 1)
 theme_override_font_sizes/normal_font_size = 30
 text = "uninitialized
 "
 
-[node name="Weaponhud" type="Sprite2D" parent="UICanvasGroup"]
+[node name="WeaponHud" type="TextureRect" parent="UICanvasGroup"]
 texture_filter = 1
-position = Vector2(274.5, 595.5)
-scale = Vector2(5.175, 5.175)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -180.0
+offset_right = 186.0
+offset_bottom = -19.0
+grow_vertical = 0
 texture = ExtResource("3_cmtxc")
 
-[node name="Healthbackground" type="Sprite2D" parent="UICanvasGroup"]
-position = Vector2(519, 82)
-scale = Vector2(7.625, 7.625)
-texture = ExtResource("4_x5g7o")
-
-[node name="Healthbar" type="Sprite2D" parent="UICanvasGroup"]
-position = Vector2(1388, 705)
-scale = Vector2(9.625, 9.625)
-texture = ExtResource("5_18obw")
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UICanvasGroup"]
+texture_filter = 1
+offset_left = 153.0
+offset_top = 31.0
+offset_right = 233.0
+offset_bottom = 47.0
+scale = Vector2(5.5, 5.5)
+texture_under = ExtResource("4_x5g7o")
+texture_over = ExtResource("2_6itvb")
+texture_progress = ExtResource("5_18obw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UICanvasGroup"]
 texture_filter = 1
-position = Vector2(116, 106)
-scale = Vector2(2.90625, 2.90625)
+position = Vector2(108, 108)
+scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_o8cjr")
+
+[node name="_100" type="Label" parent="UICanvasGroup"]
+texture_filter = 1
+offset_left = 233.0
+offset_top = 75.0
+offset_right = 279.0
+offset_bottom = 113.0
+theme = ExtResource("7_btlg0")
+text = "/100"

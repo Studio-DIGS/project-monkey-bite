@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dr3nkdfk1o7ux"]
+
+[ext_resource type="FontFile" uid="uid://dlo3e3nmh465m" path="res://assets/fonts/PetitePx.ttf" id="1_kkvvq"]
+
+[resource]
+Label/font_sizes/font_size = 40
+Label/fonts/font = ExtResource("1_kkvvq")

@@ -1,10 +1,27 @@
-[gd_resource type="ProjectCache" load_steps=6 format=3 uid="uid://hf1crcufgssi"]
+[gd_resource type="ProjectCache" load_steps=15 format=3 uid="uid://hf1crcufgssi"]
 
 [ext_resource type="BankAsset" uid="uid://dljj6l2kgbpf1" path="res://addons/FMOD/editor/resources/banks/{70200d6d-0c51-4ffd-bb2d-4fd8ddc34ea1}.tres" id="1_q3ymn"]
 [ext_resource type="BankAsset" uid="uid://ddq53s2bqdggb" path="res://addons/FMOD/editor/resources/banks/{e83d2db9-7d2a-03bf-3d64-c5262c304839}.tres" id="2_4uudp"]
 [ext_resource type="BusAsset" uid="uid://xrksvi0phxa6" path="res://addons/FMOD/editor/resources/busses/{57fcde9d-5aad-4426-9485-90eb5df0632b}.tres" id="3_nxqoi"]
 [ext_resource type="BusAsset" uid="uid://bjst0dqdd0s0j" path="res://addons/FMOD/editor/resources/busses/{dc351256-be44-4b7e-9f10-70fcdfda6890}.tres" id="4_hs48x"]
 [ext_resource type="EventAsset" uid="uid://rsuqnt3jnrq3" path="res://addons/FMOD/editor/resources/events/{1891d5b9-bcb3-477a-862f-0ef5fb3ef220}.tres" id="5_yowaa"]
+[ext_resource type="EventAsset" uid="uid://bavm0laxu68jf" path="res://addons/FMOD/editor/resources/events/{2e9b035a-2150-4763-9837-ec13e4acf1e0}.tres" id="6_vcokl"]
+[ext_resource type="EventAsset" uid="uid://cm1jy1ocj4st3" path="res://addons/FMOD/editor/resources/events/{4fe437ae-24ac-4dec-be85-33f2db4f21bb}.tres" id="7_df0jc"]
+[ext_resource type="EventAsset" uid="uid://b2tdv1p23gok3" path="res://addons/FMOD/editor/resources/events/{4333f81a-e70a-4bd2-896c-e9e23a55024a}.tres" id="8_6ucf2"]
+[ext_resource type="EventAsset" uid="uid://civotexrny006" path="res://addons/FMOD/editor/resources/events/{3994dac3-57db-44db-8ff1-86c1e5e3d008}.tres" id="8_oriyw"]
+[ext_resource type="EventAsset" uid="uid://ckmch1tgr52d1" path="res://addons/FMOD/editor/resources/events/{1212d3fe-8c20-4b2f-a263-58764bf26c24}.tres" id="9_bfno0"]
+[ext_resource type="EventAsset" uid="uid://cso3ej83mnvwy" path="res://addons/FMOD/editor/resources/events/{37611c10-4419-45db-89c9-ff95e0ff400d}.tres" id="9_hxgqc"]
+[ext_resource type="EventAsset" uid="uid://daa6csxjfvtcx" path="res://addons/FMOD/editor/resources/events/{996b1e43-786f-4ec1-a9f5-780def693ac2}.tres" id="10_wy2wg"]
+[ext_resource type="EventAsset" uid="uid://8ljlxm6vjckn" path="res://addons/FMOD/editor/resources/events/{8763d367-553d-472b-b76b-d34af668427d}.tres" id="11_bwdyy"]
+
+[sub_resource type="EventAsset" id="EventAsset_m5sa1"]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/Dash"
+guid = "{233e8f3e-e7b2-4193-a4f6-040d56fc5338}"
+name = "Dash"
 
 [resource]
 banks = {
@@ -12,7 +29,16 @@ banks = {
 "{e83d2db9-7d2a-03bf-3d64-c5262c304839}": ExtResource("2_4uudp")
 }
 events = {
-"{1891d5b9-bcb3-477a-862f-0ef5fb3ef220}": ExtResource("5_yowaa")
+"{1212d3fe-8c20-4b2f-a263-58764bf26c24}": ExtResource("9_bfno0"),
+"{1891d5b9-bcb3-477a-862f-0ef5fb3ef220}": ExtResource("5_yowaa"),
+"{233e8f3e-e7b2-4193-a4f6-040d56fc5338}": SubResource("EventAsset_m5sa1"),
+"{2e9b035a-2150-4763-9837-ec13e4acf1e0}": ExtResource("6_vcokl"),
+"{37611c10-4419-45db-89c9-ff95e0ff400d}": ExtResource("9_hxgqc"),
+"{3994dac3-57db-44db-8ff1-86c1e5e3d008}": ExtResource("8_oriyw"),
+"{4333f81a-e70a-4bd2-896c-e9e23a55024a}": ExtResource("8_6ucf2"),
+"{4fe437ae-24ac-4dec-be85-33f2db4f21bb}": ExtResource("7_df0jc"),
+"{8763d367-553d-472b-b76b-d34af668427d}": ExtResource("11_bwdyy"),
+"{996b1e43-786f-4ec1-a9f5-780def693ac2}": ExtResource("10_wy2wg")
 }
 busses = {
 "{57fcde9d-5aad-4426-9485-90eb5df0632b}": ExtResource("3_nxqoi"),
@@ -34,9 +60,63 @@ bank_tree = [{
 event_tree = [{
 "children": [],
 "item_type": 1,
+"node_name": "Dash",
+"path": "event:/Dash",
+"resource": SubResource("EventAsset_m5sa1")
+}, {
+"children": [],
+"item_type": 1,
 "node_name": "Music",
 "path": "event:/Music",
 "resource": ExtResource("5_yowaa")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Music V2",
+"path": "event:/Music V2",
+"resource": ExtResource("6_vcokl")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "New Event 2",
+"path": "event:/New Event 2",
+"resource": ExtResource("7_df0jc")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Player Jump",
+"path": "event:/Player Jump",
+"resource": ExtResource("8_oriyw")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Player Land",
+"path": "event:/Player Land",
+"resource": ExtResource("9_hxgqc")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Schmovosaur Hurt",
+"path": "event:/Schmovosaur Hurt",
+"resource": ExtResource("8_6ucf2")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Schmovosaur ouchie",
+"path": "event:/Schmovosaur ouchie",
+"resource": ExtResource("9_bfno0")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Sword Slashes",
+"path": "event:/Sword Slashes",
+"resource": ExtResource("10_wy2wg")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Sword Whiff",
+"path": "event:/Sword Whiff",
+"resource": ExtResource("11_bwdyy")
 }]
 bus_tree = [{
 "children": [{

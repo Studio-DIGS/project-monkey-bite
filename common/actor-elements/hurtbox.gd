@@ -2,7 +2,7 @@ class_name Hurtbox
 extends Area3D
 
 @export var health: Health = null
-@onready var impact_fx = preload("res://common/vfx/impact_fx.tscn")
+#@onready var impact_fx = preload("res://common/vfx/impact_fx.tscn")
 
 #@onready var sword_sfx = $"../SFXContainer/SwordSlash"
 
@@ -17,8 +17,8 @@ func _on_area_entered(hitbox: Hitbox):
 	
 	hit.emit(hitbox.knockback)
 	#sword_sfx.play()
-	var instance = impact_fx.instantiate()
-	add_child(instance)
+	#var instance = impact_fx.instantiate()
+	#add_child(instance)
 	
 	Engine.time_scale = hitbox.freeze_slow
 	await get_tree().create_timer(hitbox.freeze_time * hitbox.freeze_slow).timeout

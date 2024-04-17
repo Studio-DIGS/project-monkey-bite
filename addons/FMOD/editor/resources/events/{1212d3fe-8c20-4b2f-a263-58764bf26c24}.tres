@@ -1,0 +1,10 @@
+[gd_resource type="EventAsset" format=3 uid="uid://ckmch1tgr52d1"]
+
+[resource]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/Schmovosaur ouchie"
+guid = "{1212d3fe-8c20-4b2f-a263-58764bf26c24}"
+name = "Schmovosaur ouchie"

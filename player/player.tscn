@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://ceg0a8jxwnfae"]
+[gd_scene load_steps=44 format=3 uid="uid://ceg0a8jxwnfae"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_7knqw"]
 [ext_resource type="Resource" uid="uid://jvuono3vj3hl" path="res://player/attacks/slash_1.tres" id="2_06grq"]
@@ -18,14 +18,13 @@
 [ext_resource type="Resource" uid="uid://dfo327j7kggfr" path="res://player/attacks/air_slash_3.tres" id="7_ujuw6"]
 [ext_resource type="Script" path="res://player/states/player_land.gd" id="8_m0mi4"]
 [ext_resource type="Script" path="res://player/states/player_attack.gd" id="9_0f5gx"]
+[ext_resource type="EventAsset" uid="uid://daa6csxjfvtcx" path="res://addons/FMOD/editor/resources/events/{996b1e43-786f-4ec1-a9f5-780def693ac2}.tres" id="9_vovt1"]
 [ext_resource type="Script" path="res://player/controllers/human_controller.gd" id="12_1q4mr"]
 [ext_resource type="Script" path="res://common/actor-elements/hitbox.gd" id="12_u1r6y"]
 [ext_resource type="Script" path="res://player/controllers/cutscene_controller.gd" id="13_rj60u"]
 [ext_resource type="Script" path="res://common/actor-elements/health.gd" id="14_hr7l7"]
 [ext_resource type="Script" path="res://common/actor-elements/hurtbox.gd" id="15_ggx7t"]
 [ext_resource type="Script" path="res://player/states/player_zonein.gd" id="18_0wu4t"]
-[ext_resource type="AudioStream" uid="uid://h5n6llbps7ce" path="res://common/sfx/Swords slash sfx 1.mp3" id="25_g4bfd"]
-[ext_resource type="AudioStream" uid="uid://cxtil1jaisco7" path="res://common/sfx/jump.mp3" id="26_2fhnc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_48kjw"]
 radius = 0.284876
@@ -725,6 +724,7 @@ hitbox = NodePath("pmb_kite/Hitbox")
 combo = Array[Resource("res://player/attacks/attack_resource.gd")]([ExtResource("2_06grq"), ExtResource("3_msbl5"), ExtResource("4_slkb2")])
 air_combo = Array[Resource("res://player/attacks/attack_resource.gd")]([ExtResource("5_4ghsq"), ExtResource("6_56cec"), ExtResource("7_ujuw6")])
 zone_in = ExtResource("6_yg4su")
+event = ExtResource("9_vovt1")
 
 [node name="BodyCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_48kjw")
@@ -1097,24 +1097,6 @@ attenuation_object = NodePath("..")
 rigidbody = NodePath("..")
 
 [node name="StudioListener2D" type="StudioListener2D" parent="."]
-
-[node name="AudioListener3D" type="AudioListener3D" parent="."]
-current = true
-
-[node name="SFXContainer" type="Node" parent="."]
-
-[node name="SwordSlash" type="AudioStreamPlayer" parent="SFXContainer"]
-stream = ExtResource("25_g4bfd")
-mix_target = 2
-bus = &"SFX"
-
-[node name="JumpSFX" type="AudioStreamPlayer" parent="SFXContainer"]
-stream = ExtResource("26_2fhnc")
-volume_db = -5.0
-mix_target = 2
-bus = &"SFX"
-
-[node name="SwordWhiff" type="AudioStreamPlayer" parent="SFXContainer"]
 
 [connection signal="ready" from="." to="StateMachine" method="_on_player_ready"]
 [connection signal="turn_around" from="." to="pmb_kite" method="_on_player_turn_around"]

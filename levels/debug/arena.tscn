@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://uqhigjxr1urv"]
+[gd_scene load_steps=9 format=3 uid="uid://uqhigjxr1urv"]
 
 [ext_resource type="Script" path="res://common/game_manager.gd" id="1_j5cm2"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="2_s6olh"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/Schmovosaur/Schmovosaur Enemy.tscn" id="5_ncifa"]
 [ext_resource type="Material" uid="uid://c6u3d007eldb2" path="res://levels/debug/grid.tres" id="6_4xrlh"]
 [ext_resource type="EventAsset" uid="uid://rsuqnt3jnrq3" path="res://addons/FMOD/editor/resources/events/{1891d5b9-bcb3-477a-862f-0ef5fb3ef220}.tres" id="7_ku6im"]
-[ext_resource type="AudioStream" uid="uid://cp5cxpkiuunmi" path="res://common/Music/Light Stage 1 Ambient.mp3" id="8_7pfsg"]
 
 [sub_resource type="Environment" id="Environment_y8ynd"]
 background_mode = 2
@@ -63,9 +62,3 @@ rigidbody = NodePath("../Player")
 [node name="StudioEventEmitter2D" type="StudioEventEmitter2D" parent="."]
 play_event = 2
 event = ExtResource("7_ku6im")
-
-[node name="Ambient Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_7pfsg")
-volume_db = -10.0
-autoplay = true
-bus = &"Music"

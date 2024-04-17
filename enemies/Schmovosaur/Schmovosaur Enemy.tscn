@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bfg1ub413xc20"]
+[gd_scene load_steps=26 format=3 uid="uid://bfg1ub413xc20"]
 
 [ext_resource type="Script" path="res://enemies/Schmovosaur/Schmovosaur Enemy.gd" id="1_rup4a"]
 [ext_resource type="PackedScene" uid="uid://g8bqjbm54pik" path="res://assets/Shmovosaur/shmovosaur_model.tscn" id="2_d6424"]
@@ -8,6 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://dkwnbhlmom1ch" path="res://enemies/Schmovosaur/schmovosaur_ai_2.tscn" id="5_l6hc8"]
 [ext_resource type="AudioStream" uid="uid://h5n6llbps7ce" path="res://common/sfx/Swords slash sfx 1.mp3" id="7_itl1i"]
 [ext_resource type="AudioStream" uid="uid://q2x32njpa1ie" path="res://common/sfx/Mobs monster hurt.mp3" id="8_kf62o"]
+
+[sub_resource type="EventAsset" id="EventAsset_l8pe1"]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/Schmovosaur ouchie"
+guid = "{1212d3fe-8c20-4b2f-a263-58764bf26c24}"
+name = "Schmovosaur ouchie"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q5uni"]
 
@@ -204,6 +213,7 @@ albedo_color = Color(0.545098, 0.952941, 0.952941, 0.337255)
 [node name="Schmovosaur" type="CharacterBody3D"]
 collision_layer = 16
 script = ExtResource("1_rup4a")
+event = SubResource("EventAsset_l8pe1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00357932, 0)

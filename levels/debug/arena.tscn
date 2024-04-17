@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://uqhigjxr1urv"]
+[gd_scene load_steps=9 format=3 uid="uid://uqhigjxr1urv"]
 
 [ext_resource type="Script" path="res://common/game_manager.gd" id="1_j5cm2"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="2_s6olh"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="4_dmm83"]
 [ext_resource type="Material" uid="uid://c6u3d007eldb2" path="res://levels/debug/grid.tres" id="6_4xrlh"]
 [ext_resource type="PackedScene" uid="uid://cwe11a87ps1lo" path="res://enemies/punching_bag.tscn" id="6_quru2"]
+[ext_resource type="PackedScene" uid="uid://bphge5vitnjip" path="res://player/swords/sword_body.tscn" id="7_h2geq"]
 
 [sub_resource type="Environment" id="Environment_y8ynd"]
 background_mode = 2
@@ -52,3 +53,10 @@ size = Vector3(54, 8, 10)
 [node name="PunchingBag" parent="." instance=ExtResource("6_quru2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.984788, 0)
 axis_lock_linear_z = true
+
+[node name="SwordBody" parent="." instance=ExtResource("7_h2geq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.59603, 2.37774, 0)
+axis_lock_linear_y = false
+axis_lock_linear_z = false
+axis_lock_angular_x = false
+axis_lock_angular_y = false

@@ -1,3 +1,4 @@
+class_name SwordBody
 extends RigidBody3D
 
 @export var stats: Sword

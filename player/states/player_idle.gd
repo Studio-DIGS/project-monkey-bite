@@ -22,8 +22,12 @@ func physics_update(delta):
 	elif player.try_attack:
 		state_machine.transition_to("Attack")
 	
-	elif player.try_throw: # and player.is_armed:
+	elif player.try_throw and player.is_armed:
 		state_machine.transition_to("Throw")
+	
+	elif player.try_interact:
+		player.interaction_area.set_deferred("monitorable", true)
+		player.interaction_area.set_deferred("monitoring", true)
 	
 #	elif player.try_special and player.is_armed:
 #		state_machine.transition_to("Special")

@@ -16,8 +16,8 @@ func throw_sword():
 	GameManager.current_scene.add_child(projectile_instance)
 	projectile_instance.throw(player.orientation)
 	
-	if player.sword_mesh != null:
-		player.sword_mesh.queue_free()
+	if player.sword_holder.get_child_count() > 0:
+		player.sword_holder.get_child(0).queue_free()
 	
 func _on_animation_player_animation_finished(_anim_name):
 	if state_machine.state.name == "Throw":

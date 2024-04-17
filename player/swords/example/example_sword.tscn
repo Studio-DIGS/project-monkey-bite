@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwj0n3jmsxunn"]
+
+[ext_resource type="ArrayMesh" uid="uid://cwxjglc5p8fcj" path="res://assets/kite-blender/sword.obj" id="1_6r5wj"]
+
+[node name="ExampleSword" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.27, 0, 0, 0, 0.27, 0, 0, 0, 0.27, 0, -0.397161, 0)
+mesh = ExtResource("1_6r5wj")

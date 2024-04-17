@@ -19,6 +19,7 @@ signal turn_around
 var try_attack = false
 var try_jump = false
 var try_throw = false
+var try_interact = false
 @onready var controller_container = $ControllerContainer
 
 # Attack stuff
@@ -26,8 +27,8 @@ var try_throw = false
 @export var combo: Array[AttackResource] = []
 @export var air_combo: Array[AttackResource] = []
 @export var zone_in: AttackResource
-@onready var zone_in_dist: RayCast3D = $Mesh/ZoneInDist
-@onready var stay_put_dist: RayCast3D = $Mesh/StayPutDist
+#@onready var zone_in_dist: RayCast3D = $Mesh/ZoneInDist
+#@onready var stay_put_dist: RayCast3D = $Mesh/StayPutDist
 @export var punch: Array[AttackResource] = []
 @export var air_kick: Array[AttackResource] = []
 var is_armed = true
@@ -39,8 +40,9 @@ var is_armed = true
 
 @onready var sword_body = preload("res://player/swords/sword_body.tscn")
 @onready var sword_spawn = $pmb_kite/base_human_rig/Skeleton3D/BoneAttachment3D
-@onready var sword_mesh = $pmb_kite/base_human_rig/Skeleton3D/BoneAttachment3D/Sword
+@onready var sword_holder = $pmb_kite/base_human_rig/Skeleton3D/BoneAttachment3D/SwordHolder
 
+@onready var interaction_area: Area3D = $PlayerInteraction
 @export var inventoryVis: InventoryVis
 
 func _ready():
@@ -99,6 +101,15 @@ func stop_jump():
 
 func drop_platform():
 	set_collision_mask_value(9, false)
+	
+func interact():
+	try_interact = true
+	print("trying to interact")
+	await get_tree().create_timer(0.1).timeout
+	interaction_area.set_deferred("monitorable", false)
+	interaction_area.set_deferred("monitoring", false)
+	try_interact = false
+	print("interaction over")
 
 func _physics_process(_delta):
 	if get_collision_mask_value(9) and vert_input < 0.0:
@@ -118,3 +129,13 @@ func reorient():
 	if new_orientation != orientation:
 		orientation = new_orientation
 		emit_signal("turn_around")
+
+
+func _on_player_interaction_swap_swords(sword):
+	if not is_armed:
+		var new_sword = sword.mesh.instantiate()
+#		new_sword.transform = sword_holder.transform
+		sword_holder.add_child(new_sword)
+		
+		is_armed = true
+	

@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://player/states/player_attack.gd" id="9_0f5gx"]
 [ext_resource type="Resource" uid="uid://fsi5sxhtijjl" path="res://player/attacks/punch.tres" id="9_4hthk"]
 [ext_resource type="Resource" uid="uid://1cvlje125a6o" path="res://player/attacks/air_kick.tres" id="10_w5e58"]
+[ext_resource type="Resource" uid="uid://w5asob1k6fwp" path="res://player/swords/example/example_sword.tres" id="11_5lryx"]
 [ext_resource type="Script" path="res://player/controllers/human_controller.gd" id="12_1q4mr"]
 [ext_resource type="PackedScene" uid="uid://bcv8rw7q3owa" path="res://player/kite_model_test.tscn" id="12_lvsae"]
 [ext_resource type="Script" path="res://common/actor-elements/hitbox.gd" id="12_u1r6y"]
@@ -26,7 +27,6 @@
 [ext_resource type="Script" path="res://player/player_interaction.gd" id="16_apitn"]
 [ext_resource type="PackedScene" uid="uid://pr3binha3dff" path="res://player/inventory_vis.tscn" id="17_ui07v"]
 [ext_resource type="Script" path="res://player/states/player_zonein.gd" id="18_0wu4t"]
-[ext_resource type="PackedScene" uid="uid://cs8hsqb6eqi58" path="res://player/specials/ice-sword/ice_sword.tscn" id="21_onm8x"]
 [ext_resource type="Script" path="res://player/states/player_dash.gd" id="25_bnwnl"]
 [ext_resource type="Script" path="res://player/states/player_throw.gd" id="25_smc6p"]
 [ext_resource type="Script" path="res://player/states/player_special.gd" id="28_5pf82"]
@@ -59,6 +59,7 @@ air_combo = Array[Resource("res://player/attacks/attack_resource.gd")]([ExtResou
 zone_in = ExtResource("6_yg4su")
 punch = Array[Resource("res://player/attacks/attack_resource.gd")]([ExtResource("9_4hthk")])
 air_kick = Array[Resource("res://player/attacks/attack_resource.gd")]([ExtResource("10_w5e58")])
+sword = ExtResource("11_5lryx")
 
 [node name="BodyCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_48kjw")
@@ -285,8 +286,6 @@ collision_mask = 64
 collide_with_areas = true
 collide_with_bodies = false
 debug_shape_thickness = 5
-
-[node name="ice_sword" parent="pmb_kite" instance=ExtResource("21_onm8x")]
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("14_hr7l7")

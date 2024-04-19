@@ -1,5 +1,6 @@
 extends PlayerState
 
+
 func enter(_msg := {}):
 	player.anim.play("Block")
 

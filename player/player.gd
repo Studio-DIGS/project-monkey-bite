@@ -31,6 +31,7 @@ var try_jump = false
 var try_dash = false
 var try_throw = false
 var try_interact = false
+var try_special = false
 
 # Attack stuff
 @export var hitbox: Hitbox
@@ -42,6 +43,7 @@ var try_interact = false
 @export var punch: Array[AttackResource] = []
 @export var air_kick: Array[AttackResource] = []
 var is_armed = true
+@export var sword: Sword
 
 # Onready variables
 @onready var anim = $pmb_kite/AnimationPlayer
@@ -56,15 +58,16 @@ var is_armed = true
 
 
 func _ready():
-	print(GameManager.current_scene.name)
-	if(InventoryManager.uninitialized == true):
-		InventoryManager.swapSword("Amazing Sword")
-		InventoryManager.addBigPassive(BigPassive.new("Huge Passive"))
-		InventoryManager.setAngelAbility(AngelAbility.new("God Hacks"))
-		InventoryManager.uninitialized = false
+#	if(InventoryManager.uninitialized == true):
+#		InventoryManager.swapSword("Amazing Sword")
+#		InventoryManager.addBigPassive(BigPassive.new("Huge Passive"))
+#		InventoryManager.setAngelAbility(AngelAbility.new("God Hacks"))
+#		InventoryManager.uninitialized = false
 	set_controller(human_controller)
 	GameManager.connect("start_cutscene", _start_cutscene)
 	GameManager.connect("end_cutscene", _end_cutscene)
+	
+	inventory_vis.update_weapon(sword.sprite)
 	
 	
 
@@ -116,6 +119,11 @@ func dash():
 	await get_tree().process_frame
 	try_dash = false
 
+func special():
+	try_special = true
+	await get_tree().process_frame
+	try_special = false
+
 func drop_platform():
 	set_collision_mask_value(9, false)
 	
@@ -145,16 +153,14 @@ func reorient():
 		orientation = new_orientation
 		emit_signal("turn_around")
 
-func _on_player_interaction_swap_swords(sword):
+func _on_player_interaction_swap_swords(sword_body):
 	if not is_armed:
-		var new_sword = sword.stats.mesh.instantiate()
-#		new_sword.transform = sword_holder.transform
-		sword_holder.add_child(new_sword)
-		
-		sword.queue_free() # delete the sword that was on the ground
+		var new_sword = sword_body.stats
+		self.sword = new_sword
 		is_armed = true
-	
-
-func _on_parry_sword_force_player_attack():
-	attack()
-	print("Attacked")
+		inventory_vis.update_weapon(self.sword.sprite)
+		
+		# Make Kite hold new sword
+		var new_sword_mesh = new_sword.mesh.instantiate()
+		sword_holder.add_child(new_sword_mesh)
+		sword_body.queue_free() # delete the sword that was on the ground

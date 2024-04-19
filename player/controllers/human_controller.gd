@@ -13,6 +13,8 @@ func _physics_process(delta):
 			player.jump(delta)
 		elif Input.is_action_just_released("jump"):
 			player.stop_jump()
+		elif Input.is_action_just_pressed("dash"):
+			player.dash()
 		elif Input.is_action_just_pressed("interact"):
 			player.interact()
 		

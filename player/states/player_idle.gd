@@ -19,6 +19,9 @@ func physics_update(delta):
 		player.anim.play("Run")
 		state_machine.transition_to("Run")
 	
+	elif player.try_dash:
+		state_machine.transition_to("Dash")
+	
 	elif player.try_attack:
 		state_machine.transition_to("Attack")
 	

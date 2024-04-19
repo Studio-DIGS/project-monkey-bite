@@ -9,6 +9,8 @@ extends Actor
 var jump_time = 0.0
 @export var jump_force_coefficient = 10.0
 var gravity = 20
+@export var dash_speed = 20.0
+@export var dash_time = 0.2
 
 # Direction player is facing (1 is forward, -1 is backwards)
 var orientation = 1
@@ -17,6 +19,7 @@ signal turn_around
 # Commands for state machine
 var try_attack = false
 var try_jump = false
+var try_dash = false
 var try_throw = false
 var try_interact = false
 
@@ -96,6 +99,11 @@ func jump(delta):
 func stop_jump():
 	try_jump = false
 	jump_time = 0.0
+
+func dash():
+	try_dash = true
+	await get_tree().process_frame
+	try_dash = false
 
 func drop_platform():
 	set_collision_mask_value(9, false)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ceg0a8jxwnfae"]
+[gd_scene load_steps=34 format=3 uid="uid://ceg0a8jxwnfae"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_7knqw"]
 [ext_resource type="Resource" uid="uid://jvuono3vj3hl" path="res://player/attacks/slash_1.tres" id="2_06grq"]
@@ -26,6 +26,7 @@
 [ext_resource type="Script" path="res://player/player_interaction.gd" id="16_apitn"]
 [ext_resource type="PackedScene" uid="uid://pr3binha3dff" path="res://player/inventory_vis.tscn" id="17_ui07v"]
 [ext_resource type="Script" path="res://player/states/player_zonein.gd" id="18_0wu4t"]
+[ext_resource type="Script" path="res://player/states/player_dash.gd" id="25_bnwnl"]
 [ext_resource type="Script" path="res://player/states/player_throw.gd" id="25_smc6p"]
 [ext_resource type="Script" path="res://player/states/player_special.gd" id="28_5pf82"]
 
@@ -377,6 +378,9 @@ script = ExtResource("7_7qn2t")
 
 [node name="Land" type="Node" parent="StateMachine"]
 script = ExtResource("8_m0mi4")
+
+[node name="Dash" type="Node" parent="StateMachine"]
+script = ExtResource("25_bnwnl")
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("9_0f5gx")

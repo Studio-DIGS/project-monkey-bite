@@ -14,6 +14,9 @@ func physics_update(delta):
 	if player.try_jump:
 		state_machine.transition_to("Air", {do_jump = true})
 	
+	elif player.try_dash:
+		state_machine.transition_to("Dash")
+	
 	elif player.try_attack:
 		# I'm turning off the zone in stuff for now cuz we don't have an animation yet
 #		player.zone_in_dist.enabled = false

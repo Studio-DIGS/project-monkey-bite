@@ -40,6 +40,9 @@ func physics_update(delta):
 		player.interaction_area.set_deferred("monitorable", true)
 		player.interaction_area.set_deferred("monitoring", true)
 	
+	elif player.try_dash:
+		state_machine.transition_to("Dash")
+	
 	# Landing
 	elif player.is_on_floor():
 		player.stop_jump()

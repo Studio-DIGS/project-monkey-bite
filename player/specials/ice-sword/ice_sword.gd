@@ -7,6 +7,8 @@ var cooldown_timer
 
 var rotation_origin
 
+@export var frozen_effect: PackedScene
+
 #NOTES MAKE SURE TO CONNECT PLAYER "turn_around" to this script to update orientation of ice blade
 func _ready():
 	rotation_origin = $"Rotation Origin"
@@ -21,7 +23,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("sword special"):
+	if Input.is_action_just_pressed("special"):
 		if is_special_ready: #Insert attack animation here Jacob
 			enable_sword_hurtbox()
 			await get_tree().create_timer(hitbox_duration).timeout
@@ -44,3 +46,9 @@ func disable_sword_hurtbox():
 
 func _on_cooldown_timer_timeout():
 	is_special_ready = true
+
+func _on_area_3d_area_entered(area):
+	print("effect")
+	var frozen_instance = frozen_effect.instantiate()
+	frozen_instance.global_position = area.global_position
+	add_child(frozen_instance)

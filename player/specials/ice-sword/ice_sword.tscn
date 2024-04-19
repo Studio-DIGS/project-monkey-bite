@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cs8hsqb6eqi58"]
+[gd_scene load_steps=7 format=3 uid="uid://cs8hsqb6eqi58"]
 
 [ext_resource type="Script" path="res://player/specials/ice-sword/ice_sword.gd" id="1_j1sb6"]
 [ext_resource type="Script" path="res://common/actor-elements/hitbox.gd" id="2_0s07x"]
+[ext_resource type="PackedScene" uid="uid://bvy24stlpj3te" path="res://player/specials/ice-sword/Freeze_status_effect.tscn" id="2_emkty"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3lpa5"]
 
@@ -13,7 +14,9 @@ albedo_color = Color(0.223529, 0.737255, 0.854902, 0.427451)
 material = SubResource("StandardMaterial3D_vgyea")
 
 [node name="ice_sword" type="Node3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.942219, 0)
 script = ExtResource("1_j1sb6")
+frozen_effect = ExtResource("2_emkty")
 
 [node name="Cooldown Timer" type="Timer" parent="."]
 wait_time = 1.5
@@ -25,6 +28,8 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 3)
 collision_layer = 4
 collision_mask = 64
+monitoring = false
+monitorable = false
 script = ExtResource("2_0s07x")
 status_effect = "Freeze"
 
@@ -36,3 +41,4 @@ layers = 1024
 mesh = SubResource("SphereMesh_bpoms")
 
 [connection signal="timeout" from="Cooldown Timer" to="." method="_on_cooldown_timer_timeout"]
+[connection signal="area_entered" from="Rotation Origin/Area3D" to="." method="_on_area_3d_area_entered"]

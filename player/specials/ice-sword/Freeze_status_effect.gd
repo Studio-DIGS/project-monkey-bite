@@ -5,6 +5,7 @@ var self_destruct_timer
 func _ready():
 	self_destruct_timer = $"Self-Destruct Timer"
 	self_destruct_timer.start()
+	
 
 func _on_self_destruct_timer_timeout():
 	queue_free()

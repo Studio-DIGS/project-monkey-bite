@@ -48,7 +48,7 @@ var is_armed = true
 func _ready():
 	print(GameManager.current_scene.name)
 	if(InventoryManager.uninitialized == true):
-		InventoryManager.swapSword(Sword.new("Amazing Sword"))
+		InventoryManager.swapSword("Amazing Sword")
 		InventoryManager.addBigPassive(BigPassive.new("Huge Passive"))
 		InventoryManager.setAngelAbility(AngelAbility.new("God Hacks"))
 		InventoryManager.uninitialized = false

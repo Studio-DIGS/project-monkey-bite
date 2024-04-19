@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://iqml6h1uhmjm"]
-
-[ext_resource type="PackedScene" uid="uid://bbr0rek11knb8" path="res://visual_pipeline/grass/meshes/grass_plane.glb" id="1_c6uy4"]
-
-[node name="grass_plane" instance=ExtResource("1_c6uy4")]
-
-[node name="Grass3_0" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0493876, 0)

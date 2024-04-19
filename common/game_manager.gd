@@ -4,6 +4,7 @@ signal start_cutscene
 signal end_cutscene
 
 var current_scene = null
+var camera = null
 
 func _ready():
 	var root = get_tree().root

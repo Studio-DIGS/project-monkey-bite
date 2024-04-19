@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://l1ck70xcm5q5"]
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://wo3j0tpn383f"]
 
 [ext_resource type="Shader" uid="uid://br0hg50dclmc1" path="res://visual_pipeline/grass/grass_ground.tres" id="1_hx08c"]
 [ext_resource type="Texture2D" uid="uid://d0vmlcx0fw2ms" path="res://visual_pipeline/grass/textures/Perlin 9 - 256x256.png" id="2_0mtmn"]

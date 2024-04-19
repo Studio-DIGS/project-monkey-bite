@@ -16,9 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://r2hi5m0cek01" path="res://common/level_switcher.tscn" id="13_f2s5j"]
 [ext_resource type="PackedScene" uid="uid://bg7k2p78ua0ov" path="res://assets/lillian-assets/tree.glb" id="13_fry8b"]
 [ext_resource type="PackedScene" uid="uid://b02d1j5r3pg1x" path="res://common/passthru-platforms/passthru_platform.tscn" id="13_ixcym"]
-[ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/tree.tscn" id="14_0c633"]
-[ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/flag.tscn" id="15_0g0vm"]
-[ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/dock.tscn" id="18_6lvs3"]
+[ext_resource type="PackedScene" uid="uid://1ppp8tfmdfse" path="res://assets/lillian-assets/Textures/tree.tscn" id="14_0c633"]
+[ext_resource type="PackedScene" uid="uid://c51bm8v0mck5h" path="res://assets/lillian-assets/Textures/flag.tscn" id="15_0g0vm"]
+[ext_resource type="PackedScene" uid="uid://j5u21dt7qegf" path="res://assets/lillian-assets/Textures/dock.tscn" id="18_6lvs3"]
 
 [sub_resource type="Shader" id="Shader_vd8ur"]
 code = "

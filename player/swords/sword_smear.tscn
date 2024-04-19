@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://crdcjvy5pn1ed"]
+
+[ext_resource type="Script" path="res://player/swords/trail_3d.gd" id="1_57gwe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j41ar"]
+resource_local_to_scene = true
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.54902)
+
+[sub_resource type="Curve" id="Curve_j52hb"]
+_data = [Vector2(0, 0.642105), 0.0, 0.0, 0, 0, Vector2(0.831909, 0.631579), -2.87368, -2.87368, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_l02ye"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.54902)]
+}
+
+[sub_resource type="Animation" id="Animation_ptb2q"]
+resource_name = "fade"
+length = 0.10001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.54902), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h0caa"]
+_data = {
+"RESET": SubResource("Animation_l02ye"),
+"fade": SubResource("Animation_ptb2q")
+}
+
+[node name="SwordSmear" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_j41ar")
+script = ExtResource("1_57gwe")
+distance = 0.8
+lifetime = 0.4
+base_width = 1.0
+width_profile = SubResource("Curve_j52hb")
+smoothing_iterations = 1
+alignment = 1
+axis = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h0caa")
+}

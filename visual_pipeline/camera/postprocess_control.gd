@@ -11,3 +11,6 @@ extends Camera3D
 		else:
 			$Postprocess.hide()
 			post_processing = p
+
+func _ready():
+	GameManager.camera = self

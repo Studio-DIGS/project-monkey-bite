@@ -27,3 +27,4 @@ func _on_area_entered(hitbox: Hitbox):
 
 func something(object: Projectile):
 	object.reverse_projectile()
+	

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Sword" load_steps=3 format=3 uid="uid://w5asob1k6fwp"]
+
+[ext_resource type="PackedScene" uid="uid://bwj0n3jmsxunn" path="res://player/swords/example/example_sword.tscn" id="1_q6lk7"]
+[ext_resource type="Script" path="res://common/inventory/sword.gd" id="1_yhifo"]
+
+[resource]
+script = ExtResource("1_yhifo")
+name = "Example"
+damage = 10.0
+knockback = 5.0
+mesh = ExtResource("1_q6lk7")
+throw_speed = 15.0
+flight_time = 0.5

@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Sword" load_steps=5 format=3 uid="uid://w5asob1k6fwp"]
+[gd_resource type="Resource" script_class="Sword" load_steps=6 format=3 uid="uid://w5asob1k6fwp"]
 
 [ext_resource type="PackedScene" uid="uid://bwj0n3jmsxunn" path="res://player/swords/example/example_sword.tscn" id="1_q6lk7"]
 [ext_resource type="Script" path="res://common/inventory/sword.gd" id="1_yhifo"]
+[ext_resource type="Resource" uid="uid://cvgn8e00uevka" path="res://player/attacks/sp_parry.tres" id="3_3wnk3"]
 [ext_resource type="PackedScene" uid="uid://sgmm5qot2804" path="res://player/specials/parry-sword/parry_sword.tscn" id="3_eniwp"]
 [ext_resource type="Texture2D" uid="uid://7sm6q3y2kkhg" path="res://assets/UI/Sword_Pixel_art.png" id="4_ic3ic"]
 
@@ -12,6 +13,7 @@ damage = 10.0
 knockback = 5.0
 mesh = ExtResource("1_q6lk7")
 sprite = ExtResource("4_ic3ic")
-special = ExtResource("3_eniwp")
+special_attack = ExtResource("3_3wnk3")
+special_scene = ExtResource("3_eniwp")
 throw_speed = 15.0
 flight_time = 0.5

@@ -17,15 +17,6 @@ var gravity = 20
 var orientation = 1
 signal turn_around
 
-# Input commands for state machine
-var input = {
-	attack = false,
-	jump = false,
-	dash = false,
-	throw = false,
-	interact = false
-}
-
 var try_attack = false
 var try_jump = false
 var try_dash = false

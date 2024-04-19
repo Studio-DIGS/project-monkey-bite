@@ -1,8 +1,9 @@
 extends PlayerState
-
+var special: AttackResource
 
 func enter(_msg := {}):
-	player.anim.play("Block")
+	special = player.sword.special_attack
+	player.anim.play(special.animation)
 
 func physics_update(delta):
 	player.velocity.x = lerp(player.velocity.x, 0.0, delta * player.accel)
@@ -11,7 +12,7 @@ func physics_update(delta):
 
 	
 func _on_animation_player_animation_finished(_anim_name):
-	if state_machine.state.name == "Block":
+	if state_machine.state.name == "Special":
 		if player.is_on_floor(): 
 			state_machine.transition_to("Idle") 
 		else: 

@@ -1,17 +1,16 @@
 class_name Player
 extends Actor
 
-@onready var anim = $pmb_kite/AnimationPlayer
+# Movement variables
 @export var speed = 5.0
 @export var accel = 15.0
-
 @export var min_jump_height = 2.0
 @export var max_jump_height = 4.5
 var jump_time = 0.0
 @export var jump_force_coefficient = 10.0
 var gravity = 20
 
-# direction player is facing (1 is forward, -1 is backwards)
+# Direction player is facing (1 is forward, -1 is backwards)
 var orientation = 1
 signal turn_around
 
@@ -20,7 +19,6 @@ var try_attack = false
 var try_jump = false
 var try_throw = false
 var try_interact = false
-@onready var controller_container = $ControllerContainer
 
 # Attack stuff
 @export var hitbox: Hitbox
@@ -33,17 +31,17 @@ var try_interact = false
 @export var air_kick: Array[AttackResource] = []
 var is_armed = true
 
-
+# Onready variables
+@onready var anim = $pmb_kite/AnimationPlayer
+@onready var interaction_area: Area3D = $PlayerInteraction
+@onready var inventory_vis: InventoryVis = $InventoryVis
 @onready var controllers = $ControllerContainer
 @onready var human_controller = $ControllerContainer/HumanController
 @onready var cutscene_controller = $ControllerContainer/CutsceneController
-
 @onready var sword_body = preload("res://player/swords/sword_body.tscn")
 @onready var sword_spawn = $pmb_kite/base_human_rig/Skeleton3D/BoneAttachment3D
 @onready var sword_holder = $pmb_kite/base_human_rig/Skeleton3D/BoneAttachment3D/SwordHolder
 
-@onready var interaction_area: Area3D = $PlayerInteraction
-@export var inventoryVis: InventoryVis
 
 func _ready():
 	print(GameManager.current_scene.name)
@@ -57,9 +55,9 @@ func _ready():
 	GameManager.connect("end_cutscene", _end_cutscene)
 	
 
-func updateInventory():
-	if inventoryVis:
-		inventoryVis.updateAllText()
+func update_inventory():
+	if inventory_vis:
+		inventory_vis.updateAllText()
 
 func set_controller(controller: PlayerController):
 	# turn off all other controllers
@@ -104,12 +102,10 @@ func drop_platform():
 	
 func interact():
 	try_interact = true
-	print("trying to interact")
 	await get_tree().create_timer(0.1).timeout
 	interaction_area.set_deferred("monitorable", false)
 	interaction_area.set_deferred("monitoring", false)
 	try_interact = false
-	print("interaction over")
 
 func _physics_process(_delta):
 	if get_collision_mask_value(9) and vert_input < 0.0:

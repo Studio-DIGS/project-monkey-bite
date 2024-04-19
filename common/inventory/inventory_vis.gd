@@ -4,6 +4,7 @@ extends Node
 @onready var swordTextLabel = $UICanvasGroup/SwordText
 @onready var bigPassiveTextLabel = $UICanvasGroup/BigPassiveText
 @onready var angelAbilityTextLabel = $UICanvasGroup/AngelAbilityText
+@onready var health_bar = $UICanvasGroup/HealthBar
 
 func _ready():
 #	swordTextLabel.clear()
@@ -11,7 +12,10 @@ func _ready():
 #	angelAbilityTextLabel.clear()
 #	updateAllText()
 	pass
-	
+
+func update_health(hp_percent: float):
+	health_bar.value = hp_percent
+
 func updateAllText():
 	updateAngelAbilityVis()
 	updateBigPassiveVis()

@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://byy8ksm0xm4ur" path="res://assets/UI/healthbackground.png" id="4_x5g7o"]
 [ext_resource type="Texture2D" uid="uid://g4awlhalkwsk" path="res://assets/UI/healthbar.png" id="5_18obw"]
 [ext_resource type="Texture2D" uid="uid://bakj16vsbfy4l" path="res://assets/UI/kite_spritesheet.png" id="6_hiniy"]
-[ext_resource type="Theme" uid="uid://dr3nkdfk1o7ux" path="res://Theme.tres" id="7_btlg0"]
+[ext_resource type="Theme" path="res://Theme.tres" id="7_btlg0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e4ksl"]
 atlas = ExtResource("6_hiniy")
@@ -108,13 +108,14 @@ offset_bottom = -19.0
 grow_vertical = 0
 texture = ExtResource("3_cmtxc")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="UICanvasGroup"]
+[node name="HealthBar" type="TextureProgressBar" parent="UICanvasGroup"]
 texture_filter = 1
 offset_left = 153.0
 offset_top = 31.0
 offset_right = 233.0
 offset_bottom = 47.0
 scale = Vector2(5.5, 5.5)
+value = 100.0
 texture_under = ExtResource("4_x5g7o")
 texture_over = ExtResource("2_6itvb")
 texture_progress = ExtResource("5_18obw")

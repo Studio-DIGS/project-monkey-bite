@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cs8hsqb6eqi58"]
 
-[ext_resource type="Script" path="res://ice_sword.gd" id="1_j1sb6"]
+[ext_resource type="Script" path="res://player/specials/ice-sword/ice_sword.gd" id="1_j1sb6"]
 [ext_resource type="Script" path="res://common/actor-elements/hitbox.gd" id="2_0s07x"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3lpa5"]

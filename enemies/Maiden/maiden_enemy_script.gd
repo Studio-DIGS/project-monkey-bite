@@ -20,7 +20,7 @@ var maiden_body
 var player_information: CharacterBody3D
 var is_frozen: bool
 var status_frozen_timer: float
-var frozen = preload("res://Freeze_status_effect.tscn")
+var frozen = preload("res://player/specials/ice-sword/Freeze_status_effect.gd")
 
 func _ready():
 	gravity_speed = 0

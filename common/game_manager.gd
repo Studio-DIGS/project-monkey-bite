@@ -33,7 +33,7 @@ func _deferred_goto_scene(path):
 	# Load the new scene.
 	var s = ResourceLoader.load(path)
 
-	# Instance the new scene.
+	# Instance the new scenedada.
 	current_scene = s.instantiate()
 
 	# Add it to the active scene, as child of root.

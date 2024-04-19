@@ -66,6 +66,7 @@ func _ready():
 	GameManager.connect("start_cutscene", _start_cutscene)
 	GameManager.connect("end_cutscene", _end_cutscene)
 	
+	
 
 func update_inventory():
 	if inventory_vis:
@@ -88,6 +89,7 @@ func _end_cutscene():
 	set_controller(human_controller)
 
 func attack():
+	print("TEMO")
 	try_attack = true
 	await get_tree().process_frame
 #	await get_tree().process_frame
@@ -152,3 +154,7 @@ func _on_player_interaction_swap_swords(sword):
 		sword.queue_free() # delete the sword that was on the ground
 		is_armed = true
 	
+
+func _on_parry_sword_force_player_attack():
+	attack()
+	print("Attacked")

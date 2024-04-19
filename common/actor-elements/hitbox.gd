@@ -5,6 +5,7 @@ extends Area3D
 
 @export var damage = 0
 @export var knockback = Vector2(1,1)
+@export var status_effect: String = "None"
 @export var freeze_slow = 0.07
 @export var freeze_time = 0.2
 

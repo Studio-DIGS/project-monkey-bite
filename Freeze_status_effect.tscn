@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvy24stlpj3te"]
+
+[ext_resource type="Script" path="res://Freeze_status_effect.gd" id="1_fw3m6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iwwdc"]
+transparency = 4
+albedo_color = Color(0.223529, 0.737255, 0.854902, 0.427451)
+
+[sub_resource type="SphereMesh" id="SphereMesh_k01x4"]
+material = SubResource("StandardMaterial3D_iwwdc")
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_fw3m6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+mesh = SubResource("SphereMesh_k01x4")
+skeleton = NodePath("")
+
+[node name="Self-Destruct Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="Self-Destruct Timer" to="." method="_on_self_destruct_timer_timeout"]

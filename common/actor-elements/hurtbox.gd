@@ -4,6 +4,8 @@ extends Area3D
 @export var health: Health = null
 @onready var impact_fx = preload("res://common/vfx/impact_fx.tscn")
 
+#Adding status effects
+signal send_freeze
 signal hit(vector: Vector2)
 
 func _ready():
@@ -12,7 +14,8 @@ func _ready():
 func _on_area_entered(hitbox: Hitbox):
 	if hitbox == null:
 		return
-	
+	if hitbox.status_effect == "Freeze":
+		emit_signal("send_freeze")
 	hit.emit(hitbox.knockback)
 	
 	var instance = impact_fx.instantiate()

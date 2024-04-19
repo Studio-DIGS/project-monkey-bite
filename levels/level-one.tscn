@@ -1,7 +1,7 @@
 [gd_scene load_steps=31 format=3 uid="uid://cjvdolls6nl1u"]
 
 [ext_resource type="Material" uid="uid://fn0hadct6ay" path="res://assets/lillian-assets/Textures/floor_material.tres" id="2_7bmqr"]
-[ext_resource type="Material" uid="uid://bdrk3hn2y0uie" path="res://visual_pipeline/grass/grass_floor.tres" id="2_gkx40"]
+[ext_resource type="Material" uid="uid://c2ese1f67ujw0" path="res://visual_pipeline/grass/grass_floor.tres" id="2_gkx40"]
 [ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/Schmovosaur/Schmovosaur Enemy.tscn" id="3_vtmvv"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="4_s5jpf"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="5_esovy"]
@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dpqqdkigqcdws" path="res://assets/lillian-assets/Islands/floating rock 1.glb" id="19_tyupx"]
 [ext_resource type="PackedScene" uid="uid://mbmikvo0bep" path="res://assets/lillian-assets/Islands/floating rock 2.glb" id="20_6l01l"]
 [ext_resource type="PackedScene" uid="uid://cdlms1nqyimrp" path="res://assets/lillian-assets/Islands/small island 2.glb" id="20_l027i"]
-[ext_resource type="PackedScene" path="res://common/level_switcher.tscn" id="20_w2g3i"]
+[ext_resource type="PackedScene" uid="uid://r2hi5m0cek01" path="res://common/level_switcher.tscn" id="20_w2g3i"]
 [ext_resource type="PackedScene" uid="uid://dt3lg5wx2blje" path="res://assets/lillian-assets/Islands/island 3.glb" id="20_yyn82"]
 
 [sub_resource type="Shader" id="Shader_vd8ur"]

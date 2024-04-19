@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://17sg70sy4jem"]
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cy5grtgfs4uco"]
 
 [ext_resource type="Shader" uid="uid://cuvclsyoc2sse" path="res://visual_pipeline/grass/planar_grass.tres" id="1_pv20a"]
 [ext_resource type="Texture2D" uid="uid://cmkg6j5acnh6s" path="res://visual_pipeline/grass/textures/grass_color_ramp.png" id="2_4fc11"]

@@ -16,7 +16,7 @@ func physics_update(delta):
 		state_machine.transition_to("Air", {do_jump = true})
 	
 	elif player.hori_input != 0.0:
-		player.anim.play("Run")
+#		player.anim.play("Run")
 		state_machine.transition_to("Run")
 	
 	elif player.try_dash:

@@ -51,6 +51,7 @@ speed = 6.0
 min_jump_height = 7.0
 max_jump_height = 8.5
 jump_force_coefficient = 90.0
+dash_cooldown = 0.5
 hitbox = NodePath("pmb_kite/Hitbox")
 combo = Array[Resource("res://player/attacks/attack_resource.gd")]([ExtResource("2_06grq"), ExtResource("3_msbl5"), ExtResource("4_slkb2")])
 air_combo = Array[Resource("res://player/attacks/attack_resource.gd")]([ExtResource("5_4ghsq"), ExtResource("6_56cec"), ExtResource("7_ujuw6")])

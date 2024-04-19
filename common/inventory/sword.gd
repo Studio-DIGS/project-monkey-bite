@@ -7,8 +7,4 @@ class_name Sword
 @export var mesh: PackedScene
 @export var throw_speed = 15.0
 @export var flight_time = 0.5 # time sword will fly straight when thrown
-	
-func _init(setName: String, setDamage: float, setKnockback: float):
-	name = setName
-	damage = setDamage
-	knockback = setKnockback
+

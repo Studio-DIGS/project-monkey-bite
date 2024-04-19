@@ -3,10 +3,14 @@ extends PlayerController
 
 func _physics_process(delta):
 	if is_active:
+		var hori_input = Input.get_axis("left", "right")
+		player.move(hori_input)
+		
+		var vertical_input = Input.get_axis("down", "up")
+		player.vert_move(vertical_input)
+		
 		if Input.is_action_just_pressed("attack"):
 			player.attack()
-#		elif Input.is_action_just_released("attack") or Input.is_action_pressed("attack"):
-#			player.stop_attack()
 		elif Input.is_action_just_pressed("throw"):
 			player.throw()
 		elif Input.is_action_pressed("jump"):
@@ -18,11 +22,7 @@ func _physics_process(delta):
 		elif Input.is_action_just_pressed("interact"):
 			player.interact()
 		
-		var move_input = Input.get_axis("left", "right")
-		player.move(move_input)
-		
-		var vertical_input = Input.get_axis("down", "up")
-		player.vert_move(vertical_input)
+
 #
 #		if Input.is_action_just_pressed("SwitchSceneGrassTest-Debug"):
 #			GameManager.goto_scene("res://levels/grasstest.tscn")

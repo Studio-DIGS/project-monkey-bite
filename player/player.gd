@@ -11,12 +11,21 @@ var jump_time = 0.0
 var gravity = 20
 @export var dash_speed = 20.0
 @export var dash_time = 0.2
+@export var dash_cooldown = 0.4
 
 # Direction player is facing (1 is forward, -1 is backwards)
 var orientation = 1
 signal turn_around
 
-# Commands for state machine
+# Input commands for state machine
+var input = {
+	attack = false,
+	jump = false,
+	dash = false,
+	throw = false,
+	interact = false
+}
+
 var try_attack = false
 var try_jump = false
 var try_dash = false
@@ -133,7 +142,6 @@ func reorient():
 	if new_orientation != orientation:
 		orientation = new_orientation
 		emit_signal("turn_around")
-
 
 func _on_player_interaction_swap_swords(sword):
 	if not is_armed:

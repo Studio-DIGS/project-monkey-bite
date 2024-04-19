@@ -1,7 +1,10 @@
 extends PlayerState
 
 func enter(_msg := {}):
-	player.anim.queue("Run")
+	if not player.is_on_floor():
+		state_machine.transition_to("Air")
+	else: 
+		player.anim.play("Run")
 
 func physics_update(delta):
 	if not player.is_on_floor():

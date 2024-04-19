@@ -9,12 +9,12 @@ enum SwordName {
 	
 }
 
-var SwordMap = {
-	'Amazing Sword' = Sword.new("Rare Sword", 10.0, 5.0),
-	'Rare Sword' = Sword.new("Rare Sword", 5.0, 2.5),
-	'Epic Sword' = Sword.new("Rare Sword", 20.0, 7.5),
-	'Sword???' = Sword.new("Rare Sword", 2.5, 15.0)
-}
+#var SwordMap = {
+#	'Amazing Sword' = Sword.new("Rare Sword", 10.0, 5.0),
+#	'Rare Sword' = Sword.new("Rare Sword", 5.0, 2.5),
+#	'Epic Sword' = Sword.new("Rare Sword", 20.0, 7.5),
+#	'Sword???' = Sword.new("Rare Sword", 2.5, 15.0)
+#}
 
 const SWORD_NAME_LIST: Array = [
 	'Rare Sword',
@@ -39,7 +39,7 @@ func randomInitAll():
 	var swordName = SWORD_NAME_LIST[randi() % len(SWORD_NAME_LIST)] as String
 	var bigPassiveName = PASSIVE_NAME_LIST[randi() % len(PASSIVE_NAME_LIST)] as String
 	var angelAbilityName = ANGEL_NAME_LIST[randi() % len(ANGEL_NAME_LIST)] as String
-	swapSword(SwordMap[swordName])
+#	swapSword(SwordMap[swordName])
 	inv.bigPassives = [BigPassive.new(bigPassiveName)]
 	setAngelAbility(AngelAbility.new(angelAbilityName))
 	
@@ -50,7 +50,7 @@ func hasSword() -> bool:
 
 func swapSword(newSwordName: String) -> Sword:
 	var oldSword = inv.sword
-	inv.sword = SwordMap[newSwordName]
+#	inv.sword = SwordMap[newSwordName]
 	return oldSword
 	
 func getSword() -> Sword:

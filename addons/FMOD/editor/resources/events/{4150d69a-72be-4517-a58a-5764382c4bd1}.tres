@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://bm34vktxic0m4"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/Player Walk"
+guid = "{4150d69a-72be-4517-a58a-5764382c4bd1}"
+name = "Player Walk"

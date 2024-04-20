@@ -1,21 +1,32 @@
-[gd_scene load_steps=23 format=3 uid="uid://bfg1ub413xc20"]
+[gd_scene load_steps=21 format=3 uid="uid://bfg1ub413xc20"]
 
 [ext_resource type="Script" path="res://enemies/Schmovosaur/Schmovosaur Enemy.gd" id="1_rup4a"]
-[ext_resource type="PackedScene" uid="uid://g8bqjbm54pik" path="res://assets/Shmovosaur/shmovosaur_model.tscn" id="2_d6424"]
+[ext_resource type="PackedScene" uid="uid://hqi246rw6efb" path="res://assets/Shmovosaur/shmovosaur_animations.tscn" id="2_c54ob"]
 [ext_resource type="Script" path="res://common/actor-elements/hurtbox.gd" id="2_qtaff"]
 [ext_resource type="Script" path="res://common/actor-elements/hitbox.gd" id="3_s8ajp"]
 [ext_resource type="Script" path="res://common/actor-elements/health.gd" id="4_pjjf5"]
 [ext_resource type="PackedScene" uid="uid://dkwnbhlmom1ch" path="res://enemies/Schmovosaur/schmovosaur_ai_2.tscn" id="5_l6hc8"]
+[ext_resource type="AudioStream" uid="uid://h5n6llbps7ce" path="res://common/sfx/Swords slash sfx 1.mp3" id="7_itl1i"]
+[ext_resource type="AudioStream" uid="uid://q2x32njpa1ie" path="res://common/sfx/Mobs monster hurt.mp3" id="8_kf62o"]
+
+[sub_resource type="EventAsset" id="EventAsset_l8pe1"]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/Schmovosaur ouchie"
+guid = "{1212d3fe-8c20-4b2f-a263-58764bf26c24}"
+name = "Schmovosaur ouchie"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q5uni"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmqyo"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c1moo"]
 diffuse_mode = 3
 albedo_color = Color(0.921569, 0.341176, 0.341176, 1)
 emission = Color(1, 1, 1, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6xy7g"]
-material = SubResource("StandardMaterial3D_vmqyo")
+material = SubResource("StandardMaterial3D_c1moo")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g0es1"]
 radius = 0.610806
@@ -24,173 +35,17 @@ height = 2.10739
 [sub_resource type="BoxShape3D" id="BoxShape3D_bmele"]
 size = Vector3(0.924626, 0.7153, 1)
 
-[sub_resource type="Animation" id="Animation_38soa"]
-length = 0.001
-step = 0.0333333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:surface_material_override/0")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [null]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox/CollisionShape3D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Hitbox/CollisionShape3D:shape:size")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.924626, 0.7153, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Hitbox/CollisionShape3D:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.490013, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_qh6ik"]
-resource_name = "attack"
-length = 0.50001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 1.309), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionShape3D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox/CollisionShape3D:shape:size")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.924626, 0.7153, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Hitbox/CollisionShape3D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.490013, 0, 0)]
-}
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2rqt"]
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-
-[sub_resource type="Animation" id="Animation_4mvm1"]
-resource_name = "stagger"
-length = 0.300005
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0.174254), Vector3(0, 0, -0.174533), Vector3(0, 0, 0.0840202), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("MeshInstance3D:surface_material_override/0")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [SubResource("StandardMaterial3D_c2rqt"), SubResource("StandardMaterial3D_c2rqt"), null]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_o72sg"]
-_data = {
-"RESET": SubResource("Animation_38soa"),
-"attack": SubResource("Animation_qh6ik"),
-"stagger": SubResource("Animation_4mvm1")
-}
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_64m1x"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e5slg"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5prjw"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sm785"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdb47"]
 bg_color = Color(0.32549, 0.741176, 0.462745, 1)
 
 [sub_resource type="Theme" id="Theme_hxsbk"]
-ProgressBar/styles/background = SubResource("StyleBoxEmpty_e5slg")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_sm785")
+ProgressBar/styles/background = SubResource("StyleBoxEmpty_5prjw")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_cdb47")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jfmux"]
 
@@ -202,48 +57,21 @@ albedo_color = Color(0.545098, 0.952941, 0.952941, 0.337255)
 [node name="Schmovosaur" type="CharacterBody3D"]
 collision_layer = 16
 script = ExtResource("1_rup4a")
+event = SubResource("EventAsset_l8pe1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00357932, 0)
 shape = SubResource("CapsuleShape3D_q5uni")
 
-[node name="shmovosaur" parent="." instance=ExtResource("2_d6424")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-
-[node name="Skeleton3D" parent="shmovosaur/Schmovosaur Rig" index="0"]
-bones/1/rotation = Quaternion(-0.307733, 4.91382e-12, 8.07065e-07, 0.951473)
-bones/2/rotation = Quaternion(-0.176197, 5.66641e-13, 4.62096e-07, 0.984355)
-bones/3/rotation = Quaternion(0.674143, 2.83624e-09, -1.76995e-06, 0.7386)
-bones/5/rotation = Quaternion(-0.194437, -1.95723e-08, 5.09555e-07, 0.980915)
-bones/6/rotation = Quaternion(-0.228715, 2.6514e-09, 5.95702e-07, 0.973493)
-bones/7/rotation = Quaternion(-0.127019, -7.09181e-13, 3.33121e-07, 0.9919)
-bones/8/rotation = Quaternion(-0.176722, -6.06046e-10, 4.63702e-07, 0.984261)
-bones/9/rotation = Quaternion(0.999944, -2.84233e-13, -2.62246e-06, 0.0105934)
-bones/10/rotation = Quaternion(-0.0630494, 2.1893e-10, 1.65417e-07, 0.99801)
-bones/11/rotation = Quaternion(-0.180536, -9.10241e-13, 4.73476e-07, 0.983568)
-bones/12/rotation = Quaternion(-0.145276, 4.11631e-10, 3.81378e-07, 0.989391)
-bones/13/rotation = Quaternion(0.953142, -0.0208627, 0.128985, 0.272853)
-bones/14/rotation = Quaternion(0.396091, -0.0586439, 0.153967, 0.903309)
-bones/15/rotation = Quaternion(-0.444679, 0.0393567, -0.191065, 0.874188)
-bones/16/position = Vector3(0.107456, -0.258983, 0.1903)
-bones/16/rotation = Quaternion(0.761678, -2.80684e-07, -2.28572e-06, 0.647956)
-bones/17/position = Vector3(0.172935, -0.193097, -0.0395626)
-bones/18/rotation = Quaternion(0.525755, 0.0491398, 0.0284458, 0.848739)
-bones/19/rotation = Quaternion(0.665344, 0.283707, -0.0186938, 0.690274)
-bones/20/rotation = Quaternion(-0.718415, -0.141836, -0.192124, 0.653338)
-bones/21/position = Vector3(-0.107455, 0.163588, 0.332508)
-bones/21/rotation = Quaternion(0.244702, 2.92538e-06, 1.24475e-07, 0.969598)
-bones/22/position = Vector3(-0.107455, -0.102754, 0.234327)
-bones/23/rotation = Quaternion(-0.641598, -0.00214203, 0.00693526, 0.767007)
-bones/24/rotation = Quaternion(-0.0534416, 0.000421975, 0.000651605, 0.998571)
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
 mesh = SubResource("CapsuleMesh_6xy7g")
 
+[node name="shmovosaur_animations" parent="." instance=ExtResource("2_c54ob")]
+
 [node name="Hurtbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 64
-collision_mask = 4
+collision_mask = 1028
 script = ExtResource("2_qtaff")
 health = NodePath("../Health")
 
@@ -253,18 +81,13 @@ shape = SubResource("CapsuleShape3D_g0es1")
 
 [node name="Hitbox" type="Area3D" parent="."]
 collision_layer = 32
-collision_mask = 0
+collision_mask = 8
 script = ExtResource("3_s8ajp")
+knockback = Vector2(5, 7)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.490013, 0, 0)
 shape = SubResource("BoxShape3D_bmele")
-disabled = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_o72sg")
-}
 
 [node name="HealthDisplay" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23996, 0)
@@ -297,6 +120,7 @@ wait_time = 3.0
 wait_time = 5.0
 
 [node name="PlayerDetectionSphere" type="Area3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 visible = false
 collision_layer = 0
 collision_mask = 8
@@ -308,6 +132,17 @@ shape = SubResource("SphereShape3D_jfmux")
 [node name="Translucent Sphere" type="CSGSphere3D" parent="PlayerDetectionSphere/CollisionShape3D"]
 material = SubResource("StandardMaterial3D_0lxu1")
 
+[node name="SFXContainer" type="Node" parent="."]
+
+[node name="SwordSlash" type="AudioStreamPlayer" parent="SFXContainer"]
+stream = ExtResource("7_itl1i")
+bus = &"SFX"
+
+[node name="MonsterOuchie" type="AudioStreamPlayer" parent="SFXContainer"]
+stream = ExtResource("8_kf62o")
+volume_db = -9.399
+bus = &"SFX"
+
 [connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
 [connection signal="death" from="Health" to="." method="_on_health_death"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
@@ -315,5 +150,4 @@ material = SubResource("StandardMaterial3D_0lxu1")
 [connection signal="area_entered" from="PlayerDetectionSphere" to="Schmovosaur AI 2" method="_on_player_detection_sphere_area_entered"]
 [connection signal="area_exited" from="PlayerDetectionSphere" to="Schmovosaur AI 2" method="_on_player_detection_sphere_area_exited"]
 
-[editable path="shmovosaur"]
 [editable path="Schmovosaur AI 2"]

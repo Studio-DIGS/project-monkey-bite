@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dkp8fr0b3fpsg"
+path="res://.godot/imported/Flapping Wings.mp3-35cd851f4e334ff9deaf7eda606f1276.mp3str"
+
+[deps]
+
+source_file="res://common/sfx/Flapping Wings.mp3"
+dest_files=["res://.godot/imported/Flapping Wings.mp3-35cd851f4e334ff9deaf7eda606f1276.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

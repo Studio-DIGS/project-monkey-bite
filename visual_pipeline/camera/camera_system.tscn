@@ -40,7 +40,7 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 5.455, 25)
 projection = 1
 current = true
-size = 10.0
+size = 10.5
 near = 0.001
 far = 500.0
 script = ExtResource("2_hpfd2")
@@ -59,10 +59,11 @@ camera_pixel_snap = NodePath("TexelCamProcess")
 
 [node name="FollowCamProcess" type="Node" parent="SubViewport/CameraContainer/MainCamControl"]
 script = ExtResource("5_4ughu")
+vertical_offset = 2.64
 
 [node name="LookaheadCamProcess" type="Node" parent="SubViewport/CameraContainer/MainCamControl"]
 script = ExtResource("6_4ybsm")
-look_ahead_distance = 3.0
+look_ahead_distance = 4.755
 
 [node name="TexelCamProcess" type="Node" parent="SubViewport/CameraContainer/MainCamControl" node_paths=PackedStringArray("viewport", "display_rect")]
 script = ExtResource("7_ku77i")

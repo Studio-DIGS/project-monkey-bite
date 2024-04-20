@@ -9,6 +9,9 @@ signal death
 
 func _ready():
 	curr_health = max_health
+	
+	if owner is Player:
+		display = owner.inventory_vis
 
 func take_damage(damage: int):
 	curr_health = max(curr_health - damage, 0)

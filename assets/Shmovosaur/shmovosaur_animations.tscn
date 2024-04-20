@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://hqi246rw6efb"]
+
+[ext_resource type="PackedScene" uid="uid://djvhhemdxm8rq" path="res://assets/Shmovosaur/shmovosaur_animations.gltf" id="1_dj77s"]
+[ext_resource type="Material" uid="uid://dy8a1rdmhvupp" path="res://assets/Shmovosaur/ShmovosaurMaterial.tres" id="2_8d74l"]
+
+[node name="shmovosaur_animations" instance=ExtResource("1_dj77s")]
+
+[node name="Schmovosaur Rig" parent="." index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.10603, -0.017408)
+
+[node name="Skeleton3D" parent="Schmovosaur Rig" index="0"]
+bones/0/position = Vector3(-1.39746e-14, -0.0733801, 9.31379e-10)
+bones/0/rotation = Quaternion(0.678368, -9.63446e-07, -8.89548e-07, 0.734722)
+bones/1/rotation = Quaternion(-0.0200129, 4.17877e-12, 5.24889e-08, 0.9998)
+bones/2/rotation = Quaternion(-0.00729336, -7.74505e-13, 1.91282e-08, 0.999973)
+bones/3/rotation = Quaternion(0.726932, 2.97193e-09, -1.90818e-06, 0.686709)
+bones/4/rotation = Quaternion(-0.899535, -9.95274e-11, 2.35877e-06, 0.436848)
+bones/5/rotation = Quaternion(-0.539438, -1.62612e-08, 1.42015e-06, 0.842025)
+bones/6/rotation = Quaternion(-0.0969609, 4.52183e-09, 2.4599e-07, 0.995288)
+bones/7/rotation = Quaternion(-0.248398, -3.37068e-09, 6.54001e-07, 0.968658)
+bones/8/rotation = Quaternion(-0.120953, 1.20146e-09, 3.16757e-07, 0.992658)
+bones/9/rotation = Quaternion(0.927837, -6.00024e-10, -2.43093e-06, 0.372985)
+bones/10/rotation = Quaternion(-0.0530586, 1.55044e-10, 1.39194e-07, 0.998591)
+bones/11/rotation = Quaternion(-0.251235, 4.37054e-10, 6.59128e-07, 0.967926)
+bones/12/rotation = Quaternion(0.065692, -6.57738e-10, -1.72886e-07, 0.99784)
+bones/13/rotation = Quaternion(0.840653, -0.0584628, 0.132428, 0.521869)
+bones/14/rotation = Quaternion(0.53284, -0.0841849, 0.173162, 0.82402)
+bones/15/rotation = Quaternion(-0.768945, 0.0254416, -0.329902, 0.547029)
+bones/16/position = Vector3(0.107457, -0.0474439, 0.308024)
+bones/16/rotation = Quaternion(0.0306633, -4.0198e-07, -6.56429e-08, 0.99953)
+bones/17/position = Vector3(0.142973, -0.132356, 0.164727)
+bones/18/rotation = Quaternion(0.81731, 0.0614621, -0.0536567, 0.570393)
+bones/19/rotation = Quaternion(0.587626, 0.131158, -0.0757356, 0.794832)
+bones/20/rotation = Quaternion(-0.901758, -0.014071, -0.353094, 0.248916)
+bones/21/position = Vector3(-0.107455, 0.0617106, 0.253164)
+bones/21/rotation = Quaternion(0.274745, 2.90013e-06, 1.36319e-07, 0.961517)
+bones/22/position = Vector3(-0.107455, -0.267228, 0.153656)
+bones/23/position = Vector3(-8.50586e-18, -0.0733801, 0)
+bones/23/rotation = Quaternion(-0.587496, -0.00261252, 0.00677206, 0.809195)
+bones/24/rotation = Quaternion(0.021581, -0.000170051, -0.000262637, 0.999767)
+
+[node name="New Model With Armature" parent="Schmovosaur Rig/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("2_8d74l")

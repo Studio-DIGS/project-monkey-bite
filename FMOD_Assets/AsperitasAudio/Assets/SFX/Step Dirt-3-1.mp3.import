@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ccjp8jy61iama"
+path="res://.godot/imported/Step Dirt-3-1.mp3-b9e79c3476d753c6f93d43b821f759da.mp3str"
+
+[deps]
+
+source_file="res://FMOD_Assets/AsperitasAudio/Assets/SFX/Step Dirt-3-1.mp3"
+dest_files=["res://.godot/imported/Step Dirt-3-1.mp3-b9e79c3476d753c6f93d43b821f759da.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

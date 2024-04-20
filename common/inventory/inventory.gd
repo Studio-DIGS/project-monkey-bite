@@ -5,8 +5,8 @@ extends Resource
 @export var bigPassives: Array[BigPassive]
 @export var angelAbility: AngelAbility
 
-func _init(setSword: Sword = Sword.new("null"), setBigPassives: Array[BigPassive] = [],
+func _init(setBigPassives: Array[BigPassive] = [],
  setAngelAbility: AngelAbility = AngelAbility.new("null")):
-	sword = setSword
+#	sword = setSword
 	bigPassives = setBigPassives
 	angelAbility = setAngelAbility

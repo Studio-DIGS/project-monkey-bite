@@ -4,6 +4,11 @@ extends Area3D
 @export var health: Health = null
 @onready var impact_fx = preload("res://common/vfx/impact_fx.tscn")
 
+#@onready var sword_sfx = $"../SFXContainer/SwordSlash"
+
+#Adding status effects
+signal send_freeze
+signal enemy_has_been_hit
 signal hit(vector: Vector2)
 
 func _ready():
@@ -12,9 +17,11 @@ func _ready():
 func _on_area_entered(hitbox: Hitbox):
 	if hitbox == null:
 		return
-	
+	emit_signal("enemy_has_been_hit")
+	if hitbox.status_effect == "Freeze":
+		emit_signal("send_freeze")
 	hit.emit(hitbox.knockback)
-	
+	#sword_sfx.play()
 	var instance = impact_fx.instantiate()
 	add_child(instance)
 	
@@ -27,3 +34,4 @@ func _on_area_entered(hitbox: Hitbox):
 
 func something(object: Projectile):
 	object.reverse_projectile()
+	

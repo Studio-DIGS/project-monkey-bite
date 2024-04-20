@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c34ama1d7n4iq"]
+[gd_scene load_steps=27 format=3 uid="uid://c34ama1d7n4iq"]
 
 [ext_resource type="Script" path="res://common/game_manager.gd" id="1_p7hkx"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="2_fxb53"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="15_7xxdj"]
 [ext_resource type="PackedScene" uid="uid://dx1fk2xow6r2j" path="res://enemies/Maiden/maiden_enemy.tscn" id="16_r4x40"]
 [ext_resource type="PackedScene" uid="uid://ey8y0wa8f8pv" path="res://enemies/Maiden/floating_cube.tscn" id="17_al346"]
+[ext_resource type="PackedScene" uid="uid://bvy24stlpj3te" path="res://player/specials/ice-sword/Freeze_status_effect.tscn" id="18_cnt7c"]
+[ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/Schmovosaur/Schmovosaur Enemy.tscn" id="19_rg75o"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8li3"]
 uv1_triplanar = true
@@ -257,7 +259,7 @@ directional_shadow_split_1 = 0.005
 environment = SubResource("Environment_y8ynd")
 
 [node name="Player" parent="." instance=ExtResource("15_7xxdj")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.583, 1.57307, -0.0921717)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.417, 1.57307, -0.0921717)
 accel = 6.505
 
 [node name="Maiden Enemy2" parent="." instance=ExtResource("16_r4x40")]
@@ -286,6 +288,12 @@ texture = SubResource("ViewportTexture_4oawm")
 
 [node name="Floating Cube" parent="." instance=ExtResource("17_al346")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0)
+
+[node name="Node3D" parent="." instance=ExtResource("18_cnt7c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -1)
+
+[node name="Schmovosaur" parent="." instance=ExtResource("19_rg75o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [connection signal="turn_around" from="Player" to="CameraSystem" method="_on_player_turn_around"]
 

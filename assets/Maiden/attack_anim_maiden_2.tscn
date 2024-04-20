@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://mshekhuhlrik"]
+
+[ext_resource type="PackedScene" uid="uid://cgmuxf13tfnls" path="res://assets/Maiden/attackAnim_maiden2.gltf" id="1_0dkf6"]
+[ext_resource type="Texture2D" uid="uid://df4wsdoxlhlf4" path="res://assets/Maiden/Blue_Maiden_Colors.png" id="2_81m1d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cbrch"]
+albedo_texture = ExtResource("2_81m1d")
+
+[node name="attackAnim_maiden2" instance=ExtResource("1_0dkf6")]
+
+[node name="Maiden_002" parent="Armature_001/Skeleton3D" index="0"]
+material_override = SubResource("StandardMaterial3D_cbrch")

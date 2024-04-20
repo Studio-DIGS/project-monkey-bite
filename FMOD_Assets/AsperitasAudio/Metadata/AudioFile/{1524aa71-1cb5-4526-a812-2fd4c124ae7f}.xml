@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{1524aa71-1cb5-4526-a812-2fd4c124ae7f}">
+		<property name="assetPath">
+			<value>SFX/Step Dirt-2-1.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.71999999999999997</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2c94f61a-fee6-44a7-9991-bd48818b8f2c}</destination>
+		</relationship>
+	</object>
+</objects>

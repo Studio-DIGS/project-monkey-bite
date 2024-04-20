@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dx1fk2xow6r2j"]
+[gd_scene load_steps=21 format=3 uid="uid://dx1fk2xow6r2j"]
 
 [ext_resource type="Script" path="res://enemies/Maiden/maiden_enemy_script.gd" id="1_67eai"]
 [ext_resource type="PackedScene" uid="uid://d1xj5a7t72vxp" path="res://enemies/Maiden/maiden_ai_manager.tscn" id="2_ug773"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://common/actor-elements/hitbox.gd" id="4_stpda"]
 [ext_resource type="Script" path="res://common/actor-elements/hurtbox.gd" id="5_e4ir2"]
 [ext_resource type="Script" path="res://enemies/Maiden/Maiden Body.gd" id="6_s2xj5"]
+[ext_resource type="PackedScene" uid="uid://mshekhuhlrik" path="res://assets/Maiden/attack_anim_maiden_2.tscn" id="7_xs7k0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_utb2a"]
 
@@ -178,7 +179,7 @@ disabled = true
 
 [node name="Hurtbox" type="Area3D" parent="."]
 collision_layer = 64
-collision_mask = 4
+collision_mask = 1028
 script = ExtResource("5_e4ir2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
@@ -189,6 +190,7 @@ shape = SubResource("CapsuleShape3D_lau5f")
 wait_time = 3.0
 
 [node name="Maiden Body" type="Node3D" parent="."]
+visible = false
 script = ExtResource("6_s2xj5")
 
 [node name="Body Fade 0" type="MeshInstance3D" parent="Maiden Body"]
@@ -207,10 +209,14 @@ skeleton = NodePath("")
 mesh = SubResource("CapsuleMesh_iv2ui")
 skeleton = NodePath("")
 
+[node name="attackAnim_maiden2" parent="." instance=ExtResource("7_xs7k0")]
+
 [connection signal="enemy_hit_instance" from="." to="Maiden AI Manager" method="_on_maiden_enemy_enemy_hit_instance"]
 [connection signal="send_player_information" from="." to="Maiden AI Manager" method="_on_maiden_enemy_send_player_information"]
 [connection signal="death" from="Health" to="." method="_on_health_death"]
 [connection signal="check_velocity" from="Maiden AI Manager" to="." method="_on_maiden_ai_manager_check_velocity"]
 [connection signal="turn_transparent" from="Maiden AI Manager" to="Maiden Body" method="_on_maiden_ai_manager_turn_transparent"]
+[connection signal="enemy_has_been_hit" from="Hurtbox" to="Maiden AI Manager" method="_on_hurtbox_enemy_has_been_hit"]
 [connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
+[connection signal="send_freeze" from="Hurtbox" to="." method="_on_hurtbox_send_freeze"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

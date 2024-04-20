@@ -13,8 +13,6 @@ var attack_inhibit: bool #Prevents shooting when invisible
 var movement_inhibit: bool
 
 var evade_ready: bool
-var minimum_escape_value: float
-var maximum_escape_value: float
 var offset_original_position: float
 var new_position: Vector3
 var occur_once_evade: bool
@@ -40,6 +38,9 @@ var cube_body
 
 var player_detection_range
 var random_variance: float
+
+@onready var maiden_3D = $"../attackAnim_maiden2"
+@onready var maiden_animation_player = $"../attackAnim_maiden2"/AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	enemy_body = $".."
@@ -62,7 +63,7 @@ func _ready():
 	occur_once_hit = true
 	escape_timer = $"Escape Timer"
 	
-	cube_body = $"../Floating Cube"
+#	cube_body = $"../Floating Cube"
 	
 	player_detection_range = 10
 	random_variance = randf()
@@ -77,7 +78,8 @@ func _physics_process(delta):
 			await get_tree().create_timer(.8).timeout
 			emit_signal("turn_transparent")
 	
-	player_detection_sphere()
+	if player_body:
+		player_detection_sphere()
 	
 #	passive_state()
 	if evade_ready:
@@ -139,11 +141,16 @@ func evade():
 		print("Evade ends")
 
 func spawn_projectile(delta):
+	maiden_animation_player.play("Key_001Action")
 	projectile_direction = (player_body.position - enemy_body.position).normalized()
-	
+	#Maiden turns using the following lines
+	if projectile_direction.x >= 0:
+		maiden_3D.rotation_degrees = Vector3(0, 90, 0)
+	else:
+		maiden_3D.rotation_degrees = Vector3(0, -90, 0)
 	#Shoots 3 balls
 	for i in range(3): 
-		emit_signal("projectile", projectile_direction, enemy_body.position)
+		emit_signal("projectile", projectile_direction, enemy_body.position) #Sends signal to spawn balls
 		await get_tree().create_timer(projectile_interval_timer).timeout
 
 	#Check for evade cooldown
@@ -182,9 +189,15 @@ func _on_escape_timer_timeout(): #Enemy begins to fade out and in
 #Emits signal to Main Maiden Enemy Node
 func move():
 	emit_signal("check_velocity", enemy_velocity)
+	maiden_animation_player.play("Armature_001Action")
+	print("Playing action")
+	
 
 func _on_maiden_enemy_send_player_information(player_information):
 	player_body = player_information
 	print("information transferred")
 
-
+func _on_hurtbox_enemy_has_been_hit():
+	movement_inhibit = true
+	await get_tree().create_timer(1.5).timeout
+	movement_inhibit = false

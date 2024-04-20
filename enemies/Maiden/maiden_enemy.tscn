@@ -163,7 +163,7 @@ show_percentage = false
 
 [node name="Health" type="Node" parent="." node_paths=PackedStringArray("display")]
 script = ExtResource("2_xhh10")
-max_health = 50
+max_health = 30
 display = NodePath("../SubViewport/ProgressBar")
 
 [node name="Maiden AI Manager" parent="." instance=ExtResource("2_ug773")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://ceg0a8jxwnfae"]
+[gd_scene load_steps=37 format=3 uid="uid://ceg0a8jxwnfae"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_7knqw"]
 [ext_resource type="Resource" uid="uid://jvuono3vj3hl" path="res://player/attacks/slash_1.tres" id="2_06grq"]
@@ -32,7 +32,6 @@
 [ext_resource type="Script" path="res://player/states/player_throw.gd" id="25_smc6p"]
 [ext_resource type="Script" path="res://player/states/player_special.gd" id="28_5pf82"]
 [ext_resource type="EventAsset" uid="uid://bm34vktxic0m4" path="res://addons/FMOD/editor/resources/events/{4150d69a-72be-4517-a58a-5764382c4bd1}.tres" id="31_48tl8"]
-[ext_resource type="PackedScene" uid="uid://sgmm5qot2804" path="res://player/specials/parry-sword/parry_sword.tscn" id="33_k6igk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_48kjw"]
 radius = 0.284876
@@ -391,8 +390,6 @@ preload_samples = true
 [node name="StudioListener2D" type="StudioListener2D" parent="."]
 
 [node name="StudioListener3D" type="StudioListener3D" parent="."]
-
-[node name="Parry Sword" parent="." instance=ExtResource("33_k6igk")]
 
 [connection signal="ready" from="." to="StateMachine" method="_on_player_ready"]
 [connection signal="turn_around" from="." to="pmb_kite" method="_on_player_turn_around"]

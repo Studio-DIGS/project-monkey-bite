@@ -46,7 +46,7 @@ var random_variance: float
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	enemy_body = $".."
-	projectile_interval_timer = .2 #Seconds
+	projectile_interval_timer = .1 #Seconds
 	attack_cooldown = $"Attack Cooldown"
 	movement_inhibit_cooldown = $"Movement Inhibit Timer"
 	

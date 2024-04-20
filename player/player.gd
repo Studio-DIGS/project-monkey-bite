@@ -24,6 +24,10 @@ var try_throw = false
 var try_interact = false
 var try_special = false
 
+var stagger_vector = Vector2.ZERO
+var stagger = false
+@export var stagger_cooldown = 0.3
+
 # Attack stuff
 @export var hitbox: Hitbox
 @export var combo: Array[AttackResource] = []
@@ -154,3 +158,7 @@ func _on_player_interaction_swap_swords(sword_body):
 		var new_sword_mesh = new_sword.mesh.instantiate()
 		sword_holder.add_child(new_sword_mesh)
 		sword_body.queue_free() # delete the sword that was on the ground
+
+func _on_hurtbox_hit(vector):
+	stagger_vector = vector
+	stagger = true

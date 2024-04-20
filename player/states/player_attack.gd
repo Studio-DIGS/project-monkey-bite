@@ -44,6 +44,10 @@ func physics_update(delta):
 	player.velocity.y = lerp(player.velocity.y, 0.0, delta * player.accel)
 	player.move_and_slide()
 	
+	if player.stagger:
+		state_machine.transition_to("Stagger")
+		return
+	
 #	# animation cancel
 #	if player.try_throw and player.is_armed:
 #		player.anim.clear_queue()

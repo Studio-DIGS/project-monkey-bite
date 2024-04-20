@@ -7,6 +7,10 @@ func enter(_msg := {}):
 func physics_update(delta):
 	player.velocity.x = lerp(player.velocity.x, slide_velocity, delta * player.accel)
 	player.move_and_slide()
+	
+	if player.stagger:
+		state_machine.transition_to("Stagger")
+		return
 
 func throw_sword():
 	FMODRuntime.play_one_shot_attached_path("event:/Sword Throw", self)

@@ -33,6 +33,10 @@ func physics_update(delta):
 	player.velocity.x = lerp(player.velocity.x, player.hori_input * player.speed, delta * player.accel)
 	player.move_and_slide()
 	
+	if player.stagger:
+		state_machine.transition_to("Stagger")
+		return
+	
 	if attack_tries > 0 and player.try_attack:
 		attack_tries -= 1
 		state_machine.transition_to("Attack", {air = true})

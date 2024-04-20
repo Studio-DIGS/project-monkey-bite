@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="1_cmfbv"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="2_u78r6"]
 [ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/Schmovosaur/Schmovosaur Enemy.tscn" id="3_77kka"]
-[ext_resource type="PackedScene" uid="uid://j5u21dt7qegf" path="res://assets/lillian-assets/Textures/dock.tscn" id="4_smi2v"]
+[ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/dock.tscn" id="4_smi2v"]
 [ext_resource type="PackedScene" uid="uid://crv2dotc68bdp" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 2 bald.glb" id="5_eu4xw"]
 [ext_resource type="PackedScene" uid="uid://c46tcjxr702fw" path="res://assets/lillian-assets/big_tree.glb" id="5_kusik"]
 [ext_resource type="PackedScene" uid="uid://b872c7eus500g" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 3 bald.glb" id="6_8iunp"]
@@ -156,7 +156,7 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sd38b"]
 
-[node name="World" type="Node3D"]
+[node name="World2" type="Node3D"]
 
 [node name="Characters Scripts and World Settings" type="Node" parent="."]
 

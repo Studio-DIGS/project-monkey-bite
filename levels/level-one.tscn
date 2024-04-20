@@ -187,7 +187,7 @@ directional_shadow_split_1 = 0.003
 environment = SubResource("Environment_y8ynd")
 
 [node name="Player" parent="Characters Scripts and World Settings" instance=ExtResource("4_s5jpf")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 21.3838, 15.965, -0.471166)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -13.1473, 15.965, -0.471166)
 accel = 6.505
 
 [node name="CameraSystem" parent="Characters Scripts and World Settings" node_paths=PackedStringArray("target") instance=ExtResource("5_esovy")]
@@ -493,19 +493,20 @@ use_collision = true
 size = Vector3(35.0859, 12.7281, 0.002)
 
 [node name="island 4 bald" parent="Environment/Rock Ramp" instance=ExtResource("20_ro5gi")]
-transform = Transform3D(-0.409679, 0.0288932, -3.22792, 0.0190676, 0.763531, 0.119112, 1.24686, -0.00218286, -1.06242, 54.0762, 11.6808, -0.629524)
+transform = Transform3D(-0.409679, 0.0288932, -3.22792, 0.0190676, 0.763531, 0.119112, 1.24686, -0.00218286, -1.06242, 54.0762, 12.0095, -0.629524)
 
 [node name="HCB1" type="CSGBox3D" parent="Environment/Rock Ramp/island 4 bald"]
+transform = Transform3D(-0.328715, 0.00846212, 2.4407, 0.0684133, 0.999957, -0.0126097, -0.385921, 0.00787666, -0.30988, -0.0788345, -1.31068, -0.128796)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
-size = Vector3(13.0902, 0.002, 1.59954)
+size = Vector3(8.19825, 0.002, 3.85772)
 
 [node name="floating rock 2" parent="Environment/Rock Ramp" instance=ExtResource("20_6l01l")]
 transform = Transform3D(0.942049, -0.103778, 0.313822, 0.567814, 0.200099, 3.36671e-09, -0.37937, 0.0417923, 0.77928, 45.2848, 7.17741, 0.530853)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/Rock Ramp/floating rock 2"]
-transform = Transform3D(-0.569159, -0.0477022, -5.27914, 1.61509, 2.33074, -4.75987, 2.24263, -0.148218, -2.31473, -0.517506, 1.80287, -0.925997)
+transform = Transform3D(-0.569159, -0.0477022, -5.27914, 1.61509, 2.33074, -4.75987, 2.24263, -0.148218, -2.31473, -0.517506, 1.80287, -0.925995)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true

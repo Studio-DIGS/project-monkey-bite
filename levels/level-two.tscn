@@ -226,7 +226,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78.4519, 4.96573, 1.87162)
 [node name="Islands" type="Node" parent="Environment"]
 
 [node name="island 2 bald" parent="Environment/Islands" instance=ExtResource("4_6ayfb")]
-transform = Transform3D(6.13865, 0, 0, 0, 2.51994, 0, 0, 0, 5.83077, -11.1884, 5.6637, -1.97995)
+transform = Transform3D(6.13865, 0, 0, 0, 2.51994, 0, 0, 0, 5.83077, -11.1884, 6.08786, -1.97995)
 
 [node name="small island 3" parent="Environment/Islands/island 2 bald" instance=ExtResource("1_kbg3x")]
 transform = Transform3D(1.2398, 0, 0, 0, 5.88145, 0, 0, 0, 0.633515, 0.592843, -0.491476, 0.424505)
@@ -240,7 +240,7 @@ use_collision = true
 size = Vector3(5.93189, 1, 8.85329)
 
 [node name="island 3 bald" parent="Environment/Islands" instance=ExtResource("6_xwpnr")]
-transform = Transform3D(7.1758, 0, 0, 0, 2.86488, 0, 0, 0, 5.577, 49, -6.9, 1.18457)
+transform = Transform3D(7.1758, 0, 0, 0, 2.86488, 0, 0, 0, 5.577, 49, -5.81849, 1.18457)
 
 [node name="small island 2" parent="Environment/Islands/island 3 bald" instance=ExtResource("2_8sghb")]
 transform = Transform3D(1.08774, 0, 0, 0, 3.11539, 0, 0, 0, 0.655134, -0.677562, -0.67977, -0.212403)
@@ -256,7 +256,7 @@ size = Vector3(7.56142, 1, 13.5421)
 [node name="island 1 bald" parent="Environment/Islands/island 3 bald/small island 2" instance=ExtResource("8_my1n4")]
 
 [node name="island 2 bald2" parent="Environment/Islands" instance=ExtResource("4_6ayfb")]
-transform = Transform3D(2.94991, 0, 0, 0, 1.64533, 0, 0, 0, 6.60893, -23.3304, -16.3232, -2.95813)
+transform = Transform3D(2.94991, 0, 0, 0, 1.64533, 0, 0, 0, 6.60893, -23.3304, -15.899, -2.95813)
 
 [node name="fullwall" parent="Environment/Islands/island 2 bald2" instance=ExtResource("9_878b4")]
 transform = Transform3D(0.396853, 0, 0.881936, 0, 2.92267, 0, -1.0101, 0, 0.346497, -3.56388, 3.49589, 1.32286)
@@ -280,7 +280,7 @@ use_collision = true
 size = Vector3(7.56142, 1, 3.83653)
 
 [node name="island 4 bald" parent="Environment/Islands" instance=ExtResource("10_jsx21")]
-transform = Transform3D(0.770595, 0, 0, 0, 0.387323, 0, 0, 0, 1.53989, 73.9883, 1.17908, 0.800781)
+transform = Transform3D(0.770595, 0, 0, 0, 0.387323, 0, 0, 0, 1.53989, 73.6358, 1.44059, 0.800781)
 
 [node name="HCB3" type="CSGBox3D" parent="Environment/Islands/island 4 bald"]
 transform = Transform3D(-4.07917, 0, 9.01562e-07, 0, 0.785097, 0, -1.40227e-07, 0, -3.75376, -0.417603, -1.78166, -0.113608)

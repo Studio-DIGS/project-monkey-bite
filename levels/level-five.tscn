@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://drbykleywumxf"]
+[gd_scene load_steps=25 format=3 uid="uid://drbykleywumxf"]
 
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="1_0fu8l"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="2_vej1b"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://cg5vqyjryjtxy" path="res://assets/lillian-assets/Textures/pillar_cracked fixed.tscn" id="9_tp673"]
 [ext_resource type="PackedScene" uid="uid://cqrx2sx5c0tul" path="res://assets/lillian-assets/Textures/crackedwall_fixed.tscn" id="10_1bgwt"]
 [ext_resource type="PackedScene" uid="uid://dc4g4lupwjxgo" path="res://assets/lillian-assets/Textures/fullwall_fixed.tscn" id="11_kmqk3"]
+[ext_resource type="PackedScene" uid="uid://nv4iuwgjytjf" path="res://assets/lillian-assets/tree 2.glb" id="16_5dew1"]
+[ext_resource type="PackedScene" uid="uid://dpqqdkigqcdws" path="res://assets/lillian-assets/Islands/floating rock 1.glb" id="18_bvb3p"]
+[ext_resource type="PackedScene" uid="uid://mbmikvo0bep" path="res://assets/lillian-assets/Islands/floating rock 2.glb" id="19_dnnw2"]
 [ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/dock.tscn" id="21_peilx"]
 [ext_resource type="PackedScene" uid="uid://r2hi5m0cek01" path="res://common/level_switcher.tscn" id="22_eydr8"]
 
@@ -173,14 +176,44 @@ directional_shadow_split_1 = 0.003
 environment = SubResource("Environment_y8ynd")
 
 [node name="Player" parent="Characters Scripts and World Settings" instance=ExtResource("1_0fu8l")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -42.9146, 9.79127, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -205.616, 14.7968, 0)
 accel = 6.505
 
 [node name="CameraSystem" parent="Characters Scripts and World Settings" node_paths=PackedStringArray("target") instance=ExtResource("2_vej1b")]
 target = NodePath("../Player")
 
 [node name="Schmovosaur" parent="Characters Scripts and World Settings" instance=ExtResource("3_2g7pu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -360.749, 7.33858, -0.0615408)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -179.383, 12.1327, -0.0615408)
+
+[node name="Schmovosaur2" parent="Characters Scripts and World Settings" instance=ExtResource("3_2g7pu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.97, 12.1327, -0.0615408)
+
+[node name="Schmovosaur3" parent="Characters Scripts and World Settings" instance=ExtResource("3_2g7pu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -154.308, -1.68571, -0.0615408)
+
+[node name="Schmovosaur4" parent="Characters Scripts and World Settings" instance=ExtResource("3_2g7pu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -101.724, 0.543053, -0.0615408)
+
+[node name="Schmovosaur5" parent="Characters Scripts and World Settings" instance=ExtResource("3_2g7pu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.2274, 2.47469, -0.0615408)
+
+[node name="Schmovosaur6" parent="Characters Scripts and World Settings" instance=ExtResource("3_2g7pu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.131, 2.47469, -0.0615408)
+
+[node name="Schmovosaur7" parent="Characters Scripts and World Settings" instance=ExtResource("3_2g7pu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.2808, -3.80595, -0.0615408)
+
+[node name="Schmovosaur8" parent="Characters Scripts and World Settings" instance=ExtResource("3_2g7pu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.0066, -0.837135, -0.0615408)
+
+[node name="Schmovosaur9" parent="Characters Scripts and World Settings" instance=ExtResource("3_2g7pu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.87617, 8.58877, -0.0615408)
+
+[node name="Schmovosaur10" parent="Characters Scripts and World Settings" instance=ExtResource("3_2g7pu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8282, 4.46651, -0.0615408)
+
+[node name="Schmovosaur11" parent="Characters Scripts and World Settings" instance=ExtResource("3_2g7pu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.6392, 6.58645, -0.0615408)
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -190,31 +223,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -360.749, 7.33858, -0.0615408
 transform = Transform3D(11.2125, 0, 0, 0, 9.9993, 0, 0, 0, 15.4686, -67.0253, 0.932925, -7.11732)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/Islands/island 3 bald"]
-transform = Transform3D(-6.82928e-09, 0, 0.417861, 0, 0.0759559, 0, -0.152139, 0, -1.77864e-08, -1.24317, -0.602339, -0.00606734)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.2809, -1.07625, 0)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
-size = Vector3(30.6597, 1, 28.4403)
+size = Vector3(11.6693, 1, 28.4403)
 
 [node name="island 5 bald2" parent="Environment/Islands" instance=ExtResource("5_cr5vx")]
 transform = Transform3D(5.00266, 0, 0, 0, 5.59938, 0, 0, 0, 13.1348, 28.4249, 6.85, 0)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/Islands/island 5 bald2"]
-transform = Transform3D(-6.82928e-09, 0, 0.417862, 0, 0.0759559, 0, -0.152139, 0, -1.77864e-08, -0.977589, -0.602339, -0.00606733)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.990313, -1.05241, 0)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
-size = Vector3(30.6597, 1, 28.4403)
+size = Vector3(11.9112, 1, 28.4403)
 
 [node name="island 5 bald3" parent="Environment/Islands" instance=ExtResource("5_cr5vx")]
 transform = Transform3D(-5.40409, 0, 1.16709e-06, 0, 8.82889, 0, -4.72441e-07, 0, -13.35, -203.635, 13.9231, 0)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/Islands/island 5 bald3"]
-transform = Transform3D(-6.82928e-09, 0, 0.417862, 0, 0.0759559, 0, -0.152139, 0, -1.77864e-08, -0.977589, -0.602339, -0.00606733)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.919498, -1.0641, 3.25404e-08)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
-size = Vector3(30.6597, 1, 28.4403)
+size = Vector3(11.7408, 1, 28.4403)
 
 [node name="mini island" type="Node" parent="Environment"]
 
@@ -222,132 +255,125 @@ size = Vector3(30.6597, 1, 28.4403)
 transform = Transform3D(9.63541, 0, 0, 0, 4.15692, 0, 0, 0, 14.7567, -180.538, 10.9127, 0)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/mini island/island 1 bald2"]
-transform = Transform3D(-6.65022e-09, 0, 0.417862, 0, 0.0759558, 0, -0.152139, 0, -1.82653e-08, 0.022, -0.11, -0.006)
+transform = Transform3D(0.999999, 0, 0, 0, 0.999998, 0, 0, 0, 0.999999, 0.00449753, -0.0830312, 0)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
-size = Vector3(8.11735, 1, 4.63591)
+size = Vector3(1.79509, 0.002, 2)
 
 [node name="island 1 bald3" parent="Environment/mini island" instance=ExtResource("6_pro4f")]
 transform = Transform3D(11.1757, 0, -8.97111, 0, 5.09955, 0, 4.52185, 0, 22.172, -162.367, 12.2746, 0)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/mini island/island 1 bald3"]
-transform = Transform3D(-7.45058e-09, 0, 0.417862, 0, 0.0759558, 0, -0.152139, 0, 0, -0.00115776, -0.11, -0.00127721)
+transform = Transform3D(1.10203, 0, 2.38419e-07, 0, 0.999998, 0, 1.49012e-08, 0, 0.959088, 0.0166674, -0.0830312, -0.00248432)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
-size = Vector3(8.11735, 1, 4.26742)
+size = Vector3(1.48745, 0.002, 2)
 
 [node name="island 1 bald4" parent="Environment/mini island" instance=ExtResource("6_pro4f")]
 transform = Transform3D(14.5961, 0, -5.53696, 0, 8.01675, 0, 5.90581, 0, 13.6845, -139.788, 10.1863, 0.585327)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/mini island/island 1 bald4"]
-transform = Transform3D(-1.86265e-08, 0, 0.399998, 0, 0.0759558, 0, -0.149508, 0, 8.9407e-08, -0.100092, -0.11, 0.0466924)
+transform = Transform3D(0.087912, 0, -5.96046e-08, 0, 1, 0, 0, 0, 1.36904, -0.0757189, -0.0723735, 0.0353229)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
-size = Vector3(8.11735, 1, 4.63591)
+size = Vector3(20.9296, 0.002, 1.25459)
 
 [node name="island 1 bald5" parent="Environment/mini island" instance=ExtResource("6_pro4f")]
 transform = Transform3D(9.28648, 0, -6.35192, 0, 8.01675, 0, 3.75745, 0, 15.6987, -155.195, -5.18228, -0.140381)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/mini island/island 1 bald5"]
-transform = Transform3D(-8.19564e-08, 0, 0.343497, 0, 0.0759558, 0, -0.140963, 0, 6.70552e-08, 0.0409374, -0.119534, 0.0129373)
+transform = Transform3D(1, 0, 5.96046e-08, 0, 0.999998, 0, -2.98023e-08, 0, 1, 0.606112, -0.101784, -0.145069)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
-size = Vector3(8.11735, 1, 4.63591)
+size = Vector3(2.65503, 0.0576214, 4.63591)
 
 [node name="island 1 bald6" parent="Environment/mini island" instance=ExtResource("6_pro4f")]
 transform = Transform3D(9.82059, 0, 3.34415, 0, 8.01675, 0, -1.97822, 0, 16.6016, -102.955, -1.77811, -0.140381)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/mini island/island 1 bald6"]
-transform = Transform3D(7.45058e-09, 0, 0.313046, 0, 0.0759558, 0, -0.143544, 0, 8.9407e-08, 0.0525751, -0.10851, 0.0143254)
+transform = Transform3D(0.904508, 0, -2.08616e-07, 0, 1, 0, 5.96046e-08, 0, 0.980311, 0.175645, -0.0817152, 0.0206889)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
-size = Vector3(8.11735, 1, 5.00651)
+size = Vector3(1.80412, 0.002, 0.683523)
 
 [node name="island 1 bald7" parent="Environment/mini island" instance=ExtResource("6_pro4f")]
 transform = Transform3D(17.3792, 0, -1.26131, 0, 8.01675, 0, 0.953391, 0, 22.9921, -80.6612, -0.113739, -0.140381)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/mini island/island 1 bald7"]
-transform = Transform3D(9.31323e-10, 0, 0.337704, 0, 0.0759557, 0, -0.144164, 0, 9.40636e-08, 0.062561, -0.10851, 0.0139116)
+transform = Transform3D(1.02861, 0, -1.49012e-07, 0, 0.999999, 0, 6.70552e-08, 0, 0.972983, -0.00282669, -0.0817151, 0.0280896)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
-size = Vector3(8.11735, 1, 5.45804)
+size = Vector3(1.80412, 0.002, 0.683523)
 
 [node name="HCB3" type="CSGBox3D" parent="Environment/mini island/island 1 bald7"]
-transform = Transform3D(-0.00105458, -0.0430776, 0.278129, 0.00339031, 0.062533, 0.191525, -0.14412, 0.00178625, 0.00247043, 0.387537, -0.447661, 0.00043647)
+transform = Transform3D(0.146697, 0, -7.82311e-08, 0, 34.433, 0, 6.98492e-09, 0, 0.612181, 0.397551, -0.450655, 0.011488)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
-size = Vector3(8.11735, 0.002, 2.08803)
-
-[node name="HCB4" type="CSGBox3D" parent="Environment/mini island/island 1 bald7"]
-transform = Transform3D(-0.00146477, -0.0498026, 0.254957, 0.00391959, 0.0573121, 0.221425, -0.144103, 0.00206511, 0.0034313, 0.491696, -0.447661, -0.00388245)
-visible = false
-material_override = SubResource("StandardMaterial3D_1i5cd")
-use_collision = true
-size = Vector3(8.11735, 0.002, 0.994172)
+size = Vector3(1.80412, 0.00876021, 0.683523)
 
 [node name="island 1 bald8" parent="Environment/mini island" instance=ExtResource("6_pro4f")]
 transform = Transform3D(9.63541, 0, 0, 0, 4.15692, 0, 0, 0, 14.7567, -40.9886, -2.12375, 0)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/mini island/island 1 bald8"]
-transform = Transform3D(-6.65022e-09, 0, 0.417862, 0, 0.0759558, 0, -0.152139, 0, -1.82653e-08, 0.022, -0.11, -0.006)
+transform = Transform3D(0.280699, 0, 0, 0, 0.999997, 0, 0, 0, 0.941362, 0.122993, -0.0807259, 0)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
-size = Vector3(8.11735, 1, 4.63591)
+size = Vector3(6.29221, 0.002, 1.27832)
 
 [node name="island 1 bald9" parent="Environment/mini island" instance=ExtResource("6_pro4f")]
 transform = Transform3D(-11.982, 0, 1.74996e-06, 0, 6.76705, 0, -1.0475e-06, 0, -20.0173, -21.0435, 0.342255, 0)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/mini island/island 1 bald9"]
-transform = Transform3D(-6.65022e-09, 0, 0.417862, 0, 0.0759558, 0, -0.152139, 0, -1.82653e-08, 0.022, -0.11, -0.006)
+transform = Transform3D(0.0953991, 0, 2.41585e-13, 0, 1.33654, 0, 0, 0, 1.33654, 0.0547698, -0.0858788, -2.86609e-09)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
-size = Vector3(8.11735, 1, 4.63591)
+size = Vector3(19.2597, 0.002, 0.944573)
 
 [node name="island 1 bald10" parent="Environment/mini island" instance=ExtResource("6_pro4f")]
 transform = Transform3D(2.82712, 0, 0, 0, 2.57704, 0, 0, 0, 9.88974, -9.83043, 2.00583, 0)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/mini island/island 1 bald10"]
-transform = Transform3D(-6.65022e-09, 0, 0.417862, 0, 0.0759558, 0, -0.152139, 0, -1.82653e-08, 0.022, -0.11, -0.006)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0644566, 0)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
-size = Vector3(8.11735, 1, 4.63591)
+size = Vector3(1.75835, 0.002, 1.4249)
 
 [node name="island 1 bald11" parent="Environment/mini island" instance=ExtResource("6_pro4f")]
 transform = Transform3D(3.61363, 0, 0, 0, 2.57704, 0, 0, 0, 14.1426, 3.33577, 5.4924, 0)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/mini island/island 1 bald11"]
-transform = Transform3D(-6.65022e-09, 0, 0.417862, 0, 0.0759558, 0, -0.152139, 0, -1.82653e-08, 0.022, -0.11, -0.006)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0805149, 0)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
-size = Vector3(8.11735, 1, 4.63591)
+size = Vector3(1.55325, 0.002, 1.28259)
 
 [node name="island 1 bald12" parent="Environment/mini island" instance=ExtResource("6_pro4f")]
 transform = Transform3D(11.5217, 0, 0, 0, 7.27506, 0, 0, 0, 16.8787, 14.7905, 7.85095, 0)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/mini island/island 1 bald12"]
-transform = Transform3D(-6.65022e-09, 0, 0.353644, 0, 0.0759558, 0, -0.152139, 0, -1.54583e-08, 0.118159, -0.11, -0.006)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0853812, 0)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
-size = Vector3(8.11735, 1, 4.63591)
+size = Vector3(1.68239, 0.002, 1.60986)
 
 [node name="HCB3" type="CSGBox3D" parent="Environment/mini island/island 1 bald12"]
-transform = Transform3D(-5.99322e-09, 0.156849, 0.0810421, 2.88215e-09, 0.326156, -0.0389733, -0.152139, 0, -3.9308e-09, 0.285064, -0.462389, -0.006)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.374918, -0.365301, 0)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
-size = Vector3(8.11735, 1, 4.63591)
+size = Vector3(0.367041, 0.402861, 2.14963)
 
 [node name="dock" type="Node" parent="Environment"]
 
@@ -529,10 +555,10 @@ transform = Transform3D(2.89015, 0, 0.804389, 0, 3, 0, -0.804389, 0, 2.89015, -6
 transform = Transform3D(1.6981, 0, -2.47315, 0, 3, 0, 2.47315, 0, 1.6981, -26.3175, -2.60382, -18.3287)
 
 [node name="crackedwall7" parent="Environment/walls" instance=ExtResource("10_1bgwt")]
-transform = Transform3D(-2.95072, 0, 0.541506, 0, 3, 0, -0.541506, 0, -2.95072, 39.36, 5.95044, 14.4655)
+transform = Transform3D(-2.95072, 0, 0.541506, 0, 3, 0, -0.541506, 0, -2.95072, 39.36, 5.95044, 14.1263)
 
 [node name="crackedwall8" parent="Environment/walls" instance=ExtResource("10_1bgwt")]
-transform = Transform3D(1.8455, 0, 2.36519, 0, 3, 0, -2.36519, 0, 1.8455, 44.1197, 5.95044, 11.3937)
+transform = Transform3D(1.8455, 0, 2.36519, 0, 3, 0, -2.36519, 0, 1.8455, 44.1197, 5.95044, 11.0546)
 
 [node name="fullwall" parent="Environment/walls" instance=ExtResource("11_kmqk3")]
 transform = Transform3D(2.07412, 0, -2.16749, 0, 3, 0, 2.16749, 0, 2.07412, -193.85, 12.7208, -21.411)
@@ -547,10 +573,158 @@ transform = Transform3D(4.80122, 0, 1.39781, 0, 3, 0, -2.04393, 0, 3.28346, -65.
 transform = Transform3D(2.42296, 0, -1.96932, 0, 3, 0, 2.12398, 0, 2.24653, -27.2794, -1.06543, -19.8841)
 
 [node name="fullwall5" parent="Environment/walls" instance=ExtResource("11_kmqk3")]
-transform = Transform3D(4.95519, 0, 1.9858, 0, 3, 0, -3.9065, 0, 2.51889, 39.2025, 7.35962, 13.679)
+transform = Transform3D(4.95519, 0, 1.9858, 0, 3, 0, -3.9065, 0, 2.51889, 39.2025, 7.35962, 13.3399)
+
+[node name="tree" type="Node" parent="Environment"]
+
+[node name="tree" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -215.358, 8.56549, -8.58362)
+
+[node name="tree2" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(0.511068, 0, 0.85954, 0, 1, 0, -0.85954, 0, 0.511068, -207.652, 8.56549, 12.2491)
+
+[node name="tree8" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(-0.86978, 0, 0.197176, 0, 1, 0, -0.21417, 0, -0.800766, -194.779, 7.81396, 11.225)
+
+[node name="tree9" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(0.232607, 0, 0.822405, 0, 0.820638, 0, -0.585437, 0, 0.326759, -184.469, 8.37744, -14.8264)
+
+[node name="tree3" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(0.511068, 0, 0.85954, 0, 1, 0, -0.85954, 0, 0.511068, -171.695, 8.56549, 12.0472)
+
+[node name="tree10" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(0.697328, 0, 0.716752, 0, 1, 0, -0.716752, 0, 0.697328, -119.577, -5.34424, -20.1176)
+
+[node name="tree4" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(0.844653, 0, 0.352438, 0, 0.947084, 0, -0.448826, 0, 0.663259, -132.287, -5.27081, 7.00232)
+
+[node name="tree11" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(0.702834, 0, 0.3204, 0, 0.710015, 0, -0.373468, 0, 0.602965, -139.798, -5.27081, -9.5896)
+
+[node name="tree5" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(0.844653, 0, 0.352438, 0, 0.947084, 0, -0.448826, 0, 0.663259, -110.678, -5.34406, 21.3907)
+
+[node name="tree6" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(-0.782297, 0, -0.432166, 0, 0.947084, 0, 0.550358, 0, -0.614295, -101.925, -5.34406, 21.3907)
+
+[node name="tree7" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(0.826691, 0, -0.377787, 0, 0.947084, 0, 0.481107, 0, 0.649155, -113.115, -5.34406, -13.9077)
+
+[node name="tree12" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(0.755486, 0, -0.04928, 0, 0.578751, 0, 0.0574685, 0, 0.647839, -109.763, -5.34406, -17.8757)
+
+[node name="tree13" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(0.570566, 0, 0.926719, 0, 0.620543, 0, -0.644024, 0, 0.821018, -92.5341, -5.15448, -17.6478)
+
+[node name="tree14" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(1.25954, 0, 0.537295, 0, 1.44591, 0, -0.304506, 0, 2.22244, -82.9561, -4.99524, 12.943)
+
+[node name="tree15" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(0.826691, 0, -0.377787, 0, 0.947084, 0, 0.481107, 0, 0.649155, -59.4762, -5.34406, -18.3051)
+
+[node name="tree18" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(0.851851, -0.0426292, 0.354295, 0.017272, 1.24629, 0.029948, -0.448548, -0.032968, 0.674006, -66.1782, -5.10236, 11.0939)
+
+[node name="tree16" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(0.954064, 0, -0.0535175, 0, 0.947084, 0, 0.068154, 0, 0.749174, -47.6481, -5.11072, 9.61816)
+
+[node name="tree19" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(0.387581, 0, -0.539906, 0, 0.686355, 0, 0.447704, 0, 0.467401, -53.9078, -5.11072, 15.3213)
+
+[node name="tree17" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(1.45287, 0, 0.0408607, 0, 1.20621, 0, -0.0385554, 0, 1.05874, -22.3675, -5.27302, -15.039)
+
+[node name="tree20" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(-0.455437, 0, -0.911372, 0, 0.804325, 0, 1.27466, 0, -0.31331, -30.6965, -4.78596, -18.6199)
+
+[node name="tree21" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(-1.15498, 0, -0.272383, 0, 1.19082, 0, 0.44225, 0, -0.686483, -15.6031, -4.78596, 4.7707)
+
+[node name="tree22" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(-1.10666, 0, 0.0849587, 0, 0.81605, 0, -0.141881, 0, -0.732504, -0.830738, 5.96783, -0.893486)
+
+[node name="tree24" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(-0.753023, 0, 0.611569, 0, 1.07993, 0, -0.449888, 0, -1.05222, 9.70552, 3.18877, -7.22088)
+
+[node name="tree23" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(-0.513441, 0, 0.964428, 0, 1.26755, 0, -0.867796, 0, -0.586408, 21.9652, 5.36687, 16.966)
+
+[node name="tree25" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(-0.836402, 0, 0.154797, 0, 1.1343, 0, -0.16373, 0, -0.844597, 48.4306, 3.15435, 8.70502)
+
+[node name="tree26" parent="Environment/tree" instance=ExtResource("16_5dew1")]
+transform = Transform3D(0.847182, 0, 0.0403729, 0, 0.731453, 0, -0.022482, 0, 1.0461, 30.0797, 4.01336, -6.62688)
 
 [node name="LevelSwitcher" parent="." instance=ExtResource("22_eydr8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.4819, -6.39363, -22.1556)
 scene_name = "level-two"
+
+[node name="stepping stones" type="Node" parent="."]
+
+[node name="floating rock 2" parent="stepping stones" instance=ExtResource("19_dnnw2")]
+transform = Transform3D(0.710256, 0, 0, 0, 0.0588003, 0, 0, 0, 0.797789, -203.476, 9.00018, 0.858668)
+
+[node name="floating rock 1" parent="stepping stones" instance=ExtResource("18_bvb3p")]
+transform = Transform3D(0.710256, 0, 0, 0, 0.092078, 0, 0, 0, 0.797789, -201.086, 8.90295, -0.86098)
+
+[node name="floating rock 3" parent="stepping stones" instance=ExtResource("18_bvb3p")]
+transform = Transform3D(0.858226, 0, 0, 0, 0.092078, 0, 0, 0, 1.63303, -198.261, 8.90295, 0.736643)
+
+[node name="floating rock 4" parent="stepping stones" instance=ExtResource("19_dnnw2")]
+transform = Transform3D(0.319713, 0, -1.2331, 0, 0.0588003, 0, 0.756498, 0, 0.521134, -194.41, 9.00018, -0.662798)
+
+[node name="floating rock 5" parent="stepping stones" instance=ExtResource("19_dnnw2")]
+transform = Transform3D(0.710256, 0, 0, 0, 0.0588003, 0, 0, 0, 0.797789, -215.08, 9.00018, -0.093358)
+
+[node name="floating rock 6" parent="stepping stones" instance=ExtResource("18_bvb3p")]
+transform = Transform3D(0.459509, 0, 0, 0, 0.092078, 0, 0, 0, 0.797789, -222.03, 8.90295, 1.07567)
+
+[node name="floating rock 7" parent="stepping stones" instance=ExtResource("18_bvb3p")]
+transform = Transform3D(0.858226, 0, 0, 0, 0.092078, 0, 0, 0, 1.63303, -209.865, 8.90295, 0.302439)
+
+[node name="floating rock 8" parent="stepping stones" instance=ExtResource("19_dnnw2")]
+transform = Transform3D(0.319713, 0, -1.2331, 0, 0.0588003, 0, 0.756498, 0, 0.521134, -206.013, 9.00018, -1.61482)
+
+[node name="floating rock 9" parent="stepping stones" instance=ExtResource("18_bvb3p")]
+transform = Transform3D(0.771637, 0, 0, 0, 0.092078, 0, 0, 0, 0.797789, -191.271, 8.90295, -0.86098)
+
+[node name="floating rock 10" parent="stepping stones" instance=ExtResource("18_bvb3p")]
+transform = Transform3D(0.710256, 0, 0, 0, 0.092078, 0, 0, 0, 0.797789, -119.968, -4.88867, -0.86098)
+
+[node name="floating rock 11" parent="stepping stones" instance=ExtResource("18_bvb3p")]
+transform = Transform3D(0.858226, 0, 0, 0, 0.092078, 0, 0, 0, 1.63303, -117.143, -4.88867, 0.736643)
+
+[node name="floating rock 12" parent="stepping stones" instance=ExtResource("19_dnnw2")]
+transform = Transform3D(0.319713, 0, -1.2331, 0, 0.0588003, 0, 0.756498, 0, 0.521134, -113.291, -4.79144, -0.662798)
+
+[node name="floating rock 13" parent="stepping stones" instance=ExtResource("19_dnnw2")]
+transform = Transform3D(0.710256, 0, 0, 0, 0.0588003, 0, 0, 0, 0.797789, -126.161, -4.79144, -0.093358)
+
+[node name="floating rock 14" parent="stepping stones" instance=ExtResource("19_dnnw2")]
+transform = Transform3D(0.710256, 0, 0, 0, 0.0588003, 0, 0, 0, 0.797789, -60.3458, -4.80219, 0.858668)
+
+[node name="floating rock 15" parent="stepping stones" instance=ExtResource("18_bvb3p")]
+transform = Transform3D(0.710256, 0, 0, 0, 0.092078, 0, 0, 0, 0.797789, -57.9554, -4.89941, -0.86098)
+
+[node name="floating rock 16" parent="stepping stones" instance=ExtResource("18_bvb3p")]
+transform = Transform3D(0.858226, 0, 0, 0, 0.092078, 0, 0, 0, 1.63303, -55.1308, -4.89941, 0.736643)
+
+[node name="floating rock 17" parent="stepping stones" instance=ExtResource("19_dnnw2")]
+transform = Transform3D(0.319713, 0, -1.2331, 0, 0.0588003, 0, 0.756498, 0, 0.521134, -51.2793, -4.80219, -0.662798)
+
+[node name="floating rock 18" parent="stepping stones" instance=ExtResource("19_dnnw2")]
+transform = Transform3D(0.710256, 0, 0, 0, 0.0588003, 0, 0, 0, 0.797789, -71.0317, -4.80219, -0.093358)
+
+[node name="floating rock 19" parent="stepping stones" instance=ExtResource("19_dnnw2")]
+transform = Transform3D(0.710256, 0, 0, 0, 0.0588003, 0, 0, 0, 0.797789, -63.69, -4.72992, -0.404759)
+
+[node name="floating rock 20" parent="stepping stones" instance=ExtResource("18_bvb3p")]
+transform = Transform3D(0.858226, 0, 0, 0, 0.092078, 0, 0, 0, 1.63303, 41.1236, 3.36511, 0.736643)
+
+[node name="floating rock 21" parent="stepping stones" instance=ExtResource("19_dnnw2")]
+transform = Transform3D(0.319713, 0, -1.2331, 0, 0.0588003, 0, 0.756498, 0, 0.521134, 44.9751, 3.46234, -0.662798)
+
+[node name="floating rock 22" parent="stepping stones" instance=ExtResource("19_dnnw2")]
+transform = Transform3D(0.710256, 0, 0, 0, 0.0588003, 0, 0, 0, 0.797789, 25.2227, 3.46234, -0.093358)
 
 [connection signal="turn_around" from="Characters Scripts and World Settings/Player" to="Characters Scripts and World Settings/CameraSystem" method="_on_player_turn_around"]

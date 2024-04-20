@@ -717,7 +717,7 @@ axis_lock_linear_z = true
 script = ExtResource("1_7knqw")
 speed = 6.0
 min_jump_height = 7.0
-max_jump_height = 8.5
+max_jump_height = 10.0
 jump_force_coefficient = 90.0
 hitbox = NodePath("pmb_kite/Hitbox")
 combo = Array[Resource("res://player/attacks/attack_resource.gd")]([ExtResource("2_06grq"), ExtResource("3_msbl5"), ExtResource("4_slkb2")])
@@ -957,7 +957,7 @@ bones/555/position = Vector3(-1.03755, 0.53953, 0.120258)
 bones/555/rotation = Quaternion(-0.463723, -0.414919, -0.380382, 0.684188)
 
 [node name="BoneAttachment3D" parent="pmb_kite/base_human_rig/Skeleton3D" index="5"]
-transform = Transform3D(0.13345, -0.612337, 0.779252, -0.828436, 0.362638, 0.426834, -0.543953, -0.702522, -0.458888, -0.400882, 1.75566, -0.179542)
+transform = Transform3D(0.13345, -0.612337, 0.779252, -0.828436, 0.362638, 0.426835, -0.543953, -0.702522, -0.458888, -0.400882, 1.75566, -0.179542)
 
 [node name="AnimationPlayer" parent="pmb_kite" index="1"]
 speed_scale = 1.5
@@ -1055,7 +1055,7 @@ health = NodePath("../Health")
 shape = SubResource("CapsuleShape3D_q2byd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_process_mode = 0
+callback_mode_process = 0
 libraries = {
 "": SubResource("AnimationLibrary_h1s3s")
 }

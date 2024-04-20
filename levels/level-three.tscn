@@ -8,14 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://b02d1j5r3pg1x" path="res://common/passthru-platforms/passthru_platform.tscn" id="7_htjmw"]
 [ext_resource type="PackedScene" uid="uid://crv2dotc68bdp" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 2 bald.glb" id="8_0hu3s"]
 [ext_resource type="PackedScene" uid="uid://mbmikvo0bep" path="res://assets/lillian-assets/Islands/floating rock 2.glb" id="8_s8pab"]
-[ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/crackedwall.tscn" id="9_j70fq"]
-[ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/fullwall.tscn" id="10_rwx16"]
-[ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/pillar_1.tscn" id="10_xkajo"]
+[ext_resource type="PackedScene" uid="uid://cichdo6ft3y6p" path="res://assets/lillian-assets/Textures/crackedwall.tscn" id="9_j70fq"]
+[ext_resource type="PackedScene" uid="uid://dg14r6wcyovsu" path="res://assets/lillian-assets/Textures/fullwall.tscn" id="10_rwx16"]
+[ext_resource type="PackedScene" uid="uid://dmb6qxkbbv18p" path="res://assets/lillian-assets/Textures/pillar_1.tscn" id="10_xkajo"]
 [ext_resource type="PackedScene" uid="uid://dddobobdkwrkr" path="res://assets/lillian-assets/Islands/island 2.glb" id="11_8isna"]
 [ext_resource type="PackedScene" uid="uid://nv4iuwgjytjf" path="res://assets/lillian-assets/tree 2.glb" id="12_np7w5"]
 [ext_resource type="PackedScene" uid="uid://scx6byasdkqf" path="res://assets/lillian-assets/tree 4 purple.glb" id="14_uawsh"]
 [ext_resource type="PackedScene" uid="uid://7qxgf7rcege2" path="res://assets/lillian-assets/treestump.tscn" id="15_bkt6d"]
-[ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/dock.tscn" id="18_8hddh"]
+[ext_resource type="PackedScene" uid="uid://j5u21dt7qegf" path="res://assets/lillian-assets/Textures/dock.tscn" id="18_8hddh"]
 
 [sub_resource type="Shader" id="Shader_vd8ur"]
 code = "
@@ -289,7 +289,7 @@ use_collision = true
 size = Vector3(11.5741, 0.002, 6.70626)
 
 [node name="island 3 bald" parent="islands" instance=ExtResource("7_a1rqp")]
-transform = Transform3D(1.50546, 0, 0, 0, 1, 0, 0, 0, 2.32528, -64.515, 4, 0)
+transform = Transform3D(1.50546, 0, 0, 0, 1.88859, 0, 0, 0, 2.32528, -64.515, 4.66907, 0)
 
 [node name="HCB1" type="CSGBox3D" parent="islands/island 3 bald"]
 transform = Transform3D(1, 0, 0, 0, 0.00114964, 0, 0, 0, 0.999998, -1.1435, -0.703796, 0)
@@ -299,7 +299,7 @@ use_collision = true
 size = Vector3(11.2818, 217.997, 8.29873)
 
 [node name="island 2 bald2" parent="islands" instance=ExtResource("8_0hu3s")]
-transform = Transform3D(-1.61473, 0, 2.67886e-07, 0, 0.0809496, 0, -1.70129e-07, 0, -3.69299, -81.743, 1.7, 3.46)
+transform = Transform3D(-1.61473, 0, 2.67886e-07, 0, 1.94516, 0, -1.70129e-07, 0, -3.69299, -81.743, 1.7, 3.46)
 
 [node name="HCB1" type="CSGBox3D" parent="islands/island 2 bald2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.54438, -5.30733, 0)

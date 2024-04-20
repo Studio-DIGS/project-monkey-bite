@@ -31,7 +31,7 @@ var particles_post
 
 @onready var shmovosaur_3D = $"../shmovosaur_animations"
 @onready var shmovosaur_animation = $"../shmovosaur_animations"/AnimationPlayer
-var model_direction
+@onready var model_direction = 1
 
 signal checkVelocity
 # Called when the node enters the scene tree for the first time.
@@ -67,7 +67,7 @@ func _process(delta):
 		activeState(delta)
 		if charge_ready == true and enemy_body.is_on_floor():
 			state_charge = true
-			bread_crumb = player_body.position
+			bread_crumb = player_body.position + Vector3(7.0, 0 ,0) * model_direction
 			cooldown_prepare.start()
 			particles_preparation.emitting = true
 	else:

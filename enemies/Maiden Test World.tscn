@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="15_7xxdj"]
 [ext_resource type="PackedScene" uid="uid://dx1fk2xow6r2j" path="res://enemies/Maiden/maiden_enemy.tscn" id="16_r4x40"]
 [ext_resource type="PackedScene" uid="uid://ey8y0wa8f8pv" path="res://enemies/Maiden/floating_cube.tscn" id="17_al346"]
-[ext_resource type="PackedScene" uid="uid://bvy24stlpj3te" path="res://Freeze_status_effect.tscn" id="18_cnt7c"]
+[ext_resource type="PackedScene" uid="uid://bvy24stlpj3te" path="res://player/specials/ice-sword/Freeze_status_effect.tscn" id="18_cnt7c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8li3"]
 uv1_triplanar = true

@@ -212,6 +212,7 @@ skeleton = NodePath("")
 [connection signal="death" from="Health" to="." method="_on_health_death"]
 [connection signal="check_velocity" from="Maiden AI Manager" to="." method="_on_maiden_ai_manager_check_velocity"]
 [connection signal="turn_transparent" from="Maiden AI Manager" to="Maiden Body" method="_on_maiden_ai_manager_turn_transparent"]
+[connection signal="enemy_has_been_hit" from="Hurtbox" to="Maiden AI Manager" method="_on_hurtbox_enemy_has_been_hit"]
 [connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
 [connection signal="send_freeze" from="Hurtbox" to="." method="_on_hurtbox_send_freeze"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

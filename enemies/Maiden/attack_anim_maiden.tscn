@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvxwnolkua34f"]
+
+[ext_resource type="PackedScene" uid="uid://hou6w0ga5jkl" path="res://assets/Maiden/attackAnim_maiden.gltf" id="1_fbws0"]
+
+[node name="attackAnim_maiden" instance=ExtResource("1_fbws0")]
+
+[node name="Skeleton3D" parent="Armature_001" index="0"]
+bones/1/rotation = Quaternion(-0.255714, 0.0316939, 0.126229, 0.957952)
+bones/2/rotation = Quaternion(-0.164843, -0.0011599, 0.00635691, 0.986299)
+bones/3/rotation = Quaternion(0.260184, 0.0143846, -0.183666, 0.947821)
+bones/5/rotation = Quaternion(0.417542, 0.277408, -0.155738, 0.851146)
+bones/6/rotation = Quaternion(-0.302577, 0.48691, 0.13164, 0.808725)
+bones/7/rotation = Quaternion(0.00183862, -0.12161, 0.00262799, 0.992573)
+bones/9/rotation = Quaternion(0.207231, -0.393608, -0.00587835, 0.895597)
+bones/11/rotation = Quaternion(0.417542, -0.277408, 0.155738, 0.851146)
+bones/12/rotation = Quaternion(-0.302577, -0.48691, -0.13164, 0.808725)
+bones/13/rotation = Quaternion(0.00183844, 0.12161, -0.00262812, 0.992573)
+bones/15/rotation = Quaternion(0.20723, 0.393607, 0.00587856, 0.895597)
+bones/16/position = Vector3(0.509128, 0.0232643, 0.457894)
+bones/16/rotation = Quaternion(0.456639, -0.3159, -0.688308, 0.46682)
+bones/17/position = Vector3(-0.509131, 0.0232642, 0.457891)
+bones/17/rotation = Quaternion(0.456637, 0.315898, 0.688309, 0.466821)
+bones/18/position = Vector3(0.909776, -0.318781, -0.154183)
+bones/19/position = Vector3(-0.909775, -0.318781, -0.154188)
+bones/20/rotation = Quaternion(-0.682367, 0.0526939, 0.0494295, 0.727431)
+bones/21/rotation = Quaternion(-0.0300379, 8.03965e-05, 0.00237304, 0.999546)
+bones/22/rotation = Quaternion(-0.00732457, 0.00164861, -0.396677, 0.917928)
+
+[node name="Maiden_001" parent="Armature_001/Skeleton3D" index="0"]
+blend_shapes/Close = 1.0
+
+[node name="AnimationPlayer" parent="." index="5"]
+speed_scale = 3.0

@@ -13,8 +13,6 @@ var attack_inhibit: bool #Prevents shooting when invisible
 var movement_inhibit: bool
 
 var evade_ready: bool
-var minimum_escape_value: float
-var maximum_escape_value: float
 var offset_original_position: float
 var new_position: Vector3
 var occur_once_evade: bool
@@ -188,4 +186,7 @@ func _on_maiden_enemy_send_player_information(player_information):
 	player_body = player_information
 	print("information transferred")
 
-
+func _on_hurtbox_enemy_has_been_hit():
+	movement_inhibit = true
+	await get_tree().create_timer(1.5).timeout
+	movement_inhibit = false

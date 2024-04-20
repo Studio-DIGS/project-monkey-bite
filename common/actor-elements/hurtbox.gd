@@ -6,6 +6,7 @@ extends Area3D
 
 #Adding status effects
 signal send_freeze
+signal enemy_has_been_hit
 signal hit(vector: Vector2)
 
 func _ready():
@@ -14,6 +15,7 @@ func _ready():
 func _on_area_entered(hitbox: Hitbox):
 	if hitbox == null:
 		return
+	emit_signal("enemy_has_been_hit")
 	if hitbox.status_effect == "Freeze":
 		emit_signal("send_freeze")
 	hit.emit(hitbox.knockback)

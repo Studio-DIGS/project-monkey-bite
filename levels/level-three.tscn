@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bbyoukoatqn7e"]
+[gd_scene load_steps=31 format=3 uid="uid://bbyoukoatqn7e"]
 
 [ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/Schmovosaur/Schmovosaur Enemy.tscn" id="3_lu4sj"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="5_c8upy"]
@@ -15,7 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://nv4iuwgjytjf" path="res://assets/lillian-assets/tree 2.glb" id="12_np7w5"]
 [ext_resource type="PackedScene" uid="uid://scx6byasdkqf" path="res://assets/lillian-assets/tree 4 purple.glb" id="14_uawsh"]
 [ext_resource type="PackedScene" uid="uid://7qxgf7rcege2" path="res://assets/lillian-assets/treestump.tscn" id="15_bkt6d"]
+[ext_resource type="PackedScene" uid="uid://bphge5vitnjip" path="res://player/swords/sword_body.tscn" id="17_v68hb"]
 [ext_resource type="PackedScene" uid="uid://j5u21dt7qegf" path="res://assets/lillian-assets/Textures/dock.tscn" id="18_8hddh"]
+[ext_resource type="PackedScene" uid="uid://dx1fk2xow6r2j" path="res://enemies/Maiden/maiden_enemy.tscn" id="18_o0i6v"]
+[ext_resource type="PackedScene" uid="uid://r2hi5m0cek01" path="res://common/level_switcher.tscn" id="19_11jsp"]
 
 [sub_resource type="Shader" id="Shader_vd8ur"]
 code = "
@@ -193,15 +196,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.8061, 9.7524, -0.0615408)
 [node name="Schmovosaur2" parent="Characters Scripts and World Settings" instance=ExtResource("3_lu4sj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.989, 6.22803, -0.0615408)
 
-[node name="Schmovosaur3" parent="Characters Scripts and World Settings" instance=ExtResource("3_lu4sj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.69205, 3.93051, -0.0615408)
-
-[node name="Schmovosaur4" parent="Characters Scripts and World Settings" instance=ExtResource("3_lu4sj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8471, 3.53251, -0.0615408)
-
-[node name="Schmovosaur5" parent="Characters Scripts and World Settings" instance=ExtResource("3_lu4sj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.3213, 1.44993, -0.0615408)
-
 [node name="Schmovosaur6" parent="Characters Scripts and World Settings" instance=ExtResource("3_lu4sj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.0785, 29.0995, -0.0615408)
 
@@ -289,7 +283,7 @@ use_collision = true
 size = Vector3(11.5741, 0.002, 6.70626)
 
 [node name="island 3 bald" parent="islands" instance=ExtResource("7_a1rqp")]
-transform = Transform3D(1.50546, 0, 0, 0, 1.88859, 0, 0, 0, 2.32528, -64.515, 4.66907, 0)
+transform = Transform3D(1.50546, 0, 0, 0, 1.88859, 0, 0, 0, 2.32528, -63.2814, 3.17554, 0)
 
 [node name="HCB1" type="CSGBox3D" parent="islands/island 3 bald"]
 transform = Transform3D(1, 0, 0, 0, 0.00114964, 0, 0, 0, 0.999998, -1.1435, -0.703796, 0)
@@ -299,7 +293,7 @@ use_collision = true
 size = Vector3(11.2818, 217.997, 8.29873)
 
 [node name="island 2 bald2" parent="islands" instance=ExtResource("8_0hu3s")]
-transform = Transform3D(-1.61473, 0, 2.67886e-07, 0, 1.94516, 0, -1.70129e-07, 0, -3.69299, -81.743, 1.7, 3.46)
+transform = Transform3D(-1.61473, 0, 2.67886e-07, 0, 1.94516, 0, -1.70129e-07, 0, -3.69299, -81.743, 1.7, 2.30724)
 
 [node name="HCB1" type="CSGBox3D" parent="islands/island 2 bald2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.54438, -5.30733, 0)
@@ -361,7 +355,7 @@ size = Vector3(69.727, 217.997, 44.2601)
 [node name="pillars" type="Node" parent="dead island"]
 
 [node name="pillar1" parent="dead island/pillars" instance=ExtResource("10_xkajo")]
-transform = Transform3D(0.691187, 44.8419, -1.51572, 4.02123, -6.55676, -10.4744, -16.7719, 0.275925, -2.5738, -89.5888, 8.69945, 0)
+transform = Transform3D(0.691187, 44.8419, -1.51572, 4.02123, -6.55676, -10.4744, -16.7719, 0.275925, -2.5738, -90.4951, 8.3177, 0)
 
 [node name="HCB1" type="CSGBox3D" parent="dead island/pillars/pillar1"]
 transform = Transform3D(5.42929e-05, 0.000366364, -0.0223258, 0.00349334, -8.42556e-09, 5.32824e-05, 2.07108e-05, -0.00238738, -0.0086045, -0.0194393, 1.02296, 0.0429778)
@@ -623,17 +617,17 @@ transform = Transform3D(3.26548, 0, 0, 0, 86.5489, 0, 0, 0, -8.08898, 0.854134, 
 visible = false
 
 [node name="floating rock 14" parent="small rock clusters/arch" instance=ExtResource("8_s8pab")]
-transform = Transform3D(0.544765, 0.000409214, -0.22652, -0.0011885, 0.187568, 0.000494205, 0.225538, -4.31896e-09, 0.547139, -53.346, 7.09405, 0)
+transform = Transform3D(0.544765, 0.000409214, -0.22652, -0.0011885, 0.187568, 0.000494205, 0.225538, -4.31896e-09, 0.547139, -53.8799, 7.76024, 0)
 
 [node name="PassthruPlatform" parent="small rock clusters/arch/floating rock 14" instance=ExtResource("7_htjmw")]
-transform = Transform3D(2.61515, 5.23786e-08, 3.09944e-06, -3.10362e-08, 86.6061, -5.37982e-08, -1.07288e-06, -6.25674e-08, -8.85612, 0.810478, 1.26398, -0.530602)
+transform = Transform3D(2.61787, 3.0014e-08, 3.09944e-06, -3.29603e-08, 41.8471, -6.10395e-08, -1.2517e-06, -3.32614e-08, -8.85994, 0.810478, 1.26398, -0.530602)
 visible = false
 
 [node name="floating rock 16" parent="small rock clusters/arch" instance=ExtResource("8_s8pab")]
-transform = Transform3D(0.817545, 0.00402152, -0.0457104, -0.0270117, 0.121454, 0.00173123, 0.100278, -7.08569e-05, 0.373134, -50.8226, 10.4451, 0)
+transform = Transform3D(0.817545, 0.00402152, -0.0457104, -0.0270117, 0.121454, 0.00173123, 0.100278, -7.08569e-05, 0.373134, -48.5382, 10.4451, 0)
 
 [node name="PassthruPlatform" parent="small rock clusters/arch/floating rock 16" instance=ExtResource("7_htjmw")]
-transform = Transform3D(2.5538, 1.01002e-06, 4.47035e-07, -2.64705e-06, 117.359, -3.41795e-07, 2.98023e-07, -2.38419e-07, -7.92124, 1.11357, 0.560677, -0.519268)
+transform = Transform3D(2.5868, 6.53963e-07, 5.66244e-07, -2.90992e-06, 71.1139, -3.91155e-07, 2.98023e-07, -1.55531e-07, -7.93563, 1.11357, 0.560715, -0.519268)
 visible = false
 
 [node name="floating rock 17" parent="small rock clusters/arch" instance=ExtResource("8_s8pab")]
@@ -675,5 +669,48 @@ transform = Transform3D(0.389413, 0.00111933, 0.003454, -0.00217653, 0.200299, 0
 
 [node name="floating rock 18" parent="small rock clusters/duplicates" instance=ExtResource("6_sscng")]
 transform = Transform3D(0.571275, 0.0133563, 0.00142266, -0.0606911, 0.125722, 0.000536531, -0.000870481, -9.64622e-05, 0.896251, 7.31699, 24.4167, -15.1925)
+
+[node name="SwordBody" parent="." instance=ExtResource("17_v68hb")]
+transform = Transform3D(0.0632086, 0.998, 0, -0.998, 0.0632086, 0, 0, 0, 1, -81.662, 2.62604, 0)
+
+[node name="SwordBody2" parent="." instance=ExtResource("17_v68hb")]
+transform = Transform3D(0.0632086, 0.998, 0, -0.998, 0.0632086, 0, 0, 0, 1, -53.3396, 10.7571, 0)
+
+[node name="SwordBody3" parent="." instance=ExtResource("17_v68hb")]
+transform = Transform3D(0.0632086, 0.998, 0, -0.998, 0.0632086, 0, 0, 0, 1, 11.2579, 3.77913, 0)
+
+[node name="SwordBody4" parent="." instance=ExtResource("17_v68hb")]
+transform = Transform3D(0.0632086, 0.998, 0, -0.998, 0.0632086, 0, 0, 0, 1, -3.80508, 3.77913, 0)
+
+[node name="SwordBody5" parent="." instance=ExtResource("17_v68hb")]
+transform = Transform3D(0.0632086, 0.998, 0, -0.998, 0.0632086, 0, 0, 0, 1, -15.7826, 3.04692, 0)
+
+[node name="SwordBody6" parent="." instance=ExtResource("17_v68hb")]
+transform = Transform3D(0.0632086, 0.998, 0, -0.998, 0.0632086, 0, 0, 0, 1, -19.8267, 3.04692, 0)
+
+[node name="SwordBody7" parent="." instance=ExtResource("17_v68hb")]
+transform = Transform3D(0.0632086, 0.998, 0, -0.998, 0.0632086, 0, 0, 0, 1, 17.5917, 3.77913, 0)
+
+[node name="SwordBody8" parent="." instance=ExtResource("17_v68hb")]
+transform = Transform3D(0.0632086, 0.998, 0, -0.998, 0.0632086, 0, 0, 0, 1, -12.774, 19.859, 0)
+
+[node name="SwordBody9" parent="." instance=ExtResource("17_v68hb")]
+transform = Transform3D(0.0632086, 0.998, 0, -0.998, 0.0632086, 0, 0, 0, 1, 8.34269, 19.859, 0)
+
+[node name="SwordBody10" parent="." instance=ExtResource("17_v68hb")]
+transform = Transform3D(0.0632086, 0.998, 0, -0.998, 0.0632086, 0, 0, 0, 1, 35.5071, 19.859, 0)
+
+[node name="SwordBody11" parent="." instance=ExtResource("17_v68hb")]
+transform = Transform3D(0.0632086, 0.998, 0, -0.998, 0.0632086, 0, 0, 0, 1, 18.0079, 27.2912, 0)
+
+[node name="SwordBody12" parent="." instance=ExtResource("17_v68hb")]
+transform = Transform3D(0.0632086, 0.998, 0, -0.998, 0.0632086, 0, 0, 0, 1, 54.3506, 18.0988, 0)
+
+[node name="Maiden Enemy" parent="." instance=ExtResource("18_o0i6v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.82744, 4.55404, 0)
+
+[node name="LevelSwitcher" parent="." instance=ExtResource("19_11jsp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.1124, 16.2162, 0)
+scene_name = "level-five"
 
 [connection signal="turn_around" from="Characters Scripts and World Settings/Player" to="Characters Scripts and World Settings/CameraSystem" method="_on_player_turn_around"]

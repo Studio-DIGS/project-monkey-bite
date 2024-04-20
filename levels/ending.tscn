@@ -1,37 +1,35 @@
-[gd_scene load_steps=57 format=3 uid="uid://u2p2vd130hqv"]
+[gd_scene load_steps=55 format=3 uid="uid://ch2b5n8283bgh"]
 
-[ext_resource type="Script" path="res://levels/debug/debug_arena.gd" id="1_4tnxl"]
-[ext_resource type="Material" uid="uid://wo3j0tpn383f" path="res://visual_pipeline/grass/grass_floor_mat.tres" id="1_5upbt"]
-[ext_resource type="PackedScene" uid="uid://d0eaaxb0j4br2" path="res://assets/island-2.glb" id="1_vbbpf"]
-[ext_resource type="PackedScene" uid="uid://dudoc2lmusdkg" path="res://visual_pipeline/grass/meshes/flower.tscn" id="3_1iyua"]
-[ext_resource type="PackedScene" uid="uid://iqml6h1uhmjm" path="res://visual_pipeline/grass/meshes/grass_plane.tscn" id="3_cb677"]
-[ext_resource type="Material" uid="uid://cy5grtgfs4uco" path="res://visual_pipeline/grass/grass_mat.tres" id="4_bj8gv"]
-[ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="5_1yqo3"]
-[ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="6_65pp7"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="6_y7yvu"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="7_0f7sh"]
-[ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/Schmovosaur/Schmovosaur Enemy.tscn" id="7_sut7j"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="8_bx78m"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="9_aejdt"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="10_oy5km"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="11_wc33o"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="12_3xvp0"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/offset_scale.gd" id="14_4nkqj"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="14_vilja"]
-[ext_resource type="Material" uid="uid://dj8ik0qgh5rgl" path="res://visual_pipeline/grass/planar_flowers.tres" id="17_nw5bu"]
-[ext_resource type="ArrayMesh" uid="uid://ctanf7f8ureko" path="res://assets/temple/Floor_Ruined_Corner_Inner_1.obj" id="22_bw6ie"]
-[ext_resource type="ArrayMesh" uid="uid://dpgylcp23ujo1" path="res://assets/temple/Floor_Ruined_Corner_Outer_1.obj" id="23_mxb1r"]
-[ext_resource type="ArrayMesh" uid="uid://cnw6gea4rvcb6" path="res://assets/temple/Pillar_Large_Beam.obj" id="24_af5uu"]
-[ext_resource type="ArrayMesh" uid="uid://clsnvfujirrx" path="res://assets/temple/Pillar_Large_Top.obj" id="25_dluoj"]
-[ext_resource type="ArrayMesh" uid="uid://b8l5wlp6gw7hf" path="res://assets/temple/Pillar_Large_Arch_Top.obj" id="25_gjc84"]
-[ext_resource type="ArrayMesh" uid="uid://d3t6wj0ml65jy" path="res://assets/temple/Wall_Ruined_Corner_Outer_2.obj" id="26_dsii4"]
-[ext_resource type="ArrayMesh" uid="uid://bpgvqyxl0mdpv" path="res://assets/temple/Wall_Ruined_Half_2.obj" id="27_6l0ry"]
-[ext_resource type="ArrayMesh" uid="uid://cxqih6juk3odd" path="res://assets/temple/Floor_Ruined_Straight_2.obj" id="28_ol8xb"]
-[ext_resource type="ArrayMesh" uid="uid://ie1glsealiff" path="res://assets/temple/Wall_Ruined_Half_1.obj" id="29_632wc"]
-[ext_resource type="PackedScene" uid="uid://r2hi5m0cek01" path="res://common/level_switcher.tscn" id="29_o1vaw"]
-[ext_resource type="ArrayMesh" uid="uid://dn3538nup1hmt" path="res://assets/temple/Wall_Ruined_Full_Cracked_1.obj" id="30_1d8p3"]
-[ext_resource type="EventAsset" uid="uid://rsuqnt3jnrq3" path="res://addons/FMOD/editor/resources/events/{1891d5b9-bcb3-477a-862f-0ef5fb3ef220}.tres" id="31_sbimu"]
-[ext_resource type="PackedScene" uid="uid://dx1fk2xow6r2j" path="res://enemies/Maiden/maiden_enemy.tscn" id="32_ee3uk"]
+[ext_resource type="Script" path="res://levels/debug/debug_arena.gd" id="1_fmbqb"]
+[ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="2_qy6r1"]
+[ext_resource type="PackedScene" uid="uid://d0eaaxb0j4br2" path="res://assets/island-2.glb" id="4_62jqn"]
+[ext_resource type="Material" uid="uid://wo3j0tpn383f" path="res://visual_pipeline/grass/grass_floor_mat.tres" id="5_j7chn"]
+[ext_resource type="PackedScene" uid="uid://dudoc2lmusdkg" path="res://visual_pipeline/grass/meshes/flower.tscn" id="6_bwl7y"]
+[ext_resource type="PackedScene" uid="uid://iqml6h1uhmjm" path="res://visual_pipeline/grass/meshes/grass_plane.tscn" id="7_afc12"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="8_wjgx4"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="9_0beyu"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="10_ghapt"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="11_q5ss7"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="12_jy0ox"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/offset_scale.gd" id="13_twb8n"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="14_w1mbv"]
+[ext_resource type="Material" uid="uid://cy5grtgfs4uco" path="res://visual_pipeline/grass/grass_mat.tres" id="15_o82ko"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="16_bxxsn"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="17_0m1wf"]
+[ext_resource type="Material" uid="uid://dj8ik0qgh5rgl" path="res://visual_pipeline/grass/planar_flowers.tres" id="18_ygdfa"]
+[ext_resource type="ArrayMesh" uid="uid://ctanf7f8ureko" path="res://assets/temple/Floor_Ruined_Corner_Inner_1.obj" id="19_65mfb"]
+[ext_resource type="ArrayMesh" uid="uid://dpgylcp23ujo1" path="res://assets/temple/Floor_Ruined_Corner_Outer_1.obj" id="20_rovaf"]
+[ext_resource type="ArrayMesh" uid="uid://cnw6gea4rvcb6" path="res://assets/temple/Pillar_Large_Beam.obj" id="21_6pmni"]
+[ext_resource type="ArrayMesh" uid="uid://b8l5wlp6gw7hf" path="res://assets/temple/Pillar_Large_Arch_Top.obj" id="22_o6cyg"]
+[ext_resource type="ArrayMesh" uid="uid://clsnvfujirrx" path="res://assets/temple/Pillar_Large_Top.obj" id="23_f6j1r"]
+[ext_resource type="ArrayMesh" uid="uid://d3t6wj0ml65jy" path="res://assets/temple/Wall_Ruined_Corner_Outer_2.obj" id="24_xcg7v"]
+[ext_resource type="ArrayMesh" uid="uid://bpgvqyxl0mdpv" path="res://assets/temple/Wall_Ruined_Half_2.obj" id="25_c3v1m"]
+[ext_resource type="ArrayMesh" uid="uid://cxqih6juk3odd" path="res://assets/temple/Floor_Ruined_Straight_2.obj" id="26_bhq80"]
+[ext_resource type="ArrayMesh" uid="uid://ie1glsealiff" path="res://assets/temple/Wall_Ruined_Half_1.obj" id="27_pngyb"]
+[ext_resource type="ArrayMesh" uid="uid://dn3538nup1hmt" path="res://assets/temple/Wall_Ruined_Full_Cracked_1.obj" id="28_r5j1g"]
+[ext_resource type="PackedScene" uid="uid://r2hi5m0cek01" path="res://common/level_switcher.tscn" id="29_eaq44"]
+[ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="30_g6xo3"]
+[ext_resource type="EventAsset" uid="uid://rsuqnt3jnrq3" path="res://addons/FMOD/editor/resources/events/{1891d5b9-bcb3-477a-862f-0ef5fb3ef220}.tres" id="31_kbmhn"]
 
 [sub_resource type="Shader" id="Shader_vd8ur"]
 code = "
@@ -182,8 +180,8 @@ size = Vector2(84.2, 2.69)
 [sub_resource type="BoxShape3D" id="BoxShape3D_484kk"]
 size = Vector3(89.3271, 0.1, 8.40243)
 
-[sub_resource type="Resource" id="Resource_rfjwk"]
-script = ExtResource("8_bx78m")
+[sub_resource type="Resource" id="Resource_uoc01"]
+script = ExtResource("10_ghapt")
 amount = 5000
 enabled = true
 override_global_seed = false
@@ -191,8 +189,8 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_cky4l"]
-script = ExtResource("9_aejdt")
+[sub_resource type="Resource" id="Resource_y1og4"]
+script = ExtResource("11_q5ss7")
 iterations = 3
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
@@ -203,8 +201,8 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_jj1pk"]
-script = ExtResource("10_oy5km")
+[sub_resource type="Resource" id="Resource_k1oqw"]
+script = ExtResource("12_jy0ox")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
 ray_offset = 1.0
@@ -219,8 +217,8 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_c7gbe"]
-script = ExtResource("14_4nkqj")
+[sub_resource type="Resource" id="Resource_m5vbx"]
+script = ExtResource("13_twb8n")
 operation = 1
 scale = Vector3(0.35, 0.35, 0.35)
 enabled = true
@@ -229,9 +227,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_k1t8x"]
-script = ExtResource("7_0f7sh")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_rfjwk"), SubResource("Resource_cky4l"), SubResource("Resource_jj1pk"), SubResource("Resource_c7gbe")])
+[sub_resource type="Resource" id="Resource_f8ysy"]
+script = ExtResource("9_0beyu")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_uoc01"), SubResource("Resource_y1og4"), SubResource("Resource_k1oqw"), SubResource("Resource_m5vbx")])
 
 [sub_resource type="Curve3D" id="Curve3D_ic035"]
 _data = {
@@ -241,13 +239,13 @@ _data = {
 point_count = 14
 
 [sub_resource type="Resource" id="Resource_q7ic8"]
-script = ExtResource("14_vilja")
+script = ExtResource("17_0m1wf")
 closed = true
 thickness = 0.0
 curve = SubResource("Curve3D_ic035")
 
-[sub_resource type="Resource" id="Resource_a0wan"]
-script = ExtResource("8_bx78m")
+[sub_resource type="Resource" id="Resource_nuy3t"]
+script = ExtResource("10_ghapt")
 amount = 20
 enabled = true
 override_global_seed = false
@@ -255,8 +253,8 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_5urmr"]
-script = ExtResource("9_aejdt")
+[sub_resource type="Resource" id="Resource_ep358"]
+script = ExtResource("11_q5ss7")
 iterations = 3
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
@@ -267,8 +265,8 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_as1k1"]
-script = ExtResource("10_oy5km")
+[sub_resource type="Resource" id="Resource_jd4df"]
+script = ExtResource("12_jy0ox")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
 ray_offset = 5.0
@@ -283,8 +281,8 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_g6i6j"]
-script = ExtResource("14_4nkqj")
+[sub_resource type="Resource" id="Resource_hoyil"]
+script = ExtResource("13_twb8n")
 operation = 1
 scale = Vector3(0.35, 0.45, 0.35)
 enabled = true
@@ -293,9 +291,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_q8n30"]
-script = ExtResource("7_0f7sh")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_a0wan"), SubResource("Resource_5urmr"), SubResource("Resource_as1k1"), SubResource("Resource_g6i6j")])
+[sub_resource type="Resource" id="Resource_x5fgt"]
+script = ExtResource("9_0beyu")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_nuy3t"), SubResource("Resource_ep358"), SubResource("Resource_jd4df"), SubResource("Resource_hoyil")])
 
 [sub_resource type="Curve3D" id="Curve3D_70pl6"]
 _data = {
@@ -305,13 +303,13 @@ _data = {
 point_count = 14
 
 [sub_resource type="Resource" id="Resource_y4ets"]
-script = ExtResource("14_vilja")
+script = ExtResource("17_0m1wf")
 closed = true
 thickness = 0.0
 curve = SubResource("Curve3D_70pl6")
 
 [node name="World" type="Node3D"]
-script = ExtResource("1_4tnxl")
+script = ExtResource("1_fmbqb")
 
 [node name="Characters Scripts and World Settings" type="Node" parent="."]
 
@@ -328,23 +326,20 @@ directional_shadow_split_2 = 0.37
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Characters Scripts and World Settings"]
 environment = SubResource("Environment_y8ynd")
 
-[node name="CameraSystem" parent="Characters Scripts and World Settings" node_paths=PackedStringArray("target") instance=ExtResource("6_65pp7")]
+[node name="CameraSystem" parent="Characters Scripts and World Settings" node_paths=PackedStringArray("target") instance=ExtResource("2_qy6r1")]
 target = NodePath("../../Player")
-
-[node name="TestEnemy" parent="Characters Scripts and World Settings" instance=ExtResource("7_sut7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.452, 1.06, 0)
 
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="Test" type="StaticBody3D" parent="Environment"]
 
-[node name="Islands 2 color" parent="Environment/Test" instance=ExtResource("1_vbbpf")]
+[node name="Islands 2 color" parent="Environment/Test" instance=ExtResource("4_62jqn")]
 transform = Transform3D(4.43777, -0.000139006, -0.20084, 0.000132789, 4.6403, -7.90184e-06, 0.266452, 2.61574e-06, 3.34501, 5.7086, -0.0585171, -2.10298)
 
 [node name="Floor" type="MeshInstance3D" parent="Environment/Test"]
 transform = Transform3D(0.501877, 0, 0, 0, 1, 0, 0, 0, 2.50393, 4.69592, 0, -0.338267)
 visible = false
-material_override = ExtResource("1_5upbt")
+material_override = ExtResource("5_j7chn")
 extra_cull_margin = 5131.19
 mesh = SubResource("PlaneMesh_hai2b")
 skeleton = NodePath("../../..")
@@ -353,58 +348,58 @@ skeleton = NodePath("../../..")
 transform = Transform3D(0.550753, 0, 0, 0, 0.550753, 0, 0, 0, 0.550753, 3.60609, -0.05, 0)
 shape = SubResource("BoxShape3D_484kk")
 
-[node name="flower" parent="Environment/Test" instance=ExtResource("3_1iyua")]
+[node name="flower" parent="Environment/Test" instance=ExtResource("6_bwl7y")]
 visible = false
 
-[node name="grass_plane" parent="Environment/Test" instance=ExtResource("3_cb677")]
+[node name="grass_plane" parent="Environment/Test" instance=ExtResource("7_afc12")]
 visible = false
 
 [node name="ProtonScatter" type="Node3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.198906, 0, 0.608515)
-script = ExtResource("6_y7yvu")
-modifier_stack = SubResource("Resource_k1t8x")
+script = ExtResource("8_wjgx4")
+modifier_stack = SubResource("Resource_f8ysy")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
 [node name="ScatterItem" type="Node3D" parent="Environment/ProtonScatter"]
-script = ExtResource("11_wc33o")
+script = ExtResource("14_w1mbv")
 source = 0
-override_material = ExtResource("4_bj8gv")
+override_material = ExtResource("15_o82ko")
 override_cast_shadow = 0
 path = "../../Test/grass_plane"
 
 [node name="ScatterShape" type="Node3D" parent="Environment/ProtonScatter"]
 transform = Transform3D(0.864968, 0, -2.57781e-08, 0, 0.864968, 0, 2.57781e-08, 0, 0.864968, 2.34965, -0.00012207, -3.91424)
-script = ExtResource("12_3xvp0")
+script = ExtResource("16_bxxsn")
 shape = SubResource("Resource_q7ic8")
 
 [node name="ProtonScatter2" type="Node3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.289489, 0)
-script = ExtResource("6_y7yvu")
-modifier_stack = SubResource("Resource_q8n30")
+script = ExtResource("8_wjgx4")
+modifier_stack = SubResource("Resource_x5fgt")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
 [node name="ScatterItem" type="Node3D" parent="Environment/ProtonScatter2"]
-script = ExtResource("11_wc33o")
+script = ExtResource("14_w1mbv")
 source = 0
-override_material = ExtResource("17_nw5bu")
+override_material = ExtResource("18_ygdfa")
 override_cast_shadow = 0
 path = "../../Test/flower"
 
 [node name="ScatterShape3" type="Node3D" parent="Environment/ProtonScatter2"]
 transform = Transform3D(0.862277, 0, -2.56979e-08, 0, 0.862277, 0, 2.56979e-08, 0, 0.862277, 2.54856, 0.0437675, -3.10296)
-script = ExtResource("12_3xvp0")
+script = ExtResource("16_bxxsn")
 shape = SubResource("Resource_y4ets")
 
 [node name="FloorRuinedCornerInner1" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(-2.82798, 0, -0.782621, 0, 6.4854, 0, 0.782621, 0, -2.82798, -5.49461, 0.848454, -2.16365)
-mesh = ExtResource("22_bw6ie")
+mesh = ExtResource("19_65mfb")
 skeleton = NodePath("../..")
 
 [node name="FloorRuinedCornerOuter1" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(3.15248, 0, 1.46159, 0, 4.54688, 0, -1.46159, 0, 3.15248, -0.735281, 0.624943, 1.08475)
-mesh = ExtResource("23_mxb1r")
+mesh = ExtResource("20_rovaf")
 skeleton = NodePath("../..")
 
 [node name="Node3D" type="Node3D" parent="Environment"]
@@ -412,12 +407,12 @@ transform = Transform3D(-0.642212, -0.206069, -0.469527, -0.27058, 0.775407, 0.0
 
 [node name="PillarLargeBeam" type="MeshInstance3D" parent="Environment/Node3D"]
 transform = Transform3D(-3.57628e-07, -2, -5.96046e-08, 8.75, -1.19209e-07, 0, -1.19209e-07, 0, 2, 0, 0, 0)
-mesh = ExtResource("24_af5uu")
+mesh = ExtResource("21_6pmni")
 skeleton = NodePath("../../..")
 
 [node name="PillarLargeArchTop" type="MeshInstance3D" parent="Environment/Node3D"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.999553, 4.37271, 0)
-mesh = ExtResource("25_gjc84")
+mesh = ExtResource("22_o6cyg")
 skeleton = NodePath("../../..")
 
 [node name="Node3D2" type="Node3D" parent="Environment"]
@@ -425,27 +420,27 @@ transform = Transform3D(0.62025, 0.285995, 0.457003, -0.0988782, 0.745164, -0.33
 
 [node name="PillarLargeBeam" type="MeshInstance3D" parent="Environment/Node3D2"]
 transform = Transform3D(-3.57628e-07, -2, -5.96046e-08, 8.75, -1.19209e-07, 0, -1.19209e-07, 0, 2, 0, 0, 0)
-mesh = ExtResource("24_af5uu")
+mesh = ExtResource("21_6pmni")
 skeleton = NodePath("../../..")
 
 [node name="PillarLargeArchTop" type="MeshInstance3D" parent="Environment/Node3D2"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.999553, 4.37271, 0)
-mesh = ExtResource("25_gjc84")
+mesh = ExtResource("22_o6cyg")
 skeleton = NodePath("../../..")
 
 [node name="PillarLargeTop" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(1.64087, 0.327163, 0, -0.327163, 1.64087, 0, 0, 0, 1.67317, 0.074618, -0.462983, -5.07567)
-mesh = ExtResource("25_dluoj")
+mesh = ExtResource("23_f6j1r")
 skeleton = NodePath("../..")
 
 [node name="WallRuinedCornerOuter2" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(-4.07925, 0, 1.26687, 0, 4.27145, 0, -1.26687, 0, -4.07925, 1.50596, 1.8999e-07, -0.727921)
-mesh = ExtResource("26_dsii4")
+mesh = ExtResource("24_xcg7v")
 skeleton = NodePath("../..")
 
 [node name="WallRuinedHalf2" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(3.1, 0, 0.599267, 0, 3.15739, 0, -0.599267, 0, 3.1, 6.18739, -0.889725, 0.656438)
-mesh = ExtResource("27_6l0ry")
+mesh = ExtResource("25_c3v1m")
 skeleton = NodePath("../..")
 
 [node name="Node3D3" type="StaticBody3D" parent="Environment"]
@@ -453,17 +448,17 @@ transform = Transform3D(0.998516, 0, -0.0544622, 0, 1, 0, 0.0544622, 0, 0.998516
 
 [node name="FloorRuinedStraight2" type="MeshInstance3D" parent="Environment/Node3D3"]
 transform = Transform3D(-7.98312, -1.75728, -0.0969781, -3.02815, 4.48806, -0.278573, 0.810159, -0.540774, -1.99683, -3.2267, 1.41949, 1.01155)
-mesh = ExtResource("28_ol8xb")
+mesh = ExtResource("26_bhq80")
 skeleton = NodePath("../../..")
 
 [node name="WallRuinedHalf1" type="MeshInstance3D" parent="Environment/Node3D3"]
 transform = Transform3D(-5.47749, 0, -0.432383, 0, 3.38361, 0, 0.392344, 0, -6.03648, 3.66328, 1.07194, 3.01383)
-mesh = ExtResource("29_632wc")
+mesh = ExtResource("27_pngyb")
 skeleton = NodePath("../../..")
 
 [node name="WallRuinedFullCracked1" type="MeshInstance3D" parent="Environment/Node3D3"]
 transform = Transform3D(5.92137, 0, 0.0854214, 0, 3.20357, 0, -0.0743105, 0, 6.80671, 3.358, -0.95739, -3.40767)
-mesh = ExtResource("30_1d8p3")
+mesh = ExtResource("28_r5j1g")
 skeleton = NodePath("../../..")
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Environment/Node3D3"]
@@ -471,13 +466,13 @@ transform = Transform3D(0.996787, 0, 0.0800945, 0, 1, 0, -0.0800945, 0, 0.996787
 depth = 2.0
 polygon = PackedVector2Array(1.39565, 1.88135, 2.75837, 1.80536, 4.07546, 2.50522, 5.23813, 2.63283, 5.67768, 2.3209, 6.61349, 2.27836, 7.05303, -1.89024, 1.14042, -1.90442, 1.14042, 0.761218, -6.14754, -2.03203, -6.51619, -1.08204)
 
-[node name="LevelSwitcher" parent="." instance=ExtResource("29_o1vaw")]
+[node name="LevelSwitcher" parent="." instance=ExtResource("29_eaq44")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.3983, 0, 0)
 
 [node name="SpawnLocation" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.95431, 3.00219, 0)
 
-[node name="Player" parent="." instance=ExtResource("5_1yqo3")]
+[node name="Player" parent="." instance=ExtResource("30_g6xo3")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.6788, 1.41166, -0.0926753)
 accel = 6.505
 max_jump_height = 9.0
@@ -485,10 +480,7 @@ max_jump_height = 9.0
 [node name="StudioEventEmitter3D" type="StudioEventEmitter3D" parent="."]
 play_event = 2
 stop_event = 3
-event = ExtResource("31_sbimu")
+event = ExtResource("31_kbmhn")
 trigger_once = true
-
-[node name="Maiden Enemy" parent="." instance=ExtResource("32_ee3uk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.386, 2.311, 0)
 
 [connection signal="turn_around" from="Player" to="Characters Scripts and World Settings/CameraSystem" method="_on_player_turn_around"]

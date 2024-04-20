@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://cdlms1nqyimrp" path="res://assets/lillian-assets/Islands/small island 2.glb" id="2_8sghb"]
 [ext_resource type="PackedScene" uid="uid://dddobobdkwrkr" path="res://assets/lillian-assets/Islands/island 2.glb" id="3_gq8km"]
 [ext_resource type="PackedScene" uid="uid://crv2dotc68bdp" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 2 bald.glb" id="4_6ayfb"]
-[ext_resource type="PackedScene" uid="uid://dpqqdkigqcdws" path="res://assets/lillian-assets/Islands/floating rock 1.glb" id="4_g5sui"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="4_pxxjk"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="5_65ukr"]
 [ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/Schmovosaur/Schmovosaur Enemy.tscn" id="6_jc5c3"]
@@ -19,8 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://b02d1j5r3pg1x" path="res://common/passthru-platforms/passthru_platform.tscn" id="13_ixcym"]
 [ext_resource type="PackedScene" uid="uid://c51bm8v0mck5h" path="res://assets/lillian-assets/Textures/flag.tscn" id="15_0g0vm"]
 [ext_resource type="PackedScene" uid="uid://bod5yr3vu2jr6" path="res://assets/lillian-assets/tree 3 purple.glb" id="16_b3gaq"]
-[ext_resource type="PackedScene" uid="uid://8ay5rlrutcmx" path="res://addons/proton_scatter/demos/assets/large_rock.tscn" id="16_n4ker"]
+[ext_resource type="PackedScene" uid="uid://dpqqdkigqcdws" path="res://assets/lillian-assets/Islands/floating rock 1.glb" id="16_n4ker"]
 [ext_resource type="PackedScene" uid="uid://j5u21dt7qegf" path="res://assets/lillian-assets/Textures/dock.tscn" id="18_6lvs3"]
+[ext_resource type="PackedScene" uid="uid://bphge5vitnjip" path="res://player/swords/sword_body.tscn" id="21_o7lhd"]
 
 [sub_resource type="Shader" id="Shader_vd8ur"]
 code = "
@@ -182,44 +182,44 @@ directional_shadow_split_1 = 0.003
 environment = SubResource("Environment_y8ynd")
 
 [node name="Player" parent="Characters Scripts and World Settings" instance=ExtResource("4_pxxjk")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12.527, 6.34656, 1.7244)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12.527, 6.347, 0)
 accel = 6.505
 
 [node name="CameraSystem" parent="Characters Scripts and World Settings" node_paths=PackedStringArray("target") instance=ExtResource("5_65ukr")]
 target = NodePath("../Player")
 
 [node name="TestEnemy" parent="Characters Scripts and World Settings" instance=ExtResource("6_jc5c3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.0617, 8.51904, 2.62872)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.0617, 8.51904, 0)
 
 [node name="TestEnemy2" parent="Characters Scripts and World Settings" instance=ExtResource("6_jc5c3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.50869, 8.51904, 2.62872)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.50869, 8.51904, 0)
 
 [node name="TestEnemy3" parent="Characters Scripts and World Settings" instance=ExtResource("6_jc5c3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.2518, 8.51904, 2.62872)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.2518, 8.51904, 0)
 
 [node name="TestEnemy4" parent="Characters Scripts and World Settings" instance=ExtResource("6_jc5c3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8451, -3.30988, 1.87162)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8451, -3.30988, 0)
 
 [node name="TestEnemy5" parent="Characters Scripts and World Settings" instance=ExtResource("6_jc5c3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.0484, -3.30988, 1.87162)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.0484, -3.30988, 0)
 
 [node name="TestEnemy6" parent="Characters Scripts and World Settings" instance=ExtResource("6_jc5c3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.0419, -12.5468, 1.87162)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.0419, -12.5468, 0)
 
 [node name="TestEnemy7" parent="Characters Scripts and World Settings" instance=ExtResource("6_jc5c3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.3424, -12.2166, 2.45611)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.3424, -12.2166, 0)
 
 [node name="TestEnemy8" parent="Characters Scripts and World Settings" instance=ExtResource("6_jc5c3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4743, -3.30988, 1.87162)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4743, -3.30988, 0)
 
 [node name="TestEnemy9" parent="Characters Scripts and World Settings" instance=ExtResource("6_jc5c3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.40034, -5.16968, 1.87162)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.40034, -5.16968, 0)
 
 [node name="TestEnemy10" parent="Characters Scripts and World Settings" instance=ExtResource("6_jc5c3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.4964, -5.16968, 1.87162)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.4964, -5.16968, 0)
 
 [node name="TestEnemy11" parent="Characters Scripts and World Settings" instance=ExtResource("6_jc5c3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78.4519, 4.96573, 1.87162)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78.4519, 4.96573, 0)
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -289,8 +289,8 @@ material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
 size = Vector3(1.93201, 1, 0.905001)
 
-[node name="floating rock 2" parent="Environment/Islands" instance=ExtResource("4_g5sui")]
-transform = Transform3D(0.288932, 0, 0, 0, 0.134516, -0.15573, 0, 0.0455915, 0.459477, -8.58139, -11.4879, 2.96429)
+[node name="floating rock 2" parent="Environment/Islands" instance=ExtResource("16_n4ker")]
+transform = Transform3D(0.288932, 0, 0, 0, 0.134516, -0.15573, 0, 0.0455915, 0.459477, -8.58139, -11.4879, 0)
 
 [node name="HCB3" type="CSGBox3D" parent="Environment/Islands/floating rock 2"]
 transform = Transform3D(-3.86659e-08, 0, -2.84599, 0.527424, 0.729722, -7.41743e-08, 0.455579, -0.0724065, -6.40703e-08, 0.776845, 1.68205, -0.386986)
@@ -299,8 +299,8 @@ material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
 size = Vector3(13.6714, 1, 3.83653)
 
-[node name="floating rock 1" parent="Environment/Islands" instance=ExtResource("4_g5sui")]
-transform = Transform3D(0.428023, -0.0393426, 0.0528251, 0.133428, 0.126853, -0.16363, -0.00171379, 0.0503359, 0.453658, -13.0215, -14.0305, 3.51843)
+[node name="floating rock 1" parent="Environment/Islands" instance=ExtResource("16_n4ker")]
+transform = Transform3D(0.428023, -0.0393426, 0.0528251, 0.133428, 0.126853, -0.16363, -0.00171379, 0.0503359, 0.453658, -13.0215, -14.0305, 0)
 
 [node name="HCB3" type="CSGBox3D" parent="Environment/Islands/floating rock 1"]
 transform = Transform3D(-3.86659e-08, 0, -2.84599, 0.527424, 0.729722, -7.41743e-08, 0.455579, -0.0724065, -6.40703e-08, 0.776845, 1.68205, -0.386986)
@@ -309,8 +309,8 @@ material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
 size = Vector3(13.6714, 1, 3.83653)
 
-[node name="floating rock 3" parent="Environment/Islands" instance=ExtResource("4_g5sui")]
-transform = Transform3D(0.361399, -0.0206529, 0.02528, 0.0517984, 0.132985, 0.0803604, -0.0274409, -0.020974, 0.484631, -4.35278, -9.54926, 2.96429)
+[node name="floating rock 3" parent="Environment/Islands" instance=ExtResource("16_n4ker")]
+transform = Transform3D(0.361399, -0.0206529, 0.02528, 0.0517984, 0.132985, 0.0803604, -0.0274409, -0.020974, 0.484631, -4.35278, -9.54926, 0)
 
 [node name="HCB3" type="CSGBox3D" parent="Environment/Islands/floating rock 3"]
 transform = Transform3D(0.695293, 0.0158871, -0.139773, -0.117973, 0.724013, -1.49718, 0.0143213, 0.0299744, 2.81371, 0.732388, 0.857307, -0.425196)
@@ -506,10 +506,10 @@ transform = Transform3D(0.832374, 0, 0.147687, 0, 1, 0, -0.127446, 0, 0.964579, 
 transform = Transform3D(0.678584, 0, 0.124386, 0, 1.20219, 0, -0.0822018, 0, 1.02682, 46.9944, -7.52441, 9.72974)
 
 [node name="pinktree4" parent="Environment/Trees Middle Island" instance=ExtResource("16_b3gaq")]
-transform = Transform3D(0.673162, 0, -0.17959, 0, 0.890625, 0, 0.118685, 0, 1.01861, 32.3112, -7.52441, 9.72974)
+transform = Transform3D(0.673162, 0, -0.17959, 0, 1.5166, 0, 0.118685, 0, 1.01861, 32.3112, -7.52441, 9.72974)
 
 [node name="pinktree5" parent="Environment/Trees Middle Island" instance=ExtResource("16_b3gaq")]
-transform = Transform3D(0.546699, 0, -0.620869, 0, 0.890625, 0, 0.410309, 0, 0.82725, 54.6758, -7.52441, 9.72974)
+transform = Transform3D(0.546699, 0, -0.620869, 0, 1.43106, 0, 0.410309, 0, 0.82725, 54.6758, -7.52441, 9.72974)
 
 [node name="pinktree6" parent="Environment/Trees Middle Island" instance=ExtResource("16_b3gaq")]
 transform = Transform3D(-0.054832, 0, -1.44309, 0, 1.20219, 0, 0.974638, 0, -0.0811869, 58.8741, -7.52441, -4.96964)
@@ -541,50 +541,50 @@ transform = Transform3D(-0.119829, 0.439865, -0.298357, 0.00218449, 0.22686, 0.6
 [node name="Parkour Stumps" type="Node" parent="Environment"]
 
 [node name="treestump" parent="Environment/Parkour Stumps" instance=ExtResource("11_7qdg5")]
-transform = Transform3D(3.40365, 0, 0, 0, 9.50834, 0, 0, 0, 3.58019, 57.1708, -7.06395, 1.94342)
+transform = Transform3D(3.40365, 0, 0, 0, 9.50834, 0, 0, 0, 3.58019, 57.1708, -7.06395, 0)
 
 [node name="HCB1" type="CSGBox3D" parent="Environment/Parkour Stumps/treestump"]
-transform = Transform3D(0.091774, 0, 0, 0, 0.00374623, 0, 0, 0, 0.0742738, 0.0120087, -0.0336147, 0.0414531)
+transform = Transform3D(0.091774, 0, 0, 0, 0.00374623, 0, 0, 0, 0.0742738, 0.0120087, -0.0336147, 0)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
 size = Vector3(3.54245, 42.3174, 23.7022)
 
 [node name="treestump2" parent="Environment/Parkour Stumps" instance=ExtResource("11_7qdg5")]
-transform = Transform3D(3.05898, 0, 1.5699, 0, 17.6123, 0, -1.49249, 0, 3.21763, 60.3139, -6.77134, 1.13653)
+transform = Transform3D(3.05898, 0, 1.5699, 0, 17.6123, 0, -1.49249, 0, 3.21763, 60.3139, -6.77134, 0)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/Parkour Stumps/treestump2"]
-transform = Transform3D(0.0824803, 0, -0.0342579, 0, 0.00374623, 0, 0.0382583, 0, 0.0667523, 0.0120029, -0.0336148, 0.0414534)
+transform = Transform3D(0.0824803, 0, -0.0342579, 0, 0.00374623, 0, 0.0382583, 0, 0.0667523, 0.0120029, -0.0336148, 0)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
 size = Vector3(3.54245, 42.3174, 23.7022)
 
 [node name="treestump3" parent="Environment/Parkour Stumps" instance=ExtResource("11_7qdg5")]
-transform = Transform3D(3.25991, 0, 1.02946, 0, 34.7327, 0, -0.978702, 0, 3.42899, 63.3573, -5.80674, 1.13653)
+transform = Transform3D(3.25991, 0, 1.02946, 0, 34.7327, 0, -0.978702, 0, 3.42899, 63.3573, -5.80674, 0)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/Parkour Stumps/treestump3"]
-transform = Transform3D(0.0878981, 0, -0.0224646, 0, 0.00374623, 0, 0.0250879, 0, 0.071137, 0.0120068, -0.0336147, 0.0414529)
+transform = Transform3D(0.0878981, 0, -0.0224646, 0, 0.00374623, 0, 0.0250879, 0, 0.071137, 0.0120068, -0.0336147, 0)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
 size = Vector3(3.54245, 42.3174, 23.7022)
 
 [node name="treestump4" parent="Environment/Parkour Stumps" instance=ExtResource("11_7qdg5")]
-transform = Transform3D(3.25991, 0, 1.02946, 0, 60.4274, 0, -0.978702, 0, 3.42899, 67.7162, -4.57347, 1.8432)
+transform = Transform3D(3.25991, 0, 1.02946, 0, 60.4274, 0, -0.978702, 0, 3.42899, 67.7162, -4.57347, 0)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/Parkour Stumps"]
-transform = Transform3D(0.348404, 0, 0, 0, 0.226375, 0, 0, 0, 0.268334, 67.7279, -6.60472, 1.9736)
+transform = Transform3D(0.348404, 0, 0, 0, 0.226375, 0, 0, 0, 0.268334, 67.7279, -6.60472, 0)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
 size = Vector3(3.54245, 42.3174, 23.7022)
 
 [node name="treestump5" parent="Environment/Parkour Stumps" instance=ExtResource("11_7qdg5")]
-transform = Transform3D(1.00564, 7.27492, 0.264996, -0.859598, 8.51092, -0.226512, -0.397184, -1.5275e-07, 1.16117, 64.076, -5.72642, 1.25238)
+transform = Transform3D(1.00564, 7.27492, 0.264996, -0.859598, 8.51092, -0.226512, -0.397184, -1.5275e-07, 1.16117, 64.076, -5.72642, 0)
 
 [node name="PassthruPlatform" parent="Environment/Parkour Stumps/treestump5" instance=ExtResource("13_ixcym")]
-transform = Transform3D(0.184466, -3.82339, -1.05631, 0.0203103, 0.576161, -1.29044e-07, 0.0630976, -1.30781, 4.00862, -0.0538063, 0.00161743, -0.0181141)
+transform = Transform3D(0.184466, -3.82339, -1.05631, 0.0203103, 0.576161, -1.29044e-07, 0.0630976, -1.30781, 4.00862, -0.0538063, 0.00161743, 0)
 visible = false
 
 [node name="LevelSwitcher" parent="." instance=ExtResource("13_f2s5j")]
@@ -595,5 +595,26 @@ scene_name = "level-three"
 
 [node name="flag" parent="Flag Poles" instance=ExtResource("15_0g0vm")]
 transform = Transform3D(4.05248, 0, 0, 0, 10.3776, 0, 0, 0, 1, -31.4579, -12.3735, 4.03632)
+
+[node name="SwordBody" parent="." instance=ExtResource("21_o7lhd")]
+transform = Transform3D(-0.0694778, 0.997584, 0, -0.997584, -0.0694778, 0, 0, 0, 1, 24.9028, -2.44348, -0.026104)
+
+[node name="SwordBody2" parent="." instance=ExtResource("21_o7lhd")]
+transform = Transform3D(-0.0694778, 0.997584, 0, -0.997584, -0.0694778, 0, 0, 0, 1, 46.4247, -2.44348, -0.026104)
+
+[node name="SwordBody3" parent="." instance=ExtResource("21_o7lhd")]
+transform = Transform3D(-0.0694778, 0.997584, 0, -0.997584, -0.0694778, 0, 0, 0, 1, 60.5014, -2.44348, -0.026104)
+
+[node name="SwordBody4" parent="." instance=ExtResource("21_o7lhd")]
+transform = Transform3D(-0.0694778, 0.997584, 0, -0.997584, -0.0694778, 0, 0, 0, 1, 74.4385, -2.44348, -0.026104)
+
+[node name="SwordBody5" parent="." instance=ExtResource("21_o7lhd")]
+transform = Transform3D(-0.0694778, 0.997584, 0, -0.997584, -0.0694778, 0, 0, 0, 1, -20.7778, -12.0432, -0.026104)
+
+[node name="SwordBody6" parent="." instance=ExtResource("21_o7lhd")]
+transform = Transform3D(-0.0694778, 0.997584, 0, -0.997584, -0.0694778, 0, 0, 0, 1, -20.7778, 8.46995, -0.026104)
+
+[node name="SwordBody7" parent="." instance=ExtResource("21_o7lhd")]
+transform = Transform3D(-0.0694778, 0.997584, 0, -0.997584, -0.0694778, 0, 0, 0, 1, 4.063, 8.543, 0)
 
 [connection signal="turn_around" from="Characters Scripts and World Settings/Player" to="Characters Scripts and World Settings/CameraSystem" method="_on_player_turn_around"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cbwg2hodwxmba"]
+[gd_scene load_steps=23 format=3 uid="uid://cbwg2hodwxmba"]
 
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="1_nrkkl"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="2_gcm0n"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://dpqqdkigqcdws" path="res://assets/lillian-assets/Islands/floating rock 1.glb" id="9_x4hyn"]
 [ext_resource type="PackedScene" uid="uid://scx6byasdkqf" path="res://assets/lillian-assets/tree 4 purple.glb" id="11_0mabk"]
 [ext_resource type="PackedScene" uid="uid://bod5yr3vu2jr6" path="res://assets/lillian-assets/tree 3 purple.glb" id="12_7krtl"]
+[ext_resource type="PackedScene" uid="uid://dx1fk2xow6r2j" path="res://enemies/Maiden/maiden_enemy.tscn" id="12_g4yvc"]
+[ext_resource type="PackedScene" uid="uid://bphge5vitnjip" path="res://player/swords/sword_body.tscn" id="13_hb86q"]
 
 [sub_resource type="Shader" id="Shader_vd8ur"]
 code = "
@@ -179,7 +181,19 @@ accel = 6.505
 target = NodePath("../Player")
 
 [node name="Schmovosaur" parent="Characters Scripts and World Settings" instance=ExtResource("3_6ptj7")]
-transform = Transform3D(-0.99434, 0, 0.106247, 0, 1, 0, -0.106247, 0, -0.99434, -9.06725, -87.234, -11.2602)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.261, -108.457, -13.012)
+
+[node name="Schmovosaur2" parent="Characters Scripts and World Settings" instance=ExtResource("3_6ptj7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2476, -103.459, -13.012)
+
+[node name="Schmovosaur3" parent="Characters Scripts and World Settings" instance=ExtResource("3_6ptj7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.8401, -93.173, -13.012)
+
+[node name="Schmovosaur4" parent="Characters Scripts and World Settings" instance=ExtResource("3_6ptj7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.1718, -93.2149, -13.012)
+
+[node name="Schmovosaur5" parent="Characters Scripts and World Settings" instance=ExtResource("3_6ptj7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.8238, -98.9411, -13.012)
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -377,5 +391,51 @@ visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
 size = Vector3(7.56142, 3.66245, 0.467606)
+
+[node name="Maiden Enemy" parent="." instance=ExtResource("12_g4yvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.09452, -83.9834, -13.012)
+
+[node name="Maiden Enemy2" parent="." instance=ExtResource("12_g4yvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1393, -83.9907, -13.012)
+
+[node name="SwordBody" parent="." instance=ExtResource("13_hb86q")]
+transform = Transform3D(0.0679456, 0.997689, 0, -0.997689, 0.0679456, 0, 0, 0, 1, -68.5348, -106.467, -13.012)
+
+[node name="SwordBody2" parent="." instance=ExtResource("13_hb86q")]
+transform = Transform3D(0.0679456, 0.997689, 0, -0.997689, 0.0679456, 0, 0, 0, 1, -44.4455, -106.464, -13.012)
+
+[node name="SwordBody3" parent="." instance=ExtResource("13_hb86q")]
+transform = Transform3D(0.0679456, 0.997689, 0, -0.997689, 0.0679456, 0, 0, 0, 1, -24.3685, -106.08, -13.012)
+
+[node name="SwordBody4" parent="." instance=ExtResource("13_hb86q")]
+transform = Transform3D(0.0679456, 0.997689, 0, -0.997689, 0.0679456, 0, 0, 0, 1, -12.8665, -101.708, -13.012)
+
+[node name="SwordBody5" parent="." instance=ExtResource("13_hb86q")]
+transform = Transform3D(0.0679456, 0.997689, 0, -0.997689, 0.0679456, 0, 0, 0, 1, -6.40994, -102.589, -13.012)
+
+[node name="SwordBody6" parent="." instance=ExtResource("13_hb86q")]
+transform = Transform3D(0.0679456, 0.997689, 0, -0.997689, 0.0679456, 0, 0, 0, 1, -35.6782, -97.3264, -13.012)
+
+[node name="SwordBody7" parent="." instance=ExtResource("13_hb86q")]
+transform = Transform3D(0.0679456, 0.997689, 0, -0.997689, 0.0679456, 0, 0, 0, 1, -61.9122, -92.5994, -13.012)
+
+[node name="SwordBody8" parent="." instance=ExtResource("13_hb86q")]
+transform = Transform3D(0.0679456, 0.997689, 0, -0.997689, 0.0679456, 0, 0, 0, 1, -71.2273, -91.9315, -13.012)
+
+[node name="SwordBody9" parent="." instance=ExtResource("13_hb86q")]
+transform = Transform3D(0.0679456, 0.997689, 0, -0.997689, 0.0679456, 0, 0, 0, 1, -30.4776, -86.6656, -13.012)
+
+[node name="SwordBody10" parent="." instance=ExtResource("13_hb86q")]
+transform = Transform3D(0.0679456, 0.997689, 0, -0.997689, 0.0679456, 0, 0, 0, 1, -15.3961, -85.3477, -13.012)
+
+[node name="SwordBody11" parent="." instance=ExtResource("13_hb86q")]
+transform = Transform3D(0.0679456, 0.997689, 0, -0.997689, 0.0679456, 0, 0, 0, 1, -4.92843, -85.7644, -13.012)
+
+[node name="SwordBody12" parent="." instance=ExtResource("13_hb86q")]
+transform = Transform3D(0.0679456, 0.997689, 0, -0.997689, 0.0679456, 0, 0, 0, 1, -17.5885, -84.4379, -13.012)
+
+[node name="LevelSwitcher" parent="." instance=ExtResource("5_h4dfl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.66511, -86.3453, -13.012)
+scene_name = "ending"
 
 [connection signal="turn_around" from="Characters Scripts and World Settings/Player" to="Characters Scripts and World Settings/CameraSystem" method="_on_player_turn_around"]

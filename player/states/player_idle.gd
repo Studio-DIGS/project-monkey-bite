@@ -1,7 +1,10 @@
 extends PlayerState
 
 func enter(_msg := {}):
-	player.anim.queue("Idle")
+	if player.is_armed:
+		player.anim.play("Idle_Armed")
+	else:
+		player.anim.play("Idle_Unarmed")
 
 func physics_update(delta):
 	player.velocity.x = lerp(player.velocity.x, 0.0, delta * player.accel)

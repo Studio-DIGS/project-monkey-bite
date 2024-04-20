@@ -15,5 +15,6 @@ func spawn_smear():
 	smear_origin.add_child(smear_instance)
 
 func free_smear():
-	if smear_instance:
-		smear_instance.queue_free()
+	if smear_instance != null:
+		if !smear_instance.is_queued_for_deletion():
+			smear_instance.queue_free()

@@ -41,6 +41,7 @@ var is_armed = true
 @export var sword: Sword
 
 # Onready variables
+@onready var body = $pmb_kite
 @onready var anim = $pmb_kite/AnimationPlayer
 @onready var interaction_area: Area3D = $PlayerInteraction
 @onready var inventory_vis: InventoryVis = $InventoryVis

@@ -46,7 +46,9 @@ func physics_update(delta):
 	
 	if player.stagger:
 		state_machine.transition_to("Stagger")
+		combo_counter = 0
 		player.anim.clear_queue()
+		player.body.free_smear()
 		return
 	
 #	# animation cancel

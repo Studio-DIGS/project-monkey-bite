@@ -1,10 +1,14 @@
 extends PlayerState
 var slide_velocity: float
 
-func enter(_msg := {}):
-	player.anim.play("Throw")
+func enter(msg := {}):
+	if msg.get('air', false) == true:
+		player.anim.play("Air_Throw")
+	else:
+		player.anim.play("Throw")
 
 func physics_update(delta):
+	player.velocity.y -= player.gravity * delta
 	player.velocity.x = lerp(player.velocity.x, slide_velocity, delta * player.accel)
 	player.move_and_slide()
 	

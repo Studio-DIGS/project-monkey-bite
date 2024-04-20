@@ -161,9 +161,10 @@ theme = SubResource("Theme_7nppo")
 value = 100.0
 show_percentage = false
 
-[node name="Health" type="Node" parent="."]
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("display")]
 script = ExtResource("2_xhh10")
 max_health = 100
+display = NodePath("../SubViewport/ProgressBar")
 
 [node name="Maiden AI Manager" parent="." instance=ExtResource("2_ug773")]
 
@@ -220,3 +221,5 @@ skeleton = NodePath("")
 [connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
 [connection signal="send_freeze" from="Hurtbox" to="." method="_on_hurtbox_send_freeze"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+
+[editable path="attackAnim_maiden2"]

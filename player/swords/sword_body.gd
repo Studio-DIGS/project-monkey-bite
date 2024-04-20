@@ -11,6 +11,10 @@ var smear_instance: Trail3D
 var direction = 1 # 1 is right, -1 is left
 
 func throw(direction, speed = stats.throw_speed):
+	axis_lock_angular_x = true
+	axis_lock_angular_y = true
+	axis_lock_linear_y = true
+	axis_lock_linear_z = true
 	# delete smear
 	if smear_instance:
 		smear_instance.queue_free()

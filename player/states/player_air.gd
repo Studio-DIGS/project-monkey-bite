@@ -50,6 +50,9 @@ func physics_update(delta):
 	
 	elif player.try_dash:
 		state_machine.transition_to("Dash")
+		
+	elif player.try_throw and player.is_armed:
+		state_machine.transition_to("Throw", {air = true})
 	
 	# Landing
 	elif player.is_on_floor():

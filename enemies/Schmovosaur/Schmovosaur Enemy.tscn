@@ -68,6 +68,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_6xy7g")
 
 [node name="shmovosaur_animations" parent="." instance=ExtResource("2_c54ob")]
+transform = Transform3D(0.835, 0, 0, 0, 0.835, 0, 0, 0, 0.835, 0, 0, 0)
 
 [node name="Hurtbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 64
@@ -99,7 +100,7 @@ texture = SubResource("ViewportTexture_64m1x")
 [node name="Health" type="Node" parent="." node_paths=PackedStringArray("display")]
 script = ExtResource("4_pjjf5")
 max_health = 40
-display = NodePath("")
+display = NodePath("../SubViewport/ProgressBar")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 disable_3d = true

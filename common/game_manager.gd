@@ -13,7 +13,7 @@ func _ready():
 # from docs https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html
 
 func game_over():
-	pass
+	goto_scene("res://levels/grasstest.tscn")
 
 func goto_scene(path):
 	print("scene switching")

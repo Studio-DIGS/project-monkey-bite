@@ -6,6 +6,7 @@ extends RigidBody3D
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var pivot: Node3D = $Pivot
 @onready var smear = preload("res://player/swords/sword_smear.tscn")
+@onready var indicator = preload("res://common/indicator.tscn")
 var smear_instance: Trail3D
 var direction = 1 # 1 is right, -1 is left
 
@@ -32,7 +33,7 @@ func bounce():
 	self.add_child(smear_instance)
 	
 	# apply forces to bounce sword
-	apply_torque_impulse(Vector3(0, 0, 1.5 * direction))
+	apply_torque_impulse(Vector3(0, 0, 3 * direction))
 	apply_impulse(Vector3(-4 * direction, 7, 0))
 
 
@@ -43,6 +44,7 @@ func settle():
 	axis_lock_linear_y = false
 	axis_lock_linear_z = false
 	linear_damp = 1
+	freeze = true
 	# no longer react to enemies or player attacks
 	set_collision_mask_value(5, false) 
 	hitbox.set_deferred("monitoring", false)
@@ -54,7 +56,12 @@ func settle():
 	if smear_instance != null:
 		smear_instance.anim.play("fade")
 		await get_tree().create_timer(0.1).timeout
-
+	
+#	await get_tree().create_timer(0.5).timeout
+#	var indicator_instance = indicator.instantiate()
+#	indicator_instance.global_position = self.global_position + Vector3.UP * 2
+#	add_child(indicator_instance)
+	
 
 func _on_body_entered(body):
 	linear_velocity.x = 0.0 # sword stops flying forward
@@ -71,3 +78,4 @@ func _on_hurtbox_hit(vector):
 	axis_lock_linear_y = true
 	var kick_direction = clamp(vector.x, -1, 1)
 	throw(kick_direction, stats.throw_speed * 1.5)
+

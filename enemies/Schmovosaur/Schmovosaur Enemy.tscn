@@ -99,7 +99,7 @@ texture = SubResource("ViewportTexture_64m1x")
 [node name="Health" type="Node" parent="." node_paths=PackedStringArray("display")]
 script = ExtResource("4_pjjf5")
 max_health = 40
-display = NodePath("../SubViewport/ProgressBar")
+display = NodePath("")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 disable_3d = true

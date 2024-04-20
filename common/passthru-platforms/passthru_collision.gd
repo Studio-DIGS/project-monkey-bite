@@ -2,13 +2,13 @@ extends Area3D
 
 @export var character: CharacterBody3D
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	if character:
 		character.set_collision_mask_value(9, true)
 	else:
 		print("Make sure to set the character in the inspector")
 
-func _on_body_exited(body):
+func _on_body_exited(_body):
 	if character:
 		character.set_collision_mask_value(9, false)
 	else:

@@ -178,7 +178,7 @@ disabled = true
 
 [node name="Hurtbox" type="Area3D" parent="."]
 collision_layer = 64
-collision_mask = 4
+collision_mask = 1028
 script = ExtResource("5_e4ir2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
@@ -213,4 +213,5 @@ skeleton = NodePath("")
 [connection signal="check_velocity" from="Maiden AI Manager" to="." method="_on_maiden_ai_manager_check_velocity"]
 [connection signal="turn_transparent" from="Maiden AI Manager" to="Maiden Body" method="_on_maiden_ai_manager_turn_transparent"]
 [connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
+[connection signal="send_freeze" from="Hurtbox" to="." method="_on_hurtbox_send_freeze"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

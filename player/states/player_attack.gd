@@ -9,12 +9,13 @@ var air: bool
 
 func enter(msg := {}):
 	if msg.get('air', false) == true:
-		print("air combo")
-		combo = player.air_combo 
 		air = true
+		if player.is_armed: combo = player.air_combo
+		else: combo = player.air_kick
 	else:
-		combo = player.combo
 		air = false
+		if player.is_armed: combo = player.combo
+		else: combo = player.punch
 	
 	# set the current attack to the index of the player's combo
 	# declare max combo index
@@ -38,9 +39,15 @@ func physics_update(delta):
 		player.velocity.y -= player.gravity * delta
 	
 	# handle movement
-	player.velocity.x = lerp(player.velocity.x, 0.0, delta * player.accel)
+	var hori_velocity = combo[combo_counter].movement.x * player.orientation
+	player.velocity.x = lerp(player.velocity.x, hori_velocity, delta * player.accel)
 	player.velocity.y = lerp(player.velocity.y, 0.0, delta * player.accel)
 	player.move_and_slide()
+	
+#	# animation cancel
+#	if player.try_throw and player.is_armed:
+#		player.anim.clear_queue()
+#		state_machine.transition_to("Throw")
 	
 	# queue the next attack when the player presses the attack button
 	# if combo doesn't exceed the max and there's no attack animations in queue.
@@ -49,7 +56,6 @@ func physics_update(delta):
 			combo_counter += 1
 			contact = false
 			player.anim.queue(combo[combo_counter].animation)
-
 
 
 func _on_animation_player_animation_finished(_anim_name):

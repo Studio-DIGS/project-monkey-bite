@@ -5,7 +5,8 @@
 [resource]
 script = ExtResource("1_lo6wy")
 damage = 0
-knockback = Vector2(0.4, 7)
+knockback = Vector2(1, 7)
 animation = &"AirAttack1"
+movement = Vector2(2, 6)
 freeze_slow = 0.03
 freeze_time = 0.15

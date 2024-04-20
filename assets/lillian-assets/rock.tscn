@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbabja8rl7ptb"]
+
+[ext_resource type="PackedScene" uid="uid://bm0oaxthlwt2i" path="res://assets/lillian-assets/rocc.glb" id="1_q03y8"]
+
+[node name="rocc" instance=ExtResource("1_q03y8")]
+
+[node name="Sphere_013" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

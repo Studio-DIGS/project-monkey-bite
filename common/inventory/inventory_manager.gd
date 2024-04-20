@@ -4,6 +4,18 @@ var inv: Inventory = Inventory.new()
 
 var uninitialized = true
 
+enum SwordName {
+	AMAZING_SWORD,
+	
+}
+
+#var SwordMap = {
+#	'Amazing Sword' = Sword.new("Rare Sword", 10.0, 5.0),
+#	'Rare Sword' = Sword.new("Rare Sword", 5.0, 2.5),
+#	'Epic Sword' = Sword.new("Rare Sword", 20.0, 7.5),
+#	'Sword???' = Sword.new("Rare Sword", 2.5, 15.0)
+#}
+
 const SWORD_NAME_LIST: Array = [
 	'Rare Sword',
 	'Epic Sword',
@@ -27,7 +39,7 @@ func randomInitAll():
 	var swordName = SWORD_NAME_LIST[randi() % len(SWORD_NAME_LIST)] as String
 	var bigPassiveName = PASSIVE_NAME_LIST[randi() % len(PASSIVE_NAME_LIST)] as String
 	var angelAbilityName = ANGEL_NAME_LIST[randi() % len(ANGEL_NAME_LIST)] as String
-	swapSword(Sword.new(swordName))
+#	swapSword(SwordMap[swordName])
 	inv.bigPassives = [BigPassive.new(bigPassiveName)]
 	setAngelAbility(AngelAbility.new(angelAbilityName))
 	
@@ -36,9 +48,9 @@ func randomInitAll():
 func hasSword() -> bool:
 	return inv.sword != null
 
-func swapSword(newSword: Sword) -> Sword:
+func swapSword(newSwordName: String) -> Sword:
 	var oldSword = inv.sword
-	inv.sword = newSword
+#	inv.sword = SwordMap[newSwordName]
 	return oldSword
 	
 func getSword() -> Sword:

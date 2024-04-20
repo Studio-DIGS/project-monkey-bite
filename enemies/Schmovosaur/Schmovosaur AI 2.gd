@@ -83,7 +83,7 @@ func activeState(delta): #Tracks player moving towards their direction
 		current_direction = (player_body.position - enemy_body.position).normalized()
 		current_velocity = current_direction * enemy_speed * delta
 		current_velocity = Vector3(current_velocity.x, 0 ,0)
-func passiveState(delta): #Stops all movement
+func passiveState(_delta): #Stops all movement
 #	print("passiveState")
 	current_velocity = Vector3.ZERO
 
@@ -115,7 +115,7 @@ func _on_player_detection_sphere_area_entered(area: Hurtbox): #Grabs player info
 		player_body = area.get_parent()
 		print("Got parent")
 
-func _on_player_detection_sphere_area_exited(area):
+func _on_player_detection_sphere_area_exited(_area):
 	state_active = false
 
 func _on_prepare_charge_timeout(): #enemy charges

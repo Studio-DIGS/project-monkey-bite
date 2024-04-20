@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://yfunhgr0od8x"]
+[gd_scene load_steps=25 format=3 uid="uid://cncx0v2q4antw"]
 
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="1_0fu8l"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="2_vej1b"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dpqqdkigqcdws" path="res://assets/lillian-assets/Islands/floating rock 1.glb" id="18_bvb3p"]
 [ext_resource type="PackedScene" uid="uid://mbmikvo0bep" path="res://assets/lillian-assets/Islands/floating rock 2.glb" id="19_dnnw2"]
 [ext_resource type="PackedScene" uid="uid://j5u21dt7qegf" path="res://assets/lillian-assets/Textures/dock.tscn" id="21_peilx"]
-[ext_resource type="PackedScene" uid="uid://r2hi5m0cek01" path="res://common/level_switcher.tscn" id="22_eydr8"]
+[ext_resource type="PackedScene" uid="uid://1v2sxi8g13bw" path="res://common/level_switcher.tscn" id="22_eydr8"]
 
 [sub_resource type="Shader" id="Shader_vd8ur"]
 code = "

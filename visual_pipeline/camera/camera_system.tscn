@@ -59,6 +59,7 @@ camera_pixel_snap = NodePath("TexelCamProcess")
 
 [node name="FollowCamProcess" type="Node" parent="SubViewport/CameraContainer/MainCamControl"]
 script = ExtResource("5_4ughu")
+vertical_offset = 2.64
 
 [node name="LookaheadCamProcess" type="Node" parent="SubViewport/CameraContainer/MainCamControl"]
 script = ExtResource("6_4ybsm")

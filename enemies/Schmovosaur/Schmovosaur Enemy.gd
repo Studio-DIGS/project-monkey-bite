@@ -25,7 +25,6 @@ func _physics_process(delta):
 
 # @TEMP
 func _on_hurtbox_hit(vector: Vector2):
-	$AnimationPlayer.play("stagger")
 	FMODRuntime.play_one_shot_path("event:/Schmovosaur ouchie")
 	velocity = Vector3(vector.x, vector.y, 0)
 
@@ -34,10 +33,6 @@ func _on_health_death():
 	await get_tree().create_timer(0.3).timeout
 	queue_free()
 
-# @TEMP
-func _on_timer_timeout():
-	$AnimationPlayer.play(attack_resource.animation)
-	$Hitbox.configure_hitbox(attack_resource)
 	
 func _on_schmovosaur_ai_2_check_velocity(vector: Vector3):
 	velocity = velocity + vector

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbq71d7fh3w6q"]
+[gd_scene load_steps=3 format=3 uid="uid://hqi246rw6efb"]
 
 [ext_resource type="PackedScene" uid="uid://djvhhemdxm8rq" path="res://assets/Shmovosaur/shmovosaur_animations.gltf" id="1_dj77s"]
 [ext_resource type="Material" uid="uid://dy8a1rdmhvupp" path="res://assets/Shmovosaur/ShmovosaurMaterial.tres" id="2_8d74l"]

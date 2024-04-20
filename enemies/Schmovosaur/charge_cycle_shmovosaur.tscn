@@ -1,5 +1,5 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvuyunw4wtwm4"]
+[gd_scene load_steps=2 format=3 uid="uid://dq801b63qm2nk"]
 
-[ext_resource type="PackedScene" uid="uid://yasau07g1e1e" path="res://assets/Shmovosaur/chargeCycle_shmovosaur.gltf" id="1_nncoe"]
+[ext_resource type="PackedScene" uid="uid://dhg181oy7v64x" path="res://assets/Shmovosaur/chargeCycle_shmovosaur.gltf" id="1_nncoe"]
 
 [node name="chargeCycle_shmovosaur" instance=ExtResource("1_nncoe")]

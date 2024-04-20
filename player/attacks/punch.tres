@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_d83gv")
-damage = 0
+damage = 3
 knockback = Vector2(7, 5)
 animation = &"Punch"
 movement = Vector2(1, 0)

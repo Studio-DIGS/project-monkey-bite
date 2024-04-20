@@ -12,6 +12,9 @@ func _ready():
 
 # from docs https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html
 
+func game_over():
+	pass
+
 func goto_scene(path):
 	print("scene switching")
 	# This function will usually be called from a signal callback,

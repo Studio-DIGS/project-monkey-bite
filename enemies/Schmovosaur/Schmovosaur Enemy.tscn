@@ -83,6 +83,7 @@ shape = SubResource("CapsuleShape3D_g0es1")
 collision_layer = 32
 collision_mask = 8
 script = ExtResource("3_s8ajp")
+damage = 10
 knockback = Vector2(5, 7)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
@@ -96,7 +97,7 @@ texture = SubResource("ViewportTexture_64m1x")
 
 [node name="Health" type="Node" parent="." node_paths=PackedStringArray("display")]
 script = ExtResource("4_pjjf5")
-max_health = 100
+max_health = 40
 display = NodePath("../SubViewport/ProgressBar")
 
 [node name="SubViewport" type="SubViewport" parent="."]

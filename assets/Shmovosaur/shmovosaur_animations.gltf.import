@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bk180a4p86jtl"
-path="res://.godot/imported/attackAnim_maiden.gltf-da864f634c9c11909dde218ccfbc68da.scn"
+uid="uid://djvhhemdxm8rq"
+path="res://.godot/imported/shmovosaur_animations.gltf-539ed8aaee745c52c4eae0b44abed991.scn"
 
 [deps]
 
-source_file="res://assets/Maiden/attackAnim_maiden.gltf"
-dest_files=["res://.godot/imported/attackAnim_maiden.gltf-da864f634c9c11909dde218ccfbc68da.scn"]
+source_file="res://assets/Shmovosaur/shmovosaur_animations.gltf"
+dest_files=["res://.godot/imported/shmovosaur_animations.gltf-539ed8aaee745c52c4eae0b44abed991.scn"]
 
 [params]
 
@@ -24,7 +24,7 @@ meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 skins/use_named_skins=true
 animation/import=true
-animation/fps=15.0
+animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""

@@ -29,6 +29,10 @@ var cooldown_duration
 var particles_preparation
 var particles_post
 
+@onready var shmovosaur_3D = $"../shmovosaur_animations"
+@onready var shmovosaur_animation = $"../shmovosaur_animations"/AnimationPlayer
+var model_direction
+
 signal checkVelocity
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -70,7 +74,8 @@ func _process(delta):
 		passiveState(delta)
 	
 	emit_signal("checkVelocity", current_velocity)
-	
+	if current_direction:
+		rotate_model()
 #currentVelocity
 #if need to turn
 #emitvelocity
@@ -108,6 +113,18 @@ func rotateParticles(): #Compares position between player trail and enemy to rot
 	else:
 		particles_post.rotate(Vector3(0,1,0), PI)
 		particles_preparation.rotate(Vector3(0,1,0), PI)
+
+func rotate_model():
+	if current_direction.x >= 0:
+		model_direction = 1
+	else:
+		model_direction = -1
+	
+	if model_direction == 1:
+		shmovosaur_3D.rotation_degrees = Vector3(0, 90, 0)
+	else:
+		shmovosaur_3D.rotation_degrees = Vector3(0, -90, 0)
+	await get_tree().create_timer(1.5).timeout
 		
 func _on_player_detection_sphere_area_entered(area: Hurtbox): #Grabs player information for program
 	if area:
@@ -124,15 +141,23 @@ func _on_prepare_charge_timeout(): #enemy charges
 	particles_post.emitting = true
 	FMODRuntime.play_one_shot_attached_path("event:/Dash", self)
 	cooldown_duration.start()
+	#play charging animation
+	shmovosaur_animation.speed_scale = 1
+	shmovosaur_animation.play("chargeCycle")
+	#decrease running speed animation
 
 func _on_charge_duration_timeout(): #charge is on cooldown
 	state_charge = false
 	charge_ready = false
 	particles_post.emitting = false
 	cooldown_charge.start()
-	
+	#play running animation
+	shmovosaur_animation.play("runCycle")
+
 
 func _on_charge_cooldown_timeout(): #ready condition for charging
 	charge_ready = true
 	charge_freeze = true
+	#speed up running animation
+	shmovosaur_animation.speed_scale = 3
 

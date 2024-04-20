@@ -7,5 +7,6 @@ script = ExtResource("1_utnyc")
 damage = 0
 knockback = Vector2(6, 3)
 animation = &"Attack3"
+movement = Vector2(0, 0)
 freeze_slow = 0.03
 freeze_time = 0.25

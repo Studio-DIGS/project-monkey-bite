@@ -2,7 +2,7 @@
 
 [resource]
 file_path = "res://FMOD_Assets/AsperitasAudio/Banks/Desktop/Master.bank"
-modified_time = 1713391175
+modified_time = 1713577416
 path = "bank:/Master"
 guid = "{70200d6d-0c51-4ffd-bb2d-4fd8ddc34ea1}"
 name = "Master"

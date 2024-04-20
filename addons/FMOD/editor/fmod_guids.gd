@@ -13,6 +13,7 @@ class Events:
 	const NEW_EVENT_2 = "{4fe437ae-24ac-4dec-be85-33f2db4f21bb}"
 	const PLAYER_JUMP = "{3994dac3-57db-44db-8ff1-86c1e5e3d008}"
 	const PLAYER_LAND = "{37611c10-4419-45db-89c9-ff95e0ff400d}"
+	const PLAYER_WALK = "{4150d69a-72be-4517-a58a-5764382c4bd1}"
 	const SCHMOVOSAUR_HURT = "{4333f81a-e70a-4bd2-896c-e9e23a55024a}"
 	const SCHMOVOSAUR_OUCHIE = "{1212d3fe-8c20-4b2f-a263-58764bf26c24}"
 	const SWORD_SLASHES = "{996b1e43-786f-4ec1-a9f5-780def693ac2}"

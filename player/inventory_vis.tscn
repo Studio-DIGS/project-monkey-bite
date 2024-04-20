@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://byy8ksm0xm4ur" path="res://assets/UI/healthbackground.png" id="4_x5g7o"]
 [ext_resource type="Texture2D" uid="uid://g4awlhalkwsk" path="res://assets/UI/healthbar.png" id="5_18obw"]
 [ext_resource type="Texture2D" uid="uid://bakj16vsbfy4l" path="res://assets/UI/kite_spritesheet.png" id="6_hiniy"]
-[ext_resource type="Theme" path="res://Theme.tres" id="7_btlg0"]
+[ext_resource type="Theme" uid="uid://dr3nkdfk1o7ux" path="res://Theme.tres" id="7_btlg0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e4ksl"]
 atlas = ExtResource("6_hiniy")
@@ -138,6 +138,8 @@ texture_filter = 1
 position = Vector2(108, 108)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_o8cjr")
+frame = 1
+flip_h = true
 
 [node name="_100" type="Label" parent="UICanvasGroup"]
 texture_filter = 1
@@ -147,3 +149,13 @@ offset_right = 279.0
 offset_bottom = 113.0
 theme = ExtResource("7_btlg0")
 text = "/100"
+
+[node name="_101" type="Label" parent="UICanvasGroup"]
+texture_filter = 1
+offset_left = 176.0
+offset_top = 75.0
+offset_right = 231.0
+offset_bottom = 113.0
+theme = ExtResource("7_btlg0")
+text = "100"
+horizontal_alignment = 2

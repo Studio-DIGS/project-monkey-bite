@@ -52,6 +52,7 @@ var is_armed = true
 @onready var sword_body = preload("res://player/swords/sword_body.tscn")
 @onready var sword_spawn = $pmb_kite/base_human_rig/Skeleton3D/BoneAttachment3D
 @onready var sword_holder = $pmb_kite/base_human_rig/Skeleton3D/BoneAttachment3D/SwordHolder
+@onready var health = $Health
 
 
 func _ready():
@@ -65,6 +66,7 @@ func _ready():
 	GameManager.connect("end_cutscene", _end_cutscene)
 	
 	inventory_vis.update_weapon(sword.sprite)
+	health.player_display = inventory_vis
 	
 	
 
@@ -164,3 +166,7 @@ func _on_player_interaction_swap_swords(sword_body):
 func _on_hurtbox_hit(vector):
 	stagger_vector = vector
 	stagger = true
+
+
+func _on_health_death():
+	GameManager.game_over()

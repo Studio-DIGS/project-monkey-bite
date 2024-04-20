@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_sh1pd")
-damage = 0
-knockback = Vector2(1, 5)
+damage = 5
+knockback = Vector2(0.5, 5)
 animation = &"Attack2"
 movement = Vector2(0, 0)
 freeze_slow = 0.03

@@ -27,6 +27,7 @@ var try_special = false
 var stagger_vector = Vector2.ZERO
 var stagger = false
 @export var stagger_cooldown = 0.3
+@onready var hurtbox = $Hurtbox
 
 # Attack stuff
 @export var hitbox: Hitbox

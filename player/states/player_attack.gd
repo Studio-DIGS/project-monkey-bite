@@ -51,6 +51,13 @@ func physics_update(delta):
 		player.body.free_smear()
 		return
 	
+	if player.try_dash:
+		state_machine.transition_to("Dash")
+		combo_counter = 0
+		player.anim.clear_queue()
+		player.body.free_smear()
+		return
+	
 #	# animation cancel
 #	if player.try_throw and player.is_armed:
 #		player.anim.clear_queue()

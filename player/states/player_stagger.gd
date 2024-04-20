@@ -3,6 +3,7 @@ var velocity
 
 func enter(_msg := {}):
 	player.velocity = Vector3(player.stagger_vector.x, player.stagger_vector.y, 0)
+	player.anim.play("Flinch")
 	start_cooldown_timer()
 
 func physics_update(delta):

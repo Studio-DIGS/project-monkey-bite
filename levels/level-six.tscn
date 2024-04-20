@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ni53w6r7n16h"]
+[gd_scene load_steps=24 format=3 uid="uid://ni53w6r7n16h"]
 
 [ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/Schmovosaur/Schmovosaur Enemy.tscn" id="3_vtmvv"]
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="4_s5jpf"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dvxfyh50kcqfl" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 5 bald.glb" id="11_2cap6"]
 [ext_resource type="PackedScene" uid="uid://b872c7eus500g" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 3 bald.glb" id="12_4abas"]
 [ext_resource type="PackedScene" uid="uid://nv4iuwgjytjf" path="res://assets/lillian-assets/tree 2.glb" id="13_8j5wk"]
+[ext_resource type="PackedScene" uid="uid://bod5yr3vu2jr6" path="res://assets/lillian-assets/tree 3 purple.glb" id="14_2ho5n"]
 [ext_resource type="PackedScene" uid="uid://j5u21dt7qegf" path="res://assets/lillian-assets/Textures/dock.tscn" id="16_npp2m"]
 [ext_resource type="PackedScene" uid="uid://cgg8tr8eaax6m" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 4 bald.glb" id="20_ro5gi"]
 [ext_resource type="PackedScene" uid="uid://r2hi5m0cek01" path="res://common/level_switcher.tscn" id="20_w2g3i"]
@@ -183,6 +184,18 @@ target = NodePath("../Player")
 [node name="Schmovosaur" parent="Characters Scripts and World Settings" instance=ExtResource("3_vtmvv")]
 transform = Transform3D(-0.974679, 0, -0.223607, 0, 1, 0, 0.223607, 0, -0.974679, 18.9565, 3.45036, -1.11697)
 
+[node name="Schmovosaur2" parent="Characters Scripts and World Settings" instance=ExtResource("3_vtmvv")]
+transform = Transform3D(-0.974679, 0, -0.223607, 0, 1, 0, 0.223607, 0, -0.974679, 48.5086, 3.45037, -2.92699)
+
+[node name="Schmovosaur3" parent="Characters Scripts and World Settings" instance=ExtResource("3_vtmvv")]
+transform = Transform3D(-0.974679, 0, -0.223607, 0, 1, 0, 0.223607, 0, -0.974679, 20.355, 18.5843, -2.0666)
+
+[node name="Schmovosaur4" parent="Characters Scripts and World Settings" instance=ExtResource("3_vtmvv")]
+transform = Transform3D(-0.974679, 0, -0.223607, 0, 1, 0, 0.223607, 0, -0.974679, 12.7865, 17.163, -2.0666)
+
+[node name="Schmovosaur5" parent="Characters Scripts and World Settings" instance=ExtResource("3_vtmvv")]
+transform = Transform3D(-0.974679, 0, -0.223607, 0, 1, 0, 0.223607, 0, -0.974679, 20.4982, 3.15668, -2.0666)
+
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="dock" type="Node" parent="Environment"]
@@ -321,12 +334,6 @@ material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
 size = Vector3(4.03039, 2.5674, 1.4806)
 
-[node name="tree 7" parent="." instance=ExtResource("9_k6a7g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2714, 2.73061, 6.82528)
-
-[node name="tree 8" parent="." instance=ExtResource("8_gdslx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1292, 2.21353, 11.957)
-
 [node name="tree 9" parent="." instance=ExtResource("9_k6a7g")]
 transform = Transform3D(0.656454, 0, 0.754366, 0, 1, 0, -0.754366, 0, 0.656454, 4.01655, 2.73061, -13.2007)
 
@@ -350,5 +357,20 @@ transform = Transform3D(0.801767, 0, 0, 0, 0.802049, 0, 0, 0, 1, -1.97258, 2.730
 
 [node name="tree 15" parent="." instance=ExtResource("13_8j5wk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4962, 2.73061, -8.08668)
+
+[node name="tree 7" parent="." instance=ExtResource("13_8j5wk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1539, 2.73061, 10.9206)
+
+[node name="tree 8" parent="." instance=ExtResource("9_k6a7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.3215, 2.73061, -10.6836)
+
+[node name="tree 16" parent="." instance=ExtResource("8_gdslx")]
+transform = Transform3D(0.661456, 0, -0.749984, 0, 1, 0, 0.749984, 0, 0.661456, 40.041, 2.73061, 5.25151)
+
+[node name="tree 3 purple" parent="." instance=ExtResource("14_2ho5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.4845, 2.73061, -9.13271)
+
+[node name="tree 3 purple2" parent="." instance=ExtResource("14_2ho5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.8463, 2.73061, 4.48117)
 
 [connection signal="turn_around" from="Characters Scripts and World Settings/Player" to="Characters Scripts and World Settings/CameraSystem" method="_on_player_turn_around"]

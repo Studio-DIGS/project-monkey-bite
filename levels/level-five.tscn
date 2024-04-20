@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://drbykleywumxf"]
+[gd_scene load_steps=22 format=3 uid="uid://drbykleywumxf"]
 
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="1_0fu8l"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="2_vej1b"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://ux3afusloy6q" path="res://assets/Chunky Islands-20240415T205324Z-001/island_5_fixed_bald.tscn" id="5_cr5vx"]
 [ext_resource type="PackedScene" uid="uid://tgq01xqcl77" path="res://assets/Chunky Islands-20240415T205324Z-001/island_1_bald_fixed.tscn" id="6_pro4f"]
 [ext_resource type="PackedScene" uid="uid://b6xh51s7otv6n" path="res://assets/lillian-assets/Textures/pillar_fixed.tscn" id="8_7ikt5"]
+[ext_resource type="PackedScene" uid="uid://cg5vqyjryjtxy" path="res://assets/lillian-assets/Textures/pillar_cracked fixed.tscn" id="9_tp673"]
+[ext_resource type="PackedScene" uid="uid://cqrx2sx5c0tul" path="res://assets/lillian-assets/Textures/crackedwall_fixed.tscn" id="10_1bgwt"]
+[ext_resource type="PackedScene" uid="uid://dc4g4lupwjxgo" path="res://assets/lillian-assets/Textures/fullwall_fixed.tscn" id="11_kmqk3"]
 [ext_resource type="PackedScene" path="res://assets/lillian-assets/Textures/dock.tscn" id="21_peilx"]
 [ext_resource type="PackedScene" uid="uid://r2hi5m0cek01" path="res://common/level_switcher.tscn" id="22_eydr8"]
 
@@ -170,7 +173,7 @@ directional_shadow_split_1 = 0.003
 environment = SubResource("Environment_y8ynd")
 
 [node name="Player" parent="Characters Scripts and World Settings" instance=ExtResource("1_0fu8l")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 56.7708, 18.0695, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -42.9146, 9.79127, 0)
 accel = 6.505
 
 [node name="CameraSystem" parent="Characters Scripts and World Settings" node_paths=PackedStringArray("target") instance=ExtResource("2_vej1b")]
@@ -194,7 +197,7 @@ use_collision = true
 size = Vector3(30.6597, 1, 28.4403)
 
 [node name="island 5 bald2" parent="Environment/Islands" instance=ExtResource("5_cr5vx")]
-transform = Transform3D(6.83413, 0, 0, 0, 5.69111, 0, 0, 0, 13.35, 39.3698, 6.85, 0)
+transform = Transform3D(5.00266, 0, 0, 0, 5.59938, 0, 0, 0, 13.1348, 28.4249, 6.85, 0)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/Islands/island 5 bald2"]
 transform = Transform3D(-6.82928e-09, 0, 0.417862, 0, 0.0759559, 0, -0.152139, 0, -1.77864e-08, -0.977589, -0.602339, -0.00606733)
@@ -204,7 +207,7 @@ use_collision = true
 size = Vector3(30.6597, 1, 28.4403)
 
 [node name="island 5 bald3" parent="Environment/Islands" instance=ExtResource("5_cr5vx")]
-transform = Transform3D(-8.64104, 0, 1.16709e-06, 0, 8.82889, 0, -7.55424e-07, 0, -13.35, -225.122, 13.9231, 0)
+transform = Transform3D(-5.40409, 0, 1.16709e-06, 0, 8.82889, 0, -4.72441e-07, 0, -13.35, -203.635, 13.9231, 0)
 
 [node name="HCB2" type="CSGBox3D" parent="Environment/Islands/island 5 bald3"]
 transform = Transform3D(-6.82928e-09, 0, 0.417862, 0, 0.0759559, 0, -0.152139, 0, -1.77864e-08, -0.977589, -0.602339, -0.00606733)
@@ -349,48 +352,48 @@ size = Vector3(8.11735, 1, 4.63591)
 [node name="dock" type="Node" parent="Environment"]
 
 [node name="dock" parent="Environment/dock" instance=ExtResource("21_peilx")]
-transform = Transform3D(-2.86452, -2.16265e-07, -2.63602, -9.05975e-07, 3, -2.48235e-14, -5.27205, -3.98029e-07, 1.43226, 69.5123, 6.03499, -17.3097)
+transform = Transform3D(-1.24748, -9.41811e-08, -2.93444, -9.05975e-07, 3, 2.9674e-14, -5.86889, -4.43088e-07, 0.623734, 55.3802, 5.78474, -15.1035)
 
 [node name="dock2" parent="Environment/dock" instance=ExtResource("21_peilx")]
-transform = Transform3D(2.86452, -1.35691e-14, -2.63602, -5.68434e-14, 3, 3.13785e-21, 5.27205, -2.49734e-14, 1.43226, 82.8801, 6.03499, 7.29325)
+transform = Transform3D(1.24748, -5.90921e-15, -2.93444, -5.68434e-14, 3, 9.61413e-22, 5.86889, -2.78006e-14, 0.623734, 61.2017, 5.78474, 12.2847)
 
 [node name="collision box1" type="CSGBox3D" parent="Environment/dock"]
-transform = Transform3D(0.969665, 0, -5.74182, 0, 0.55144, 0, 1.78464, 0, 3.11976, 74.397, 2.71055, -3.93856)
+transform = Transform3D(0.422279, 0, -6.39184, 0, 0.55144, 0, 1.98667, 0, 1.35863, 56.2618, 2.4603, -0.895398)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
 size = Vector3(7.56142, 2.5674, 1.4806)
 
 [node name="collision box2" type="CSGBox3D" parent="Environment/dock"]
-transform = Transform3D(0.969665, 0, -5.74182, 0, 0.55144, 0, 1.78464, 0, 3.11976, 76.1763, 3.51685, -4.90536)
+transform = Transform3D(0.422279, 0, -6.39184, 0, 0.55144, 0, 1.98667, 0, 1.35863, 58.2426, 3.2666, -1.31643)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
 size = Vector3(7.56142, 5.4626, 0.563897)
 
 [node name="collision box3" type="CSGBox3D" parent="Environment/dock"]
-transform = Transform3D(0.969665, 0, -5.74182, 0, 0.55144, 0, 1.78464, 0, 3.11976, 75.1659, 3.51685, -4.35634)
+transform = Transform3D(0.422279, 0, -6.39184, 0, 0.55144, 0, 1.98667, 0, 1.35863, 57.1178, 3.2666, -1.07734)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
 size = Vector3(7.56142, 3.66245, 0.467606)
 
 [node name="collision box4" type="CSGBox3D" parent="Environment/dock"]
-transform = Transform3D(0.969665, 0, -5.74182, 0, 0.55144, 0, 1.78464, 0, 3.11976, 74.3851, 3.10317, -3.93213)
+transform = Transform3D(0.422279, 0, -6.39184, 0, 0.55144, 0, 1.98667, 0, 1.35863, 56.2487, 2.85292, -0.892595)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
 size = Vector3(7.56142, 3.66245, 0.467606)
 
 [node name="collision box5" type="CSGBox3D" parent="Environment/dock"]
-transform = Transform3D(0.969665, 0, -5.74182, 0, 0.55144, 0, 1.78464, 0, 3.11976, 70.9579, 2.71055, -7.39627)
+transform = Transform3D(0.422279, 0, -6.39184, 0, 0.55144, 0, 1.98667, 0, 1.35863, 53.9477, 2.4603, -5.18816)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
 size = Vector3(0.002, 24.4961, 1.4806)
 
 [node name="collision box6" type="CSGBox3D" parent="Environment/dock"]
-transform = Transform3D(0.969665, 0, -5.74182, 0, 0.55144, 0, 1.78464, 0, 3.11976, 75.9767, 2.71055, 0.676608)
+transform = Transform3D(0.422279, 0, -6.39184, 0, 0.55144, 0, 1.98667, 0, 1.35863, 56.4643, 2.4603, 3.97845)
 visible = false
 material_override = SubResource("StandardMaterial3D_1i5cd")
 use_collision = true
@@ -399,7 +402,7 @@ size = Vector3(0.002, 24.4961, 1.4806)
 [node name="pillars" type="Node" parent="Environment"]
 
 [node name="pillar1" parent="Environment/pillars" instance=ExtResource("8_7ikt5")]
-transform = Transform3D(5.8218, 0, -1.45143, 0, 6, 0, 1.45143, 0, 5.8218, -180.309, 14, 3.54919)
+transform = Transform3D(5.8218, 0, -1.45143, 0, 6, 0, 1.45143, 0, 5.8218, -180.309, 14, 4.54919)
 
 [node name="pillar2" parent="Environment/pillars" instance=ExtResource("8_7ikt5")]
 transform = Transform3D(5.46497, 0, -2.47672, 0, 6, 0, 2.47672, 0, 5.46497, -176.188, 13.6423, -3.21387)
@@ -449,8 +452,105 @@ transform = Transform3D(3.26581, 0, 5.03333, 0, 6, 0, -5.03334, 0, 3.26581, -43.
 [node name="pillar17" parent="Environment/pillars" instance=ExtResource("8_7ikt5")]
 transform = Transform3D(3.26581, 0, 5.03333, 0, 6, 0, -5.03334, 0, 3.26581, -25.5205, 2.64935, -3.00745)
 
+[node name="broken pillar" type="Node" parent="Environment"]
+
+[node name="pillar2" parent="Environment/broken pillar" instance=ExtResource("9_tp673")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -196.5, 9.61462, -22.6523)
+
+[node name="pillar3" parent="Environment/broken pillar" instance=ExtResource("9_tp673")]
+transform = Transform3D(4.7826, 0, -3.62309, 0, 6, 0, 3.62309, 0, 4.7826, -201.658, 9.61462, -25.2719)
+
+[node name="pillar4" parent="Environment/broken pillar" instance=ExtResource("9_tp673")]
+transform = Transform3D(-1.3688, 0, -7.57868, 0, 6, 0, 6.23758, 0, -1.66309, -203.682, 9.61462, -19.392)
+
+[node name="pillar5" parent="Environment/broken pillar" instance=ExtResource("9_tp673")]
+transform = Transform3D(-5.606, 0, -4.65372, 0, 6, 0, 4.78409, 0, -5.45323, -198.918, 9.61462, -23.8686)
+
+[node name="pillar6" parent="Environment/broken pillar" instance=ExtResource("9_tp673")]
+transform = Transform3D(0.84406, 0, -5.94033, 0, 6, 0, 5.94033, 0, 0.84406, -104.751, -4.25677, -29.1593)
+
+[node name="pillar7" parent="Environment/broken pillar" instance=ExtResource("9_tp673")]
+transform = Transform3D(-2.91426, 0, -5.24472, 0, 6, 0, 5.24472, 0, -2.91426, -102.65, -4.25677, -24.7817)
+
+[node name="pillar8" parent="Environment/broken pillar" instance=ExtResource("9_tp673")]
+transform = Transform3D(-6.36811, 0, 0.58041, 0, 6, 0, -0.477703, 0, -7.73727, -108.989, -4.25677, -25.9587)
+
+[node name="pillar9" parent="Environment/broken pillar" instance=ExtResource("9_tp673")]
+transform = Transform3D(-5.52515, 0, 4.74433, 0, 6, 0, -4.87725, 0, -5.37458, -105.135, -4.29883, -23.7624)
+
+[node name="pillar10" parent="Environment/broken pillar" instance=ExtResource("9_tp673")]
+transform = Transform3D(6, 0, -0.00450259, 0, 6, 0, 0.00450259, 0, 6, -55.9708, -4.25677, -26.9981)
+
+[node name="pillar11" parent="Environment/broken pillar" instance=ExtResource("9_tp673")]
+transform = Transform3D(4.77988, 0, -3.62668, 0, 6, 0, 3.62668, 0, 4.77988, -51.3401, -4.25677, -28.4593)
+
+[node name="pillar12" parent="Environment/broken pillar" instance=ExtResource("9_tp673")]
+transform = Transform3D(-1.37348, 0, -7.57743, 0, 6, 0, 6.23655, 0, -1.66878, -53.4018, -4.25677, -22.3498)
+
+[node name="pillar13" parent="Environment/broken pillar" instance=ExtResource("9_tp673")]
+transform = Transform3D(-5.60959, 0, -4.64962, 0, 6, 0, 4.77988, 0, -5.45672, -37.0964, -4.29883, -25.855)
+
+[node name="pillar14" parent="Environment/broken pillar" instance=ExtResource("9_tp673")]
+transform = Transform3D(4.77988, 0, -3.62668, 0, 6, 0, 3.62668, 0, 4.77988, -44.9356, -4.25677, -31.7403)
+
+[node name="pillar15" parent="Environment/broken pillar" instance=ExtResource("9_tp673")]
+transform = Transform3D(-1.37348, 0, -7.57743, 0, 6, 0, 6.23655, 0, -1.66878, -47.0363, -4.25677, -23.7155)
+
+[node name="pillar16" parent="Environment/broken pillar" instance=ExtResource("9_tp673")]
+transform = Transform3D(-5.60959, 0, -4.64962, 0, 6, 0, 4.77988, 0, -5.45672, -41.5354, -4.29883, -28.6407)
+
+[node name="pillar17" parent="Environment/broken pillar" instance=ExtResource("9_tp673")]
+transform = Transform3D(-5.36274, 0, -5.46838, 0, 6, 0, 5.60865, 0, -5.22862, 44.2282, 4.02594, -14.3611)
+
+[node name="pillar18" parent="Environment/broken pillar" instance=ExtResource("9_tp673")]
+transform = Transform3D(5.45981, 0, -2.99631, 0, 6, 0, 3.32471, 0, 4.92052, 35.1867, 4.06799, -19.4167)
+
+[node name="pillar19" parent="Environment/broken pillar" instance=ExtResource("9_tp673")]
+transform = Transform3D(-0.737069, 0, -8.29445, 0, 6, 0, 6.39965, 0, -0.955299, 33.8176, 4.06799, -11.2196)
+
+[node name="walls" type="Node" parent="Environment"]
+
+[node name="crackedwall" parent="Environment/walls" instance=ExtResource("10_1bgwt")]
+transform = Transform3D(1.86361, 0, -2.35095, 0, 3, 0, 2.35095, 0, 1.86361, -193.492, 11.1708, -19.6891)
+
+[node name="crackedwall2" parent="Environment/walls" instance=ExtResource("10_1bgwt")]
+transform = Transform3D(-1.81538, 0, 2.38839, 0, 3, 0, -2.38839, 0, -1.81538, -97.5016, -2.60382, -18.0142)
+
+[node name="crackedwall3" parent="Environment/walls" instance=ExtResource("10_1bgwt")]
+transform = Transform3D(2.83099, 0, -0.992729, 0, 3, 0, 0.992729, 0, 2.83099, -95.7855, -2.60382, -16.5182)
+
+[node name="crackedwall4" parent="Environment/walls" instance=ExtResource("10_1bgwt")]
+transform = Transform3D(-2.70114, 0, -1.30532, 0, 3, 0, 1.30532, 0, -2.70114, -66.3383, -2.60382, -24.743)
+
+[node name="crackedwall5" parent="Environment/walls" instance=ExtResource("10_1bgwt")]
+transform = Transform3D(2.89015, 0, 0.804389, 0, 3, 0, -0.804389, 0, 2.89015, -62.206, -2.60382, -24.743)
+
+[node name="crackedwall6" parent="Environment/walls" instance=ExtResource("10_1bgwt")]
+transform = Transform3D(1.6981, 0, -2.47315, 0, 3, 0, 2.47315, 0, 1.6981, -26.3175, -2.60382, -18.3287)
+
+[node name="crackedwall7" parent="Environment/walls" instance=ExtResource("10_1bgwt")]
+transform = Transform3D(-2.95072, 0, 0.541506, 0, 3, 0, -0.541506, 0, -2.95072, 39.36, 5.95044, 14.4655)
+
+[node name="crackedwall8" parent="Environment/walls" instance=ExtResource("10_1bgwt")]
+transform = Transform3D(1.8455, 0, 2.36519, 0, 3, 0, -2.36519, 0, 1.8455, 44.1197, 5.95044, 11.3937)
+
+[node name="fullwall" parent="Environment/walls" instance=ExtResource("11_kmqk3")]
+transform = Transform3D(2.07412, 0, -2.16749, 0, 3, 0, 2.16749, 0, 2.07412, -193.85, 12.7208, -21.411)
+
+[node name="fullwall2" parent="Environment/walls" instance=ExtResource("11_kmqk3")]
+transform = Transform3D(3.76543, 0, -0.993086, 0, 3, 0, 1.47998, 0, 2.52666, -98.0275, -1.0437, -18.4338)
+
+[node name="fullwall3" parent="Environment/walls" instance=ExtResource("11_kmqk3")]
+transform = Transform3D(4.80122, 0, 1.39781, 0, 3, 0, -2.04393, 0, 3.28346, -65.9848, -1.0976, -24.0068)
+
+[node name="fullwall4" parent="Environment/walls" instance=ExtResource("11_kmqk3")]
+transform = Transform3D(2.42296, 0, -1.96932, 0, 3, 0, 2.12398, 0, 2.24653, -27.2794, -1.06543, -19.8841)
+
+[node name="fullwall5" parent="Environment/walls" instance=ExtResource("11_kmqk3")]
+transform = Transform3D(4.95519, 0, 1.9858, 0, 3, 0, -3.9065, 0, 2.51889, 39.2025, 7.35962, 13.679)
+
 [node name="LevelSwitcher" parent="." instance=ExtResource("22_eydr8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.7987, 3.08354, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.4819, -6.39363, -22.1556)
 scene_name = "level-two"
 
 [connection signal="turn_around" from="Characters Scripts and World Settings/Player" to="Characters Scripts and World Settings/CameraSystem" method="_on_player_turn_around"]

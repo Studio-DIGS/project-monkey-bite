@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg5vqyjryjtxy"]
+
+[ext_resource type="PackedScene" uid="uid://bltbhuqvqa1ky" path="res://assets/lillian-assets/pillar2.glb" id="1_364lo"]
+[ext_resource type="Texture2D" uid="uid://c2ucmkpkv2wyc" path="res://assets/lillian-assets/Textures/pillar_texture.png" id="2_g5nr5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w3kg8"]
+albedo_texture = ExtResource("2_g5nr5")
+
+[node name="pillar2" instance=ExtResource("1_364lo")]
+
+[node name="Pillars 2" parent="." index="0"]
+transform = Transform3D(0.988856, 0, 0, 0, 1.00744, 0, 0, 0, 1.5, 0, 0.365356, 0)
+material_override = SubResource("StandardMaterial3D_w3kg8")

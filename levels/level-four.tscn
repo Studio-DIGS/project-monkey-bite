@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bu02ei7hikn7u"]
+[gd_scene load_steps=19 format=3 uid="uid://bu02ei7hikn7u"]
 
 [ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="1_cmfbv"]
 [ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="2_u78r6"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://crv2dotc68bdp" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 2 bald.glb" id="5_eu4xw"]
 [ext_resource type="PackedScene" uid="uid://c46tcjxr702fw" path="res://assets/lillian-assets/big_tree.glb" id="5_kusik"]
 [ext_resource type="PackedScene" uid="uid://b872c7eus500g" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 3 bald.glb" id="6_8iunp"]
-[ext_resource type="PackedScene" uid="uid://cgg8tr8eaax6m" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 4 bald.glb" id="6_uthc8"]
 [ext_resource type="PackedScene" uid="uid://el16xcejpc4b" path="res://assets/lillian-assets/pillar1.glb" id="9_oe1hu"]
 
 [sub_resource type="Shader" id="Shader_vd8ur"]
@@ -172,7 +171,7 @@ directional_shadow_split_1 = 0.003
 environment = SubResource("Environment_y8ynd")
 
 [node name="Player" parent="Characters Scripts and World Settings" instance=ExtResource("1_cmfbv")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -122.525, -12.7842, -2.37917)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -210.983, 2.0887, -2.37917)
 accel = 6.505
 
 [node name="CameraSystem" parent="Characters Scripts and World Settings" node_paths=PackedStringArray("target") instance=ExtResource("2_u78r6")]
@@ -259,210 +258,6 @@ transform = Transform3D(0.815209, 0, 0.579167, 0, 1.45521, 0, -0.579167, 0, 0.81
 
 [node name="topleft" type="Node" parent="tree"]
 
-[node name="big_tree2" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(1, 0, 0, 0, 1.45521, 0, 0, 0, 1, -216.034, 0.285805, -34.9988)
-
-[node name="big_tree3" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.66177, 0, -0.749707, 0, 1.45521, 0, 0.749707, 0, -0.66177, -230.123, 0.285805, -36.546)
-
-[node name="big_tree4" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.454504, 0, -0.890745, 0, 1.45521, 0, 0.890745, 0, -0.454504, -223.962, 0.285805, -38.9868)
-
-[node name="big_tree5" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.947746, 0, -0.319025, 0, 1.45521, 0, 0.319025, 0, 0.947746, -212.493, 0.285805, -28.3352)
-
-[node name="big_tree6" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.866366, 0, -0.49941, 0, 1.45521, 0, 0.49941, 0, -0.866366, -228.318, 0.285805, -29.6725)
-
-[node name="big_tree7" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.714924, 0, -0.699202, 0, 1.45521, 0, 0.699202, 0, -0.714924, -221.7, 0.285805, -30.0201)
-
-[node name="big_tree8" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.987767, 0, 0.155935, 0, 1.45521, 0, -0.155935, 0, -0.987767, -252.509, 0.285805, -30.23)
-
-[node name="big_tree9" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.77058, 0, 0.637343, 0, 1.45521, 0, -0.637343, 0, 0.77058, -238.833, 0.285805, -26.5046)
-
-[node name="big_tree11" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.886406, 0, 0.462909, 0, 1.45521, 0, -0.462909, 0, -0.886406, -254.968, 0.285805, -37.3642)
-
-[node name="big_tree12" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.933643, 0, 0.358205, 0, 1.45521, 0, -0.358205, 0, 0.933643, -239.544, 0.285805, -33.5756)
-
-[node name="big_tree13" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.815209, 0, 0.579167, 0, 1.45521, 0, -0.579167, 0, 0.815209, -246.136, 0.285805, -34.2642)
-
-[node name="big_tree10" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(1, 0, 0, 0, 1.45521, 0, 0, 0, 1, -216.034, 0.285805, -18.1223)
-
-[node name="big_tree14" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.66177, 0, -0.749707, 0, 1.45521, 0, 0.749707, 0, -0.66177, -230.123, 0.285805, -19.6696)
-
-[node name="big_tree15" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.454504, 0, -0.890745, 0, 1.45521, 0, 0.890745, 0, -0.454504, -223.962, 0.285805, -22.1104)
-
-[node name="big_tree16" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.947746, 0, -0.319025, 0, 1.45521, 0, 0.319025, 0, 0.947746, -212.493, 0.285805, -11.4588)
-
-[node name="big_tree17" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.866366, 0, -0.49941, 0, 1.45521, 0, 0.49941, 0, -0.866366, -228.318, 0.285805, -12.796)
-
-[node name="big_tree18" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.714924, 0, -0.699202, 0, 1.45521, 0, 0.699202, 0, -0.714924, -221.7, 0.285805, -13.1436)
-
-[node name="big_tree19" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.987767, 0, 0.155935, 0, 1.45521, 0, -0.155935, 0, -0.987767, -252.509, 0.285805, -13.3535)
-
-[node name="big_tree20" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.77058, 0, 0.637343, 0, 1.45521, 0, -0.637343, 0, 0.77058, -238.833, 0.285805, -9.62817)
-
-[node name="big_tree21" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.886406, 0, 0.462909, 0, 1.45521, 0, -0.462909, 0, -0.886406, -254.968, 0.285805, -20.4878)
-
-[node name="big_tree22" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.933643, 0, 0.358205, 0, 1.45521, 0, -0.358205, 0, 0.933643, -239.544, 0.285805, -16.6991)
-
-[node name="big_tree23" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.815209, 0, 0.579167, 0, 1.45521, 0, -0.579167, 0, 0.815209, -246.136, 0.285805, -17.3877)
-
-[node name="big_tree24" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.718794, 0, -0.695223, 0, 1.45521, 0, 0.695223, 0, 0.718794, -197.047, 0.285805, -31.7081)
-
-[node name="big_tree25" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.99689, 0, -0.0788071, 0, 1.45521, 0, 0.0788071, 0, -0.99689, -206.099, 0.285805, -42.6156)
-
-[node name="big_tree26" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.945961, 0, -0.324281, 0, 1.45521, 0, 0.324281, 0, -0.945961, -199.973, 0.285805, -40.0865)
-
-[node name="big_tree27" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.45944, 0, -0.888209, 0, 1.45521, 0, 0.888209, 0, 0.45944, -199.134, 0.285805, -24.4565)
-
-[node name="big_tree28" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.0782852, 0, 0.996931, 0, 1.45521, 0, -0.996931, 0, -0.0782852, -275.273, 0.285805, -25.7891)
-
-[node name="big_tree29" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.799213, 0, -0.601048, 0, 1.45521, 0, 0.601048, 0, 0.799213, -275.713, 0.285805, -11.6217)
-
-[node name="big_tree30" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.923592, 0, -0.383377, 0, 1.45521, 0, 0.383377, 0, 0.923592, -278.628, 0.285805, -17.5731)
-
-[node name="big_tree31" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.243852, 0, 0.969813, 0, 1.45521, 0, -0.969813, 0, 0.243852, -268.907, 0.285805, -29.841)
-
-[node name="big_tree32" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.997294, 0, 0.0735167, 0, 1.45521, 0, -0.0735167, 0, 0.997294, -216.796, 0.285805, -64.2902)
-
-[node name="big_tree33" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.604863, 0, -0.796329, 0, 1.45521, 0, 0.796329, 0, -0.604863, -230.961, 0.285805, -64.7974)
-
-[node name="big_tree34" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.387789, 0, -0.921748, 0, 1.45521, 0, 0.921748, 0, -0.387789, -224.996, 0.285805, -67.6846)
-
-[node name="big_tree35" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.968635, 0, -0.248487, 0, 1.45521, 0, 0.248487, 0, 0.968635, -212.775, 0.285805, -57.905)
-
-[node name="big_tree36" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.827306, 0, -0.561751, 0, 1.45521, 0, 0.561751, 0, -0.827306, -228.656, 0.285805, -58.0752)
-
-[node name="big_tree37" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.661587, 0, -0.749869, 0, 1.45521, 0, 0.749869, 0, -0.661587, -222.081, 0.285805, -58.9084)
-
-[node name="big_tree38" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.996558, 0, 0.0828952, 0, 1.45521, 0, -0.0828952, 0, -0.996558, -252.822, 0.285805, -56.8528)
-
-[node name="big_tree39" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.721639, 0, 0.692269, 0, 1.45521, 0, -0.692269, 0, 0.721639, -238.909, 0.285805, -54.1429)
-
-[node name="big_tree40" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.918039, 0, 0.396491, 0, 1.45521, 0, -0.396491, 0, -0.918039, -255.799, 0.285805, -63.7869)
-
-[node name="big_tree41" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.904782, 0, 0.425874, 0, 1.45521, 0, -0.425874, 0, 0.904782, -240.138, 0.285805, -61.1424)
-
-[node name="big_tree42" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.770424, 0, 0.637532, 0, 1.45521, 0, -0.637532, 0, 0.770424, -246.763, 0.285805, -61.3446)
-
-[node name="big_tree43" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.997294, 0, 0.0735167, 0, 1.45521, 0, -0.0735167, 0, 0.997294, -215.555, 0.285805, -47.4594)
-
-[node name="big_tree44" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.604863, 0, -0.796329, 0, 1.45521, 0, 0.796329, 0, -0.604863, -229.721, 0.285805, -47.9666)
-
-[node name="big_tree45" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.387789, 0, -0.921748, 0, 1.45521, 0, 0.921748, 0, -0.387789, -223.755, 0.285805, -50.8538)
-
-[node name="big_tree46" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.968635, 0, -0.248487, 0, 1.45521, 0, 0.248487, 0, 0.968635, -211.534, 0.285805, -41.0742)
-
-[node name="big_tree47" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.827306, 0, -0.561751, 0, 1.45521, 0, 0.561751, 0, -0.827306, -227.415, 0.285805, -41.2444)
-
-[node name="big_tree48" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.661587, 0, -0.749869, 0, 1.45521, 0, 0.749869, 0, -0.661587, -220.84, 0.285805, -42.0776)
-
-[node name="big_tree49" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.996558, 0, 0.0828952, 0, 1.45521, 0, -0.0828952, 0, -0.996558, -251.581, 0.285805, -40.022)
-
-[node name="big_tree50" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.721639, 0, 0.692269, 0, 1.45521, 0, -0.692269, 0, 0.721639, -237.669, 0.285805, -37.3121)
-
-[node name="big_tree51" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.918039, 0, 0.396491, 0, 1.45521, 0, -0.396491, 0, -0.918039, -254.558, 0.285805, -46.9561)
-
-[node name="big_tree52" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.904782, 0, 0.425874, 0, 1.45521, 0, -0.425874, 0, 0.904782, -238.898, 0.285805, -44.3116)
-
-[node name="big_tree53" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.770424, 0, 0.637532, 0, 1.45521, 0, -0.637532, 0, 0.770424, -245.522, 0.285805, -44.5138)
-
-[node name="big_tree54" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.767959, 0, -0.640499, 0, 1.45521, 0, 0.640499, 0, 0.767959, -197.619, 0.285805, -62.4043)
-
-[node name="big_tree55" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.988399, 0, -0.151882, 0, 1.45521, 0, 0.151882, 0, -0.988399, -207.448, 0.285805, -72.6168)
-
-[node name="big_tree56" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.919561, 0, -0.392947, 0, 1.45521, 0, 0.392947, 0, -0.919561, -201.153, 0.285805, -70.5449)
-
-[node name="big_tree57" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.523495, 0, -0.852029, 0, 1.45521, 0, 0.852029, 0, 0.523495, -199.167, 0.285805, -55.0188)
-
-[node name="big_tree58" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.151364, 0, 0.988478, 0, 1.45521, 0, -0.988478, 0, -0.151364, -275.198, 0.285805, -50.7503)
-
-[node name="big_tree59" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.841237, 0, -0.540666, 0, 1.45521, 0, 0.540666, 0, 0.841237, -274.595, 0.285805, -36.589)
-
-[node name="big_tree60" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.949277, 0, -0.31444, 0, 1.45521, 0, 0.31444, 0, 0.949277, -277.94, 0.285805, -42.3099)
-
-[node name="big_tree61" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.171895, 0, 0.985115, 0, 1.45521, 0, -0.985115, 0, 0.171895, -269.148, 0.285805, -55.2593)
-
-[node name="big_tree62" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.50516, 0, 0.863025, 0, 1.45521, 0, -0.863025, 0, -0.50516, -299.791, 0.285805, -21.5944)
-
-[node name="big_tree63" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.981316, 0, -0.192402, 0, 1.45521, 0, 0.192402, 0, 0.981316, -294.008, 0.285805, -8.65321)
-
-[node name="big_tree64" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(0.998333, 0, 0.057721, 0, 1.45521, 0, -0.057721, 0, 0.998333, -299.227, 0.285805, -12.7376)
-
-[node name="big_tree65" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.203437, 0, 0.979088, 0, 1.45521, 0, -0.979088, 0, -0.203437, -295.829, 0.285805, -28.0167)
-
-[node name="big_tree66" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.670983, 0, -0.741473, 0, 1.45521, 0, 0.741473, 0, -0.670983, -190.954, 0.285805, -13.5203)
-
-[node name="big_tree67" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.11185, 0, 0.993725, 0, 1.45521, 0, -0.993725, 0, -0.11185, -180.353, 0.285805, -22.9292)
-
-[node name="big_tree68" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.355499, 0, 0.934677, 0, 1.45521, 0, -0.934677, 0, -0.355499, -182.678, 0.285805, -16.7229)
-
-[node name="big_tree69" parent="tree/topleft" instance=ExtResource("5_kusik")]
-transform = Transform3D(-0.87247, 0, -0.488667, 0, 1.45521, 0, 0.488667, 0, -0.87247, -198.271, 0.285805, -15.3658)
-
 [node name="middle" type="Node" parent="tree"]
 
 [node name="big_tree2" parent="tree/middle" instance=ExtResource("5_kusik")]
@@ -510,26 +305,16 @@ size = Vector3(44.2574, 50, 44.26)
 transform = Transform3D(1.25443, 0.501138, -0.936686, -1.07484, 0.623468, -0.101035, 0.288266, 0.143915, 3.69941, -142.17, -8.70428, -2.96362)
 
 [node name="HCB1" type="CSGBox3D" parent="islands/island 3 bald"]
-transform = Transform3D(0.193941, -2.35741e-09, -0.0502758, 6.22123e-07, 0.0256516, -6.70552e-07, 0.0516146, -4.07454e-10, 0.188911, -0.44545, -1.19125, 0.580905)
+transform = Transform3D(0.19978, -0.00152788, -0.0145182, 0.014, 0.0253239, 0.0280017, 0.0130023, -0.00379063, 0.192925, -0.388172, -1.09141, 0.540631)
 visible = false
 material_override = SubResource("StandardMaterial3D_sd38b")
 use_collision = true
 size = Vector3(67.2655, 50, 44.26)
 
-[node name="island 4 bald" parent="islands" instance=ExtResource("6_uthc8")]
-transform = Transform3D(21.7483, 0, 0, 0, 28.1107, 0, 0, 0, 34.9531, -222.38, 42.1449, -39.3691)
-
-[node name="HCB1" type="CSGBox3D" parent="islands/island 4 bald"]
-transform = Transform3D(0.193942, -5.68735e-11, -0.050276, 2.52306e-07, 0.0256516, -1.51249e-08, 0.0516147, -2.37785e-11, 0.188911, -0.591669, -1.82851, 0.6335)
-visible = false
-material_override = SubResource("StandardMaterial3D_sd38b")
-use_collision = true
-size = Vector3(39.0158, 50, 44.26)
-
 [node name="pillar" type="Node" parent="."]
 
 [node name="pillar1" parent="pillar" instance=ExtResource("9_oe1hu")]
-transform = Transform3D(5.022, 0, 0, 0, 5.468, 0, 0, 0, 8.258, -97.0647, -22.03, -7.06702)
+transform = Transform3D(5.022, 0, 0, 0, 5.468, 0, 0, 0, 8.258, -96.8879, -21.9969, -7.11556)
 
 [node name="pillar2" parent="pillar" instance=ExtResource("9_oe1hu")]
 transform = Transform3D(5.022, 0, 0, 0, 5.33487, 0, 0, 0, 8.258, -126.671, -17.9696, -7.06702)
@@ -560,5 +345,15 @@ transform = Transform3D(4.35559, 2.72012, -0.147683, -2.49914, 4.7427, -0.058237
 
 [node name="pillar11" parent="pillar" instance=ExtResource("9_oe1hu")]
 transform = Transform3D(3.48542, -3.93666, 0, 3.61557, 3.79496, 0, 0, 0, 8.258, -80.0468, -15.6894, -7.39917)
+
+[node name="island 3 bald" parent="." instance=ExtResource("6_8iunp")]
+transform = Transform3D(4.15491, 0, 0, 0, 5.63012, 0, 0, 0, 5.63012, -171.363, 3.10462, -5.76142)
+
+[node name="collision box1" type="CSGBox3D" parent="island 3 bald"]
+transform = Transform3D(-1.72371, 0, 3.45625, 0, 0.55144, 0, -1.07425, 0, -5.54579, -2.84447, -1.27027, -2.08107)
+visible = false
+material_override = SubResource("StandardMaterial3D_1i5cd")
+use_collision = true
+size = Vector3(7.56142, 2.5674, 1.4806)
 
 [connection signal="turn_around" from="Characters Scripts and World Settings/Player" to="Characters Scripts and World Settings/CameraSystem" method="_on_player_turn_around"]

@@ -7,6 +7,9 @@ var start_pos
 @export var event: EventAsset 
 #loads event on schmovosaur Enemy.gd, link corresponding fmod event
 
+@onready var hitbox_information = $Hitbox
+
+signal knockback_direction
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_pos = position
@@ -22,6 +25,9 @@ func _physics_process(delta):
 		velocity.x = lerp(velocity.x, 0.0, delta * 5)
 	
 	move_and_slide()
+	
+	hitbox_information.knockback = (velocity + Vector3(0,2,0))* (3 + 2*randf())
+	
 
 # @TEMP
 func _on_hurtbox_hit(vector: Vector2):

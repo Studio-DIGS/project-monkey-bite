@@ -1,9 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwj0n3jmsxunn"]
+[gd_scene load_steps=5 format=3 uid="uid://bwj0n3jmsxunn"]
 
 [ext_resource type="ArrayMesh" uid="uid://cwxjglc5p8fcj" path="res://assets/kite-blender/sword.obj" id="1_6r5wj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_an8ej"]
+diffuse_mode = 3
+albedo_color = Color(0.388235, 0.388235, 0.388235, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hygmr"]
+diffuse_mode = 3
+albedo_color = Color(0.25098, 0.176471, 0.12549, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_behfk"]
+diffuse_mode = 3
+albedo_color = Color(0.364706, 0.34902, 0.329412, 1)
 
 [node name="ExampleSword" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.27, 0, 0, 0, 0.27, 0, 0, 0, 0.27, 0, -0.397161, 0)
 mesh = ExtResource("1_6r5wj")
+surface_material_override/0 = SubResource("StandardMaterial3D_an8ej")
+surface_material_override/1 = SubResource("StandardMaterial3D_hygmr")
+surface_material_override/2 = SubResource("StandardMaterial3D_behfk")

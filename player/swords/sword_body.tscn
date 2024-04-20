@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bphge5vitnjip"]
+[gd_scene load_steps=12 format=3 uid="uid://bphge5vitnjip"]
 
 [ext_resource type="Script" path="res://player/swords/sword_body.gd" id="1_xj5sh"]
 [ext_resource type="ArrayMesh" uid="uid://cwxjglc5p8fcj" path="res://assets/kite-blender/sword.obj" id="2_7s5qe"]
@@ -8,6 +8,18 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_igcdk"]
 size = Vector3(1.6735, 0.135, 0.226896)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jr8f"]
+diffuse_mode = 3
+albedo_color = Color(0.388235, 0.388235, 0.388235, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wpu2u"]
+diffuse_mode = 3
+albedo_color = Color(0.25098, 0.176471, 0.12549, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nfvh6"]
+diffuse_mode = 3
+albedo_color = Color(0.364706, 0.34902, 0.329412, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i25w1"]
 radius = 0.161108
@@ -32,7 +44,15 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 
 
 [node name="Sword2" type="MeshInstance3D" parent="Pivot"]
 transform = Transform3D(-0.398, 3.47943e-08, 0, -3.47943e-08, -0.398, 0, 0, 0, 0.398, 0, 1.185, 0)
+visible = false
 mesh = ExtResource("2_7s5qe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(-0.398, 6.00963e-08, 0, -6.00963e-08, -0.398, 0, 0, 0, 0.398, 0, 1.185, 0)
+mesh = ExtResource("2_7s5qe")
+surface_material_override/0 = SubResource("StandardMaterial3D_2jr8f")
+surface_material_override/1 = SubResource("StandardMaterial3D_wpu2u")
+surface_material_override/2 = SubResource("StandardMaterial3D_nfvh6")
 
 [node name="Hitbox" type="Area3D" parent="."]
 collision_layer = 1024

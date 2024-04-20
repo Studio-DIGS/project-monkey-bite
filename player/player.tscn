@@ -68,8 +68,9 @@ shape = SubResource("CapsuleShape3D_48kjw")
 [node name="PassThruColliderCheck" parent="." node_paths=PackedStringArray("character") instance=ExtResource("7_c8ppt")]
 character = NodePath("..")
 
-[node name="pmb_kite" parent="." instance=ExtResource("12_lvsae")]
+[node name="pmb_kite" parent="." node_paths=PackedStringArray("smear_origin") instance=ExtResource("12_lvsae")]
 transform = Transform3D(-1.25, 4.35984e-16, -1.88745e-07, 4.35984e-16, 1.25, -4.35984e-16, 1.88745e-07, -4.35984e-16, -1.25, 2.08165e-12, -1.25, 2.08165e-12)
+smear_origin = NodePath("base_human_rig/Skeleton3D/BoneAttachment3D/SwordPivot")
 
 [node name="Skeleton3D" parent="pmb_kite/base_human_rig" index="0"]
 bones/0/rotation = Quaternion(-0.70392, -0.0670624, -0.0670624, 0.703919)

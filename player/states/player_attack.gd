@@ -79,4 +79,5 @@ func _on_animation_player_animation_changed(_old_name, _new_name):
 # check if made contact with enemy
 func _on_hitbox_area_entered(_area):
 	contact = true
-	FMODRuntime.play_one_shot_attached_path("event:/Sword Slashes", self)
+	if player.is_armed: FMODRuntime.play_one_shot_attached_path("event:/Sword Slashes", self)
+	else: FMODRuntime.play_one_shot_attached_path("event:/Unarmed Smack", self)

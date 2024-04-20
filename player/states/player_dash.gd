@@ -15,6 +15,7 @@ func physics_update(delta):
 	player.move_and_slide()
 
 func start_dash_timer():
+	FMODRuntime.play_one_shot_attached_path("event:/Player Dash", self)
 	await get_tree().create_timer(player.dash_time).timeout
 	can_dash = false
 	start_cooldown_timer()

@@ -1,4 +1,4 @@
-[gd_resource type="ProjectCache" load_steps=16 format=3 uid="uid://hf1crcufgssi"]
+[gd_resource type="ProjectCache" load_steps=17 format=3 uid="uid://hf1crcufgssi"]
 
 [ext_resource type="BankAsset" uid="uid://dljj6l2kgbpf1" path="res://addons/FMOD/editor/resources/banks/{70200d6d-0c51-4ffd-bb2d-4fd8ddc34ea1}.tres" id="1_q3ymn"]
 [ext_resource type="BankAsset" uid="uid://ddq53s2bqdggb" path="res://addons/FMOD/editor/resources/banks/{e83d2db9-7d2a-03bf-3d64-c5262c304839}.tres" id="2_4uudp"]
@@ -7,14 +7,22 @@
 [ext_resource type="EventAsset" uid="uid://bltcx5nnr5at8" path="res://addons/FMOD/editor/resources/events/{233e8f3e-e7b2-4193-a4f6-040d56fc5338}.tres" id="5_tv4jr"]
 [ext_resource type="EventAsset" uid="uid://rsuqnt3jnrq3" path="res://addons/FMOD/editor/resources/events/{1891d5b9-bcb3-477a-862f-0ef5fb3ef220}.tres" id="5_yowaa"]
 [ext_resource type="EventAsset" uid="uid://bavm0laxu68jf" path="res://addons/FMOD/editor/resources/events/{2e9b035a-2150-4763-9837-ec13e4acf1e0}.tres" id="6_vcokl"]
-[ext_resource type="EventAsset" uid="uid://cm1jy1ocj4st3" path="res://addons/FMOD/editor/resources/events/{4fe437ae-24ac-4dec-be85-33f2db4f21bb}.tres" id="7_df0jc"]
 [ext_resource type="EventAsset" uid="uid://b2tdv1p23gok3" path="res://addons/FMOD/editor/resources/events/{4333f81a-e70a-4bd2-896c-e9e23a55024a}.tres" id="8_6ucf2"]
+[ext_resource type="EventAsset" uid="uid://cd2js1l2jvwmt" path="res://addons/FMOD/editor/resources/events/{367f9c9a-c492-4da4-ab3a-7f3180ec0867}.tres" id="8_bw5ci"]
 [ext_resource type="EventAsset" uid="uid://civotexrny006" path="res://addons/FMOD/editor/resources/events/{3994dac3-57db-44db-8ff1-86c1e5e3d008}.tres" id="8_oriyw"]
 [ext_resource type="EventAsset" uid="uid://ckmch1tgr52d1" path="res://addons/FMOD/editor/resources/events/{1212d3fe-8c20-4b2f-a263-58764bf26c24}.tres" id="9_bfno0"]
 [ext_resource type="EventAsset" uid="uid://cso3ej83mnvwy" path="res://addons/FMOD/editor/resources/events/{37611c10-4419-45db-89c9-ff95e0ff400d}.tres" id="9_hxgqc"]
 [ext_resource type="EventAsset" uid="uid://daa6csxjfvtcx" path="res://addons/FMOD/editor/resources/events/{996b1e43-786f-4ec1-a9f5-780def693ac2}.tres" id="10_wy2wg"]
 [ext_resource type="EventAsset" uid="uid://bm34vktxic0m4" path="res://addons/FMOD/editor/resources/events/{4150d69a-72be-4517-a58a-5764382c4bd1}.tres" id="11_63ty1"]
 [ext_resource type="EventAsset" uid="uid://8ljlxm6vjckn" path="res://addons/FMOD/editor/resources/events/{8763d367-553d-472b-b76b-d34af668427d}.tres" id="11_bwdyy"]
+
+[sub_resource type="EventAsset" id="EventAsset_kmfne"]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/Unarmed Smack"
+guid = "{a4381865-5525-4511-8cbb-f61078943720}"
+name = "Unarmed Smack"
 
 [resource]
 banks = {
@@ -26,13 +34,14 @@ events = {
 "{1891d5b9-bcb3-477a-862f-0ef5fb3ef220}": ExtResource("5_yowaa"),
 "{233e8f3e-e7b2-4193-a4f6-040d56fc5338}": ExtResource("5_tv4jr"),
 "{2e9b035a-2150-4763-9837-ec13e4acf1e0}": ExtResource("6_vcokl"),
+"{367f9c9a-c492-4da4-ab3a-7f3180ec0867}": ExtResource("8_bw5ci"),
 "{37611c10-4419-45db-89c9-ff95e0ff400d}": ExtResource("9_hxgqc"),
 "{3994dac3-57db-44db-8ff1-86c1e5e3d008}": ExtResource("8_oriyw"),
 "{4150d69a-72be-4517-a58a-5764382c4bd1}": ExtResource("11_63ty1"),
 "{4333f81a-e70a-4bd2-896c-e9e23a55024a}": ExtResource("8_6ucf2"),
-"{4fe437ae-24ac-4dec-be85-33f2db4f21bb}": ExtResource("7_df0jc"),
 "{8763d367-553d-472b-b76b-d34af668427d}": ExtResource("11_bwdyy"),
-"{996b1e43-786f-4ec1-a9f5-780def693ac2}": ExtResource("10_wy2wg")
+"{996b1e43-786f-4ec1-a9f5-780def693ac2}": ExtResource("10_wy2wg"),
+"{a4381865-5525-4511-8cbb-f61078943720}": SubResource("EventAsset_kmfne")
 }
 busses = {
 "{57fcde9d-5aad-4426-9485-90eb5df0632b}": ExtResource("3_nxqoi"),
@@ -72,9 +81,9 @@ event_tree = [{
 }, {
 "children": [],
 "item_type": 1,
-"node_name": "New Event 2",
-"path": "event:/New Event 2",
-"resource": ExtResource("7_df0jc")
+"node_name": "Player Dash",
+"path": "event:/Player Dash",
+"resource": ExtResource("8_bw5ci")
 }, {
 "children": [],
 "item_type": 1,
@@ -117,6 +126,12 @@ event_tree = [{
 "node_name": "Sword Whiff",
 "path": "event:/Sword Whiff",
 "resource": ExtResource("11_bwdyy")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Unarmed Smack",
+"path": "event:/Unarmed Smack",
+"resource": SubResource("EventAsset_kmfne")
 }]
 bus_tree = [{
 "children": [{

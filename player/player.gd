@@ -83,7 +83,6 @@ func _end_cutscene():
 	set_controller(human_controller)
 
 func attack():
-	print("TEMO")
 	try_attack = true
 	await get_tree().process_frame
 #	await get_tree().process_frame

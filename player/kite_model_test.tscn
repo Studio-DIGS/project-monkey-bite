@@ -6,9 +6,8 @@
 [ext_resource type="Script" path="res://player/sword_pivot.gd" id="3_q4bd8"]
 [ext_resource type="PackedScene" uid="uid://bwj0n3jmsxunn" path="res://player/swords/example/example_sword.tscn" id="5_f34lk"]
 
-[node name="pmb_kite" node_paths=PackedStringArray("smear_origin") instance=ExtResource("1_7rbey")]
+[node name="pmb_kite" instance=ExtResource("1_7rbey")]
 script = ExtResource("2_6bkb1")
-smear_origin = NodePath("base_human_rig/Skeleton3D/BoneAttachment3D/SwordPivot")
 
 [node name="Skeleton3D" parent="base_human_rig" index="0"]
 bones/0/rotation = Quaternion(-0.69554, -0.127372, -0.127372, 0.69554)

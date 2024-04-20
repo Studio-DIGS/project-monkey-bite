@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://dk0kohcdy68xu"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/Sword Throw"
+guid = "{dbadfcbc-6972-4c9c-acb4-42de9225a71d}"
+name = "Sword Throw"

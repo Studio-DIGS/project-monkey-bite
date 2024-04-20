@@ -17,6 +17,7 @@ class Events:
 	const SCHMOVOSAUR_HURT = "{4333f81a-e70a-4bd2-896c-e9e23a55024a}"
 	const SCHMOVOSAUR_OUCHIE = "{1212d3fe-8c20-4b2f-a263-58764bf26c24}"
 	const SWORD_SLASHES = "{996b1e43-786f-4ec1-a9f5-780def693ac2}"
+	const SWORD_THROW = "{dbadfcbc-6972-4c9c-acb4-42de9225a71d}"
 	const SWORD_WHIFF = "{8763d367-553d-472b-b76b-d34af668427d}"
 	const UNARMED_SMACK = "{a4381865-5525-4511-8cbb-f61078943720}"
 

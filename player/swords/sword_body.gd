@@ -24,6 +24,7 @@ func throw(direction, speed = stats.throw_speed):
 	
 
 func bounce():
+	FMODRuntime.play_one_shot_attached_path("event:/Sword Slashes", self)
 	# add smear
 	smear_instance = smear.instantiate()
 	# IDK WHY WE HAVE TO MULTIPLY BY NEG 1 BUT IT FINALLY FUCKING WORKS

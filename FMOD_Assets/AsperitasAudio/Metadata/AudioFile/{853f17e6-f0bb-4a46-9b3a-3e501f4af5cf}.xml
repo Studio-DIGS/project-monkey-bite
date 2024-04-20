@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{853f17e6-f0bb-4a46-9b3a-3e501f4af5cf}">
 		<property name="assetPath">
-			<value>AsperitasAudioREAPER.wav</value>
+			<value>SFX/dash.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

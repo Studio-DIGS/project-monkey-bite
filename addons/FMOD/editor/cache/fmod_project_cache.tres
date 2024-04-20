@@ -1,4 +1,4 @@
-[gd_resource type="ProjectCache" load_steps=17 format=3 uid="uid://hf1crcufgssi"]
+[gd_resource type="ProjectCache" load_steps=18 format=3 uid="uid://hf1crcufgssi"]
 
 [ext_resource type="BankAsset" uid="uid://dljj6l2kgbpf1" path="res://addons/FMOD/editor/resources/banks/{70200d6d-0c51-4ffd-bb2d-4fd8ddc34ea1}.tres" id="1_q3ymn"]
 [ext_resource type="BankAsset" uid="uid://ddq53s2bqdggb" path="res://addons/FMOD/editor/resources/banks/{e83d2db9-7d2a-03bf-3d64-c5262c304839}.tres" id="2_4uudp"]
@@ -15,14 +15,8 @@
 [ext_resource type="EventAsset" uid="uid://daa6csxjfvtcx" path="res://addons/FMOD/editor/resources/events/{996b1e43-786f-4ec1-a9f5-780def693ac2}.tres" id="10_wy2wg"]
 [ext_resource type="EventAsset" uid="uid://bm34vktxic0m4" path="res://addons/FMOD/editor/resources/events/{4150d69a-72be-4517-a58a-5764382c4bd1}.tres" id="11_63ty1"]
 [ext_resource type="EventAsset" uid="uid://8ljlxm6vjckn" path="res://addons/FMOD/editor/resources/events/{8763d367-553d-472b-b76b-d34af668427d}.tres" id="11_bwdyy"]
-
-[sub_resource type="EventAsset" id="EventAsset_kmfne"]
-is_oneshot = true
-min_distance = 1.0
-max_distance = 20.0
-path = "event:/Unarmed Smack"
-guid = "{a4381865-5525-4511-8cbb-f61078943720}"
-name = "Unarmed Smack"
+[ext_resource type="EventAsset" uid="uid://dk0kohcdy68xu" path="res://addons/FMOD/editor/resources/events/{dbadfcbc-6972-4c9c-acb4-42de9225a71d}.tres" id="15_lylts"]
+[ext_resource type="EventAsset" uid="uid://cy4a3rwmwuty4" path="res://addons/FMOD/editor/resources/events/{a4381865-5525-4511-8cbb-f61078943720}.tres" id="16_qimwd"]
 
 [resource]
 banks = {
@@ -41,7 +35,8 @@ events = {
 "{4333f81a-e70a-4bd2-896c-e9e23a55024a}": ExtResource("8_6ucf2"),
 "{8763d367-553d-472b-b76b-d34af668427d}": ExtResource("11_bwdyy"),
 "{996b1e43-786f-4ec1-a9f5-780def693ac2}": ExtResource("10_wy2wg"),
-"{a4381865-5525-4511-8cbb-f61078943720}": SubResource("EventAsset_kmfne")
+"{a4381865-5525-4511-8cbb-f61078943720}": ExtResource("16_qimwd"),
+"{dbadfcbc-6972-4c9c-acb4-42de9225a71d}": ExtResource("15_lylts")
 }
 busses = {
 "{57fcde9d-5aad-4426-9485-90eb5df0632b}": ExtResource("3_nxqoi"),
@@ -123,6 +118,12 @@ event_tree = [{
 }, {
 "children": [],
 "item_type": 1,
+"node_name": "Sword Throw",
+"path": "event:/Sword Throw",
+"resource": ExtResource("15_lylts")
+}, {
+"children": [],
+"item_type": 1,
 "node_name": "Sword Whiff",
 "path": "event:/Sword Whiff",
 "resource": ExtResource("11_bwdyy")
@@ -131,7 +132,7 @@ event_tree = [{
 "item_type": 1,
 "node_name": "Unarmed Smack",
 "path": "event:/Unarmed Smack",
-"resource": SubResource("EventAsset_kmfne")
+"resource": ExtResource("16_qimwd")
 }]
 bus_tree = [{
 "children": [{

@@ -46,6 +46,7 @@ func physics_update(delta):
 	
 	if player.stagger:
 		state_machine.transition_to("Stagger")
+		player.anim.clear_queue()
 		return
 	
 #	# animation cancel

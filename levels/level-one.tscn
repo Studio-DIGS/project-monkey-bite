@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://g4rbc1aho0ie"]
+[gd_scene load_steps=34 format=3 uid="uid://g4rbc1aho0ie"]
 
 [ext_resource type="Material" uid="uid://fn0hadct6ay" path="res://assets/lillian-assets/Textures/floor_material.tres" id="2_7bmqr"]
 [ext_resource type="Material" uid="uid://c2ese1f67ujw0" path="res://visual_pipeline/grass/grass_floor.tres" id="2_gkx40"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://dkjt28n36sw52" path="res://assets/lillian-assets/Islands/island 1.glb" id="19_m76ou"]
 [ext_resource type="PackedScene" uid="uid://dpqqdkigqcdws" path="res://assets/lillian-assets/Islands/floating rock 1.glb" id="19_tyupx"]
 [ext_resource type="PackedScene" uid="uid://mbmikvo0bep" path="res://assets/lillian-assets/Islands/floating rock 2.glb" id="20_6l01l"]
+[ext_resource type="PackedScene" uid="uid://b02d1j5r3pg1x" path="res://common/passthru-platforms/passthru_platform.tscn" id="20_osul5"]
 [ext_resource type="PackedScene" uid="uid://cgg8tr8eaax6m" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 4 bald.glb" id="20_ro5gi"]
 [ext_resource type="PackedScene" uid="uid://1v2sxi8g13bw" path="res://common/level_switcher.tscn" id="20_w2g3i"]
 [ext_resource type="PackedScene" uid="uid://dt3lg5wx2blje" path="res://assets/lillian-assets/Islands/island 3.glb" id="20_yyn82"]
@@ -418,41 +419,34 @@ use_collision = true
 size = Vector3(3.29974, 8.65795, 0.768754)
 
 [node name="floating rock 2" parent="Environment/Rock Ramp/Lower Island" instance=ExtResource("20_6l01l")]
-transform = Transform3D(0.611209, 0, 0, 0, 0.124502, 0, 0, 0, 0.428554, 3.98602, 1.80104, 1.47451)
+transform = Transform3D(0.611209, 0, 0, 0, 0.124502, 0, 0, 0, 0.428554, 3.986, 1.801, 2.08165e-12)
 
-[node name="HCB4" type="CSGBox3D" parent="Environment/Rock Ramp/Lower Island/floating rock 2"]
-transform = Transform3D(0.00238407, 0.00256272, -46.6512, 0.0445306, 1.97014, 1.4626, 8.94479, -0.000829195, 0.0246785, 1.08418, -1.69932, -0.260854)
+[node name="PassthruPlatform" parent="Environment/Rock Ramp/Lower Island/floating rock 2" instance=ExtResource("20_osul5")]
+transform = Transform3D(2.21368, 0, 0, 0, 2.21368, 0, 0, 0, 2.21368, 0.811134, 0, 0)
+
+[node name="MeshInstance3D" parent="Environment/Rock Ramp/Lower Island/floating rock 2/PassthruPlatform" index="0"]
 visible = false
-material_override = SubResource("StandardMaterial3D_1i5cd")
-use_collision = true
-size = Vector3(0.94587, 4.12763, 0.162404)
 
 [node name="floating rock 3" parent="Environment/Rock Ramp/Lower Island" instance=ExtResource("20_6l01l")]
-transform = Transform3D(0.39354, 0, 0, 0, 0.124502, 0, 0, 0, 0.428554, -1.20665, 3.90762, 1.47451)
+transform = Transform3D(0.39354, 0, 0, 0, 0.124502, 0, 0, 0, 0.428554, -1.207, 3.908, 2.08165e-12)
 
-[node name="HCB5" type="CSGBox3D" parent="Environment/Rock Ramp/Lower Island/floating rock 3"]
-transform = Transform3D(0.00370271, 0.00398016, -72.4542, 0.0445306, 1.97014, 1.4626, 8.94479, -0.000829195, 0.0246785, 0.482901, 0.607107, -0.260854)
+[node name="PassthruPlatform" parent="Environment/Rock Ramp/Lower Island/floating rock 3" instance=ExtResource("20_osul5")]
+transform = Transform3D(2.50255, 0, 0, 0, 2.50255, 0, 0, 0, 2.50255, 0.849736, 1.64578, 0)
+
+[node name="MeshInstance3D" parent="Environment/Rock Ramp/Lower Island/floating rock 3/PassthruPlatform" index="0"]
 visible = false
-material_override = SubResource("StandardMaterial3D_1i5cd")
-use_collision = true
-size = Vector3(0.94587, 3.64869, 0.100426)
+
+[node name="CollisionShape3D" parent="Environment/Rock Ramp/Lower Island/floating rock 3/PassthruPlatform" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0551584, 0, 0)
 
 [node name="floating rock 4" parent="Environment/Rock Ramp/Lower Island" instance=ExtResource("20_6l01l")]
-transform = Transform3D(0.559535, -0.0341586, 0.000666569, 0.124426, 0.15358, 0.00475669, -0.00224579, -0.00164743, 0.429615, 4.26937, 6.13864, 1.47578)
+transform = Transform3D(0.573207, 0, 0, 0, 0.157341, 0, 0, 0, 0.429642, 4.269, 4.92411, 2.08165e-12)
 
-[node name="HCB6" type="CSGBox3D" parent="Environment/Rock Ramp/Lower Island/floating rock 4"]
-transform = Transform3D(0.0025503, 0.00276687, -76.4696, 0.0353498, 1.5785, 1.77914, 8.95084, -0.00083747, 0.0378415, -0.187582, -0.375017, 0.0383613)
-visible = false
-material_override = SubResource("StandardMaterial3D_1i5cd")
-use_collision = true
-size = Vector3(0.94587, 3.64869, 0.0774544)
+[node name="PassthruPlatform" parent="Environment/Rock Ramp/Lower Island/floating rock 4" instance=ExtResource("20_osul5")]
+transform = Transform3D(2.24023, 0.0017612, 0.216715, 0.0151678, 2.24382, -0.175041, -0.216191, 0.175688, 2.23339, 0.81828, 1.34952, 0.508258)
 
-[node name="HCB7" type="CSGBox3D" parent="Environment/Rock Ramp/Lower Island/floating rock 4"]
-transform = Transform3D(0.0198321, 0.10037, -74.3909, 0.00416905, 1.5356, 64.5345, 8.95081, -0.00049177, 0.289354, 3.68617, -1.47795, 0.0543818)
+[node name="MeshInstance3D" parent="Environment/Rock Ramp/Lower Island/floating rock 4/PassthruPlatform" index="0"]
 visible = false
-material_override = SubResource("StandardMaterial3D_1i5cd")
-use_collision = true
-size = Vector3(0.94587, 3.64869, 0.0331531)
 
 [node name="floating rock 1" parent="Environment/Rock Ramp" instance=ExtResource("19_tyupx")]
 transform = Transform3D(-0.929141, 0.016599, -4.16767, 0.0249422, 0.444501, 0.173779, 1.44363, 0.00300355, -2.68538, 33.7447, 3.85921, -0.573608)
@@ -567,3 +561,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.7987, 3.08354, 0)
 scene_name = "level-two"
 
 [connection signal="turn_around" from="Characters Scripts and World Settings/Player" to="Characters Scripts and World Settings/CameraSystem" method="_on_player_turn_around"]
+
+[editable path="Environment/Rock Ramp/Lower Island/floating rock 2/PassthruPlatform"]
+[editable path="Environment/Rock Ramp/Lower Island/floating rock 3/PassthruPlatform"]
+[editable path="Environment/Rock Ramp/Lower Island/floating rock 4/PassthruPlatform"]

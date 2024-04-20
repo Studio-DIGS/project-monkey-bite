@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cgmuxf13tfnls"
-path="res://.godot/imported/attackAnim_maiden2.gltf-4b6444d182fc63c6d52711eed49c5c60.scn"
+uid="uid://bp33wuwpv7vjh"
+path="res://.godot/imported/Maiden Animation.gltf-35393418c7dc94a3dab3a184a1cbd6e5.scn"
 
 [deps]
 
-source_file="res://assets/Maiden/attackAnim_maiden2.gltf"
-dest_files=["res://.godot/imported/attackAnim_maiden2.gltf-4b6444d182fc63c6d52711eed49c5c60.scn"]
+source_file="res://assets/Maiden/Maiden Animation.gltf"
+dest_files=["res://.godot/imported/Maiden Animation.gltf-35393418c7dc94a3dab3a184a1cbd6e5.scn"]
 
 [params]
 

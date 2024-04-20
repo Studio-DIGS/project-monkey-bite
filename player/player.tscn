@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://ceg0a8jxwnfae"]
+[gd_scene load_steps=38 format=3 uid="uid://ceg0a8jxwnfae"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_7knqw"]
 [ext_resource type="Resource" uid="uid://jvuono3vj3hl" path="res://player/attacks/slash_1.tres" id="2_06grq"]
@@ -32,6 +32,7 @@
 [ext_resource type="Script" path="res://player/states/player_throw.gd" id="25_smc6p"]
 [ext_resource type="Script" path="res://player/states/player_special.gd" id="28_5pf82"]
 [ext_resource type="EventAsset" uid="uid://bm34vktxic0m4" path="res://addons/FMOD/editor/resources/events/{4150d69a-72be-4517-a58a-5764382c4bd1}.tres" id="31_48tl8"]
+[ext_resource type="PackedScene" uid="uid://sgmm5qot2804" path="res://player/specials/parry-sword/parry_sword.tscn" id="33_k6igk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_48kjw"]
 radius = 0.284876
@@ -73,8 +74,6 @@ character = NodePath("..")
 transform = Transform3D(-1.25, 4.35984e-16, -1.88745e-07, 4.35984e-16, 1.25, -4.35984e-16, 1.88745e-07, -4.35984e-16, -1.25, 2.08165e-12, -1.25, 2.08165e-12)
 
 [node name="Skeleton3D" parent="pmb_kite/base_human_rig" index="0"]
-bones/0/position = Vector3(0, 0.461594, 0)
-bones/0/rotation = Quaternion(-0.69554, -0.127372, -0.127372, 0.69554)
 bones/1/position = Vector3(0.084427, -0.181663, 1.36493)
 bones/1/rotation = Quaternion(0.758395, 0.0928827, 0.0631502, 0.642045)
 bones/5/position = Vector3(0.0182368, -0.051059, 0.70891)
@@ -101,11 +100,8 @@ bones/14/scale = Vector3(1, 23.4507, 1)
 bones/15/position = Vector3(-0.103615, -0.500782, 0.63555)
 bones/15/rotation = Quaternion(0.916377, -0.209212, 0.290498, -0.179151)
 bones/15/scale = Vector3(1, 13.9847, 1)
-bones/16/position = Vector3(0.00228228, 1.44783, -0.00602243)
-bones/16/rotation = Quaternion(-0.69554, -0.127372, -0.127372, 0.69554)
 bones/17/position = Vector3(0.0214937, -0.0567172, -0.213704)
 bones/17/rotation = Quaternion(0.0347647, -0.00568439, -0.000656208, 0.999379)
-bones/18/position = Vector3(-0.00711196, -0.0138165, 0.20053)
 bones/18/rotation = Quaternion(-0.0623499, 0.00765759, 0.00179515, 0.998023)
 bones/19/position = Vector3(-3.72529e-09, -0.0325834, 0.178428)
 bones/19/rotation = Quaternion(0.128068, 0.0635575, 0.0771532, 0.986715)
@@ -121,7 +117,6 @@ bones/31/scale = Vector3(0.998116, 0.998116, 0.998116)
 bones/32/rotation = Quaternion(-0.852917, -0.115358, -0.000311842, 0.509142)
 bones/32/scale = Vector3(1.02462, 1.02462, 1.02462)
 bones/33/position = Vector3(-2.69516e-06, 0.129841, -2.09789e-05)
-bones/33/rotation = Quaternion(-0.0709311, 0.970229, -0.230953, -0.0168765)
 bones/37/scale = Vector3(1.02462, 1.02462, 1.02462)
 bones/39/rotation = Quaternion(-1.57754e-07, -0.0762173, 3.39298e-08, 0.997091)
 bones/39/scale = Vector3(1.02462, 1.02462, 1.02462)
@@ -141,14 +136,12 @@ bones/53/scale = Vector3(1.04161, 1.04161, 1.04161)
 bones/55/scale = Vector3(1.03729, 1.03729, 1.03729)
 bones/56/rotation = Quaternion(5.37018e-08, -0.0409543, 6.34456e-08, 0.999161)
 bones/56/scale = Vector3(1.03729, 1.03729, 1.03729)
-bones/58/scale = Vector3(1, 1, 1)
 bones/66/rotation = Quaternion(-0.433304, -0.0524358, 0.0916912, 0.895037)
 bones/67/rotation = Quaternion(-0.218802, 0.00658886, 0.00147749, 0.975746)
 bones/67/scale = Vector3(0.97781, 0.977809, 0.97781)
 bones/68/rotation = Quaternion(0.442166, -3.32521e-08, 3.9129e-09, 0.896933)
 bones/68/scale = Vector3(0.998116, 0.998116, 0.998116)
 bones/69/rotation = Quaternion(0.995577, -0.0207248, -0.090755, 0.012702)
-bones/69/scale = Vector3(1, 1, 1)
 bones/71/rotation = Quaternion(0.995577, -0.0207248, -0.090755, 0.012702)
 bones/71/scale = Vector3(1.01128, 0.977809, 1.01128)
 bones/72/rotation = Quaternion(2.41139e-08, -0.00342679, -6.34894e-09, 0.999994)
@@ -159,8 +152,6 @@ bones/75/rotation = Quaternion(-0.85325, -0.110852, 0.0067171, 0.509541)
 bones/75/scale = Vector3(0.989349, 0.995632, 1.01572)
 bones/76/rotation = Quaternion(0.070922, -0.970249, 0.230874, 0.0168731)
 bones/76/scale = Vector3(1, 0.999995, 1)
-bones/77/scale = Vector3(1, 1, 1)
-bones/78/scale = Vector3(1, 1, 1)
 bones/85/rotation = Quaternion(-0.836158, -0.00361231, -0.132021, 0.53235)
 bones/86/rotation = Quaternion(-0.373056, -0.006265, -0.00251918, 0.927784)
 bones/86/scale = Vector3(0.964047, 0.964047, 0.964048)
@@ -198,7 +189,6 @@ bones/176/rotation = Quaternion(-0.409393, -0.433702, 0.748343, 0.290315)
 bones/178/rotation = Quaternion(0.822411, 0.521156, 0.106919, 0.201508)
 bones/178/scale = Vector3(1, 1, 1)
 bones/188/scale = Vector3(1, 1, 1)
-bones/192/rotation = Quaternion(0.0829199, -0.547346, -0.55123, 0.624245)
 bones/192/scale = Vector3(1, 1, 1)
 bones/223/rotation = Quaternion(-0.0694348, 0.285017, -0.908576, 0.297379)
 bones/223/scale = Vector3(0.999998, 1, 0.999998)
@@ -207,7 +197,6 @@ bones/236/rotation = Quaternion(-2.56567e-08, 0.440385, 0.217011, 0.871187)
 bones/237/rotation = Quaternion(-0.337443, -0.620587, 0.541647, 0.455656)
 bones/237/scale = Vector3(1, 1, 1)
 bones/243/scale = Vector3(1, 0.999997, 1)
-bones/273/scale = Vector3(1, 1, 1)
 bones/343/rotation = Quaternion(-0.516708, -0.375941, -0.336257, 0.691818)
 bones/343/scale = Vector3(1, 1, 1)
 bones/349/rotation = Quaternion(-0.480991, -0.352559, -0.388734, 0.702307)
@@ -278,34 +267,23 @@ bones/506/scale = Vector3(1.00834, 0.983522, 1.00834)
 bones/507/rotation = Quaternion(3.6025e-07, 0.960228, 7.94495e-08, 0.279216)
 bones/508/rotation = Quaternion(-0.179232, -0.0166095, -0.236003, 0.954936)
 bones/508/scale = Vector3(1.05618, 0.920755, 1.07785)
-bones/518/position = Vector3(0.542968, 1.61423, 0.245064)
-bones/518/rotation = Quaternion(-0.69554, -0.127372, -0.127372, 0.69554)
 bones/519/position = Vector3(-0.308009, 0.315771, -0.266017)
-bones/519/rotation = Quaternion(0.462564, -0.422016, 0.714586, -0.311936)
 bones/521/position = Vector3(0.536001, 1.64301, -0.375664)
 bones/521/rotation = Quaternion(-0.55033, -0.0510468, -0.0886649, 0.828656)
-bones/523/position = Vector3(-0.569014, 1.61423, -0.176336)
-bones/523/rotation = Quaternion(-0.69554, -0.127372, -0.127372, 0.69554)
 bones/524/position = Vector3(0.416572, -0.773956, 0.127403)
 bones/524/rotation = Quaternion(-0.529411, -0.254703, 0.801048, 0.11477)
 bones/527/position = Vector3(-0.327235, 1.72303, -0.5363)
 bones/527/rotation = Quaternion(-0.55033, -0.0510468, -0.0886649, 0.828656)
-bones/529/position = Vector3(0.155262, 0.546085, 0.0282141)
-bones/529/rotation = Quaternion(-0.69554, -0.127372, -0.127372, 0.69554)
 bones/530/position = Vector3(-0.106679, 0.281504, 0.0100347)
 bones/541/position = Vector3(-0.0477194, 0.843892, 1.05005)
 bones/541/rotation = Quaternion(-0.737699, -0.12558, -0.126371, 0.651199)
-bones/542/scale = Vector3(1, 1, 1)
-bones/543/position = Vector3(-0.134966, 0.546085, -0.0817715)
-bones/543/rotation = Quaternion(-0.69554, -0.127372, -0.127372, 0.69554)
 bones/544/position = Vector3(0.160019, -0.422255, 0.175606)
 bones/544/rotation = Quaternion(-0.202793, -0.0768509, -5.72416e-09, 0.976201)
 bones/555/position = Vector3(-0.606019, 0.831555, 0.841398)
 bones/555/rotation = Quaternion(-0.737699, -0.12558, -0.126371, 0.651199)
-bones/556/scale = Vector3(1, 1, 1)
 
 [node name="BoneAttachment3D" parent="pmb_kite/base_human_rig/Skeleton3D" index="5"]
-transform = Transform3D(-0.225567, -0.218811, -0.949337, -0.789703, -0.52958, 0.3097, -0.570515, 0.819553, -0.0533399, -0.453742, 1.74164, 0.695016)
+transform = Transform3D(-0.225568, -0.218812, -0.949337, -0.789703, -0.52958, 0.3097, -0.570516, 0.819553, -0.0533399, -0.453742, 1.74163, 0.695015)
 
 [node name="SwordPivot" parent="pmb_kite/base_human_rig/Skeleton3D/BoneAttachment3D" index="0"]
 transform = Transform3D(1, 2.98023e-08, -1.49012e-08, 5.96046e-08, 1, 3.72529e-09, 3.35276e-08, 1.08033e-07, 1, -0.474144, 0.146674, 0.0788526)
@@ -413,6 +391,8 @@ preload_samples = true
 [node name="StudioListener2D" type="StudioListener2D" parent="."]
 
 [node name="StudioListener3D" type="StudioListener3D" parent="."]
+
+[node name="Parry Sword" parent="." instance=ExtResource("33_k6igk")]
 
 [connection signal="ready" from="." to="StateMachine" method="_on_player_ready"]
 [connection signal="turn_around" from="." to="pmb_kite" method="_on_player_turn_around"]

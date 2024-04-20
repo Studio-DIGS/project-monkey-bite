@@ -39,8 +39,10 @@ var cube_body
 var player_detection_range
 var random_variance: float
 
+@onready var stagger = false
+
 @onready var maiden_3D = $"../attackAnim_maiden2"
-@onready var maiden_animation_player = $"../attackAnim_maiden2"/AnimationPlayer
+@onready var maiden_animation_player = $"../attackAnim_maiden2/AnimationPlayer"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	enemy_body = $".."
@@ -70,18 +72,22 @@ func _ready():
 	
 #Physics Process Controls the state machine between evade/active/passive states	
 func _physics_process(delta):
-	if Input.is_action_just_pressed("interact") and player_body: #TEMP test for spawn_projectile
-			emit_signal("turn_transparent")
-			await get_tree().create_timer(.8).timeout
-			evade_ready = true
-			occur_once_evade = true
-			await get_tree().create_timer(.8).timeout
-			emit_signal("turn_transparent")
+#	if Input.is_action_just_pressed("interact") and player_body: #TEMP test for spawn_projectile
+#			emit_signal("turn_transparent")
+#			await get_tree().create_timer(.8).timeout
+#			evade_ready = true
+#			occur_once_evade = true
+#			await get_tree().create_timer(.8).timeout
+#			emit_signal("turn_transparent")
 	
 	if player_body:
 		player_detection_sphere()
 	
 #	passive_state()
+	if stagger: #All TEMP
+		return
+	else:
+		await get_tree().create_timer(.75).timeout
 	if evade_ready:
 		evade()
 #		print("evade State")
@@ -126,10 +132,10 @@ func evade():
 		var temp_number = randf()
 		if temp_number < .5:
 			offset_original_position = 1 * randf() * 3 + 3
-			print("right")
+#			print("right")
 		else:
 			offset_original_position = -1 * randf() * 3 - 3
-			print('left')
+#			print('left')
 		new_position = Vector3(enemy_body.position.x + offset_original_position, 0, 0)
 		enemy_direction = (new_position - enemy_body.position).normalized()
 		enemy_velocity = Vector3(enemy_direction.x, 0 ,0)
@@ -138,10 +144,10 @@ func evade():
 	if abs(new_position.x - enemy_body.position.x) < .2: 
 		enemy_velocity = Vector3.ZERO
 		evade_ready = false
-		print("Evade ends")
+#		print("Evade ends")
 
 func spawn_projectile(delta):
-	maiden_animation_player.play("Key_001Action")
+#	maiden_animation_player.play("Key_001Action")
 	projectile_direction = (player_body.position - enemy_body.position).normalized()
 	#Maiden turns using the following lines
 	if projectile_direction.x >= 0:
@@ -190,14 +196,16 @@ func _on_escape_timer_timeout(): #Enemy begins to fade out and in
 func move():
 	emit_signal("check_velocity", enemy_velocity)
 	maiden_animation_player.play("Armature_001Action")
-	print("Playing action")
+#	print("Playing action")
 	
 
 func _on_maiden_enemy_send_player_information(player_information):
 	player_body = player_information
-	print("information transferred")
+#	print("information transferred")
 
 func _on_hurtbox_enemy_has_been_hit():
 	movement_inhibit = true
+	stagger = true #TEMP
 	await get_tree().create_timer(1.5).timeout
 	movement_inhibit = false
+	stagger = false

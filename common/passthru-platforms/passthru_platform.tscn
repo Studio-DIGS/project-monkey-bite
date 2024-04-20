@@ -4,7 +4,7 @@
 size = Vector3(3.31, 0.07, 2.04)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kyt75"]
-size = Vector3(3.31119, 0.0642277, 2.03151)
+size = Vector3(3.31119, 0.556387, 2.03151)
 
 [node name="PassthruPlatform" type="StaticBody3D"]
 collision_layer = 256

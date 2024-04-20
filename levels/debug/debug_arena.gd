@@ -24,6 +24,6 @@ func _process(delta):
 		var shmovo_instance = shmovosaur.instantiate()
 		self.add_child(shmovo_instance)
 		
-#	if Input.is_action_just_pressed("spawn-maiden"):
-#		var maiden_instance = maiden.instantiate()
-#		self.add_child(maiden_instance)
+	if Input.is_action_just_pressed("spawn-maiden"):
+		var maiden_instance = maiden.instantiate()
+		self.add_child(maiden_instance)

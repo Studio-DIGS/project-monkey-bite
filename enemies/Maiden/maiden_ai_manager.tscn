@@ -53,9 +53,6 @@ one_shot = true
 one_shot = true
 
 [connection signal="projectile" from="." to="Projectile Script Manager" method="_on_maiden_ai_manager_projectile"]
-[connection signal="area_entered" from="PlayerDetectionSphere" to="." method="_on_player_detection_sphere_area_entered"]
-[connection signal="area_exited" from="PlayerDetectionSphere" to="." method="_on_player_detection_sphere_area_exited"]
-[connection signal="area_exited" from="PlayerDetectionSphere2" to="." method="_on_player_detection_sphere_2_area_exited"]
 [connection signal="timeout" from="Attack Cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="Movement Inhibit Timer" to="." method="_on_movement_inhibit_timer_timeout"]
 [connection signal="timeout" from="Escape Timer" to="." method="_on_escape_timer_timeout"]

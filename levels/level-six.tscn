@@ -1,0 +1,688 @@
+[gd_scene load_steps=60 format=3 uid="uid://ni53w6r7n16h"]
+
+[ext_resource type="PackedScene" uid="uid://bfg1ub413xc20" path="res://enemies/Schmovosaur/Schmovosaur Enemy.tscn" id="3_vtmvv"]
+[ext_resource type="PackedScene" uid="uid://ceg0a8jxwnfae" path="res://player/player.tscn" id="4_s5jpf"]
+[ext_resource type="PackedScene" uid="uid://4vymcd4lcm3x" path="res://visual_pipeline/camera/camera_system.tscn" id="5_esovy"]
+[ext_resource type="PackedScene" uid="uid://crv2dotc68bdp" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 2 bald.glb" id="5_pc0v8"]
+[ext_resource type="PackedScene" uid="uid://cv4jpkmd86qj2" path="res://assets/lillian-assets/tree 4.glb" id="8_gdslx"]
+[ext_resource type="PackedScene" uid="uid://w5ualjmg0vsx" path="res://assets/lillian-assets/tree 3.glb" id="9_k6a7g"]
+[ext_resource type="PackedScene" uid="uid://c4ngxqulenfw" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 1 bald.glb" id="10_w7n61"]
+[ext_resource type="PackedScene" uid="uid://dvxfyh50kcqfl" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 5 bald.glb" id="11_2cap6"]
+[ext_resource type="PackedScene" uid="uid://b872c7eus500g" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 3 bald.glb" id="12_4abas"]
+[ext_resource type="PackedScene" uid="uid://nv4iuwgjytjf" path="res://assets/lillian-assets/tree 2.glb" id="13_8j5wk"]
+[ext_resource type="PackedScene" uid="uid://bod5yr3vu2jr6" path="res://assets/lillian-assets/tree 3 purple.glb" id="14_2ho5n"]
+[ext_resource type="PackedScene" path="res://visual_pipeline/grass/grass_scatter.tscn" id="15_cbre3"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="16_j04ul"]
+[ext_resource type="PackedScene" uid="uid://j5u21dt7qegf" path="res://assets/lillian-assets/Textures/dock.tscn" id="16_npp2m"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="17_csh8t"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="18_qtic3"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="19_bbv5o"]
+[ext_resource type="PackedScene" uid="uid://cgg8tr8eaax6m" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 4 bald.glb" id="20_ro5gi"]
+[ext_resource type="PackedScene" uid="uid://r2hi5m0cek01" path="res://common/level_switcher.tscn" id="20_w2g3i"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/offset_scale.gd" id="20_y2vpo"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="21_y0x4l"]
+[ext_resource type="PackedScene" path="res://visual_pipeline/grass/flower_scatter.tscn" id="22_m1vro"]
+
+[sub_resource type="Shader" id="Shader_vd8ur"]
+code = "
+// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable's ProceduralSkyMaterial.
+
+shader_type sky;
+render_mode use_debanding;
+
+uniform vec4 sky_top_color : source_color = vec4(0.385, 0.454, 0.55, 1.0);
+uniform vec4 sky_horizon_color : source_color = vec4(0.646, 0.656, 0.67, 1.0);
+uniform float sky_curve : hint_range(0, 1) = 0.15;
+uniform float sky_energy = 1.0; // In Lux.
+uniform sampler2D sky_cover : filter_linear, source_color, hint_default_black;
+uniform vec4 sky_cover_modulate : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 ground_bottom_color : source_color = vec4(0.2, 0.169, 0.133, 1.0);
+uniform vec4 ground_horizon_color : source_color = vec4(0.646, 0.656, 0.67, 1.0);
+uniform float ground_curve : hint_range(0, 1) = 0.02;
+uniform float ground_energy = 1.0;
+uniform float sun_angle_max = 30.0;
+uniform float sun_curve : hint_range(0, 1) = 0.15;
+
+uniform sampler2D cloud_texture;
+uniform sampler2D cloud_texture2;
+uniform vec2 cloud_direction;
+uniform vec2 cloud_direction2;
+uniform vec2 cloud_scale;
+uniform float cloud_distance;
+uniform float cloud_speed;
+uniform float cloud_speed2;
+
+void sky() {
+	float v_angle = acos(clamp(EYEDIR.y, -1.0, 1.0));
+	float c = (1.0 - v_angle / (PI * 0.5));
+	vec3 sky = mix(sky_horizon_color.rgb, sky_top_color.rgb, clamp(1.0 - pow(1.0 - c, 1.0 / sky_curve), 0.0, 1.0));
+	sky *= sky_energy;
+
+	if (LIGHT0_ENABLED) {
+		float sun_angle = acos(dot(LIGHT0_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT0_SIZE) {
+			sky = LIGHT0_COLOR * LIGHT0_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT0_SIZE) / (sun_angle_max - LIGHT0_SIZE);
+			sky = mix(LIGHT0_COLOR * LIGHT0_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	if (LIGHT1_ENABLED) {
+		float sun_angle = acos(dot(LIGHT1_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT1_SIZE) {
+			sky = LIGHT1_COLOR * LIGHT1_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT1_SIZE) / (sun_angle_max - LIGHT1_SIZE);
+			sky = mix(LIGHT1_COLOR * LIGHT1_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	if (LIGHT2_ENABLED) {
+		float sun_angle = acos(dot(LIGHT2_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT2_SIZE) {
+			sky = LIGHT2_COLOR * LIGHT2_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT2_SIZE) / (sun_angle_max - LIGHT2_SIZE);
+			sky = mix(LIGHT2_COLOR * LIGHT2_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	if (LIGHT3_ENABLED) {
+		float sun_angle = acos(dot(LIGHT3_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT3_SIZE) {
+			sky = LIGHT3_COLOR * LIGHT3_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT3_SIZE) / (sun_angle_max - LIGHT3_SIZE);
+			sky = mix(LIGHT3_COLOR * LIGHT3_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	vec4 sky_cover_texture = texture(sky_cover, SKY_COORDS);
+	sky += (sky_cover_texture.rgb * sky_cover_modulate.rgb) * sky_cover_texture.a * sky_cover_modulate.a * sky_energy;
+
+	c = (v_angle - (PI * 0.5)) / (PI * 0.5);
+	vec3 ground = mix(ground_horizon_color.rgb, ground_bottom_color.rgb, clamp(1.0 - pow(1.0 - c, 1.0 / ground_curve), 0.0, 1.0));
+	ground *= ground_energy;
+	
+	vec2 sky_uv = EYEDIR.xz / EYEDIR.y;
+	float fps = floor(TIME * 2.0) * 0.05;
+	vec3 clouds = texture(cloud_texture, sky_uv * cloud_scale * cloud_direction * cloud_speed * fps).rgb - texture(cloud_texture2, sky_uv * cloud_scale * cloud_direction2 * cloud_speed2 * fps).rgb;
+	clouds = clouds - smoothstep(0.0, EYEDIR.y, cloud_distance);
+	clouds = step(0.3, clouds); // Toon shade
+	clouds = clamp(clouds, 0.0, 1.0);
+	sky += clouds;
+	ground += clouds;
+
+	COLOR = mix(ground, sky, step(0.0, EYEDIR.y));
+}
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pndxn"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qe2md"]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource("FastNoiseLite_pndxn")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h8mcs"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mfdm4"]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource("FastNoiseLite_h8mcs")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v5xsb"]
+shader = SubResource("Shader_vd8ur")
+shader_parameter/sky_top_color = Color(0.168627, 0.466667, 0.713726, 1)
+shader_parameter/sky_horizon_color = Color(0.509804, 0.701961, 0.85098, 1)
+shader_parameter/sky_curve = 0.0776449
+shader_parameter/sky_energy = 1.0
+shader_parameter/sky_cover_modulate = Color(1, 1, 1, 1)
+shader_parameter/ground_bottom_color = Color(0.384314, 0.654902, 0.823529, 1)
+shader_parameter/ground_horizon_color = Color(0.494118, 0.713726, 0.839216, 1)
+shader_parameter/ground_curve = 0.0428708
+shader_parameter/ground_energy = 1.0
+shader_parameter/sun_angle_max = 0.523599
+shader_parameter/sun_curve = 0.375
+shader_parameter/cloud_direction = Vector2(0.47, 0.355)
+shader_parameter/cloud_direction2 = Vector2(1.585, 0.17)
+shader_parameter/cloud_scale = Vector2(0.04, 2.74)
+shader_parameter/cloud_distance = 0.0
+shader_parameter/cloud_speed = 0.05
+shader_parameter/cloud_speed2 = 0.015
+shader_parameter/cloud_texture = SubResource("NoiseTexture2D_qe2md")
+shader_parameter/cloud_texture2 = SubResource("NoiseTexture2D_mfdm4")
+
+[sub_resource type="Sky" id="Sky_xpkr3"]
+sky_material = SubResource("ShaderMaterial_v5xsb")
+
+[sub_resource type="Environment" id="Environment_y8ynd"]
+background_mode = 2
+background_color = Color(0.4, 0.615686, 0.811765, 1)
+sky = SubResource("Sky_xpkr3")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1i5cd"]
+
+[sub_resource type="Resource" id="Resource_mjipr"]
+script = ExtResource("17_csh8t")
+amount = 6000
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_f5eoq"]
+script = ExtResource("18_qtic3")
+iterations = 3
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = true
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_7tg3s"]
+script = ExtResource("19_bbv5o")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 5.0
+ray_offset = 1.0
+remove_points_on_miss = false
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_66yhc"]
+script = ExtResource("20_y2vpo")
+operation = 1
+scale = Vector3(0.35, 0.35, 0.35)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_ex8n2"]
+script = ExtResource("16_j04ul")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_mjipr"), SubResource("Resource_f5eoq"), SubResource("Resource_7tg3s"), SubResource("Resource_66yhc")])
+
+[sub_resource type="Curve3D" id="Curve3D_3n6vj"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -29.6183, -8.82149e-06, -6.14538, 0, 0, 0, 0, 0, 0, -20.9004, -8.82149e-06, -5.00835, 0, 0, 0, 0, 0, 0, -7.22682, 0, -13.6924, 0, 0, 0, 0, 0, 0, 5.6944, 0, -11.6278, 0, 0, 0, 0, 0, 0, 12.023, 0, -17.5582, 0, 0, 0, 0, 0, 0, 33.5425, 0, -13.9967, 0, 0, 0, 0, 0, 0, 49.1831, 0, -0.655744, 0, 0, 0, 0, 0, 0, 30.8718, 0, 14.3321, 0, 0, 0, 0, 0, 0, 20.9357, 0, 4.55, 0, 0, 0, 0, 0, 0, 10.3128, 0, 4.50264, 0, 0, 0, 0, 0, 0, -6.66948, 0, 11.7258, 0, 0, 0, 0, 0, 0, -18.023, 4.52995e-06, 7.67898, 0, 0, 0, 0, 0, 0, -24.288, 0, 8.26302, 0, 0, 0, 0, 0, 0, -38.3286, 8.82149e-06, 6.46472),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 14
+
+[sub_resource type="Resource" id="Resource_trlqi"]
+resource_local_to_scene = true
+script = ExtResource("21_y0x4l")
+closed = true
+thickness = 0.0
+curve = SubResource("Curve3D_3n6vj")
+
+[sub_resource type="Resource" id="Resource_f5jor"]
+script = ExtResource("17_csh8t")
+amount = 30
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_s51rs"]
+script = ExtResource("18_qtic3")
+iterations = 3
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = true
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_mqvc6"]
+script = ExtResource("19_bbv5o")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = false
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_w8cfg"]
+script = ExtResource("20_y2vpo")
+operation = 1
+scale = Vector3(0.35, 0.45, 0.35)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_t4q5a"]
+script = ExtResource("16_j04ul")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_f5jor"), SubResource("Resource_s51rs"), SubResource("Resource_mqvc6"), SubResource("Resource_w8cfg")])
+
+[sub_resource type="Curve3D" id="Curve3D_c0xku"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -55.279, 9.53674e-07, 15.2087, 0, 0, 0, 0, 0, 0, -44.2522, 9.53674e-07, 3.89905, 0, 0, 0, 0, 0, 0, -16.4074, 0, -0.841735, 0, 0, 0, 0, 0, 0, -5.84116, 9.53674e-07, -3.69699, 0, 0, 0, 0, 0, 0, 11.0573, 9.53674e-07, -3.63581, 0, 0, 0, 0, 0, 0, 16.7601, 9.53674e-07, -2.74294, 0, 0, 0, 0, 0, 0, 19.8772, 0, 1.62177, 0, 0, 0, 0, 0, 0, 12.7486, 9.53674e-07, -0.204257, 0, 0, 0, 0, 0, 0, 26.65, 9.53674e-07, 5.79444, 0, 0, 0, 0, 0, 0, 23.6218, 9.53674e-07, 11.7611, 0, 0, 0, 0, 0, 0, 10.4591, -1.19209e-06, 19.3454, 0, 0, 0, 0, 0, 0, -0.173592, 9.53674e-07, 10.8999, 0, 0, 0, 0, 0, 0, -8.23428, 9.53674e-07, 11.6971, 0, 0, 0, 0, 0, 0, -25.0108, 9.53674e-07, 19.1911),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 14
+
+[sub_resource type="Resource" id="Resource_yibg6"]
+resource_local_to_scene = true
+script = ExtResource("21_y0x4l")
+closed = true
+thickness = 0.0
+curve = SubResource("Curve3D_c0xku")
+
+[sub_resource type="Resource" id="Resource_rt831"]
+script = ExtResource("17_csh8t")
+amount = 5000
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_7bsct"]
+script = ExtResource("18_qtic3")
+iterations = 3
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = true
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_2qi02"]
+script = ExtResource("19_bbv5o")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 5.0
+ray_offset = 1.0
+remove_points_on_miss = false
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_3opqd"]
+script = ExtResource("20_y2vpo")
+operation = 1
+scale = Vector3(0.35, 0.35, 0.35)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_vs5gj"]
+script = ExtResource("16_j04ul")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_rt831"), SubResource("Resource_7bsct"), SubResource("Resource_2qi02"), SubResource("Resource_3opqd")])
+
+[sub_resource type="Curve3D" id="Curve3D_uw0jy"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -31.0322, -1.90735e-06, -5.86153, 0, 0, 0, 0, 0, 0, -19.253, 2.38419e-06, -12.7484, 0, 0, 0, 0, 0, 0, -9.08224, 2.38419e-07, -12.814, 0, 0, 0, 0, 0, 0, 2.00238, 2.38419e-07, -8.34602, 0, 0, 0, 0, 0, 0, 17.5334, 2.38419e-07, -8.95472, 0, 0, 0, 0, 0, 0, 17.353, -1.90735e-06, -1.12398, 0, 0, 0, 0, 0, 0, 10.763, 2.38419e-07, 2.42182, 0, 0, 0, 0, 0, 0, 6.94697, 2.38419e-07, 6.50463, 0, 0, 0, 0, 0, 0, -8.55647, 2.38419e-07, 9.0724, 0, 0, 0, 0, 0, 0, -19.5267, 2.38419e-07, 21.253, 0, 0, 0, 0, 0, 0, -40.3475, -1.90735e-06, 13.8179, 0, 0, 0, 0, 0, 0, -55.1893, 2.38419e-07, 24.5225, 0, 0, 0, 0, 0, 0, -44.0036, 2.38419e-07, 5.37148, 0, 0, 0, 0, 0, 0, -33.9284, 2.38419e-06, -7.19939),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 14
+
+[sub_resource type="Resource" id="Resource_2gdcf"]
+resource_local_to_scene = true
+script = ExtResource("21_y0x4l")
+closed = true
+thickness = 0.0
+curve = SubResource("Curve3D_uw0jy")
+
+[sub_resource type="Resource" id="Resource_wxjui"]
+script = ExtResource("17_csh8t")
+amount = 30
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_fwx6r"]
+script = ExtResource("18_qtic3")
+iterations = 3
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = true
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_vj7jr"]
+script = ExtResource("19_bbv5o")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = false
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_ajk0s"]
+script = ExtResource("20_y2vpo")
+operation = 1
+scale = Vector3(0.35, 0.45, 0.35)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_sn5ug"]
+script = ExtResource("16_j04ul")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_wxjui"), SubResource("Resource_fwx6r"), SubResource("Resource_vj7jr"), SubResource("Resource_ajk0s")])
+
+[sub_resource type="Curve3D" id="Curve3D_pbu6i"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -46.8964, 4.76837e-07, 17.217, 0, 0, 0, 0, 0, 0, -26.3628, 4.76837e-07, -0.279762, 0, 0, 0, 0, 0, 0, -20.0541, 4.76837e-07, -2.50739, 0, 0, 0, 0, 0, 0, -4.60575, 4.76837e-07, -8.16852, 0, 0, 0, 0, 0, 0, 5.43276, 4.76837e-07, -2.21907, 0, 0, 0, 0, 0, 0, 15.8873, 4.76837e-07, 2.84924, 0, 0, 0, 0, 0, 0, 24.2772, 4.76837e-07, 2.8934, 0, 0, 0, 0, 0, 0, 24.3555, 4.76837e-07, 7.42915, 0, 0, 0, 0, 0, 0, 20.638, 4.76837e-07, 8.987, 0, 0, 0, 0, 0, 0, 10.5629, 0, 6.86513, 0, 0, 0, 0, 0, 0, 7.02208, 4.76837e-07, 13.9423, 0, 0, 0, 0, 0, 0, 0.897692, 4.76837e-07, 12.9588, 0, 0, 0, 0, 0, 0, -16.4807, 2.86102e-06, 21.5172, 0, 0, 0, 0, 0, 0, -32.3955, 2.86102e-06, 12.9037),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 14
+
+[sub_resource type="Resource" id="Resource_v1siv"]
+resource_local_to_scene = true
+script = ExtResource("21_y0x4l")
+closed = true
+thickness = 0.0
+curve = SubResource("Curve3D_pbu6i")
+
+[node name="World" type="Node3D"]
+
+[node name="Characters Scripts and World Settings" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Characters Scripts and World Settings"]
+transform = Transform3D(-0.422618, -0.800222, 0.425486, 0, 0.469472, 0.882947, -0.906308, 0.373149, -0.198407, 0, 0, 0)
+shadow_enabled = true
+shadow_blur = 1.745
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.003
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Characters Scripts and World Settings"]
+environment = SubResource("Environment_y8ynd")
+
+[node name="Player" parent="Characters Scripts and World Settings" instance=ExtResource("4_s5jpf")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.18653, 3.65063, -0.471166)
+accel = 6.505
+
+[node name="CameraSystem" parent="Characters Scripts and World Settings" node_paths=PackedStringArray("target") instance=ExtResource("5_esovy")]
+target = NodePath("../Player")
+
+[node name="Schmovosaur" parent="Characters Scripts and World Settings" instance=ExtResource("3_vtmvv")]
+transform = Transform3D(-0.974679, 0, -0.223607, 0, 1, 0, 0.223607, 0, -0.974679, 18.9565, 3.45036, -1.11697)
+
+[node name="Schmovosaur2" parent="Characters Scripts and World Settings" instance=ExtResource("3_vtmvv")]
+transform = Transform3D(-0.974679, 0, -0.223607, 0, 1, 0, 0.223607, 0, -0.974679, 48.5086, 3.45037, -2.92699)
+
+[node name="Schmovosaur3" parent="Characters Scripts and World Settings" instance=ExtResource("3_vtmvv")]
+transform = Transform3D(-0.974679, 0, -0.223607, 0, 1, 0, 0.223607, 0, -0.974679, 20.355, 18.5843, -2.0666)
+
+[node name="Schmovosaur4" parent="Characters Scripts and World Settings" instance=ExtResource("3_vtmvv")]
+transform = Transform3D(-0.974679, 0, -0.223607, 0, 1, 0, 0.223607, 0, -0.974679, 12.7865, 17.163, -2.0666)
+
+[node name="Schmovosaur5" parent="Characters Scripts and World Settings" instance=ExtResource("3_vtmvv")]
+transform = Transform3D(-0.974679, 0, -0.223607, 0, 1, 0, 0.223607, 0, -0.974679, 20.4982, 3.15668, -2.0666)
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="dock" type="Node" parent="Environment"]
+
+[node name="dock" parent="Environment/dock" instance=ExtResource("16_npp2m")]
+transform = Transform3D(1.68681, 1.27351e-07, -2.879, -9.05975e-07, 3, -2.24269e-14, -5.75801, -4.34717e-07, -0.843407, 70.5786, 5.5737, -12.3306)
+
+[node name="dock2" parent="Environment/dock" instance=ExtResource("16_npp2m")]
+transform = Transform3D(-1.68681, 7.99035e-15, -2.879, -5.68434e-14, 3, 3.38812e-21, 5.75801, -2.72754e-14, -0.843407, 62.7068, 5.5737, 14.5401)
+
+[node name="collision box1" type="CSGBox3D" parent="Environment/dock"]
+transform = Transform3D(-0.571004, 0, -6.27108, 0, 0.55144, 0, 1.94914, 0, -1.83712, 64.6127, 2.24926, 0.59439)
+visible = false
+material_override = SubResource("StandardMaterial3D_1i5cd")
+use_collision = true
+size = Vector3(7.56142, 2.5674, 1.4806)
+
+[node name="collision box2" type="CSGBox3D" parent="Environment/dock"]
+transform = Transform3D(-0.571004, 0, -6.27108, 0, 0.55144, 0, 1.94914, 0, -1.83712, 66.5561, 3.05556, 1.16372)
+visible = false
+material_override = SubResource("StandardMaterial3D_1i5cd")
+use_collision = true
+size = Vector3(7.56142, 5.4626, 0.563897)
+
+[node name="collision box3" type="CSGBox3D" parent="Environment/dock"]
+transform = Transform3D(-0.571004, 0, -6.27108, 0, 0.55144, 0, 1.94914, 0, -1.83712, 65.4525, 3.05556, 0.84041)
+visible = false
+material_override = SubResource("StandardMaterial3D_1i5cd")
+use_collision = true
+size = Vector3(7.56142, 3.66245, 0.467606)
+
+[node name="collision box4" type="CSGBox3D" parent="Environment/dock"]
+transform = Transform3D(-0.571004, 0, -6.27108, 0, 0.55144, 0, 1.94914, 0, -1.83712, 64.5998, 2.64188, 0.59062)
+visible = false
+material_override = SubResource("StandardMaterial3D_1i5cd")
+use_collision = true
+size = Vector3(7.56142, 3.66245, 0.467606)
+
+[node name="collision box5" type="CSGBox3D" parent="Environment/dock"]
+transform = Transform3D(-0.571004, 0, -6.27108, 0, 0.55144, 0, 1.94914, 0, -1.83712, 64.6127, 2.24926, -4.28238)
+visible = false
+material_override = SubResource("StandardMaterial3D_1i5cd")
+use_collision = true
+size = Vector3(0.002, 24.4961, 1.4806)
+
+[node name="collision box6" type="CSGBox3D" parent="Environment/dock"]
+transform = Transform3D(-0.571004, 0, -6.27108, 0, 0.55144, 0, 1.94914, 0, -1.83712, 62.4782, 2.24926, 4.98065)
+visible = false
+material_override = SubResource("StandardMaterial3D_1i5cd")
+use_collision = true
+size = Vector3(0.002, 24.4961, 1.4806)
+
+[node name="LevelSwitcher" parent="." instance=ExtResource("20_w2g3i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.7987, 3.08354, 0)
+scene_name = "level-two"
+
+[node name="island 2 bald" parent="." instance=ExtResource("5_pc0v8")]
+transform = Transform3D(9.80803, 0, 0, 0, 9.80803, 0, 0, 0, 9.80803, -1.18477, 5.84658, -4.8385)
+
+[node name="collision box1" type="CSGBox3D" parent="island 2 bald"]
+transform = Transform3D(-1.7181, 0, -0.0569198, 0, 0.1264, 0, 0.0601459, 0, -1.62591, 0.0130598, -0.479955, 0.165158)
+visible = false
+material_override = SubResource("StandardMaterial3D_1i5cd")
+use_collision = true
+size = Vector3(7.56142, 2.5674, 1.4806)
+
+[node name="island 4 bald" parent="." instance=ExtResource("20_ro5gi")]
+transform = Transform3D(-0.727642, 0, -8.57017, 0, 8.60101, 0, 8.57017, 0, -0.727642, 47.8244, 15.7677, -9.10721)
+
+[node name="collision box1" type="CSGBox3D" parent="island 4 bald"]
+transform = Transform3D(-3.00815, 0, -0.0991124, 0, 0.190636, 0, 0.119556, 0, -2.49374, -0.834828, -1.72491, 0.00526237)
+visible = false
+material_override = SubResource("StandardMaterial3D_1i5cd")
+use_collision = true
+size = Vector3(4.03039, 2.5674, 1.4806)
+
+[node name="tree 4" parent="." instance=ExtResource("8_gdslx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.0217, 9.53674e-07, -3.8771)
+
+[node name="collision box1" type="CSGBox3D" parent="tree 4"]
+transform = Transform3D(0.0179026, -0.541007, -0.356084, -0.00837894, 0.0196066, -9.81627, 2.03517, 0.00483978, -0.0372769, 0.237974, 3.79631, 1.701)
+visible = false
+material_override = SubResource("StandardMaterial3D_1i5cd")
+use_collision = true
+size = Vector3(7.56142, 2.5674, 1.4806)
+
+[node name="tree 3" parent="." instance=ExtResource("9_k6a7g")]
+transform = Transform3D(1, 0, 0, 0, 1.36689, 0, 0, 0, 1, 33.8021, -9.53674e-07, 4.32271)
+
+[node name="tree 5" parent="." instance=ExtResource("9_k6a7g")]
+transform = Transform3D(0.10097, 0, 0.994889, 0, 1.23531, 0, -0.994889, 0, 0.10097, 27.3042, 0.688606, 3.29617)
+
+[node name="tree 6" parent="." instance=ExtResource("9_k6a7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.0546, 2.73061, -1.11544)
+
+[node name="island 1 bald" parent="." instance=ExtResource("10_w7n61")]
+transform = Transform3D(6.17036, 0, 0, 0, 2.61847, 0, 0, 0, 6.09484, -25.3374, 5.94356, -1.73571)
+
+[node name="collision box1" type="CSGBox3D" parent="island 1 bald"]
+transform = Transform3D(-0.442937, 0, -0.0191375, 0, 0.0442391, 0, 0.0176041, 0, -0.481513, 0.0336838, -0.143003, 0.00917664)
+visible = false
+material_override = SubResource("StandardMaterial3D_1i5cd")
+use_collision = true
+size = Vector3(4.03039, 2.5674, 1.4806)
+
+[node name="island 5 bald" parent="." instance=ExtResource("11_2cap6")]
+transform = Transform3D(1, 0, 0, 0, 0.428431, 0, 0, 0, 1.06866, -11.7785, 8.84204, -2.39748)
+
+[node name="collision box1" type="CSGBox3D" parent="island 5 bald"]
+transform = Transform3D(-3.00815, 0, -0.0991125, 0, 0.572475, 0, 0.119556, 0, -2.49374, -0.834827, -1.18157, 0.00526261)
+visible = false
+material_override = SubResource("StandardMaterial3D_1i5cd")
+use_collision = true
+size = Vector3(4.03039, 2.5674, 1.4806)
+
+[node name="island 3 bald" parent="." instance=ExtResource("12_4abas")]
+transform = Transform3D(1, 0, 0, 0, 0.686525, 0, 0, 0, 1, 1.65884, 11.0265, -1.89364)
+
+[node name="collision box1" type="CSGBox3D" parent="island 3 bald"]
+transform = Transform3D(-3.00815, 0, -0.0991125, 0, 0.190636, 0, 0.119556, 0, -2.49374, -0.834827, -0.737313, 0.00526261)
+visible = false
+material_override = SubResource("StandardMaterial3D_1i5cd")
+use_collision = true
+size = Vector3(4.03039, 2.5674, 1.4806)
+
+[node name="island 2 bald2" parent="." instance=ExtResource("5_pc0v8")]
+transform = Transform3D(1, 0, 0, 0, 0.670629, 0, 0, 0, 1, 12.8256, 12.8461, -1.54083)
+
+[node name="collision box1" type="CSGBox3D" parent="island 2 bald2"]
+transform = Transform3D(-2.2859, 0, -0.0981179, 0, 0.285744, 0, 0.0908511, 0, -2.46872, -0.60603, -0.579472, 0.00556397)
+visible = false
+material_override = SubResource("StandardMaterial3D_1i5cd")
+use_collision = true
+size = Vector3(4.03039, 2.5674, 1.4806)
+
+[node name="island 4 bald2" parent="." instance=ExtResource("20_ro5gi")]
+transform = Transform3D(1, 0, 0, 0, 0.556804, 0, 0, 0, 1, 21.9608, 15.0235, -1.29047)
+
+[node name="collision box1" type="CSGBox3D" parent="island 4 bald2"]
+transform = Transform3D(-2.2859, 0, -0.0981179, 0, 0.208675, 0, 0.0908511, 0, -2.46872, -0.634735, -1.66142, 0.00526261)
+visible = false
+material_override = SubResource("StandardMaterial3D_1i5cd")
+use_collision = true
+size = Vector3(4.03039, 2.5674, 1.4806)
+
+[node name="tree 9" parent="." instance=ExtResource("9_k6a7g")]
+transform = Transform3D(0.656454, 0, 0.754366, 0, 1, 0, -0.754366, 0, 0.656454, 4.01655, 2.73061, -13.2007)
+
+[node name="tree 2" parent="." instance=ExtResource("13_8j5wk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.8622, 2.73061, 6.03373)
+
+[node name="tree 10" parent="." instance=ExtResource("13_8j5wk")]
+transform = Transform3D(0.0948728, 0, -0.995489, 0, 1, 0, 0.995489, 0, 0.0948728, -34.2568, 2.73061, -4.07233)
+
+[node name="tree 11" parent="." instance=ExtResource("13_8j5wk")]
+transform = Transform3D(0.545151, 0, 0.838338, 0, 1, 0, -0.838338, 0, 0.545151, -17.2079, 2.73061, 8.65853)
+
+[node name="tree 12" parent="." instance=ExtResource("13_8j5wk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.91361, 2.73061, -6.91605)
+
+[node name="tree 13" parent="." instance=ExtResource("8_gdslx")]
+transform = Transform3D(-0.776959, 0, -0.629551, 0, 1, 0, 0.629551, 0, -0.776959, 14.6273, 2.73061, -10.2675)
+
+[node name="tree 14" parent="." instance=ExtResource("9_k6a7g")]
+transform = Transform3D(0.801767, 0, 0, 0, 0.802049, 0, 0, 0, 1, -1.97258, 2.73061, 5.34638)
+
+[node name="tree 15" parent="." instance=ExtResource("13_8j5wk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4962, 2.73061, -8.08668)
+
+[node name="tree 7" parent="." instance=ExtResource("13_8j5wk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1539, 2.73061, 10.9206)
+
+[node name="tree 8" parent="." instance=ExtResource("9_k6a7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.3215, 2.73061, -10.6836)
+
+[node name="tree 16" parent="." instance=ExtResource("8_gdslx")]
+transform = Transform3D(0.661456, 0, -0.749984, 0, 1, 0, 0.749984, 0, 0.661456, 40.041, 2.73061, 5.25151)
+
+[node name="tree 3 purple" parent="." instance=ExtResource("14_2ho5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.4845, 2.73061, -9.13271)
+
+[node name="tree 3 purple2" parent="." instance=ExtResource("14_2ho5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.8463, 2.73061, 4.48117)
+
+[node name="ProtonScatter" parent="." instance=ExtResource("15_cbre3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3, 5)
+modifier_stack = SubResource("Resource_ex8n2")
+
+[node name="ScatterShape" parent="ProtonScatter" index="1"]
+transform = Transform3D(0.864968, 0, -2.57781e-08, 0, 0.864968, 0, 2.57781e-08, 0, 0.864968, 2.44062, 0.0745277, -4.07935)
+shape = SubResource("Resource_trlqi")
+
+[node name="ProtonScatter2" parent="." instance=ExtResource("22_m1vro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3923, 2.77745, -4.23706)
+modifier_stack = SubResource("Resource_t4q5a")
+
+[node name="ScatterShape3" parent="ProtonScatter2" index="1"]
+transform = Transform3D(0.862277, 0, -2.56979e-08, 0, 0.862277, 0, 2.56979e-08, 0, 0.862277, 2.54856, 0.518296, -3.10296)
+shape = SubResource("Resource_yibg6")
+
+[node name="ProtonScatter3" parent="." instance=ExtResource("15_cbre3")]
+transform = Transform3D(-0.451656, 0, -0.892192, 0, 1, 0, 0.892192, 0, -0.451656, 41.2892, 3.03657, -0.376702)
+modifier_stack = SubResource("Resource_vs5gj")
+
+[node name="ScatterShape" parent="ProtonScatter3" index="1"]
+transform = Transform3D(0.864968, 0, 2.98023e-08, 0, 0.864968, 0, -2.98023e-08, 0, 0.864968, 2.34966, -0.00012207, -3.91423)
+shape = SubResource("Resource_2gdcf")
+
+[node name="ProtonScatter4" parent="." instance=ExtResource("22_m1vro")]
+transform = Transform3D(-0.259561, 0, -0.965727, 0, 1, 0, 0.965727, 0, -0.259561, 50.0013, 3.56607, -4.99975)
+modifier_stack = SubResource("Resource_sn5ug")
+
+[node name="ScatterShape3" parent="ProtonScatter4" index="1"]
+transform = Transform3D(0.862277, 0, -2.98023e-08, 0, 0.862277, 0, 2.98023e-08, 0, 0.862277, 2.54856, 0.0437675, -3.10296)
+shape = SubResource("Resource_v1siv")
+
+[connection signal="turn_around" from="Characters Scripts and World Settings/Player" to="Characters Scripts and World Settings/CameraSystem" method="_on_player_turn_around"]
+
+[editable path="ProtonScatter"]
+[editable path="ProtonScatter2"]
+[editable path="ProtonScatter3"]
+[editable path="ProtonScatter4"]

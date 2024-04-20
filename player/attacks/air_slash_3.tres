@@ -7,6 +7,5 @@ script = ExtResource("1_hdmh6")
 damage = 7
 knockback = Vector2(5, 11)
 animation = &"AirAttack3"
-movement = Vector2(0, 0)
 freeze_slow = 0.07
 freeze_time = 0.4

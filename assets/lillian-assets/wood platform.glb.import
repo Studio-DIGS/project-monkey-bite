@@ -1,0 +1,32 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://dhwn4oc3kqjg7"
+path="res://.godot/imported/wood platform.glb-450c04abf23b542304ca8808dd0be2ca.scn"
+
+[deps]
+
+source_file="res://assets/lillian-assets/wood platform.glb"
+dest_files=["res://.godot/imported/wood platform.glb-450c04abf23b542304ca8808dd0be2ca.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={}
+gltf/embedded_image_handling=1

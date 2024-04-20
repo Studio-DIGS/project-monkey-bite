@@ -13,8 +13,8 @@ func _physics_process(delta):
 			player.attack()
 		elif Input.is_action_just_pressed("throw"):
 			player.throw()
-		elif Input.is_action_just_pressed("special"):
-			player.special()
+#		elif Input.is_action_just_pressed("special"):
+#			player.special()
 		elif Input.is_action_pressed("jump"):
 			player.jump(delta)
 		elif Input.is_action_just_released("jump"):

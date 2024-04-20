@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://mbmikvo0bep" path="res://assets/lillian-assets/Islands/floating rock 2.glb" id="20_6l01l"]
 [ext_resource type="PackedScene" uid="uid://b02d1j5r3pg1x" path="res://common/passthru-platforms/passthru_platform.tscn" id="20_osul5"]
 [ext_resource type="PackedScene" uid="uid://cgg8tr8eaax6m" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 4 bald.glb" id="20_ro5gi"]
-[ext_resource type="PackedScene" uid="uid://r2hi5m0cek01" path="res://common/level_switcher.tscn" id="20_w2g3i"]
+[ext_resource type="PackedScene" uid="uid://1v2sxi8g13bw" path="res://common/level_switcher.tscn" id="20_w2g3i"]
 [ext_resource type="PackedScene" uid="uid://dt3lg5wx2blje" path="res://assets/lillian-assets/Islands/island 3.glb" id="20_yyn82"]
 [ext_resource type="PackedScene" uid="uid://bphge5vitnjip" path="res://player/swords/sword_body.tscn" id="24_ro5n7"]
 
@@ -429,7 +429,7 @@ transform = Transform3D(2.21368, 0, 0, 0, 2.21368, 0, 0, 0, 2.21368, 0.811134, 0
 visible = false
 
 [node name="floating rock 3" parent="Environment/Rock Ramp/Lower Island" instance=ExtResource("20_6l01l")]
-transform = Transform3D(0.39354, 0, 0, 0, 0.124502, 0, 0, 0, 0.428554, -1.207, 3.908, 2.08165e-12)
+transform = Transform3D(0.39354, 0, 0, 0, 0.124502, 0, 0, 0, 0.428554, 5.04866, 4.32247, 4.76839e-07)
 
 [node name="PassthruPlatform" parent="Environment/Rock Ramp/Lower Island/floating rock 3" instance=ExtResource("20_osul5")]
 transform = Transform3D(2.50255, 0, 0, 0, 2.50255, 0, 0, 0, 2.50255, 0.849736, 1.64578, 0)
@@ -439,15 +439,6 @@ visible = false
 
 [node name="CollisionShape3D" parent="Environment/Rock Ramp/Lower Island/floating rock 3/PassthruPlatform" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0551584, 0, 0)
-
-[node name="floating rock 4" parent="Environment/Rock Ramp/Lower Island" instance=ExtResource("20_6l01l")]
-transform = Transform3D(0.573207, 0, 0, 0, 0.157341, 0, 0, 0, 0.429642, 4.269, 4.92411, 2.08165e-12)
-
-[node name="PassthruPlatform" parent="Environment/Rock Ramp/Lower Island/floating rock 4" instance=ExtResource("20_osul5")]
-transform = Transform3D(2.24023, 0.0017612, 0.216715, 0.0151678, 2.24382, -0.175041, -0.216191, 0.175688, 2.23339, 0.81828, 1.34952, 0.508258)
-
-[node name="MeshInstance3D" parent="Environment/Rock Ramp/Lower Island/floating rock 4/PassthruPlatform" index="0"]
-visible = false
 
 [node name="floating rock 1" parent="Environment/Rock Ramp" instance=ExtResource("19_tyupx")]
 transform = Transform3D(-0.929141, 0.016599, -4.16767, 0.0249422, 0.444501, 0.173779, 1.44363, 0.00300355, -2.68538, 33.7447, 3.85921, -0.573608)
@@ -589,4 +580,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.9369, 7.562, 0.0262072)
 
 [editable path="Environment/Rock Ramp/Lower Island/floating rock 2/PassthruPlatform"]
 [editable path="Environment/Rock Ramp/Lower Island/floating rock 3/PassthruPlatform"]
-[editable path="Environment/Rock Ramp/Lower Island/floating rock 4/PassthruPlatform"]

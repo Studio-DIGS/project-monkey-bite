@@ -265,6 +265,13 @@ size = Vector3(7.56142, 2.5674, 1.4806)
 [node name="island 4 bald" parent="." instance=ExtResource("20_ro5gi")]
 transform = Transform3D(-0.727642, 0, -8.57017, 0, 8.60101, 0, 8.57017, 0, -0.727642, 47.8244, 15.7677, -9.10721)
 
+[node name="collision box1" type="CSGBox3D" parent="island 4 bald"]
+transform = Transform3D(-3.00815, 0, -0.0991124, 0, 0.190636, 0, 0.119556, 0, -2.49374, -0.834828, -1.72491, 0.00526237)
+visible = false
+material_override = SubResource("StandardMaterial3D_1i5cd")
+use_collision = true
+size = Vector3(4.03039, 2.5674, 1.4806)
+
 [node name="tree 4" parent="." instance=ExtResource("8_gdslx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.0217, 9.53674e-07, -3.8771)
 
@@ -315,7 +322,7 @@ use_collision = true
 size = Vector3(4.03039, 2.5674, 1.4806)
 
 [node name="island 2 bald2" parent="." instance=ExtResource("5_pc0v8")]
-transform = Transform3D(1, 0, 0, 0, 0.670629, 0, 0, 0, 1, 12.8256, 12.8461, -2.47498)
+transform = Transform3D(1, 0, 0, 0, 0.670629, 0, 0, 0, 1, 12.8256, 12.8461, -1.54083)
 
 [node name="collision box1" type="CSGBox3D" parent="island 2 bald2"]
 transform = Transform3D(-2.2859, 0, -0.0981179, 0, 0.285744, 0, 0.0908511, 0, -2.46872, -0.60603, -0.579472, 0.00556397)
@@ -325,7 +332,7 @@ use_collision = true
 size = Vector3(4.03039, 2.5674, 1.4806)
 
 [node name="island 4 bald2" parent="." instance=ExtResource("20_ro5gi")]
-transform = Transform3D(1, 0, 0, 0, 0.556804, 0, 0, 0, 1, 21.9608, 15.0235, -2.58195)
+transform = Transform3D(1, 0, 0, 0, 0.556804, 0, 0, 0, 1, 21.9608, 15.0235, -1.29047)
 
 [node name="collision box1" type="CSGBox3D" parent="island 4 bald2"]
 transform = Transform3D(-2.2859, 0, -0.0981179, 0, 0.208675, 0, 0.0908511, 0, -2.46872, -0.634735, -1.66142, 0.00526261)

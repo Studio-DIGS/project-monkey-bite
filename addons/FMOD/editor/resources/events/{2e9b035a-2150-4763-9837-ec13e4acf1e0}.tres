@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://bavm0laxu68jf"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/Music V2"
+guid = "{2e9b035a-2150-4763-9837-ec13e4acf1e0}"
+name = "Music V2"

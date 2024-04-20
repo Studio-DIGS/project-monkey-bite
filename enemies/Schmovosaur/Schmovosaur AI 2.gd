@@ -122,6 +122,7 @@ func _on_prepare_charge_timeout(): #enemy charges
 	charge_freeze = false
 	particles_preparation.emitting = false
 	particles_post.emitting = true
+	FMODRuntime.play_one_shot_attached_path("event:/Dash", self)
 	cooldown_duration.start()
 
 func _on_charge_duration_timeout(): #charge is on cooldown

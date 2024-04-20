@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cgg8tr8eaax6m" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 4 bald.glb" id="10_jsx21"]
 [ext_resource type="PackedScene" uid="uid://7qxgf7rcege2" path="res://assets/lillian-assets/treestump.tscn" id="11_7qdg5"]
 [ext_resource type="PackedScene" uid="uid://mbmikvo0bep" path="res://assets/lillian-assets/Islands/floating rock 2.glb" id="11_kwwgd"]
-[ext_resource type="PackedScene" uid="uid://r2hi5m0cek01" path="res://common/level_switcher.tscn" id="13_f2s5j"]
+[ext_resource type="PackedScene" uid="uid://1v2sxi8g13bw" path="res://common/level_switcher.tscn" id="13_f2s5j"]
 [ext_resource type="PackedScene" uid="uid://bg7k2p78ua0ov" path="res://assets/lillian-assets/tree.glb" id="13_fry8b"]
 [ext_resource type="PackedScene" uid="uid://b02d1j5r3pg1x" path="res://common/passthru-platforms/passthru_platform.tscn" id="13_ixcym"]
 [ext_resource type="PackedScene" uid="uid://1ppp8tfmdfse" path="res://assets/lillian-assets/Textures/tree.tscn" id="14_0c633"]

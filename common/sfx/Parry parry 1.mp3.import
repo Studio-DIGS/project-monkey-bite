@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c8os7f4e6t85f"
+path="res://.godot/imported/Parry parry 1.mp3-c56cd1f9f572cd588e05e5539e21cc77.mp3str"
+
+[deps]
+
+source_file="res://common/sfx/Parry parry 1.mp3"
+dest_files=["res://.godot/imported/Parry parry 1.mp3-c56cd1f9f572cd588e05e5539e21cc77.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://q2x32njpa1ie"
+path="res://.godot/imported/Mobs monster hurt.mp3-be17ee9197ed3ba9dc30265636b0cfd4.mp3str"
+
+[deps]
+
+source_file="res://common/sfx/Mobs monster hurt.mp3"
+dest_files=["res://.godot/imported/Mobs monster hurt.mp3-be17ee9197ed3ba9dc30265636b0cfd4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

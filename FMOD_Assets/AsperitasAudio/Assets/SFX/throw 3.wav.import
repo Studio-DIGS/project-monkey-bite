@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ccf530yamq52q"
+path="res://.godot/imported/throw 3.wav-b10f65fbcacebd6c1c6a1620e8c3ad82.sample"
+
+[deps]
+
+source_file="res://FMOD_Assets/AsperitasAudio/Assets/SFX/throw 3.wav"
+dest_files=["res://.godot/imported/throw 3.wav-b10f65fbcacebd6c1c6a1620e8c3ad82.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

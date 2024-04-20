@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cvd0fw7h7k7o8"
+path="res://.godot/imported/Swords slash sfx 5.mp3-613aa21f474174d86d864271ccf76734.mp3str"
+
+[deps]
+
+source_file="res://common/sfx/Swords slash sfx 5.mp3"
+dest_files=["res://.godot/imported/Swords slash sfx 5.mp3-613aa21f474174d86d864271ccf76734.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

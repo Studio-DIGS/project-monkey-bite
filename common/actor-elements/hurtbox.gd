@@ -2,7 +2,9 @@ class_name Hurtbox
 extends Area3D
 
 @export var health: Health = null
-@onready var impact_fx = preload("res://common/vfx/impact_fx.tscn")
+#@onready var impact_fx = preload("res://common/vfx/impact_fx.tscn")
+
+#@onready var sword_sfx = $"../SFXContainer/SwordSlash"
 
 #Adding status effects
 signal send_freeze
@@ -17,9 +19,9 @@ func _on_area_entered(hitbox: Hitbox):
 	if hitbox.status_effect == "Freeze":
 		emit_signal("send_freeze")
 	hit.emit(hitbox.knockback)
-	
-	var instance = impact_fx.instantiate()
-	add_child(instance)
+	#sword_sfx.play()
+	#var instance = impact_fx.instantiate()
+	#add_child(instance)
 	
 	Engine.time_scale = hitbox.freeze_slow
 	await get_tree().create_timer(hitbox.freeze_time * hitbox.freeze_slow).timeout

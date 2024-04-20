@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="DAWProject" id="{b0538769-0c4b-4403-acc3-6ab055ced511}">
+		<property name="assetPath">
+			<value>AsperitasAudioREAPER.rpp.link/</value>
+		</property>
+		<property name="dawProjectPath">
+			<value>AsperitasAudioREAPER/AsperitasAudioREAPER.rpp</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2c94f61a-fee6-44a7-9991-bd48818b8f2c}</destination>
+		</relationship>
+	</object>
+</objects>

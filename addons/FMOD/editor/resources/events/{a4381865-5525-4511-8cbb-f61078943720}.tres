@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://cy4a3rwmwuty4"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/Unarmed Smack"
+guid = "{a4381865-5525-4511-8cbb-f61078943720}"
+name = "Unarmed Smack"

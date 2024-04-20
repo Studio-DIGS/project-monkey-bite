@@ -1,0 +1,10 @@
+[gd_resource type="EventAsset" format=3 uid="uid://bltcx5nnr5at8"]
+
+[resource]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/Dash"
+guid = "{233e8f3e-e7b2-4193-a4f6-040d56fc5338}"
+name = "Dash"

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="MasterAssetFolder" id="{2c94f61a-fee6-44a7-9991-bd48818b8f2c}" />
+	<object class="MasterAssetFolder" id="{2c94f61a-fee6-44a7-9991-bd48818b8f2c}">
+		<property name="dawProjectSourceDirectory">
+			<value>../../../../../../../../Music/Reaper</value>
+		</property>
+	</object>
 </objects>

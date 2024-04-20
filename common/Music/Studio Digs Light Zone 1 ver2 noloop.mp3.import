@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://2serl4dey5v"
+path="res://.godot/imported/Studio Digs Light Zone 1 ver2 noloop.mp3-57c1048602a043a4a7bf7e404b956317.mp3str"
+
+[deps]
+
+source_file="res://common/Music/Studio Digs Light Zone 1 ver2 noloop.mp3"
+dest_files=["res://.godot/imported/Studio Digs Light Zone 1 ver2 noloop.mp3-57c1048602a043a4a7bf7e404b956317.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=115.0
+beat_count=0
+bar_beats=4

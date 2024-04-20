@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cp5cxpkiuunmi"
+path="res://.godot/imported/Light Stage 1 Ambient.mp3-05d2807d2c0a7e9cd80c7f6f06a7c2b8.mp3str"
+
+[deps]
+
+source_file="res://common/Music/Light Stage 1 Ambient.mp3"
+dest_files=["res://.godot/imported/Light Stage 1 Ambient.mp3-05d2807d2c0a7e9cd80c7f6f06a7c2b8.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=85.0
+beat_count=0
+bar_beats=4

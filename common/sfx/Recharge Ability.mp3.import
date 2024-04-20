@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bwtnp8uptbv88"
+path="res://.godot/imported/Recharge Ability.mp3-fbf464b5ff28683aa70255c862b42163.mp3str"
+
+[deps]
+
+source_file="res://common/sfx/Recharge Ability.mp3"
+dest_files=["res://.godot/imported/Recharge Ability.mp3-fbf464b5ff28683aa70255c862b42163.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -9,6 +9,7 @@ func physics_update(delta):
 	player.move_and_slide()
 
 func throw_sword():
+	FMODRuntime.play_one_shot_attached_path("event:/Sword Throw", self)
 	player.is_armed = false
 	player.inventory_vis.update_weapon()
 	var projectile_instance: RigidBody3D = player.sword_body.instantiate()

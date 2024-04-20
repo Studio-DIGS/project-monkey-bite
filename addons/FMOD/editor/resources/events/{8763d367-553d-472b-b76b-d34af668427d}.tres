@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://8ljlxm6vjckn"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/Sword Whiff"
+guid = "{8763d367-553d-472b-b76b-d34af668427d}"
+name = "Sword Whiff"

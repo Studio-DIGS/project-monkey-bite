@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://cd2js1l2jvwmt"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/Player Dash"
+guid = "{367f9c9a-c492-4da4-ab3a-7f3180ec0867}"
+name = "Player Dash"

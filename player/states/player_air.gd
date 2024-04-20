@@ -8,6 +8,7 @@ func enter(msg := {}):
 	jump_force = 0.0
 	if msg.has("do_jump"):
 		player.anim.play("Jump")
+		FMODRuntime.play_one_shot_attached_path("event:/Player Jump", self)
 		player.velocity.y = player.min_jump_height
 		jumping = true
 		player.anim.queue("Fall")

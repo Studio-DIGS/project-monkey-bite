@@ -1,0 +1,10 @@
+[gd_resource type="EventAsset" format=3 uid="uid://b2tdv1p23gok3"]
+
+[resource]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/Schmovosaur Hurt"
+guid = "{4333f81a-e70a-4bd2-896c-e9e23a55024a}"
+name = "Schmovosaur Hurt"

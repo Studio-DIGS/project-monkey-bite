@@ -9,13 +9,18 @@ var current_direction
 var current_velocity
 
 var player_body
-var enemy_body
+@onready var enemy_body = $".." #Make sure to check/update this when adding AI
+@onready var enemy_hitbox = $"../Hitbox/CollisionShape3D"
+
+@onready var bread_crumb_multiplier = 1.3 #Changes offset for how much further enemy dashes past player
+@onready var bread_crumb_constant = 5
+@onready var bread_crumb_random_constant
 var bread_crumb #Location of player at a certain time
-var bread_crumb_multiplier
 
 #var state_passive: bool
 var state_active: bool
 var state_charge: bool
+var state_stagger: bool
 
 var isGrounded: bool
 
@@ -33,15 +38,17 @@ var particles_post
 @onready var shmovosaur_animation = $"../shmovosaur_animations"/AnimationPlayer
 @onready var model_direction = 1
 
+@onready var new_timer = $"Stagger Timer"
+
 signal checkVelocity
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	enemy_speed = 5
-	bread_crumb_multiplier = 1.3 #Changes offset for how much further enemy dashes past player
-	enemy_body = $".." #Make sure to check/update this when adding AI
+	bread_crumb_random_constant = randf() * 3 + 2
 	current_velocity = Vector3(0,0,0)
 	
 	state_active = false
+	state_stagger = false
 	
 	cooldown_charge = $"Charge Cooldown"
 	cooldown_prepare = $"Prepare Charge"
@@ -61,15 +68,21 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if state_charge == true:
+	if state_stagger:
+		return
+	else:
+		await get_tree().create_timer(.75).timeout
+	if state_charge == true and !state_stagger:
 		chargeState(delta)
-	elif state_active == true:
+	elif state_active == true and !state_stagger:
 		activeState(delta)
 		if charge_ready == true and enemy_body.is_on_floor():
 			state_charge = true
 			bread_crumb = player_body.position + Vector3(7.0, 0 ,0) * model_direction
 			cooldown_prepare.start()
 			particles_preparation.emitting = true
+#	elif state_stagger:
+#		check_stagger()
 	else:
 		passiveState(delta)
 	
@@ -93,7 +106,6 @@ func passiveState(_delta): #Stops all movement
 	current_velocity = Vector3.ZERO
 
 func chargeState(delta): #Increase velocity
-#	print("chargeState")
 	particles_post.position = enemy_body.position
 	particles_preparation.position = enemy_body.position
 	
@@ -105,6 +117,7 @@ func chargeState(delta): #Increase velocity
 		rotateParticles()
 		current_velocity = current_direction * enemy_speed * 15 * delta
 		current_velocity = Vector3(current_velocity.x, 0 ,0)
+
 		
 func rotateParticles(): #Compares position between player trail and enemy to rotate particle face
 	if enemy_body.position.x < bread_crumb.x:
@@ -136,6 +149,8 @@ func _on_player_detection_sphere_area_exited(_area):
 	state_active = false
 
 func _on_prepare_charge_timeout(): #enemy charges
+	#enable hitbox
+	enemy_hitbox.disabled = false
 	charge_freeze = false
 	particles_preparation.emitting = false
 	particles_post.emitting = true
@@ -147,6 +162,8 @@ func _on_prepare_charge_timeout(): #enemy charges
 	#decrease running speed animation
 
 func _on_charge_duration_timeout(): #charge is on cooldown
+	#disable hitbox
+	enemy_hitbox.disabled = true
 	state_charge = false
 	charge_ready = false
 	particles_post.emitting = false
@@ -161,3 +178,19 @@ func _on_charge_cooldown_timeout(): #ready condition for charging
 	#speed up running animation
 	shmovosaur_animation.speed_scale = 3
 
+#func check_stagger():
+##	#pause animation
+#	if state_stagger:
+#		shmovosaur_animation.pause()
+#		return
+##	await get_tree().create_timer(10).timeout
+##	state_stagger = false
+##	shmovosaur_animation.play()
+	
+func _on_hurtbox_enemy_has_been_hit():
+	shmovosaur_animation.pause()
+	state_stagger = true
+	await get_tree().create_timer(1.5).timeout
+	state_stagger = false
+	shmovosaur_animation.play("runCycle")
+	

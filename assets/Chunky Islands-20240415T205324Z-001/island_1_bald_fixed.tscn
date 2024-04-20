@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://tgq01xqcl77"]
+
+[ext_resource type="PackedScene" uid="uid://c4ngxqulenfw" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 1 bald.glb" id="1_335er"]
+[ext_resource type="Texture2D" uid="uid://ypw23pwfp1v8" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 1 bald.JPG" id="2_wsx2k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jyjqm"]
+albedo_texture = ExtResource("2_wsx2k")
+
+[node name="island 1 bald" instance=ExtResource("1_335er")]
+
+[node name="Vert_002" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_jyjqm")
+
+[node name="Cube" parent="." index="1"]
+visible = false

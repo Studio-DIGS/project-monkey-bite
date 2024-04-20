@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ux3afusloy6q"]
+
+[ext_resource type="PackedScene" uid="uid://dvxfyh50kcqfl" path="res://assets/Chunky Islands-20240415T205324Z-001/Chunky Islands/island 5 bald.glb" id="1_6spxa"]
+
+[node name="island 5 bald" instance=ExtResource("1_6spxa")]
+
+[node name="Cube" parent="." index="1"]
+visible = false

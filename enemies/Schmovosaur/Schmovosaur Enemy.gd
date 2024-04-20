@@ -2,7 +2,6 @@ extends Actor
 
 @export var attack_resource: AttackResource
 var start_pos
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_pos = position

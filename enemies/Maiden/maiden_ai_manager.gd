@@ -38,6 +38,9 @@ var cube_body
 
 var player_detection_range
 var random_variance: float
+
+@onready var maiden_3D = $"../attackAnim_maiden2"
+@onready var maiden_animation_player = $"../attackAnim_maiden2"/AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	enemy_body = $".."
@@ -138,8 +141,13 @@ func evade():
 		print("Evade ends")
 
 func spawn_projectile(delta):
+	maiden_animation_player.play("Key_001Action")
 	projectile_direction = (player_body.position - enemy_body.position).normalized()
-	
+	#Maiden turns using the following lines
+	if projectile_direction.x >= 0:
+		maiden_3D.rotation_degrees = Vector3(0, 90, 0)
+	else:
+		maiden_3D.rotation_degrees = Vector3(0, -90, 0)
 	#Shoots 3 balls
 	for i in range(3): 
 		emit_signal("projectile", projectile_direction, enemy_body.position) #Sends signal to spawn balls
@@ -181,6 +189,9 @@ func _on_escape_timer_timeout(): #Enemy begins to fade out and in
 #Emits signal to Main Maiden Enemy Node
 func move():
 	emit_signal("check_velocity", enemy_velocity)
+	maiden_animation_player.play("Armature_001Action")
+	print("Playing action")
+	
 
 func _on_maiden_enemy_send_player_information(player_information):
 	player_body = player_information

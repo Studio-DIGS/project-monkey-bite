@@ -1,19 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsmvlwxibcneu"]
+[gd_scene load_steps=2 format=3 uid="uid://cvxwnolkua34f"]
 
 [ext_resource type="PackedScene" uid="uid://bk180a4p86jtl" path="res://assets/Maiden/attackAnim_maiden.gltf" id="1_fbws0"]
-[ext_resource type="Texture2D" uid="uid://df4wsdoxlhlf4" path="res://assets/Maiden/Blue_Maiden_Colors.png" id="2_hixl1"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_omvvh"]
-albedo_texture = ExtResource("2_hixl1")
 
 [node name="attackAnim_maiden" instance=ExtResource("1_fbws0")]
-transform = Transform3D(-1.09278e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278e-07, 0, 0, 0)
-
-[node name="Armature" parent="." index="0"]
-visible = false
-
-[node name="Armature_001" parent="." index="1"]
-transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Armature_001" index="0"]
 bones/1/rotation = Quaternion(-0.255714, 0.0316939, 0.126229, 0.957952)
@@ -38,4 +27,7 @@ bones/21/rotation = Quaternion(-0.0300379, 8.03965e-05, 0.00237304, 0.999546)
 bones/22/rotation = Quaternion(-0.00732457, 0.00164861, -0.396677, 0.917928)
 
 [node name="Maiden_001" parent="Armature_001/Skeleton3D" index="0"]
-material_override = SubResource("StandardMaterial3D_omvvh")
+blend_shapes/Close = 1.0
+
+[node name="AnimationPlayer" parent="." index="5"]
+speed_scale = 3.0

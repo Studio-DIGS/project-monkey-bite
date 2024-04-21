@@ -12,8 +12,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("reset"):
-		GameManager.goto_scene("res://levels/grasstest.tscn")
+#	if Input.is_action_just_pressed("reset"):
+#		GameManager.goto_scene("res://levels/grasstest.tscn")
 	
 	if Input.is_action_just_pressed("spawn-sword"):
 		var sword_instance = sword.instantiate()

@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends Actor
 
 signal enemy_hit_instance
 signal send_player_information

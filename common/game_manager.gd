@@ -11,6 +11,9 @@ func _ready():
 	current_scene = root.get_child(root.get_child_count() - 1)
 
 # from docs https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html
+func _process(_delta):
+	if Input.is_action_just_pressed("reset"):
+		game_over()
 
 func game_over():
 	goto_scene("res://levels/grasstest.tscn")

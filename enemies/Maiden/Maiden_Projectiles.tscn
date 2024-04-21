@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://k1eqsnrbdmxe"]
+[gd_scene load_steps=10 format=3 uid="uid://k1eqsnrbdmxe"]
 
 [ext_resource type="Script" path="res://enemies/Maiden/MaidenProjectiles.gd" id="1_css03"]
 [ext_resource type="Script" path="res://common/actor-elements/hitbox.gd" id="2_pnftk"]
+[ext_resource type="Script" path="res://common/actor-elements/hurtbox.gd" id="3_afmd3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7706e"]
 
@@ -16,6 +17,9 @@ backlight = Color(0.121569, 1, 1, 1)
 material = SubResource("StandardMaterial3D_7pokm")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kbi3r"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iojdn"]
+radius = 0.35
 
 [node name="Projectiles" type="CharacterBody3D"]
 collision_layer = 32
@@ -52,5 +56,14 @@ knockback = Vector2(0.1, 0.1)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 shape = SubResource("SphereShape3D_kbi3r")
 
+[node name="Hurtbox" type="Area3D" parent="."]
+collision_layer = 64
+collision_mask = 4
+script = ExtResource("3_afmd3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+shape = SubResource("SphereShape3D_iojdn")
+
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="timeout" from="Self-Destruct Timer" to="." method="_on_self_destruct_timer_timeout"]
+[connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]

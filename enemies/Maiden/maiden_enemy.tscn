@@ -132,7 +132,8 @@ material = SubResource("StandardMaterial3D_4538d")
 
 [node name="Maiden Enemy" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75451, 0)
-collision_layer = 0
+collision_layer = 16
+collision_mask = 4097
 axis_lock_linear_z = true
 script = ExtResource("1_67eai")
 
@@ -179,10 +180,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.490013, 0, 0)
 shape = SubResource("BoxShape3D_baw2v")
 disabled = true
 
-[node name="Hurtbox" type="Area3D" parent="."]
+[node name="Hurtbox" type="Area3D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 64
 collision_mask = 1028
 script = ExtResource("5_e4ir2")
+health = NodePath("../Health")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00948918, 0)

@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name Projectile
 var projectile_speed
 var destruct_timer
+@onready var hitbox = $Hitbox
 
 func _ready():
 	projectile_speed = 5
@@ -20,3 +21,10 @@ func reverse_projectile():
 
 func _on_area_3d_area_entered(area):
 	reverse_projectile()
+
+
+func _on_hurtbox_hit(vector):
+	hitbox.collision_layer = 3
+	hitbox.collision_mask = 5
+	if clamp(vector.x, -1, 1) * clamp(velocity.x, -1, 1) < 0:
+		reverse_projectile()

@@ -617,14 +617,14 @@ transform = Transform3D(3.26548, 0, 0, 0, 86.5489, 0, 0, 0, -8.08898, 0.854134, 
 visible = false
 
 [node name="floating rock 14" parent="small rock clusters/arch" instance=ExtResource("8_s8pab")]
-transform = Transform3D(0.544765, 0.000409214, -0.22652, -0.0011885, 0.187568, 0.000494205, 0.225538, -4.31896e-09, 0.547139, -53.8799, 7.76024, 0)
+transform = Transform3D(0.544765, 0.000409214, -0.22652, -0.0011885, 0.187568, 0.000494205, 0.225538, -4.31896e-09, 0.547139, -53.7671, 6.52971, 0.0593224)
 
 [node name="PassthruPlatform" parent="small rock clusters/arch/floating rock 14" instance=ExtResource("7_htjmw")]
-transform = Transform3D(2.61787, 3.0014e-08, 3.09944e-06, -3.29603e-08, 41.8471, -6.10395e-08, -1.2517e-06, -3.32614e-08, -8.85994, 0.810478, 1.26398, -0.530602)
+transform = Transform3D(-0.24461, -0.135841, -4.44366, -0.00655554, 13.4669, -0.0422475, -1.3136, -0.0419111, 0.827672, 0.594162, 1.2626, -0.526752)
 visible = false
 
 [node name="floating rock 16" parent="small rock clusters/arch" instance=ExtResource("8_s8pab")]
-transform = Transform3D(0.817545, 0.00402152, -0.0457104, -0.0270117, 0.121454, 0.00173123, 0.100278, -7.08569e-05, 0.373134, -48.5382, 10.4451, 0)
+transform = Transform3D(0.760887, -0.0445997, -0.0426304, 0.300268, 0.11304, -0.0165858, 0.100278, -7.08569e-05, 0.373134, -49.8108, 9.37098, 0)
 
 [node name="PassthruPlatform" parent="small rock clusters/arch/floating rock 16" instance=ExtResource("7_htjmw")]
 transform = Transform3D(2.5868, 6.53963e-07, 5.66244e-07, -2.90992e-06, 71.1139, -3.91155e-07, 2.98023e-07, -1.55531e-07, -7.93563, 1.11357, 0.560715, -0.519268)
